@@ -4,7 +4,7 @@
 'test'        Name
 ')'           Punctuation
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 'export'      Name.Entity
@@ -14,34 +14,34 @@
 '/'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'handle_client' Name
 '/'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'maintain_clients' Name
 '/'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'start'       Name
 '/'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'stop'        Name
 '/'           Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'controller'  Name
 '/'           Operator
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-'           Punctuation
 'author'      Name.Entity
@@ -51,7 +51,7 @@
 '"'           Literal.String
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-'           Punctuation
 'define'      Name.Entity
@@ -61,108 +61,112 @@
 '['           Punctuation
 'list'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'packet'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '}'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'active'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'false'       Name
 '}'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'reuseaddr'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Name
 '}'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-'           Punctuation
 'record'      Name.Entity
 '('           Punctuation
 'player'      Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'name'        Name
 '='           Operator
 'none'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'socket'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '}'           Punctuation
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% To allow incoming connections, we need to listen on a TCP port.\n' Comment
+'%% To allow incoming connections, we need to listen on a TCP port.' Comment
+'\n'          Text.Whitespace
 
-'%% This is also the entry point for our server as a whole, so it\n' Comment
+'%% This is also the entry point for our server as a whole, so it' Comment
+'\n'          Text.Whitespace
 
-'%% starts the client_manager process and gives it a name so the rest\n' Comment
+'%% starts the client_manager process and gives it a name so the rest' Comment
+'\n'          Text.Whitespace
 
-'%% of the code can get to it easily.\n' Comment
+'%% of the code can get to it easily.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'listen'      Name.Function
 '('           Punctuation
 'Port'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
 'ok'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LSocket'     Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'gen_tcp'     Name.Namespace
 ':'           Punctuation
 'listen'      Name.Function
 '('           Punctuation
 'Port'        Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
 'TCP_OPTIONS' Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'register'    Name.Builtin
 '('           Punctuation
 'client_manager' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'spawn'       Name.Builtin
 '('           Punctuation
 '?'           Operator
 'MODULE'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'maintain_clients' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 ']'           Punctuation
@@ -170,90 +174,94 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do_accept'   Name
 '('           Punctuation
 'LSocket'     Name.Variable
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% Accepting a connection gives us a connection socket with the\n' Comment
+'%% Accepting a connection gives us a connection socket with the' Comment
+'\n'          Text.Whitespace
 
-'%% newly-connected client on the other end.  Since we want to accept\n' Comment
+'%% newly-connected client on the other end.  Since we want to accept' Comment
+'\n'          Text.Whitespace
 
-'%% more than one client, we spawn a new process for each and then wait\n' Comment
+'%% more than one client, we spawn a new process for each and then wait' Comment
+'\n'          Text.Whitespace
 
-'%% for another connection on our listening socket.\n' Comment
+'%% for another connection on our listening socket.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'do_accept'   Name.Function
 '('           Punctuation
 'LSocket'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'gen_tcp'     Name.Namespace
 ':'           Punctuation
 'accept'      Name.Function
 '('           Punctuation
 'LSocket'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'ok'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'spawn'       Name.Builtin
 '('           Punctuation
 '?'           Operator
 'MODULE'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'handle_client' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Socket'      Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'client_manager' Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'connect'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 '}'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'error'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Reason'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -264,124 +272,130 @@
 '~n'          Literal.String.Interpol
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Reason'      Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do_accept'   Name
 '('           Punctuation
 'LSocket'     Name.Variable
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% All the client-socket process needs to do is wait for data and\n' Comment
+'%% All the client-socket process needs to do is wait for data and' Comment
+'\n'          Text.Whitespace
 
-'%% forward it to the client_manager process which decides what to do\n' Comment
+'%% forward it to the client_manager process which decides what to do' Comment
+'\n'          Text.Whitespace
 
-'%% with it.  If the client disconnects, we let client_manager know and\n' Comment
+'%% with it.  If the client disconnects, we let client_manager know and' Comment
+'\n'          Text.Whitespace
 
-'%% then quietly go away.\n' Comment
+'%% then quietly go away.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'handle_client' Name.Function
 '('           Punctuation
 'Socket'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'gen_tcp'     Name.Namespace
 ':'           Punctuation
 'recv'        Name.Function
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'ok'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'client_manager' Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'data'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 '}'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'handle_client' Name
 '('           Punctuation
 'Socket'      Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'error'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'closed'      Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'client_manager' Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'disconnect'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% This is the main loop of the client_manager process.  It maintains\n' Comment
+'%% This is the main loop of the client_manager process.  It maintains' Comment
+'\n'          Text.Whitespace
 
-'%% the list of "players" and calls the handler for client input.\n' Comment
+'%% the list of "players" and calls the handler for client input.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'maintain_clients' Name.Function
 '('           Punctuation
 'Players'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -391,12 +405,12 @@
 '~n'          Literal.String.Interpol
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'foreach'     Name.Function
@@ -405,10 +419,10 @@
 '('           Punctuation
 'P'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -419,54 +433,54 @@
 '~n'          Literal.String.Interpol
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'P'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'receive'     Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'connect'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Player'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '#player'     Name.Label
 '{'           Punctuation
 'socket'      Name
 '='           Operator
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '='           Operator
 'connect'     Name
 '}'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'send_prompt' Name
 '('           Punctuation
 'Player'      Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -477,49 +491,49 @@
 '~n'          Literal.String.Interpol
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Player'      Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'NewPlayers'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 'Player'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ']'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'disconnect'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Player'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'find_player' Name
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -530,161 +544,166 @@
 '~n'          Literal.String.Interpol
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Player'      Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'NewPlayers'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'delete'      Name.Function
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'data'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Player'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'find_player' Name
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'NewPlayers'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'parse_data'  Name
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'NewPlayer'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'find_player' Name
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NewPlayers'  Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'send_prompt' Name
 '('           Punctuation
 'NewPlayer'   Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'maintain_clients' Name
 '('           Punctuation
 'NewPlayers'  Name.Variable
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% find_player is a utility function to get a player record associated\n' Comment
+'%% find_player is a utility function to get a player record associated' Comment
+'\n'          Text.Whitespace
 
-'%% with a particular socket out of the player list.\n' Comment
+'%% with a particular socket out of the player list.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'find_player' Name.Function
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
 'value'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Player'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'keysearch'   Name.Function
 '('           Punctuation
 'Socket'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#player.socket' Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Player'      Name.Variable
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% delete_player returns the player list without the given player.  It\n' Comment
+'%% delete_player returns the player list without the given player.  It' Comment
+'\n'          Text.Whitespace
 
-'%% deletes the player from the list based on the socket rather than\n' Comment
+'%% deletes the player from the list based on the socket rather than' Comment
+'\n'          Text.Whitespace
 
-'%% the whole record because the list might hold a different version.\n' Comment
+'%% the whole record because the list might hold a different version.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'delete_player' Name.Function
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'keydelete'   Name.Function
@@ -692,41 +711,43 @@
 'Player'      Name.Variable
 '#player.socket' Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#player.socket' Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% Sends an appropriate prompt to the player.  Currently the only\n' Comment
+'%% Sends an appropriate prompt to the player.  Currently the only' Comment
+'\n'          Text.Whitespace
 
-'%% prompt we send is the initial "Name: " when the player connects.\n' Comment
+'%% prompt we send is the initial "Name: " when the player connects.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'send_prompt' Name.Function
 '('           Punctuation
 'Player'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Player'      Name.Variable
 '#player.mode' Name.Label
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'connect'     Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'gen_tcp'     Name.Namespace
 ':'           Punctuation
 'send'        Name.Builtin
@@ -734,46 +755,47 @@
 'Player'      Name.Variable
 '#player.socket' Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Name: '      Literal.String
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ok'          Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% Sends the given data to all players in active mode.\n' Comment
+'%% Sends the given data to all players in active mode.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'send_to_active' Name.Function
 '('           Punctuation
 'Prefix'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ActivePlayers' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'filter'      Name.Function
@@ -782,24 +804,24 @@
 '('           Punctuation
 'P'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'P'           Name.Variable
 '#player.mode' Name.Label
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Punctuation
-'\n                                 ' Text
+'\n                                 ' Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'foreach'     Name.Function
@@ -808,10 +830,10 @@
 '('           Punctuation
 'P'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'gen_tcp'     Name.Namespace
 ':'           Punctuation
 'send'        Name.Builtin
@@ -819,98 +841,102 @@
 'P'           Name.Variable
 '#player.socket' Name.Label
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Prefix'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '++'          Operator
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Punctuation
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 'ActivePlayers' Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ok'          Name
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-"%% We don't really do much parsing, but that will probably change as\n" Comment
+"%% We don't really do much parsing, but that will probably change as" Comment
+'\n'          Text.Whitespace
 
-'%% more features are added.  Currently this handles naming the player\n' Comment
+'%% more features are added.  Currently this handles naming the player' Comment
+'\n'          Text.Whitespace
 
-'%% when he first connects and treats everything else as a message to\n' Comment
+'%% when he first connects and treats everything else as a message to' Comment
+'\n'          Text.Whitespace
 
-'%% send.\n'  Comment
+'%% send.'    Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'parse_data'  Name.Function
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Player'      Name.Variable
 '#player.mode' Name.Label
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'send_to_active' Name
 '('           Punctuation
 'Player'      Name.Variable
 '#player.name' Name.Label
-' '           Text
+' '           Text.Whitespace
 '++'          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ': '          Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 'delete_player' Name
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Name.Variable
 ')'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Players'     Name.Variable
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'connect'     Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'UPlayer'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Player'      Name.Variable
 '#player'     Name.Label
 '{'           Punctuation
@@ -921,54 +947,58 @@
 'Data'        Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '='           Operator
 'active'      Name
 '}'           Punctuation
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'UPlayer'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'delete_player' Name
 '('           Punctuation
 'Player'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Players'     Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'%% Utility methods to clean up the name before we apply it.  Called\n' Comment
+'%% Utility methods to clean up the name before we apply it.  Called' Comment
+'\n'          Text.Whitespace
 
-'%% bogostrip rather than strip because it returns the first continuous\n' Comment
+'%% bogostrip rather than strip because it returns the first continuous' Comment
+'\n'          Text.Whitespace
 
-'%% block of non-matching characters rather stripping matching\n' Comment
+'%% block of non-matching characters rather stripping matching' Comment
+'\n'          Text.Whitespace
 
-'%% characters off the front and back.\n' Comment
+'%% characters off the front and back.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'bogostrip'   Name.Function
 '('           Punctuation
 'String'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'bogostrip'   Name
 '('           Punctuation
 'String'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\r'         Literal.String.Escape
 '\\n'         Literal.String.Escape
@@ -977,80 +1007,82 @@
 '"'           Literal.String
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'bogostrip'   Name.Function
 '('           Punctuation
 'String'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Chars'       Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'LStripped'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Namespace
 ':'           Punctuation
 'substr'      Name.Function
 '('           Punctuation
 'String'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Namespace
 ':'           Punctuation
 'span'        Name.Function
 '('           Punctuation
 'String'      Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Chars'       Name.Variable
 ')'           Punctuation
 '+'           Operator
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'string'      Name.Namespace
 ':'           Punctuation
 'substr'      Name.Function
 '('           Punctuation
 'LStripped'   Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Namespace
 ':'           Punctuation
 'cspan'       Name.Function
 '('           Punctuation
 'LStripped'   Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Chars'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-"%% Here we have some extra code to test other bits of pygments' Erlang\n" Comment
+"%% Here we have some extra code to test other bits of pygments' Erlang" Comment
+'\n'          Text.Whitespace
 
-'%% lexer.\n' Comment
+'%% lexer.'   Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'get_timestamp' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
 '{'           Punctuation
 'Year'        Name.Variable
@@ -1068,16 +1100,16 @@
 'Sec'         Name.Variable
 '}'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'erlang'      Name.Namespace
 ':'           Punctuation
 'universaltime' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'lists'       Name.Namespace
 ':'           Punctuation
 'flatten'     Name.Function
@@ -1086,7 +1118,7 @@
 ':'           Punctuation
 'format'      Name.Function
 '('           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '"'           Literal.String
 '~4.10.0B'    Literal.String.Interpol
 '-'           Literal.String
@@ -1102,74 +1134,74 @@
 'Z'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '['           Punctuation
 'Year'        Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Month'       Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Day'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hour'        Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Min'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Sec'         Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'a_binary'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<'           Operator
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
 ':'           Punctuation
 '16'          Literal.Number.Integer
 '/'           Operator
 'integer'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '16#7f'       Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '>'           Operator
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'a_list_comprehension' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 'X'           Name.Variable
 '*'           Operator
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
@@ -1179,66 +1211,66 @@
 ']'           Punctuation
 ']'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'a_map'       Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'M0'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '#{'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'M1'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'M0'          Name.Variable
 '#{'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '200'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'escape_sequences' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\b'         Literal.String.Escape
 '\\d'         Literal.String.Escape
@@ -1253,189 +1285,194 @@
 '\\"'         Literal.String.Escape
 '\\\\'        Literal.String.Escape
 '"'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\1'         Literal.String.Escape
 '\\12'        Literal.String.Escape
 '\\123'       Literal.String.Escape
 '"'           Literal.String
-' '           Text
-'% octal\n'   Comment
+' '           Text.Whitespace
+'% octal'     Comment
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\x01'       Literal.String.Escape
 '"'           Literal.String
-'      '      Text
-'% short hex\n' Comment
+'      '      Text.Whitespace
+'% short hex' Comment
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\x{fff}'    Literal.String.Escape
 '"'           Literal.String
-'   '         Text
-'% long hex\n' Comment
+'   '         Text.Whitespace
+'% long hex'  Comment
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\^a'        Literal.String.Escape
 '\\^A'        Literal.String.Escape
 '"'           Literal.String
-'    '        Text
-'% control characters\n' Comment
+'    '        Text.Whitespace
+'% control characters' Comment
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ']'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'map'         Name.Function
 '('           Punctuation
 'Fun'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'H'           Name.Variable
 '|'           Punctuation
 'T'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 'Fun'         Name.Variable
 '('           Punctuation
 'H'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'map'         Name
 '('           Punctuation
 'Fun'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'T'           Name.Variable
 ')'           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'map'         Name.Function
 '('           Punctuation
 'Fun'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-"%% pmap, just because it's cool.\n" Comment
+"%% pmap, just because it's cool." Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pmap'        Name.Function
 '('           Punctuation
 'F'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'L'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Parent'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'self'        Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 'receive'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'Pid'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Result'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n             ' Text
+'\n             ' Text.Whitespace
 'Result'      Name.Variable
-'\n     '     Text
+'\n     '     Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Pid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'spawn'       Name.Builtin
 '('           Punctuation
 'fun'         Keyword
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n                                  ' Text
+'\n                                  ' Text.Whitespace
 'Parent'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'self'        Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'F'           Name.Variable
 '('           Punctuation
 'X'           Name.Variable
 ')'           Punctuation
 '}'           Punctuation
-' \n                          ' Text
+' \n                          ' Text.Whitespace
 'end'         Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'L'           Name.Variable
 ']'           Punctuation
 ']'           Punctuation
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

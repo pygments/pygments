@@ -14,7 +14,7 @@
 '...> '       Generic.Prompt
 'atom'        Literal.String.Symbol
 '"'           Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':" multi\\n line \'   S  \\natom"\n' Generic.Output
 
@@ -28,33 +28,33 @@
 '::'          Operator
 'binary'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator
-' '           Text
+' '           Text.Whitespace
 'utf8'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '::'          Operator
 '['           Punctuation
 '4'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unit'        Name
 '('           Punctuation
 '2'           Literal.Number.Integer
 ')'           Punctuation
 ']'           Punctuation
 '>>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'hello™1'     Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"hello™1"\n' Generic.Output
 
@@ -62,7 +62,7 @@
 
 'iex(2)> '    Generic.Prompt
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '8482\n'      Generic.Output
 
@@ -70,14 +70,14 @@
 
 'iex> '       Generic.Prompt
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 ':atom'       Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** (ArithmeticError) bad argument in arithmetic expression' Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    :erlang.+(1, :atom)\n' Generic.Error
 
@@ -85,19 +85,19 @@
 
 'iex(3)> '    Generic.Prompt
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...(3)> '    Generic.Prompt
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...(3)> '    Generic.Prompt
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '6\n'         Generic.Output
 
@@ -107,11 +107,11 @@
 'IO'          Name.Class
 '.'           Operator
 'puts'        Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Hello world' Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Hello world\n' Generic.Output
 
