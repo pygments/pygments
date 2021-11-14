@@ -1787,3 +1787,12 @@ def testTCommit(lexer):
             (Keyword, 'quit'),
             (Text, '\n')
             ]
+
+def testTREstart(lexer):
+    assert list(lexer.get_tokens(' trestart:foo')) == [
+            (Whitespace, ' '),
+            (Keyword, 'trestart'),
+            (Operator, ':'),
+            (Name.Variable, 'foo'),
+            (Text, '\n')
+            ]
