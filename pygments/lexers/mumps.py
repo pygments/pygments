@@ -412,6 +412,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
                 # 8.2.19 - TCOMMIT
                 (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+                # 8.2.20 - TRESTART
+                (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
