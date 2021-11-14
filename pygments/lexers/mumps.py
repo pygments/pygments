@@ -204,7 +204,7 @@ class MumpsLexer(ExtendedRegexLexer):
             #include('exfunc'),
             #include('exvar'),
             include('svn'),
-            #include('function'),
+            include('function'),
             ( unaryop_re, Operator, ('#pop', 'expratom')),
             ( '\\(', Punctuation, ('#pop', 'close_paren', 'expr')),
             ],
@@ -235,7 +235,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
-                # TODO
+                (words(('$CHAR', '$C'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
                 ],
         # 7.2 - exprtail
         'exprtail': [
