@@ -410,6 +410,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
                 # 8.2.18 - SET
                 (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
+                # 8.2.19 - TCOMMIT
+                (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
