@@ -1729,3 +1729,49 @@ def testSetEVShort(lexer):
             (Text, '\n')
             ]
 
+def testSetDevice(lexer):
+    assert list(lexer.get_tokens(' s $DEVICE="1,Connection reset",$D=0')) == [
+            (Whitespace, ' '),
+            (Keyword, 's'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$DEVICE'),
+            (Operator, '='),
+            (String, '"1,Connection reset"'),
+            (Punctuation, '$DEVICE'),
+            (Operator, '='),
+            (Number, '0'),
+            (Text, '\n')
+            ]
+
+def testSetKey(lexer):
+    assert list(lexer.get_tokens(' s $KEY="",$K=$C(10)')) == [
+            (Whitespace, ' '),
+            (Keyword, 's'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$KEY'),
+            (Operator, '='),
+            (String, '""'),
+            (Punctuation, ','),
+            (Name.Variable.Magic, '$K'),
+            (Operator, '='),
+            (Name.Function.Magic, '$C'),
+            (Punctuation, '('),
+            (Number, '10'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
+def testSetXY(lexer):
+    assert list(lexer.get_tokens(' set $X=20,$Y=4')) == [
+            (Whitespace, ' '),
+            (Keyword, 'set'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$X'),
+            (Operator, '='),
+            (Number, '20'),
+            (Punctuation, ','),
+            (Name.Variable.Magic, '$Y'),
+            (Operator, '='),
+            (Number, '4'),
+            (Text, '\n'),
+            ]
