@@ -7,7 +7,7 @@
     :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
+import io
 import os
 import sys
 
@@ -68,6 +68,14 @@ class FontManager:
         self.font_size = font_size
         self.fonts = {}
         self.encoding = None
+        if isinstance(font_name, io.BufferedIOBase) or os.path.isfile(font_name):
+            font = ImageFont.truetype(font_name, self.font_size)
+            self.fonts['NORMAL'] = font
+            self.fonts['BOLD'] = font
+            self.fonts['ITALIC'] = font
+            self.fonts['BOLDITALIC'] = font
+            return
+
         if sys.platform.startswith('win'):
             if not font_name:
                 self.font_name = DEFAULT_FONT_NAME_WIN
