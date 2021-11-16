@@ -1823,7 +1823,7 @@ def testTStartArg(lexer):
             (Whitespace, ' '),
             (Name.Variable, 'foo'),
             (Punctuation, ':'),
-            (Keyword.Pseudo, 'serial'),
+            (Keyword, 'serial'),
             (Text, '\n')
             ]
 
@@ -1835,7 +1835,7 @@ def testTStartArgInd(lexer):
             (Operator, '@'),
             (Name.Variable, 'foo'),
             (Punctuation, ':'),
-            (Keyword.Pseudo, 't'),
+            (Keyword, 't'),
             (Operator, '='),
             (Name.Variable, 'uniqID'),
             (Text, '\n')
