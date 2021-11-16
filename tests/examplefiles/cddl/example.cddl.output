@@ -2037,17 +2037,7 @@
 '='           Operator
 ' '           Text.Whitespace
 "'"           Literal.String.Single
-'h'           Literal.String.Single
-'e'           Literal.String.Single
-'l'           Literal.String.Single
-'l'           Literal.String.Single
-'o'           Literal.String.Single
-' '           Literal.String.Single
-'w'           Literal.String.Single
-'o'           Literal.String.Single
-'r'           Literal.String.Single
-'l'           Literal.String.Single
-'d'           Literal.String.Single
+'hello world' Literal.String.Single
 "'"           Literal.String.Single
 ' '           Text.Whitespace
 '/'           Operator
@@ -2073,53 +2063,11 @@
 '='           Operator
 ' '           Text.Whitespace
 "'"           Literal.String.Single
-'<'           Literal.String.Single
-'?'           Literal.String.Single
-'p'           Literal.String.Single
-'h'           Literal.String.Single
-'p'           Literal.String.Single
-' '           Literal.String.Single
-'p'           Literal.String.Single
-'r'           Literal.String.Single
-'i'           Literal.String.Single
-'n'           Literal.String.Single
-'t'           Literal.String.Single
-'('           Literal.String.Single
+'<?php print(' Literal.String.Single
 "\\'"         Literal.String.Escape
-'h'           Literal.String.Single
-'e'           Literal.String.Single
-'l'           Literal.String.Single
-'l'           Literal.String.Single
-'o'           Literal.String.Single
-' '           Literal.String.Single
-'w'           Literal.String.Single
-'o'           Literal.String.Single
-'r'           Literal.String.Single
-'l'           Literal.String.Single
-'d'           Literal.String.Single
+'hello world' Literal.String.Single
 "\\'"         Literal.String.Escape
-')'           Literal.String.Single
-';'           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'/'           Literal.String.Single
-'/'           Literal.String.Single
-' '           Literal.String.Single
-'n'           Literal.String.Single
-'o'           Literal.String.Single
-' '           Literal.String.Single
-'c'           Literal.String.Single
-'o'           Literal.String.Single
-'m'           Literal.String.Single
-'m'           Literal.String.Single
-'e'           Literal.String.Single
-'n'           Literal.String.Single
-'t'           Literal.String.Single
-' '           Literal.String.Single
-'…'           Literal.String.Single
-' '           Literal.String.Single
-'?'           Literal.String.Single
-'>'           Literal.String.Single
+');  // no comment … ?>' Literal.String.Single
 "'"           Literal.String.Single
 '\n'          Text.Whitespace
 
@@ -2128,68 +2076,11 @@
 '='           Operator
 ' '           Text.Whitespace
 "'"           Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-'<'           Literal.String.Single
-'?'           Literal.String.Single
-'p'           Literal.String.Single
-'h'           Literal.String.Single
-'p'           Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'p'           Literal.String.Single
-'r'           Literal.String.Single
-'i'           Literal.String.Single
-'n'           Literal.String.Single
-'t'           Literal.String.Single
-'('           Literal.String.Single
+'\n  <?php\n    print(' Literal.String.Single
 "\\'"         Literal.String.Escape
-'h'           Literal.String.Single
-'e'           Literal.String.Single
-'l'           Literal.String.Single
-'l'           Literal.String.Single
-'o'           Literal.String.Single
-' '           Literal.String.Single
-'w'           Literal.String.Single
-'o'           Literal.String.Single
-'r'           Literal.String.Single
-'l'           Literal.String.Single
-'d'           Literal.String.Single
+'hello world' Literal.String.Single
 "\\'"         Literal.String.Escape
-')'           Literal.String.Single
-';'           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'/'           Literal.String.Single
-'/'           Literal.String.Single
-' '           Literal.String.Single
-'n'           Literal.String.Single
-'o'           Literal.String.Single
-' '           Literal.String.Single
-'c'           Literal.String.Single
-'o'           Literal.String.Single
-'m'           Literal.String.Single
-'m'           Literal.String.Single
-'e'           Literal.String.Single
-'n'           Literal.String.Single
-'t'           Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'…'           Literal.String.Single
-' '           Literal.String.Single
-'?'           Literal.String.Single
-'>'           Literal.String.Single
-'\n'          Literal.String.Single
+');  // no comment\n    … ?>\n' Literal.String.Single
 
 "'"           Literal.String.Single
 '\n'          Text.Whitespace
