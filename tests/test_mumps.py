@@ -1805,3 +1805,98 @@ def testTROllback(lexer):
             (Name.Variable, 'abort'),
             (Text, '\n')
             ]
+
+def testTStart(lexer):
+    assert list(lexer.get_tokens(' TStart:\'dryrun')) == [
+            (Whitespace, ' '),
+            (Keyword, 'TStart'),
+            (Operator, ':'),
+            (Operator, '\''),
+            (Name.Variable, 'dryrun'),
+            (Text, '\n')
+            ]
+
+def testTStartArg(lexer):
+    assert list(lexer.get_tokens(' ts foo:serial')) == [
+            (Whitespace, ' '),
+            (Keyword, 'ts'),
+            (Whitespace, ' '),
+            (Name.Variable, 'foo'),
+            (Punctuation, ':'),
+            (Keyword.Pseudo, 'serial'),
+            (Text, '\n')
+            ]
+
+def testTStartArgInd(lexer):
+    assert list(lexer.get_tokens(' ts @foo:t=uniqID')) == [
+            (Whitespace, ' '),
+            (Keyword, 'ts'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'foo'),
+            (Punctuation, ':'),
+            (Keyword.Pseudo, 't'),
+            (Operator, '='),
+            (Name.Variable, 'uniqID'),
+            (Text, '\n')
+            ]
+
+def testTStartInd(lexer):
+    assert list(lexer.get_tokens(' ts @tsarg')) == [
+            (Whitespace, ' '),
+            (Keyword, 'ts'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'tsarg'),
+            (Text, '\n')
+            ]
+
+def testTStartGroups(lexer):
+    assert list(lexer.get_tokens(' TStart (a,b,c):(serial:t=5:zebra="yes")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'TStart'),
+            (Whitespace, ' '),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Punctuation, ')'),
+            (Punctuation, ':'),
+            (Punctuation, '('),
+            (Keyword, 'serial'),
+            (Punctuation, ':'),
+            (Keyword, 't'),
+            (Operator, '='),
+            (Number, '5'),
+            (Punctuation, ':'),
+            (Keyword, 'zebra'),
+            (Operator, '='),
+            (String, '"yes"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testTStartExclusive(lexer):
+    assert list(lexer.get_tokens(' TSTART *')) == [
+            (Whitespace, ' '),
+            (Keyword, 'TSTART'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '*'),
+            (Text, '\n')
+            ]
+
+def textTStartEmpty(lexer):
+    assert list(lexer.get_tokens( ' TS ():t="label"' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'TS'),
+            (Whitespace, ' '),
+            (Punctuation, '('),
+            (Punctuation, ')'),
+            (Punctuation, ':'),
+            (Keyword, 't'),
+            (Operator, '='),
+            (String, '"label"'),
+            (Text, '\n')
+            ]
