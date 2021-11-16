@@ -416,6 +416,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.21 - TROLLBACK
                 (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+                # 8.2.22 - TSTART
+                (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -647,5 +649,37 @@ class MumpsLexer(ExtendedRegexLexer):
         'setev': [
             (words(('$ECODE', '$EC'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             (words(('$ETRAP', '$ET'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
+            ],
+        # 8.2.22 - TSTART
+        'tstartargument': [
+            (':', Punctuation, ('#pop', 'transparameters')),
+            default(('#pop', 'opt_transparameters', 'restartargument'))
+            ],
+        'transparameters': [
+            ('\\(', Punctuation, ('#pop', 'tsparam_group')),
+            include('tsparam')
+            ],
+        'tsparam_group': [
+            default(('colon_group', 'tsparam'))
+            ],
+        'tsparam': [
+            default(('#pop', 'opt_equals_expr', 'tstartkeyword'))
+            ],
+        'opt_equals_expr': [
+            ('=', Operator, ('#pop', 'expr')),
+            default('#pop')
+            ],
+        'tstartkeyword': [
+            ('[A-Z]+', Keyword, '#pop')
+            ],
+        'opt_transparameters': [
+            (':', Punctuation, ('#pop', 'transparameters')),
+            default('#pop')
+            ],
+        'restartargument': [
+            ('\\*', Keyword.Pseudo, '#pop'),
+            ('(\\()(\\))', bygroups(Punctuation, Punctuation), '#pop'),
+            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
+            include('lname')
             ],
         }
