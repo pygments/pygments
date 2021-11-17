@@ -595,8 +595,8 @@ class AlloyLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    iden_rex = r'[a-zA-Z_][\w\']*'
-    string_rex = r'"(\\\\|\\[^\\]|[^"\\])*"'
+    iden_rex = r'[a-zA-Z_][\w]*"*'
+    string_rex = r'"\b(\\\\|\\[^\\]|[^"\\])*"'
     text_tuple = (r'[^\S\n]+', Text)
 
     tokens = {
