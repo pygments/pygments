@@ -47,7 +47,7 @@ class CSharpLexer(RegexLexer):
     """
 
     name = 'C#'
-    aliases = ['csharp', 'c#']
+    aliases = ['csharp', 'c#', 'cs']
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
 
