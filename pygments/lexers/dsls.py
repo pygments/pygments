@@ -596,7 +596,8 @@ class AlloyLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     iden_rex = r'[a-zA-Z_][\w\']*'
-    text_tuple = (r'[^\S\n]+', Whitespace)
+    string_rex = r'"(\\\\|\\[^\\]|[^"\\])*"'
+    text_tuple = (r'[^\S\n]+', Text)
 
     tokens = {
         'sig': [
@@ -615,6 +616,10 @@ class AlloyLexer(RegexLexer):
             (r'\{', Operator, '#pop'),
             (iden_rex, Name, '#pop'),
         ],
+        'fact': [
+            include('fun'),
+            (string_rex, String, '#pop')
+        ],
         'root': [
             (r'--.*?$', Comment.Single),
             (r'//.*?$', Comment.Single),
@@ -629,14 +634,15 @@ class AlloyLexer(RegexLexer):
             (r'(all|some|no|sum|disj|when|else)\b', Keyword),
             (r'(run|check|for|but|exactly|expect|as)\b', Keyword),
             (r'(and|or|implies|iff|in)\b', Operator.Word),
-            (r'(fun|pred|fact|assert)(\s+)', bygroups(Keyword, Whitespace), 'fun'),
+            (r'(fun|pred|assert)(\s+)', bygroups(Keyword, Text), 'fun'),
+            (r'(fact)(\s+)', bygroups(Keyword, Text), 'fact'),
             (r'!|#|&&|\+\+|<<|>>|>=|<=>|<=|\.|->', Operator),
             (r'[-+/*%=<>&!^|~{}\[\]().]', Operator),
             (iden_rex, Name),
             (r'[:,]', Punctuation),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            (r'\n', Whitespace),
+            (string_rex, String),
+            (r'\n', Text),
         ]
     }
 
