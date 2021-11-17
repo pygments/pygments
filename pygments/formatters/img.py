@@ -261,6 +261,8 @@ class ImageFormatter(Formatter):
         The font name to be used as the base font from which others, such as
         bold and italic fonts will be generated.  This really should be a
         monospace font to look sane.
+        If a filename or a file-like object is specified, the user must
+        provide different styles of the font.
 
         Default: "Courier New" on Windows, "Menlo" on Mac OS, and
                  "DejaVu Sans Mono" on \\*nix
