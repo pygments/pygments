@@ -37,7 +37,7 @@ class GasLexer(RegexLexer):
     char = r'[\w$.@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'(?:0[xX][a-fA-F0-9]+|#?-?\d+)'
-    register = '%' + identifier
+    register = '%' + identifier + r'\b'
 
     tokens = {
         'root': [
@@ -221,7 +221,7 @@ class HsailLexer(RegexLexer):
     identifier = r'[a-zA-Z_][\w.]*'
     # Registers
     register_number = r'[0-9]+'
-    register = r'(\$(c|s|d|q)' + register_number + ')'
+    register = r'(\$(c|s|d|q)' + register_number + r')\b'
     # Qualifiers
     alignQual = r'(align\(\d+\))'
     widthQual = r'(width\((\d+|all)\))'
@@ -725,9 +725,9 @@ class NasmLexer(RegexLexer):
     floatn = decn + r'\.e?' + decn
     string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
     declkw = r'(?:res|d)[bwdqt]|times'
-    register = (r'r[0-9][0-5]?[bwd]?|'
+    register = (r'(r[0-9][0-5]?[bwd]?|'
                 r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
-                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7])\b')
     wordop = r'seg|wrt|strict'
     type = r'byte|[dq]?word'
     # Directives must be followed by whitespace, otherwise CPU will match
@@ -819,9 +819,9 @@ class TasmLexer(RegexLexer):
     floatn = decn + r'\.e?' + decn
     string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
     declkw = r'(?:res|d)[bwdqt]|times'
-    register = (r'r[0-9][0-5]?[bwd]|'
+    register = (r'(r[0-9][0-5]?[bwd]|'
                 r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
-                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7])\b')
     wordop = r'seg|wrt|strict'
     type = r'byte|[dq]?word'
     directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'

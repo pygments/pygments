@@ -321,8 +321,7 @@
 'eax'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TField'      Name.Variable
 '\n'          Text.Whitespace
@@ -583,8 +582,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'eanData'     Name.Variable
+'cleanData'   Name.Variable
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -653,8 +651,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
@@ -932,8 +929,7 @@
 'eax'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TField'      Name.Variable
 '\n'          Text.Whitespace
@@ -1288,8 +1284,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1334,8 +1329,7 @@
 ' '           Text.Whitespace
 'offset'      Name.Variable
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'osedlist'    Name.Variable
+'closedlist'  Name.Variable
 '\n\n'        Text.Whitespace
 
 '@loopClosed:' Name.Label
@@ -1434,8 +1428,7 @@
 'ebx'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TField'      Name.Variable
 '\n'          Text.Whitespace
@@ -1631,8 +1624,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'ebx'         Name.Builtin
@@ -1727,8 +1719,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'ebx'         Name.Builtin
@@ -1823,8 +1814,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'ebx'         Name.Builtin
@@ -1919,8 +1909,7 @@
 '        '    Text.Whitespace
 'call'        Name.Function
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'ebx'         Name.Builtin
@@ -2110,8 +2099,7 @@
 'edx'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TPriorityField' Name.Variable
 '\n'          Text.Whitespace
@@ -2222,8 +2210,7 @@
 'ecx'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TPriorityField' Name.Variable
 '\n'          Text.Whitespace
@@ -2321,8 +2308,7 @@
 'ecx'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TPriorityField' Name.Variable
 '\n'          Text.Whitespace
@@ -2342,8 +2328,7 @@
 'edi'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TPriorityField' Name.Variable
 '\n'          Text.Whitespace
@@ -2419,8 +2404,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2430,8 +2414,7 @@
 'ebx'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TField'      Name.Variable
 '        '    Text.Whitespace
@@ -2445,8 +2428,7 @@
 ' '           Text.Whitespace
 'offset'      Name.Variable
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'osedlist'    Name.Variable
+'closedlist'  Name.Variable
 ' '           Text.Whitespace
 '; ebx contains the target TField' Comment.Single
 '\n\n'        Text.Whitespace
@@ -2536,8 +2518,7 @@
 'inc'         Name.Function
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2545,12 +2526,10 @@
 'cmp'         Name.Function
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 '],'          Punctuation
 ' '           Text.Whitespace
-'CL'          Name.Builtin
-'OSED_LIST_SIZE_MAX' Name.Variable
+'CLOSED_LIST_SIZE_MAX' Name.Variable
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -2575,8 +2554,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2588,8 +2566,7 @@
 ' '           Text.Whitespace
 'offset'      Name.Variable
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'osedOutOfMemory' Name.Variable
+'closedOutOfMemory' Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'eax'         Name.Builtin
@@ -2682,8 +2659,7 @@
 'eax'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TPriorityField' Name.Variable
 '\n'          Text.Whitespace
@@ -2931,8 +2907,7 @@
 
 'PROC'        Keyword
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -3077,14 +3052,12 @@
 
 'ENDP'        Keyword
 ' '           Text.Whitespace
-'di'          Name.Builtin
-'stance'      Name.Variable
+'distance'    Name.Variable
 '\n\n'        Text.Whitespace
 
 'PROC'        Keyword
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'eanData'     Name.Variable
+'cleanData'   Name.Variable
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -3110,8 +3083,7 @@
 'mov'         Name.Function
 ' '           Text.Whitespace
 '['           Punctuation
-'cl'          Name.Builtin
-'osedlistSize' Name.Variable
+'closedlistSize' Name.Variable
 '],'          Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
@@ -3249,8 +3221,7 @@
 'eax'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'SI'          Name.Builtin
-'ZE'          Name.Variable
+'SIZE'        Name.Variable
 ' '           Text.Whitespace
 'TField'      Name.Variable
 '\n'          Text.Whitespace
@@ -3273,8 +3244,7 @@
 
 'ENDP'        Keyword
 ' '           Text.Whitespace
-'cl'          Name.Builtin
-'eanData'     Name.Variable
+'cleanData'   Name.Variable
 '\n\n'        Text.Whitespace
 
 'DATASEG'     Keyword
@@ -3476,8 +3446,7 @@
 '       '     Text.Whitespace
 'TField'      Keyword.Declaration
 ' '           Text.Whitespace
-'CL'          Name.Builtin
-'OSED_LIST_SIZE_MAX' Name.Variable
+'CLOSED_LIST_SIZE_MAX' Name.Variable
 '       '     Text.Whitespace
 'dup'         Name.Variable
 '('           Punctuation
