@@ -1,0 +1,42 @@
+'# Top level parameter' Comment
+'\n'          Text.Whitespace
+
+'HashKnownHosts' Name.Attribute
+' '           Text.Whitespace
+'yes'         Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Host'        Keyword
+' '           Text.Whitespace
+'localhost'   Literal.String
+' '           Text.Whitespace
+'*.localdomain' Literal.String
+' '           Text.Whitespace
+'!'           Operator
+'*.example.com' Literal.String
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'User'        Name.Attribute
+' '           Text.Whitespace
+'root'        Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Host'        Keyword
+' '           Text.Whitespace
+'example.com' Literal.String
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'# Host specific, indented comment' Comment
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'User'        Name.Attribute
+' '           Text.Whitespace
+'hello'       Literal.String
+'\n'          Text.Whitespace

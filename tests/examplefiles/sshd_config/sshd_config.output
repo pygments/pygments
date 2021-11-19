@@ -1,0 +1,43 @@
+'# Comments'  Comment
+'\n'          Text.Whitespace
+
+'# ...'       Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'UsePAM'      Name.Attribute
+' '           Text.Whitespace
+'yes'         Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Match'       Keyword
+' '           Text.Whitespace
+'user'        Name.Attribute
+' '           Text.Whitespace
+'hello'       Literal.String
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'PermitTTY'   Name.Attribute
+' '           Text.Whitespace
+'no'          Literal.String
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'#PrintMotd yes' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Banner'      Name.Attribute
+' '           Text.Whitespace
+'none'        Literal.String
+'\n'          Text.Whitespace

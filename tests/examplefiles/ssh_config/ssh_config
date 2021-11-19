@@ -1,0 +1,9 @@
+# Top level parameter
+HashKnownHosts yes
+
+Host localhost *.localdomain !*.example.com
+     User root
+
+Host example.com
+     # Host specific, indented comment
+     User hello
