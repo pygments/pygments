@@ -1,5 +1,3 @@
-# Auto-generated for Macaulay2-1.19. Do not modify this file manually.
-
 """
     pygments.lexers.macaulay2
     ~~~~~~~~~~~~~~~~~
@@ -13,6 +11,8 @@ from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Text
 
 __all__ = ['Macaulay2Lexer']
+
+# Auto-generated for Macaulay2-1.19. Do not modify this file manually.
 
 M2KEYWORDS = (
     "and",
