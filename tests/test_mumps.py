@@ -1887,7 +1887,7 @@ def testTStartExclusive(lexer):
             (Text, '\n')
             ]
 
-def textTStartEmpty(lexer):
+def testTStartEmpty(lexer):
     assert list(lexer.get_tokens( ' TS ():t="label"' )) == [
             (Whitespace, ' '),
             (Keyword, 'TS'),
@@ -1898,5 +1898,14 @@ def textTStartEmpty(lexer):
             (Keyword, 't'),
             (Operator, '='),
             (String, '"label"'),
+            (Text, '\n')
+            ]
+
+def testUseVar(lexer):
+    assert list(lexer.get_tokens( ' use newio')) == [
+            (Whitespace, ' '),
+            (Keyword, 'use'),
+            (Whitespace, ' '),
+            (Name.Variable, 'newio'),
             (Text, '\n')
             ]
