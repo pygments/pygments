@@ -31,7 +31,7 @@ architecture_dependent_keywords = (
 class SrcinfoLexer(RegexLexer):
     """Lexer for .SRCINFO files used by Arch Linux Packages.
 
-    .. versionadded:: 2.10
+    .. versionadded:: 2.11
     """
 
     name = 'Srcinfo'
