@@ -418,6 +418,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.22 - TSTART
                 (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
+                # 8.2.23 - USE
+                (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -681,5 +683,9 @@ class MumpsLexer(ExtendedRegexLexer):
             ('(\\()(\\))', bygroups(Punctuation, Punctuation), '#pop'),
             ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
             include('lname')
+            ],
+        # 8.2.23 - USE
+        'useargument': [
+            default(('#pop', 'expr'))
             ],
         }
