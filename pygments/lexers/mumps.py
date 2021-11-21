@@ -419,7 +419,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 # 8.2.22 - TSTART
                 (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
                 # 8.2.23 - USE
-                (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp')),
+                (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
