@@ -19,6 +19,8 @@ class GroffFormatter(Formatter):
     """
     Format tokens with groff escapes to change their color and font style.
 
+    .. versionadded:: 2.11
+
     Additional options accepted:
 
     `style`
