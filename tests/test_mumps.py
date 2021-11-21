@@ -1909,3 +1909,16 @@ def testUseVar(lexer):
             (Name.Variable, 'newio'),
             (Text, '\n')
             ]
+
+def testUseIndirected(lexer):
+    assert list(lexer.get_tokens(' u:open @useargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'u'),
+            (Operator, ':'),
+            (Name.Variable, 'open'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'useargs'),
+            (Text, '\n'),
+            ]
+
