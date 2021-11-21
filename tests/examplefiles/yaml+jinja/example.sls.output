@@ -1,12 +1,12 @@
 'include'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'moosefs'     Literal.Scalar.Plain
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '{%'          Comment.Preproc
 ' '           Text
@@ -28,7 +28,7 @@
 ')'           Operator
 ' '           Text
 '%}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/mnt/moose'  Name.Tag
 '{{'          Comment.Preproc
@@ -41,275 +41,275 @@
 ' '           Text
 '}}'          Comment.Preproc
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'mount.mounted' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'device'      Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 ' '           Text
 'mnt'         Name.Variable
 ' '           Text
 '}}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'fstype'      Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xfs'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'mkmnt'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'True'        Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'file.directory' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'user'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'group'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'require'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'user'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'group'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
 ' '           Text
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/etc/mfshdd.cfg' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'file.managed' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'source'      Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'salt://moosefs/mfshdd.cfg' Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'user'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'group'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'mode'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '644'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'template'    Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'jinja'       Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'require'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'pkg'         Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs-chunkserver' Literal.Scalar.Plain
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/etc/mfschunkserver.cfg' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'file.managed' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'source'      Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'salt://moosefs/mfschunkserver.cfg' Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'user'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'group'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'mode'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '644'         Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'template'    Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'jinja'       Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'require'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'pkg'         Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mfs-chunkserver' Literal.Scalar.Plain
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'mfs-chunkserver' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'pkg'         Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'installed'   Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mfschunkserver' Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'service'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'running'     Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'require'     Name.Tag
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
 ' '           Text
@@ -328,14 +328,14 @@
 ')'           Operator
 ' '           Text
 '%}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'mount'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/mnt/moose'  Literal.Scalar.Plain
 '{{'          Comment.Preproc
 ' '           Text
@@ -346,14 +346,14 @@
 ']'           Operator
 ' '           Text
 '}}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/mnt/moose'  Literal.Scalar.Plain
 '{{'          Comment.Preproc
 ' '           Text
@@ -364,38 +364,38 @@
 ']'           Operator
 ' '           Text
 '}}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
 ' '           Text
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/etc/mfschunkserver.cfg' Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/etc/mfshdd.cfg' Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation.Indicator
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/var/lib/mfs' Literal.Scalar.Plain
-'\n'          Text
+'\n'          Text.Whitespace
