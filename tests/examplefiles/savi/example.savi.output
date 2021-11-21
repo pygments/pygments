@@ -1,5 +1,4 @@
-':'           Name.Tag
-'import'      Name.Tag
+':import'     Name.Tag
 ' '           Text.Whitespace
 '"'           Literal.String.Double
 'spec'        Literal.String.Double
@@ -8,15 +7,13 @@
 
 '\n'          Text.Whitespace
 
-':'           Name.Tag
-'actor'       Name.Tag
+':actor'      Name.Tag
 ' '           Text.Whitespace
 'Main'        Name.Class
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'new'         Name.Tag
+':new'        Name.Tag
 ' '           Text.Whitespace
 '('           Punctuation
 'env'         Name
@@ -51,22 +48,19 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-':'           Name.Tag
-'class'       Name.Tag
+':class'      Name.Tag
 ' '           Text.Whitespace
 'AdditionSpec' Name.Class
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'is'          Name.Tag
+':is'         Name.Tag
 ' '           Text.Whitespace
 'Spec'        Name.Class
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'const'       Name.Tag
+':const'      Name.Tag
 ' '           Text.Whitespace
 'describes'   Keyword.Declaration
 ':'           Punctuation
@@ -81,8 +75,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'const'       Name.Tag
+':const'      Name.Tag
 ' '           Text.Whitespace
 'two'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -95,8 +88,7 @@
 '\n\n'        Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'it'          Name.Tag
+':it'         Name.Tag
 ' '           Text.Whitespace
 '"'           Literal.String.Double
 'adds two twos' Literal.String.Double
@@ -128,8 +120,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'fun'         Name.Tag
+':fun'        Name.Tag
 ' '           Text.Whitespace
 'non'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -158,8 +149,7 @@
 '\n\n'        Text.Whitespace
 
 '  '          Text.Whitespace
-':'           Name.Tag
-'it'          Name.Tag
+':it'         Name.Tag
 ' '           Text.Whitespace
 '"'           Literal.String.Double
 'can error on overflow' Literal.String.Double

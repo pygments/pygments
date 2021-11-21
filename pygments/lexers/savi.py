@@ -61,8 +61,8 @@ class SaviLexer(RegexLexer):
       (r'([_A-Z]\w*)', Name.Class),
 
       # Declare
-      (r'^([ \t]*)(:)(\w+)',
-        bygroups(Whitespace, Name.Tag, Name.Tag),
+      (r'^([ \t]*)(:\w+)',
+        bygroups(Whitespace, Name.Tag),
         "decl"),
 
       # Error-Raising Calls/Names

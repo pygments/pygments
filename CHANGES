@@ -14,6 +14,7 @@ Version 2.11.0
 - Added lexers:
 
   * Maxima (#1885)
+  * Savi (#1863)
   * Sed (#1935)
 
 - Updated lexers:
@@ -47,6 +48,7 @@ Version 2.11.0
 - ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
 - Use the ``shell`` lexer for ``kshrc`` files (#1947)
 - Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)
+- Add a ``groff`` formatter (#1873)
 
 
 Version 2.10.0
@@ -88,7 +90,6 @@ Version 2.10.0
 - Use the ``.ini`` lexer for ``systemd`` files (#1849)
 - Fix a ``FutureWarning`` related to ``words()`` (#1854)
 - ``pwsh`` is now recognized as an alias for PowerShell (#1876)
-- Add a ``groff`` formatter (#1873)
 
 
 Version 2.9.0
