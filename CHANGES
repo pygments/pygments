@@ -39,7 +39,8 @@ Version 2.11.0
 - Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1914, #1911, #1923, #1939)
 - Remove duplicated assignments in the Paraiso style (#1934)
 - ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
-- Use the ``shell`` for ``kshrc`` files (#1947)
+- Use the ``shell`` lexer for ``kshrc`` files (#1947)
+- Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)
 
 
 Version 2.10.0
