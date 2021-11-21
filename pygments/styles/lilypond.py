@@ -18,6 +18,10 @@ class LilypondStyle(Style):
     .. versionadded:: 2.11
     """
 
+    # Don't show it in the gallery, it's intended for LilyPond
+    # input only and doesn't show good output on Python code.
+    web_style_gallery_exclude = True
+
     default_style = "#0000ff"
 
     styles = {
