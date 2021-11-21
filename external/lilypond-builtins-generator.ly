@@ -1,6 +1,6 @@
 %% Autogenerate a list of LilyPond keywords
 
-\version "2.23.3"
+\version "2.23.4"
 
 #(use-modules (ice-9 receive)
               (ice-9 regex))
