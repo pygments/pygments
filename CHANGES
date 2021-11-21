@@ -13,6 +13,7 @@ Version 2.11.0
 
 - Added lexers:
 
+  * LilyPond (#1845). This comes with a custom style as well.
   * Maxima (#1885)
   * Savi (#1863)
   * Sed (#1935)
@@ -35,11 +36,12 @@ Version 2.11.0
 - Added styles:
 
   * Dracula (#1796)
+  * LilyPond (#1845) -- to be used for the ``LilyPond`` language.
   * One-Dark (#1924)
 
 .. note::
 
-  Both of the new styles do not conform to WCAG recommendations.
+  All of the new styles unfortunately do not conform to WCAG recommendations.
 
 - There is new infrastructure in place to improve style accessibility. The default style has been updated to conform to WCAG recommendations. All styles are now checked for sufficient contrast by default to prevent regressions. (#1919, #1937, #1938, #1940)
 - Clean up unused imports (#1887)

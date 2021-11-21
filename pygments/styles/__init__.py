@@ -56,6 +56,7 @@ STYLE_MAP = {
     'gruvbox-light': 'gruvbox::GruvboxLightStyle',
     'dracula': 'dracula::DraculaStyle',
     'one-dark': 'onedark::OneDarkStyle',
+    'lilypond' : 'lilypond::LilypondStyle',
 }
 
 

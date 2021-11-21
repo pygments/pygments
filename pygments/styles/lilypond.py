@@ -13,6 +13,11 @@ from pygments.style import Style
 from pygments.token import Token
 
 class LilypondStyle(Style):
+    """
+    Style for the LilyPond language.
+        
+    .. versionadded:: 2.11
+    """
 
     default_style = "#0000ff"
 

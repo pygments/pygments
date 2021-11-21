@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.lilypond
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,7 +45,7 @@ class LilyPondLexer(SchemeLexer):
 
        This lexer is meant to be used in conjunction with the ``lilypond`` style.
 
-    .. versionadded:: 2.10
+    .. versionadded:: 2.11
     """
     name = 'LilyPond'
     aliases = ['lilypond']

@@ -252,6 +252,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* `LilyPond <https://lilypond.org/>`_
 * Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts

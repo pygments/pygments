@@ -19,6 +19,8 @@ from pygments.token import Token, Punctuation, Keyword, Name, Comment, String, \
 class OneDarkStyle(Style):
     """
     Theme inspired by One Dark Pro for Atom
+    
+    .. versionadded:: 2.11
     """
 
     background_color = '#282C34'
