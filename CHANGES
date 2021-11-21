@@ -20,14 +20,14 @@ Version 2.11.0
   * Bibtex: Distinguish between ``comment`` and ``commentary`` (#1899, #1806)
   * C family: Support unicode identifiers (#1848)
   * Debian control: Add missing fields (#1946)
+  * Devicetree: Recognize hexadecimal addresses for nodes (#1949)
   * GDScript: Add ``void`` data type (#1948)
   * HTML, XML: Improve comment handling (#1896)
   * Java: Add ``yield`` (#1941)
   * Prolog: Support escaped ``\`` inside quoted strings (#1479)
   * RobotFramework: Improve empty brace handling (#1921, #1922)
-  * Terraform: Support heredocs (#1909)
   * Terraform: Add the 'set' type
-  * Devicetree: Recognize hexadecimal addresses for nodes (#1949)
+  * Terraform: Support heredocs (#1909)
 
 - Added styles:
 
@@ -39,6 +39,7 @@ Version 2.11.0
 - Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1914, #1911, #1923, #1939)
 - Remove duplicated assignments in the Paraiso style (#1934)
 - ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
+- Use the ``shell`` for ``kshrc`` files (#1947)
 
 
 Version 2.10.0
