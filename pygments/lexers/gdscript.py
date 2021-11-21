@@ -278,6 +278,7 @@ class GDScriptLexer(RegexLexer):
                         "PackedVector3Array",
                         "PackedColorArray",
                         "null",
+                        "void",
                     ),
                     prefix=r"(?<!\.)",
                     suffix=r"\b",
