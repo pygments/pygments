@@ -263,11 +263,14 @@
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Function for adding the base address of the repeated slots of a <buffer>\n' Comment.Single
+'// Function for adding the base address of the repeated slots of a <buffer>' Comment.Single
+'\n'          Text.Whitespace
 
-'// to an offset and returning the result as a <machine-word>.  This is\n' Comment.Single
+'// to an offset and returning the result as a <machine-word>.  This is' Comment.Single
+'\n'          Text.Whitespace
 
-'// necessary for passing <buffer> contents across the FFI.\n' Comment.Single
+'// necessary for passing <buffer> contents across the FFI.' Comment.Single
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -560,7 +563,8 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 '\n      '    Text.Whitespace
-'// Check error!\n' Comment.Single
+'// Check error!' Comment.Single
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'end'         Keyword
@@ -655,7 +659,8 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'// Check error!\n' Comment.Single
+'// Check error!' Comment.Single
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'end'         Keyword

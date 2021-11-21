@@ -11,7 +11,8 @@ import time
 import pytest
 
 from pygments.lexers.data import JsonLexer, JsonBareObjectLexer, JsonLdLexer
-from pygments.token import Token, Punctuation, Text, Number, String, Keyword, Name
+from pygments.token import Token, Punctuation, Text, Number, String, Keyword, \
+        Name, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -68,20 +69,20 @@ def lexer_json_ld():
         ('null', (Keyword.Constant, )),
 
         # Whitespace
-        ('\u0020', (Text,)),  # space
-        ('\u000a', (Text,)),  # newline
-        ('\u000d', (Text,)),  # carriage return
-        ('\u0009', (Text,)),  # tab
+        ('\u0020', (Whitespace,)),  # space
+        ('\u000a', (Whitespace,)),  # newline
+        ('\u000d', (Whitespace,)),  # carriage return
+        ('\u0009', (Whitespace,)),  # tab
 
         # Arrays
         ('[]', (Punctuation,)),
         ('["a", "b"]', (Punctuation, String.Double, Punctuation,
-                        Text, String.Double, Punctuation)),
+                        Whitespace, String.Double, Punctuation)),
 
         # Objects
         ('{}', (Punctuation,)),
         ('{"a": "b"}', (Punctuation, Name.Tag, Punctuation,
-                        Text, String.Double, Punctuation)),
+                        Whitespace, String.Double, Punctuation)),
     )
 )
 def test_json_literals_positive_match(lexer_json, text, expected_token_types):

@@ -1,28 +1,19 @@
 'scheme'      Keyword
-' '           Text
+' '           Text.Whitespace
 'COMPILER'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
-'\n'          Text
+' \n'         Text.Whitespace
 
 'class'       Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'type'        Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'Prog'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -35,36 +26,18 @@
 't'           Text
 'm'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
 ')'           Text
 ','           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n\n    '  Text.Whitespace
 'Stmt'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
 '='           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n      '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -76,35 +49,24 @@
 'i'           Text
 'd'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Identifier'  Keyword.Type
 ','           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'e'           Text
 'x'           Text
 'p'           Text
 'r'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'   \n      ' Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -115,41 +77,30 @@
 'o'           Text
 'n'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
 ','           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 's'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'   \n      ' Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -161,46 +112,28 @@
 'e'           Text
 'a'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
 ','           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'l'           Text
 'a'           Text
 's'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
 ')'           Text
 ','           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n\n    '  Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
 '='           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -215,23 +148,14 @@
 'n'           Text
 's'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n      '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -243,31 +167,23 @@
 'f'           Text
 's'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
 ','           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 's'           Text
 'n'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -277,73 +193,54 @@
 'i'           Text
 'd'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Identifier'  Keyword.Type
 ')'           Text
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'Identifier'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 '/* storage for program variables */' Comment
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'Identifier'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '-m->'        Operator
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
-' '           Text
-'\n'          Text
-
-'\n'          Text
+' \n\n'       Text.Whitespace
 
 'value'       Keyword
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-'  m : '      Name.Function
+'     \n  '   Text.Whitespace
+'m'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Prog'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'm'           Text
 '('           Text
 'p'           Text
@@ -356,11 +253,9 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'is'          Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'm'           Text
 '('           Text
 's'           Text
@@ -380,28 +275,23 @@
 'a'           Text
 ')'           Text
 ','           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-'\n'          Text
-
-'  m : '      Name.Function
+'  \n\n  '    Text.Whitespace
+'m'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'm'           Text
 '('           Text
 's'           Text
@@ -414,31 +304,15 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'is'          Keyword
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n    '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -449,26 +323,26 @@
 '('           Text
 'i'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '!!'          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Text
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 '+>'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 'e'           Text
@@ -483,15 +357,7 @@
 ')'           Text
 ']'           Text
 ','           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -502,13 +368,13 @@
 's'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 's'           Text
@@ -530,15 +396,7 @@
 ')'           Text
 ')'           Text
 ','           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -547,29 +405,19 @@
 '('           Text
 'c'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 'c'           Text
@@ -582,13 +430,13 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '~='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 's'           Text
@@ -602,9 +450,9 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 's'           Text
@@ -618,43 +466,27 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'      \n    ' Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-'  m : '      Name.Function
+'\n  \n  '    Text.Whitespace
+'m'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 'Sigma'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'm'           Text
 '('           Text
 'e'           Text
@@ -667,31 +499,15 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'is'          Keyword
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'  \n    '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -703,20 +519,12 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 ','           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -728,13 +536,13 @@
 'e'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 'e'           Text
@@ -748,9 +556,9 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 '('           Text
 'e'           Text
@@ -765,15 +573,7 @@
 'a'           Text
 ')'           Text
 ','           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -783,28 +583,27 @@
 'i'           Text
 'd'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'isin'        Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'dom'         Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
@@ -815,53 +614,31 @@
 'i'           Text
 'd'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n    '     Text.Whitespace
 'end'         Keyword
-' '           Text
-'\n'          Text
-
-'\n'          Text
+' \n\n'       Text.Whitespace
 
 'type'        Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'MProg'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'Inst'        Keyword.Type
 '-list'       Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'Inst'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
 '='           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -874,21 +651,14 @@
 'd'           Text
 'e'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Identifier'  Keyword.Type
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -898,16 +668,9 @@
 '('           Text
 'Unit'        Keyword
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -917,16 +680,9 @@
 '('           Text
 'Unit'        Keyword
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -938,21 +694,14 @@
 'v'           Text
 'a'           Text
 'l'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -966,21 +715,14 @@
 'd'           Text
 'e'           Text
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Identifier'  Keyword.Type
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -994,21 +736,14 @@
 'f'           Text
 'f'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '|'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n     '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1021,73 +756,63 @@
 'f'           Text
 'f'           Text
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
 ')'           Text
-' '           Text
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+' \n\n\n'     Text.Whitespace
 
 '/* An interpreter for SMALL instructions */' Comment
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'Stack'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
 '-list'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'value'       Keyword
-' '           Text
-'\n'          Text
-
-'  I : '      Name.Function
+' \n  '       Text.Whitespace
+'I'           Keyword.Type
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'MProg'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '><'          Operator
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword
-' '           Text
+' '           Text.Whitespace
 '><'          Operator
-' '           Text
+' '           Text.Whitespace
 'Stack'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Text
 '`'           Text
 'Sigma'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
 '`'           Text
 'Sigma'       Keyword.Type
 ')'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1098,75 +823,52 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n    '     Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '<='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '\\/'         Operator
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '>'           Text
-' '           Text
+' '           Text.Whitespace
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'p'           Text
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'm'           Text
 'p'           Text
 '('           Text
 'p'           Text
 'c'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1177,52 +879,40 @@
 '('           Text
 'x'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'isin'        Keyword
-' '           Text
+' '           Text.Whitespace
 'dom'         Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n          ' Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
 '`'           Text
 's'           Text
@@ -1234,9 +924,9 @@
 'x'           Text
 ')'           Text
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1247,41 +937,29 @@
 'm'           Text
 'a'           Text
 ')'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n          ' Text.Whitespace
 'else'        Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
 '0'           Literal.Number.Integer
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1292,19 +970,10 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1315,57 +984,46 @@
 '('           Text
 ')'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n          ' Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'tl'          Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1376,19 +1034,10 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1399,31 +1048,29 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
 'n'           Text
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1435,16 +1082,7 @@
 'a'           Text
 ')'           Text
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1455,54 +1093,41 @@
 '('           Text
 ')'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '<'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n          ' Text.Whitespace
 'else'        Keyword
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
 '<.'          Operator
@@ -1510,21 +1135,21 @@
 '('           Text
 '1'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '('           Text
 '2'           Literal.Number.Integer
 ')'           Text
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 'tl'          Keyword
-' '           Text
+' '           Text.Whitespace
 'tl'          Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1535,19 +1160,10 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1559,55 +1175,44 @@
 '('           Text
 'x'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n          ' Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1617,33 +1222,24 @@
 'g'           Text
 'm'           Text
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '!!'          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Text
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '+>'          Operator
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '('           Text
 '1'           Literal.Number.Integer
 ')'           Text
 ']'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1655,71 +1251,58 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`'           Text
 's'           Text
 'i'           Text
 'g'           Text
 'm'           Text
 'a'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n          ' Text.Whitespace
 'e'           Text
 'l'           Text
 's'           Text
 'i'           Text
 'f'           Text
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'hd'          Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '~='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1730,35 +1313,23 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n          ' Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1769,19 +1340,10 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n        '  Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1792,23 +1354,23 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
 '('           Text
 'm'           Text
 'p'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Text
 '('           Text
@@ -1819,45 +1381,47 @@
 'm'           Text
 'a'           Text
 ')'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      '   Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-' '           Text
-' '           Text
-'\n'          Text
-
-'\n'          Text
+'  \n\n'      Text.Whitespace
 
 'value'       Keyword
-'\n'          Text
-
-'  comp_Prog : ' Name.Function
+'\n  '        Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'g'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Prog'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'MProg'       Keyword.Type
-'\n'          Text
-
-'  '          Text
-'comp_Prog'   Name.Function
-'(p) '        Text
+'\n  '        Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'g'           Text
+'('           Text
+'p'           Text
+')'           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -1877,41 +1441,46 @@
 ')'           Text
 ')'           Text
 ','           Text
-'\n'          Text
-
-'\n'          Text
-
-'  comp_Stmt : ' Name.Function
+'\n\n  '      Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Stmt'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'MProg'       Keyword.Type
-'\n'          Text
-
-'  '          Text
-'comp_Stmt'   Name.Function
-'(s) '        Text
-'is'          Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'case'        Keyword
-' '           Text
+'\n  '        Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
 's'           Text
-' '           Text
+')'           Text
+' '           Text.Whitespace
+'is'          Keyword
+'\n    '      Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1923,12 +1492,12 @@
 'i'           Text
 'd'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -1941,11 +1510,11 @@
 '('           Text
 'e'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1959,7 +1528,7 @@
 'd'           Text
 ')'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1968,17 +1537,10 @@
 'p'           Text
 '('           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -1989,13 +1551,13 @@
 's'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2009,9 +1571,9 @@
 's'           Text
 '1'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2026,14 +1588,7 @@
 '2'           Literal.Number.Integer
 ')'           Text
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2042,44 +1597,24 @@
 '('           Text
 'e'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n       '  Text.Whitespace
 'let'         Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n         ' Text.Whitespace
 'c'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2093,24 +1628,13 @@
 'e'           Text
 ')'           Text
 ','           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n         ' Text.Whitespace
 'c'           Text
 's'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2125,13 +1649,13 @@
 '1'           Literal.Number.Integer
 ')'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 's'           Text
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '='           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2145,50 +1669,16 @@
 's'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n       '  Text.Whitespace
 'in'          Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 'c'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n           ' Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2199,34 +1689,22 @@
 'false'       Keyword.Constant
 '('           Text
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 's'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2235,43 +1713,19 @@
 'p'           Text
 '('           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 'c'           Text
 's'           Text
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2281,34 +1735,22 @@
 'p'           Text
 '('           Text
 'len'         Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 's'           Text
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2317,80 +1759,59 @@
 'p'           Text
 '('           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n           ' Text.Whitespace
 'c'           Text
 's'           Text
 '2'           Literal.Number.Integer
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n       '   Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 ','           Text
-'\n'          Text
-
-'\n'          Text
-
-'  comp_Expr : ' Name.Function
+'\n\n  '      Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'MProg'       Keyword.Type
-'\n'          Text
-
-'  '          Text
-'comp_Expr'   Name.Function
-'(e) '        Text
-'is'          Keyword
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'case'        Keyword
-' '           Text
+'\n  '        Text.Whitespace
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+'('           Text
 'e'           Text
-' '           Text
+')'           Text
+' '           Text.Whitespace
+'is'          Keyword
+' \n    '     Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'e'           Text
+' '           Text.Whitespace
 'of'          Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2402,11 +1823,11 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2417,17 +1838,10 @@
 '('           Text
 'n'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2439,23 +1853,13 @@
 'e'           Text
 '1'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n        ' Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2469,9 +1873,9 @@
 'e'           Text
 '1'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'm'           Text
@@ -2485,11 +1889,11 @@
 'e'           Text
 '2'           Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2498,17 +1902,10 @@
 'd'           Text
 '('           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
 ','           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2518,11 +1915,11 @@
 'i'           Text
 'd'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '<.'          Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'k'           Text
 '_'           Text
@@ -2534,18 +1931,11 @@
 'i'           Text
 'd'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 '.>'          Operator
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

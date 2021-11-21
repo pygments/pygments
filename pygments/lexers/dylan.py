@@ -126,7 +126,7 @@ class DylanLexer(RegexLexer):
             (r'\s+', Whitespace),
 
             # single line comment
-            (r'//.*?\n', Comment.Single),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
             # multi-line comment
             (r'/\*', Comment.Multiline, 'comment'),
@@ -226,14 +226,14 @@ class DylanLidLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
-            (r'//.*?\n', Comment.Single),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
             # lid header
             (r'(.*?)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
-             bygroups(Name.Attribute, Operator, Text, String)),
+             bygroups(Name.Attribute, Operator, Whitespace, String)),
         ]
     }
 
