@@ -14,6 +14,7 @@ Version 2.11.0
 - Added lexers:
 
   * Maxima (#1885)
+  * Sed (#1935)
 
 - Updated lexers:
 
@@ -32,6 +33,11 @@ Version 2.11.0
 - Added styles:
 
   * Dracula (#1796)
+  * One-Dark (#1924)
+
+.. note::
+
+  Both of the new styles do not conform to WCAG recommendations.
 
 - There is new infrastructure in place to improve style accessibility. The default style has been updated to conform to WCAG recommendations. All styles are now checked for sufficient contrast by default to prevent regressions. (#1919, #1937, #1938, #1940)
 - Clean up unused imports (#1887)
@@ -53,7 +59,6 @@ Version 2.10.0
   * GSQL (#1809, #1866)
   * Javascript REPL (#1825)
   * procfile (#1808)
-  * Sed (#1935)
   * Smithy (#1878, #1879)
 
 - Updated lexers:

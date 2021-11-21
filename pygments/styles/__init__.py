@@ -54,7 +54,8 @@ STYLE_MAP = {
     'zenburn': 'zenburn::ZenburnStyle',
     'gruvbox-dark': 'gruvbox::GruvboxDarkStyle',
     'gruvbox-light': 'gruvbox::GruvboxLightStyle',
-    'dracula': 'dracula::DraculaStyle'
+    'dracula': 'dracula::DraculaStyle',
+    'one-dark': 'onedark::OneDarkStyle',
 }
 
 
