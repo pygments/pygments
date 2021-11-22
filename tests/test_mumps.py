@@ -1922,3 +1922,17 @@ def testUseIndirected(lexer):
             (Text, '\n'),
             ]
 
+def testUseDeviceParameters(lexer):
+    assert list(lexer.get_tokens(' USE dev:foo="bar":mnemspec')) == [
+            (Whitespace, ' '),
+            (Keyword, 'USE'),
+            (Whitespace, ' '),
+            (Name.Variable, 'dev'),
+            (Punctuation, ':'),
+            (Name.Variable, 'foo'),
+            (Operator, '='),
+            (String, '"bar"'),
+            (Punctuation, ':'),
+            (Name.Variable, 'mnemspec'),
+            (Text, '\n')
+            ]
