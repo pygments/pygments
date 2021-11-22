@@ -686,6 +686,10 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 8.2.23 - USE
         'useargument': [
-            default(('#pop', 'expr'))
+            default(('#pop', 'opt_useparameters', 'expr'))
+            ],
+        'opt_useparameters': [
+            (':', Punctuation, ('#pop', 'opt_mnemonicspec', 'deviceparameters')),
+            default('#pop')
             ],
         }
