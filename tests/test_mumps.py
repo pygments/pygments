@@ -1936,3 +1936,15 @@ def testUseDeviceParameters(lexer):
             (Name.Variable, 'mnemspec'),
             (Text, '\n')
             ]
+
+def testUseDeviceMnemOnly(lexer):
+    assert list(lexer.get_tokens(' USE dev::mnems')) == [
+            (Whitespace, ' '),
+            (Keyword, 'USE'),
+            (Whitespace, ' '),
+            (Name.Variable, 'dev'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Name.Variable, 'mnems'),
+            (Text, '\n')
+            ]
