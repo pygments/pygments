@@ -297,15 +297,9 @@ class MumpsLexer(ExtendedRegexLexer):
             (':', Operator, 'expr'),
             default('#pop')
             ],
-        # 8.1.5 - Command timeout timeout
+        # 8.1.5 - Command timeout timeout, a colon followed by a numeric expression
         'timeout': [
-                (':', Punctuation, ('#pop', 'expr')),
-                ],
-        # Optional timeout - may be inside a series of colon-separted values or absent
-        'opt_timeout': [
-                (':(?=:)', Punctuation, '#pop'),
-                include('timeout'),
-                default('#pop'),
+                default(('#pop', 'expr', 'colon_sep'))
                 ],
         # 8.1.6 - Line reference lineref
         'lineref': [
@@ -383,7 +377,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 # 8.2.4 - ELSE
                 (words(('else', 'e'), suffix=r'\b'), Keyword, ('#pop', 'noargsp')),
                 # 8.2.5 - FOR
-                (words(('for', 'f'), suffix=r'\b'), Keyword, ('#pop', 'forparameter', 'optargsp')),
+                (words(('for', 'f'), suffix=r'\b'), Keyword, ('#pop', 'for_argument', 'optargsp')),
                 # 8.2.6 - GOTO
                 (words(('goto', 'g'), suffix=r'\b'), Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
                 # 8.2.7 - HALT
@@ -426,11 +420,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.2 - CLOSE arguments
         'closearg': [
                 ('@', Operator, ('#pop', 'expratom')),
-                default(('#pop', 'opt_deviceparameters', 'expr')),
-                ],
-        'opt_deviceparameters': [
-                (':', Punctuation, ('#pop', 'deviceparameters')),
-                default('#pop'),
+                default(('#pop', 'deviceparameters', 'colon_sep', 'expr')),
                 ],
         'deviceparameters': [
                 ('\\(', Punctuation, ('#pop', 'deviceparams_group')),
@@ -466,15 +456,14 @@ class MumpsLexer(ExtendedRegexLexer):
                 default('#pop'),
                 ],
         # 8.2.5 - FOR parameters
+        'for_argument': [
+            default(('#pop', 'forparameter', 'equals', 'lvn')),
+            ],
         'forparameter': [
-                default(('#pop', 'opt_forparam_numexpr', 'expr', 'equals', 'lvn')),
-                ],
+            default(('#pop', 'expr', 'colon_sep', 'expr', 'colon_sep', 'expr')),
+            ],
         'equals': [
                 ('=', Operator, '#pop'),
-                ],
-        'opt_forparam_numexpr': [
-                (':', Punctuation, 'expr'),
-                default('#pop'),
                 ],
         # 8.2.6 - GOTO parameters
         'gotoargument': [
@@ -485,22 +474,20 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.10 - JOB arguments
         'jobargument': [
-                default(('#pop', 'opt_jobparameters', 'opt_actuallist', 'lineref_or_externref')),
+                default(('#pop', 'jobparameters', 'colon_sep', 'opt_actuallist', 'lineref_or_externref')),
                 ],
         'l_jobargument': [
                 default(('list_comma', 'jobargument')),
                 ],
-        'opt_jobparameters': [
-                (':', Punctuation, ('#pop', 'opt_timeout', 'jobparameters')),
-                default('#pop'),
-                ],
         'jobparameters': [
-                ('\\(', Punctuation, ('#pop', 'more_jobparams', 'expr')),
+                default(('#pop', 'timeout', 'processparameters'))
+                ],
+        'processparameters': [
+                ('\\(', Punctuation, ('#pop', 'processparameter_group')),
                 include('expr'),
                 ],
-        'more_jobparams': [
-                (':', Punctuation, 'expr'),
-                ('\\)', Punctuation, '#pop'),
+        'processparameter_group': [
+                default(('colon_group', 'expr'))
                 ],
         # 8.2.11 - KILL arguments
         'killargument': [
@@ -522,8 +509,8 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.12 - LOCK arguments
         'lockargument': [
                 ('[+-]', Operator),
-                ('\\(', Punctuation, ('#pop', 'opt_timeout', 'close_paren', 'l_nref')),
-                default(('#pop', 'opt_timeout', 'nref')),
+                ('\\(', Punctuation, ('#pop', 'timeout', 'close_paren', 'l_nref')),
+                default(('#pop', 'timeout', 'nref')),
                 ],
         'l_lockargument': [
                 default(('list_comma', 'lockargument'))
@@ -567,7 +554,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.15 - OPEN arguments
         'openargument': [
-            default(('#pop', 'mnemonicspec', 'colon_sep', 'opt_timeout', 'deviceparameters', 'colon_sep', 'expr')),
+            default(('#pop', 'mnemonicspec', 'colon_sep', 'timeout', 'deviceparameters', 'colon_sep', 'expr')),
             ],
         'l_openargument': [
             default(('list_comma', 'openargument')),
@@ -658,7 +645,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.22 - TSTART
         'tstartargument': [
             (':', Punctuation, ('#pop', 'transparameters')),
-            default(('#pop', 'opt_transparameters', 'restartargument'))
+            default(('#pop', 'transparameters', 'colon_sep', 'restartargument'))
             ],
         'transparameters': [
             ('\\(', Punctuation, ('#pop', 'tsparam_group')),
@@ -676,10 +663,6 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         'tstartkeyword': [
             ('[A-Z]+', Keyword, '#pop')
-            ],
-        'opt_transparameters': [
-            (':', Punctuation, ('#pop', 'transparameters')),
-            default('#pop')
             ],
         'restartargument': [
             ('\\*', Keyword.Pseudo, '#pop'),
