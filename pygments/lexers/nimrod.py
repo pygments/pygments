@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, default
+from pygments.lexer import RegexLexer, include, default, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
@@ -21,7 +21,7 @@ class NimrodLexer(RegexLexer):
     """
     For `Nim <http://nim-lang.org/>`_ source code.
 
-    .. versionadded:: 1.5
+    .. versionadded:: 1.6
     """
 
     name = 'Nimrod'
@@ -45,10 +45,10 @@ class NimrodLexer(RegexLexer):
         'addr', 'and', 'as', 'asm', 'bind', 'block', 'break', 'case',
         'cast', 'concept', 'const', 'continue', 'converter', 'defer', 'discard',
         'distinct', 'div', 'do', 'elif', 'else', 'end', 'enum', 'except',
-        'export', 'finally', 'for', 'func', 'if', 'in', 'yield', 'interface',
-        'is', 'isnot', 'iterator', 'let', 'macro', 'method', 'mixin', 'mod',
-        'not', 'notin', 'object', 'of', 'or', 'out', 'proc', 'ptr', 'raise',
-        'ref', 'return', 'shl', 'shr', 'static', 'template', 'try',
+        'export', 'finally', 'for', 'if', 'in', 'yield', 'interface',
+        'is', 'isnot', 'iterator', 'let', 'mixin', 'mod',
+        'not', 'notin', 'object', 'of', 'or', 'out', 'ptr', 'raise',
+        'ref', 'return', 'shl', 'shr', 'static', 'try',
         'tuple', 'type', 'using', 'when', 'while', 'xor'
     ]
 
@@ -68,31 +68,45 @@ class NimrodLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # Comments
+            (r'##\[', String.Doc, 'doccomment'),
             (r'##.*$', String.Doc),
+            (r'#\[', Comment.Multiline, 'comment'),
             (r'#.*$', Comment),
+            
+            # Pragmas
+            (r'\{\.', String.Other, 'pragma'),
+            
+            # Operators
             (r'[*=><+\-/@$~&%!?|\\\[\]]', Operator),
             (r'\.\.|\.|,|\[\.|\.\]|\{\.|\.\}|\(\.|\.\)|\{|\}|\(|\)|:|\^|`|;',
              Punctuation),
-
+            
+            # Case statement branch
+            (r'\n(\s*)of\s', Keyword, 'casebranch'),
+            
             # Strings
             (r'(?:[\w]+)"', String, 'rdqs'),
-            (r'"""', String, 'tdqs'),
+            (r'"""', String.Double, 'tdqs'),
             ('"', String, 'dqs'),
-
+            
             # Char
             ("'", String.Char, 'chars'),
 
             # Keywords
             (r'(%s)\b' % underscorize(opWords), Operator.Word),
-            (r'(p_?r_?o_?c_?\s)(?![(\[\]])', Keyword, 'funcname'),
+            (r'(proc\s|func\s|method\s|macro\s|template\s)(?![(\[\]])',
+             Keyword, 'funcname'),
             (r'(%s)\b' % underscorize(keywords), Keyword),
             (r'(%s)\b' % underscorize(['from', 'import', 'include']),
              Keyword.Namespace),
             (r'(v_?a_?r)\b', Keyword.Declaration),
             (r'(%s)\b' % underscorize(types), Keyword.Type),
             (r'(%s)\b' % underscorize(keywordsPseudo), Keyword.Pseudo),
+            
             # Identifiers
             (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),
+            
             # Numbers
             (r'[0-9][0-9_]*(?=([e.]|\'f(32|64)))',
              Number.Float, ('float-suffix', 'float-number')),
@@ -100,6 +114,7 @@ class NimrodLexer(RegexLexer):
             (r'0b[01][01_]*', Number.Bin, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
+            
             # Whitespace
             (r'\s+', Text),
             (r'.+$', Error),
@@ -118,6 +133,18 @@ class NimrodLexer(RegexLexer):
             (r'\$', String)
             # newlines are an error (use "nl" state)
         ],
+        'doccomment': [
+            (r'[^\]#]', String.Doc),
+            (r'##\[', String.Doc, '#push'),
+            (r'\]##', String.Doc, '#pop'),
+            (r'[\]#]', String.Doc),
+        ],
+        'comment': [
+            (r'[^\]#]', Comment.Multiline),
+            (r'#\[', Comment.Multiline, '#push'),
+            (r'\]#', Comment.Multiline, '#pop'),
+            (r'[\]#]', Comment.Multiline),
+        ],
         'dqs': [
             (r'\\([\\abcefnrtvl"\']|\n|x[a-f0-9]{2}|[0-9]{1,3})',
              String.Escape),
@@ -130,9 +157,9 @@ class NimrodLexer(RegexLexer):
             include('strings')
         ],
         'tdqs': [
-            (r'"""(?!")', String, '#pop'),
+            (r'"""', String.Double, '#pop'),
             include('strings'),
-            include('nl')
+            (r'\n', String.Double)
         ],
         'funcname': [
             (r'((?![\d_])\w)(((?!_)\w)|(_(?!_)\w))*', Name.Function, '#pop'),
@@ -142,7 +169,7 @@ class NimrodLexer(RegexLexer):
             (r'\n', String)
         ],
         'float-number': [
-            (r'\.(?!\.)[0-9_]*', Number.Float),
+            (r'\.(?!\.)[0-9_]*[f]*', Number.Float),
             (r'e[+-]?[0-9][0-9_]*', Number.Float),
             default('#pop')
         ],
@@ -154,5 +181,15 @@ class NimrodLexer(RegexLexer):
             (r'\'i(32|64)', Number.Integer.Long),
             (r'\'i(8|16)', Number.Integer),
             default('#pop')
+        ],
+        'casebranch': [
+            (r'[,]', Text),
+            (r'[^:]', Name.Label),
+            (r':', Operator, '#pop'),
+        ],
+        'pragma': [
+            (r'[:, ]', Text),
+            (r'[^.}]', String.Other),
+            (r'\.\}', String.Other, '#pop'),
         ],
     }
