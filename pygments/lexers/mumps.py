@@ -301,7 +301,9 @@ class MumpsLexer(ExtendedRegexLexer):
         'timeout': [
                 (':', Punctuation, ('#pop', 'expr')),
                 ],
+        # Optional timeout - may be inside a series of colon-separted values or absent
         'opt_timeout': [
+                (':(?=:)', Punctuation, '#pop'),
                 include('timeout'),
                 default('#pop'),
                 ],
@@ -565,21 +567,22 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.15 - OPEN arguments
         'openargument': [
-                default(('#pop', 'opt_openparameters', 'expr')),
-                ],
+            default(('#pop', 'mnemonicspec', 'colon_sep', 'opt_timeout', 'deviceparameters', 'colon_sep', 'expr')),
+            ],
         'l_openargument': [
-                default(('list_comma', 'openargument')),
-                ],
-        'opt_openparameters': [
-                ('(:)(:)(?=:)', bygroups(Punctuation, Punctuation), ('#pop', 'opt_mnemonicspec')),
-                (':(?=:)', Punctuation, ('#pop', 'opt_mnemonicspec', 'timeout', )),
-                (':', Punctuation, ('#pop', 'opt_mnemonicspec', 'timeout', 'deviceparameters')),
-                default('#pop'),
-                ],
-        'opt_mnemonicspec': [
-                (':', Punctuation, ('#pop', 'expr')),
-                default('#pop'),
-                ],
+            default(('list_comma', 'openargument')),
+            ],
+        'colon_sep': [
+            (':(?=:)', Punctuation, '#pop:2'),
+            (':', Punctuation, '#pop'),
+            default('#pop:2')
+            ],
+        'mnemonicspec': [
+            default(('#pop', 'mnemonicspace'))
+            ],
+        'mnemonicspace': [
+            include('expr'),
+            ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
@@ -686,10 +689,6 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 8.2.23 - USE
         'useargument': [
-            default(('#pop', 'opt_useparameters', 'expr'))
-            ],
-        'opt_useparameters': [
-            (':', Punctuation, ('#pop', 'opt_mnemonicspec', 'deviceparameters')),
-            default('#pop')
+            default(('#pop', 'mnemonicspace', 'colon_sep', 'deviceparameters', 'colon_sep', 'expr'))
             ],
         }
