@@ -1985,3 +1985,59 @@ def testViewPostcond(lexer):
             (Keyword, 'q'),
             (Text, '\n')
             ]
+
+def testWrite(lexer):
+    assert list(lexer.get_tokens(' WRITE #!?5,"Hello, world!"')) == [
+            (Whitespace, ' '),
+            (Keyword, 'WRITE'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '#!'),
+            (Keyword.Pseudo, '?'),
+            (Number, '5'),
+            (Punctuation, ','),
+            (String, '"Hello, world!"'),
+            (Text, '\n')
+            ]
+
+def testWriteArgs(lexer):
+    assert list(lexer.get_tokens(' w:writeargs\'="" @writeargs,!')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Punctuation, ':'),
+            (Name.Variable, 'writeargs'),
+            (Operator, '\''),
+            (Operator, '='),
+            (String, '""'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'writeargs'),
+            (Punctuation, ','),
+            (Keyword.Pseudo, '!'),
+            (Text, '\n')
+            ]
+
+def testWriteChar(lexer):
+    assert list(lexer.get_tokens(' w *10')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '*'),
+            (Number, 10),
+            (Text, '\n')
+            ]
+
+def testWriteMnemonic(lexer):
+    assert list(lexer.get_tokens(' write /bold(1),"Bold text",/plain')) == [
+            (Whitespace, ' '),
+            (Keyword, 'write'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '/bold'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (String, '"Bold text"'),
+            (Punctuation, ','),
+            (Keyword.Pseudo, '/plain'),
+            (Text, '\n')
+            ]
