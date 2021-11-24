@@ -5,8 +5,16 @@
 
     Lexers for MUMPS
 
-    :copyright: Copyright 2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2020-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
+
+
+    :todo: Add VIEW command
+    :todo: Add WRITE command
+    :todo: Add XECUTE command
+    :todo: Add Z* command syntax
+    :todo: Add LI / LEVELLINE line indent
+    :todo: Add functions support
 """
 
 import re
