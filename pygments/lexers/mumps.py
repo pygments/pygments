@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 
 
-    :todo: Add VIEW command
     :todo: Add WRITE command
     :todo: Add XECUTE command
     :todo: Add Z* command syntax
@@ -423,6 +422,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
                 # 8.2.23 - USE
                 (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
+                # 8.2.24 - VIEW
+                (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
