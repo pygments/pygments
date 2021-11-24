@@ -6,8 +6,7 @@ import textwrap
 import unittest
 
 from pygments.lexers import UsdLexer
-from pygments.token import Keyword, Literal, Name, Number, Operator, Punctuation, \
-    String, Text, Whitespace
+from pygments.token import Name, String, Whitespace
 
 
 class _Common(unittest.TestCase):

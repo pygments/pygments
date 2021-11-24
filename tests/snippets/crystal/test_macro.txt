@@ -12,29 +12,29 @@ end
 '<=>'         Name.Function
 '('           Punctuation
 'other'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Literal.String.Interpol
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'field'       Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '%w('         Literal.String.Other
 'first_name middle_name last_name' Literal.String.Other
 ')'           Literal.String.Other
 '%}'          Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'cmp'         Name
 '='           Operator
@@ -51,26 +51,26 @@ end
 '.'           Operator
 'id'          Name
 '}}'          Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
 '!='          Operator
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Literal.String.Interpol
 'end'         Keyword
 '%}'          Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

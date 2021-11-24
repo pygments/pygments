@@ -1,75 +1,75 @@
 'CREATE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'OR'          Keyword
-' '           Text
+' '           Text.Whitespace
 'REPLACE'     Keyword
-' '           Text
+' '           Text.Whitespace
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 'something'   Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RETURNS'     Keyword
-' '           Text
+' '           Text.Whitespace
 'int4'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 'x'           Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BEGIN'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'RETURN'      Keyword
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'END'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 'x'           Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LANGUAGE'    Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'plpgsql'     Literal.String.Single
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'CREATE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 'pymax'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'RETURNS'     Keyword
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
@@ -101,45 +101,45 @@
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'language'    Keyword
-' '           Text
+' '           Text.Whitespace
 'plpythonu'   Name
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'CREATE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 'nested_lexers' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 'function'    Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BEGIN'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'SELECT'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$1'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Literal.String
 'q'           Literal.String.Delimiter
 '$'           Literal.String
@@ -149,162 +149,162 @@
 '$'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'END'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 'function'    Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LANGUAGE'    Keyword
-' '           Text
+' '           Text.Whitespace
 'sql'         Keyword
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'CREATE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'OR'          Keyword
-' '           Text
+' '           Text.Whitespace
 'REPLACE'     Keyword
-' '           Text
+' '           Text.Whitespace
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 'measurement_insert_trigger' Name
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'RETURNS'     Keyword
-' '           Text
+' '           Text.Whitespace
 'TRIGGER'     Keyword
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BEGIN'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<<test>>'    Name.Label
-'\n    '      Text
+'\n    '      Text.Whitespace
 'INSERT'      Keyword
-' '           Text
+' '           Text.Whitespace
 'INTO'        Keyword
-' '           Text
+' '           Text.Whitespace
 'measurement_y2008m01' Name
-' '           Text
+' '           Text.Whitespace
 'VALUES'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'NEW'         Keyword
 '.'           Literal.Number.Float
 '*'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'RETURN'      Keyword
-' '           Text
+' '           Text.Whitespace
 'NULL'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'END'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LANGUAGE'    Keyword
-' '           Text
+' '           Text.Whitespace
 'plpgsql'     Name
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- As returned by pg_dump\n' Comment.Single
 
 'CREATE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 'test_function' Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RETURNS'     Keyword
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 'LANGUAGE'    Keyword
-' '           Text
+' '           Text.Whitespace
 'plpgsql'     Name
-' '           Text
+' '           Text.Whitespace
 'STABLE'      Keyword
-' '           Text
+' '           Text.Whitespace
 'STRICT'      Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'begin'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Unicode names and strings\n' Comment.Single
 
 'SELECT'      Keyword
-' '           Text
+' '           Text.Whitespace
 'U&'          Literal.String.Affix
 "'"           Literal.String.Single
 '\\0441\\043B\\043E\\043D' Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'FROM'        Keyword
-' '           Text
+' '           Text.Whitespace
 'U&'          Literal.String.Affix
 '"'           Literal.String.Name
 '\\0441\\043B\\043E\\043D' Literal.String.Name
 '"'           Literal.String.Name
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Escapes\n' Comment.Single
 
 'SELECT'      Keyword
-' '           Text
+' '           Text.Whitespace
 'E'           Literal.String.Affix
 "'"           Literal.String.Single
 '1\\n2\\n3'   Literal.String.Single
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- DO example from postgresql documentation\n' Comment.Single
 
@@ -351,110 +351,110 @@
 '*'           Comment.Multiline
 ' SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.\n ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DO'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
 'DECLARE'     Keyword
-' '           Text
+' '           Text.Whitespace
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 'record'      Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BEGIN'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'FOR'         Keyword
-' '           Text
+' '           Text.Whitespace
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 'IN'          Keyword
-' '           Text
+' '           Text.Whitespace
 'SELECT'      Keyword
-' '           Text
+' '           Text.Whitespace
 'table_schema' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'table_name'  Name
-' '           Text
+' '           Text.Whitespace
 'FROM'        Keyword
-' '           Text
+' '           Text.Whitespace
 'information_schema' Name
 '.'           Literal.Number.Float
 'tables'      Keyword
-'\n             ' Text
+'\n             ' Text.Whitespace
 'WHERE'       Keyword
-' '           Text
+' '           Text.Whitespace
 'table_type'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'VIEW'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'AND'         Keyword
-' '           Text
+' '           Text.Whitespace
 'table_schema' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'public'      Literal.String.Single
 "'"           Literal.String.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'LOOP'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'EXECUTE'     Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'GRANT ALL ON ' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'quote_ident' Name
 '('           Punctuation
 'r'           Name
 '.'           Literal.Number.Float
 'table_schema' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '.'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'quote_ident' Name
 '('           Punctuation
 'r'           Name
 '.'           Literal.Number.Float
 'table_name'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ' TO webuser' Literal.String.Single
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'END'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LOOP'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'END'         Keyword
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,550 +1,550 @@
-'\t'          Text
+'\t'          Text.Whitespace
 '--'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Example fragment of an openEHR Archetype, written in cADL, a subsyntax of the Archetype Definition Language (ADL)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-- definition available here: http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '--\tAuthor: Thomas Beale' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '--'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'EVALUATION'  Name.Class
 '['           Punctuation
 'id1'         Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Adverse Reaction' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'data'        Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'ITEM_TREE'   Name.Class
 '['           Punctuation
 'id2'         Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'items'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'cardinality ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '1..*'        Literal.Number
 '; unordered' Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id3'         Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Substance/Agent' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id51'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id5'         Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Absolute Contraindication?' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_BOOLEAN'  Name.Class
 '['           Punctuation
 'id52'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
 'True'        Literal
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id50'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Future Use' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id53'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id7'         Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Overall Comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id54'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'CLUSTER'     Name.Class
 '['           Punctuation
 'id10'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reaction Event' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'items'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id11'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Specific Substance/Agent' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id55'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id12'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Manifestation' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id56'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id17'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reaction Type' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id57'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id22'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Certainty' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_CODED_TEXT' Name.Class
 '['           Punctuation
 'id58'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'defining_code' Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
 '['           Punctuation
 'ac1'         Name.Decorator
 ']'           Punctuation
 '}'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-- Certainty (synthesised)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id13'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reaction Description' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id59'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id28'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Onset of Reaction' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_DATE_TIME' Name.Class
 '['           Punctuation
 'id60'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id29'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Duration of Reaction' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_DURATION' Name.Class
 '['           Punctuation
 'id61'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'allow_archetype ' Keyword.Type
 'CLUSTER'     Name.Class
 '['           Punctuation
 'id30'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Additional Reaction Detail' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'include\n'   Keyword.Type
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'archetype_id' Name.Class
 '/'           Punctuation
 'value'       Name.Class
@@ -553,143 +553,143 @@
 '{'           Punctuation
 '/openEHR-EHR-CLUSTER\\.anatomical_location(-a-zA-Z0-9_]+)*\\.v1/' Literal.String.Regex
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id19'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Exposure Description' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id62'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id21'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Earliest Exposure' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_DATE_TIME' Name.Class
 '['           Punctuation
 'id63'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id26'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Duration of Exposure' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_DURATION' Name.Class
 '['           Punctuation
 'id64'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'allow_archetype ' Keyword.Type
 'CLUSTER'     Name.Class
 '['           Punctuation
 'id20'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Additional Exposure Detail' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'include\n'   Keyword.Type
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'archetype_id' Name.Class
 '/'           Punctuation
 'value'       Name.Class
@@ -698,110 +698,110 @@
 '{'           Punctuation
 '/openEHR-EHR-CLUSTER\\.amount(-a-zA-Z0-9_]+)*\\.v1|openEHR-EHR-CLUSTER\\.medication_admin(-a-zA-Z0-9_]+)*\\.v1|openEHR-EHR-CLUSTER\\.timing(-a-zA-Z0-9_]+)*\\.v1/' Literal.String.Regex
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id41'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Clinical Management Description' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id65'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id32'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Multimedia' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_MULTIMEDIA' Name.Class
 '['           Punctuation
 'id66'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'media_type'  Name.Class
-' \n\t\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'allow_archetype ' Keyword.Type
 'CLUSTER'     Name.Class
 '['           Punctuation
 'id42'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reporting Details' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'include\n'   Keyword.Type
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'archetype_id' Name.Class
 '/'           Punctuation
 'value'       Name.Class
@@ -810,273 +810,273 @@
 '{'           Punctuation
 '/.*/'        Literal.String.Regex
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id33'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reaction Comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id67'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'protocol'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'ITEM_TREE'   Name.Class
 '['           Punctuation
 'id43'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'items'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id45'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Reaction Reported?' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_BOOLEAN'  Name.Class
 '['           Punctuation
 'id68'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
 'True'        Literal
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'False'       Literal
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id49'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Report Comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_TEXT'     Name.Class
 '['           Punctuation
 'id69'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id46'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Adverse Reaction Report' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_URI'      Name.Class
 '['           Punctuation
 'id70'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'ELEMENT'     Name.Class
 '['           Punctuation
 'id48'        Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'occurrences ' Keyword.Type
 'matches '    Operator
 '{'           Punctuation
 '0..1'        Literal.Number
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '-- Supporting Clinical Record Information' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'value'       Name.Class
-' '           Text
+' '           Text.Whitespace
 'matches '    Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'DV_EHR_URI'  Name.Class
 '['           Punctuation
 'id71'        Name.Decorator
 ']'           Punctuation
-' \n\t\t\t\t\t\t' Text
+' \n\t\t\t\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

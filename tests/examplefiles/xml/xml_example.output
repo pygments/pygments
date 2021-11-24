@@ -5466,9 +5466,7 @@
 '"dsOthers"'  Literal.String
 '/>'          Name.Tag
 ' '           Text
-'<!--'        Comment
-',Qt::darkYellow,Qt::yellow,false,false)); ' Comment
-'-->'         Comment
+'<!--,Qt::darkYellow,Qt::yellow,false,false)); -->' Comment.Multiline
 '\n    '      Text
 '</itemDatas>' Name.Tag
 '\n  '        Text
@@ -12280,60 +12278,34 @@
 '<!DOCTYPE language SYSTEM "language.dtd">' Comment.Preproc
 '\n'          Text
 
-'<!--'        Comment
-' Author: Werner Braun <wb@o3' Comment
-'-'           Comment
-'software.de> ' Comment
-'-->'         Comment
+'<!-- Author: Werner Braun <wb@o3-software.de> -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 29.05.2003 wb mailed to the kate' Comment
-'-'           Comment
-'team (cullmann) ' Comment
-'-->'         Comment
+'<!-- 29.05.2003 wb mailed to the kate-team (cullmann) -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 23.05.2003 wb added *.bro File' Comment
-'-'           Comment
-'Type for GPCP Browser output' Comment
-'-->'         Comment
+'<!-- 23.05.2003 wb added *.bro File-Type for GPCP Browser output-->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 09.05.2003 wb nested comments allowed (maximum two level nesting) ' Comment
-'-->'         Comment
+'<!-- 09.05.2003 wb nested comments allowed (maximum two level nesting) -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 07.04.2003 wb IN Problem solved ' Comment
-'-->'         Comment
+'<!-- 07.04.2003 wb IN Problem solved -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 06.05.2003 wb NEW without ( ' Comment
-'-->'         Comment
+'<!-- 06.05.2003 wb NEW without ( -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 22.04.2003 wb Minor bugfixes ' Comment
-'-->'         Comment
+'<!-- 22.04.2003 wb Minor bugfixes -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 19.04.2003 wb Some more Enhancements ' Comment
-'-->'         Comment
+'<!-- 19.04.2003 wb Some more Enhancements -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 18.04.2003 wb Enhancenment for Maior / Minor Comments and Full / ReadOnly Exports, Folds for Procedures, Records, Comments ' Comment
-'-->'         Comment
+'<!-- 18.04.2003 wb Enhancenment for Maior / Minor Comments and Full / ReadOnly Exports, Folds for Procedures, Records, Comments -->' Comment.Multiline
 '\n'          Text
 
-'<!--'        Comment
-' 17.04.2003 wb Enhancements for Relation and Operators ' Comment
-'-->'         Comment
+'<!-- 17.04.2003 wb Enhancements for Relation and Operators -->' Comment.Multiline
 '\n'          Text
 
 '<language'   Name.Tag

@@ -2,7 +2,7 @@
 # Pygments documentation build configuration file
 #
 
-import sys, os
+import sys, os, itertools
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -10,6 +10,10 @@ import sys, os
 sys.path.insert(0, os.path.abspath('..'))
 
 import pygments
+import pygments.formatters
+import pygments.lexers
+import pygments.styles
+import tests.contrast.test_contrasts as test_contrasts
 
 # -- General configuration -----------------------------------------------------
 
@@ -128,10 +132,10 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
+html_additional_pages = {'styles': 'styles.html'}
+
 if os.environ.get('WEBSITE_BUILD'):
-    html_additional_pages = {
-        'demo': 'demo.html',
-    }
+    html_additional_pages['demo'] = 'demo.html'
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -223,6 +227,37 @@ man_pages = [
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
+
+    if pagename == 'styles':
+        with open('examples/example.py') as f:
+            html = f.read()
+        lexer = pygments.lexers.get_lexer_for_filename('example.py')
+        min_contrasts = test_contrasts.min_contrasts()
+        ctx['styles_aa'] = []
+        ctx['styles_sub_aa'] = []
+        for style in pygments.styles.get_all_styles():
+            if not pygments.styles.get_style_by_name(style).web_style_gallery_exclude:
+                aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
+                bg_r, bg_g, bg_b = test_contrasts.hex2rgb(pygments.styles.get_style_by_name(style).background_color)
+                ctx['styles_aa' if aa else 'styles_sub_aa'].append(
+                    dict(
+                        name=style,
+                        html=pygments.highlight(
+                            html,
+                            lexer,
+                            pygments.formatters.HtmlFormatter(noclasses=True, style=style),
+                        ),
+                        # from https://en.wikipedia.org/wiki/Relative_luminance
+                        bg_luminance=(0.2126*bg_r + 0.7152*bg_g + 0.0722*bg_b)
+                    )
+                )
+        # sort styles according to their background luminance (light styles first)
+        # if styles have the same background luminance sort them by their name
+        # the default style is always displayed first
+        default_style = ctx['styles_aa'].pop(0)
+        ctx['styles_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_aa'].insert(0, default_style)
+        ctx['styles_sub_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
 
 
 def setup(app):

@@ -4,8 +4,8 @@
 Styles
 ======
 
-Pygments comes with some builtin styles that work for both the HTML and
-LaTeX formatter.
+Pygments comes with :doc:`some builtin styles </styles/>` that work for both the
+HTML and LaTeX formatter.
 
 The builtin styles can be looked up with the `get_style_by_name` function:
 

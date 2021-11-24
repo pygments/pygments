@@ -1,22 +1,22 @@
-''            Text
+''            Text.Whitespace
 'doctype'     Name.Tag
 ' html'       Text
 '\n'          Text
 
-''            Text
+''            Text.Whitespace
 'html'        Name.Tag
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'head'        Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'title'       Name.Tag
 ' Slim Examples' Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'meta'        Name.Tag
 ' name'       Name.Attribute
 '='           Punctuation
@@ -30,7 +30,7 @@
 '"'           Literal.String.Double
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'meta'        Name.Tag
 ' name'       Name.Attribute
 '='           Punctuation
@@ -42,7 +42,7 @@
 'author'      Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'javascript:\n' Text
 
 "      alert('Slim supports embedded javascript!')" Text
@@ -50,29 +50,29 @@
 
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'body'        Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'h1'          Name.Tag
 ' Markup examples' Text
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '#content'    Name.Function
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 'p'           Name.Tag
 ' This example shows you how a basic Slim file looks like.' Text
 '\n'          Text
 
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '=='          Punctuation
 ' '           Text
 'yield'       Keyword
@@ -80,7 +80,7 @@
 
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation
 ' '           Text
 'unless'      Keyword
@@ -90,11 +90,11 @@
 'empty?'      Name
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'table'       Name.Tag
 '\n'          Text
 
-'          '  Text
+'          '  Text.Whitespace
 '-'           Punctuation
 ' '           Text
 'for'         Keyword
@@ -108,11 +108,11 @@
 'do'          Keyword
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'tr'          Name.Tag
 '\n'          Text
 
-'              ' Text
+'              ' Text.Whitespace
 'td'          Name.Tag
 '.name'       Name.Class
 ' ='          Punctuation
@@ -122,7 +122,7 @@
 'name'        Name
 '\n'          Text
 
-'              ' Text
+'              ' Text.Whitespace
 'td'          Name.Tag
 '.price'      Name.Class
 ' ='          Punctuation
@@ -132,26 +132,26 @@
 'price'       Name
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation
 ' '           Text
 'else'        Keyword
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'p'           Name.Tag
 '\n'          Text
 
-'          '  Text
+'          '  Text.Whitespace
 '| No items found. Please add some inventory.\n' Text
 
-'            ' Text
+'            ' Text.Whitespace
 'Thank you!'  Text
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'div'         Name.Tag
 ' id'         Name.Attribute
 '='           Punctuation
@@ -160,7 +160,7 @@
 '"'           Literal.String.Double
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '='           Punctuation
 ' '           Text
 'render'      Name
@@ -170,7 +170,7 @@
 "'"           Literal.String.Single
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '| Copyright (C) #{year} #{author}\n' Text
 
-''            Text
+''            Text.Whitespace

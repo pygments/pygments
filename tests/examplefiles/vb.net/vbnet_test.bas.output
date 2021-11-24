@@ -1,11 +1,11 @@
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Form1'       Name.Class
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Inherits'    Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'Windows'     Name
@@ -13,15 +13,15 @@
 'Forms'       Name
 '.'           Punctuation
 'Form'        Name
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'Timers'      Name
@@ -30,208 +30,210 @@
 '('           Punctuation
 '2000'        Literal.Number.Integer
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Form1_Load'  Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Object'      Keyword.Type
 ','           Punctuation
-' '           Text
-'_\n'         Text
+' '           Text.Whitespace
+'_'           Text
+'\n'          Text.Whitespace
 
-'          '  Text
+'          '  Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'EventArgs'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Handles'     Keyword
-' '           Text
+' '           Text.Whitespace
 'MyBase'      Keyword
 '.'           Punctuation
 'Load'        Name
-'\n        \n        ' Text
+'\n        \n        ' Text.Whitespace
 'AddHandler'  Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Name
 '.'           Punctuation
 'Elapsed'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AddressOf'   Operator.Word
-' '           Text
+' '           Text.Whitespace
 'TimerFired'  Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'btnStart_Click' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'Object'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
-' \n          ' Text
+' \n          ' Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'EventArgs'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Handles'     Keyword
-' '           Text
+' '           Text.Whitespace
 'btnStart'    Name
 '.'           Punctuation
 'Click'       Name
-'\n          \n        ' Text
+'\n          \n        ' Text.Whitespace
 't'           Name
 '.'           Punctuation
 'Enabled'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'btnStop_Click' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'Object'      Name
 ','           Punctuation
-' '           Text
-'_\n'         Text
+' '           Text.Whitespace
+'_'           Text
+'\n'          Text.Whitespace
 
-'          '  Text
+'          '  Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'EventArgs'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Handles'     Keyword
-' '           Text
+' '           Text.Whitespace
 'btnStop'     Name
 '.'           Punctuation
 'Click'       Name
-'\n          \n        ' Text
+'\n          \n        ' Text.Whitespace
 't'           Name
 '.'           Punctuation
 'Enabled'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'False'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'TimerFired'  Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Object'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
-' \n           ' Text
+' \n           ' Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'Timers'      Name
 '.'           Punctuation
 'ElapsedEventArgs' Name
 ')'           Punctuation
-'\n           \n        ' Text
+'\n           \n        ' Text.Whitespace
 'Label1'      Name
 '.'           Punctuation
 'Text'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Signal Time = ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'SignalTime'  Name
 '.'           Punctuation
 'ToString'    Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Class'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace

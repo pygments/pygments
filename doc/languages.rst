@@ -93,6 +93,7 @@ Programming languages
 * `Jasmin <http://jasmin.sourceforge.net/>`_
 * `Jcl <https://en.wikipedia.org/wiki/Job_Control_Language>`_
 * `Julia <https://julialang.org>`_
+* `JSLT <https://github.com/schibsted/jslt>`_
 * `Kotlin <https://kotlinlang.org/>`_
 * `Lasso <http://www.lassosoft.com/>`_ (incl. templating)
 * `Limbo <http://www.vitanuova.com/inferno/limbo.html>`_
@@ -152,6 +153,7 @@ Programming languages
 * `Rust <https://rust-lang.org>`_
 * S, S-Plus, `R <https://www.r-project.org/>`_
 * `Scala <https://scala-lang.org/>`_
+* `Savi <https://github.com/savi-lang/savi/>`_
 * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_
 * `Scheme <http://www.scheme-reports.org/>`_
 * `Scilab <https://www.scilab.org/>`_
@@ -236,6 +238,7 @@ Other markup
 * Gettext catalogs
 * Gnuplot script
 * Groff markup
+* `GSQL <https://docs.tigergraph.com/dev/gsql-ref>`_
 * Hexdumps
 * HTML
 * HTTP sessions
@@ -248,6 +251,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* `LilyPond <https://lilypond.org/>`_
 * Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts
@@ -279,6 +283,7 @@ Other markup
 * Scdoc
 * Sieve
 * Singularity
+* `Smithy <https://awslabs.github.io/smithy/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration

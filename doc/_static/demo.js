@@ -6,6 +6,7 @@ languagePluginLoader.then(() => {
         let qvars = getQueryVariables();
 
         var lexerlist = pyodide.runPython('list(pygments.lexers.get_all_lexers())');
+        lexerlist.sort((a,b) => a[1][0] < b[1][0] ? -1 : 1);
         var sel = document.getElementById("lang");
         for (lex of lexerlist) {
             if (lex[1][0] === undefined) {

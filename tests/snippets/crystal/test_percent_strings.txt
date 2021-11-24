@@ -12,7 +12,7 @@
 '"world"'     Literal.String.Other
 ')'           Literal.String.Other
 ')'           Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%['          Literal.String.Other
 'hello '      Literal.String.Other
@@ -20,12 +20,12 @@
 '"world"'     Literal.String.Other
 ']'           Literal.String.Other
 ']'           Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%{'          Literal.String.Other
 'hello "world"' Literal.String.Other
 '}'           Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%<'          Literal.String.Other
 'hello '      Literal.String.Other
@@ -33,9 +33,9 @@
 '"world"'     Literal.String.Other
 '>'           Literal.String.Other
 '>'           Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%|'          Literal.String.Other
 'hello "world"' Literal.String.Other
 '|'           Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace

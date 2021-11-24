@@ -1441,7 +1441,7 @@
 'typedef'     Keyword
 ' '           Text.Whitespace
 'union'       Keyword
-' '           Text
+' '           Text.Whitespace
 'YYSTYPE'     Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -1750,7 +1750,7 @@
 'typedef'     Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'YYLTYPE'     Name.Class
 '\n'          Text.Whitespace
 

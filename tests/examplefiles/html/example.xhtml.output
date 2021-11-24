@@ -105,146 +105,146 @@
 '<'           Punctuation
 'style'       Name.Tag
 '>'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '.'           Punctuation
 'path'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' \n        ' Text
+' \n        ' Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'font-size'   Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '140'         Literal.Number.Integer
 '%'           Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'background'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#ddd'        Literal.Number.Hex
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '.'           Punctuation
 'error'       Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' \n        ' Text
+' \n        ' Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'padding-top' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '15'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'font-size'   Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '140'         Literal.Number.Integer
 '%'           Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#f00'        Literal.Number.Hex
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '.'           Punctuation
 'load'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#555'        Literal.Number.Hex
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '.'           Punctuation
 'source'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'border'      Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 'px'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'solid'       Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '#ccc'        Literal.Number.Hex
 ';'           Punctuation
-' \n        ' Text
+' \n        ' Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'margin-top'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin-bottom' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'h2'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'padding-left' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'background'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#eee'        Literal.Number.Hex
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<'           Punctuation
 '/'           Punctuation
 'style'       Name.Tag
@@ -2514,9 +2514,7 @@
 'div'         Name.Tag
 '>'           Punctuation
 ' '           Text
-'<!--'        Comment
-' #cloud '    Comment
-'-->'         Comment
+'<!-- #cloud -->' Comment.Multiline
 '\n    '      Text
 '<?r end ?>'  Comment.Preproc
 '\n  '        Text
@@ -2525,9 +2523,7 @@
 'div'         Name.Tag
 '>'           Punctuation
 ' '           Text
-'<!--'        Comment
-' #left '     Comment
-'-->'         Comment
+'<!-- #left -->' Comment.Multiline
 '\n  \n  '    Text
 '<'           Punctuation
 'render'      Name.Tag
@@ -2546,9 +2542,5 @@
 '>'           Punctuation
 '\n\n'        Text
 
-'<!--'        Comment
-' Copyright © 2006 Kashia Buch (kashia@vfemail.net), Fabian Buch (fabian@fabian' Comment
-'-'           Comment
-'buch.de). All rights reserved. ' Comment
-'-->'         Comment
+'<!-- Copyright © 2006 Kashia Buch (kashia@vfemail.net), Fabian Buch (fabian@fabian-buch.de). All rights reserved. -->' Comment.Multiline
 '\n'          Text

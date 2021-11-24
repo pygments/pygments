@@ -1,0 +1,142 @@
+'## Single line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'<!DOCTYPE html>\n' Other
+
+'<%doc>\n    This is the base template\n</%doc>' Comment.Multiline
+'\n<html>\n<head>\n\t<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n\t<meta name=viewport content="width=device-width, initial-scale=1">\n  \t<title>\n' Other
+
+'\t  \t'      Text.Whitespace
+'%'           Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'page'        Name
+'.'           Operator
+'meta'        Name
+'.'           Operator
+'get'         Name
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'title'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'None'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'page'        Name
+'.'           Operator
+'url'         Name
+' '           Text
+'!='          Operator
+' '           Text
+"'"           Literal.String.Single
+'/'           Literal.String.Single
+"'"           Literal.String.Single
+':'           Punctuation
+'\n'          Other
+
+'\t\t\t/ '    Other
+'${'          Comment.Preproc
+'page'        Name
+'.'           Operator
+'url'         Name
+'}'           Comment.Preproc
+'\n\t\t'      Text.Whitespace
+'%'           Comment.Preproc
+' endif'      Keyword
+'\n'          Other
+
+'\t</title>\n\t<link type="text/css" rel="stylesheet" href="/style.css" />\n</head>\n<body>\n\t<div class="header-wrapper">\n\t    <header>\n\t        <nav>\n\t            <ul>\n' Other
+
+'\t\t\t\t\t'  Text.Whitespace
+'%'           Comment.Preproc
+' '           Text
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'site'        Name
+'.'           Operator
+'data'        Name
+'['           Punctuation
+"'"           Literal.String.Single
+'menu'        Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+':'           Punctuation
+'\n'          Other
+
+'\t\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href="' Other
+'${'          Comment.Preproc
+'item'        Name
+'['           Punctuation
+"'"           Literal.String.Single
+'url'         Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+'}'           Comment.Preproc
+'">\n'        Other
+
+'\t\t\t\t\t\t\t' Text.Whitespace
+'%'           Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+"'"           Literal.String.Single
+'image'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'in'          Operator.Word
+' '           Text
+'item'        Name
+':'           Punctuation
+'\n'          Other
+
+'\t\t\t\t\t\t\t<img src="' Other
+'${'          Comment.Preproc
+'item'        Name
+'['           Punctuation
+"'"           Literal.String.Single
+'image'       Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+'}'           Comment.Preproc
+'" height="12px">\n' Other
+
+'\t\t\t\t\t\t\t' Text.Whitespace
+'%'           Comment.Preproc
+' endif'      Keyword
+'\n'          Other
+
+'\t\t\t\t\t\t\t' Other
+'${'          Comment.Preproc
+'item'        Name
+'['           Punctuation
+"'"           Literal.String.Single
+'title'       Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+'}'           Comment.Preproc
+'\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</li>\n' Other
+
+'\t\t\t\t\t'  Text.Whitespace
+'%'           Comment.Preproc
+' endfor'     Keyword
+'\n'          Other
+
+'\t\t\t\t</ul>\n\t    \t</nav>\n\t    </header>\n\t</div>\n\t<div id="container">\n\t\t<section id="content">\n\t\t' Other
+'${'          Comment.Preproc
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'body'        Name
+'('           Punctuation
+')'           Punctuation
+'}'           Comment.Preproc
+'\n\t\t</section>\n\t\t<footer>\n\t\t\t<a href="#">Imprint</a>&nbsp;|&nbsp;<a href="#">Privacy policy</a>\n\t\t</footer>\n    </div>\n\t<script type="text/javascript">\t\n\t</script>\n</body>\n</html>\n' Other

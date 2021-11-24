@@ -37,6 +37,7 @@ class BashLexer(RegexLexer):
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
                  '*.exheres-0', '*.exlib', '*.zsh',
                  '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc',
+                 '.kshrc', 'kshrc',
                  'PKGBUILD']
     mimetypes = ['application/x-sh', 'application/x-shellscript', 'text/x-shellscript']
 
@@ -655,7 +656,7 @@ class PowerShellLexer(RegexLexer):
     .. versionadded:: 1.5
     """
     name = 'PowerShell'
-    aliases = ['powershell', 'posh', 'ps1', 'psm1']
+    aliases = ['powershell', 'pwsh', 'posh', 'ps1', 'psm1']
     filenames = ['*.ps1', '*.psm1']
     mimetypes = ['text/x-powershell']
 
@@ -771,7 +772,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'PowerShell Session'
-    aliases = ['ps1con']
+    aliases = ['pwsh-session', 'ps1con']
     filenames = []
     mimetypes = []
 

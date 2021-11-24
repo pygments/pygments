@@ -11,7 +11,7 @@ import pytest
 from pygments.lexers.sql import MySqlLexer
 
 from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
-    Punctuation, String, Text
+    Punctuation, String, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -161,9 +161,9 @@ def test_optimizer_hints(lexer, text):
         ('SET', (Keyword,)),
         ('SET abc = 1;', (Keyword,)),
         ('SET @abc = 1;', (Keyword,)),
-        ('CHARACTER SET latin1', (Keyword, Text, Keyword)),
+        ('CHARACTER SET latin1', (Keyword, Whitespace, Keyword,)),
         ('SET("r", "g", "b")', (Keyword.Type, Punctuation)),
-        ('SET ("r", "g", "b")', (Keyword.Type, Text, Punctuation)),
+        ('SET ("r", "g", "b")', (Keyword.Type, Whitespace, Punctuation)),
     ),
 )
 def test_exceptions(lexer, text, expected_types):
