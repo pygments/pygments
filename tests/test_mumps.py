@@ -1471,6 +1471,25 @@ def testOpenList(lexer):
             (Text, '\n')
             ]
 
+def testMnemonicspecGroup(lexer):
+    assert list(lexer.get_tokens(' O dev:::(space1,space2,"steve")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'O'),
+            (Whitespace, ' '),
+            (Name.Variable, 'dev'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Punctuation, '('),
+            (Name.Variable, 'space1'),
+            (Punctuation, ','),
+            (Name.Variable, 'space2'),
+            (Punctuation, ','),
+            (String, '"steve"'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
 def testRead(lexer):
     assert list(lexer.get_tokens(
         ' read #!!?5,"Hello!",!?5,"What is your name? ",name' )) == [
