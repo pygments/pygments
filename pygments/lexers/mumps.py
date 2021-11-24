@@ -422,6 +422,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.25 - WRITE
                 (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
+                # 8.2.26 - XECUTE
+                (words(('xecute', 'x'), suffix=r'\b'), Keyword, ('#pop', 'l_xargument', 'argumentsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -694,5 +696,12 @@ class MumpsLexer(ExtendedRegexLexer):
             include('format'),
             ('\\*', Keyword.Pseudo, ('#pop', 'expr')),
             include('expr'),
+            ],
+        # 8.2.26 - XECUTE
+        'l_xargument': [
+            default(('list_comma', 'xargument'))
+            ],
+        'xargument': [
+            default(('#pop', 'postcond', 'expr'))
             ],
         }
