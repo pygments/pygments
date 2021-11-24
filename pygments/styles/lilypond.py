@@ -11,7 +11,7 @@
 from pygments.style import Style
 from pygments.token import Token
 
-class LilypondStyle(Style):
+class LilyPondStyle(Style):
     """
     Style for the LilyPond language.
         
