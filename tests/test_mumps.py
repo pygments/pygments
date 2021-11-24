@@ -1980,8 +1980,8 @@ def testViewPostcond(lexer):
             (Whitespace, ' '),
             (Keyword, 'v'),
             (Punctuation, ':'),
-            (Name.Debug, 'debug'),
-            (Whitespace, ' '),
+            (Name.Variable, 'debug'),
+            (Whitespace, '  '),
             (Keyword, 'q'),
             (Text, '\n')
             ]
