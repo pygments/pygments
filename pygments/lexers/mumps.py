@@ -564,10 +564,14 @@ class MumpsLexer(ExtendedRegexLexer):
             default('#pop:2')
             ],
         'mnemonicspec': [
+            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_mnemonicspace')),
             default(('#pop', 'mnemonicspace'))
             ],
         'mnemonicspace': [
             include('expr'),
+            ],
+        'l_mnemonicspace': [
+            default(('list_comma', 'mnemonicspace'))
             ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
