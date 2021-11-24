@@ -2041,3 +2041,33 @@ def testWriteMnemonic(lexer):
             (Keyword.Pseudo, '/plain'),
             (Text, '\n')
             ]
+
+def testXectute(lexer):
+    assert list(lexer.get_tokens(
+        ' XECUTE:function\'="" "s %=$$"_function_"("_arglist_")",finish:done,@xarg')) == [
+            (Whitespace, ' '),
+            (Keyword, 'XECUTE'),
+            (Punctuation, ':'),
+            (Name.Variable, 'function'),
+            (Operator, '\''),
+            (Operator, '='),
+            (String, '""'),
+            (Whitespace, ' '),
+            (String, '"s %=$$"'),
+            (Operator, '_'),
+            (Name.Variable, 'function'),
+            (Operator, '_'),
+            (String, '"("'),
+            (Operator, '_'),
+            (Name.Variable, 'arglist'),
+            (Operator, '_'),
+            (String, '")"'),
+            (Punctuation, ','),
+            (Name.Variable, 'finish'),
+            (Punctuation, ':'),
+            (Name.Variable, 'done'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'xarg'),
+            (Text, '\n')
+            ]
