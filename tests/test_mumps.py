@@ -41,7 +41,7 @@ def testQuitMorphLine(lexer):
     tokens = [
         (Whitespace, ' '),
         (Keyword, 'q'),
-        (Operator, ':'),
+        (Punctuation, ':'),
         (Name.Variable.Magic, '$QUIT'),
         (Whitespace, ' '),
         (Number, '1'),
@@ -82,29 +82,29 @@ def testArithmeticUnaryops(lexer):
     fragment+= ' q +value'
     tokens = [
         (Name.Function, 'abs'),
-	(Punctuation, '('),
-	(Name.Variable, 'value'),
-	(Punctuation, ')'),
-	(Whitespace, ' '),
-	(Comment, '; Returns the absolute value of a value'),
-	(Text, '\n'),
-	(Whitespace, ' '),
-	(Keyword, 'q'),
-	(Operator, ':'),
-	(Name.Variable, 'value'),
-	(Operator, '<'),
-	(Number, '0'),
-	(Whitespace, ' '),
-	(Operator, '-'),
-	(Name.Variable, 'value'),
-	(Text, '\n'),
-	(Whitespace, ' '),
-	(Keyword, 'q'),
-	(Whitespace, ' '),
-	(Operator, '+'),
-	(Name.Variable, 'value'),
-	(Text, '\n'),
-	]
+        (Punctuation, '('),
+        (Name.Variable, 'value'),
+        (Punctuation, ')'),
+        (Whitespace, ' '),
+        (Comment, '; Returns the absolute value of a value'),
+        (Text, '\n'),
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Punctuation, ':'),
+        (Name.Variable, 'value'),
+        (Operator, '<'),
+        (Number, '0'),
+        (Whitespace, ' '),
+        (Operator, '-'),
+        (Name.Variable, 'value'),
+        (Text, '\n'),
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Operator, '+'),
+        (Name.Variable, 'value'),
+        (Text, '\n'),
+    ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 def testCompare(lexer):
@@ -124,7 +124,7 @@ def testCompare(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'left'),
             (Operator, '>'),
             (Name.Variable, 'right'),
@@ -133,7 +133,7 @@ def testCompare(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'left'),
             (Operator, '<'),
             (Name.Variable, 'right'),
@@ -244,7 +244,7 @@ def testStringcomp(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'a'),
             (Operator, '='),
             (String, '""'),
@@ -253,7 +253,7 @@ def testStringcomp(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'b'),
             (Operator, '\''),
             (Operator, ']'),
@@ -263,7 +263,7 @@ def testStringcomp(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'a'),
             (Operator, ']]'),
             (Name.Variable, 'b'),
@@ -684,7 +684,7 @@ def testBreakQuit(lexer):
     assert list(lexer.get_tokens(' b:debug  q')) == [
             (Whitespace, ' '),
             (Keyword, 'b'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'debug'),
             (Whitespace, '  '),
             (Keyword, 'q'),
@@ -839,7 +839,7 @@ def testDoPostcondQuit(lexer):
     assert list(lexer.get_tokens(' d:tvexpr tag^ROUTINE   QUIT')) == [
             (Whitespace, ' '),
             (Keyword, 'd'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'tvexpr'),
             (Whitespace, ' '),
             (Name.Label, 'tag'),
@@ -856,7 +856,7 @@ def testDoBlock(lexer):
             (Keyword, 'd'),
             (Whitespace, '  '),
             (Keyword, 'q'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'done'),
             (Text, '\n'),
             ]
@@ -867,13 +867,13 @@ def testDoMultipleWPostcont(lexer):
             (Keyword, 'do'),
             (Whitespace, ' '),
             (Name.Label, 'tag1'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'one'),
             (Punctuation, ','),
             (Name.Label, 'tag'),
             (Punctuation, '^'),
             (Name.Namespace, 'ROU2'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'two'),
             (Text, '\n'),
             ]
@@ -887,7 +887,7 @@ def testDoPostcondWParams(lexer):
             (Punctuation, '('),
             (Number, '1'),
             (Punctuation, ')'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'one'),
             (Text, '\n'),
             ]
@@ -934,7 +934,7 @@ def testDoEntryrefWIndriects(lexer):
             (Punctuation, '('),
             (Number, '1'),
             (Punctuation, ')'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'tv'),
             (Text, '\n'),
             ]
@@ -1044,11 +1044,11 @@ def testGotoEntryrefs(lexer):
     assert list(lexer.get_tokens(' goto:done abort:fail,tag+3^ROUTINE')) == [
             (Whitespace, ' '),
             (Keyword, 'goto'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'done'),
             (Whitespace, ' '),
             (Name.Label, 'abort'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'fail'),
             (Punctuation, ','),
             (Name.Label, 'tag'),
@@ -1089,7 +1089,7 @@ def testHang(lexer):
     assert list(lexer.get_tokens(' hang:wait 2,extraTime')) == [
             (Whitespace, ' '),
             (Keyword, 'hang'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'wait'),
             (Whitespace, ' '),
             (Number, '2'),
@@ -1159,7 +1159,7 @@ def testJobList(lexer):
         ' j:bar tag^ROUTINE(1,"abc"):(startup="/opt/foo/script":err="job-err.txt"):3,@jobargs')) == [
             (Whitespace, ' '),
             (Keyword, 'j'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'bar'),
             (Whitespace, ' '),
             (Name.Label, 'tag'),
@@ -1192,7 +1192,7 @@ def testKill(lexer):
     assert list(lexer.get_tokens(' kill:done a,b,c(d)')) == [
             (Whitespace, ' '),
             (Keyword, 'kill'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'done'),
             (Whitespace, ' '),
             (Name.Variable, 'a'),
@@ -1294,7 +1294,7 @@ def testUnlock(lexer):
     assert list(lexer.get_tokens(' l:done')) == [
             (Whitespace, ' '),
             (Keyword, 'l'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'done'),
             (Text, '\n'),
             ]
@@ -1304,7 +1304,7 @@ def testMerge(lexer):
         ' merge:ready target(a,b)=^source(c)')) == [
             (Whitespace, ' '),
             (Keyword, 'merge'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'ready'),
             (Whitespace, ' '),
             (Name.Variable, 'target'),
@@ -1385,7 +1385,7 @@ def testNewAll(lexer):
     assert list(lexer.get_tokens(' new:all  d')) == [
             (Whitespace, ' '),
             (Keyword, 'new'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'all'),
             (Whitespace, '  '),
             (Keyword, 'd'),
@@ -1444,7 +1444,7 @@ def testOpenList(lexer):
         ' o:ready @openargs,device,dev:foo:1,dev2:::spec,dev3::3' )) == [
             (Whitespace, ' '),
             (Keyword, 'o'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'ready'),
             (Whitespace, ' '),
             (Operator, '@'),
@@ -1497,7 +1497,7 @@ def testReadCond(lexer):
     assert list(lexer.get_tokens( " r:'ready @readargs" )) == [
             (Whitespace, ' '),
             (Keyword, 'r'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Operator, '\''),
             (Name.Variable, 'ready'),
             (Whitespace, ' '),
@@ -1781,7 +1781,7 @@ def testTCommit(lexer):
     assert list(lexer.get_tokens(' tcommit:ready  quit')) == [
             (Whitespace, ' '),
             (Keyword, 'tcommit'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'ready'),
             (Whitespace, '  '),
             (Keyword, 'quit'),
@@ -1792,7 +1792,7 @@ def testTREstart(lexer):
     assert list(lexer.get_tokens(' trestart:foo')) == [
             (Whitespace, ' '),
             (Keyword, 'trestart'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'foo'),
             (Text, '\n')
             ]
@@ -1801,7 +1801,7 @@ def testTROllback(lexer):
     assert list(lexer.get_tokens(' tro:abort')) == [
             (Whitespace, ' '),
             (Keyword, 'tro'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'abort'),
             (Text, '\n')
             ]
@@ -1810,7 +1810,7 @@ def testTStart(lexer):
     assert list(lexer.get_tokens(' TStart:\'dryrun')) == [
             (Whitespace, ' '),
             (Keyword, 'TStart'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Operator, '\''),
             (Name.Variable, 'dryrun'),
             (Text, '\n')
@@ -1914,7 +1914,7 @@ def testUseIndirected(lexer):
     assert list(lexer.get_tokens(' u:open @useargs')) == [
             (Whitespace, ' '),
             (Keyword, 'u'),
-            (Operator, ':'),
+            (Punctuation, ':'),
             (Name.Variable, 'open'),
             (Whitespace, ' '),
             (Operator, '@'),

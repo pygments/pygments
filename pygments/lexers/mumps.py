@@ -292,12 +292,11 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('  +', Whitespace, '#pop:2'),
                 include('argumentsp'),
                 ],
-        # 8.1.4 - postcond
+        # 8.1.4 - Post Conditional postcond
         'postcond': [
-            (':', Operator, 'expr'),
-            default('#pop')
+            default(('#pop', 'expr', 'colon_sep'))
             ],
-        # 8.1.5 - Command timeout timeout, a colon followed by a numeric expression
+        # 8.1.5 - Command timeout timeout, syntactically the same as postcond but the numeric value is used
         'timeout': [
                 default(('#pop', 'expr', 'colon_sep'))
                 ],
