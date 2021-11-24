@@ -1967,3 +1967,21 @@ def testUseDeviceMnemOnly(lexer):
             (Name.Variable, 'mnems'),
             (Text, '\n')
             ]
+
+def testView(lexer):
+    assert list(lexer.get_tokens(' VIEW')) == [
+            (Whitespace, ' '),
+            (Keyword, 'VIEW'),
+            (Text, '\n')
+            ]
+
+def testViewPostcond(lexer):
+    assert list(lexer.get_tokens(' v:debug  q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'v'),
+            (Punctuation, ':'),
+            (Name.Debug, 'debug'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Text, '\n')
+            ]
