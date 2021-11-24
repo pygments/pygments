@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 
 
-    :todo: Add XECUTE command
     :todo: Add Z* command syntax
     :todo: Add LI / LEVELLINE line indent
     :todo: Add functions support
