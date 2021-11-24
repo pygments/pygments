@@ -2022,7 +2022,7 @@ def testWriteChar(lexer):
             (Keyword, 'w'),
             (Whitespace, ' '),
             (Keyword.Pseudo, '*'),
-            (Number, 10),
+            (Number, '10'),
             (Text, '\n')
             ]
 
