@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 
 
-    :todo: Add WRITE command
     :todo: Add XECUTE command
     :todo: Add Z* command syntax
     :todo: Add LI / LEVELLINE line indent
@@ -106,9 +105,6 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_name': [
             default(('list_comma', 'name')),
             ],
-            #'(' + name_re + ')(,)', bygroups(Name.Variable, Punctuation)),
-            # name_re, Name.Variable, '#pop')
-            #,
         # 6.2.3 Label 'label'
         'label': [
             (name_re, Name.Label, '#pop'),
@@ -424,6 +420,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
                 # 8.2.24 - VIEW
                 (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+                # 8.2.25 - WRITE
+                (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -600,7 +598,9 @@ class MumpsLexer(ExtendedRegexLexer):
         'format': [
             ('[#!]+(?=\\?)', Keyword.Pseudo),
             ('[#!]+', Keyword.Pseudo, '#pop'),
-            ('\\?', Keyword.Pseudo, ('#pop', 'expr'))
+            ('\\?', Keyword.Pseudo, ('#pop', 'expr')),
+            ('(/[?A-Z][A-Z0-9]*)(\\()', bygroups(Keyword.Pseudo, Punctuation), ('#pop', 'close_paren', 'l_expr')),
+            ('/[?A-Z][A-Z0-9]*', Keyword.Pseudo, '#pop'),
             ],
         'readcount': [
             ('#', Punctuation, ('#pop', 'expr')),
@@ -685,5 +685,14 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.23 - USE
         'useargument': [
             default(('#pop', 'mnemonicspace', 'colon_sep', 'deviceparameters', 'colon_sep', 'expr'))
+            ],
+        # 8.2.25 - WRITE
+        'l_writeargument': [
+            default(('list_comma', 'writeargument'))
+            ],
+        'writeargument': [
+            include('format'),
+            ('\\*', Keyword.Pseudo, ('#pop', 'expr')),
+            include('expr'),
             ],
         }
