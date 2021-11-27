@@ -277,7 +277,7 @@ def testStringcomp(lexer):
             (Text, '\n'),
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
-    
+
 def testStringContains(lexer):
     fragment = ' q "ABC123\\-*""[]\'"[b'
     tokens = [
@@ -673,6 +673,18 @@ def testSSVNZunspecified(lexer):
             (Text, '\n')
             ]
 
+def testLocalExtFunction(lexer):
+    assert list(lexer.get_tokens(' w $$function()')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Name.Function, '$$function'),
+            (Punctuation, '('),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
+# Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
             (Whitespace, ' '),
