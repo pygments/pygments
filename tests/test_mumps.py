@@ -749,6 +749,20 @@ def testExfuncExtern(lexer):
             (Text, '\n')
             ]
 
+def testExvar(lexer):
+    assert list(lexer.get_tokens(' if status=$$new do')) == [
+            (Whitespace, ' '),
+            (Keyword, 'if'),
+            (Whitespace, ' '),
+            (Name.Variable, 'status'),
+            (Operator, '='),
+            (Punctuation, '$$'),
+            (Name.Function, 'new'),
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Text, '\n')
+            ]
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
