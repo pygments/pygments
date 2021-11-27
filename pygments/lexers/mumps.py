@@ -159,9 +159,9 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('\\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
                 ],
         'environment': [
-                ('\\|', Punctuation, ('#pop', 'vpipe', 'expr')),
+                ('\\|', Punctuation, ('#pop', 'vert_bar', 'expr')),
                 ],
-        'vpipe': [
+        'vert_bar': [
                 ('\\|', Punctuation, '#pop'),
                 ],
         'gname': [
