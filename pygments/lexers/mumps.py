@@ -330,7 +330,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'labelref': [
                 ( name_re , Name.Label, ('#pop', 'opt_routineref_strict')),
                 ('\\^', Punctuation, ('#pop', 'routineref_strict')),
-                #( name_re, Name.Label, '#pop'),
+                ],
+        'labelref_func': [
+                ( name_re , Name.Function, ('#pop', 'opt_routineref_strict')),
+                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
                 ],
         'opt_environment': [
                 include('environment'),
@@ -342,9 +345,14 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.1.6.3 - External reference externref
         'externref': [
-                ('(&' + name_re + ')(\\.)(' + name_re + ')(\\^)(' + name_re + ')', bygroups(Name.Namespace, Punctuation, Name.Label, Punctuation, Name.Namespace), '#pop'),
-                ('(&' + name_re + ')(\\.)(' + name_re + ')', bygroups(Name.Namespace, Punctuation, Name.Namespace), '#pop'),
-                ('&' + name_re, Name.Namespace, '#pop'),
+                ('&', Punctuation, ('#pop', 'labelref', 'opt_packagename'))
+                ],
+        'externref_func': [
+                ('&', Punctuation, ('#pop', 'labelref_func', 'opt_packagename'))
+                ],
+        'opt_packagename': [
+                ('(' + name_re + ')(\\.)', bygroups(Name.Namespace, Punctuation), '#pop'),
+                default('#pop')
                 ],
         # 8.1.7 - Parameter passing
         'actuallist': [
