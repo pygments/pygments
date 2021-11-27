@@ -684,6 +684,24 @@ def testLocalExtFunction(lexer):
             (Text, '\n'),
             ]
 
+def testExtFuncRou(lexer):
+    assert list(lexer.get_tokens(' w $$func^ROU(a,b,c)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Name.Function, '$$func'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROU'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
