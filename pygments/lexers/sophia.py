@@ -1,6 +1,6 @@
 """
     pygments.lexers.sophia
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Sophia.
 
@@ -48,7 +48,7 @@ class SophiaLexer(RegexLexer):
             (r'\\x[0-9a-fA-F]{2}', String.Escape),
         ],
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Text.Whitespace),
             (r'(true|false)\b', Keyword.Constant),
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Class, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Function),
