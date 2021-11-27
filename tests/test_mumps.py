@@ -2042,7 +2042,7 @@ def testWriteMnemonic(lexer):
             (Text, '\n')
             ]
 
-def testXectute(lexer):
+def testXecute(lexer):
     assert list(lexer.get_tokens(
         ' XECUTE:function\'="" "s %=$$"_function_"("_arglist_")",finish:done,@xarg')) == [
             (Whitespace, ' '),
