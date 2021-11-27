@@ -19,7 +19,7 @@ class BddLexer(RegexLexer):
     Lexer for BDD(Behavior-driven development), which highlights not only keywords, 
     but also comments, punctuations, strings, numbers, and variables.
 
-    .. versionadded:: 2.10
+    .. versionadded:: 2.11
     """
 
     name = 'Bdd'
