@@ -1,6 +1,6 @@
 """
     pygments.lexers.bdd
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexer for BDD(Behavior-driven development). 
     More information: https://en.wikipedia.org/wiki/Behavior-driven_development
@@ -51,3 +51,6 @@ class BddLexer(RegexLexer):
             (r'\S+', Text),
         ]
     }
+
+    def analyse_text(self, text):
+        return
