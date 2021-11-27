@@ -222,7 +222,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.4.8 - Extrinsic function exfunc
         'exfunc': [
-                ('\\$\\$' + name_re, Name.Function, ('#pop', 'actuallist', 'opt_routineref_strict')),
+                ('\\$\\$', Punctuation, ('#pop', 'actuallist', 'labelref_func')),
+                ('\\$(?=&)', Punctuation, ('#pop', 'actuallist', 'externref_func')),
                 ],
         # 7.1.4.9 - Extrinsic special variable exvar
         'exvar': [
