@@ -702,6 +702,31 @@ def testExtFuncRou(lexer):
             (Text, '\n')
             ]
 
+def testExFuncEnv(lexer):
+    assert list(lexer.get_tokens(' w $$thing^|"ABC.M"|Routine(1,a(2),@b)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Name.Function, '$$thing'),
+            (Punctuation, '^'),
+            (Punctuation, '|'),
+            (String, '"ABC.M"'),
+            (Punctuation, '|'),
+            (Name.Namespace, 'Routine'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (Name.Variable, 'a'),
+            (Punctuation, '('),
+            (Number, '2'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
