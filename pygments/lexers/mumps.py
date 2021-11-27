@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 
 
-    :todo: Add Z* command syntax
     :todo: Add LI / LEVELLINE line indent
     :todo: Add functions support
 """
@@ -203,7 +202,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'expritem': [
             include('strlit'),
             include('numlit'),
-            #include('exfunc'),
+            include('exfunc'),
             #include('exvar'),
             include('svn'),
             include('function'),
@@ -219,12 +218,12 @@ class MumpsLexer(ExtendedRegexLexer):
         'numlit': [
                 ('[0-9]*\\.[0-9]+E[+-]?[0-9]+', Number, '#pop'),
                 ('[0-9]*\\.[0-9]+', Number, '#pop'),
-                ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),  
-                ('[0-9]+', Number, '#pop'),  
+                ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),
+                ('[0-9]+', Number, '#pop'),
                 ],
         # 7.1.4.8 - Extrinsic function exfunc
         'exfunc': [
-                # TODO
+                ('\\$\\$' + name_re, Name.Function, ('#pop', 'actuallist')),
                 ],
         # 7.1.4.9 - Extrinsic special variable exvar
         'exvar': [
