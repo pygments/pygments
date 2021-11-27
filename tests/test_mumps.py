@@ -679,7 +679,8 @@ def testExfunc(lexer):
             (Whitespace, ' '),
             (Keyword, 'w'),
             (Whitespace, ' '),
-            (Name.Function, '$$function'),
+            (Punctuation, '$$'),
+            (Name.Function, 'function'),
             (Punctuation, '('),
             (Punctuation, ')'),
             (Text, '\n'),
@@ -690,7 +691,8 @@ def testExfuncRou(lexer):
             (Whitespace, ' '),
             (Keyword, 'w'),
             (Whitespace, ' '),
-            (Name.Function, '$$func'),
+            (Punctuation, '$$'),
+            (Name.Function, 'func'),
             (Punctuation, '^'),
             (Name.Namespace, 'ROU'),
             (Punctuation, '('),
@@ -708,7 +710,8 @@ def testExfuncEnv(lexer):
             (Whitespace, ' '),
             (Keyword, 'w'),
             (Whitespace, ' '),
-            (Name.Function, '$$thing'),
+            (Punctuation, '$$'),
+            (Name.Function, 'thing'),
             (Punctuation, '^'),
             (Punctuation, '|'),
             (String, '"ABC.M"'),
@@ -724,6 +727,24 @@ def testExfuncEnv(lexer):
             (Punctuation, ','),
             (Operator, '@'),
             (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testExfuncExtern(lexer):
+    assert list(lexer.get_tokens(' WRITE $&PACKAGE.FUNC(1,a)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'WRITE'),
+            (Whitespace, ' '),
+            (Punctuation, '$'),
+            (Punctuation, '&'),
+            (Name.Namespace, 'PACKAGE'),
+            (Punctuation, '.'),
+            (Name.Function, 'FUNC'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (Name.Variable, 'a'),
             (Punctuation, ')'),
             (Text, '\n')
             ]
