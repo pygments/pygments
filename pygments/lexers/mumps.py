@@ -10,7 +10,9 @@
 
 
     :todo: Add LI / LEVELLINE line indent
-    :todo: Add functions support
+    :todo: Add more SVNs
+    :todo: Add more functions
+    :todo: Review exprtail
 """
 
 import re
