@@ -221,6 +221,7 @@ Other markup
 * Apache config files
 * Apache Pig
 * BBCode
+* Bdd
 * CapDL
 * `Cap'n Proto <https://capnproto.org>`_
 * `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
