@@ -673,7 +673,8 @@ def testSSVNZunspecified(lexer):
             (Text, '\n')
             ]
 
-def testLocalExtFunction(lexer):
+# 7.1.4.8 - Extrinsic function exfunc
+def testExfunc(lexer):
     assert list(lexer.get_tokens(' w $$function()')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -684,7 +685,7 @@ def testLocalExtFunction(lexer):
             (Text, '\n'),
             ]
 
-def testExtFuncRou(lexer):
+def testExfuncRou(lexer):
     assert list(lexer.get_tokens(' w $$func^ROU(a,b,c)')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -702,7 +703,7 @@ def testExtFuncRou(lexer):
             (Text, '\n')
             ]
 
-def testExFuncEnv(lexer):
+def testExfuncEnv(lexer):
     assert list(lexer.get_tokens(' w $$thing^|"ABC.M"|Routine(1,a(2),@b)')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
