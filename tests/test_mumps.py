@@ -994,22 +994,49 @@ def testDoEntryrefWIndriects(lexer):
             (Text, '\n'),
             ]
 
-def testDoExternref(lexer):
-    assert list(lexer.get_tokens(' do &PACKAGE.ROUTINE,&ROUTINE(arg),&PACKAGE.LABEL^ROUTINE(1,"abc")')) == [
+def testDoExternrefRoutine(lexer):
+    assert list(lexer.get_tokens(' do &PACKAGE.LABEL,&LABEL(arg),&PACKAGE.LABEL^ROUTINE(1,"abc")')) == [
             (Whitespace, ' '),
             (Keyword, 'do'),
             (Whitespace, ' '),
-            (Name.Namespace, '&PACKAGE'),
+            (Punctuation, '&'),
+            (Name.Namespace, 'PACKAGE'),
             (Punctuation, '.'),
-            (Name.Namespace, 'ROUTINE'),
+            (Name.Label, 'LABEL'),
             (Punctuation, ','),
-            (Name.Namespace, '&ROUTINE'),
+            (Punctuation, '&'),
+            (Name.Label, 'LABEL'),
             (Punctuation, '('),
             (Name.Variable, 'arg'),
             (Punctuation, ')'),
             (Punctuation, ','),
-            (Name.Namespace, '&PACKAGE'),
+            (Punctuation, '&'),
+            (Name.Namespace, 'PACKAGE'),
             (Punctuation, '.'),
+            (Name.Label, 'LABEL'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (String, '"abc"'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
+def testDoExternrefLabel(lexer):
+    assert list(lexer.get_tokens(' do &PACKAGE.LABEL^ROUTINE,&LABEL^ROUTINE(1,"abc")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Whitespace, ' '),
+            (Punctuation, '&'),
+            (Name.Namespace, 'PACKAGE'),
+            (Punctuation, '.'),
+            (Name.Label, 'LABEL'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, ','),
+            (Punctuation, '&'),
             (Name.Label, 'LABEL'),
             (Punctuation, '^'),
             (Name.Namespace, 'ROUTINE'),
