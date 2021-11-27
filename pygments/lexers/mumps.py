@@ -213,7 +213,6 @@ class MumpsLexer(ExtendedRegexLexer):
         'strlit': [
                 ( strlit_re , String, '#pop'),
                 ],
-
         # 7.1.4.2 - Numeric literal 'numlit'
         'numlit': [
                 ('[0-9]*\\.[0-9]+E[+-]?[0-9]+', Number, '#pop'),
@@ -223,7 +222,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.4.8 - Extrinsic function exfunc
         'exfunc': [
-                ('\\$\\$' + name_re, Name.Function, ('#pop', 'actuallist')),
+                ('\\$\\$' + name_re, Name.Function, ('#pop', 'actuallist', 'opt_routineref_strict')),
                 ],
         # 7.1.4.9 - Extrinsic special variable exvar
         'exvar': [
