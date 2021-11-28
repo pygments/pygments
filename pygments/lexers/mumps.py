@@ -10,7 +10,6 @@
 
 
     :todo: Add LI / LEVELLINE line indent
-    :todo: Add more SVNs
     :todo: Add more functions
     :todo: Review exprtail
 """
@@ -29,11 +28,6 @@ class MumpsLexer(ExtendedRegexLexer):
     Section numbers below refer to the sections on that site, most often from the latest (1995) standard.
     """
 
-    """
-    Questions from the author:
-    1. When '.' is used to indicate a pass-by-reference parameter, is that an operator or just punctuation?
-    """
-
     name = 'MUMPS'
     aliases = ['Mumps', 'mumps', 'M']
     filenames = ['*.m', '*.mumps', '*.epc', '*.int']
@@ -46,7 +40,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.10 - Intrinsic special variables 'svn'
-    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$HOROLOG', '$H', '$IO', '$I', '$JOB', '$J', '$KEY', '$K', '$QUIT'), suffix=r'\b')
+    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$HOROLOG', '$H', '$IO', '$I', '$JOB', '$J', '$KEY', '$K', '$PRINCIPAL', '$P', '$QUIT', '$Q', '$STACK', '$ST', '$STORAGE', '$S', '$SYSTEM', '$SY', '$TEST', '$T', '$TLEVEL', '$TL', '$TRESTART', '$TR', '$X', '$Y'), suffix=r'\b')
     # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = "[-+']"
     # 7.2.1 - binaryop
