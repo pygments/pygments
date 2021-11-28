@@ -973,6 +973,239 @@ def testSVNK(lexer):
             (Text, '\n')
             ]
 
+def testSVNPrincipal(lexer):
+    assert list(lexer.get_tokens(' w !,"Principal device: "_$PRINCIPAL')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Principal device: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$PRINCIPAL'),
+            (Text, '\n')
+            ]
+
+def testSVNP(lexer):
+    assert list(lexer.get_tokens(' w !,"Principal device: "_$P')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Principal device: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$P'),
+            (Text, '\n')
+            ]
+
+def testSVNQuit(lexer):
+    assert list(lexer.get_tokens(' w !,"Called as function: "_$Quit')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Called as function: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$Quit'),
+            (Text, '\n')
+            ]
+
+def testSVNQ(lexer):
+    assert list(lexer.get_tokens(' w !,"Called as function: "_$Q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Called as function: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$Q'),
+            (Text, '\n')
+            ]
+
+def testSVNSTack(lexer):
+    assert list(lexer.get_tokens(' w !,"Stack level: "_$STACK')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Stack level: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$STACK'),
+            (Text, '\n')
+            ]
+
+def testSVNST(lexer):
+    assert list(lexer.get_tokens(' w !,"Stack level: "_$ST')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Stack level: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ST'),
+            (Text, '\n')
+            ]
+
+def testSVNStorage(lexer):
+    assert list(lexer.get_tokens(' w !,"Free space: "_$STORAGE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Free space: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$STORAGE'),
+            (Text, '\n')
+            ]
+
+def testSVNS(lexer):
+    assert list(lexer.get_tokens(' w !,"Free space: "_$S')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Free space: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$S'),
+            (Text, '\n')
+            ]
+
+def testSVNSYstem(lexer):
+    assert list(lexer.get_tokens(' w !,"M Implementation: "_$SYSTEM')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"M Implementation: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$SYSTEM'),
+            (Text, '\n')
+            ]
+
+def testSVNSY(lexer):
+    assert list(lexer.get_tokens(' w !,"M Implementation: "_$SY')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"M Implementation: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$SY'),
+            (Text, '\n')
+            ]
+
+def testSVNTest(lexer):
+    assert list(lexer.get_tokens(' w !,"ELSE state: "_$TEST')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"ELSE state: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$TEST'),
+            (Text, '\n')
+            ]
+
+def testSVNT(lexer):
+    assert list(lexer.get_tokens(' w !,"ELSE state: "_$T')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"ELSE state: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$T'),
+            (Text, '\n')
+            ]
+
+def testSVNTLevel(lexer):
+    assert list(lexer.get_tokens(' w !,"Transaction level: "_$TLEVEL')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Transaction level: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$TLEVEL'),
+            (Text, '\n')
+            ]
+
+def testSVNTest(lexer):
+    assert list(lexer.get_tokens(' w !,"Transaction level: "_$TL')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Transaction level: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$TL'),
+            (Text, '\n')
+            ]
+
+def testSVNTRestart(lexer):
+    assert list(lexer.get_tokens(' w !,"Transaction restarts: "_$TRestart')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Transaction restarts: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$TRestart'),
+            (Text, '\n')
+            ]
+
+def testSVNTR(lexer):
+    assert list(lexer.get_tokens(' w !,"Transaction restarts: "_$TR')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Transaction restarts: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$TR'),
+            (Text, '\n')
+            ]
+
+def testSVNX(lexer):
+    assert list(lexer.get_tokens(' w !,"X Position: "$X')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"X Position: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$X'),
+            (Text, '\n')
+            ]
+
+def testSVNY(lexer):
+    assert list(lexer.get_tokens(' w !,"Y Position: "$Y')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Y Position: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$Y'),
+            (Text, '\n')
+            ]
 
 # Command tests
 def testBreak(lexer):
