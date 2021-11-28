@@ -869,6 +869,111 @@ def testSVNET(lexer):
             (Text, '\n')
             ]
 
+def testSVNHorolog(lexer):
+    assert list(lexer.get_tokens(' w !,"Date,time: "_$Horolog')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Date,time: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$Horolog'),
+            (Text, '\n')
+            ]
+
+def testSVNH(lexer):
+    assert list(lexer.get_tokens(' w !,"Date,time: "_$H')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Date,time: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$H'),
+            (Text, '\n')
+            ]
+
+def testSVNIo(lexer):
+    assert list(lexer.get_tokens(' w !,"Current device: "_$IO')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Current device: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$IO'),
+            (Text, '\n')
+            ]
+
+def testSVNI(lexer):
+    assert list(lexer.get_tokens(' w !,"Current device: "_$I')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Current device: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$I'),
+            (Text, '\n')
+            ]
+
+def testSVNJob(lexer):
+    assert list(lexer.get_tokens(' w !,"Current job: "_$JOB')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Current job: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$JOB'),
+            (Text, '\n')
+            ]
+
+def testSVNJ(lexer):
+    assert list(lexer.get_tokens(' w !,"Current job: "_$J')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Current job: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$J'),
+            (Text, '\n')
+            ]
+
+def testSVNKey(lexer):
+    assert list(lexer.get_tokens(' w !,"Last key: "_$KEY')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Last key: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$KEY'),
+            (Text, '\n')
+            ]
+
+def testSVNK(lexer):
+    assert list(lexer.get_tokens(' w !,"Last key: "_$K')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Last key: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$K'),
+            (Text, '\n')
+            ]
+
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
