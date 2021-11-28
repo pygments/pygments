@@ -46,7 +46,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.10 - Intrinsic special variables 'svn'
-    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$QUIT'), suffix=r'\b')
+    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$HOROLOG', '$H', '$IO', '$I', '$JOB', '$J', '$KEY', '$K', '$QUIT'), suffix=r'\b')
     # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = "[-+']"
     # 7.2.1 - binaryop
