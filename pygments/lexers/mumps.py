@@ -223,13 +223,10 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('[0-9]+', Number, '#pop'),
                 ],
         # 7.1.4.8 - Extrinsic function exfunc
+        # 7.1.4.9 - Extrinsic special variable exvar - Same syntax, no actuallist
         'exfunc': [
                 ('\\$\\$', Punctuation, ('#pop', 'opt_actuallist', 'labelref_func')),
                 ('\\$(?=&)', Punctuation, ('#pop', 'opt_actuallist', 'externref_func')),
-                ],
-        # 7.1.4.9 - Extrinsic special variable exvar
-        'exvar': [
-                # TODO
                 ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
