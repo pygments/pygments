@@ -765,7 +765,7 @@ def testExvar(lexer):
             ]
 
 # 7.1.4.10 - Intrinsic special variable names SVN
-def testSVNDevice(lexer):
+def testSvnDevice(lexer):
     assert list(lexer.get_tokens(' w !,"Device status: "_$DEVICE')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -778,7 +778,7 @@ def testSVNDevice(lexer):
             (Text, '\n')
             ]
 
-def testSVND(lexer):
+def testSvnD(lexer):
     assert list(lexer.get_tokens(' w !,"Device status: "_$D')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -791,7 +791,7 @@ def testSVND(lexer):
             (Text, '\n')
             ]
 
-def testSVNECode(lexer):
+def testSvnECode(lexer):
     assert list(lexer.get_tokens(' w !,"Error code: "_$ECODE')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -804,7 +804,7 @@ def testSVNECode(lexer):
             (Text, '\n')
             ]
 
-def testSVNEC(lexer):
+def testSvnEC(lexer):
     assert list(lexer.get_tokens(' w !,"Error code: "_$EC')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -817,7 +817,7 @@ def testSVNEC(lexer):
             (Text, '\n')
             ]
 
-def testSVNEStack(lexer):
+def testSvnEStack(lexer):
     assert list(lexer.get_tokens(' w !,"Error stack: "_$ESTACK')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -830,7 +830,7 @@ def testSVNEStack(lexer):
             (Text, '\n')
             ]
 
-def testSVNES(lexer):
+def testSvnES(lexer):
     assert list(lexer.get_tokens(' w !,"Error stack: "_$ES')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -843,7 +843,7 @@ def testSVNES(lexer):
             (Text, '\n')
             ]
 
-def testSVNETrap(lexer):
+def testSvnETrap(lexer):
     assert list(lexer.get_tokens(' w !,"Error trap: "_$ETRAP')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -856,7 +856,7 @@ def testSVNETrap(lexer):
             (Text, '\n')
             ]
 
-def testSVNET(lexer):
+def testSvnET(lexer):
     assert list(lexer.get_tokens(' w !,"Error trap: "_$ET')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -869,7 +869,7 @@ def testSVNET(lexer):
             (Text, '\n')
             ]
 
-def testSVNHorolog(lexer):
+def testSvnHorolog(lexer):
     assert list(lexer.get_tokens(' w !,"Date,time: "_$Horolog')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -882,7 +882,7 @@ def testSVNHorolog(lexer):
             (Text, '\n')
             ]
 
-def testSVNH(lexer):
+def testSvnH(lexer):
     assert list(lexer.get_tokens(' w !,"Date,time: "_$H')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -895,7 +895,7 @@ def testSVNH(lexer):
             (Text, '\n')
             ]
 
-def testSVNIo(lexer):
+def testSvnIo(lexer):
     assert list(lexer.get_tokens(' w !,"Current device: "_$IO')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -908,7 +908,7 @@ def testSVNIo(lexer):
             (Text, '\n')
             ]
 
-def testSVNI(lexer):
+def testSvnI(lexer):
     assert list(lexer.get_tokens(' w !,"Current device: "_$I')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -921,7 +921,7 @@ def testSVNI(lexer):
             (Text, '\n')
             ]
 
-def testSVNJob(lexer):
+def testSvnJob(lexer):
     assert list(lexer.get_tokens(' w !,"Current job: "_$JOB')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -934,7 +934,7 @@ def testSVNJob(lexer):
             (Text, '\n')
             ]
 
-def testSVNJ(lexer):
+def testSvnJ(lexer):
     assert list(lexer.get_tokens(' w !,"Current job: "_$J')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -947,7 +947,7 @@ def testSVNJ(lexer):
             (Text, '\n')
             ]
 
-def testSVNKey(lexer):
+def testSvnKey(lexer):
     assert list(lexer.get_tokens(' w !,"Last key: "_$KEY')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -960,7 +960,7 @@ def testSVNKey(lexer):
             (Text, '\n')
             ]
 
-def testSVNK(lexer):
+def testSvnK(lexer):
     assert list(lexer.get_tokens(' w !,"Last key: "_$K')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -973,7 +973,7 @@ def testSVNK(lexer):
             (Text, '\n')
             ]
 
-def testSVNPrincipal(lexer):
+def testSvnPrincipal(lexer):
     assert list(lexer.get_tokens(' w !,"Principal device: "_$PRINCIPAL')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -986,7 +986,7 @@ def testSVNPrincipal(lexer):
             (Text, '\n')
             ]
 
-def testSVNP(lexer):
+def testSvnP(lexer):
     assert list(lexer.get_tokens(' w !,"Principal device: "_$P')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -999,7 +999,7 @@ def testSVNP(lexer):
             (Text, '\n')
             ]
 
-def testSVNQuit(lexer):
+def testSvnQuit(lexer):
     assert list(lexer.get_tokens(' w !,"Called as function: "_$Quit')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1012,7 +1012,7 @@ def testSVNQuit(lexer):
             (Text, '\n')
             ]
 
-def testSVNQ(lexer):
+def testSvnQ(lexer):
     assert list(lexer.get_tokens(' w !,"Called as function: "_$Q')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1025,7 +1025,7 @@ def testSVNQ(lexer):
             (Text, '\n')
             ]
 
-def testSVNSTack(lexer):
+def testSvnSTack(lexer):
     assert list(lexer.get_tokens(' w !,"Stack level: "_$STACK')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1038,7 +1038,7 @@ def testSVNSTack(lexer):
             (Text, '\n')
             ]
 
-def testSVNST(lexer):
+def testSvnST(lexer):
     assert list(lexer.get_tokens(' w !,"Stack level: "_$ST')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1051,7 +1051,7 @@ def testSVNST(lexer):
             (Text, '\n')
             ]
 
-def testSVNStorage(lexer):
+def testSvnStorage(lexer):
     assert list(lexer.get_tokens(' w !,"Free space: "_$STORAGE')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1064,7 +1064,7 @@ def testSVNStorage(lexer):
             (Text, '\n')
             ]
 
-def testSVNS(lexer):
+def testSvnS(lexer):
     assert list(lexer.get_tokens(' w !,"Free space: "_$S')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1077,7 +1077,7 @@ def testSVNS(lexer):
             (Text, '\n')
             ]
 
-def testSVNSYstem(lexer):
+def testSvnSYstem(lexer):
     assert list(lexer.get_tokens(' w !,"M Implementation: "_$SYSTEM')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1090,7 +1090,7 @@ def testSVNSYstem(lexer):
             (Text, '\n')
             ]
 
-def testSVNSY(lexer):
+def testSvnSY(lexer):
     assert list(lexer.get_tokens(' w !,"M Implementation: "_$SY')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1103,7 +1103,7 @@ def testSVNSY(lexer):
             (Text, '\n')
             ]
 
-def testSVNTest(lexer):
+def testSvnTest(lexer):
     assert list(lexer.get_tokens(' w !,"ELSE state: "_$TEST')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1116,7 +1116,7 @@ def testSVNTest(lexer):
             (Text, '\n')
             ]
 
-def testSVNT(lexer):
+def testSvnT(lexer):
     assert list(lexer.get_tokens(' w !,"ELSE state: "_$T')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1129,7 +1129,7 @@ def testSVNT(lexer):
             (Text, '\n')
             ]
 
-def testSVNTLevel(lexer):
+def testSvnTLevel(lexer):
     assert list(lexer.get_tokens(' w !,"Transaction level: "_$TLEVEL')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1142,7 +1142,7 @@ def testSVNTLevel(lexer):
             (Text, '\n')
             ]
 
-def testSVNTest(lexer):
+def testSvnTest(lexer):
     assert list(lexer.get_tokens(' w !,"Transaction level: "_$TL')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1155,7 +1155,7 @@ def testSVNTest(lexer):
             (Text, '\n')
             ]
 
-def testSVNTRestart(lexer):
+def testSvnTRestart(lexer):
     assert list(lexer.get_tokens(' w !,"Transaction restarts: "_$TRestart')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1168,7 +1168,7 @@ def testSVNTRestart(lexer):
             (Text, '\n')
             ]
 
-def testSVNTR(lexer):
+def testSvnTR(lexer):
     assert list(lexer.get_tokens(' w !,"Transaction restarts: "_$TR')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1181,7 +1181,7 @@ def testSVNTR(lexer):
             (Text, '\n')
             ]
 
-def testSVNX(lexer):
+def testSvnX(lexer):
     assert list(lexer.get_tokens(' w !,"X Position: "$X')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
@@ -1194,7 +1194,7 @@ def testSVNX(lexer):
             (Text, '\n')
             ]
 
-def testSVNY(lexer):
+def testSvnY(lexer):
     assert list(lexer.get_tokens(' w !,"Y Position: "$Y')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
