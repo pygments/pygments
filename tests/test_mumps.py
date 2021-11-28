@@ -1207,6 +1207,34 @@ def testSvnY(lexer):
             (Text, '\n')
             ]
 
+# 7.1.5 - Functions
+def testFuncAscii(lexer):
+    assert list(lexer.get_tokens(' quit $ASCII("a")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'quit'),
+            (Whitespace, ' '),
+            (Name.Function, '$ASCII'),
+            (Punctuation, '('),
+            (String, '"a"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testFuncA(lexer):
+    assert list(lexer.get_tokens(' quit $A("abc",3)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'quit'),
+            (Whitespace, ' '),
+            (Name.Function, '$A'),
+            (Punctuation, '('),
+            (String, '"abc"'),
+            (Punctuation, ','),
+            (Number, '3'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
