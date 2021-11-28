@@ -1182,7 +1182,7 @@ def testSvnTR(lexer):
             ]
 
 def testSvnX(lexer):
-    assert list(lexer.get_tokens(' w !,"X Position: "$X')) == [
+    assert list(lexer.get_tokens(' w !,"X Position: "_$X')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
             (Whitespace, ' '),
@@ -1195,7 +1195,7 @@ def testSvnX(lexer):
             ]
 
 def testSvnY(lexer):
-    assert list(lexer.get_tokens(' w !,"Y Position: "$Y')) == [
+    assert list(lexer.get_tokens(' w !,"Y Position: "_$Y')) == [
             (Whitespace, ' '),
             (Keyword, 'w'),
             (Whitespace, ' '),
