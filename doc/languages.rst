@@ -285,6 +285,7 @@ Other markup
 * Sieve
 * Singularity
 * `Smithy <https://awslabs.github.io/smithy/>`_
+* `Sophia <https://buildwithsophia.com/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration
