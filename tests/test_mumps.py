@@ -749,6 +749,7 @@ def testExfuncExtern(lexer):
             (Text, '\n')
             ]
 
+# 7.1.4.9 - Exvar
 def testExvar(lexer):
     assert list(lexer.get_tokens(' if status=$$new do')) == [
             (Whitespace, ' '),
@@ -760,6 +761,111 @@ def testExvar(lexer):
             (Name.Function, 'new'),
             (Whitespace, ' '),
             (Keyword, 'do'),
+            (Text, '\n')
+            ]
+
+# 7.1.4.10 - Intrinsic special variable names SVN
+def testSVNDevice(lexer):
+    assert list(lexer.get_tokens(' w !,"Device status: "_$DEVICE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Device status: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$DEVICE'),
+            (Text, '\n')
+            ]
+
+def testSVND(lexer):
+    assert list(lexer.get_tokens(' w !,"Device status: "_$D')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Device status: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$D'),
+            (Text, '\n')
+            ]
+
+def testSVNECode(lexer):
+    assert list(lexer.get_tokens(' w !,"Error code: "_$ECODE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error code: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ECODE'),
+            (Text, '\n')
+            ]
+
+def testSVNEC(lexer):
+    assert list(lexer.get_tokens(' w !,"Error code: "_$EC')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error code: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$EC'),
+            (Text, '\n')
+            ]
+
+def testSVNEStack(lexer):
+    assert list(lexer.get_tokens(' w !,"Error stack: "_$ESTACK')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error stack: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ESTACK'),
+            (Text, '\n')
+            ]
+
+def testSVNES(lexer):
+    assert list(lexer.get_tokens(' w !,"Error stack: "_$ES')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error stack: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ES'),
+            (Text, '\n')
+            ]
+
+def testSVNETrap(lexer):
+    assert list(lexer.get_tokens(' w !,"Error trap: "_$ETRAP')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error trap: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ETRAP'),
+            (Text, '\n')
+            ]
+
+def testSVNET(lexer):
+    assert list(lexer.get_tokens(' w !,"Error trap: "_$ET')) == [
+            (Whitespace, ' '),
+            (Keyword, 'w'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '!'),
+            (Punctuation, ','),
+            (String, '"Error trap: "'),
+            (Operator, '_'),
+            (Name.Variable.Magic, '$ET'),
             (Text, '\n')
             ]
 
