@@ -45,6 +45,8 @@ class MumpsLexer(ExtendedRegexLexer):
     name_re = '[%A-Za-z][A-Za-z0-9]*'
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
+    # 7.1.4.10 - Intrinsic special variables 'svn'
+    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$QUIT'), suffix=r'\b')
     # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = "[-+']"
     # 7.2.1 - binaryop
@@ -230,8 +232,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
-                # Many TODO here
-                ('\\$QUIT', Name.Variable.Magic, '#pop'),
+                (svn_re, Name.Variable.Magic, '#pop'),
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
