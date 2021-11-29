@@ -6,56 +6,56 @@ pred p3 i:(bool -> prop).
 
 ---tokens---
 'pred'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'p1'          Name.Function
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'p2'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'i:'          Keyword.Mode
 'int'         Keyword.Type
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'o:'          Keyword.Mode
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'p3'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'i:'          Keyword.Mode
 '('           Keyword.Type
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '-'           Error
 '>'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'prop'        Keyword.Type
 ')'           Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':index'      Keyword.Mode
-'('           Text
+'('           Text.Whitespace
 '_ 2'         Literal.Number.Integer
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'pred'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'p4'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'i:'          Keyword.Mode
 'int'         Keyword.Type
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'i:'          Keyword.Mode
 'A'           Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace

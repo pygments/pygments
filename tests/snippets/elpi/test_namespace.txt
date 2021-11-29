@@ -6,30 +6,30 @@ shorten foo. { bar }.
 
 ---tokens---
 'namespace'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'foo.bar'     Text
-' '           Text
+' '           Text.Whitespace
 '{\n'         Text
 
-'  '          Text
+'  '          Text.Whitespace
 'baz'         Text
-' '           Text
+' '           Text.Whitespace
 ':-'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'std.do!'     Text
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Declaration
 '.'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}\n'         Text
 
 'shorten'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'foo.'        Text
-' '           Text
+' '           Text.Whitespace
 '{ '          Text
 'bar'         Text
-' '           Text
+' '           Text.Whitespace
 '}.'          Text
-'\n'          Text
+'\n'          Text.Whitespace

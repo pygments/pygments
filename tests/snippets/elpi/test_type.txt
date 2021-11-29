@@ -8,85 +8,85 @@ type app tm -> tm -> tm.
 
 ---tokens---
 'kind'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'list'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'type'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'type'        Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'cons'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'A'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'kind'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'tm'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'type'        Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'fun'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Keyword.Type
 'tm'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'tm'          Keyword.Type
 ')'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'tm'          Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'app'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'tm'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'tm'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'tm'          Keyword.Type
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace

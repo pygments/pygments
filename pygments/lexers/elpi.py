@@ -29,7 +29,7 @@ class ElpiLexer(RegexLexer):
     lcase_re = r"[a-z]"
     ucase_re = r"[A-Z]"
     digit_re = r"[0-9]"
-    schar2_re = r"(\+|\*|/|\^|<|>|`|'|\?|@|#|~|=|&|!)"
+    schar2_re = r"([+*^?/<>`'@#~=&!])"
     schar_re = r"({}|-|\$|_)".format(schar2_re)
     idchar_re = r"({}|{}|{}|{})".format(lcase_re,ucase_re,digit_re,schar_re)
     idcharstarns_re = r"({}+|(?=\.[a-z])\.{}+)".format(idchar_re,idchar_re)
@@ -46,17 +46,17 @@ class ElpiLexer(RegexLexer):
 
             include('_elpi-comment'),
 
-            (r"(:before|:after|:if|:name)(\s*)(\")",bygroups(Keyword.Mode,Text,String.Double),'elpi-string'),
-            (r"(:index)(\s*\()",bygroups(Keyword.Mode,Text),'elpi-indexing-expr'),
-            (r"\b(external pred|pred)(\s+)({})".format(const_sym_re),bygroups(Keyword.Declaration,Text,Name.Function),'elpi-pred-item'),
-            (r"\b(external type|type)(\s+)(({}(,\s*)?)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text,Name.Function),'elpi-type'),
-            (r"\b(kind)(\s+)(({}|,)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text,Name.Function),'elpi-type'),
-            (r"\b(typeabbrev)(\s+)({})".format(const_sym_re),bygroups(Keyword.Declaration,Text,Name.Function),'elpi-type'),
-            (r"\b(accumulate)(\s+)(\")",bygroups(Keyword.Declaration,Text,String.Double),'elpi-string'),
-            (r"\b(accumulate|namespace|local)(\s+)({})".format(constant_re),bygroups(Keyword.Declaration,Text,Text)),
-            (r"\b(shorten)(\s+)({}\.)".format(constant_re),bygroups(Keyword.Declaration,Text,Text)),
-            (r"\b(pi|sigma)(\s+)([a-zA-Z][A-Za-z0-9_ ]*)(\\)",bygroups(Keyword.Declaration,Text,Name.Variable,Text)),
-            (r"\b(constraint)(\s+)(({}(\s+)?)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text,Name.Function),'elpi-chr-rule-start'),
+            (r"(:before|:after|:if|:name)(\s*)(\")",bygroups(Keyword.Mode,Text.Whitespace,String.Double),'elpi-string'),
+            (r"(:index)(\s*\()",bygroups(Keyword.Mode,Text.Whitespace),'elpi-indexing-expr'),
+            (r"\b(external pred|pred)(\s+)({})".format(const_sym_re),bygroups(Keyword.Declaration,Text.Whitespace,Name.Function),'elpi-pred-item'),
+            (r"\b(external type|type)(\s+)(({}(,\s*)?)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text.Whitespace,Name.Function),'elpi-type'),
+            (r"\b(kind)(\s+)(({}|,)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text.Whitespace,Name.Function),'elpi-type'),
+            (r"\b(typeabbrev)(\s+)({})".format(const_sym_re),bygroups(Keyword.Declaration,Text.Whitespace,Name.Function),'elpi-type'),
+            (r"\b(accumulate)(\s+)(\")",bygroups(Keyword.Declaration,Text.Whitespace,String.Double),'elpi-string'),
+            (r"\b(accumulate|namespace|local)(\s+)({})".format(constant_re),bygroups(Keyword.Declaration,Text.Whitespace,Text)),
+            (r"\b(shorten)(\s+)({}\.)".format(constant_re),bygroups(Keyword.Declaration,Text.Whitespace,Text)),
+            (r"\b(pi|sigma)(\s+)([a-zA-Z][A-Za-z0-9_ ]*)(\\)",bygroups(Keyword.Declaration,Text.Whitespace,Name.Variable,Text)),
+            (r"\b(constraint)(\s+)(({}(\s+)?)+)".format(const_sym_re),bygroups(Keyword.Declaration,Text.Whitespace,Name.Function),'elpi-chr-rule-start'),
 
             (r"(?=[A-Z_]){}".format(constant_re),Name.Variable),
             (r"(?=[a-z_]){}\\".format(constant_re),Name.Variable),
@@ -76,7 +76,7 @@ class ElpiLexer(RegexLexer):
         '_elpi-comment': [
             (r'%[^\n]*\n',Comment),
             (r'/\*',Comment,'elpi-multiline-comment'),
-            (r"\s+",Text),
+            (r"\s+",Text.Whitespace),
         ],
         'elpi-multiline-comment': [
             (r'\*/',Comment,'#pop'),
