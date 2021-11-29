@@ -1,175 +1,179 @@
-'object '     Keyword
-'template '   Keyword
+'object'      Keyword
+' '           Text.Whitespace
+'template'    Keyword
+' '           Text.Whitespace
 'pantest'     Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Very simple pan test file' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/long/decimal"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '123'         Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/long/octal"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0755'        Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/long/hexadecimal"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0xFF'        Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/double/simple"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.01'        Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/double/pi"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3.14159'     Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/double/exponent"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1e-8'        Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/double/scientific"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.3E10'      Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/string/single"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'Faster, but escapes like \\t, \\n and \\x3d don'" Literal.String.Single
 "'t work, but '" Literal.String.Single
 "' should work.'" Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/string/double"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Slower, but escapes like \\t, \\n and \\x3d do work"' Literal.String.Double
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'variable '   Keyword
+'variable'    Keyword
+' '           Text.Whitespace
 'TEST'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/x2"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'to_string'   Name.Builtin
 '('           Operator
 'TEST'        Text
 ')'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/x2"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '?'           Text
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'Default value'" Literal.String.Single
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/x3"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Text
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Builtin
 '('           Operator
 '"/long/decimal"' Literal.String.Double
 ')'           Operator
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/x4"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'undef'       Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/x5"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Text
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'variable '   Keyword
+'variable'    Keyword
+' '           Text.Whitespace
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '?'           Text
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'error'       Name.Builtin
 '('           Operator
 '"Test error message"' Literal.String.Double
 ')'           Operator
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# include gmond config for services-monitoring' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'include'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-' '           Text
+' '           Text.Whitespace
 "'site/ganglia/gmond/services-monitoring'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '}'           Operator
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"/software/packages"' Literal.String.Double
 '='           Operator
@@ -181,7 +185,7 @@
 ',PKG_ARCH_DEFAULT' Text
 ')'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"/software/packages"' Literal.String.Double
 '='           Operator
@@ -190,104 +194,108 @@
 '"php"'       Literal.String.Double
 ')'           Operator
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Example function' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'function '   Keyword
+'function'    Keyword
+' '           Text.Whitespace
 'show_things_view_for_stuff' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'thing'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ARGV'        Text
 '['           Operator
 '0'           Text
 ']'           Operator
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'foreach'     Keyword
 '('           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mything'     Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'STUFF'       Text
-' '           Text
+' '           Text.Whitespace
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
-' '           Text
+' '           Text.Whitespace
 'thing'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mything'     Text
-' '           Text
+' '           Text.Whitespace
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'return'      Name.Builtin
 '('           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Text
-' '           Text
+' '           Text.Whitespace
 ')'           Operator
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n            ' Text
-'return '     Name.Builtin
+'\n            ' Text.Whitespace
+'return'      Name.Builtin
+' '           Text.Whitespace
 'SELF'        Text
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Operator
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Operator
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'false'       Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'variable '   Keyword
+'variable'    Keyword
+' '           Text.Whitespace
 'HERE'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '<<EOF;\n; This example demonstrates an in-line heredoc style config file\n[main]\nawesome = true\nEOF' Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'variable '   Keyword
+'variable'    Keyword
+' '           Text.Whitespace
 'small'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Text
 ';'           Punctuation
 '#This should be highlighted normally again.' Comment
-'\n'          Text
+'\n'          Text.Whitespace

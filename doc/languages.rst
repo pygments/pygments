@@ -153,6 +153,7 @@ Programming languages
 * `Rust <https://rust-lang.org>`_
 * S, S-Plus, `R <https://www.r-project.org/>`_
 * `Scala <https://scala-lang.org/>`_
+* `Savi <https://github.com/savi-lang/savi/>`_
 * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_
 * `Scheme <http://www.scheme-reports.org/>`_
 * `Scilab <https://www.scilab.org/>`_
@@ -220,6 +221,7 @@ Other markup
 * Apache config files
 * Apache Pig
 * BBCode
+* Bdd
 * CapDL
 * `Cap'n Proto <https://capnproto.org>`_
 * `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
@@ -250,6 +252,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* `LilyPond <https://lilypond.org/>`_
 * Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts
@@ -282,6 +285,7 @@ Other markup
 * Sieve
 * Singularity
 * `Smithy <https://awslabs.github.io/smithy/>`_
+* `Sophia <https://buildwithsophia.com/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration

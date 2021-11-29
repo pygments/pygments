@@ -1,0 +1,59 @@
+'#!/usr/bin/sed -f' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/'           Punctuation
+'..'          Literal.String.Regex
+'/'           Punctuation
+'!'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+'\n\n'        Text.Whitespace
+
+'# Reverse a line.  Begin embedding the line between two newlines' Comment.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'^.*$'        Literal.String.Regex
+'/'           Punctuation
+'\\\n&\\\n'   Literal.String.Single
+
+'/'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Move first character at the end.  The regexp matches until' Comment.Single
+'\n'          Text.Whitespace
+
+'# there are zero or one characters between the markers' Comment.Single
+'\n'          Text.Whitespace
+
+'t'           Keyword
+'x'           Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+'x'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'\\(\\n.\\)\\(.*\\)\\(.\\n\\)' Literal.String.Regex
+'/'           Punctuation
+'\\3\\2\\1'   Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'t'           Keyword
+'x'           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+'# Remove the newline markers' Comment.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'\\n'         Literal.String.Regex
+'/'           Punctuation
+'/'           Punctuation
+'g'           Keyword
+'\n'          Text.Whitespace

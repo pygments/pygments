@@ -1,0 +1,62 @@
+'#!/usr/bin/sed -f' Comment.Single
+'\n\n'        Text.Whitespace
+
+'819'         Literal.Number.Integer
+','           Punctuation
+'$'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'p'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'x'           Keyword
+'\n\t'        Text.Whitespace
+'z'           Keyword
+'\n\t'        Text.Whitespace
+'a'           Keyword
+' Hello World!' Literal.String.Double
+'\n\t'        Text.Whitespace
+'i'           Keyword
+' \\\n\tTesty \\\n\ttest' Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/'           Punctuation
+'START'       Literal.String.Regex
+'/'           Punctuation
+','           Punctuation
+'/'           Punctuation
+'END'         Literal.String.Regex
+'/'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'y'           Keyword
+'_'           Punctuation
+'123456789'   Literal.String.Single
+'_'           Punctuation
+'abcdefghi'   Literal.String.Single
+'_'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'\\@'         Punctuation
+'[0-9]+'      Literal.String.Regex
+'@'           Punctuation
+'s'           Keyword
+'/'           Punctuation
+'[aeiou]*'    Literal.String.Regex
+'/'           Punctuation
+'-\\\n&\\\n-' Literal.String.Single
+'/'           Punctuation
+'peg'         Keyword
+'w'           Keyword
+' output.txt' Literal.String.Single
+'\n'          Text.Whitespace

@@ -1,27 +1,27 @@
 'declare'     Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'xyz'         Name
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 's'           Name
-' '           Text
+' '           Text.Whitespace
 '"some string"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.2'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
