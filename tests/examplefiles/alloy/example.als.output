@@ -9,8 +9,13 @@
 
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 "/*\n * Model of views in object-oriented programming.\n *\n * Two object references, called the view and the backing,\n * are related by a view mechanism when changes to the\n * backing are automatically propagated to the view. Note\n * that the state of a view need not be a projection of the\n * state of the backing; the keySet method of Map, for\n * example, produces two view relationships, and for the\n * one in which the map is modified by changes to the key\n * set, the value of the new map cannot be determined from\n * the key set. Note that in the iterator view mechanism,\n * the iterator is by this definition the backing object,\n * since changes are propagated from iterator to collection\n * and not vice versa. Oddly, a reference may be a view of\n * more than one backing: there can be two iterators on the\n * same collection, eg. A reference cannot be a view under\n * more than one view type.\n *\n * A reference is made dirty when it is a backing for a view\n * with which it is no longer related by the view invariant.\n * This usually happens when a view is modified, either\n * directly or via another backing. For example, changing a\n * collection directly when it has an iterator invalidates\n * it, as does changing the collection through one iterator\n * when there are others.\n *\n * More work is needed if we want to model more closely the\n * failure of an iterator when its collection is invalidated.\n *\n * As a terminological convention, when there are two\n * complementary view relationships, we will give them types\n * t and t'. For example, KeySetView propagates from map to\n * set, and KeySetView' propagates from set to map.\n *\n * author: Daniel Jackson\n */" Comment.Multiline
 '\n'          Text.Whitespace
+=======
+'/*\n * Model of views in object-oriented programming.\n *\n * Two object references, called the view and the backing,\n * are related by a view mechanism when changes to the\n * backing are automatically propagated to the view. Note\n * that the state of a view need not be a projection of the\n * state of the backing; the keySet method of Map, for\n * example, produces two view relationships, and for the\n * one in which the map is modified by changes to the key\n * set, the value of the new map cannot be determined from\n * the key set. Note that in the iterator view mechanism,\n * the iterator is by this definition the backing object,\n * since changes are propagated from iterator to collection\n * and not vice versa. Oddly, a reference may be a view of\n * more than one backing: there can be two iterators on the\n * same collection, eg. A reference cannot be a view under\n * more than one view type.\n *\n * A reference is made dirty when it is a backing for a view\n * with which it is no longer related by the view invariant.\n * This usually happens when a view is modified, either\n * directly or via another backing. For example, changing a\n * collection directly when it has an iterator invalidates\n * it, as does changing the collection through one iterator\n * when there are others.\n *\n * More work is needed if we want to model more closely the\n * failure of an iterator when its collection is invalidated.\n *\n * As a terminological convention, when there are two\n * complementary view relationships, we will give them types\n * t and t". For example, KeySetView propagates from map to\n * set, and KeySetView" propagates from set to map.\n *\n * author: Daniel Jackson\n */' Comment.Multiline
+'\n'          Text
+>>>>>>> 67ea0087 (Update the alloy golden test)
 
 '\n'          Text.Whitespace
 
@@ -406,8 +411,13 @@
 ' '           Text.Whitespace
 'KeySetView'  Name
 ','           Punctuation
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "KeySetView'" Name
+=======
+' '           Text
+'KeySetView"' Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 ','           Punctuation
 ' '           Text.Whitespace
 'IteratorView' Name
@@ -449,7 +459,7 @@
 '.'           Operator
 'views'       Name
 '['           Operator
-"KeySetView'" Name
+'KeySetView"' Name
 ']'           Operator
 ' '           Text.Whitespace
 'in'          Operator.Word
@@ -503,7 +513,7 @@
 '.'           Operator
 'views'       Name
 '['           Operator
-"KeySetView'" Name
+'KeySetView"' Name
 ']'           Operator
 ')'           Operator
 '\n'          Text.Whitespace
@@ -837,8 +847,13 @@
 
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 "/** \n * models frame condition that limits change to view object from v to v' when backing object changes to b'\n */" Comment.Multiline
 '\n'          Text.Whitespace
+=======
+'/** \n * models frame condition that limits change to view object from v to v" when backing object changes to b"\n */' Comment.Multiline
+'\n'          Text
+>>>>>>> 67ea0087 (Update the alloy golden test)
 
 'pred'        Keyword
 ' '           Text.Whitespace
@@ -853,11 +868,19 @@
 ' '           Text.Whitespace
 'v'           Name
 ','           Punctuation
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "v'"          Name
 ','           Punctuation
 ' '           Text.Whitespace
 "b'"          Name
+=======
+' '           Text
+'v"'          Name
+','           Punctuation
+' '           Text
+'b"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 ':'           Punctuation
 ' '           Text.Whitespace
 'Object'      Name
@@ -875,8 +898,13 @@
 ' '           Text.Whitespace
 '='           Operator
 '>'           Operator
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "v'"          Name
+=======
+' '           Text
+'v"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'elts'        Name
 ' '           Text.Whitespace
@@ -885,7 +913,7 @@
 'dom'         Name
 ' '           Text.Whitespace
 '['           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'map'         Name
 ']'           Operator
@@ -895,6 +923,7 @@
 't'           Name
 ' '           Text.Whitespace
 'in'          Operator.Word
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "KeySetView'" Name
 ' '           Text.Whitespace
@@ -902,6 +931,15 @@
 '>'           Operator
 ' '           Text.Whitespace
 "b'"          Name
+=======
+' '           Text
+'KeySetView"' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'b"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'elts'        Name
 ' '           Text.Whitespace
@@ -910,7 +948,7 @@
 'dom'         Name
 ' '           Text.Whitespace
 '['           Operator
-"v'"          Name
+'v"'          Name
 '.'           Operator
 'map'         Name
 ']'           Operator
@@ -920,14 +958,20 @@
 't'           Name
 ' '           Text.Whitespace
 'in'          Operator.Word
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "KeySetView'" Name
 ' '           Text.Whitespace
+=======
+' '           Text
+'KeySetView"' Name
+' '           Text
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '='           Operator
 '>'           Operator
 ' '           Text.Whitespace
 '('           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'elts'        Name
 ')'           Operator
@@ -944,7 +988,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '('           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'elts'        Name
 ')'           Operator
@@ -953,7 +997,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Operator
-"v'"          Name
+'v"'          Name
 '.'           Operator
 'map'         Name
 ')'           Operator
@@ -968,20 +1012,35 @@
 ' '           Text.Whitespace
 '='           Operator
 '>'           Operator
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "v'"          Name
+=======
+' '           Text
+'v"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'elts'        Name
 ' '           Text.Whitespace
 '='           Operator
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "b'"          Name
+=======
+' '           Text
+'b"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'left'        Name
 ' '           Text.Whitespace
 '+'           Operator
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "b'"          Name
+=======
+' '           Text
+'b"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'done'        Name
 '\n'          Text.Whitespace
@@ -1091,8 +1150,13 @@
 'setRefs'     Name
 ' '           Text.Whitespace
 '+'           Operator
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "KeySetView'" Name
+=======
+' '           Text
+'KeySetView"' Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '->'          Operator
 'setRefs'     Name
 '->'          Operator
@@ -1369,9 +1433,15 @@
 'this'        Keyword
 ']'           Operator
 ','           Punctuation
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "i'"          Name
 ' '           Text.Whitespace
+=======
+' '           Text
+'i"'          Name
+' '           Text
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '='           Operator
 ' '           Text.Whitespace
 'post'        Name
@@ -1384,8 +1454,13 @@
 '{'           Operator
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 '    '        Text.Whitespace
 "i'"          Name
+=======
+'    '        Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'left'        Name
 ' '           Text.Whitespace
@@ -1396,8 +1471,13 @@
 'left'        Name
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 '    '        Text.Whitespace
 "i'"          Name
+=======
+'    '        Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'done'        Name
 ' '           Text.Whitespace
@@ -1416,8 +1496,13 @@
 
 '    '        Text.Whitespace
 'no'          Keyword
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "i'"          Name
+=======
+' '           Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'lastRef'     Name
 '\n'          Text.Whitespace
@@ -1509,9 +1594,15 @@
 'this'        Keyword
 ']'           Operator
 ','           Punctuation
+<<<<<<< HEAD
 ' '           Text.Whitespace
 "i'"          Name
 ' '           Text.Whitespace
+=======
+' '           Text
+'i"'          Name
+' '           Text
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '='           Operator
 ' '           Text.Whitespace
 'post'        Name
@@ -1534,8 +1625,13 @@
 'left'        Name
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 '    '        Text.Whitespace
 "i'"          Name
+=======
+'    '        Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'left'        Name
 ' '           Text.Whitespace
@@ -1550,8 +1646,13 @@
 'ref'         Name
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 '    '        Text.Whitespace
 "i'"          Name
+=======
+'    '        Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'done'        Name
 ' '           Text.Whitespace
@@ -1566,8 +1667,13 @@
 'ref'         Name
 '\n'          Text.Whitespace
 
+<<<<<<< HEAD
 '    '        Text.Whitespace
 "i'"          Name
+=======
+'    '        Text
+'i"'          Name
+>>>>>>> 67ea0087 (Update the alloy golden test)
 '.'           Operator
 'lastRef'     Name
 ' '           Text.Whitespace
