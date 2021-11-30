@@ -1260,6 +1260,31 @@ def testFuncC(lexer):
             (Text, '\n')
             ]
 
+def testFuncData(lexer):
+    assert list(lexer.get_tokens(' q $DATA(array)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Function, '$DATA'),
+            (Punctuation, '('),
+            (Name.Variable, 'array'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testFuncD(lexer):
+    assert list(lexer.get_tokens(' q $D(@handle)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Function, '$D'),
+            (Punctuation, '('),
+            (Operator, '@'),
+            (Name.Variable, 'handle'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 
 # Command tests
 def testBreak(lexer):
