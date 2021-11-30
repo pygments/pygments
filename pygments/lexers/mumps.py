@@ -230,8 +230,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
-                (words(('$ASCII', '$A'), suffix=r'\b'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
-                (words(('$CHAR', '$C'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
+                (words(('$ASCII', '$A', '$CHAR', '$C'), suffix=r'\b'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
                 ],
         # 7.2 - exprtail
         'exprtail': [
