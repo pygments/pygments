@@ -40,7 +40,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.10 - Intrinsic special variables 'svn'
-    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$HOROLOG', '$H', '$IO', '$I', '$JOB', '$J', '$KEY', '$K', '$PRINCIPAL', '$P', '$QUIT', '$Q', '$STACK', '$ST', '$STORAGE', '$S', '$SYSTEM', '$SY', '$TEST', '$T', '$TLEVEL', '$TL', '$TRESTART', '$TR', '$X', '$Y'), suffix=r'\b')
+    svn_re = words(('$DEVICE', '$D', '$ECODE', '$EC', '$ESTACK', '$ES', '$ETRAP', '$ET', '$HOROLOG', '$H', '$IO', '$I', '$JOB', '$J', '$KEY', '$K', '$PRINCIPAL', '$P', '$QUIT', '$Q', '$STACK', '$ST', '$STORAGE', '$S', '$SYSTEM', '$SY', '$TEST', '$T', '$TLEVEL', '$TL', '$TRESTART', '$TR', '$X', '$Y'), suffix=r'\b(?!\()')
     # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = "[-+']"
     # 7.2.1 - binaryop
@@ -230,7 +230,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
-                (words(('$ASCII', '$A', '$CHAR', '$C'), suffix=r'\b'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
+                (words(('$ASCII', '$A', '$CHAR', '$C'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
+                (words(('$DATA', '$D'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren')),
                 ],
         # 7.2 - exprtail
         'exprtail': [
