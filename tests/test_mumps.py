@@ -1234,6 +1234,32 @@ def testFuncA(lexer):
             (Text, '\n')
             ]
 
+def testFuncChar(lexer):
+    assert list(lexer.get_tokens(' q $CHAR(10)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Function, '$CHAR'),
+            (Punctuation, '('),
+            (Number, '10'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testFuncC(lexer):
+    assert list(lexer.get_tokens(' q $C(13,10)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Function, '$C'),
+            (Punctuation, '('),
+            (Number, '13'),
+            (Punctuation, ','),
+            (Number, '10'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 
 # Command tests
 def testBreak(lexer):
@@ -2364,7 +2390,7 @@ def testSetKey(lexer):
             (Punctuation, ','),
             (Name.Variable.Magic, '$K'),
             (Operator, '='),
-            (Name.Function.Magic, '$C'),
+            (Name.Function, '$C'),
             (Punctuation, '('),
             (Number, '10'),
             (Punctuation, ')'),
