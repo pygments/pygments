@@ -16,25 +16,27 @@ from pygments.lexers import MumpsLexer
 def lexer():
     yield MumpsLexer()
 
+def assertTokenList(lexer,tokenList):
+    code = ""
+    for token in tokenList:
+        code += token[1]
+    assert list(lexer.get_tokens(code)) == tokenList
+
 def testQuitLine(lexer):
-    fragment = ' q'
-    tokens = [
+    assertTokenList(lexer,[
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Text, '\n')
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
+    ])
 
 def testQuitValueLine(lexer):
-    fragment = ' QUIT 1'
-    tokens = [
+    assertTokenList(lexer,[
         (Whitespace, ' '),
         (Keyword, 'QUIT'),
         (Whitespace, ' '),
         (Number, '1'),
         (Text, '\n')
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
+    ])
 
 def testQuitMorphLine(lexer):
     fragment = ' q:$QUIT 1 Q'
