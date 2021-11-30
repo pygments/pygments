@@ -1287,6 +1287,77 @@ def testFuncD(lexer):
             (Text, '\n')
             ]
 
+def testFuncExtract(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'QUIT'),
+        (Whitespace, ' '),
+        (Name.Function, '$EXTRACT'),
+        (Punctuation, '('),
+        (String, '"abc"'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        ])
+
+def testFuncE1(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'Q'),
+        (Whitespace, ' '),
+        (Name.Function, '$E'),
+        (Punctuation, '('),
+        (String, '"abc"'),
+        (Punctuation, ','),
+        (Number, '2'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        ])
+
+def testFuncE2(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'QUIT'),
+        (Whitespace, ' '),
+        (Name.Function, '$EXTRACT'),
+        (Punctuation, '('),
+        (String, '"abc"'),
+        (Punctuation, ','),
+        (Number, '2'),
+        (Punctuation, ','),
+        (Number, '3'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        ])
+
+def testFuncFind(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'QUIT'),
+        (Whitespace, ' '),
+        (Name.Function, '$FIND'),
+        (Punctuation, '('),
+        (String, '"banana"'),
+        (Punctuation, ','),
+        (String, '"an"'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncF(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'QUIT'),
+        (Whitespace, ' '),
+        (Name.Function, '$F'),
+        (Punctuation, '('),
+        (String, '"banana"'),
+        (Punctuation, ','),
+        (String, '"an"'),
+        (Punctuation, ','),
+        (Number, '4'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
 
 # Command tests
 def testBreak(lexer):
