@@ -230,7 +230,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
-                (words(('$ASCII', '$A', '$CHAR', '$C', '$EXTRACT', '$E', '$FIND' , '$F'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
+                (words(('$ASCII', '$A', '$CHAR', '$C', '$EXTRACT', '$E', '$FIND' , '$F', '$FNUMBER', '$FN'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
                 (words(('$DATA', '$D'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren')),
                 ],
         # 7.2 - exprtail

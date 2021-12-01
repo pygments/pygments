@@ -1359,6 +1359,36 @@ def testFuncF(lexer):
         (Text, '\n')
         ])
 
+def testFuncFNumber(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$FNumber'),
+        (Punctuation, '('),
+        (Name.Variable, 'x'),
+        (Punctuation, ','),
+        (String, '"-"'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncFN(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$fn'),
+        (Punctuation, '('),
+        (Name.Variable, 'num'),
+        (Punctuation, ','),
+        (String, '"P"'),
+        (Punctuation, ','),
+        (Number, '4'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
