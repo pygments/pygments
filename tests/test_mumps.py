@@ -1389,6 +1389,67 @@ def testFuncFN(lexer):
         (Text, '\n')
         ])
 
+def testFuncGet(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'set'),
+        (Whitespace, ' '),
+        (Name.Variable, 'val'),
+        (Operator, '='),
+        (Name.Function, '$GET'),
+        (Punctuation, '('),
+        (Operator, '@'),
+        (Name.Variable, 'gloName'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncG(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'set'),
+        (Whitespace, ' '),
+        (Name.Variable, 'val'),
+        (Operator, '='),
+        (Name.Function, '$G'),
+        (Punctuation, '('),
+        (Name.Variable, 'valueIn'),
+        (Punctuation, ','),
+        (Number, '1'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncJustify(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'quit'),
+        (Whitespace, ' '),
+        (Name.Function, '$justify'),
+        (Punctuation, '('),
+        (Name.Variable, 'x'),
+        (Punctuation, ','),
+        (Number, '10'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncJ(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'w'),
+        (Whitespace, ' '),
+        (Name.Function, '$J'),
+        (Punctuation, '('),
+        (Name.Variable, 'rootA'),
+        (Punctuation, ','),
+        (Number, '12'),
+        (Punctuation, ','),
+        (Number, '6'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
