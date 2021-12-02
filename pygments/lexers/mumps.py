@@ -230,10 +230,40 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5 - Intrinsic function function
         'function': [
-                (words(('$ASCII', '$A', '$CHAR', '$C', '$EXTRACT', '$E', '$FIND' , '$F', '$FNUMBER', '$FN'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
-                (words(('$DATA', '$D'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren')),
+                include('function_ascii'),
+                include('function_char'),
+                include('function_data'),
+                include('function_extract'),
+                include('function_find'),
+                include('function_fnumber'),
                 include('function_get'),
                 include('function_justify'),
+                ],
+        # 7.1.5.1 - $ASCII
+        'function_ascii': [
+                (words(('$ASCII', '$A'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'open_paren')),
+                ],
+        # 7.1.5.2 - $CHAR
+        'function_char': [
+                (words(('$CHAR', '$C'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
+                ],
+        'function_exract': [
+                ],
+        # 7.1.5.3 - $DATA
+        'function_data': [
+                (words(('$DATA', '$D'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren')),
+                ],
+        # 7.1.5.4 - $EXTRACT
+        'function_extract': [
+                (words(('$EXTRACT', '$E'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'list_comma', 'expr', 'open_paren')),
+                ],
+        # 7.1.5.5 - $FIND
+        'function_find': [
+                (words(('$FIND' , '$F'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren')),
+                ],
+        # 7.1.5.6 - $FNUMBER
+        'function_fnumber': [
+                (words(('$FNUMBER', '$FN'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr','open_paren')),
                 ],
         # 7.1.5.7 - $GET
         'function_get': [
