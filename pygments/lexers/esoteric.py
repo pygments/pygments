@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, words
+from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
@@ -36,6 +36,10 @@ class BrainfuckLexer(RegexLexer):
             (r'[^.,+\-<>\[\]]+', Comment),
         ],
         'root': [
+            # Many programs will start off with a loop. These loops never
+            # execute but can contain comments using brainfuck commands
+            (r'(\A\s*)(\[)([^\]]*)(\])', bygroups(Text.Whitespace, Keyword,
+             Comment, Keyword)),
             (r'\[', Keyword, 'loop'),
             (r'\]', Error),
             include('common'),
@@ -43,6 +47,11 @@ class BrainfuckLexer(RegexLexer):
         'loop': [
             (r'\[', Keyword, '#push'),
             (r'\]', Keyword, '#pop'),
+            # The patterns '[-]' and '[+]' set a cell to 0, this means that any
+            # loop that comes after one of these is a giant comment which allows
+            # the use of brainfuck keywords
+            (r'([-+])(\])(\s*)(\[)([^\]]*)(\])', bygroups(Name.Builtin, Keyword,
+             Text.Whitespace, Keyword, Comment, Keyword), '#pop'),
             include('common'),
         ]
     }
