@@ -238,6 +238,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_fnumber'),
                 include('function_get'),
                 include('function_justify'),
+                include('function_length'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -272,6 +273,10 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.1.5.8 - $JUSTIFY
         'function_justify': [
                 (words(('$JUSTIFY', '$J'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren'))
+                ],
+        # 7.1.5.9 - $LENGTH
+        'function_length': [
+                (words(('$LENGTH', '$L'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'open_paren'))
                 ],
         # 7.2 - exprtail
         'exprtail': [
