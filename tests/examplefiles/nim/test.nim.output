@@ -153,13 +153,10 @@
 'case'        Keyword
 ' '           Text
 'name'        Name
-'\n'          Text
-
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\nof '       Keyword
+'"'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n  '        Text
 'echo'        Name
 '('           Punctuation
@@ -167,14 +164,14 @@
 'Poor soul, you lost your name?' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
-
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'name'        Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\nof '       Keyword
+'"'           Name.Label
+'n'           Name.Label
+'a'           Name.Label
+'m'           Name.Label
+'e'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n  '        Text
 'echo'        Name
 '('           Punctuation
@@ -238,19 +235,18 @@
 'case'        Keyword
 ' '           Text
 'n'           Name
-'\n'          Text
-
-'of'          Keyword
-' '           Text
-'0'           Literal.Number.Float
-'..'          Punctuation
-'2'           Literal.Number.Integer
-','           Punctuation
-' '           Text
-'4'           Literal.Number.Float
-'..'          Punctuation
-'7'           Literal.Number.Integer
-':'           Punctuation
+'\nof '       Keyword
+'0'           Name.Label
+'.'           Name.Label
+'.'           Name.Label
+'2'           Name.Label
+','           Text
+' '           Name.Label
+'4'           Name.Label
+'.'           Name.Label
+'.'           Name.Label
+'7'           Name.Label
+':'           Operator
 ' '           Text
 'Echo'        Name
 '('           Punctuation
@@ -258,15 +254,12 @@
 'The number is in the set: {0, 1, 2, 4, 5, 6, 7}' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
-
-'of'          Keyword
-' '           Text
-'3'           Literal.Number.Integer
-','           Punctuation
-' '           Text
-'8'           Literal.Number.Integer
-':'           Punctuation
+'\nof '       Keyword
+'3'           Name.Label
+','           Text
+' '           Name.Label
+'8'           Name.Label
+':'           Operator
 ' '           Text
 'Echo'        Name
 '('           Punctuation
@@ -350,54 +343,56 @@
 '('           Punctuation
 'stdin'       Name
 ')'           Punctuation
-'\n    '      Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'y'           Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'Y'           Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'yes'         Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'Yes'         Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n    of '   Keyword
+'"'           Name.Label
+'y'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'Y'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'y'           Name.Label
+'e'           Name.Label
+'s'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'Y'           Name.Label
+'e'           Name.Label
+'s'           Name.Label
+'"'           Name.Label
+':'           Operator
 ' '           Text
 'return'      Keyword
 ' '           Text
 'true'        Keyword.Pseudo
-'\n    '      Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'n'           Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'N'           Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'no'          Literal.String
-'"'           Literal.String
-','           Punctuation
-' '           Text
-'"'           Literal.String
-'No'          Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n    of '   Keyword
+'"'           Name.Label
+'n'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'N'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'n'           Name.Label
+'o'           Name.Label
+'"'           Name.Label
+','           Text
+' '           Name.Label
+'"'           Name.Label
+'N'           Name.Label
+'o'           Name.Label
+'"'           Name.Label
+':'           Operator
 ' '           Text
 'return'      Keyword
 ' '           Text
