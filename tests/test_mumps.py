@@ -1522,6 +1522,53 @@ def testFuncNa(lexer):
         (Text, '\n')
         ])
 
+def testFuncOrder(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'for'),
+        (Whitespace, '  '),
+        (Keyword, 'set'),
+        (Whitespace, ' '),
+        (Name.Variable, 'key'),
+        (Operator, '='),
+        (Name.Function, '$ORDER'),
+        (Punctuation, '('),
+        (Name.Variable, 'dictionary'),
+        (Punctuation, '('),
+        (Name.Variable, 'key'),
+        (Punctuation, ')'),
+        (Punctuation, ')'),
+        (Whitespace, ' '),
+        (Keyword, 'quit'),
+        (Punctuation, ':'),
+        (Name.Variable, 'key'),
+        (Operator, '='),
+        (String, '""'),
+        (Whitespace, '  '),
+        (Keyword, 'do'),
+        (Text, '\n')
+        ])
+
+def testFuncO(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 's'),
+        (Whitespace, ' '),
+        (Name.Variable, 'last'),
+        (Operator, '='),
+        (Name.Function, '$O'),
+        (Punctuation, '('),
+        (Name.Variable, 'array'),
+        (Punctuation, '('),
+        (String, '""'),
+        (Punctuation, ')'),
+        (Punctuation, ','),
+        (Operator, '-'),
+        (Number, '1'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
