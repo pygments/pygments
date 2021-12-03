@@ -1484,6 +1484,44 @@ def testFuncL(lexer):
         (Text, '\n')
         ])
 
+def testFuncName(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'set'),
+        (Whitespace, ' '),
+        (Name.Variable, 'leafPtr'),
+        (Operator, '='),
+        (Name.Function, '$name'),
+        (Punctuation, '('),
+        (Operator, '@'),
+        (Name.Variable, 'glo'),
+        (Operator, '@'),
+        (Punctuation, '('),
+        (Name.Variable, 'branch'),
+        (Punctuation, ','),
+        (Name.Variable, 'leaf'),
+        (Punctuation, ')'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncNa(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'set'),
+        (Whitespace, ' '),
+        (Name.Variable, 'branchPtr'),
+        (Operator, '='),
+        (Name.Function, '$na'),
+        (Punctuation, '('),
+        (Operator, '@'),
+        (Name.Variable, 'leafPtr'),
+        (Punctuation, ','),
+        (Number, '1'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
