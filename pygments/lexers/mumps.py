@@ -240,6 +240,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_justify'),
                 include('function_length'),
                 include('function_name'),
+                include('function_order'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -284,6 +285,9 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('$NAME', '$NA'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'glvn', 'open_paren'))
                 ],
         # 7.1.5.11 - $ORDER
+        'function_order': [
+                (words(('$ORDER', '$O'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'glvn', 'open_paren'))
+                ],
         # 7.1.5.12 - $PIECE
         # 7.1.5.13 - $QLENGTH
         # 7.1.5.14 - $QSUBSCRIPT
