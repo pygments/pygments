@@ -49,14 +49,27 @@
 'search'      Name
 '\n\n'        Text
 
-'{.'          Punctuation
-'push'        Name
+'{.'          Literal.String.Other
+'p'           Literal.String.Other
+'u'           Literal.String.Other
+'s'           Literal.String.Other
+'h'           Literal.String.Other
 ' '           Text
-'callConv'    Name
-':'           Punctuation
-'cdecl'       Name
-'.'           Punctuation
-'}'           Punctuation
+'c'           Literal.String.Other
+'a'           Literal.String.Other
+'l'           Literal.String.Other
+'l'           Literal.String.Other
+'C'           Literal.String.Other
+'o'           Literal.String.Other
+'n'           Literal.String.Other
+'v'           Literal.String.Other
+':'           Text
+'c'           Literal.String.Other
+'d'           Literal.String.Other
+'e'           Literal.String.Other
+'c'           Literal.String.Other
+'l'           Literal.String.Other
+'.}'          Literal.String.Other
 '\n\n'        Text
 
 'const'       Keyword
@@ -631,10 +644,13 @@
 'pgpointer'   Name
 ')'           Punctuation
 ' '           Text
-'{.'          Punctuation
-'cdecl'       Name
-'.'           Punctuation
-'}'           Punctuation
+'{.'          Literal.String.Other
+'c'           Literal.String.Other
+'d'           Literal.String.Other
+'e'           Literal.String.Other
+'c'           Literal.String.Other
+'l'           Literal.String.Other
+'.}'          Literal.String.Other
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -911,11 +927,23 @@
 'case'        Keyword
 ' '           Text
 'resp'        Name
-'\n      '    Text
-'of'          Keyword
-' '           Text
-'RESPONSE_ACCEPT' Name
-':'           Punctuation
+'\n      of ' Keyword
+'R'           Name.Label
+'E'           Name.Label
+'S'           Name.Label
+'P'           Name.Label
+'O'           Name.Label
+'N'           Name.Label
+'S'           Name.Label
+'E'           Name.Label
+'_'           Name.Label
+'A'           Name.Label
+'C'           Name.Label
+'C'           Name.Label
+'E'           Name.Label
+'P'           Name.Label
+'T'           Name.Label
+':'           Operator
 '\n        '  Text
 'saveTab'     Name
 '('           Punctuation
@@ -944,11 +972,23 @@
 '='           Operator
 ' '           Text
 'True'        Keyword.Pseudo
-'\n      '    Text
-'of'          Keyword
-' '           Text
-'RESPONSE_CANCEL' Name
-':'           Punctuation
+'\n      of ' Keyword
+'R'           Name.Label
+'E'           Name.Label
+'S'           Name.Label
+'P'           Name.Label
+'O'           Name.Label
+'N'           Name.Label
+'S'           Name.Label
+'E'           Name.Label
+'_'           Name.Label
+'C'           Name.Label
+'A'           Name.Label
+'N'           Name.Label
+'C'           Name.Label
+'E'           Name.Label
+'L'           Name.Label
+':'           Operator
 '\n        '  Text
 'quit'        Name
 ' '           Text
@@ -957,11 +997,23 @@
 'False'       Keyword.Pseudo
 '\n        '  Text
 'break'       Keyword
-'\n      '    Text
-'of'          Keyword
-' '           Text
-'RESPONSE_REJECT' Name
-':'           Punctuation
+'\n      of ' Keyword
+'R'           Name.Label
+'E'           Name.Label
+'S'           Name.Label
+'P'           Name.Label
+'O'           Name.Label
+'N'           Name.Label
+'S'           Name.Label
+'E'           Name.Label
+'_'           Name.Label
+'R'           Name.Label
+'E'           Name.Label
+'J'           Name.Label
+'E'           Name.Label
+'C'           Name.Label
+'T'           Name.Label
+':'           Operator
 '\n        '  Text
 'quit'        Name
 ' '           Text
@@ -1047,10 +1099,13 @@
 ' '           Text
 'PTextBuffer' Name
 ')'           Punctuation
-'{.'          Punctuation
-'cdecl'       Name
-'.'           Punctuation
-'}'           Punctuation
+'{.'          Literal.String.Other
+'c'           Literal.String.Other
+'d'           Literal.String.Other
+'e'           Literal.String.Other
+'c'           Literal.String.Other
+'l'           Literal.String.Other
+'.}'          Literal.String.Other
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -1204,10 +1259,13 @@
 ' '           Text
 'pgpointer'   Name
 ')'           Punctuation
-'{.'          Punctuation
-'cdecl'       Name
-'.'           Punctuation
-'}'           Punctuation
+'{.'          Literal.String.Other
+'c'           Literal.String.Other
+'d'           Literal.String.Other
+'e'           Literal.String.Other
+'c'           Literal.String.Other
+'l'           Literal.String.Other
+'.}'          Literal.String.Other
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -5543,13 +5601,18 @@
 'settings'    Name
 '.'           Punctuation
 'search'      Name
-'\n  '        Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'casesens'    Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n  of '     Keyword
+'"'           Name.Label
+'c'           Name.Label
+'a'           Name.Label
+'s'           Name.Label
+'e'           Name.Label
+'s'           Name.Label
+'e'           Name.Label
+'n'           Name.Label
+'s'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n    '      Text
 'PCheckMenuItem' Name
 '('           Punctuation
@@ -5560,13 +5623,20 @@
 '('           Punctuation
 'True'        Keyword.Pseudo
 ')'           Punctuation
-'\n  '        Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'caseinsens'  Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n  of '     Keyword
+'"'           Name.Label
+'c'           Name.Label
+'a'           Name.Label
+'s'           Name.Label
+'e'           Name.Label
+'i'           Name.Label
+'n'           Name.Label
+'s'           Name.Label
+'e'           Name.Label
+'n'           Name.Label
+'s'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n    '      Text
 'PCheckMenuItem' Name
 '('           Punctuation
@@ -5577,13 +5647,15 @@
 '('           Punctuation
 'True'        Keyword.Pseudo
 ')'           Punctuation
-'\n  '        Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'style'       Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n  of '     Keyword
+'"'           Name.Label
+'s'           Name.Label
+'t'           Name.Label
+'y'           Name.Label
+'l'           Name.Label
+'e'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n    '      Text
 'PCheckMenuItem' Name
 '('           Punctuation
@@ -5594,13 +5666,15 @@
 '('           Punctuation
 'True'        Keyword.Pseudo
 ')'           Punctuation
-'\n  '        Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'regex'       Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n  of '     Keyword
+'"'           Name.Label
+'r'           Name.Label
+'e'           Name.Label
+'g'           Name.Label
+'e'           Name.Label
+'x'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n    '      Text
 'PCheckMenuItem' Name
 '('           Punctuation
@@ -5611,13 +5685,13 @@
 '('           Punctuation
 'True'        Keyword.Pseudo
 ')'           Punctuation
-'\n  '        Text
-'of'          Keyword
-' '           Text
-'"'           Literal.String
-'peg'         Literal.String
-'"'           Literal.String
-':'           Punctuation
+'\n  of '     Keyword
+'"'           Name.Label
+'p'           Name.Label
+'e'           Name.Label
+'g'           Name.Label
+'"'           Name.Label
+':'           Operator
 '\n    '      Text
 'PCheckMenuItem' Name
 '('           Punctuation
@@ -5687,7 +5761,7 @@
 'action'      Name
 ':'           Punctuation
 ' '           Text
-'proc'        Keyword
+'proc'        Name
 ' '           Text
 '('           Punctuation
 'i'           Name
