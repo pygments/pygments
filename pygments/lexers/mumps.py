@@ -117,7 +117,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'cs_commands': [
             (' ', Whitespace, 'command'),
             default('#pop'),
-            ],    
+            ],
         ###
         # 7 - Expression 'expr'
         ###
@@ -430,62 +430,43 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2 - Command
         'command': [
-                # 8.2.1 - BREAK - no argument syntax
-                (words(('break', 'b'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.2 - CLOSE - has specific syntax
-                (words(('close', 'c'), suffix=r'\b'), Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
-                # 8.2.3 - DO
-                (r'do?\b', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
-                # 8.2.4 - ELSE
-                (words(('else', 'e'), suffix=r'\b'), Keyword, ('#pop', 'noargsp')),
-                # 8.2.5 - FOR
-                (words(('for', 'f'), suffix=r'\b'), Keyword, ('#pop', 'for_argument', 'optargsp')),
-                # 8.2.6 - GOTO
-                (words(('goto', 'g'), suffix=r'\b'), Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
-                # 8.2.7 - HALT
-                (r'halt\b', Keyword, ('#pop', 'noargsp')),
-                # 8.2.8 - HANG
-                (r'hang\b', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
+                include('command_break'),
+                include('command_close'),
+                include('command_do'),
+                include('command_else'),
+                include('command_for'),
+                include('command_goto'),
+                include('command_halt'),
+                include('command_hang'),
                 # Combination halt/hang - both abbreviate to h, so the difference is whether there are arguments
                 (r'h\b', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
-                # 8.2.9 - IF
-                (r'if?\b', Keyword, ('#pop', 'l_expr', 'optargsp')),
-                # 8.2.10 - JOB
-                (words(('job', 'j'), suffix=r'\b'), Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
-                # 8.2.11 - KILL
-                (words(('kill', 'k'), suffix=r'\b'), Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
-                # 8.2.12 - LOCK
-                (words(('lock', 'l'), suffix=r'\b'), Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
-                # 8.2.13 - MERGE
-                (words(('merge', 'm'), suffix=r'\b'), Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
-                # 8.2.14 - NEW
-                (words(('new', 'n'), suffix=r'\b'), Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
-                # 8.2.15 - OPEN
-                (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
-                # 8.2.16 - QUIT - single expression, or indirect
-                (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
-                # 8.2.17 - READ
-                (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
-                # 8.2.18 - SET
-                (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
-                # 8.2.19 - TCOMMIT
-                (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.20 - TRESTART
-                (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.21 - TROLLBACK
-                (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.22 - TSTART
-                (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
-                # 8.2.23 - USE
-                (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
-                # 8.2.24 - VIEW
-                (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.25 - WRITE
-                (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
-                # 8.2.26 - XECUTE
-                (words(('xecute', 'x'), suffix=r'\b'), Keyword, ('#pop', 'l_xargument', 'argumentsp', 'postcond')),
+                include('command_if'),
+                include('command_job'),
+                include('command_kill'),
+                include('command_lock'),
+                include('command_merge'),
+                include('command_new'),
+                include('command_open'),
+                include('command_quit'),
+                include('command_read'),
+                include('command_set'),
+                include('command_tcommit'),
+                include('command_tstart'),
+                include('command_trestart'),
+                include('command_trollback'),
+                include('command_use'),
+                include('command_view'),
+                include('command_write'),
+                include('command_xecute'),
                 ],
-        # 8.2.2 - CLOSE arguments
+        # 8.2.1 - BREAK
+        'command_break': [
+                (words(('break', 'b'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+                ],
+        # 8.2.2 - CLOSE
+        'command_close': [
+                (words(('close', 'c'), suffix=r'\b'), Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
+                ],
         'closearg': [
                 ('@', Operator, ('#pop', 'expratom')),
                 default(('#pop', 'deviceparameters', 'colon_sep', 'expr')),
@@ -508,7 +489,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_closearg': [
                 default(('list_comma', 'closearg'))
                 ],
-        # 8.2.3 - DO arguments
+        # 8.2.3 - DO
+        'command_do': [
+                (r'do?\b', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
+                ],
         'doargument': [
                 default(('#pop', 'postcond', 'opt_actuallist', 'lineref_or_externref')),
                 ],
@@ -523,24 +507,49 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('actuallist'),
                 default('#pop'),
                 ],
-        # 8.2.5 - FOR parameters
+        # 8.2.4 - ELSE
+        'command_else': [
+                (words(('else', 'e'), suffix=r'\b'), Keyword, ('#pop', 'noargsp')),
+                ],
+        # 8.2.5 - FOR
+        'command_for': [
+                (words(('for', 'f'), suffix=r'\b'), Keyword, ('#pop', 'for_argument', 'optargsp')),
+                ],
         'for_argument': [
-            default(('#pop', 'forparameter', 'equals', 'lvn')),
-            ],
+                default(('#pop', 'forparameter', 'equals', 'lvn')),
+                ],
         'forparameter': [
-            default(('#pop', 'expr', 'colon_sep', 'expr', 'colon_sep', 'expr')),
-            ],
+                default(('#pop', 'expr', 'colon_sep', 'expr', 'colon_sep', 'expr')),
+                ],
         'equals': [
                 ('=', Operator, '#pop'),
                 ],
-        # 8.2.6 - GOTO parameters
+        # 8.2.6 - GOTO
+        'command_goto': [
+                (words(('goto', 'g'), suffix=r'\b'), Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
+                ],
         'gotoargument': [
                 default(('#pop', 'postcond', 'entryref')),
                 ],
         'l_gotoargument': [
                 default(('list_comma', 'gotoargument')),
                 ],
-        # 8.2.10 - JOB arguments
+        # 8.2.7 - HALT
+        'command_halt': [
+                (r'halt\b', Keyword, ('#pop', 'noargsp')),
+                ],
+        # 8.2.8 - HANG
+        'command_hang': [
+                (r'hang\b', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
+                ],
+        # 8.2.9 - IF
+        'command_if': [
+                (r'if?\b', Keyword, ('#pop', 'l_expr', 'optargsp')),
+                ],
+        # 8.2.10 - JOB
+        'command_job': [
+                (words(('job', 'j'), suffix=r'\b'), Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
+                ],
         'jobargument': [
                 default(('#pop', 'jobparameters', 'colon_sep', 'opt_actuallist', 'lineref_or_externref')),
                 ],
@@ -557,7 +566,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'processparameter_group': [
                 default(('colon_group', 'expr'))
                 ],
-        # 8.2.11 - KILL arguments
+        # 8.2.11 - KILL
+        'command_kill': [
+                (words(('kill', 'k'), suffix=r'\b'), Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
+                ],
         'killargument': [
                 ('\\(', Punctuation, ('#pop', 'exclusive_killargs', 'lname')),
                 ('@', Operator, ('#pop', 'expratom')),
@@ -574,7 +586,10 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('@', Operator, ('#pop', 'expratom')),
                 include('name'),
                 ],
-        # 8.2.12 - LOCK arguments
+        # 8.2.12 - LOCK
+        'command_lock': [
+                (words(('lock', 'l'), suffix=r'\b'), Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
+                ],
         'lockargument': [
                 ('[+-]', Operator),
                 ('\\(', Punctuation, ('#pop', 'timeout', 'close_paren', 'l_nref')),
@@ -590,7 +605,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_nref': [
                 default(('list_comma', 'nref'))
                 ],
-        # 8.2.13 - MERGE arguments
+        # 8.2.13 - MERGE
+        'command_merge': [
+                (words(('merge', 'm'), suffix=r'\b'), Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
+                ],
         'mergeargument': [
                 # Indirection could be an indirected argument list, or the beginning of a glvn to be set
                 ('@', Operator, ('#pop', 'mergearg_post_indirect', 'expratom')),
@@ -607,7 +625,10 @@ class MumpsLexer(ExtendedRegexLexer):
                 # Otherwise, assume it was a full argument
                 default('#pop')
                 ],
-        # 8.2.14 - NEW arguments
+        # 8.2.14 - NEW
+        'command_new': [
+                (words(('new', 'n'), suffix=r'\b'), Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
+                ],
         'newargument': [
                 ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
                 # newsvn, only exists here
@@ -620,7 +641,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_lname': [
                 default(('list_comma', 'lname'))
                 ],
-        # 8.2.15 - OPEN arguments
+        # 8.2.15 - OPEN
+        'command_open': [
+            (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
+            ],
         'openargument': [
             default(('#pop', 'mnemonicspec', 'colon_sep', 'timeout', 'deviceparameters', 'colon_sep', 'expr')),
             ],
@@ -642,12 +666,18 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_mnemonicspace': [
             default(('list_comma', 'mnemonicspace'))
             ],
-        # 8.2.16 - QUIT arguments
+        # 8.2.16 - QUIT
+        'command_quit': [
+            (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
+            ],
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
             include('expr')
             ],
         # 8.2.17 - READ
+        'command_read': [
+            (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
+            ],
         'readargument': [
             include('format'),
             include('strlit'),
@@ -672,6 +702,9 @@ class MumpsLexer(ExtendedRegexLexer):
             default('#pop')
             ],
         # 8.2.18 - SET
+        'command_set': [
+                (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
+                ],
         'setargument': [
             ('@', Operator, ('#pop', 'setarg_ind', 'expratom')),
             default(('#pop', 'expr', 'equals', 'setdestination'))
@@ -716,7 +749,22 @@ class MumpsLexer(ExtendedRegexLexer):
             (words(('$ECODE', '$EC'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             (words(('$ETRAP', '$ET'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             ],
+        # 8.2.19 - TCOMMIT
+        'command_tcommit': [
+            (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+            ],
+        # 8.2.20 - TRESTART
+        'command_trestart': [
+            (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+            ],
+        # 8.2.21 - TROLLBACK
+        'command_trollback': [
+            (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+            ],
         # 8.2.22 - TSTART
+        'command_tstart': [
+            (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
+            ],
         'tstartargument': [
             (':', Punctuation, ('#pop', 'transparameters')),
             default(('#pop', 'transparameters', 'colon_sep', 'restartargument'))
@@ -745,10 +793,20 @@ class MumpsLexer(ExtendedRegexLexer):
             include('lname')
             ],
         # 8.2.23 - USE
+        'command_use': [
+            (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
+            ],
         'useargument': [
             default(('#pop', 'mnemonicspace', 'colon_sep', 'deviceparameters', 'colon_sep', 'expr'))
             ],
+        # 8.2.24 - VIEW
+        'command_view': [
+            (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+            ],
         # 8.2.25 - WRITE
+        'command_write': [
+            (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
+            ],
         'l_writeargument': [
             default(('list_comma', 'writeargument'))
             ],
@@ -758,6 +816,9 @@ class MumpsLexer(ExtendedRegexLexer):
             include('expr'),
             ],
         # 8.2.26 - XECUTE
+        'command_xecute': [
+            (words(('xecute', 'x'), suffix=r'\b'), Keyword, ('#pop', 'l_xargument', 'argumentsp', 'postcond')),
+            ],
         'l_xargument': [
             default(('list_comma', 'xargument'))
             ],
