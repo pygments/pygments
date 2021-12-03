@@ -278,7 +278,21 @@ class MumpsLexer(ExtendedRegexLexer):
         'function_length': [
                 (words(('$LENGTH', '$L'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'open_paren'))
                 ],
-        # 7.2 - exprtail
+        # 7.1.5.10 - $NAME
+        # 7.1.5.11 - $ORDER
+        # 7.1.5.12 - $PIECE
+        # 7.1.5.13 - $QLENGTH
+        # 7.1.5.14 - $QSUBSCRIPT
+        # 7.1.5.15 - $QUERY
+        # 7.1.5.16 - $RANDOM
+        # 7.1.5.17 - $REVERSE
+        # 7.1.5.18 - $SELECT
+        # 7.1.5.19 - $STACK
+        # 7.1.5.20 - $TEXT
+        # 7.1.5.21 - $TRANSLATE
+        # 7.1.5.22 - $VIEW
+        # 7.1.5.23 - $Z* functions are not in the standard
+        # 7.2 - Expression tail exprtail
         'exprtail': [
                 # TODO
                 ( '\'', Operator), # The "not" can happen multiple times
