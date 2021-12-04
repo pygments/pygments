@@ -183,7 +183,7 @@ class NimrodLexer(RegexLexer):
             default('#pop')
         ],
         'casebranch': [
-            (r'[,]', Text),
+            (r',', Text),
             (r'[\n ]+', Text.Whitespace),
             (r':', Operator, '#pop'),
             (r'\w+|\W+|[^:]', Name.Label),
