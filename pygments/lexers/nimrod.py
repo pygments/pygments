@@ -21,7 +21,7 @@ class NimrodLexer(RegexLexer):
     """
     For `Nim <http://nim-lang.org/>`_ source code.
 
-    .. versionadded:: 1.6
+    .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
@@ -116,7 +116,7 @@ class NimrodLexer(RegexLexer):
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
             
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Text.Whitespace),
             (r'.+$', Error),
         ],
         'chars': [
@@ -183,13 +183,15 @@ class NimrodLexer(RegexLexer):
             default('#pop')
         ],
         'casebranch': [
-            (r',', Text),
-            (r'[^:]', Name.Label),
+            (r'[,]', Text),
+            (r'[\n ]+', Text.Whitespace),
             (r':', Operator, '#pop'),
+            (r'\w+|\W+|[^:]', Name.Label),
         ],
         'pragma': [
-            (r'[:, ]', Text),
-            (r'[^.}]', String.Other),
+            (r'[:,]', Text),
+            (r'[\n ]+', Text.Whitespace),
             (r'\.\}', String.Other, '#pop'),
+            (r'\w+|\W+|[^.}]', String.Other),
         ],
     }
