@@ -12,14 +12,14 @@
 """
 
 from pygments.style import Style
-from pygments.token import Token, Punctuation, Keyword, Name, Comment, String, \
-     Number, Operator, Generic, Whitespace
+from pygments.token import (Comment, Generic, Keyword, Name, Number, Operator,
+                            Punctuation, String, Token, Whitespace)
 
 
 class OneDarkStyle(Style):
     """
     Theme inspired by One Dark Pro for Atom
-    
+
     .. versionadded:: 2.11
     """
 
@@ -31,29 +31,29 @@ class OneDarkStyle(Style):
         Punctuation:            '#ABB2BF',
         Punctuation.Marker:     '#ABB2BF',
 
-        Keyword:                '#D55FDE',
+        Keyword:                '#C678DD',
         Keyword.Constant:       '#E5C07B',
-        Keyword.Declaration:    '#D55FDE',
-        Keyword.Namespace:      '#D55FDE',
-        Keyword.Reserved:       '#D55FDE',
+        Keyword.Declaration:    '#C678DD',
+        Keyword.Namespace:      '#C678DD',
+        Keyword.Reserved:       '#C678DD',
         Keyword.Type:           '#E5C07B',
 
-        Name:                   '#EF596F',
-        Name.Attribute:         '#EF596F',
+        Name:                   '#E06C75',
+        Name.Attribute:         '#E06C75',
         Name.Builtin:           '#E5C07B',
         Name.Class:             '#E5C07B',
         Name.Function:          'bold #61AFEF',
-        Name.Function.Magic:    'bold #2BBAC5',
-        Name.Other:             '#EF596F',
-        Name.Tag:               '#EF596F',
+        Name.Function.Magic:    'bold #56B6C2',
+        Name.Other:             '#E06C75',
+        Name.Tag:               '#E06C75',
         Name.Decorator:         '#61AFEF',
         Name.Variable.Class:    '',
-        
-        String:                 '#89CA78',
+
+        String:                 '#98C379',
 
         Number:                 '#D19A66',
 
-        Operator:               '#2BBAC5',
+        Operator:               'bold #56B6C2',
 
         Comment:                '#7F848E'
     }
