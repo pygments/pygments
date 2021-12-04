@@ -53,7 +53,7 @@ class OneDarkStyle(Style):
 
         Number:                 '#D19A66',
 
-        Operator:               'bold #56B6C2',
+        Operator:               '#56B6C2',
 
         Comment:                '#7F848E'
     }
