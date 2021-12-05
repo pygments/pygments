@@ -1,6 +1,6 @@
 """
     pygments.lexers.spice
-    ~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Spice programming language.
 
