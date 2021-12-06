@@ -1,0 +1,25 @@
+// Function to compute fibonacci numbers recursively
+f<int> fib(int n) {
+    if n <= 2 {
+        return 1;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+// Function to compute factorial numbers recursively
+f<int> fac(int input) {
+    if input < 2 {
+        return 1;
+    }
+    result = input * fac(input - 1);
+}
+
+/*
+* Entry point of the program
+*/
+f<int> main() {
+    int number = 10;
+    printf("Fibonacci of %d: %d", number, fib(number));
+    number += 1;
+    printf("Faculty of %d: %d", number, fac(number));
+}

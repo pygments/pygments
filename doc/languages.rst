@@ -168,6 +168,7 @@ Programming languages
 * `Snowball <https://snowballstem.org/>`_
 * `Solidity <https://solidity.readthedocs.io/>`_
 * `SourcePawn <https://github.com/alliedmodders/sourcepawn>`_
+* `Spice <https://www.spicelang.com>`_
 * `Stan <https://mc-stan.org/>`_
 * `Standard ML <https://smlfamily.github.io/>`_
 * `Stata <https://www.stata.com/features/programming-language/>`_
