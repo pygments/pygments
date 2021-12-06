@@ -1,94 +1,94 @@
 ';redcode'    Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';name          Dwarf' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';author        A. K. Dewdney' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';version       94.1' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';date          April 29, 1993' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';strategy      Bombs every fourth instruction.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ORG'         Name.Function
-'     '       Text
+'     '       Text.Whitespace
 'start'       Name
-'              ' Text
+'              ' Text.Whitespace
 '; Indicates the instruction with' Comment.Single
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '; the label "start" should be the' Comment.Single
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '; first to execute.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'step'        Name
-'    '        Text
+'    '        Text.Whitespace
 'EQU'         Name.Function
-'      '      Text
+'      '      Text.Whitespace
 '4'           Literal.Number.Integer
-'                 ' Text
+'                 ' Text.Whitespace
 '; Replaces all occurrences of "step"' Comment.Single
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '; with the character "4".' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'target'      Name
-'  '          Text
+'  '          Text.Whitespace
 'DAT'         Name.Function
 '.'           Punctuation
 'F'           Name.Decorator
-'   '         Text
+'   '         Text.Whitespace
 '#'           Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '#'           Operator
 '0'           Literal.Number.Integer
-'         '   Text
+'         '   Text.Whitespace
 '; Pointer to target instruction.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'start'       Name
-'   '         Text
+'   '         Text.Whitespace
 'ADD'         Name.Function
 '.'           Punctuation
 'AB'          Name.Decorator
-'  '          Text
+'  '          Text.Whitespace
 '#'           Operator
 'step'        Name
 ','           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'target'      Name
-'    '        Text
+'    '        Text.Whitespace
 '; Increments pointer by step.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'MOV'         Name.Function
 '.'           Punctuation
 'AB'          Name.Decorator
-'  '          Text
+'  '          Text.Whitespace
 '#'           Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '@'           Operator
 'target'      Name
-'    '        Text
+'    '        Text.Whitespace
 '; Bombs target instruction.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'JMP'         Name.Function
 '.'           Punctuation
 'A'           Name.Decorator
-'    '        Text
+'    '        Text.Whitespace
 'start'       Name
-'             ' Text
+'             ' Text.Whitespace
 '; Same as JMP.A -2.  Loops back to' Comment.Single
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '; the instruction labelled "start".' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'END'         Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
