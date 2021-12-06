@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 
 __all__ = ['SpiceLexer']
 
@@ -21,7 +21,7 @@ class SpiceLexer(RegexLexer):
     """
     For `Spice <http://spicelang.com>`_ source.
 
-    .. versionadded:: 0.5.0
+    .. versionadded:: 2.11
     """
     name = 'Spice'
     filenames = ['*.spice']
@@ -32,8 +32,8 @@ class SpiceLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuations
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
