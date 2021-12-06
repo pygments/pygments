@@ -321,7 +321,7 @@ Option processing
 
 The :mod:`pygments.util` module has some utility functions usable for processing
 command line options. All of the following functions get values from a
-dictionnary of options. If the value is already in the type expected by the
+dictionary of options. If the value is already in the type expected by the
 option, it is returned as-is. Otherwise, if the value is a string, it is first
 converted to the expected type if possible.
 
