@@ -775,7 +775,8 @@ class NasmLexer(RegexLexer):
         'whitespace': [
             (r'\n', Whitespace),
             (r'[ \t]+', Whitespace),
-            (r';.*', Comment.Single)
+            (r';.*', Comment.Single),
+            (r'#.*', Comment.Single)
         ],
         'punctuation': [
             (r'[,():\[\]]+', Punctuation),
