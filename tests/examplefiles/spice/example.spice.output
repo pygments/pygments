@@ -1,0 +1,206 @@
+'// Function to compute fibonacci numbers recursively\n' Comment.Single
+
+'f'           Keyword.Declaration
+'<'           Punctuation
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text
+'fib'         Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'n'           Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'n'           Name.Other
+' '           Text
+'<='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Name.Other
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Name.Other
+' '           Text
+'fib'         Name.Other
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'fib'         Name.Other
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Function to compute factorial numbers recursively\n' Comment.Single
+
+'f'           Keyword.Declaration
+'<'           Punctuation
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text
+'fac'         Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'input'       Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'input'       Name.Other
+' '           Text
+'<'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Name.Other
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'result'      Name.Other
+' '           Text
+'='           Punctuation
+' '           Text
+'input'       Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'fac'         Name.Other
+'('           Punctuation
+'input'       Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*\n* Entry point of the program\n*/' Comment.Multiline
+'\n'          Text
+
+'f'           Keyword.Declaration
+'<'           Punctuation
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'int'         Keyword.Type
+' '           Text
+'number'      Name.Other
+' '           Text
+'='           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name.Builtin
+'('           Punctuation
+'"Fibonacci of %d: %d"' Literal.String
+','           Punctuation
+' '           Text
+'number'      Name.Other
+','           Punctuation
+' '           Text
+'fib'         Name.Other
+'('           Punctuation
+'number'      Name.Other
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'number'      Name.Other
+' '           Text
+'+='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name.Builtin
+'('           Punctuation
+'"Faculty of %d: %d"' Literal.String
+','           Punctuation
+' '           Text
+'number'      Name.Other
+','           Punctuation
+' '           Text
+'fac'         Name.Other
+'('           Punctuation
+'number'      Name.Other
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
