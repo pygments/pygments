@@ -132,6 +132,10 @@ def _objdump_lexer_tokens(asm_lexer):
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace,
                          using(asm_lexer))),
+            # Code line without raw instructions (objdump --no-show-raw-insn)
+            ('( *)('+hex_re+r'+:)( *\t)([a-zA-Z].*?)$',
+                bygroups(Whitespace, Name.Label, Whitespace,
+                         using(asm_lexer))),
             # Code line with ascii
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace, String)),
