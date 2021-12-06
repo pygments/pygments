@@ -6,21 +6,21 @@
 ---tokens---
 '@'           Operator
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ஆனால்'       Keyword
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'பதிப்பி'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"wont print"' Literal.String
 '\n'          Text
 
