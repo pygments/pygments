@@ -1569,6 +1569,54 @@ def testFuncO(lexer):
         (Text, '\n')
         ])
 
+def testFuncPiece(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Name.Function, '$Piece'),
+        (Punctuation, '('),
+        (Name.Variable, 'sentence'),
+        (Punctuation, ','),
+        (String, '" "'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncP(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Name.Function, '$P'),
+        (Punctuation, '('),
+        (Name.Variable, 'sentence'),
+        (Punctuation, ','),
+        (String, '" "'),
+        (Punctuation, ','),
+        (Name.Variable, 'wordnum'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncP2(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Name.Function, '$P'),
+        (Punctuation, '('),
+        (Name.Variable, 'sentence'),
+        (Punctuation, ','),
+        (String, '" "'),
+        (Punctuation, ','),
+        (Name.Variable, 'startWord'),
+        (Punctuation, ','),
+        (Name.Variable, 'endWord'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
