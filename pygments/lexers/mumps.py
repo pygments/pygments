@@ -242,6 +242,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_name'),
                 include('function_order'),
 		include('function_piece'),
+		include('function_qlength'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -294,6 +295,9 @@ class MumpsLexer(ExtendedRegexLexer):
 		(words(('$PIECE', '$P'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren'))
 		],
         # 7.1.5.13 - $QLENGTH
+	'function_qlength': [
+		(words(('$QLENGTH', '$QL'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
+		],
         # 7.1.5.14 - $QSUBSCRIPT
         # 7.1.5.15 - $QUERY
         # 7.1.5.16 - $RANDOM
