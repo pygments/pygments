@@ -1617,6 +1617,21 @@ def testFuncP2(lexer):
         (Text, '\n')
         ])
 
+def testFuncQLength(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'w'),
+	(Whitespace, ' '),
+	(String, '"Depth: "'),
+	(Operator, '_'),
+	(Name.Function, '$QLength'),
+	(Punctuation, '('),
+	(Operator, '@'),
+	(Name.Variable, 'glo'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
