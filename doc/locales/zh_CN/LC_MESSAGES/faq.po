@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../faq.rst:4
 msgid "Pygments FAQ"
-msgstr ""
+msgstr "Pygments 常见问题"
 
 #: ../../faq.rst:7
 msgid "What is Pygments?"
-msgstr ""
+msgstr "Pygments 是什么？"
 
 #: ../../faq.rst:9
 msgid ""
@@ -32,24 +32,27 @@ msgid ""
 "output a processed version (in different formats) containing syntax "
 "highlighting markup."
 msgstr ""
+"Pygments 是一个用 Python 编写的语法高亮引擎。"
+"这意味着，它将接受支持的语言的源代码（或其他标记），并输出一个包含语法高亮标记的处理过的版本（不同的格式）。"
 
 #: ../../faq.rst:13
 msgid "Its features include:"
-msgstr ""
+msgstr "它的特点包括："
 
 #: ../../faq.rst:15
 msgid ""
 "a wide range of common :doc:`languages and markup formats <languages>` is"
 " supported"
 msgstr ""
+"支持多种常见的 :doc:`语言和标记格式 <languages>`"
 
 #: ../../faq.rst:16
 msgid "new languages and formats are added easily"
-msgstr ""
+msgstr "很容易添加新的语言和格式"
 
 #: ../../faq.rst:17
 msgid "a number of output formats is available, including:"
-msgstr ""
+msgstr "有多种输出格式可供选择，包括："
 
 #: ../../faq.rst:19
 msgid "HTML"
@@ -57,7 +60,7 @@ msgstr ""
 
 #: ../../faq.rst:20
 msgid "ANSI sequences (console output)"
-msgstr ""
+msgstr "ANSI 序列 （console 输出）"
 
 #: ../../faq.rst:21
 msgid "LaTeX"
@@ -69,89 +72,95 @@ msgstr ""
 
 #: ../../faq.rst:24
 msgid "it is usable as a command-line tool and as a library"
-msgstr ""
+msgstr "它可以作为一个命令行工具和一个库使用"
 
 #: ../../faq.rst:25
 msgid "parsing and formatting is fast"
-msgstr ""
+msgstr "解析和格式化的速度很快"
 
 #: ../../faq.rst:27
 msgid "Pygments is licensed under the BSD license."
-msgstr ""
+msgstr "Pygments 是在 BSD 许可证下授权的。"
 
 #: ../../faq.rst:30
 msgid "Where does the name Pygments come from?"
-msgstr ""
+msgstr "Pygments 这个名字是怎么来的？"
 
 #: ../../faq.rst:32
 msgid ""
 "*Py* of course stands for Python, while *pigments* are used for coloring "
 "paint, and in this case, source code!"
 msgstr ""
+"*Py* 当然是指 Python，而 *pigments* 是用来给颜料上色的，在这里是指源代码！"
 
 #: ../../faq.rst:36
 msgid "What are the system requirements?"
-msgstr ""
+msgstr "系统需求是什么？"
 
 #: ../../faq.rst:38
 msgid ""
 "Pygments only needs a standard Python install, version 2.7 or higher or "
 "version 3.5 or higher for Python 3. No additional libraries are needed."
 msgstr ""
+"Pygments 只需要安装一个标准的 Python，2.7 或更高的版本，或者 "
+"Python 3 的 3.5 版或更高版本。不需要额外的库。"
 
 #: ../../faq.rst:42
 msgid "How can I use Pygments?"
-msgstr ""
+msgstr "我怎样才能使用Pygments？"
 
 #: ../../faq.rst:44
 msgid "Pygments is usable as a command-line tool as well as a library."
-msgstr ""
+msgstr "Pygments 可以作为一个命令行工具，也可以作为一个库使用。"
 
 #: ../../faq.rst:46
 msgid ""
 "From the command-line, usage looks like this (assuming the pygmentize "
 "script is properly installed)::"
 msgstr ""
+"从命令行看，用法是这样的（假设 pygmentize 脚本已正确安装） ::"。
 
 #: ../../faq.rst:51
 msgid ""
 "This will print a HTML-highlighted version of /path/to/file.py to "
 "standard output."
 msgstr ""
+"这将把 /path/to/file.py 的 HTML 高亮版本打印到标准输出。"
 
 #: ../../faq.rst:53
 msgid "For a complete help, please run ``pygmentize -h``."
-msgstr ""
+msgstr "要获得完整的帮助，请运行 ``pygmentize -h``。"
 
 #: ../../faq.rst:55
 msgid ""
 "Usage as a library is thoroughly demonstrated in the Documentation "
 "section."
 msgstr ""
+"作为一个库的用法在文档部分得到了彻底的展示。"
 
 #: ../../faq.rst:58
 msgid "How do I make a new style?"
-msgstr ""
+msgstr "我如何制作一个新的风格？"
 
 #: ../../faq.rst:60
 msgid "Please see the :doc:`documentation on styles <docs/styles>`."
-msgstr ""
+msgstr "请参阅 :doc:`documentation on styles <docs/styles>`。"
 
 #: ../../faq.rst:63
 msgid "How can I report a bug or suggest a feature?"
-msgstr ""
+msgstr "如何报告一个错误或建议一个功能？"
 
 #: ../../faq.rst:65
 msgid "Please report bugs and feature wishes in the tracker at GitHub."
-msgstr ""
+msgstr "请在 GitHub 的跟踪器中报告错误和功能愿望。"
 
 #: ../../faq.rst:67
 msgid "You can also e-mail the authors, see the contact details."
-msgstr ""
+msgstr "你也可以给作者发电子邮件，见联系方式。"
 
 #: ../../faq.rst:70
 msgid "I want this support for this language!"
-msgstr ""
+msgstr "我想要这种语言的支持!"
 
 #: ../../faq.rst:72
 msgid ""
@@ -159,10 +168,11 @@ msgid ""
 "it yourself? All you have to know is :doc:`outlined in the docs "
 "<docs/lexerdevelopment>`."
 msgstr ""
+"与其等待别人加入语言支持，为什么不自己写呢？你所要知道的是 :doc:`在 docs <docs/lexerdevelopment>` 中列出的。"
 
 #: ../../faq.rst:77
 msgid "Can I use Pygments for programming language processing?"
-msgstr ""
+msgstr "我可以使用 Pygments 进行编程语言处理吗？"
 
 #: ../../faq.rst:79
 msgid ""
@@ -171,6 +181,8 @@ msgid ""
 "possible, though some lexers go some steps in this direction in order to "
 "e.g. highlight function names differently."
 msgstr ""
+"Pygments 的词法机制相当强大，可以用来为基本上所有的语言建立词法器。"
+"然而，对它们进行解析是不可能的，尽管有些词法在这个方向上采取了一些措施，以便例如以不同的方式突出显示函数名称。"
 
 #: ../../faq.rst:84
 msgid ""
@@ -178,16 +190,18 @@ msgid ""
 "correctly highlighting syntactically valid documents, not finding and "
 "compensating errors."
 msgstr ""
+"另外，错误报告不是 Pygments 的范围。它的重点是正确地突出语法上有效的文件，而不是发现和弥补错误"。
 
 #: ../../faq.rst:88
 msgid "Who uses Pygments?"
-msgstr ""
+msgstr "谁在使用 Pygments？"
 
 #: ../../faq.rst:90
 msgid ""
 "This is an (incomplete) list of projects and sites known to use the "
 "Pygments highlighter."
 msgstr ""
+"这是一个（不完整的）已知使用 Pygments 高亮的项目和网站的列表。"
 
 #: ../../faq.rst:92
 msgid "`Wikipedia <https://en.wikipedia.org/>`_"
@@ -409,4 +423,4 @@ msgid ""
 "If you have a project or web site using Pygments, `open an issue or PR "
 "<https://github.com/pygments/pygments>`_ and we'll add a line here."
 msgstr ""
-
+"如果你有一个使用 Pygments 的项目或网站，`打开一个问题或 PR <https://github.com/pygments/pygments>`_，我们将在这里添加一行。"
