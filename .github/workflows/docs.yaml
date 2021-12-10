@@ -28,10 +28,11 @@ jobs:
         touch _build/dirhtml/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
-    - name: Deploy to repo
-      uses: peaceiris/actions-gh-pages@v2.5.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        EXTERNAL_REPOSITORY: daobook/pygments
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./doc/_build/dirhtml
+
+    - name: 🚀 Deploy to GitHub pages
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./doc/_build/dirhtml
+        user_name: "github-actions[bot]"
+        user_email: "github-actions[bot]@users.noreply.github.com"
