@@ -3,6 +3,7 @@ backend "consul" {
 data "aws_ami" "example" {
 module "consul" {
 output "instance_ip_addr" {
+provider "empty" {}
 provider "aws" {
 provisioner "local-exec" {
 resource "aws_internet_gateway" "base_igw" {
@@ -40,6 +41,13 @@ variable "set-str" {
 '"instance_ip_addr"' Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
+'\n'          Text
+
+'provider'    Keyword.Reserved
+' '           Text.Whitespace
+'"empty"'     Name.Variable
+' '           Text.Whitespace
+'{}'          Punctuation
 '\n'          Text
 
 'provider'    Keyword.Reserved
