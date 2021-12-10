@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,15 +19,15 @@ msgstr ""
 
 #: ../../docs/lexers.rst:5
 msgid "Available lexers"
-msgstr ""
+msgstr "可用的词库"
 
 #: ../../docs/lexers.rst:7
 msgid "This page lists all available builtin lexers and the options they take."
-msgstr ""
+msgstr "本页列出了所有可用的内置词库和它们的选项。"
 
 #: ../../docs/lexers.rst:9
 msgid "Currently, **all lexers** support these options:"
-msgstr ""
+msgstr "目前，**所有的 lexer** 都支持这些选项："
 
 #: ../../docs/lexers.rst:12
 msgid "`stripnl`"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: ../../docs/lexers.rst:12
 msgid "Strip leading and trailing newlines from the input (default: ``True``)"
-msgstr ""
+msgstr "从输入中去除前导和尾部的 newline（默认：``True``）"
 
 #: ../../docs/lexers.rst:16
 msgid "`stripall`"
@@ -46,6 +46,7 @@ msgid ""
 "Strip all leading and trailing whitespace from the input (default: "
 "``False``)."
 msgstr ""
+"从输入中去除所有前导和尾部的空白（默认： ``False``）。"
 
 #: ../../docs/lexers.rst:22
 msgid "`ensurenl`"
@@ -56,6 +57,7 @@ msgid ""
 "Make sure that the input ends with a newline (default: ``True``).  This "
 "is required for some lexers that consume input linewise."
 msgstr ""
+"确保输入以换行结束（默认： ``True``）。这对某些以行方式消耗输入的 lexer 来说是必需的。"
 
 #: ../../docs/lexers.rst:25
 msgid "`tabsize`"
@@ -63,7 +65,7 @@ msgstr ""
 
 #: ../../docs/lexers.rst:25
 msgid "If given and greater than 0, expand tabs in the input (default: ``0``)."
-msgstr ""
+msgstr "如果给定且大于 0，在输入中展开标签（默认： ``0``）。"
 
 #: ../../docs/lexers.rst:38
 msgid "`encoding`"
@@ -75,6 +77,8 @@ msgid ""
 " will be used to convert the input string to Unicode (if it is not "
 "already a Unicode string). The default is ``\"guess\"``."
 msgstr ""
+"如果给定，必须是一个编码名称（如 ``\"utf-8\"``）。"
+"这个编码将被用来将输入的字符串转换为 Unicode（如果它还不是 Unicode 字符串的话）。默认的是 ``\"guess\"``。"
 
 #: ../../docs/lexers.rst:32
 msgid ""
@@ -83,42 +87,46 @@ msgid ""
 "<https://chardet.github.io/>`_ is used to guess the encoding of the "
 "input."
 msgstr ""
+"如果这个选项被设置为 ``\"guess\"``，则使用简单的 UTF-8 与 Latin-1 检测；"
+"如果被设置为 ``\"chardet\"``，则使用 `chardet 库 <https://chardet.github.io/>`_ 来猜测输入的编码。"
 
 #: ../../docs/lexers.rst:40
 msgid ""
 "The \"Short Names\" field lists the identifiers that can be used with the"
 " `get_lexer_by_name()` function."
 msgstr ""
+"\"短名称\" 字段列出了可与 `get_lexer_by_name()` 函数一起使用的标识符。"
 
 #: ../../docs/lexers.rst:43
 msgid "These lexers are builtin and can be imported from `pygments.lexers`:"
-msgstr ""
+msgstr "这些 lexer 是内置的，可以从 `pygments.lexers` 中导入："
 
 #: ../../docs/lexers.rst
 msgid "Short names"
-msgstr ""
+msgstr "短名称"
 
 #: ../../docs/lexers.rst
 msgid "Filenames"
-msgstr ""
+msgstr "文件名"
 
 #: ../../docs/lexers.rst
 msgid "MIME types"
-msgstr ""
+msgstr "MIME 类型"
 
 #: ../../docs/lexers.rst:49
 msgid "Iterating over all lexers"
-msgstr ""
+msgstr "迭代所有 lexer"
 
 #: ../../docs/lexers.rst:53
 msgid ""
 "To get all lexers (both the builtin and the plugin ones), you can use the"
 " `get_all_lexers()` function from the `pygments.lexers` module:"
 msgstr ""
+"要获得所有的 lexer（包括内置的和插件的），你可以使用 `pygments.lexers` 模块中的 `get_all_lexers()` 函数："
 
 #: ../../docs/lexers.rst:68
 msgid ""
 "As you can see, the return value is an iterator which yields tuples in "
 "the form ``(name, aliases, filetypes, mimetypes)``."
 msgstr ""
-
+"正如你所看到的，返回值是一个迭代器，它产生了 ``(name, aliases, filetypes, mimetypes)`` 形式的元组。"

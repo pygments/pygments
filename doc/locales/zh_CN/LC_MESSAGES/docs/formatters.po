@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,19 +19,19 @@ msgstr ""
 
 #: ../../docs/formatters.rst:5
 msgid "Available formatters"
-msgstr ""
+msgstr "可用的格式化器"
 
 #: ../../docs/formatters.rst:7
 msgid "This page lists all builtin formatters."
-msgstr ""
+msgstr "本页列出了所有的内置格式化器。"
 
 #: ../../docs/formatters.rst:10
 msgid "Common options"
-msgstr ""
+msgstr "通用选项"
 
 #: ../../docs/formatters.rst:12
 msgid "All formatters support these options:"
-msgstr ""
+msgstr "所有格式化器都支持这些选项："
 
 #: ../../docs/formatters.rst:31
 msgid "`encoding`"
@@ -46,6 +46,8 @@ msgid ""
 "option is given (e.g. a ``meta content-type`` directive in HTML or an "
 "invocation of the `inputenc` package in LaTeX)."
 msgstr ""
+"如果给定，必须是一个编码名称（如 ``\"utf-8\"``）。这将用于在输出中把标记字符串（Unicode 字符串）转换成字节字符串（默认： ``None``）。"
+"如果给了 ``full`` 选项，它也将被写入适合文档格式的编码声明中（例如，HTML 中的 ``meta content-type`` 指令或 LaTeX 中调用 ``inputenc`` 包）。"
 
 #: ../../docs/formatters.rst:23
 msgid ""
@@ -56,6 +58,10 @@ msgid ""
 "because it uses a `StringIO.StringIO` object that supports Unicode "
 "arguments to `write()`. Using a regular file object wouldn't work."
 msgstr ""
+"如果这是 ``\"\"`` 或 ``None``，Unicode 字符串将被写入输出文件，大多数类文件对象都不支持。"
+"例如，如果调用 ``pygments.highlight()`` 时没有 ``outfile`` 参数，"
+"并且格式化器的 ``encoding`` 设置为 ``None``，将返回一个Unicode字符串，"
+"因为它使用一个 ``StringIO.StringIO`` 对象，支持 Unicode 参数给 ``write()``。使用一个普通的文件对象是不行的。"
 
 #: ../../docs/formatters.rst:41
 msgid "`outencoding`"
@@ -69,20 +75,23 @@ msgid ""
 "Therefore, `outencoding` has been introduced which overrides `encoding` "
 "for the formatter if given."
 msgstr ""
+"当从命令行使用 Pygments 时，任何 `encoding` 选项都会传递给 lexer 和格式化器。"
+"这有时是不可取的，例如，如果你想把输入编码设置为 ``\"guess\"``。"
+"因此，引入了 ``outencoding``，如果给出的话，它将覆盖格式化器的 ``encoding``。"
 
 #: ../../docs/formatters.rst:44
 msgid "Formatter classes"
-msgstr ""
+msgstr "格式化器类"
 
 #: ../../docs/formatters.rst:46
 msgid "All these classes are importable from :mod:`pygments.formatters`."
-msgstr ""
+msgstr "所有这些类都可以从 :mod:`pygments.formatters` 导入。"
 
 #: ../../docs/formatters.rst
 msgid "Short names"
-msgstr ""
+msgstr "短名称"
 
 #: ../../docs/formatters.rst
 msgid "Filenames"
-msgstr ""
+msgstr "文件名"
 

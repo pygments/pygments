@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,13 +19,14 @@ msgstr ""
 
 #: ../../docs/cmdline.rst:5
 msgid "Command Line Interface"
-msgstr ""
+msgstr "命令行界面"
 
 #: ../../docs/cmdline.rst:7
 msgid ""
 "You can use Pygments from the shell, provided you installed the "
 ":program:`pygmentize` script::"
 msgstr ""
+"你可以从 shell 中使用 Pygments，只要你安装了 :program:`pygmentize` 脚本 ::"
 
 #: ../../docs/cmdline.rst:13
 msgid ""
@@ -33,10 +34,11 @@ msgid ""
 "(inferred from the file name extension) and the terminal formatter "
 "(because you didn't give an explicit formatter name)."
 msgstr ""
+"将使用 Python lexer（从文件名扩展名推断）和终端格式化器（因为你没有给出明确的格式化器名称），把文件 test.py 打印到标准输出。"
 
 #: ../../docs/cmdline.rst:17
 msgid "If you want HTML output::"
-msgstr ""
+msgstr "如果你想要HTML输出 ::"
 
 #: ../../docs/cmdline.rst:21
 msgid ""
@@ -44,12 +46,15 @@ msgid ""
 "if you give an input file name and it has an extension that Pygments "
 "recognizes, you can omit this option."
 msgstr ""
+"正如你所看到的，``-l`` 选项明确地选择了一个分析器。"
+"如上所述，如果你给了一个输入文件名，并且它有一个 Pygments 识别的扩展名，你可以省略这个选项。"
 
 #: ../../docs/cmdline.rst:25
 msgid ""
 "The ``-o`` option gives an output file name. If it is not given, output "
 "is written to stdout."
 msgstr ""
+"``-o`` 选项给出了一个输出文件名。如果没有给出，输出将写到 stdout。"
 
 #: ../../docs/cmdline.rst:28
 msgid ""
@@ -58,10 +63,12 @@ msgid ""
 "If no output file name is given and ``-f`` is omitted, the "
 ":class:`.TerminalFormatter` is used."
 msgstr ""
+"``-f`` 选项选择一个格式化的文件（和 ``-l`` 一样，如果给出了一个输出文件名并且有一个支持的扩展名，也可以省略）。"
+"如果没有给出输出文件名，并且省略了 ``-f``，则使用 :class:`.TerminalFormatter`。"
 
 #: ../../docs/cmdline.rst:33
 msgid "The above command could therefore also be given as::"
-msgstr ""
+msgstr "因此，上述命令也可以给出为 ::"
 
 #: ../../docs/cmdline.rst:37
 msgid ""
@@ -69,14 +76,16 @@ msgid ""
 "(using the \"emacs\" style), highlighting the Python file ``test.py`` to "
 "``test.html``::"
 msgstr ""
+"要创建一个完整的 HTML 文档，包括行号和样式表（使用 \"emacs\" 样式），"
+"将 Python 文件 ``test.py`` 高亮到 ``test.html`` ::"
 
 #: ../../docs/cmdline.rst:44
 msgid "Options and filters"
-msgstr ""
+msgstr "选项和过滤器"
 
 #: ../../docs/cmdline.rst:46
 msgid "Lexer and formatter options can be given using the ``-O`` option::"
-msgstr ""
+msgstr "Lexer 和 formatter 选项可以使用 ``-O`` 选项给出 ::"
 
 #: ../../docs/cmdline.rst:50
 msgid ""
@@ -86,6 +95,8 @@ msgid ""
 "(you'll have to quote the option value in this case too, so that the "
 "shell doesn't split it)."
 msgstr ""
+"如果选项字符串包含任何特殊的 shell 字符，如空格或扩展通配符（如 ``*``），请务必用引号将其括起来。"
+"如果一个选项需要一个列表值，请用空格隔开列表项（在这种情况下，你也必须给选项值加引号，这样 shell 就不会分割它）。"
 
 #: ../../docs/cmdline.rst:55
 msgid ""
@@ -95,10 +106,13 @@ msgid ""
 "provided (as of Pygments 0.9) that works like ``-O`` but can only pass "
 "one option per ``-P``. Its value can then contain all characters::"
 msgstr ""
+"由于 ``-O`` 选项参数在逗号处被分割，并期望分割后的值为 ``name=value`` 的形式，你不能给出一个包含逗号或等号的选项值。"
+"因此，提供了一个选项 ``-P`` （从 Pygments 0.9 开始），其工作原理与 ``-O`` 类似，"
+"但每个 ``-P`` 只能传递一个选项。它的值可以包含所有字符 ::"
 
 #: ../../docs/cmdline.rst:63
 msgid "Filters are added to the token stream using the ``-F`` option::"
-msgstr ""
+msgstr "过滤器是使用 ``-F`` 选项添加到形符流的 ::"
 
 #: ../../docs/cmdline.rst:67
 msgid ""
@@ -106,10 +120,12 @@ msgid ""
 "``-O``, the filter name and options must be one shell word, so there may "
 "not be any spaces around the colon."
 msgstr ""
+"正如你所看到的，过滤器的选项是在冒号后面给出的。"
+"至于 ``-O``，过滤器的名称和选项必须是一个 shell 字，所以冒号周围不能有任何空格。"
 
 #: ../../docs/cmdline.rst:73
 msgid "Generating styles"
-msgstr ""
+msgstr "生成样式"
 
 #: ../../docs/cmdline.rst:75
 msgid ""
@@ -118,6 +134,9 @@ msgid ""
 " attributes. Therefore, there's a special ``-S`` option for generating "
 "style definitions. Usage is as follows::"
 msgstr ""
+"格式化器通常不输出完整的样式信息。"
+"例如，HTML 格式化器默认只输出 ``<span>`` 标签和 ``class`` 属性。"
+"因此，有一个特殊的 ``-S`` 选项用于生成样式定义。使用方法如下 ::"
 
 #: ../../docs/cmdline.rst:82
 msgid ""
@@ -125,6 +144,8 @@ msgid ""
 " the \"colorful\" style prepending a \".syntax\" selector to all style "
 "rules."
 msgstr ""
+"生成一个 CSS 样式表（因为你选择了 HTML 格式），"
+"为 \"colorful\" 样式预置一个 \".syntax\" 选择器到所有样式规则。"
 
 #: ../../docs/cmdline.rst:85
 msgid ""
@@ -132,20 +153,23 @@ msgid ""
 "<formatters>`, look for the `arg` argument for the formatter's "
 ":meth:`.get_style_defs()` method."
 msgstr ""
+"要解释 ``-a`` 对 :doc:`一个特定的格式化器 <formatters>` 的含义，"
+"请寻找格式化器的 :meth:`.get_style_defs()` 方法的 `arg` 参数。"
 
 #: ../../docs/cmdline.rst:91
 msgid "Getting lexer names"
-msgstr ""
+msgstr "获取词库名称"
 
 #: ../../docs/cmdline.rst:95
 msgid "The ``-N`` option guesses a lexer name for a given filename, so that ::"
-msgstr ""
+msgstr "``-N`` 选项为给定的文件名猜测一个词库名称，以便 ::"
 
 #: ../../docs/cmdline.rst:99
 msgid ""
 "will print out ``python``.  It won't highlight anything yet.  If no "
 "specific lexer is known for that filename, ``text`` is printed."
 msgstr ""
+"将打印出 ``python``。它还不会高亮显示任何东西。如果该文件名没有特定的词法，则打印 ``text``。"
 
 #: ../../docs/cmdline.rst:102
 msgid ""
@@ -153,10 +177,11 @@ msgid ""
 " except that it prints out a lexer name based solely on a given content "
 "from standard input."
 msgstr ""
+"此外，还有 ``-C`` 选项，它就像 ``-N`` 一样，只是它只根据标准输入的给定内容打印出一个词库名称。"
 
 #: ../../docs/cmdline.rst:108
 msgid "Guessing the lexer from the file contents"
-msgstr ""
+msgstr "从文件内容猜测 lexer"
 
 #: ../../docs/cmdline.rst:110
 msgid ""
@@ -165,6 +190,8 @@ msgid ""
 "option also looks for Vim modelines in the text, and for *some* "
 "languages, shebangs. Usage is as follows::"
 msgstr ""
+"``-g`` 选项将尝试从文件内容中猜测正确的词法，如果无法猜测，则以纯文本形式通过。"
+"这个选项也会在文本中寻找 Vim 的模式，对于 *某些* 语言，还会寻找 shebangs。使用方法如下 ::"
 
 #: ../../docs/cmdline.rst:117
 msgid ""
@@ -172,10 +199,11 @@ msgid ""
 "be used only if Pygments is not able to guess the correct lexer from the "
 "file's extension."
 msgstr ""
+"但是请注意，这个选项不是很可靠，可能只有在 Pygments 无法从文件的扩展名中猜出正确的词法时才会使用。"
 
 #: ../../docs/cmdline.rst:123
 msgid "Highlighting stdin until EOF"
-msgstr ""
+msgstr "高亮显示 stdin 直到 EOF"
 
 #: ../../docs/cmdline.rst:125
 msgid ""
@@ -184,10 +212,12 @@ msgid ""
 "lexers with no line-spanning constructs, and is intended for streaming "
 "input such as you get from `tail -f`. Usage is as follows::"
 msgstr ""
+"``-s`` 选项一次处理一行，直到 EOF，而不是等待处理整个文件。"
+"这只适用于 stdin，只适用于没有跨行结构的 lexer，并且用于流式输入，如你从 `tail -f` 得到的输入。使用方法如下 ::"
 
 #: ../../docs/cmdline.rst:134
 msgid "Custom Lexers and Formatters"
-msgstr ""
+msgstr "自定义 Lexer 和 Formatter"
 
 #: ../../docs/cmdline.rst:138
 msgid ""
@@ -195,20 +225,23 @@ msgid ""
 "files relative to the current directory. Create a file with a class named"
 " CustomLexer or CustomFormatter, then specify it on the command line::"
 msgstr ""
+"``-x`` 标志使自定义 lexer 和 formatter 可以从相对于当前目录的文件中加载。"
+"用名为 CustomLexer 或 CustomFormatter 的类创建一个文件，然后在命令行中指定它 ::"
 
 #: ../../docs/cmdline.rst:144
 msgid "You can also specify the name of your class with a colon::"
-msgstr ""
+msgstr "你也可以用冒号来指定你的类的名称 ::"
 
 #: ../../docs/cmdline.rst:148
 msgid ""
 "For more information, see :doc:`the Pygments documentation on Lexer "
 "development <lexerdevelopment>`."
 msgstr ""
+"更多信息，请参阅 :doc:`Pygments 关于 Lexer 开发的文档 <lexerdevelopment>`。"
 
 #: ../../docs/cmdline.rst:153
 msgid "Getting help"
-msgstr ""
+msgstr "获得帮助"
 
 #: ../../docs/cmdline.rst:155
 msgid ""
@@ -216,10 +249,12 @@ msgid ""
 "and supported file name extensions, styles and filters. If you want to "
 "see only one category, give it as an argument::"
 msgstr ""
+"``-L`` 选项列出了 lexer、formatter，以及它们的短名称和支持的文件名扩展名、样式和过滤器。"
+"如果你想只看到一个类别，请给它一个参数 ::"
 
 #: ../../docs/cmdline.rst:161
 msgid "will list only all installed filters."
-msgstr ""
+msgstr "将只列出所有已安装的过滤器。"
 
 #: ../../docs/cmdline.rst:165
 msgid ""
@@ -227,6 +262,8 @@ msgid ""
 "to output it's contents as JSON. Thus, to print all the installed styles "
 "and their description in JSON, use the command::"
 msgstr ""
+"``--json`` 选项可以和 ``-L`` 选项一起使用，将其内容输出为 JSON。"
+"因此，如果要以 JSON 格式打印所有已安装的样式和它们的描述，请使用以下命令 ::"
 
 #: ../../docs/cmdline.rst:171
 msgid ""
@@ -234,40 +271,44 @@ msgid ""
 "be found in this documentation) about a lexer, formatter or filter. Usage"
 " is as follows::"
 msgstr ""
+"``-H`` 选项将给你提供关于一个 lexer、formatter 或 filter 的详细信息（与本文档中可以找到的信息相同）。使用方法如下 ::"
 
 #: ../../docs/cmdline.rst:176
 msgid "will print the help for the HTML formatter, while ::"
-msgstr ""
+msgstr "将打印 HTML 格式化器的帮助，而 ::"
 
 #: ../../docs/cmdline.rst:180
 msgid "will print the help for the Python lexer, etc."
-msgstr ""
+msgstr "将打印 Python lexer 的帮助，等等。"
 
 #: ../../docs/cmdline.rst:184
 msgid "A note on encodings"
-msgstr ""
+msgstr "关于编码的说明"
 
 #: ../../docs/cmdline.rst:188
 msgid "Pygments tries to be smart regarding encodings in the formatting process:"
-msgstr ""
+msgstr "Pygments 试图在格式化过程中对编码进行智能处理："
 
 #: ../../docs/cmdline.rst:190
 msgid ""
 "If you give an ``encoding`` option, it will be used as the input and "
 "output encoding."
 msgstr ""
+"如果你给出一个 ``encoding`` 选项，它将被用作输入和输出编码。"
 
 #: ../../docs/cmdline.rst:193
 msgid ""
 "If you give an ``outencoding`` option, it will override ``encoding`` as "
 "the output encoding."
 msgstr ""
+"如果你给出一个 ``outencoding`` 选项，它将覆盖 ``encoding`` 作为输出编码。"
 
 #: ../../docs/cmdline.rst:196
 msgid ""
 "If you give an ``inencoding`` option, it will override ``encoding`` as "
 "the input encoding."
 msgstr ""
+"如果你给一个 ``inencoding`` 选项，它将覆盖 ``encoding`` 作为输入编码。"
 
 #: ../../docs/cmdline.rst:199
 msgid ""
@@ -276,6 +317,9 @@ msgid ""
 "locale encoding of the system.  As a last resort, ``latin1`` is used "
 "(which will pass through all non-ASCII characters)."
 msgstr ""
+"如果你没有给出一个编码，并且已经给出了一个输出文件，"
+"那么 lexer 和 formatter 的默认编码是终端编码或系统的默认 locale 编码。"
+"作为最后的手段，使用 ``latin1`` （它将通过所有非 ASCII 字符）。"
 
 #: ../../docs/cmdline.rst:204
 msgid ""
@@ -283,4 +327,5 @@ msgid ""
 "means output is written to the console), the default encoding for lexer "
 "and formatter is the terminal encoding (``sys.stdout.encoding``)."
 msgstr ""
-
+"如果你没有给出编码，也没有给出输出文件（这意味着输出被写入控制台），"
+"那么 lexer 和 formatter 的默认编码是终端编码（``sys.stdout.encoding``）。"

@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../docs/filters.rst:5
 msgid "Filters"
-msgstr ""
+msgstr "过滤器"
 
 #: ../../docs/filters.rst:9
 msgid ""
@@ -33,6 +33,12 @@ msgid ""
 "unrelated to Python's `filter "
 "<https://docs.python.org/3/library/functions.html#filter>`_."
 msgstr ""
+"将一个形符流转化为另一个流被称为 \"过滤\"，由过滤器来完成。"
+"最常见的过滤器的例子是通过应用简单的规则来转换每个形符，如高亮形符，"
+"如果它是一个 TODO 或其他特殊的词，或将关键字转换为大写字母以执行风格指南。"
+"更复杂的过滤器可以改变形符流，例如删除行的形符或将形符合并在一起。"
+"应该注意的是，pygments 过滤器与 Python 的 "
+"`filter <https://docs.python.org/3/library/functions.html#filter>`_ 完全没有关系。"
 
 #: ../../docs/filters.rst:18
 msgid ""
@@ -40,12 +46,15 @@ msgid ""
 "from lexers to improve or annotate the output. To apply a filter, you can"
 " use the `add_filter()` method of a lexer:"
 msgstr ""
+"可以将任意数量的过滤器应用于来自词库的标记流，以改善或注释输出。"
+"要应用一个过滤器，你可以使用 lexer 的 `add_filter()` 方法："
 
 #: ../../docs/filters.rst:34
 msgid ""
 "The `add_filter()` method takes keyword arguments which are forwarded to "
 "the constructor of the filter."
 msgstr ""
+"`add_filter()` 方法需要关键字参数，这些参数被转发给过滤器的构造函数。"
 
 #: ../../docs/filters.rst:37
 msgid ""
@@ -53,18 +62,21 @@ msgid ""
 "`get_all_filters()` function from the `pygments.filters` module that "
 "returns an iterable for all known filters."
 msgstr ""
+"要想按名称获得所有已注册过滤器的列表，可以使用 `pygments.filters` 模块中的 "
+"`get_all_filters()` 函数，该函数为所有已知的过滤器返回一个可迭代的列表。"
 
 #: ../../docs/filters.rst:41
 msgid ""
 "If you want to write your own filter, have a look at :doc:`Write your own"
 " filter <filterdevelopment>`."
 msgstr ""
+"如果你想写你自己的过滤器，请看 :doc:`Write your own filter <filterdevelopment>`。"
 
 #: ../../docs/filters.rst:46
 msgid "Builtin Filters"
-msgstr ""
+msgstr "内置过滤器"
 
 #: ../../docs/filters.rst
 msgid "Name"
-msgstr ""
+msgstr "名称"
 

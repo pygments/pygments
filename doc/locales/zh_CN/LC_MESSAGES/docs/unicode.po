@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../docs/unicode.rst:3
 msgid "Unicode and Encodings"
-msgstr ""
+msgstr "Unicode 和编码"
 
 #: ../../docs/unicode.rst:5
 msgid ""
@@ -27,30 +27,34 @@ msgid ""
 " that you might encounter the occasional :exc:`UnicodeDecodeError` if you"
 " pass strings with the wrong encoding."
 msgstr ""
+"从 Pygments 0.6 开始，所有的词库在内部使用 unicode 字符串。"
+"正因为如此，如果你传递编码错误的字符串，你可能偶尔会遇到 :exc:`UnicodeDecodeError`。"
 
 #: ../../docs/unicode.rst:9
 msgid ""
 "Per default all lexers have their input encoding set to `guess`.  This "
 "means that the following encodings are tried:"
 msgstr ""
+"默认情况下，所有词库的输入编码都设置为 `guess`。这意味着将尝试以下编码："
 
 #: ../../docs/unicode.rst:12
 msgid "UTF-8 (including BOM handling)"
-msgstr ""
+msgstr "UTF-8 （包括 BOM 处理）"
 
 #: ../../docs/unicode.rst:13
 msgid "The locale encoding (i.e. the result of `locale.getpreferredencoding()`)"
-msgstr ""
+msgstr "本地化编码（即 `locale.getpreferredencoding()` 的结果）"
 
 #: ../../docs/unicode.rst:14
 msgid "As a last resort, `latin1`"
-msgstr ""
+msgstr "作为最后的手段，`latin1`"
 
 #: ../../docs/unicode.rst:16
 msgid ""
 "If you pass a lexer a byte string object (not unicode), it tries to "
 "decode the data using this encoding."
 msgstr ""
+"如果你向 lexer 传递一个字节字符串对象（不是 unicode），它就会尝试使用这个编码对数据进行解码。"
 
 #: ../../docs/unicode.rst:19
 msgid ""
@@ -59,12 +63,15 @@ msgid ""
 "encoding to ``chardet`` if will analyse the text and use the encoding it "
 "thinks is the right one automatically:"
 msgstr ""
+"你可以使用 `encoding` 或 `inencoding` 解析器选项覆盖编码。"
+"如果你安装了 `chardet`_ 库，并将编码设置为 ``chardet``，那么它将分析文本并自动使用它认为正确的编码："
 
 #: ../../docs/unicode.rst:29
 msgid ""
 "The best way is to pass Pygments unicode objects. In that case you can't "
 "get unexpected output."
 msgstr ""
+"最好的方法是传递 Pygments unicode 对象。在这种情况下，你不可能得到意外的输出。"
 
 #: ../../docs/unicode.rst:32
 msgid ""
@@ -72,6 +79,8 @@ msgid ""
 "the output encoding. You can do so by passing the formatters an "
 "`encoding` option:"
 msgstr ""
+"如果你不设置输出编码，格式化器现在将 Unicode 对象发送到流中。"
+"你可以通过传递给格式化器一个 `encoding` 选项来实现："
 
 #: ../../docs/unicode.rst:40
 msgid ""
@@ -79,6 +88,8 @@ msgid ""
 "the source and the output stream does not accept Unicode written to it!**"
 " This is the case for all regular files and for terminals."
 msgstr ""
+"**如果你的源文件中有非 ASCII 字符，而输出流不接受 Unicode 写入，你就必须设置这个选项！**"
+" 所有常规文件和终端都是这种情况。"
 
 #: ../../docs/unicode.rst:44
 msgid ""
@@ -88,6 +99,8 @@ msgid ""
 " for `sys.stdout`, for example. The other formatters don't have that "
 "behavior."
 msgstr ""
+"注意：终端格式化器试图变得聪明：如果它的输出流有一个 `encoding` 属性，而你没有设置该选项，"
+"它将在写入任何 Unicode 字符串之前用该编码进行编码。例如，`sys.stdout` 就是这种情况。其他格式化器没有这种行为。"
 
 #: ../../docs/unicode.rst:49
 msgid ""
@@ -95,6 +108,7 @@ msgid ""
 "encoding is handled differently, see :doc:`the command line docs "
 "<cmdline>`."
 msgstr ""
+"另一个说明：如果你通过命令行调用 Pygments（`pygmentize`），编码的处理方式是不同的，见 :doc:`命令行文档 <cmdline>`。"
 
 #: ../../docs/unicode.rst:52
 msgid ""
@@ -103,4 +117,5 @@ msgid ""
 "single options dict with lexers and formatters, and still have different "
 "input and output encodings."
 msgstr ""
-
+"格式化器现在也接受一个 `outencoding` 选项，如果给出的话，"
+"它将覆盖 `encoding` 选项。这使得使用单一选项的 lexer 和格式化器成为可能，但仍有不同的输入和输出编码。"

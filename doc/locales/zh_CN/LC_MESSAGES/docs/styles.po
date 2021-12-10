@@ -19,65 +19,70 @@ msgstr ""
 
 #: ../../docs/styles.rst:5
 msgid "Styles"
-msgstr ""
+msgstr "风格"
 
 #: ../../docs/styles.rst:7
 msgid ""
 "Pygments comes with :doc:`some builtin styles </styles/>` that work for "
 "both the HTML and LaTeX formatter."
 msgstr ""
+"Pygments 自带 :doc:`一些内置的样式 </styles/>`，对 HTML 和 LaTeX 格式化器都有效。"
 
 #: ../../docs/styles.rst:10
 msgid "The builtin styles can be looked up with the `get_style_by_name` function:"
-msgstr ""
+msgstr "内置的样式可以用 `get_style_by_name` 函数来查找。"
 
 #: ../../docs/styles.rst:18
 msgid ""
 "You can pass a instance of a `Style` class to a formatter as the `style` "
 "option in form of a string:"
 msgstr ""
+"你可以把一个 `Style` 类的实例作为 `style` 选项以字符串的形式传递给格式化器："
 
 #: ../../docs/styles.rst:28
 msgid ""
 "Or you can also import your own style (which must be a subclass of "
 "`pygments.style.Style`) and pass it to the formatter:"
 msgstr ""
+"或者你也可以导入你自己的样式（必须是 `pygments.style.Style` 的子类），并将其传递给格式化器："
 
 #: ../../docs/styles.rst:40
 msgid "Creating Own Styles"
-msgstr ""
+msgstr "创建自己的风格"
 
 #: ../../docs/styles.rst:42
 msgid "See :ref:`creating-own-styles`."
-msgstr ""
+msgstr "参阅 :ref:`creating-own-styles`。"
 
 #: ../../docs/styles.rst:46
 msgid "Builtin Styles"
-msgstr ""
+msgstr "内建风格"
 
 #: ../../docs/styles.rst:48
 msgid ""
 "Pygments ships some builtin styles which are maintained by the Pygments "
 "team."
 msgstr ""
+"Pygments 提供了一些内置的风格，由 Pygments 团队维护。"
 
 #: ../../docs/styles.rst:50
 msgid "To get a list of known styles you can use this snippet:"
-msgstr ""
+msgstr "要获得已知风格的列表，你可以使用这个片段 ::"
 
 #: ../../docs/styles.rst:60
 msgid "Getting a list of available styles"
-msgstr ""
+msgstr "获得可用风格的列表"
 
 #: ../../docs/styles.rst:64
 msgid ""
 "Because it could be that a plugin registered a style, there is a way to "
 "iterate over all styles:"
 msgstr ""
+"因为可能是一个插件注册了一个样式，所以有一种方法可以遍历所有样式："
 
 #: ../../docs/styles.rst:76
 msgid "Terminal Styles"
-msgstr ""
+msgstr "终端样式"
 
 #: ../../docs/styles.rst:80
 msgid ""
@@ -92,6 +97,11 @@ msgid ""
 "flag. ``bg:ansi<color>`` will also be respected, except the light variant"
 " will be the same shade as their dark variant."
 msgstr ""
+"与 256 颜色终端格式化器一起使用的自定义样式也可以映射颜色以使用 8 种默认的 ANSI 颜色。"
+"要做到这一点，请使用 ``ansigreen``、``ansibrightred`` 或在 :attr:`pygments.style.ansicolors` 中定义的任何其他颜色。"
+"前景 ANSI 颜色将被映射到相应的 `escape codes 30 to 37 <https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_ "
+"从而尊重任何自定义颜色映射和许多终端模拟器提供的主题。"
+"浅色的变体被视为前景色，并增加了一个粗体标志。`bg:ansi<color>` 也将被尊重，除了浅色变体将与它们的深色变体具有相同的色调。"
 
 #: ../../docs/styles.rst:90
 msgid ""
@@ -100,18 +110,22 @@ msgid ""
 "bright blue, Bold, 41 being red background) instead of an extended "
 "foreground & background color."
 msgstr ""
+"请看下面的例子，字符串 ``\"hello world\"`` 的颜色由转义序列 ``\\x1b[34;01m``  "
+"（Ansi 亮蓝，黑体，41 为红色背景）而不是扩展的前景和背景颜色所支配。"
 
 #: ../../docs/styles.rst:112
 msgid ""
 "Colors specified using ``ansi*`` are converted to a default set of RGB "
 "colors when used with formatters other than the terminal-256 formatter."
 msgstr ""
+"使用 ``ansi*`` 指定的颜色在与终端 256 格式以外的格式化器一起使用时，会被转换为一组默认的 RGB 颜色。"
 
 #: ../../docs/styles.rst:115
 msgid ""
 "By definition of ANSI, the following colors are considered \"light\" "
 "colors, and will be rendered by most terminals as bold:"
 msgstr ""
+"根据 ANSI 的定义，以下颜色被认为是 \"light\" 色，并将被大多数终端呈现为粗体："
 
 #: ../../docs/styles.rst:118
 msgid ""
@@ -125,6 +139,7 @@ msgid ""
 "The following are considered \"dark\" colors and will be rendered as non-"
 "bold:"
 msgstr ""
+"以下是被认为是 \"dark\" 的颜色，将被呈现为非粗体："
 
 #: ../../docs/styles.rst:123
 msgid ""
@@ -137,20 +152,22 @@ msgid ""
 "Exact behavior might depends on the terminal emulator you are using, and "
 "its settings."
 msgstr ""
+"确切的行为可能取决于你所使用的终端仿真器及其设置。"
 
 #: ../../docs/styles.rst:133
 msgid ""
 "The definition of the ANSI color names has changed. New names are easier "
 "to understand and align to the colors used in other projects."
 msgstr ""
+"ANSI 颜色名称的定义已经改变。新的名称更容易理解，并与其他项目中使用的颜色一致"。
 
 #: ../../docs/styles.rst:137
 msgid "New names"
-msgstr ""
+msgstr "新名称"
 
 #: ../../docs/styles.rst:137
 msgid "Pygments up to 2.3"
-msgstr ""
+msgstr "Pygments 2.3 及其以上"
 
 #: ../../docs/styles.rst:139
 msgid "``ansiblack``"
@@ -282,5 +299,5 @@ msgstr ""
 
 #: ../../docs/styles.rst:157
 msgid "Old ANSI color names are deprecated but will still work."
-msgstr ""
+msgstr "旧的 ANSI 颜色名称已被废弃，但仍可使用。"
 

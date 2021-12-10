@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
 # This file is distributed under the same license as the Pygments package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# xinetzone <735613050@qq.com>, 2021.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-10 09:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,23 +19,25 @@ msgstr ""
 
 #: ../../docs/quickstart.rst:5
 msgid "Introduction and Quickstart"
-msgstr ""
+msgstr "简介和快速入门"
 
 #: ../../docs/quickstart.rst:8
 msgid ""
 "Welcome to Pygments! This document explains the basic concepts and terms "
 "and gives a few examples of how to use the library."
 msgstr ""
+"欢迎来到 Pygments！本文档解释了基本概念和术语，并给出了一些如何使用该库的例子。"
 
 #: ../../docs/quickstart.rst:13
 msgid "Architecture"
-msgstr ""
+msgstr "架构"
 
 #: ../../docs/quickstart.rst:15
 msgid ""
 "There are four types of components that work together highlighting a "
 "piece of code:"
 msgstr ""
+"有四种类型的组件一起工作，高亮一段代码："
 
 #: ../../docs/quickstart.rst:18
 msgid ""
@@ -44,36 +46,42 @@ msgid ""
 "(e.g., keyword, string, or comment). There is a lexer for every language "
 "or markup format that Pygments supports."
 msgstr ""
+"**lexer** 将源文件分割成形符，即源文件的片段，其形符类型决定了文本在语义上代表什么"
+"（例如，关键字、字符串或注释）。Pygments 支持的每种语言或形符格式都有一个 lexer。"
 
 #: ../../docs/quickstart.rst:22
 msgid ""
 "The token stream can be piped through **filters**, which usually modify "
 "the token types or text fragments, e.g. uppercasing all keywords."
 msgstr ""
+"形符流可以通过 **filters**，这些过滤器通常会修改形符类型或文本片段，例如将所有关键词大写。"
 
 #: ../../docs/quickstart.rst:24
 msgid ""
 "A **formatter** then takes the token stream and writes it to an output "
 "file, in a format such as HTML, LaTeX or RTF."
 msgstr ""
+"然后，一个 **formatter** 接收形符流，并将其写入一个输出文件，格式为 HTML、LaTeX 或 RTF。"
 
 #: ../../docs/quickstart.rst:26
 msgid ""
 "While writing the output, a **style** determines how to highlight all the"
 " different token types. It maps them to attributes like \"red and bold\"."
 msgstr ""
+"在编写输出时，一个 **style** 决定了如何高亮所有不同的标记类型。"
+"它将它们映射到诸如 \"red and bold\" 等属性。
 
 #: ../../docs/quickstart.rst:31
 msgid "Example"
-msgstr ""
+msgstr "示例"
 
 #: ../../docs/quickstart.rst:33
 msgid "Here is a small example for highlighting Python code:"
-msgstr ""
+msgstr "下面是一个高亮 Python 代码的小例子："
 
 #: ../../docs/quickstart.rst:44
 msgid "which prints something like this:"
-msgstr ""
+msgstr "它的打印结果是这样的："
 
 #: ../../docs/quickstart.rst:52
 msgid ""
@@ -82,16 +90,19 @@ msgid ""
 "style information over and over. A CSS stylesheet that contains all CSS "
 "classes possibly used in the output can be produced by:"
 msgstr ""
+"正如你所看到的，Pygments 使用 CSS 类（默认情况下，但你可以改变）而不是内联样式，以避免重复输出多余的样式信息。"
+"一个包含所有可能在输出中使用的 CSS 类的 CSS 样式表可以通过以下方式产生："
 
 #: ../../docs/quickstart.rst:61
 msgid ""
 "The argument to :func:`get_style_defs` is used as an additional CSS "
 "selector: the output may look like this:"
 msgstr ""
+":func:`get_style_defs` 的参数被用作额外的 CSS 选择器：输出可能看起来像这样："
 
 #: ../../docs/quickstart.rst:72
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 #: ../../docs/quickstart.rst:74
 msgid ""
@@ -99,12 +110,15 @@ msgid ""
 "*outfile*, it must be a file object if given. The formatted output will "
 "then be written to this file instead of being returned as a string."
 msgstr ""
+":func:`highlight()` 函数支持第四个参数，称为 *outfile*，如果给出的话，它必须是一个文件对象。"
+"然后，格式化的输出将被写入这个文件，而不是作为一个字符串返回。"
 
 #: ../../docs/quickstart.rst:78
 msgid ""
 "Lexers and formatters both support options. They are given to them as "
 "keyword arguments either to the class or to the lookup method:"
 msgstr ""
+"Lexers 和 formatters 都支持选项。它们作为关键字参数被提供给类或查找方法："
 
 #: ../../docs/quickstart.rst:91
 msgid ""
@@ -113,17 +127,19 @@ msgid ""
 "(`linenos` option), and sets the wrapping ``<div>``'s class to ``source``"
 " (instead of ``highlight``)."
 msgstr ""
+"这使得 lexer 从输入中去除所有前导和尾部的空白（`stripall` 选项），"
+"让 formatter 输出行号（`linenos` 选项），并将包装的 ``<div>`` 的类设置为 ``source`` （而不是 ``highlight``）。"
 
 #: ../../docs/quickstart.rst:96
 msgid "Important options include:"
-msgstr ""
+msgstr "重要的选项包括："
 
 #: ../../docs/quickstart.rst:99
 msgid "`encoding`"
 msgstr ""
 
 msgid "for lexers and formatters"
-msgstr ""
+msgstr "用于 lexers 和 formatters"
 
 #: ../../docs/quickstart.rst:99
 msgid ""
@@ -136,37 +152,40 @@ msgid "`style`"
 msgstr ""
 
 msgid "for formatters"
-msgstr ""
+msgstr "用于 formatters"
 
 #: ../../docs/quickstart.rst:102
 msgid "The name of the style to use when writing the output."
-msgstr ""
+msgstr "编写输出时要使用的样式名称。"
 
 #: ../../docs/quickstart.rst:105
 msgid ""
 "For an overview of builtin lexers and formatters and their options, visit"
 " the :doc:`lexer <lexers>` and :doc:`formatters <formatters>` lists."
 msgstr ""
+"关于内建 lexer 和 formatter 及其选项的概述，请访问 :doc:`lexer <lexers>` 和 :doc:`formatters <formatters>` 列表。"
 
 #: ../../docs/quickstart.rst:108
 msgid "For a documentation on filters, see :doc:`this page <filters>`."
-msgstr ""
+msgstr "关于过滤器的文档，见 :doc:`this page <filters>`。"
 
 #: ../../docs/quickstart.rst:112
 msgid "Lexer and formatter lookup"
-msgstr ""
+msgstr "lexer 和 formatter 查询"
 
 #: ../../docs/quickstart.rst:114
 msgid ""
 "If you want to lookup a built-in lexer by its alias or a filename, you "
 "can use one of the following methods:"
 msgstr ""
+"如果你想通过别名或文件名来查询一个内置的 lexer，你可以使用以下方法之一："
 
 #: ../../docs/quickstart.rst:131
 msgid ""
 "All these functions accept keyword arguments; they will be passed to the "
 "lexer as options."
 msgstr ""
+"所有这些函数都接受关键字参数；它们将作为选项传递给 lexer。"
 
 #: ../../docs/quickstart.rst:134
 msgid ""
@@ -175,10 +194,12 @@ msgid ""
 ":func:`.get_formatter_for_filename()` from the :mod:`pygments.formatters`"
 " module for this purpose."
 msgstr ""
+"类似的 API 可用于 formatter："
+"使用来自 :mod:`pygments.formatters` 模块的 :func:`.get_formatter_by_name()` 和 :func:`.get_formatter_for_filename()`，用于此目的。"
 
 #: ../../docs/quickstart.rst:140
 msgid "Guessing lexers"
-msgstr ""
+msgstr "猜测词库"
 
 #: ../../docs/quickstart.rst:142
 msgid ""
@@ -186,6 +207,8 @@ msgid ""
 "file whose extension is ambiguous, such as ``.html`` (which could contain"
 " plain HTML or some template tags), use these functions:"
 msgstr ""
+"如果你不知道文件的内容，或者你想高亮一个扩展名不明确的文件，"
+"如 ``.html`` （可能包含纯 HTML 或一些模板标签），请使用这些函数："
 
 #: ../../docs/quickstart.rst:156
 msgid ""
@@ -193,6 +216,7 @@ msgid ""
 ":meth:`analyse_text()` method and returns the one for which it returns "
 "the highest number."
 msgstr ""
+":func:`.guess_lexer()` 将给定的内容传递给词库类的 :meth:`analyse_text()` 方法，并返回其返回最高数字的那个。"
 
 #: ../../docs/quickstart.rst:160
 msgid ""
@@ -205,32 +229,39 @@ msgid ""
 "returned, else the guessing mechanism of :func:`.guess_lexer()` is used "
 "with the matching lexers."
 msgstr ""
+"所有的词库都有两个不同的文件名模式列表：主要的和次要的。"
+":func:`.get_lexer_for_filename()` 函数只使用主列表，其条目在所有词库中应该是唯一的。"
+":func:`.guess_lexer_for_filename()`，然而，将首先循环浏览所有词库，如果文件名匹配，则查看主和次的文件名模式。"
+"如果只有一个词库匹配，它将被返回，否则 :func:`.guess_lexer()` 的猜测机制将与匹配的词库一起使用。"
 
 #: ../../docs/quickstart.rst:168
 msgid ""
 "As usual, keyword arguments to these functions are given to the created "
 "lexer as options."
 msgstr ""
+"像往常一样，这些函数的关键字参数被作为选项提供给创建的词库。"
 
 #: ../../docs/quickstart.rst:173
 msgid "Command line usage"
-msgstr ""
+msgstr "命令行用法"
 
 #: ../../docs/quickstart.rst:175
 msgid ""
 "You can use Pygments from the command line, using the "
 ":program:`pygmentize` script::"
 msgstr ""
+"你可以从命令行使用 Pygments，使用 :program:`pygmentize` 脚本 ::"
 
 #: ../../docs/quickstart.rst:180
 msgid ""
 "will highlight the Python file test.py using ANSI escape sequences "
 "(a.k.a. terminal colors) and print the result to standard output."
 msgstr ""
+"将使用 ANSI 转义序列（又称终端颜色）突出显示 Python 文件 test.py，并将结果打印到标准输出。"
 
 #: ../../docs/quickstart.rst:183
 msgid "To output HTML, use the ``-f`` option::"
-msgstr ""
+msgstr "要输出HTML，使用 ``-f`` 选项 ::"
 
 #: ../../docs/quickstart.rst:187
 msgid ""
@@ -238,28 +269,31 @@ msgid ""
 "Note that it will only be a snippet of HTML, if you want a full HTML "
 "document, use the \"full\" option::"
 msgstr ""
+"将 test.py 的 HTML 高亮版本写到 test.html 文件中。"
+"注意，它将只是一个 HTML 片段，如果你想要一个完整的 HTML 文档，请使用 \"full\" 选项 ::"
 
 #: ../../docs/quickstart.rst:193
 msgid "This will produce a full HTML document with included stylesheet."
-msgstr ""
+msgstr "这将产生一个包含样式表的完整 HTML 文档。"
 
 #: ../../docs/quickstart.rst:195
 msgid "A style can be selected with ``-O style=<name>``."
-msgstr ""
+msgstr "可以用 ``-O style=<name>`` 来选择一种风格。"
 
 #: ../../docs/quickstart.rst:197
 msgid ""
 "If you need a stylesheet for an existing HTML file using Pygments CSS "
 "classes, it can be created with::"
 msgstr ""
+"如果你需要一个使用 Pygments CSS 类的现有 HTML 文件的样式表，可以用 ::"
 
 #: ../../docs/quickstart.rst:202
 msgid "where ``default`` is the style name."
-msgstr ""
+msgstr "其中 ``default`` 是风格名称。"
 
 #: ../../docs/quickstart.rst:204
 msgid ""
 "More options and tricks can be found in the :doc:`command line reference "
 "<cmdline>`."
 msgstr ""
-
+"更多的选项和技巧可以在 :doc:`命令行参考 <cmdline>` 中找到。"
