@@ -26,7 +26,7 @@ jobs:
         WEBSITE_BUILD=1 make dirhtml
         cp -a ../pyodide _build/dirhtml/_static
         touch _build/dirhtml/.nojekyll
-        echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
+        echo -e 'pygments.org\nwww.pygments.org/zh' > _build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
 
     - name: 🚀 Deploy to GitHub pages
