@@ -1,0 +1,181 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/styledevelopment.rst:6
+msgid "Creating Own Styles"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:8
+msgid ""
+"So, how to create a style? All you have to do is to subclass `Style` and "
+"define some styles:"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:28
+msgid ""
+"That's it. There are just a few rules. When you define a style for `Name`"
+" the style automatically also affects `Name.Function` and so on. If you "
+"defined ``'bold'`` and you don't want boldface for a subtoken use "
+"``'nobold'``."
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:32
+msgid ""
+"(Philosophy: the styles aren't written in CSS syntax since this way they "
+"can be used for a variety of formatters.)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:35
+msgid "`default_style` is the style inherited by all token types."
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:37
+msgid "To make the style usable for Pygments, you must"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:39
+msgid "either register it as a plugin (see :doc:`the plugin docs <plugins>`)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:40
+msgid ""
+"or drop it into the `styles` subpackage of your Pygments distribution one"
+" style class per style, where the file name is the style name and the "
+"class name is `StylenameClass`. For example, if your style should be "
+"called ``\"mondrian\"``, name the class `MondrianStyle`, put it into the "
+"file ``mondrian.py`` and this file into the ``pygments.styles`` "
+"subpackage directory."
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:49
+msgid "Style Rules"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:51
+msgid "Here a small overview of all allowed styles:"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:53
+msgid "``bold``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:54
+msgid "render text as bold"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:55
+msgid "``nobold``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:56
+msgid "don't render text as bold (to prevent subtokens being highlighted bold)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:57
+msgid "``italic``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:58
+msgid "render text italic"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:59
+msgid "``noitalic``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:60
+msgid "don't render text as italic"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:61
+msgid "``underline``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:62
+msgid "render text underlined"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:63
+msgid "``nounderline``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:64
+msgid "don't render text underlined"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:65
+msgid "``bg:``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:66
+msgid "transparent background"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:67
+msgid "``bg:#000000``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:68
+msgid "background color (black)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:69
+msgid "``border:``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:70
+msgid "no border"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:71
+msgid "``border:#ffffff``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:72
+msgid "border color (white)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:73
+msgid "``#ff0000``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:74
+msgid "text color (red)"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:76
+msgid "``noinherit``"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:76
+msgid "don't inherit styles from supertoken"
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:78
+msgid ""
+"Note that there may not be a space between ``bg:`` and the color value "
+"since the style definition string is split at whitespace. Also, using "
+"named colors is not allowed since the supported color names vary for "
+"different formatters."
+msgstr ""
+
+#: ../../docs/styledevelopment.rst:83
+msgid "Furthermore, not all lexers might support every style."
+msgstr ""
+

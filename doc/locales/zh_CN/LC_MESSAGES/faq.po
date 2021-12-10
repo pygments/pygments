@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../faq.rst:4
+msgid "Pygments FAQ"
+msgstr ""
+
+#: ../../faq.rst:7
+msgid "What is Pygments?"
+msgstr ""
+
+#: ../../faq.rst:9
+msgid ""
+"Pygments is a syntax highlighting engine written in Python. That means, "
+"it will take source code (or other markup) in a supported language and "
+"output a processed version (in different formats) containing syntax "
+"highlighting markup."
+msgstr ""
+
+#: ../../faq.rst:13
+msgid "Its features include:"
+msgstr ""
+
+#: ../../faq.rst:15
+msgid ""
+"a wide range of common :doc:`languages and markup formats <languages>` is"
+" supported"
+msgstr ""
+
+#: ../../faq.rst:16
+msgid "new languages and formats are added easily"
+msgstr ""
+
+#: ../../faq.rst:17
+msgid "a number of output formats is available, including:"
+msgstr ""
+
+#: ../../faq.rst:19
+msgid "HTML"
+msgstr ""
+
+#: ../../faq.rst:20
+msgid "ANSI sequences (console output)"
+msgstr ""
+
+#: ../../faq.rst:21
+msgid "LaTeX"
+msgstr ""
+
+#: ../../faq.rst:22
+msgid "RTF"
+msgstr ""
+
+#: ../../faq.rst:24
+msgid "it is usable as a command-line tool and as a library"
+msgstr ""
+
+#: ../../faq.rst:25
+msgid "parsing and formatting is fast"
+msgstr ""
+
+#: ../../faq.rst:27
+msgid "Pygments is licensed under the BSD license."
+msgstr ""
+
+#: ../../faq.rst:30
+msgid "Where does the name Pygments come from?"
+msgstr ""
+
+#: ../../faq.rst:32
+msgid ""
+"*Py* of course stands for Python, while *pigments* are used for coloring "
+"paint, and in this case, source code!"
+msgstr ""
+
+#: ../../faq.rst:36
+msgid "What are the system requirements?"
+msgstr ""
+
+#: ../../faq.rst:38
+msgid ""
+"Pygments only needs a standard Python install, version 2.7 or higher or "
+"version 3.5 or higher for Python 3. No additional libraries are needed."
+msgstr ""
+
+#: ../../faq.rst:42
+msgid "How can I use Pygments?"
+msgstr ""
+
+#: ../../faq.rst:44
+msgid "Pygments is usable as a command-line tool as well as a library."
+msgstr ""
+
+#: ../../faq.rst:46
+msgid ""
+"From the command-line, usage looks like this (assuming the pygmentize "
+"script is properly installed)::"
+msgstr ""
+
+#: ../../faq.rst:51
+msgid ""
+"This will print a HTML-highlighted version of /path/to/file.py to "
+"standard output."
+msgstr ""
+
+#: ../../faq.rst:53
+msgid "For a complete help, please run ``pygmentize -h``."
+msgstr ""
+
+#: ../../faq.rst:55
+msgid ""
+"Usage as a library is thoroughly demonstrated in the Documentation "
+"section."
+msgstr ""
+
+#: ../../faq.rst:58
+msgid "How do I make a new style?"
+msgstr ""
+
+#: ../../faq.rst:60
+msgid "Please see the :doc:`documentation on styles <docs/styles>`."
+msgstr ""
+
+#: ../../faq.rst:63
+msgid "How can I report a bug or suggest a feature?"
+msgstr ""
+
+#: ../../faq.rst:65
+msgid "Please report bugs and feature wishes in the tracker at GitHub."
+msgstr ""
+
+#: ../../faq.rst:67
+msgid "You can also e-mail the authors, see the contact details."
+msgstr ""
+
+#: ../../faq.rst:70
+msgid "I want this support for this language!"
+msgstr ""
+
+#: ../../faq.rst:72
+msgid ""
+"Instead of waiting for others to include language support, why not write "
+"it yourself? All you have to know is :doc:`outlined in the docs "
+"<docs/lexerdevelopment>`."
+msgstr ""
+
+#: ../../faq.rst:77
+msgid "Can I use Pygments for programming language processing?"
+msgstr ""
+
+#: ../../faq.rst:79
+msgid ""
+"The Pygments lexing machinery is quite powerful can be used to build "
+"lexers for basically all languages. However, parsing them is not "
+"possible, though some lexers go some steps in this direction in order to "
+"e.g. highlight function names differently."
+msgstr ""
+
+#: ../../faq.rst:84
+msgid ""
+"Also, error reporting is not the scope of Pygments. It focuses on "
+"correctly highlighting syntactically valid documents, not finding and "
+"compensating errors."
+msgstr ""
+
+#: ../../faq.rst:88
+msgid "Who uses Pygments?"
+msgstr ""
+
+#: ../../faq.rst:90
+msgid ""
+"This is an (incomplete) list of projects and sites known to use the "
+"Pygments highlighter."
+msgstr ""
+
+#: ../../faq.rst:92
+msgid "`Wikipedia <https://en.wikipedia.org/>`_"
+msgstr ""
+
+#: ../../faq.rst:93
+msgid "`BitBucket <https://bitbucket.org/>`_, a Mercurial and Git hosting site"
+msgstr ""
+
+#: ../../faq.rst:94
+msgid ""
+"`The Sphinx documentation builder <https://sphinx-doc.org/>`_, for "
+"embedded source examples"
+msgstr ""
+
+#: ../../faq.rst:95
+msgid ""
+"`rst2pdf <https://github.com/ralsina/rst2pdf>`_, a reStructuredText to "
+"PDF converter"
+msgstr ""
+
+#: ../../faq.rst:96
+msgid "`Codecov <https://codecov.io/>`_, a code coverage CI service"
+msgstr ""
+
+#: ../../faq.rst:97
+msgid ""
+"`Trac <https://trac.edgewall.org/>`_, the universal project management "
+"tool"
+msgstr ""
+
+#: ../../faq.rst:98
+msgid ""
+"`AsciiDoc <https://www.methods.co.nz/asciidoc/>`_, a text-based "
+"documentation generator"
+msgstr ""
+
+#: ../../faq.rst:99
+msgid ""
+"`ActiveState Code <https://code.activestate.com/>`_, the Python Cookbook "
+"successor"
+msgstr ""
+
+#: ../../faq.rst:100
+msgid ""
+"`ViewVC <http://viewvc.org/>`_, a web-based version control repository "
+"browser"
+msgstr ""
+
+#: ../../faq.rst:101
+msgid "`BzrFruit <https://repo.or.cz/w/bzrfruit.git>`_, a Bazaar branch viewer"
+msgstr ""
+
+#: ../../faq.rst:102
+msgid ""
+"`QBzr <http://bazaar-vcs.org/QBzr>`_, a cross-platform Qt-based GUI front"
+" end for Bazaar"
+msgstr ""
+
+#: ../../faq.rst:103
+msgid ""
+"`Review Board <https://www.reviewboard.org/>`_, a collaborative code "
+"reviewing tool"
+msgstr ""
+
+#: ../../faq.rst:104
+msgid ""
+"`Diamanda <https://code.google.com/archive/p/diamanda/>`_, a Django "
+"powered wiki system with support for Pygments"
+msgstr ""
+
+#: ../../faq.rst:105
+msgid ""
+"`Progopedia <http://progopedia.ru/>`_ (`English "
+"<http://progopedia.com/>`_), an encyclopedia of programming languages"
+msgstr ""
+
+#: ../../faq.rst:107
+msgid ""
+"`Bruce <https://sites.google.com/site/r1chardj0n3s/bruce>`_, a "
+"reStructuredText presentation tool"
+msgstr ""
+
+#: ../../faq.rst:108
+msgid "`PIDA <http://pida.co.uk/>`_, a universal IDE written in Python"
+msgstr ""
+
+#: ../../faq.rst:109
+msgid ""
+"`BPython <https://bpython-interpreter.org/>`_, a curses-based intelligent"
+" Python shell"
+msgstr ""
+
+#: ../../faq.rst:110
+msgid "`PuDB <https://pypi.org/project/pudb/>`_, a console Python debugger"
+msgstr ""
+
+#: ../../faq.rst:111
+msgid ""
+"`XWiki <https://www.xwiki.org/>`_, a wiki-based development framework in "
+"Java, using Jython"
+msgstr ""
+
+#: ../../faq.rst:112
+msgid ""
+"`roux <http://ananelson.com/software/roux/>`_, a script for running R "
+"scripts and creating beautiful output including graphs"
+msgstr ""
+
+#: ../../faq.rst:114
+msgid "`hurl <http://hurl.it/>`_, a web service for making HTTP requests"
+msgstr ""
+
+#: ../../faq.rst:115
+msgid ""
+"`wxHTMLPygmentizer "
+"<http://colinbarnette.net/projects/wxHTMLPygmentizer>`_ is a GUI utility,"
+" used to make code-colorization easier"
+msgstr ""
+
+#: ../../faq.rst:117
+msgid ""
+"`Postmarkup <https://code.google.com/archive/p/postmarkup/>`_, a BBCode "
+"to XHTML generator"
+msgstr ""
+
+#: ../../faq.rst:118
+msgid ""
+"`WpPygments <http://blog.mirotin.net/?page_id=49>`_, and `WPygments "
+"<https://github.com/capynet/WPygments>`_, highlighter plugins for "
+"WordPress"
+msgstr ""
+
+#: ../../faq.rst:120
+msgid ""
+"`Siafoo <http://siafoo.net>`_, a tool for sharing and storing useful code"
+" and programming experience"
+msgstr ""
+
+#: ../../faq.rst:121
+msgid ""
+"`D source <http://www.dsource.org/>`_, a community for the D programming "
+"language"
+msgstr ""
+
+#: ../../faq.rst:122
+msgid "`dpaste.com <http://dpaste.com/>`_, another Django pastebin"
+msgstr ""
+
+#: ../../faq.rst:123
+msgid ""
+"`Django snippets <https://djangosnippets.org/>`_, a pastebin for Django "
+"code"
+msgstr ""
+
+#: ../../faq.rst:124
+msgid "`Fayaa <http://www.fayaa.com/code/>`_, a Chinese pastebin"
+msgstr ""
+
+#: ../../faq.rst:125
+msgid "`Incollo.com <http://incollo.com>`_, a free collaborative debugging tool"
+msgstr ""
+
+#: ../../faq.rst:126
+msgid "`PasteBox <https://p.boxnet.eu/>`_, a pastebin focused on privacy"
+msgstr ""
+
+#: ../../faq.rst:127
+msgid "`hilite.me <http://www.hilite.me/>`_, a site to highlight code snippets"
+msgstr ""
+
+#: ../../faq.rst:128
+msgid "`patx.me <http://patx.me/paste>`_, a pastebin"
+msgstr ""
+
+#: ../../faq.rst:129
+msgid ""
+"`Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in "
+"integrating shells with a GUI"
+msgstr ""
+
+#: ../../faq.rst:131
+msgid ""
+"`pygments.rb <https://github.com/pygments/pygments.rb>`_, a pygments "
+"wrapper for Ruby"
+msgstr ""
+
+#: ../../faq.rst:132
+msgid ""
+"`Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper"
+" for Clojure"
+msgstr ""
+
+#: ../../faq.rst:134
+msgid ""
+"`PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper"
+" for PHP"
+msgstr ""
+
+#: ../../faq.rst:135
+msgid ""
+"`Spyder <https://www.spyder-ide.org/>`_, the Scientific Python "
+"Development Environment, uses pygments for the multi-language syntax "
+"highlighting in its `editor <https://docs.spyder-ide.org/editor.html>`_."
+msgstr ""
+
+#: ../../faq.rst:138
+msgid ""
+"`snippet.host <https://snippet.host>`_, minimal text and code snippet "
+"hosting"
+msgstr ""
+
+#: ../../faq.rst:139
+msgid "`sourcehut <https://sourcehut.org>`_, the hacker's forge"
+msgstr ""
+
+#: ../../faq.rst:141
+msgid ""
+"If you have a project or web site using Pygments, `open an issue or PR "
+"<https://github.com/pygments/pygments>`_ and we'll add a line here."
+msgstr ""
+

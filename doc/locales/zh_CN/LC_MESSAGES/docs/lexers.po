@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/lexers.rst:5
+msgid "Available lexers"
+msgstr ""
+
+#: ../../docs/lexers.rst:7
+msgid "This page lists all available builtin lexers and the options they take."
+msgstr ""
+
+#: ../../docs/lexers.rst:9
+msgid "Currently, **all lexers** support these options:"
+msgstr ""
+
+#: ../../docs/lexers.rst:12
+msgid "`stripnl`"
+msgstr ""
+
+#: ../../docs/lexers.rst:12
+msgid "Strip leading and trailing newlines from the input (default: ``True``)"
+msgstr ""
+
+#: ../../docs/lexers.rst:16
+msgid "`stripall`"
+msgstr ""
+
+#: ../../docs/lexers.rst:15
+msgid ""
+"Strip all leading and trailing whitespace from the input (default: "
+"``False``)."
+msgstr ""
+
+#: ../../docs/lexers.rst:22
+msgid "`ensurenl`"
+msgstr ""
+
+#: ../../docs/lexers.rst:19
+msgid ""
+"Make sure that the input ends with a newline (default: ``True``).  This "
+"is required for some lexers that consume input linewise."
+msgstr ""
+
+#: ../../docs/lexers.rst:25
+msgid "`tabsize`"
+msgstr ""
+
+#: ../../docs/lexers.rst:25
+msgid "If given and greater than 0, expand tabs in the input (default: ``0``)."
+msgstr ""
+
+#: ../../docs/lexers.rst:38
+msgid "`encoding`"
+msgstr ""
+
+#: ../../docs/lexers.rst:28
+msgid ""
+"If given, must be an encoding name (such as ``\"utf-8\"``). This encoding"
+" will be used to convert the input string to Unicode (if it is not "
+"already a Unicode string). The default is ``\"guess\"``."
+msgstr ""
+
+#: ../../docs/lexers.rst:32
+msgid ""
+"If this option is set to ``\"guess\"``, a simple UTF-8 vs. Latin-1 "
+"detection is used, if it is set to ``\"chardet\"``, the `chardet library "
+"<https://chardet.github.io/>`_ is used to guess the encoding of the "
+"input."
+msgstr ""
+
+#: ../../docs/lexers.rst:40
+msgid ""
+"The \"Short Names\" field lists the identifiers that can be used with the"
+" `get_lexer_by_name()` function."
+msgstr ""
+
+#: ../../docs/lexers.rst:43
+msgid "These lexers are builtin and can be imported from `pygments.lexers`:"
+msgstr ""
+
+#: ../../docs/lexers.rst
+msgid "Short names"
+msgstr ""
+
+#: ../../docs/lexers.rst
+msgid "Filenames"
+msgstr ""
+
+#: ../../docs/lexers.rst
+msgid "MIME types"
+msgstr ""
+
+#: ../../docs/lexers.rst:49
+msgid "Iterating over all lexers"
+msgstr ""
+
+#: ../../docs/lexers.rst:53
+msgid ""
+"To get all lexers (both the builtin and the plugin ones), you can use the"
+" `get_all_lexers()` function from the `pygments.lexers` module:"
+msgstr ""
+
+#: ../../docs/lexers.rst:68
+msgid ""
+"As you can see, the return value is an iterator which yields tuples in "
+"the form ``(name, aliases, filetypes, mimetypes)``."
+msgstr ""
+

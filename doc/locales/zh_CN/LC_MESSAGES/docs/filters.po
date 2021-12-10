@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/filters.rst:5
+msgid "Filters"
+msgstr ""
+
+#: ../../docs/filters.rst:9
+msgid ""
+"Transforming a stream of tokens into another stream is called "
+"\"filtering\" and is done by filters. The most common example of filters "
+"transform each token by applying a simple rules such as highlighting the "
+"token if it is a TODO or another special word, or converting keywords to "
+"uppercase to enforce a style guide. More complex filters can transform "
+"the stream of tokens, such as removing the line identation or merging "
+"tokens together. It should be noted that pygments filters are entirely "
+"unrelated to Python's `filter "
+"<https://docs.python.org/3/library/functions.html#filter>`_."
+msgstr ""
+
+#: ../../docs/filters.rst:18
+msgid ""
+"An arbitrary number of filters can be applied to token streams coming "
+"from lexers to improve or annotate the output. To apply a filter, you can"
+" use the `add_filter()` method of a lexer:"
+msgstr ""
+
+#: ../../docs/filters.rst:34
+msgid ""
+"The `add_filter()` method takes keyword arguments which are forwarded to "
+"the constructor of the filter."
+msgstr ""
+
+#: ../../docs/filters.rst:37
+msgid ""
+"To get a list of all registered filters by name, you can use the "
+"`get_all_filters()` function from the `pygments.filters` module that "
+"returns an iterable for all known filters."
+msgstr ""
+
+#: ../../docs/filters.rst:41
+msgid ""
+"If you want to write your own filter, have a look at :doc:`Write your own"
+" filter <filterdevelopment>`."
+msgstr ""
+
+#: ../../docs/filters.rst:46
+msgid "Builtin Filters"
+msgstr ""
+
+#: ../../docs/filters.rst
+msgid "Name"
+msgstr ""
+

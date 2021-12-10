@@ -1,0 +1,781 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/lexerdevelopment.rst:7
+msgid "Write your own lexer"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:9
+msgid ""
+"If a lexer for your favorite language is missing in the Pygments package,"
+" you can easily write your own and extend Pygments."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:12
+msgid ""
+"All you need can be found inside the :mod:`pygments.lexer` module.  As "
+"you can read in the :doc:`API documentation <api>`, a lexer is a class "
+"that is initialized with some keyword arguments (the lexer options) and "
+"that provides a :meth:`.get_tokens_unprocessed()` method which is given a"
+" string or unicode object with the data to lex."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:18
+msgid ""
+"The :meth:`.get_tokens_unprocessed()` method must return an iterator or "
+"iterable containing tuples in the form ``(index, token, value)``.  "
+"Normally you don't need to do this since there are base lexers that do "
+"most of the work and that you can subclass."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:24
+msgid "RegexLexer"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:26
+msgid ""
+"The lexer base class used by almost all of Pygments' lexers is the "
+":class:`RegexLexer`.  This class allows you to define lexing rules in "
+"terms of *regular expressions* for different *states*."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:30
+msgid ""
+"States are groups of regular expressions that are matched against the "
+"input string at the *current position*.  If one of these expressions "
+"matches, a corresponding action is performed (such as yielding a token "
+"with a specific type, or changing state), the current position is set to "
+"where the last match ended and the matching process continues with the "
+"first regex of the current state."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:37
+msgid ""
+"Lexer states are kept on a stack: each time a new state is entered, the "
+"new state is pushed onto the stack.  The most basic lexers (like the "
+"`DiffLexer`) just need one state."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:41
+msgid ""
+"Each state is defined as a list of tuples in the form (`regex`, `action`,"
+" `new_state`) where the last item is optional.  In the most basic form, "
+"`action` is a token type (like `Name.Builtin`).  That means: When `regex`"
+" matches, emit a token with the match text and type `tokentype` and push "
+"`new_state` on the state stack.  If the new state is ``'#pop'``, the "
+"topmost state is popped from the stack instead.  To pop more than one "
+"state, use ``'#pop:2'`` and so on. ``'#push'`` is a synonym for pushing a"
+" second time the current state on top of the stack."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:50
+msgid ""
+"The following example shows the `DiffLexer` from the builtin lexers.  "
+"Note that it contains some additional attributes `name`, `aliases` and "
+"`filenames` which aren't required for a lexer.  They are used by the "
+"builtin lexer lookup functions. ::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:75
+msgid ""
+"As you can see this lexer only uses one state.  When the lexer starts "
+"scanning the text, it first checks if the current character is a space.  "
+"If this is true it scans everything until newline and returns the data as"
+" a `Text` token (which is the \"no special highlighting\" token)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:80
+msgid ""
+"If this rule doesn't match, it checks if the current char is a plus sign."
+"  And so on."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:83
+msgid ""
+"If no rule matches at the current position, the current char is emitted "
+"as an `Error` token that indicates a lexing error, and the position is "
+"increased by one."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:89
+msgid "Adding and testing a new lexer"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:91
+msgid ""
+"The easiest way to use a new lexer is to use Pygments' support for "
+"loading the lexer from a file relative to your current directory."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:94
+msgid "First, change the name of your lexer class to CustomLexer:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:104
+msgid ""
+"Then you can load and test the lexer from the command line with the "
+"additional flag ``-x``:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:111
+msgid "To specify a class name other than CustomLexer, append it with a colon:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:117
+msgid ""
+"Use the ``-f`` flag to select a different output format than terminal "
+"escape sequences."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:120
+msgid "Or, using the Python API:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:130
+msgid ""
+"When loading custom lexers and formatters, be extremely careful to use "
+"only trusted files; Pygments will perform the equivalent of ``eval`` on "
+"them."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:133
+msgid ""
+"If you only want to use your lexer with the Pygments API, you can import "
+"and instantiate the lexer yourself, then pass it to "
+":func:`pygments.highlight`."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:136
+msgid ""
+"To prepare your new lexer for inclusion in the Pygments distribution, so "
+"that it will be found when passing filenames or lexer aliases from the "
+"command line, you have to perform the following steps."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:140
+msgid ""
+"First, change to the current directory containing the Pygments source "
+"code.  You will need to have either an unpacked source tarball, or "
+"(preferably) a copy cloned from GitHub."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:148
+msgid ""
+"Select a matching module under ``pygments/lexers``, or create a new "
+"module for your lexer class."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:153
+msgid ""
+"We encourage you to put your lexer class into its own module, unless it's"
+" a very small derivative of an already existing lexer."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:156
+msgid ""
+"Next, make sure the lexer is known from outside of the module.  All "
+"modules in the ``pygments.lexers`` package specify ``__all__``. For "
+"example, ``esoteric.py`` sets::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:162
+msgid ""
+"Add the name of your lexer class to this list (or create the list if your"
+" lexer is the only class in the module)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:165
+msgid ""
+"Finally the lexer can be made publicly known by rebuilding the lexer "
+"mapping:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:171
+msgid ""
+"To test the new lexer, store an example file in "
+"``tests/examplefiles/<alias>``.  For example, to test your ``DiffLexer``,"
+" add a ``tests/examplefiles/diff/example.diff`` containing a sample diff "
+"output.  To (re)generate the lexer output which the file is checked "
+"against, use the command ``pytest tests/examplefiles/diff --update-"
+"goldens``."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:177
+msgid ""
+"Now you can use ``python -m pygments`` from the current root of the "
+"checkout to render your example to HTML:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:184
+msgid ""
+"Note that this explicitly calls the ``pygments`` module in the current "
+"directory. This ensures your modifications are used. Otherwise a possibly"
+" already installed, unmodified version without your new lexer would have "
+"been called from the system search path (``$PATH``)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:189
+msgid "To view the result, open ``/tmp/example.html`` in your browser."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:191
+msgid ""
+"Once the example renders as expected, you should run the complete test "
+"suite:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:197
+msgid ""
+"It also tests that your lexer fulfills the lexer API and certain "
+"invariants, such as that the concatenation of all token text is the same "
+"as the input text."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:202
+msgid "Regex Flags"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:204
+msgid ""
+"You can either define regex flags locally in the regex (``r'(?x)foo "
+"bar'``) or globally by adding a `flags` attribute to your lexer class.  "
+"If no attribute is defined, it defaults to `re.MULTILINE`.  For more "
+"information about regular expression flags see the page about `regular "
+"expressions`_ in the Python documentation."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:214
+msgid "Scanning multiple tokens at once"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:216
+msgid ""
+"So far, the `action` element in the rule tuple of regex, action and state"
+" has been a single token type.  Now we look at the first of several other"
+" possible values."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:220
+msgid ""
+"Here is a more complex lexer that highlights INI files.  INI files "
+"consist of sections, comments and ``key = value`` pairs::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:241
+msgid ""
+"The lexer first looks for whitespace, comments and section names.  Later "
+"it looks for a line that looks like a key, value pair, separated by an "
+"``'='`` sign, and optional whitespace."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:245
+msgid ""
+"The `bygroups` helper yields each capturing group in the regex with a "
+"different token type.  First the `Name.Attribute` token, then a `Text` "
+"token for the optional whitespace, after that a `Operator` token for the "
+"equals sign. Then a `Text` token for the whitespace again.  The rest of "
+"the line is returned as `String`."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:251
+msgid ""
+"Note that for this to work, every part of the match must be inside a "
+"capturing group (a ``(...)``), and there must not be any nested capturing"
+" groups.  If you nevertheless need a group, use a non-capturing group "
+"defined using this syntax: ``(?:some|words|here)`` (note the ``?:`` after"
+" the beginning parenthesis)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:256
+msgid ""
+"If you find yourself needing a capturing group inside the regex which "
+"shouldn't be part of the output but is used in the regular expressions "
+"for backreferencing (eg: ``r'(<(foo|bar)>)(.*?)(</\\2>)'``), you can pass"
+" `None` to the bygroups function and that group will be skipped in the "
+"output."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:263
+msgid "Changing states"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:265
+msgid ""
+"Many lexers need multiple states to work as expected.  For example, some "
+"languages allow multiline comments to be nested.  Since this is a "
+"recursive pattern it's impossible to lex just using regular expressions."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:269
+msgid ""
+"Here is a lexer that recognizes C++ style comments (multi-line with ``/* "
+"*/`` and single-line with ``//`` until end of line)::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:293
+msgid ""
+"This lexer starts lexing in the ``'root'`` state. It tries to match as "
+"much as possible until it finds a slash (``'/'``).  If the next character"
+" after the slash is an asterisk (``'*'``) the `RegexLexer` sends those "
+"two characters to the output stream marked as `Comment.Multiline` and "
+"continues lexing with the rules defined in the ``'comment'`` state."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:299
+msgid ""
+"If there wasn't an asterisk after the slash, the `RegexLexer` checks if "
+"it's a Singleline comment (i.e. followed by a second slash).  If this "
+"also wasn't the case it must be a single slash, which is not a comment "
+"starter (the separate regex for a single slash must also be given, else "
+"the slash would be marked as an error token)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:305
+msgid ""
+"Inside the ``'comment'`` state, we do the same thing again.  Scan until "
+"the lexer finds a star or slash.  If it's the opening of a multiline "
+"comment, push the ``'comment'`` state on the stack and continue scanning,"
+" again in the ``'comment'`` state.  Else, check if it's the end of the "
+"multiline comment.  If yes, pop one state from the stack."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:311
+msgid ""
+"Note: If you pop from an empty stack you'll get an `IndexError`.  (There "
+"is an easy way to prevent this from happening: don't ``'#pop'`` in the "
+"root state)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:314
+msgid ""
+"If the `RegexLexer` encounters a newline that is flagged as an error "
+"token, the stack is emptied and the lexer continues scanning in the "
+"``'root'`` state.  This can help producing error-tolerant highlighting "
+"for erroneous input, e.g. when a single-line string is not closed."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:321
+msgid "Advanced state tricks"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:323
+msgid "There are a few more things you can do with states:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:325
+msgid ""
+"You can push multiple states onto the stack if you give a tuple instead "
+"of a simple string as the third item in a rule tuple.  For example, if "
+"you want to match a comment containing a directive, something like:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:333
+msgid "you can use this rule::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:351
+msgid ""
+"When this encounters the above sample, first ``'comment'`` and "
+"``'directive'`` are pushed onto the stack, then the lexer continues in "
+"the directive state until it finds the closing ``>``, then it continues "
+"in the comment state until the closing ``*/``.  Then, both states are "
+"popped from the stack again and lexing continues in the root state."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:357
+msgid ""
+"The tuple can contain the special ``'#push'`` and ``'#pop'`` (but not "
+"``'#pop:n'``) directives."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:362
+msgid ""
+"You can include the rules of a state in the definition of another.  This "
+"is done by using `include` from `pygments.lexer`::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:388
+msgid ""
+"This is a hypothetical lexer for a language that consist of functions and"
+" comments.  Because comments can occur at toplevel and in functions, we "
+"need rules for comments in both states.  As you can see, the `include` "
+"helper saves repeating rules that occur more than once (in this example, "
+"the state ``'comment'`` will never be entered by the lexer, as it's only "
+"there to be included in ``'root'`` and ``'function'``)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:395
+msgid ""
+"Sometimes, you may want to \"combine\" a state from existing ones.  This "
+"is possible with the `combined` helper from `pygments.lexer`."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:398
+msgid ""
+"If you, instead of a new state, write ``combined('state1', 'state2')`` as"
+" the third item of a rule tuple, a new anonymous state will be formed "
+"from state1 and state2 and if the rule matches, the lexer will enter this"
+" state."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:402
+msgid ""
+"This is not used very often, but can be helpful in some cases, such as "
+"the `PythonLexer`'s string literal processing."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:405
+msgid ""
+"If you want your lexer to start lexing in a different state you can "
+"modify the stack by overriding the `get_tokens_unprocessed()` method::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:417
+msgid ""
+"Some lexers like the `PhpLexer` use this to make the leading ``<?php`` "
+"preprocessor comments optional.  Note that you can crash the lexer easily"
+" by putting values into the stack that don't exist in the token map.  "
+"Also removing ``'root'`` from the stack can result in strange errors!"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:422
+msgid ""
+"In some lexers, a state should be popped if anything is encountered that "
+"isn't matched by a rule in the state.  You could use an empty regex at "
+"the end of the state list, but Pygments provides a more obvious way of "
+"spelling that: ``default('#pop')`` is equivalent to ``('', Text, "
+"'#pop')``."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:431
+msgid "Subclassing lexers derived from RegexLexer"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:435
+msgid ""
+"Sometimes multiple languages are very similar, but should still be lexed "
+"by different lexer classes."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:438
+msgid ""
+"When subclassing a lexer derived from RegexLexer, the ``tokens`` "
+"dictionaries defined in the parent and child class are merged.  For "
+"example::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:474
+msgid ""
+"The `BaseLexer` defines two states, lexing names and strings.  The "
+"`DerivedLexer` defines its own tokens dictionary, which extends the "
+"definitions of the base lexer:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:478
+msgid ""
+"The \"root\" state has an additional rule and then the special object "
+"`inherit`, which tells Pygments to insert the token definitions of the "
+"parent class at that point."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:482
+msgid ""
+"The \"string\" state is replaced entirely, since there is not `inherit` "
+"rule."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:484
+msgid "The \"comment\" state is inherited entirely."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:488
+msgid "Using multiple lexers"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:490
+msgid ""
+"Using multiple lexers for the same input can be tricky.  One of the "
+"easiest combination techniques is shown here: You can replace the action "
+"entry in a rule tuple with a lexer class.  The matched text will then be "
+"lexed with that lexer, and the resulting tokens will be yielded."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:495
+msgid "For example, look at this stripped-down HTML lexer::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:522
+msgid ""
+"Here the content of a ``<script>`` tag is passed to a newly created "
+"instance of a `JavascriptLexer` and not processed by the `HtmlLexer`.  "
+"This is done using the `using` helper that takes the other lexer class as"
+" its parameter."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:526
+msgid ""
+"Note the combination of `bygroups` and `using`.  This makes sure that the"
+" content up to the ``</script>`` end tag is processed by the "
+"`JavascriptLexer`, while the end tag is yielded as a normal token with "
+"the `Name.Tag` type."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:530
+msgid ""
+"Also note the ``(r'<\\s*script\\s*', Name.Tag, ('script-content', "
+"'tag'))`` rule. Here, two states are pushed onto the state stack, "
+"``'script-content'`` and ``'tag'``.  That means that first ``'tag'`` is "
+"processed, which will lex attributes and the closing ``>``, then the "
+"``'tag'`` state is popped and the next state on top of the stack will be "
+"``'script-content'``."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:536
+msgid ""
+"Since you cannot refer to the class currently being defined, use `this` "
+"(imported from `pygments.lexer`) to refer to the current lexer class, "
+"i.e. ``using(this)``.  This construct may seem unnecessary, but this is "
+"often the most obvious way of lexing arbitrary syntax between fixed "
+"delimiters without introducing deeply nested states."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:542
+msgid ""
+"The `using()` helper has a special keyword argument, `state`, which works"
+" as follows: if given, the lexer to use initially is not in the "
+"``\"root\"`` state, but in the state given by this argument.  This does "
+"not work with advanced `RegexLexer` subclasses such as "
+"`ExtendedRegexLexer` (see below)."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:547
+msgid ""
+"Any other keywords arguments passed to `using()` are added to the keyword"
+" arguments used to create the lexer."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:552
+msgid "Delegating Lexer"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:554
+msgid ""
+"Another approach for nested lexers is the `DelegatingLexer` which is for "
+"example used for the template engine lexers.  It takes two lexers as "
+"arguments on initialisation: a `root_lexer` and a `language_lexer`."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:558
+msgid ""
+"The input is processed as follows: First, the whole text is lexed with "
+"the `language_lexer`.  All tokens yielded with the special type of "
+"``Other`` are then concatenated and given to the `root_lexer`.  The "
+"language tokens of the `language_lexer` are then inserted into the "
+"`root_lexer`'s token stream at the appropriate positions. ::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:571
+msgid ""
+"This procedure ensures that e.g. HTML with template tags in it is "
+"highlighted correctly even if the template tags are put into HTML tags or"
+" attributes."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:574
+msgid ""
+"If you want to change the needle token ``Other`` to something else, you "
+"can give the lexer another token type as the third parameter::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:581
+msgid "Callbacks"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:583
+msgid ""
+"Sometimes the grammar of a language is so complex that a lexer would be "
+"unable to process it just by using regular expressions and stacks."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:586
+msgid ""
+"For this, the `RegexLexer` allows callbacks to be given in rule tuples, "
+"instead of token types (`bygroups` and `using` are nothing else but "
+"preimplemented callbacks).  The callback must be a function taking two "
+"arguments:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:590
+msgid "the lexer itself"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:591
+msgid "the match object for the last matched rule"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:593
+msgid ""
+"The callback must then return an iterable of (or simply yield) ``(index, "
+"tokentype, value)`` tuples, which are then just passed through by "
+"`get_tokens_unprocessed()`.  The ``index`` here is the position of the "
+"token in the input string, ``tokentype`` is the normal token type (like "
+"`Name.Builtin`), and ``value`` the associated part of the input string."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:599
+msgid "You can see an example here::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:617
+msgid ""
+"If the regex for the `headline_callback` matches, the function is called "
+"with the match object.  Note that after the callback is done, processing "
+"continues normally, that is, after the end of the previous match.  The "
+"callback has no possibility to influence the position."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:622
+msgid ""
+"There are not really any simple examples for lexer callbacks, but you can"
+" see them in action e.g. in the `SMLLexer` class in `ml.py`_."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:629
+msgid "The ExtendedRegexLexer class"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:631
+msgid ""
+"The `RegexLexer`, even with callbacks, unfortunately isn't powerful "
+"enough for the funky syntax rules of languages such as Ruby."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:634
+msgid ""
+"But fear not; even then you don't have to abandon the regular expression "
+"approach: Pygments has a subclass of `RegexLexer`, the "
+"`ExtendedRegexLexer`. All features known from RegexLexers are available "
+"here too, and the tokens are specified in exactly the same way, *except* "
+"for one detail:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:639
+msgid ""
+"The `get_tokens_unprocessed()` method holds its internal state data not "
+"as local variables, but in an instance of the "
+"`pygments.lexer.LexerContext` class, and that instance is passed to "
+"callbacks as a third argument. This means that you can modify the lexer "
+"state in callbacks."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:644
+msgid "The `LexerContext` class has the following members:"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:646
+msgid "`text` -- the input text"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:647
+msgid "`pos` -- the current starting position that is used for matching regexes"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:648
+msgid "`stack` -- a list containing the state stack"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:649
+msgid ""
+"`end` -- the maximum position to which regexes are matched, this defaults"
+" to the length of `text`"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:652
+msgid ""
+"Additionally, the `get_tokens_unprocessed()` method can be given a "
+"`LexerContext` instead of a string and will then process this context "
+"instead of creating a new one for the string argument."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:656
+msgid ""
+"Note that because you can set the current position to anything in the "
+"callback, it won't be automatically be set by the caller after the "
+"callback is finished. For example, this is how the hypothetical lexer "
+"above would be written with the `ExtendedRegexLexer`::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:678
+msgid ""
+"This might sound confusing (and it can really be). But it is needed, and "
+"for an example look at the Ruby lexer in `ruby.py`_."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:685
+msgid "Handling Lists of Keywords"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:687
+msgid ""
+"For a relatively short list (hundreds) you can construct an optimized "
+"regular expression directly using ``words()`` (longer lists, see next "
+"section).  This function handles a few things for you automatically, "
+"including escaping metacharacters and Python's first-match rather than "
+"longest-match in alternations.  Feel free to put the lists themselves in "
+"``pygments/lexers/_$lang_builtins.py`` (see examples there), and "
+"generated by code if possible."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:695
+msgid "An example of using ``words()`` is something like::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:708
+msgid ""
+"As you can see, you can add ``prefix`` and ``suffix`` parts to the "
+"constructed regex."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:713
+msgid "Modifying Token Streams"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:715
+msgid ""
+"Some languages ship a lot of builtin functions (for example PHP).  The "
+"total amount of those functions differs from system to system because not"
+" everybody has every extension installed.  In the case of PHP there are "
+"over 3000 builtin functions.  That's an incredibly huge amount of "
+"functions, much more than you want to put into a regular expression."
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:721
+msgid ""
+"But because only `Name` tokens can be function names this is solvable by "
+"overriding the ``get_tokens_unprocessed()`` method.  The following lexer "
+"subclasses the `PythonLexer` so that it highlights some additional names "
+"as pseudo keywords::"
+msgstr ""
+
+#: ../../docs/lexerdevelopment.rst:739
+msgid ""
+"The `PhpLexer` and `LuaLexer` use this method to resolve builtin "
+"functions."
+msgstr ""
+

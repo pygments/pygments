@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/plugins.rst:3
+msgid "Register Plugins"
+msgstr ""
+
+#: ../../docs/plugins.rst:5
+msgid ""
+"If you want to extend Pygments without hacking the sources, but want to "
+"use the lexer/formatter/style/filter lookup functions "
+"(`lexers.get_lexer_by_name` et al.), you can use `setuptools`_ "
+"entrypoints to add new lexers, formatters or styles as if they were in "
+"the Pygments core."
+msgstr ""
+
+#: ../../docs/plugins.rst:12
+msgid ""
+"That means you can use your highlighter modules with the `pygmentize` "
+"script, which relies on the mentioned functions."
+msgstr ""
+
+#: ../../docs/plugins.rst:17
+msgid "Entrypoints"
+msgstr ""
+
+#: ../../docs/plugins.rst:19
+msgid "Here is a list of setuptools entrypoints that Pygments understands:"
+msgstr ""
+
+#: ../../docs/plugins.rst:21
+msgid "`pygments.lexers`"
+msgstr ""
+
+#: ../../docs/plugins.rst:23
+msgid ""
+"This entrypoint is used for adding new lexers to the Pygments core. The "
+"name of the entrypoint values doesn't really matter, Pygments extracts "
+"required metadata from the class definition:"
+msgstr ""
+
+#: ../../docs/plugins.rst:32
+msgid ""
+"Note that you have to define ``name``, ``aliases`` and ``filename`` "
+"attributes so that you can use the highlighter from the command line:"
+msgstr ""
+
+#: ../../docs/plugins.rst:43
+msgid "`pygments.formatters`"
+msgstr ""
+
+#: ../../docs/plugins.rst:45
+msgid ""
+"You can use this entrypoint to add new formatters to Pygments. The name "
+"of an entrypoint item is the name of the formatter. If you prefix the "
+"name with a slash it's used as a filename pattern:"
+msgstr ""
+
+#: ../../docs/plugins.rst:56
+msgid "`pygments.styles`"
+msgstr ""
+
+#: ../../docs/plugins.rst:58
+msgid ""
+"To add a new style you can use this entrypoint. The name of the "
+"entrypoint is the name of the style:"
+msgstr ""
+
+#: ../../docs/plugins.rst:67
+msgid "`pygments.filters`"
+msgstr ""
+
+#: ../../docs/plugins.rst:69
+msgid ""
+"Use this entrypoint to register a new filter. The name of the entrypoint "
+"is the name of the filter:"
+msgstr ""
+
+#: ../../docs/plugins.rst:79
+msgid "How To Use Entrypoints"
+msgstr ""
+
+#: ../../docs/plugins.rst:81
+msgid ""
+"This documentation doesn't explain how to use those entrypoints because "
+"this is covered in the `setuptools documentation`_. That page should "
+"cover everything you need to write a plugin."
+msgstr ""
+
+#: ../../docs/plugins.rst:89
+msgid "Extending The Core"
+msgstr ""
+
+#: ../../docs/plugins.rst:91
+msgid ""
+"If you have written a Pygments plugin that is open source, please inform "
+"us about that. There is a high chance that we'll add it to the Pygments "
+"distribution."
+msgstr ""
+

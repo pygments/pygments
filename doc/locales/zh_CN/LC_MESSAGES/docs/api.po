@@ -1,0 +1,448 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/api.rst:5
+msgid "The full Pygments API"
+msgstr ""
+
+#: ../../docs/api.rst:7
+msgid "This page describes the Pygments API."
+msgstr ""
+
+#: ../../docs/api.rst:10
+msgid "High-level API"
+msgstr ""
+
+#: ../../docs/api.rst:14
+msgid "Functions from the :mod:`pygments` module:"
+msgstr ""
+
+#: ../../docs/api.rst:18
+msgid ""
+"Lex `code` with the `lexer` (must be a `Lexer` instance) and return an "
+"iterable of tokens. Currently, this only calls `lexer.get_tokens()`."
+msgstr ""
+
+#: ../../docs/api.rst:24
+msgid ""
+"Format a token stream (iterable of tokens) `tokens` with the `formatter` "
+"(must be a `Formatter` instance). The result is written to `outfile`, or "
+"if that is ``None``, returned as a string."
+msgstr ""
+
+#: ../../docs/api.rst:31
+msgid ""
+"This is the most high-level highlighting function. It combines `lex` and "
+"`format` in one function."
+msgstr ""
+
+#: ../../docs/api.rst:37
+msgid "Functions from :mod:`pygments.lexers`:"
+msgstr ""
+
+#: ../../docs/api.rst:41
+msgid ""
+"Return an instance of a `Lexer` subclass that has `alias` in its aliases "
+"list. The lexer is given the `options` at its instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:45 ../../docs/api.rst:109
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias"
+" is found."
+msgstr ""
+
+#: ../../docs/api.rst:50
+msgid ""
+"Return a `Lexer` subclass instance that has a filename pattern matching "
+"`fn`. The lexer is given the `options` at its instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:54
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if no lexer for that "
+"filename is found."
+msgstr ""
+
+#: ../../docs/api.rst:59
+msgid ""
+"Return a `Lexer` subclass instance that has `mime` in its mimetype list. "
+"The lexer is given the `options` at its instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:62
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if not lexer for that "
+"mimetype is found."
+msgstr ""
+
+#: ../../docs/api.rst:67
+msgid ""
+"Return a `Lexer` subclass instance loaded from the provided file, "
+"relative to the current directory. The file is expected to contain a "
+"Lexer class named `lexername` (by default, CustomLexer). Users should be "
+"very careful with the input, because this method is equivalent to running"
+" eval on the input file. The lexer is given the `options` at its "
+"instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:73
+msgid ":exc:`ClassNotFound` is raised if there are any errors loading the Lexer"
+msgstr ""
+
+#: ../../docs/api.rst:79
+msgid ""
+"Return a `Lexer` subclass instance that's guessed from the text in "
+"`text`. For that, the :meth:`.analyse_text()` method of every known lexer"
+" class is called with the text as argument, and the lexer which returned "
+"the highest value will be instantiated and returned."
+msgstr ""
+
+#: ../../docs/api.rst:84 ../../docs/api.rst:92
+msgid ""
+":exc:`pygments.util.ClassNotFound` is raised if no lexer thinks it can "
+"handle the content."
+msgstr ""
+
+#: ../../docs/api.rst:89
+msgid ""
+"As :func:`guess_lexer()`, but only lexers which have a pattern in "
+"`filenames` or `alias_filenames` that matches `filename` are taken into "
+"consideration."
+msgstr ""
+
+#: ../../docs/api.rst:97
+msgid ""
+"Return an iterable over all registered lexers, yielding tuples in the "
+"format::"
+msgstr ""
+
+#: ../../docs/api.rst:106
+msgid ""
+"Return the `Lexer` subclass that has `alias` in its aliases list, without"
+" instantiating it."
+msgstr ""
+
+#: ../../docs/api.rst:116
+msgid ""
+"Return the `Lexer` subclass that with the *name* attribute as given by "
+"the *name* argument."
+msgstr ""
+
+#: ../../docs/api.rst:122
+msgid "Functions from :mod:`pygments.formatters`:"
+msgstr ""
+
+#: ../../docs/api.rst:126
+msgid ""
+"Return an instance of a :class:`.Formatter` subclass that has `alias` in "
+"its aliases list. The formatter is given the `options` at its "
+"instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:129
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if no formatter with that "
+"alias is found."
+msgstr ""
+
+#: ../../docs/api.rst:134
+msgid ""
+"Return a :class:`.Formatter` subclass instance that has a filename "
+"pattern matching `fn`. The formatter is given the `options` at its "
+"instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:137
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if no formatter for that "
+"filename is found."
+msgstr ""
+
+#: ../../docs/api.rst:142
+msgid ""
+"Return a `Formatter` subclass instance loaded from the provided file, "
+"relative to the current directory. The file is expected to contain a "
+"Formatter class named ``formattername`` (by default, CustomFormatter). "
+"Users should be very careful with the input, because this method is "
+"equivalent to running eval on the input file. The formatter is given the "
+"`options` at its instantiation."
+msgstr ""
+
+#: ../../docs/api.rst:148
+msgid ""
+":exc:`ClassNotFound` is raised if there are any errors loading the "
+"Formatter"
+msgstr ""
+
+#: ../../docs/api.rst:154
+msgid "Functions from :mod:`pygments.styles`:"
+msgstr ""
+
+#: ../../docs/api.rst:158
+msgid ""
+"Return a style class by its short name. The names of the builtin styles "
+"are listed in :data:`pygments.styles.STYLE_MAP`."
+msgstr ""
+
+#: ../../docs/api.rst:161
+msgid ""
+"Will raise :exc:`pygments.util.ClassNotFound` if no style of that name is"
+" found."
+msgstr ""
+
+#: ../../docs/api.rst:166
+msgid "Return an iterable over all registered styles, yielding their names."
+msgstr ""
+
+#: ../../docs/api.rst:174
+msgid "Lexers"
+msgstr ""
+
+#: ../../docs/api.rst:176
+msgid "The base lexer class from which all lexers are derived is:"
+msgstr ""
+
+#: ../../docs/api.rst:180
+msgid ""
+"The constructor takes a \\*\\*keywords dictionary of options. Every "
+"subclass must first process its own options and then call the `Lexer` "
+"constructor, since it processes the `stripnl`, `stripall` and `tabsize` "
+"options."
+msgstr ""
+
+#: ../../docs/api.rst:185
+msgid "An example looks like this:"
+msgstr ""
+
+#: ../../docs/api.rst:193
+msgid ""
+"As these options must all be specifiable as strings (due to the command "
+"line usage), there are various utility functions available to help with "
+"that, see `Option processing`_."
+msgstr ""
+
+#: ../../docs/api.rst:199
+msgid ""
+"This method is the basic interface of a lexer. It is called by the "
+"`highlight()` function. It must process the text and return an iterable "
+"of ``(tokentype, value)`` pairs from `text`."
+msgstr ""
+
+#: ../../docs/api.rst:203
+msgid ""
+"Normally, you don't need to override this method. The default "
+"implementation processes the `stripnl`, `stripall` and `tabsize` options "
+"and then yields all tokens from `get_tokens_unprocessed()`, with the "
+"``index`` dropped."
+msgstr ""
+
+#: ../../docs/api.rst:210
+msgid ""
+"This method should process the text and return an iterable of ``(index, "
+"tokentype, value)`` tuples where ``index`` is the starting position of "
+"the token within the input text."
+msgstr ""
+
+#: ../../docs/api.rst:214
+msgid "This method must be overridden by subclasses."
+msgstr ""
+
+#: ../../docs/api.rst:218
+msgid ""
+"A static method which is called for lexer guessing. It should analyse the"
+" text and return a float in the range from ``0.0`` to ``1.0``. If it "
+"returns ``0.0``, the lexer will not be selected as the most probable one,"
+" if it returns ``1.0``, it will be selected immediately."
+msgstr ""
+
+#: ../../docs/api.rst:223
+msgid ""
+"You don't have to add ``@staticmethod`` to the definition of this method,"
+" this will be taken care of by the Lexer's metaclass."
+msgstr ""
+
+#: ../../docs/api.rst:226
+msgid "For a list of known tokens have a look at the :doc:`tokens` page."
+msgstr ""
+
+#: ../../docs/api.rst:228
+msgid ""
+"A lexer also can have the following attributes (in fact, they are "
+"mandatory except `alias_filenames`) that are used by the builtin lookup "
+"mechanism."
+msgstr ""
+
+#: ../../docs/api.rst:233
+msgid "Full name for the lexer, in human-readable form."
+msgstr ""
+
+#: ../../docs/api.rst:237
+msgid ""
+"A list of short, unique identifiers that can be used to lookup the lexer "
+"from a list, e.g. using `get_lexer_by_name()`."
+msgstr ""
+
+#: ../../docs/api.rst:242
+msgid ""
+"A list of `fnmatch` patterns that match filenames which contain content "
+"for this lexer. The patterns in this list should be unique among all "
+"lexers."
+msgstr ""
+
+#: ../../docs/api.rst:248
+msgid ""
+"A list of `fnmatch` patterns that match filenames which may or may not "
+"contain content for this lexer. This list is used by the "
+":func:`.guess_lexer_for_filename()` function, to determine which lexers "
+"are then included in guessing the correct one. That means that e.g. every"
+" lexer for HTML and a template language should include ``\\*.html`` in "
+"this list."
+msgstr ""
+
+#: ../../docs/api.rst:257
+msgid "A list of MIME types for content that can be lexed with this lexer."
+msgstr ""
+
+#: ../../docs/api.rst:264
+msgid "Formatters"
+msgstr ""
+
+#: ../../docs/api.rst:266
+msgid "A formatter is derived from this class:"
+msgstr ""
+
+#: ../../docs/api.rst:271
+msgid ""
+"As with lexers, this constructor processes options and then must call the"
+" base class :meth:`__init__`."
+msgstr ""
+
+#: ../../docs/api.rst:274
+msgid ""
+"The :class:`Formatter` class recognizes the options `style`, `full` and "
+"`title`.  It is up to the formatter class whether it uses them."
+msgstr ""
+
+#: ../../docs/api.rst:279
+msgid ""
+"This method must return statements or declarations suitable to define the"
+" current style for subsequent highlighted text (e.g. CSS classes in the "
+"`HTMLFormatter`)."
+msgstr ""
+
+#: ../../docs/api.rst:283
+msgid ""
+"The optional argument `arg` can be used to modify the generation and is "
+"formatter dependent (it is standardized because it can be given on the "
+"command line)."
+msgstr ""
+
+#: ../../docs/api.rst:287
+msgid ""
+"This method is called by the ``-S`` :doc:`command-line option <cmdline>`,"
+" the `arg` is then given by the ``-a`` option."
+msgstr ""
+
+#: ../../docs/api.rst:292
+msgid ""
+"This method must format the tokens from the `tokensource` iterable and "
+"write the formatted version to the file object `outfile`."
+msgstr ""
+
+#: ../../docs/api.rst:295
+msgid "Formatter options can control how exactly the tokens are converted."
+msgstr ""
+
+#: ../../docs/api.rst:297
+msgid ""
+"A formatter must have the following attributes that are used by the "
+"builtin lookup mechanism."
+msgstr ""
+
+#: ../../docs/api.rst:303
+msgid "Full name for the formatter, in human-readable form."
+msgstr ""
+
+#: ../../docs/api.rst:307
+msgid ""
+"A list of short, unique identifiers that can be used to lookup the "
+"formatter from a list, e.g. using :func:`.get_formatter_by_name()`."
+msgstr ""
+
+#: ../../docs/api.rst:312
+msgid ""
+"A list of :mod:`fnmatch` patterns that match filenames for which this "
+"formatter can produce output. The patterns in this list should be unique "
+"among all formatters."
+msgstr ""
+
+#: ../../docs/api.rst:320
+msgid "Option processing"
+msgstr ""
+
+#: ../../docs/api.rst:322
+msgid ""
+"The :mod:`pygments.util` module has some utility functions usable for "
+"processing command line options. All of the following functions get "
+"values from a dictionary of options. If the value is already in the type "
+"expected by the option, it is returned as-is. Otherwise, if the value is "
+"a string, it is first converted to the expected type if possible."
+msgstr ""
+
+#: ../../docs/api.rst:330
+msgid ""
+"This exception will be raised by all option processing functions if the "
+"type or value of the argument is not correct."
+msgstr ""
+
+#: ../../docs/api.rst:335
+msgid ""
+"Intuitively, this is `options.get(optname, default)`, but restricted to "
+"Boolean value. The Booleans can be represented as string, in order to "
+"accept Boolean value from the command line arguments. If the key "
+"`optname` is present in the dictionnary `options` and is not associated "
+"with a Boolean, raise an `OptionError`. If it is absent, `default` is "
+"returned instead."
+msgstr ""
+
+#: ../../docs/api.rst:341
+msgid ""
+"The valid string values for ``True`` are ``1``, ``yes``, ``true`` and "
+"``on``, the ones for ``False`` are ``0``, ``no``, ``false`` and ``off`` "
+"(matched case-insensitively)."
+msgstr ""
+
+#: ../../docs/api.rst:347
+msgid "As :func:`get_bool_opt`, but interpret the value as an integer."
+msgstr ""
+
+#: ../../docs/api.rst:351
+msgid ""
+"If the key `optname` from the dictionary `options` is a string, split it "
+"at whitespace and return it. If it is already a list or a tuple, it is "
+"returned as a list."
+msgstr ""
+
+#: ../../docs/api.rst:357
+msgid ""
+"If the key `optname` from the dictionary is not in the sequence "
+"`allowed`, raise an error, otherwise return it."
+msgstr ""
+

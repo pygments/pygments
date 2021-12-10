@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/moinmoin.rst:5
+msgid "Using Pygments with MoinMoin"
+msgstr ""
+
+#: ../../docs/moinmoin.rst:7
+msgid ""
+"From Pygments 0.7, the source distribution ships a `Moin`_ parser plugin "
+"that can be used to get Pygments highlighting in Moin wiki pages."
+msgstr ""
+
+#: ../../docs/moinmoin.rst:10
+msgid ""
+"To use it, copy the file `external/moin-parser.py` from the Pygments "
+"distribution to the `data/plugin/parser` subdirectory of your Moin "
+"instance. Edit the options at the top of the file (currently "
+"``ATTACHMENTS`` and ``INLINESTYLES``) and rename the file to the name "
+"that the parser directive should have. For example, if you name the file "
+"``code.py``, you can get a highlighted Python code sample with this Wiki "
+"markup::"
+msgstr ""
+
+#: ../../docs/moinmoin.rst:22
+msgid "where ``python`` is the Pygments name of the lexer to use."
+msgstr ""
+
+#: ../../docs/moinmoin.rst:24
+msgid ""
+"Additionally, if you set the ``ATTACHMENTS`` option to True, Pygments "
+"will also be called for all attachments for whose filenames there is no "
+"other parser registered."
+msgstr ""
+
+#: ../../docs/moinmoin.rst:28
+msgid ""
+"You are responsible for including CSS rules that will map the Pygments "
+"CSS classes to colors. You can output a stylesheet file with "
+"`pygmentize`, put it into the `htdocs` directory of your Moin instance "
+"and then include it in the `stylesheets` configuration option in the Moin"
+" config, e.g.::"
+msgstr ""
+
+#: ../../docs/moinmoin.rst:35
+msgid ""
+"If you do not want to do that and are willing to accept larger HTML "
+"output, you can set the ``INLINESTYLES`` option to True."
+msgstr ""
+

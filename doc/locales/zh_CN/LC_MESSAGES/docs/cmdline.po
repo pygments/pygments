@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/cmdline.rst:5
+msgid "Command Line Interface"
+msgstr ""
+
+#: ../../docs/cmdline.rst:7
+msgid ""
+"You can use Pygments from the shell, provided you installed the "
+":program:`pygmentize` script::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:13
+msgid ""
+"will print the file test.py to standard output, using the Python lexer "
+"(inferred from the file name extension) and the terminal formatter "
+"(because you didn't give an explicit formatter name)."
+msgstr ""
+
+#: ../../docs/cmdline.rst:17
+msgid "If you want HTML output::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:21
+msgid ""
+"As you can see, the -l option explicitly selects a lexer. As seen above, "
+"if you give an input file name and it has an extension that Pygments "
+"recognizes, you can omit this option."
+msgstr ""
+
+#: ../../docs/cmdline.rst:25
+msgid ""
+"The ``-o`` option gives an output file name. If it is not given, output "
+"is written to stdout."
+msgstr ""
+
+#: ../../docs/cmdline.rst:28
+msgid ""
+"The ``-f`` option selects a formatter (as with ``-l``, it can also be "
+"omitted if an output file name is given and has a supported extension). "
+"If no output file name is given and ``-f`` is omitted, the "
+":class:`.TerminalFormatter` is used."
+msgstr ""
+
+#: ../../docs/cmdline.rst:33
+msgid "The above command could therefore also be given as::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:37
+msgid ""
+"To create a full HTML document, including line numbers and stylesheet "
+"(using the \"emacs\" style), highlighting the Python file ``test.py`` to "
+"``test.html``::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:44
+msgid "Options and filters"
+msgstr ""
+
+#: ../../docs/cmdline.rst:46
+msgid "Lexer and formatter options can be given using the ``-O`` option::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:50
+msgid ""
+"Be sure to enclose the option string in quotes if it contains any special"
+" shell characters, such as spaces or expansion wildcards like ``*``. If "
+"an option expects a list value, separate the list entries with spaces "
+"(you'll have to quote the option value in this case too, so that the "
+"shell doesn't split it)."
+msgstr ""
+
+#: ../../docs/cmdline.rst:55
+msgid ""
+"Since the ``-O`` option argument is split at commas and expects the split"
+" values to be of the form ``name=value``, you can't give an option value "
+"that contains commas or equals signs.  Therefore, an option ``-P`` is "
+"provided (as of Pygments 0.9) that works like ``-O`` but can only pass "
+"one option per ``-P``. Its value can then contain all characters::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:63
+msgid "Filters are added to the token stream using the ``-F`` option::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:67
+msgid ""
+"As you see, options for the filter are given after a colon. As for "
+"``-O``, the filter name and options must be one shell word, so there may "
+"not be any spaces around the colon."
+msgstr ""
+
+#: ../../docs/cmdline.rst:73
+msgid "Generating styles"
+msgstr ""
+
+#: ../../docs/cmdline.rst:75
+msgid ""
+"Formatters normally don't output full style information.  For example, "
+"the HTML formatter by default only outputs ``<span>`` tags with ``class``"
+" attributes. Therefore, there's a special ``-S`` option for generating "
+"style definitions. Usage is as follows::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:82
+msgid ""
+"generates a CSS style sheet (because you selected the HTML formatter) for"
+" the \"colorful\" style prepending a \".syntax\" selector to all style "
+"rules."
+msgstr ""
+
+#: ../../docs/cmdline.rst:85
+msgid ""
+"For an explanation what ``-a`` means for :doc:`a particular formatter "
+"<formatters>`, look for the `arg` argument for the formatter's "
+":meth:`.get_style_defs()` method."
+msgstr ""
+
+#: ../../docs/cmdline.rst:91
+msgid "Getting lexer names"
+msgstr ""
+
+#: ../../docs/cmdline.rst:95
+msgid "The ``-N`` option guesses a lexer name for a given filename, so that ::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:99
+msgid ""
+"will print out ``python``.  It won't highlight anything yet.  If no "
+"specific lexer is known for that filename, ``text`` is printed."
+msgstr ""
+
+#: ../../docs/cmdline.rst:102
+msgid ""
+"Additionally, there is the ``-C`` option, which is just like like ``-N``,"
+" except that it prints out a lexer name based solely on a given content "
+"from standard input."
+msgstr ""
+
+#: ../../docs/cmdline.rst:108
+msgid "Guessing the lexer from the file contents"
+msgstr ""
+
+#: ../../docs/cmdline.rst:110
+msgid ""
+"The ``-g`` option will try to guess the correct lexer from the file "
+"contents, or pass through as plain text if nothing can be guessed. This "
+"option also looks for Vim modelines in the text, and for *some* "
+"languages, shebangs. Usage is as follows::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:117
+msgid ""
+"Note though, that this option is not very relaiable, and probably should "
+"be used only if Pygments is not able to guess the correct lexer from the "
+"file's extension."
+msgstr ""
+
+#: ../../docs/cmdline.rst:123
+msgid "Highlighting stdin until EOF"
+msgstr ""
+
+#: ../../docs/cmdline.rst:125
+msgid ""
+"The ``-s`` option processes lines one at a time until EOF, rather than "
+"waiting to process the entire file. This only works for stdin, only for "
+"lexers with no line-spanning constructs, and is intended for streaming "
+"input such as you get from `tail -f`. Usage is as follows::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:134
+msgid "Custom Lexers and Formatters"
+msgstr ""
+
+#: ../../docs/cmdline.rst:138
+msgid ""
+"The ``-x`` flag enables custom lexers and formatters to be loaded from "
+"files relative to the current directory. Create a file with a class named"
+" CustomLexer or CustomFormatter, then specify it on the command line::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:144
+msgid "You can also specify the name of your class with a colon::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:148
+msgid ""
+"For more information, see :doc:`the Pygments documentation on Lexer "
+"development <lexerdevelopment>`."
+msgstr ""
+
+#: ../../docs/cmdline.rst:153
+msgid "Getting help"
+msgstr ""
+
+#: ../../docs/cmdline.rst:155
+msgid ""
+"The ``-L`` option lists lexers, formatters, along with their short names "
+"and supported file name extensions, styles and filters. If you want to "
+"see only one category, give it as an argument::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:161
+msgid "will list only all installed filters."
+msgstr ""
+
+#: ../../docs/cmdline.rst:165
+msgid ""
+"The ``--json`` option can be used in conjunction with the ``-L`` option "
+"to output it's contents as JSON. Thus, to print all the installed styles "
+"and their description in JSON, use the command::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:171
+msgid ""
+"The ``-H`` option will give you detailed information (the same that can "
+"be found in this documentation) about a lexer, formatter or filter. Usage"
+" is as follows::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:176
+msgid "will print the help for the HTML formatter, while ::"
+msgstr ""
+
+#: ../../docs/cmdline.rst:180
+msgid "will print the help for the Python lexer, etc."
+msgstr ""
+
+#: ../../docs/cmdline.rst:184
+msgid "A note on encodings"
+msgstr ""
+
+#: ../../docs/cmdline.rst:188
+msgid "Pygments tries to be smart regarding encodings in the formatting process:"
+msgstr ""
+
+#: ../../docs/cmdline.rst:190
+msgid ""
+"If you give an ``encoding`` option, it will be used as the input and "
+"output encoding."
+msgstr ""
+
+#: ../../docs/cmdline.rst:193
+msgid ""
+"If you give an ``outencoding`` option, it will override ``encoding`` as "
+"the output encoding."
+msgstr ""
+
+#: ../../docs/cmdline.rst:196
+msgid ""
+"If you give an ``inencoding`` option, it will override ``encoding`` as "
+"the input encoding."
+msgstr ""
+
+#: ../../docs/cmdline.rst:199
+msgid ""
+"If you don't give an encoding and have given an output file, the default "
+"encoding for lexer and formatter is the terminal encoding or the default "
+"locale encoding of the system.  As a last resort, ``latin1`` is used "
+"(which will pass through all non-ASCII characters)."
+msgstr ""
+
+#: ../../docs/cmdline.rst:204
+msgid ""
+"If you don't give an encoding and haven't given an output file (that "
+"means output is written to the console), the default encoding for lexer "
+"and formatter is the terminal encoding (``sys.stdout.encoding``)."
+msgstr ""
+

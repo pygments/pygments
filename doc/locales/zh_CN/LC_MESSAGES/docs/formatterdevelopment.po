@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/formatterdevelopment.rst:5
+msgid "Write your own formatter"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:7
+msgid ""
+"As well as creating :doc:`your own lexer <lexerdevelopment>`, writing a "
+"new formatter for Pygments is easy and straightforward."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:10
+msgid ""
+"A formatter is a class that is initialized with some keyword arguments "
+"(the formatter options) and that must provides a `format()` method. "
+"Additionally a formatter should provide a `get_style_defs()` method that "
+"returns the style definitions from the style in a form usable for the "
+"formatter's output format."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:18
+msgid "Quickstart"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:20
+msgid ""
+"The most basic formatter shipped with Pygments is the `NullFormatter`. It"
+" just sends the value of a token to the output stream:"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:32
+msgid ""
+"As you can see, the `format()` method is passed two parameters: "
+"`tokensource` and `outfile`. The first is an iterable of ``(token_type, "
+"value)`` tuples, the latter a file like object with a `write()` method."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:36
+msgid ""
+"Because the formatter is that basic it doesn't overwrite the "
+"`get_style_defs()` method."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:41
+msgid "Styles"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:43
+msgid ""
+"Styles aren't instantiated but their metaclass provides some class "
+"functions so that you can access the style definitions easily."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:46
+msgid ""
+"Styles are iterable and yield tuples in the form ``(ttype, d)`` where "
+"`ttype` is a token and `d` is a dict with the following keys:"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:51
+msgid "``'color'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:50
+msgid ""
+"Hexadecimal color value (eg: ``'ff0000'`` for red) or `None` if not "
+"defined."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:54
+msgid "``'bold'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:54
+msgid "`True` if the value should be bold"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:57
+msgid "``'italic'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:57
+msgid "`True` if the value should be italic"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:60
+msgid "``'underline'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:60
+msgid "`True` if the value should be underlined"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:64
+msgid "``'bgcolor'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:63
+msgid ""
+"Hexadecimal color value for the background (eg: ``'eeeeeee'`` for light "
+"gray) or `None` if not defined."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:68
+msgid "``'border'``"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:67
+msgid ""
+"Hexadecimal color value for the border (eg: ``'0000aa'`` for a dark blue)"
+" or `None` for no border."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:70
+msgid ""
+"Additional keys might appear in the future, formatters should ignore all "
+"keys they don't support."
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:75
+msgid "HTML 3.2 Formatter"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:77
+msgid ""
+"For an more complex example, let's implement a HTML 3.2 Formatter. We "
+"don't use CSS but inline markup (``<u>``, ``<font>``, etc). Because this "
+"isn't good style this formatter isn't in the standard library ;-)"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:156
+msgid ""
+"The comments should explain it. Again, this formatter doesn't override "
+"the `get_style_defs()` method. If we would have used CSS classes instead "
+"of inline HTML markup, we would need to generate the CSS first. For that "
+"purpose the `get_style_defs()` method exists:"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:163
+msgid "Generating Style Definitions"
+msgstr ""
+
+#: ../../docs/formatterdevelopment.rst:165
+msgid ""
+"Some formatters like the `LatexFormatter` and the `HtmlFormatter` don't "
+"output inline markup but reference either macros or css classes. Because "
+"the definitions of those are not part of the output, the "
+"`get_style_defs()` method exists. It is passed one parameter (if it's "
+"used and how it's used is up to the formatter) and has to return a string"
+" or ``None``."
+msgstr ""
+

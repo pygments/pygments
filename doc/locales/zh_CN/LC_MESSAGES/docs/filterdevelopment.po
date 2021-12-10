@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/filterdevelopment.rst:5
+msgid "Write your own filter"
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:9
+msgid ""
+"Writing own filters is very easy. All you have to do is to subclass the "
+"`Filter` class and override the `filter` method. Additionally a filter is"
+" instantiated with some keyword arguments you can use to adjust the "
+"behavior of your filter."
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:16
+msgid "Subclassing Filters"
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:18
+msgid ""
+"As an example, we write a filter that converts all `Name.Function` tokens"
+" to normal `Name` tokens to make the output less colorful."
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:40
+msgid ""
+"Some notes on the `lexer` argument: that can be quite confusing since it "
+"doesn't need to be a lexer instance. If a filter was added by using the "
+"`add_filter()` function of lexers, that lexer is registered for the "
+"filter. In that case `lexer` will refer to the lexer that has registered "
+"the filter. It *can* be used to access options passed to a lexer. Because"
+" it could be `None` you always have to check for that case if you access "
+"it."
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:49
+msgid "Using a decorator"
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:51
+msgid ""
+"You can also use the `simplefilter` decorator from the `pygments.filter` "
+"module:"
+msgstr ""
+
+#: ../../docs/filterdevelopment.rst:70
+msgid ""
+"You can instantiate this filter by calling `uncolor(classtoo=True)`, the "
+"same way that you would have instantiated the previous filter by calling "
+"`UncolorFilter(classtoo=True)`. Indeed, The decorator automatically "
+"ensures that `uncolor` is a class which subclasses an internal filter "
+"class. The class `uncolo` uses the decorated function as a method for "
+"filtering.  (That's why there is a `self` argument that you probably "
+"won't end up using in the method.)"
+msgstr ""
+

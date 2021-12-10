@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/formatters.rst:5
+msgid "Available formatters"
+msgstr ""
+
+#: ../../docs/formatters.rst:7
+msgid "This page lists all builtin formatters."
+msgstr ""
+
+#: ../../docs/formatters.rst:10
+msgid "Common options"
+msgstr ""
+
+#: ../../docs/formatters.rst:12
+msgid "All formatters support these options:"
+msgstr ""
+
+#: ../../docs/formatters.rst:31
+msgid "`encoding`"
+msgstr ""
+
+#: ../../docs/formatters.rst:15
+msgid ""
+"If given, must be an encoding name (such as ``\"utf-8\"``). This will be "
+"used to convert the token strings (which are Unicode strings) to byte "
+"strings in the output (default: ``None``). It will also be written in an "
+"encoding declaration suitable for the document format if the `full` "
+"option is given (e.g. a ``meta content-type`` directive in HTML or an "
+"invocation of the `inputenc` package in LaTeX)."
+msgstr ""
+
+#: ../../docs/formatters.rst:23
+msgid ""
+"If this is ``\"\"`` or ``None``, Unicode strings will be written to the "
+"output file, which most file-like objects do not support. For example, "
+"`pygments.highlight()` will return a Unicode string if called with no "
+"`outfile` argument and a formatter that has `encoding` set to ``None`` "
+"because it uses a `StringIO.StringIO` object that supports Unicode "
+"arguments to `write()`. Using a regular file object wouldn't work."
+msgstr ""
+
+#: ../../docs/formatters.rst:41
+msgid "`outencoding`"
+msgstr ""
+
+#: ../../docs/formatters.rst:34
+msgid ""
+"When using Pygments from the command line, any `encoding` option given is"
+" passed to the lexer and the formatter. This is sometimes not desirable, "
+"for example if you want to set the input encoding to ``\"guess\"``. "
+"Therefore, `outencoding` has been introduced which overrides `encoding` "
+"for the formatter if given."
+msgstr ""
+
+#: ../../docs/formatters.rst:44
+msgid "Formatter classes"
+msgstr ""
+
+#: ../../docs/formatters.rst:46
+msgid "All these classes are importable from :mod:`pygments.formatters`."
+msgstr ""
+
+#: ../../docs/formatters.rst
+msgid "Short names"
+msgstr ""
+
+#: ../../docs/formatters.rst
+msgid "Filenames"
+msgstr ""
+

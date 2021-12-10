@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../docs/styles.rst:5
+msgid "Styles"
+msgstr ""
+
+#: ../../docs/styles.rst:7
+msgid ""
+"Pygments comes with :doc:`some builtin styles </styles/>` that work for "
+"both the HTML and LaTeX formatter."
+msgstr ""
+
+#: ../../docs/styles.rst:10
+msgid "The builtin styles can be looked up with the `get_style_by_name` function:"
+msgstr ""
+
+#: ../../docs/styles.rst:18
+msgid ""
+"You can pass a instance of a `Style` class to a formatter as the `style` "
+"option in form of a string:"
+msgstr ""
+
+#: ../../docs/styles.rst:28
+msgid ""
+"Or you can also import your own style (which must be a subclass of "
+"`pygments.style.Style`) and pass it to the formatter:"
+msgstr ""
+
+#: ../../docs/styles.rst:40
+msgid "Creating Own Styles"
+msgstr ""
+
+#: ../../docs/styles.rst:42
+msgid "See :ref:`creating-own-styles`."
+msgstr ""
+
+#: ../../docs/styles.rst:46
+msgid "Builtin Styles"
+msgstr ""
+
+#: ../../docs/styles.rst:48
+msgid ""
+"Pygments ships some builtin styles which are maintained by the Pygments "
+"team."
+msgstr ""
+
+#: ../../docs/styles.rst:50
+msgid "To get a list of known styles you can use this snippet:"
+msgstr ""
+
+#: ../../docs/styles.rst:60
+msgid "Getting a list of available styles"
+msgstr ""
+
+#: ../../docs/styles.rst:64
+msgid ""
+"Because it could be that a plugin registered a style, there is a way to "
+"iterate over all styles:"
+msgstr ""
+
+#: ../../docs/styles.rst:76
+msgid "Terminal Styles"
+msgstr ""
+
+#: ../../docs/styles.rst:80
+msgid ""
+"Custom styles used with the 256-color terminal formatter can also map "
+"colors to use the 8 default ANSI colors.  To do so, use ``ansigreen``, "
+"``ansibrightred`` or any other colors defined in "
+":attr:`pygments.style.ansicolors`.  Foreground ANSI colors will be mapped"
+" to the corresponding `escape codes 30 to 37 "
+"<https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_ thus respecting"
+" any custom color mapping and themes provided by many terminal emulators."
+"  Light variants are treated as foreground color with and an added bold "
+"flag. ``bg:ansi<color>`` will also be respected, except the light variant"
+" will be the same shade as their dark variant."
+msgstr ""
+
+#: ../../docs/styles.rst:90
+msgid ""
+"See the following example where the color of the string ``\"hello "
+"world\"`` is governed by the escape sequence ``\\x1b[34;01m`` (Ansi "
+"bright blue, Bold, 41 being red background) instead of an extended "
+"foreground & background color."
+msgstr ""
+
+#: ../../docs/styles.rst:112
+msgid ""
+"Colors specified using ``ansi*`` are converted to a default set of RGB "
+"colors when used with formatters other than the terminal-256 formatter."
+msgstr ""
+
+#: ../../docs/styles.rst:115
+msgid ""
+"By definition of ANSI, the following colors are considered \"light\" "
+"colors, and will be rendered by most terminals as bold:"
+msgstr ""
+
+#: ../../docs/styles.rst:118
+msgid ""
+"\"brightblack\" (darkgrey), \"brightred\", \"brightgreen\", "
+"\"brightyellow\", \"brightblue\", \"brightmagenta\", \"brightcyan\", "
+"\"white\""
+msgstr ""
+
+#: ../../docs/styles.rst:121
+msgid ""
+"The following are considered \"dark\" colors and will be rendered as non-"
+"bold:"
+msgstr ""
+
+#: ../../docs/styles.rst:123
+msgid ""
+"\"black\", \"red\", \"green\", \"yellow\", \"blue\", \"magenta\", "
+"\"cyan\", \"gray\""
+msgstr ""
+
+#: ../../docs/styles.rst:126
+msgid ""
+"Exact behavior might depends on the terminal emulator you are using, and "
+"its settings."
+msgstr ""
+
+#: ../../docs/styles.rst:133
+msgid ""
+"The definition of the ANSI color names has changed. New names are easier "
+"to understand and align to the colors used in other projects."
+msgstr ""
+
+#: ../../docs/styles.rst:137
+msgid "New names"
+msgstr ""
+
+#: ../../docs/styles.rst:137
+msgid "Pygments up to 2.3"
+msgstr ""
+
+#: ../../docs/styles.rst:139
+msgid "``ansiblack``"
+msgstr ""
+
+#: ../../docs/styles.rst:139
+msgid "``#ansiblack``"
+msgstr ""
+
+#: ../../docs/styles.rst:140
+msgid "``ansired``"
+msgstr ""
+
+#: ../../docs/styles.rst:140
+msgid "``#ansidarkred``"
+msgstr ""
+
+#: ../../docs/styles.rst:141
+msgid "``ansigreen``"
+msgstr ""
+
+#: ../../docs/styles.rst:141
+msgid "``#ansidarkgreen``"
+msgstr ""
+
+#: ../../docs/styles.rst:142
+msgid "``ansiyellow``"
+msgstr ""
+
+#: ../../docs/styles.rst:142
+msgid "``#ansibrown``"
+msgstr ""
+
+#: ../../docs/styles.rst:143
+msgid "``ansiblue``"
+msgstr ""
+
+#: ../../docs/styles.rst:143
+msgid "``#ansidarkblue``"
+msgstr ""
+
+#: ../../docs/styles.rst:144
+msgid "``ansimagenta``"
+msgstr ""
+
+#: ../../docs/styles.rst:144
+msgid "``#ansipurple``"
+msgstr ""
+
+#: ../../docs/styles.rst:145
+msgid "``ansicyan``"
+msgstr ""
+
+#: ../../docs/styles.rst:145
+msgid "``#ansiteal``"
+msgstr ""
+
+#: ../../docs/styles.rst:146
+msgid "``ansigray``"
+msgstr ""
+
+#: ../../docs/styles.rst:146
+msgid "``#ansilightgray``"
+msgstr ""
+
+#: ../../docs/styles.rst:147
+msgid "``ansibrightblack``"
+msgstr ""
+
+#: ../../docs/styles.rst:147
+msgid "``#ansidarkgray``"
+msgstr ""
+
+#: ../../docs/styles.rst:148
+msgid "``ansibrightred``"
+msgstr ""
+
+#: ../../docs/styles.rst:148
+msgid "``#ansired``"
+msgstr ""
+
+#: ../../docs/styles.rst:149
+msgid "``ansibrightgreen``"
+msgstr ""
+
+#: ../../docs/styles.rst:149
+msgid "``#ansigreen``"
+msgstr ""
+
+#: ../../docs/styles.rst:150
+msgid "``ansibrightyellow``"
+msgstr ""
+
+#: ../../docs/styles.rst:150
+msgid "``#ansiyellow``"
+msgstr ""
+
+#: ../../docs/styles.rst:151
+msgid "``ansibrightblue``"
+msgstr ""
+
+#: ../../docs/styles.rst:151
+msgid "``#ansiblue``"
+msgstr ""
+
+#: ../../docs/styles.rst:152
+msgid "``ansibrightmagenta``"
+msgstr ""
+
+#: ../../docs/styles.rst:152
+msgid "``#ansifuchsia``"
+msgstr ""
+
+#: ../../docs/styles.rst:153
+msgid "``ansibrightcyan``"
+msgstr ""
+
+#: ../../docs/styles.rst:153
+msgid "``#ansiturquoise``"
+msgstr ""
+
+#: ../../docs/styles.rst:154
+msgid "``ansiwhite``"
+msgstr ""
+
+#: ../../docs/styles.rst:154
+msgid "``#ansiwhite``"
+msgstr ""
+
+#: ../../docs/styles.rst:157
+msgid "Old ANSI color names are deprecated but will still work."
+msgstr ""
+

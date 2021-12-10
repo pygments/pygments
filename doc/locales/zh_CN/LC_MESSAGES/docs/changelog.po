@@ -1,0 +1,4623 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2006-2021, Georg Brandl and Pygments contributors
+# This file is distributed under the same license as the Pygments package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pygments 2.10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-10 09:57+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../../CHANGES:2
+msgid "Pygments changelog"
+msgstr ""
+
+#: ../../../CHANGES:4
+msgid ""
+"Since 2.5.0, issue numbers refer to the tracker at "
+"<https://github.com/pygments/pygments/issues>, pull request numbers to "
+"the requests at <https://github.com/pygments/pygments/pulls>."
+msgstr ""
+
+#: ../../../CHANGES:11
+msgid "Version 2.11.0"
+msgstr ""
+
+#: ../../../CHANGES:12
+msgid "(not released yet)"
+msgstr ""
+
+#: ../../../CHANGES:14 ../../../CHANGES:66 ../../../CHANGES:107
+#: ../../../CHANGES:169 ../../../CHANGES:339 ../../../CHANGES:410
+#: ../../../CHANGES:484 ../../../CHANGES:576 ../../../CHANGES:652
+#: ../../../CHANGES:673 ../../../CHANGES:753
+msgid "Added lexers:"
+msgstr ""
+
+#: ../../../CHANGES:16
+msgid "BDD (#1803)"
+msgstr ""
+
+#: ../../../CHANGES:17
+msgid "LilyPond (#1845). This comes with a custom style as well."
+msgstr ""
+
+#: ../../../CHANGES:18
+msgid "Maxima (#1885)"
+msgstr ""
+
+#: ../../../CHANGES:19
+msgid "Savi (#1863)"
+msgstr ""
+
+#: ../../../CHANGES:20
+msgid "Sed (#1935)"
+msgstr ""
+
+#: ../../../CHANGES:21
+msgid "Sophia contracts (#1974)"
+msgstr ""
+
+#: ../../../CHANGES:22
+msgid "Spice (#1980)"
+msgstr ""
+
+#: ../../../CHANGES:23
+msgid "``.SRCINFO`` (#1951)"
+msgstr ""
+
+#: ../../../CHANGES:25 ../../../CHANGES:74 ../../../CHANGES:117
+#: ../../../CHANGES:176 ../../../CHANGES:250 ../../../CHANGES:286
+#: ../../../CHANGES:312 ../../../CHANGES:354 ../../../CHANGES:423
+#: ../../../CHANGES:494 ../../../CHANGES:558 ../../../CHANGES:595
+#: ../../../CHANGES:627 ../../../CHANGES:657
+msgid "Updated lexers:"
+msgstr ""
+
+#: ../../../CHANGES:27
+msgid "Bibtex: Distinguish between ``comment`` and ``commentary`` (#1899, #1806)"
+msgstr ""
+
+#: ../../../CHANGES:28
+msgid "C family: Support unicode identifiers (#1848)"
+msgstr ""
+
+#: ../../../CHANGES:29
+msgid "Debian control: Add missing fields (#1946)"
+msgstr ""
+
+#: ../../../CHANGES:30
+msgid "Devicetree: Recognize hexadecimal addresses for nodes (#1949)"
+msgstr ""
+
+#: ../../../CHANGES:31
+msgid "GDScript: Add ``void`` data type (#1948)"
+msgstr ""
+
+#: ../../../CHANGES:32
+msgid "HTML, XML: Improve comment handling (#1896)"
+msgstr ""
+
+#: ../../../CHANGES:33
+msgid "Java: Add ``yield`` (#1941)"
+msgstr ""
+
+#: ../../../CHANGES:34
+msgid "Prolog: Support escaped ``\\`` inside quoted strings (#1479)"
+msgstr ""
+
+#: ../../../CHANGES:35
+msgid "RobotFramework: Improve empty brace handling (#1921, #1922)"
+msgstr ""
+
+#: ../../../CHANGES:36
+msgid "Terraform: Add the 'set' type"
+msgstr ""
+
+#: ../../../CHANGES:37
+msgid "Terraform: Support heredocs (#1909)"
+msgstr ""
+
+#: ../../../CHANGES:39 ../../../CHANGES:161 ../../../CHANGES:198
+#: ../../../CHANGES:512 ../../../CHANGES:782
+msgid "Added styles:"
+msgstr ""
+
+#: ../../../CHANGES:41
+msgid "Dracula (#1796)"
+msgstr ""
+
+#: ../../../CHANGES:42
+msgid "LilyPond (#1845) -- to be used for the ``LilyPond`` language."
+msgstr ""
+
+#: ../../../CHANGES:43
+msgid "One-Dark (#1924)"
+msgstr ""
+
+#: ../../../CHANGES:47
+msgid ""
+"All of the new styles unfortunately do not conform to WCAG "
+"recommendations."
+msgstr ""
+
+#: ../../../CHANGES:49
+msgid ""
+"There is new infrastructure in place to improve style accessibility. The "
+"default style has been updated to conform to WCAG recommendations. All "
+"styles are now checked for sufficient contrast by default to prevent "
+"regressions. (#1919, #1937, #1938, #1940)"
+msgstr ""
+
+#: ../../../CHANGES:50
+msgid "Clean up unused imports (#1887)"
+msgstr ""
+
+#: ../../../CHANGES:51
+msgid "Fix multiple lexers producing repeated single-character tokens"
+msgstr ""
+
+#: ../../../CHANGES:52
+msgid ""
+"Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1914, "
+"#1911, #1923, #1939, #1957)"
+msgstr ""
+
+#: ../../../CHANGES:53
+msgid "Remove duplicated assignments in the Paraiso style (#1934)"
+msgstr ""
+
+#: ../../../CHANGES:54
+msgid ""
+"``pygmentize`` supports JSON output for the various list functions now, "
+"making it easier to consume them from scripts. (#1437, #1890)"
+msgstr ""
+
+#: ../../../CHANGES:55
+msgid "Use the ``shell`` lexer for ``kshrc`` files (#1947)"
+msgstr ""
+
+#: ../../../CHANGES:56
+msgid "Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)"
+msgstr ""
+
+#: ../../../CHANGES:57
+msgid "Add a ``groff`` formatter (#1873)"
+msgstr ""
+
+#: ../../../CHANGES:58
+msgid "Update documentation (#1928)"
+msgstr ""
+
+#: ../../../CHANGES:59
+msgid "Line anchors now link to themselves (#1973)"
+msgstr ""
+
+#: ../../../CHANGES:63
+msgid "Version 2.10.0"
+msgstr ""
+
+#: ../../../CHANGES:64
+msgid "(released August 15th, 2021)"
+msgstr ""
+
+#: ../../../CHANGES:68
+msgid "ASC armored files (#1807)"
+msgstr ""
+
+#: ../../../CHANGES:69
+msgid "GSQL (#1809, #1866)"
+msgstr ""
+
+#: ../../../CHANGES:70
+msgid "Javascript REPL (#1825)"
+msgstr ""
+
+#: ../../../CHANGES:71
+msgid "procfile (#1808)"
+msgstr ""
+
+#: ../../../CHANGES:72
+msgid "Smithy (#1878, #1879)"
+msgstr ""
+
+#: ../../../CHANGES:76
+msgid "C-family: Fix preprocessor token issues (#1830)"
+msgstr ""
+
+#: ../../../CHANGES:77
+msgid "C# (#1573, #1869)"
+msgstr ""
+
+#: ../../../CHANGES:78
+msgid "CSound (#1837)"
+msgstr ""
+
+#: ../../../CHANGES:79
+msgid "Fennel (#1862)"
+msgstr ""
+
+#: ../../../CHANGES:80
+msgid "JavaScript (#1741, #1814)"
+msgstr ""
+
+#: ../../../CHANGES:81
+msgid "LLVM (#1824)"
+msgstr ""
+
+#: ../../../CHANGES:82 ../../../CHANGES:602
+msgid "Rust"
+msgstr ""
+
+#: ../../../CHANGES:84
+msgid "Fix lexing of \"break\" and \"continue\" (#1843)"
+msgstr ""
+
+#: ../../../CHANGES:85
+msgid "Improve attribute handling (#1813)"
+msgstr ""
+
+#: ../../../CHANGES:87
+msgid "Scala: Add support for the ``\\`` operator (#1857)"
+msgstr ""
+
+#: ../../../CHANGES:88
+msgid "Swift (#1767, #1842)"
+msgstr ""
+
+#: ../../../CHANGES:89
+msgid "Tcl: Allow ``,`` and ``@`` in strings (#1834, #1742)"
+msgstr ""
+
+#: ../../../CHANGES:91
+msgid "Fix assert statements in TNT lexer."
+msgstr ""
+
+#: ../../../CHANGES:92
+msgid ""
+"Token types across all lexers have been unified (using the most common "
+"token type name) (#1816, #1819)"
+msgstr ""
+
+#: ../../../CHANGES:94
+msgid "Improve Jasmin min score analysis (#1619)"
+msgstr ""
+
+#: ../../../CHANGES:95
+msgid "Add new alias for Go files (#1827)"
+msgstr ""
+
+#: ../../../CHANGES:96
+msgid "Fix multi-line console highlighting (#1833)"
+msgstr ""
+
+#: ../../../CHANGES:97
+msgid ""
+"Add a new trivial lexer which outputs everything as `Text.Generic.Output`"
+" (#1835, #1836)"
+msgstr ""
+
+#: ../../../CHANGES:98
+msgid "Use the ``.ini`` lexer for ``systemd`` files (#1849)"
+msgstr ""
+
+#: ../../../CHANGES:99
+msgid "Fix a ``FutureWarning`` related to ``words()`` (#1854)"
+msgstr ""
+
+#: ../../../CHANGES:100
+msgid "``pwsh`` is now recognized as an alias for PowerShell (#1876)"
+msgstr ""
+
+#: ../../../CHANGES:104
+msgid "Version 2.9.0"
+msgstr ""
+
+#: ../../../CHANGES:105
+msgid "(released May 3rd, 2021)"
+msgstr ""
+
+#: ../../../CHANGES:109
+msgid "APDL, gcode (#1714)"
+msgstr ""
+
+#: ../../../CHANGES:110
+msgid "Kuin (#1300)"
+msgstr ""
+
+#: ../../../CHANGES:111
+msgid "NestedText (#1578)"
+msgstr ""
+
+#: ../../../CHANGES:112
+msgid "OMG IDL (#1595)"
+msgstr ""
+
+#: ../../../CHANGES:113
+msgid "TEAL (#1671)"
+msgstr ""
+
+#: ../../../CHANGES:114
+msgid "ThingsDB (#1295)"
+msgstr ""
+
+#: ../../../CHANGES:115
+msgid "WebAssembly (#1416, #1564)"
+msgstr ""
+
+#: ../../../CHANGES:119
+msgid "AMDGPU (#1717, #1775)"
+msgstr ""
+
+#: ../../../CHANGES:120
+msgid "APL (#1747)"
+msgstr ""
+
+#: ../../../CHANGES:121
+msgid "C/C++: Improve namespace handling (#1722, #1561, #1719, #1746)"
+msgstr ""
+
+#: ../../../CHANGES:122
+msgid "Chapel (#1743)"
+msgstr ""
+
+#: ../../../CHANGES:123
+msgid "Coq (#1721)"
+msgstr ""
+
+#: ../../../CHANGES:124
+msgid "Cython (#853)"
+msgstr ""
+
+#: ../../../CHANGES:125
+msgid "Groovy (#1765)"
+msgstr ""
+
+#: ../../../CHANGES:126
+msgid "Julia (#1715)"
+msgstr ""
+
+#: ../../../CHANGES:127
+msgid "Octave: Allow multiline and block-percent comments (#1726)"
+msgstr ""
+
+#: ../../../CHANGES:128
+msgid "PowerShell: Improve lexing of ``:`` (#1682, #1758)"
+msgstr ""
+
+#: ../../../CHANGES:129
+msgid "PromQL (#1783)"
+msgstr ""
+
+#: ../../../CHANGES:130
+msgid "Python: Improve float parsing (#1768, #1740)"
+msgstr ""
+
+#: ../../../CHANGES:131
+msgid "Rust (#1061)"
+msgstr ""
+
+#: ../../../CHANGES:132
+msgid "Scala: Rewrite to support Scala3 (#1694, #1035, #1121)"
+msgstr ""
+
+#: ../../../CHANGES:133
+msgid "Terraform: Support 0.14 syntax (#1756)"
+msgstr ""
+
+#: ../../../CHANGES:134
+msgid "Velocity: Detect multi-line patterns (#1776)"
+msgstr ""
+
+#: ../../../CHANGES:136
+msgid "Add Pango formatter (#1727)"
+msgstr ""
+
+#: ../../../CHANGES:137
+msgid "Autopygmentize uses ``file`` first instead of ``pygments -N`` (#1786)"
+msgstr ""
+
+#: ../../../CHANGES:138
+msgid "Fix links (#1716)"
+msgstr ""
+
+#: ../../../CHANGES:139
+msgid "Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)"
+msgstr ""
+
+#: ../../../CHANGES:140
+msgid "Improve alias order (#1780)"
+msgstr ""
+
+#: ../../../CHANGES:141
+msgid "Improve line number colors (#1779, #1778)"
+msgstr ""
+
+#: ../../../CHANGES:142
+msgid "Fix CTag related issue (#1724)"
+msgstr ""
+
+#: ../../../CHANGES:143
+msgid "Recognize ``.leex`` as Elixir templates"
+msgstr ""
+
+#: ../../../CHANGES:145
+msgid "Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)"
+msgstr ""
+
+#: ../../../CHANGES:147
+msgid ""
+"Previously the filename would be emitted within the `<td>` holding the "
+"code, but outside the `<pre>`. This would invariably break the alignment "
+"with line numbers."
+msgstr ""
+
+#: ../../../CHANGES:150
+msgid ""
+"Now if `filename` is specified, a separate `<tr>` is emitted before the "
+"table content which contains a single `<th>` with `colspan=2` so it spans"
+" both the line number and code columns. The filename is still within "
+"`<span class=\"filename\">...</span>` so any existing styles should still"
+" apply, although the CSS path may need to change."
+msgstr ""
+
+#: ../../../CHANGES:155
+msgid ""
+"For an example of the new output format see "
+"`table_cls_step_1_start_1_special_0_noanchor_filename.html` in the "
+"`tests/html_linenos_expected_output/` directory."
+msgstr ""
+
+#: ../../../CHANGES:158
+msgid ""
+"For more details and discussion see the issue "
+"https://github.com/pygments/pygments/issues/1757"
+msgstr ""
+
+#: ../../../CHANGES:163
+msgid "Gruvbox light+dark (#1763)"
+msgstr ""
+
+#: ../../../CHANGES:166
+msgid "Version 2.8.0"
+msgstr ""
+
+#: ../../../CHANGES:167
+msgid "(released February 14, 2021)"
+msgstr ""
+
+#: ../../../CHANGES:171
+msgid "AMDGPU (#1626)"
+msgstr ""
+
+#: ../../../CHANGES:172
+msgid "CDDL (#1379, #1239)"
+msgstr ""
+
+#: ../../../CHANGES:173
+msgid "Futhark (#1691)"
+msgstr ""
+
+#: ../../../CHANGES:174
+msgid "Graphviz/DOT (#1657, #731)"
+msgstr ""
+
+#: ../../../CHANGES:178
+msgid "AutoIt: Support single quoted strings (#1667, #1663)"
+msgstr ""
+
+#: ../../../CHANGES:179
+msgid "C/C++ & related: Fix mishandling ``*/`` (#1695)"
+msgstr ""
+
+#: ../../../CHANGES:180
+msgid "Cocoa: Add builtin types (#1703)"
+msgstr ""
+
+#: ../../../CHANGES:181
+msgid "Console (#1672)"
+msgstr ""
+
+#: ../../../CHANGES:182
+msgid "Eiffel: Fix performance issues (#1658)"
+msgstr ""
+
+#: ../../../CHANGES:183
+msgid "Fortran: Improve combined keyword detection (#1677, #1188)"
+msgstr ""
+
+#: ../../../CHANGES:184
+msgid "J: Fix operator ``?`` lexing (#1700, #1149)"
+msgstr ""
+
+#: ../../../CHANGES:185
+msgid "JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)"
+msgstr ""
+
+#: ../../../CHANGES:186
+msgid ""
+"Kotlin: Improve string interpolation, modifier keyword handling, and "
+"various small issues (#1699)"
+msgstr ""
+
+#: ../../../CHANGES:187
+msgid "LESS: Support single-line comments (#1046)"
+msgstr ""
+
+#: ../../../CHANGES:188
+msgid "Matlab:"
+msgstr ""
+
+#: ../../../CHANGES:190
+msgid "Add support for class properties (#1466)"
+msgstr ""
+
+#: ../../../CHANGES:191
+msgid "Update builtin functions (#1705)"
+msgstr ""
+
+#: ../../../CHANGES:192
+msgid "Various cleanups (#1673)"
+msgstr ""
+
+#: ../../../CHANGES:194
+msgid "Python: Improve handling of raw f-strings (#1681, #1683)"
+msgstr ""
+
+#: ../../../CHANGES:195
+msgid "Ruby: Better method name handling (#1531)"
+msgstr ""
+
+#: ../../../CHANGES:196
+msgid "Stata: Updated keywords (#1470)"
+msgstr ""
+
+#: ../../../CHANGES:200
+msgid "Material (#1662)"
+msgstr ""
+
+#: ../../../CHANGES:201
+msgid "Zenburn (#1659)"
+msgstr ""
+
+#: ../../../CHANGES:203
+msgid ""
+"The `pygmentize` script now uses `argparse`, all options should work as "
+"before"
+msgstr ""
+
+#: ../../../CHANGES:206
+msgid "Add `pygmentize -C` option to guess a lexer from content"
+msgstr ""
+
+#: ../../../CHANGES:208
+msgid ""
+"With this release, Pygments moves to a new internal testing system "
+"(#1649.) See ``Contributing.md`` for details. The main advantage of this "
+"new change is a much better test coverage of all existing example lexers."
+" It also makes it much easier to add new test snippets."
+msgstr ""
+
+#: ../../../CHANGES:212
+msgid "Make guessing prefer Python 3 lexer"
+msgstr ""
+
+#: ../../../CHANGES:213
+msgid "Do not guess MIME or SQL without reason"
+msgstr ""
+
+#: ../../../CHANGES:214
+msgid ""
+"Changed setuptools to use a declarative config through ``setup.cfg``. "
+"Building Pygments now requires setuptools 39.2+."
+msgstr ""
+
+#: ../../../CHANGES:216
+msgid "Add markdown to MarkdownLexer aliases (#1687)"
+msgstr ""
+
+#: ../../../CHANGES:217
+msgid "Change line number handling"
+msgstr ""
+
+#: ../../../CHANGES:219
+msgid ""
+"In ``<table>`` based output, the ``td.linenos`` element will have either "
+"a ``normal`` or ``special`` class attached. Previously, only ``special`` "
+"line numbers got a class. This prevents styles from getting applied twice"
+" - once via ``<pre>``, once via ``<span class=\"special\">``. This also "
+"means that ``td.linenos pre`` is no longer styled, instead, use "
+"``td.linenos .normal`` and ``td.linenos .special``."
+msgstr ""
+
+#: ../../../CHANGES:225
+msgid ""
+"In the \"inline\" style, the DOM element order was changed. The line "
+"number is added first, then the line is wrapped is wrapped by the "
+"highlighter. This fixes lines not being fully highlighted."
+msgstr ""
+
+#: ../../../CHANGES:228
+msgid ""
+"The visual output for inline and non-inline line numbers & highlighting, "
+"as well as class-based and inline styling is now consistent."
+msgstr ""
+
+#: ../../../CHANGES:230
+msgid ""
+"Line number styles are set to ``background-color: transparent`` and "
+"``color: inherit`` by default. This works much better with dark styles "
+"which don't have colors set for line numbers."
+msgstr ""
+
+#: ../../../CHANGES:234
+msgid ""
+"Remove \"raw\" alias from RawTokenLexer, so that it cannot be selected by"
+" alias."
+msgstr ""
+
+#: ../../../CHANGES:236
+msgid "Fix RawTokenLexer to work in Python 3 and handle exceptions."
+msgstr ""
+
+#: ../../../CHANGES:237
+msgid "Add prompt colors to the Solarized theme (#1529)"
+msgstr ""
+
+#: ../../../CHANGES:238
+msgid "Image formatter supports background colors now (#1374)"
+msgstr ""
+
+#: ../../../CHANGES:239
+msgid "Add support for anchors in conjunction with inline line numbers (#1591)"
+msgstr ""
+
+#: ../../../CHANGES:240
+msgid "Modernize the codebase using ``pyupgrade`` (#1622)"
+msgstr ""
+
+#: ../../../CHANGES:241
+msgid ""
+"Add support for line numbers to the ``terminal256`` formatter (#1674, "
+"#1653)"
+msgstr ""
+
+#: ../../../CHANGES:242
+msgid "Improve ``analyze_text`` logic for ``ECL`` (#1610)"
+msgstr ""
+
+#: ../../../CHANGES:243
+msgid "Improve ``analyze_text`` logic for ``CBM Basic V2`` (#1607)"
+msgstr ""
+
+#: ../../../CHANGES:244
+msgid "Improve LaTeX formatter (#1708, #1709)"
+msgstr ""
+
+#: ../../../CHANGES:247
+msgid "Version 2.7.4"
+msgstr ""
+
+#: ../../../CHANGES:248
+msgid "(released January 12, 2021)"
+msgstr ""
+
+#: ../../../CHANGES:252
+msgid "Apache configurations: Improve handling of malformed tags (#1656)"
+msgstr ""
+
+#: ../../../CHANGES:253
+msgid "CSS: Add support for variables (#1633, #1666)"
+msgstr ""
+
+#: ../../../CHANGES:254
+msgid "Crystal (#1650, #1670)"
+msgstr ""
+
+#: ../../../CHANGES:255
+msgid "Coq (#1648)"
+msgstr ""
+
+#: ../../../CHANGES:256
+msgid "Fortran: Add missing keywords (#1635, #1665)"
+msgstr ""
+
+#: ../../../CHANGES:257
+msgid "Ini (#1624)"
+msgstr ""
+
+#: ../../../CHANGES:258
+msgid "JavaScript and variants (#1647 -- missing regex flags, #1651)"
+msgstr ""
+
+#: ../../../CHANGES:259
+msgid "Markdown (#1623, #1617)"
+msgstr ""
+
+#: ../../../CHANGES:260
+msgid "Shell"
+msgstr ""
+
+#: ../../../CHANGES:262
+msgid "Lex trailing whitespace as part of the prompt (#1645)"
+msgstr ""
+
+#: ../../../CHANGES:263
+msgid "Add missing ``in`` keyword (#1652)"
+msgstr ""
+
+#: ../../../CHANGES:265
+msgid "SQL - Fix keywords (#1668)"
+msgstr ""
+
+#: ../../../CHANGES:266
+msgid "Typescript: Fix incorrect punctuation handling (#1510, #1511)"
+msgstr ""
+
+#: ../../../CHANGES:268
+msgid ""
+"Fix infinite loop in SML lexer (#1625), `CVE-2021-20270 "
+"<https://nvd.nist.gov/vuln/detail/CVE-2021-20270>`_"
+msgstr ""
+
+#: ../../../CHANGES:269
+msgid ""
+"Fix backtracking string regexes in JavaScript/TypeScript, Modula2 and "
+"many other lexers (#1637) `CVE-2021-27291 "
+"<https://nvd.nist.gov/vuln/detail/CVE-2021-27291>`_"
+msgstr ""
+
+#: ../../../CHANGES:271
+msgid "Limit recursion with nesting Ruby heredocs (#1638)"
+msgstr ""
+
+#: ../../../CHANGES:272
+msgid "Fix a few inefficient regexes for guessing lexers"
+msgstr ""
+
+#: ../../../CHANGES:273
+msgid "Fix the raw token lexer handling of Unicode (#1616)"
+msgstr ""
+
+#: ../../../CHANGES:274
+msgid ""
+"Revert a private API change in the HTML formatter (#1655) -- please note "
+"that private APIs remain subject to change!"
+msgstr ""
+
+#: ../../../CHANGES:276
+msgid ""
+"Fix several exponential/cubic-complexity regexes found by Ben "
+"Caller/Doyensec (#1675)"
+msgstr ""
+
+#: ../../../CHANGES:278
+msgid "Fix incorrect MATLAB example (#1582)"
+msgstr ""
+
+#: ../../../CHANGES:280
+msgid "Thanks to Google's OSS-Fuzz project for finding many of these bugs."
+msgstr ""
+
+#: ../../../CHANGES:283
+msgid "Version 2.7.3"
+msgstr ""
+
+#: ../../../CHANGES:284
+msgid "(released December 6, 2020)"
+msgstr ""
+
+#: ../../../CHANGES:288
+msgid "Ada (#1581)"
+msgstr ""
+
+#: ../../../CHANGES:289
+msgid "HTML (#1615, #1614)"
+msgstr ""
+
+#: ../../../CHANGES:290
+msgid "Java (#1594, #1586)"
+msgstr ""
+
+#: ../../../CHANGES:291
+msgid "JavaScript (#1605, #1589, #1588)"
+msgstr ""
+
+#: ../../../CHANGES:292
+msgid "JSON (#1569 -- this is a complete rewrite)"
+msgstr ""
+
+#: ../../../CHANGES:293
+msgid "Lean (#1601)"
+msgstr ""
+
+#: ../../../CHANGES:294
+msgid "LLVM (#1612)"
+msgstr ""
+
+#: ../../../CHANGES:295
+msgid "Mason (#1592)"
+msgstr ""
+
+#: ../../../CHANGES:296
+msgid "MySQL (#1555, #1551)"
+msgstr ""
+
+#: ../../../CHANGES:297
+msgid "Rust (#1608)"
+msgstr ""
+
+#: ../../../CHANGES:298
+msgid "Turtle (#1590, #1553)"
+msgstr ""
+
+#: ../../../CHANGES:300
+msgid ""
+"Deprecated JsonBareObjectLexer, which is now identical to JsonLexer "
+"(#1600)"
+msgstr ""
+
+#: ../../../CHANGES:301
+msgid ""
+"The ``ImgFormatter`` now calculates the exact character width, which "
+"fixes some issues with overlapping text (#1213, #1611)"
+msgstr ""
+
+#: ../../../CHANGES:302
+msgid "Documentation fixes (#1609, #1599, #1598)"
+msgstr ""
+
+#: ../../../CHANGES:303
+msgid "Fixed duplicated Juttle language alias (#1604, #1606)"
+msgstr ""
+
+#: ../../../CHANGES:304
+msgid "Added support for Kotlin scripts (#1587)"
+msgstr ""
+
+#: ../../../CHANGES:305
+msgid "Removed CSS rule which forced margin to 0"
+msgstr ""
+
+#: ../../../CHANGES:309
+msgid "Version 2.7.2"
+msgstr ""
+
+#: ../../../CHANGES:310
+msgid "(released October 24, 2020)"
+msgstr ""
+
+#: ../../../CHANGES:314
+msgid "Latex (#1517, #1516)"
+msgstr ""
+
+#: ../../../CHANGES:315
+msgid "LLVM (#1565)"
+msgstr ""
+
+#: ../../../CHANGES:316
+msgid "SPARQL (#1559)"
+msgstr ""
+
+#: ../../../CHANGES:318
+msgid ""
+"Fix Python console/traceback lexer problems with custom exceptions "
+"without messages (#1548)"
+msgstr ""
+
+#: ../../../CHANGES:319
+msgid "Allow loading ttc fonts on Mac/image formatter (#1223)"
+msgstr ""
+
+#: ../../../CHANGES:320
+msgid "Improve ``analyze_text`` across a variety of lexers (#1549)"
+msgstr ""
+
+#: ../../../CHANGES:321
+msgid ""
+"Remove CSS rule which forced the vertical padding to 0 for line numbers "
+"(#1583, #1579)"
+msgstr ""
+
+#: ../../../CHANGES:322
+msgid "Fix ``TNTLexer`` crashing on unexpected EOL (#1568, #1570)"
+msgstr ""
+
+#: ../../../CHANGES:323
+msgid "``regexlint`` can be now run locally as part of ``tox`` tests (#1557)"
+msgstr ""
+
+#: ../../../CHANGES:324
+msgid "Fix typos (#1550, #1562)"
+msgstr ""
+
+#: ../../../CHANGES:325
+msgid "Add Python 3.9 as a supported version (#1554)"
+msgstr ""
+
+#: ../../../CHANGES:329
+msgid "Version 2.7.1"
+msgstr ""
+
+#: ../../../CHANGES:330
+msgid "(released September 16, 2020)"
+msgstr ""
+
+#: ../../../CHANGES:332
+msgid "Fixed a regression in the JSON lexer (#1544)"
+msgstr ""
+
+#: ../../../CHANGES:336
+msgid "Version 2.7.0"
+msgstr ""
+
+#: ../../../CHANGES:337
+msgid "(released September 12, 2020)"
+msgstr ""
+
+#: ../../../CHANGES:341
+msgid "Arrow (#1481, #1499)"
+msgstr ""
+
+#: ../../../CHANGES:342
+msgid "BARE (#1488)"
+msgstr ""
+
+#: ../../../CHANGES:343
+msgid "Devicetree (#1434)"
+msgstr ""
+
+#: ../../../CHANGES:344
+msgid "F* (#1409)"
+msgstr ""
+
+#: ../../../CHANGES:345
+msgid "GDScript (#1457)"
+msgstr ""
+
+#: ../../../CHANGES:346
+msgid "Pointless (#1494)"
+msgstr ""
+
+#: ../../../CHANGES:347
+msgid "PromQL (#1506)"
+msgstr ""
+
+#: ../../../CHANGES:348
+msgid "PsySH (#1438)"
+msgstr ""
+
+#: ../../../CHANGES:349
+msgid "Singularity (#1285)"
+msgstr ""
+
+#: ../../../CHANGES:350
+msgid "TiddlyWiki5 (#1390)"
+msgstr ""
+
+#: ../../../CHANGES:351
+msgid "TNT (#1414)"
+msgstr ""
+
+#: ../../../CHANGES:352
+msgid "YANG (#1408, #1428)"
+msgstr ""
+
+#: ../../../CHANGES:356
+msgid "APL (#1503)"
+msgstr ""
+
+#: ../../../CHANGES:357
+msgid ""
+"C++ (#1350, which also fixes: #1222, #996, #906, #828, #1162, #1166, "
+"#1396)"
+msgstr ""
+
+#: ../../../CHANGES:359
+msgid "Chapel (#1423)"
+msgstr ""
+
+#: ../../../CHANGES:360
+msgid "CMake (#1491)"
+msgstr ""
+
+#: ../../../CHANGES:361
+msgid "CSound (#1509)"
+msgstr ""
+
+#: ../../../CHANGES:362
+msgid "Cython (#1507)"
+msgstr ""
+
+#: ../../../CHANGES:363
+msgid "Dart (#1449)"
+msgstr ""
+
+#: ../../../CHANGES:364
+msgid "Fennel (#1535)"
+msgstr ""
+
+#: ../../../CHANGES:365
+msgid "Fortran (#1442)"
+msgstr ""
+
+#: ../../../CHANGES:366
+msgid "GAS (#1530)"
+msgstr ""
+
+#: ../../../CHANGES:367
+msgid "HTTP (#1432, #1520, #1521)"
+msgstr ""
+
+#: ../../../CHANGES:368
+msgid "Inform 6 (#1461)"
+msgstr ""
+
+#: ../../../CHANGES:369
+msgid "Javascript (#1533)"
+msgstr ""
+
+#: ../../../CHANGES:370
+msgid "JSON (#1065, #1528)"
+msgstr ""
+
+#: ../../../CHANGES:371
+msgid "Lean (#1415)"
+msgstr ""
+
+#: ../../../CHANGES:372
+msgid "Matlab (#1399)"
+msgstr ""
+
+#: ../../../CHANGES:373
+msgid "Markdown (#1492, #1495)"
+msgstr ""
+
+#: ../../../CHANGES:374
+msgid "MySQL (#975, #1063, #1453, #1527)"
+msgstr ""
+
+#: ../../../CHANGES:375
+msgid "NASM (#1465)"
+msgstr ""
+
+#: ../../../CHANGES:376
+msgid "Nim (#1426)"
+msgstr ""
+
+#: ../../../CHANGES:377
+msgid "PostgreSQL (#1513)"
+msgstr ""
+
+#: ../../../CHANGES:378
+msgid "PowerShell (#1398, #1497)"
+msgstr ""
+
+#: ../../../CHANGES:379
+msgid "Protobuf (#1505)"
+msgstr ""
+
+#: ../../../CHANGES:380
+msgid "Robot (#1480)"
+msgstr ""
+
+#: ../../../CHANGES:381
+msgid "SQL (#1402)"
+msgstr ""
+
+#: ../../../CHANGES:382
+msgid ""
+"SystemVerilog (#1436, #1452, #1454, #1460, #1462, #1463, #1464, #1471, "
+"#1496, #1504)"
+msgstr ""
+
+#: ../../../CHANGES:383
+msgid "TeraTerm (#1337)"
+msgstr ""
+
+#: ../../../CHANGES:384
+msgid "XML (#1502)"
+msgstr ""
+
+#: ../../../CHANGES:386
+msgid "Added a new filter for math symbols (#1406)"
+msgstr ""
+
+#: ../../../CHANGES:387
+msgid "The Kconfig lexer will match Kconfig derivative names now (#1458)"
+msgstr ""
+
+#: ../../../CHANGES:388
+msgid "Improved HTML formatter output (#1500)"
+msgstr ""
+
+#: ../../../CHANGES:389
+msgid "``.markdown`` is now recognized as an extension for Markdown files (#1476)"
+msgstr ""
+
+#: ../../../CHANGES:390
+msgid "Fixed line number colors for Solarized (#1477, #1356)"
+msgstr ""
+
+#: ../../../CHANGES:391
+msgid "Improvements to exception handling (#1478)"
+msgstr ""
+
+#: ../../../CHANGES:392
+msgid "Improvements to tests (#1532, #1533, #1539)"
+msgstr ""
+
+#: ../../../CHANGES:393
+msgid "Various code cleanups (#1536, #1537, #1538)"
+msgstr ""
+
+#: ../../../CHANGES:397
+msgid "Version 2.6.1"
+msgstr ""
+
+#: ../../../CHANGES:398 ../../../CHANGES:405
+msgid "(released March 8, 2020)"
+msgstr ""
+
+#: ../../../CHANGES:400 ../../../CHANGES:477
+msgid "This release fixes a packaging issue. No functional changes."
+msgstr ""
+
+#: ../../../CHANGES:404
+msgid "Version 2.6"
+msgstr ""
+
+#: ../../../CHANGES:407
+msgid ""
+"Running Pygments on Python 2.x is no longer supported. (The Python 2 "
+"lexer still exists.)"
+msgstr ""
+
+#: ../../../CHANGES:412
+msgid "Linux kernel logs (#1310)"
+msgstr ""
+
+#: ../../../CHANGES:413
+msgid "LLVM MIR (#1361)"
+msgstr ""
+
+#: ../../../CHANGES:414
+msgid "MiniScript (#1397)"
+msgstr ""
+
+#: ../../../CHANGES:415
+msgid "Mosel (#1287, #1326)"
+msgstr ""
+
+#: ../../../CHANGES:416
+msgid "Parsing Expression Grammar (#1336)"
+msgstr ""
+
+#: ../../../CHANGES:417
+msgid "ReasonML (#1386)"
+msgstr ""
+
+#: ../../../CHANGES:418
+msgid "Ride (#1319, #1321)"
+msgstr ""
+
+#: ../../../CHANGES:419
+msgid "Sieve (#1257)"
+msgstr ""
+
+#: ../../../CHANGES:420
+msgid "USD (#1290)"
+msgstr ""
+
+#: ../../../CHANGES:421
+msgid "WebIDL (#1309)"
+msgstr ""
+
+#: ../../../CHANGES:425
+msgid "Apache2 (#1378)"
+msgstr ""
+
+#: ../../../CHANGES:426
+msgid "Chapel (#1357)"
+msgstr ""
+
+#: ../../../CHANGES:427
+msgid "CSound (#1383)"
+msgstr ""
+
+#: ../../../CHANGES:428
+msgid "D (#1375, #1362)"
+msgstr ""
+
+#: ../../../CHANGES:429
+msgid "Haskell (#1347, #1177)"
+msgstr ""
+
+#: ../../../CHANGES:430
+msgid "Idris (#1360)"
+msgstr ""
+
+#: ../../../CHANGES:431
+msgid "Perl6/Raku lexer (#1344)"
+msgstr ""
+
+#: ../../../CHANGES:432
+msgid "Python3 (#1382, #1385)"
+msgstr ""
+
+#: ../../../CHANGES:433
+msgid ""
+"Rust: Updated lexer to cover more builtins (mostly macros) and "
+"miscellaneous new syntax (#1320)"
+msgstr ""
+
+#: ../../../CHANGES:435
+msgid "SQL: Add temporal support keywords (#1402)"
+msgstr ""
+
+#: ../../../CHANGES:437
+msgid ""
+"The 256-color/true-color terminal formatters now support the italic "
+"attribute in styles (#1288)"
+msgstr ""
+
+#: ../../../CHANGES:439
+msgid "Support HTTP 2/3 header (#1308)"
+msgstr ""
+
+#: ../../../CHANGES:440
+msgid "Support missing reason in HTTP header (#1322)"
+msgstr ""
+
+#: ../../../CHANGES:441
+msgid ""
+"Boogie/Silver: support line continuations and triggers, move contract "
+"keywords to separate category (#1299)"
+msgstr ""
+
+#: ../../../CHANGES:443
+msgid "GAS: support C-style comments (#1291)"
+msgstr ""
+
+#: ../../../CHANGES:444
+msgid "Fix names in S lexer (#1330, #1333)"
+msgstr ""
+
+#: ../../../CHANGES:445
+msgid "Fix numeric literals in Ada (#1334)"
+msgstr ""
+
+#: ../../../CHANGES:446
+msgid "Recognize ``.mjs`` files as Javascript (#1392)"
+msgstr ""
+
+#: ../../../CHANGES:447
+msgid "Recognize ``.eex`` files as Elixir (#1387)"
+msgstr ""
+
+#: ../../../CHANGES:448
+msgid "Fix ``re.MULTILINE`` usage (#1388)"
+msgstr ""
+
+#: ../../../CHANGES:449
+msgid "Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)"
+msgstr ""
+
+#: ../../../CHANGES:450
+msgid "Improve font search on Windows (#1247)"
+msgstr ""
+
+#: ../../../CHANGES:451
+msgid "Remove unused script block (#1401)"
+msgstr ""
+
+#: ../../../CHANGES:455
+msgid "Version 2.5.2"
+msgstr ""
+
+#: ../../../CHANGES:456
+msgid "(released November 29, 2019)"
+msgstr ""
+
+#: ../../../CHANGES:458
+msgid "Fix incompatibility with some setuptools versions (PR#1316)"
+msgstr ""
+
+#: ../../../CHANGES:460
+msgid "Fix lexing of ReST field lists (PR#1279)"
+msgstr ""
+
+#: ../../../CHANGES:461
+msgid "Fix lexing of Matlab keywords as field names (PR#1282)"
+msgstr ""
+
+#: ../../../CHANGES:462
+msgid "Recognize double-quoted strings in Matlab (PR#1278)"
+msgstr ""
+
+#: ../../../CHANGES:463
+msgid "Avoid slow backtracking in Vim lexer (PR#1312)"
+msgstr ""
+
+#: ../../../CHANGES:464
+msgid "Fix Scala highlighting of types (PR#1315)"
+msgstr ""
+
+#: ../../../CHANGES:465
+msgid "Highlight field lists more consistently in ReST (PR#1279)"
+msgstr ""
+
+#: ../../../CHANGES:466
+msgid "Fix highlighting Matlab keywords in field names (PR#1282)"
+msgstr ""
+
+#: ../../../CHANGES:467
+msgid "Recognize Matlab double quoted strings (PR#1278)"
+msgstr ""
+
+#: ../../../CHANGES:468
+msgid "Add some Terraform keywords"
+msgstr ""
+
+#: ../../../CHANGES:469
+msgid "Update Modelica lexer to 3.4"
+msgstr ""
+
+#: ../../../CHANGES:470
+msgid "Update Crystal examples"
+msgstr ""
+
+#: ../../../CHANGES:474
+msgid "Version 2.5.1"
+msgstr ""
+
+#: ../../../CHANGES:475 ../../../CHANGES:482
+msgid "(released November 26, 2019)"
+msgstr ""
+
+#: ../../../CHANGES:481
+msgid "Version 2.5.0"
+msgstr ""
+
+#: ../../../CHANGES:486
+msgid "Email (PR#1246)"
+msgstr ""
+
+#: ../../../CHANGES:487
+msgid "Erlang, Elixir shells (PR#823, #1521)"
+msgstr ""
+
+#: ../../../CHANGES:488
+msgid "Notmuch (PR#1264)"
+msgstr ""
+
+#: ../../../CHANGES:489
+msgid "`Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_ (PR#1268)"
+msgstr ""
+
+#: ../../../CHANGES:490
+msgid "`Solidity <https://solidity.readthedocs.io/>`_ (#1214)"
+msgstr ""
+
+#: ../../../CHANGES:491
+msgid "`Zeek <https://www.zeek.org>`_ (new name for Bro) (PR#1269)"
+msgstr ""
+
+#: ../../../CHANGES:492
+msgid "`Zig <https://ziglang.org/>`_ (PR#820)"
+msgstr ""
+
+#: ../../../CHANGES:496
+msgid "Apache2 Configuration (PR#1251)"
+msgstr ""
+
+#: ../../../CHANGES:497
+msgid "Bash sessions (#1253)"
+msgstr ""
+
+#: ../../../CHANGES:498
+msgid "CSound (PR#1250)"
+msgstr ""
+
+#: ../../../CHANGES:499
+msgid "Dart"
+msgstr ""
+
+#: ../../../CHANGES:500
+msgid "Dockerfile"
+msgstr ""
+
+#: ../../../CHANGES:501
+msgid "Emacs Lisp"
+msgstr ""
+
+#: ../../../CHANGES:502
+msgid "Handlebars (PR#773)"
+msgstr ""
+
+#: ../../../CHANGES:503
+msgid "Java (#1101, #987)"
+msgstr ""
+
+#: ../../../CHANGES:504
+msgid "Logtalk (PR#1261)"
+msgstr ""
+
+#: ../../../CHANGES:505
+msgid "Matlab (PR#1271)"
+msgstr ""
+
+#: ../../../CHANGES:506
+msgid "Praat (PR#1277)"
+msgstr ""
+
+#: ../../../CHANGES:507
+msgid "Python3 (PR#1255, PR#1400)"
+msgstr ""
+
+#: ../../../CHANGES:508
+msgid "Ruby"
+msgstr ""
+
+#: ../../../CHANGES:509
+msgid "YAML (#1528)"
+msgstr ""
+
+#: ../../../CHANGES:510
+msgid "Velocity"
+msgstr ""
+
+#: ../../../CHANGES:514
+msgid "Inkpot (PR#1276)"
+msgstr ""
+
+#: ../../../CHANGES:516
+msgid ""
+"The ``PythonLexer`` class is now an alias for the former "
+"``Python3Lexer``. The old ``PythonLexer`` is available as "
+"``Python2Lexer``.  Same change has been done for the "
+"``PythonTracebackLexer``.  The ``python3`` option for the "
+"``PythonConsoleLexer`` is now true by default."
+msgstr ""
+
+#: ../../../CHANGES:521
+msgid ""
+"Bump ``NasmLexer`` priority over ``TasmLexer`` for ``.asm`` files (fixes "
+"#1326)"
+msgstr ""
+
+#: ../../../CHANGES:523
+msgid "Default font in the ``ImageFormatter`` has been updated (#928, PR#1245)"
+msgstr ""
+
+#: ../../../CHANGES:524
+msgid "Test suite switched to py.test, removed nose dependency (#1490)"
+msgstr ""
+
+#: ../../../CHANGES:525
+msgid ""
+"Reduce ``TeraTerm`` lexer score -- it used to match nearly all languages "
+"(#1256)"
+msgstr ""
+
+#: ../../../CHANGES:527
+msgid "Treat ``Skylark``/``Starlark`` files as Python files (PR#1259)"
+msgstr ""
+
+#: ../../../CHANGES:528
+msgid "Image formatter: actually respect ``line_number_separator`` option"
+msgstr ""
+
+#: ../../../CHANGES:530
+msgid "Add LICENSE file to wheel builds"
+msgstr ""
+
+#: ../../../CHANGES:531
+msgid "Agda: fix lambda highlighting"
+msgstr ""
+
+#: ../../../CHANGES:532
+msgid "Dart: support ``@`` annotations"
+msgstr ""
+
+#: ../../../CHANGES:533
+msgid "Dockerfile: accept ``FROM ... AS`` syntax"
+msgstr ""
+
+#: ../../../CHANGES:534
+msgid "Emacs Lisp: add more string functions"
+msgstr ""
+
+#: ../../../CHANGES:535
+msgid "GAS: accept registers in directive arguments"
+msgstr ""
+
+#: ../../../CHANGES:536
+msgid ""
+"Java: make structural punctuation (braces, parens, colon, comma) "
+"``Punctuation``, not ``Operator`` (#987)"
+msgstr ""
+
+#: ../../../CHANGES:537
+msgid "Java: support ``var`` contextual keyword (#1101)"
+msgstr ""
+
+#: ../../../CHANGES:538
+msgid "Matlab: Fix recognition of ``function`` keyword (PR#1271)"
+msgstr ""
+
+#: ../../../CHANGES:539
+msgid "Python: recognize ``.jy`` filenames (#976)"
+msgstr ""
+
+#: ../../../CHANGES:540
+msgid "Python: recognize ``f`` string prefix (#1156)"
+msgstr ""
+
+#: ../../../CHANGES:541
+msgid "Ruby: support squiggly heredocs"
+msgstr ""
+
+#: ../../../CHANGES:542
+msgid "Shell sessions: recognize Virtualenv prompt (PR#1266)"
+msgstr ""
+
+#: ../../../CHANGES:543
+msgid "Velocity: support silent reference syntax"
+msgstr ""
+
+#: ../../../CHANGES:547
+msgid "Version 2.4.2"
+msgstr ""
+
+#: ../../../CHANGES:548
+msgid "(released May 28, 2019)"
+msgstr ""
+
+#: ../../../CHANGES:550
+msgid ""
+"Fix encoding error when guessing lexer with given ``encoding`` option "
+"(#1438)"
+msgstr ""
+
+#: ../../../CHANGES:555
+msgid "Version 2.4.1"
+msgstr ""
+
+#: ../../../CHANGES:556
+msgid "(released May 24, 2019)"
+msgstr ""
+
+#: ../../../CHANGES:560
+msgid "Coq (#1430)"
+msgstr ""
+
+#: ../../../CHANGES:561
+msgid "MSDOS Session (PR#734)"
+msgstr ""
+
+#: ../../../CHANGES:562
+msgid "NASM (#1517)"
+msgstr ""
+
+#: ../../../CHANGES:563
+msgid "Objective-C (PR#813, #1508)"
+msgstr ""
+
+#: ../../../CHANGES:564
+msgid "Prolog (#1511)"
+msgstr ""
+
+#: ../../../CHANGES:565
+msgid "TypeScript (#1515)"
+msgstr ""
+
+#: ../../../CHANGES:567
+msgid "Support CSS variables in stylesheets (PR#814, #1356)"
+msgstr ""
+
+#: ../../../CHANGES:568
+msgid "Fix F# lexer name (PR#709)"
+msgstr ""
+
+#: ../../../CHANGES:569
+msgid "Fix ``TerminalFormatter`` using bold for bright text (#1480)"
+msgstr ""
+
+#: ../../../CHANGES:573
+msgid "Version 2.4.0"
+msgstr ""
+
+#: ../../../CHANGES:574
+msgid "(released May 8, 2019)"
+msgstr ""
+
+#: ../../../CHANGES:578
+msgid "Augeas (PR#807)"
+msgstr ""
+
+#: ../../../CHANGES:579
+msgid "BBC Basic (PR#806)"
+msgstr ""
+
+#: ../../../CHANGES:580
+msgid "Boa (PR#756)"
+msgstr ""
+
+#: ../../../CHANGES:581
+msgid "Charm++ CI (PR#788)"
+msgstr ""
+
+#: ../../../CHANGES:582
+msgid "DASM16 (PR#807)"
+msgstr ""
+
+#: ../../../CHANGES:583
+msgid "FloScript (PR#750)"
+msgstr ""
+
+#: ../../../CHANGES:584
+msgid "FreeFem++ (PR#785)"
+msgstr ""
+
+#: ../../../CHANGES:585
+msgid "Hspec (PR#790)"
+msgstr ""
+
+#: ../../../CHANGES:586
+msgid "Pony (PR#627)"
+msgstr ""
+
+#: ../../../CHANGES:587
+msgid "SGF (PR#780)"
+msgstr ""
+
+#: ../../../CHANGES:588
+msgid "Slash (PR#807)"
+msgstr ""
+
+#: ../../../CHANGES:589
+msgid "Slurm (PR#760)"
+msgstr ""
+
+#: ../../../CHANGES:590
+msgid "Tera Term Language (PR#749)"
+msgstr ""
+
+#: ../../../CHANGES:591
+msgid "TOML (PR#807)"
+msgstr ""
+
+#: ../../../CHANGES:592
+msgid "Unicon (PR#731)"
+msgstr ""
+
+#: ../../../CHANGES:593
+msgid "VBScript (PR#673)"
+msgstr ""
+
+#: ../../../CHANGES:597
+msgid "Apache2 (PR#766)"
+msgstr ""
+
+#: ../../../CHANGES:598
+msgid "Cypher (PR#746)"
+msgstr ""
+
+#: ../../../CHANGES:599
+msgid "LLVM (PR#792)"
+msgstr ""
+
+#: ../../../CHANGES:600
+msgid "Makefiles (PR#766)"
+msgstr ""
+
+#: ../../../CHANGES:601
+msgid "PHP (#1482)"
+msgstr ""
+
+#: ../../../CHANGES:603
+msgid "SQL (PR#672)"
+msgstr ""
+
+#: ../../../CHANGES:604
+msgid "Stan (PR#774)"
+msgstr ""
+
+#: ../../../CHANGES:605
+msgid "Stata (PR#800)"
+msgstr ""
+
+#: ../../../CHANGES:606
+msgid "Terraform (PR#787)"
+msgstr ""
+
+#: ../../../CHANGES:607
+msgid "YAML"
+msgstr ""
+
+#: ../../../CHANGES:609
+msgid "Add solarized style (PR#708)"
+msgstr ""
+
+#: ../../../CHANGES:610
+msgid "Add support for Markdown reference-style links (PR#753)"
+msgstr ""
+
+#: ../../../CHANGES:611
+msgid "Add license information to generated HTML/CSS files (#1496)"
+msgstr ""
+
+#: ../../../CHANGES:612
+msgid "Change ANSI color names (PR#777)"
+msgstr ""
+
+#: ../../../CHANGES:613
+msgid "Fix catastrophic backtracking in the bash lexer (#1494)"
+msgstr ""
+
+#: ../../../CHANGES:614
+msgid "Fix documentation failing to build using Sphinx 2.0 (#1501)"
+msgstr ""
+
+#: ../../../CHANGES:615
+msgid "Fix incorrect links in the Lisp and R lexer documentation (PR#775)"
+msgstr ""
+
+#: ../../../CHANGES:616
+msgid "Fix rare unicode errors on Python 2.7 (PR#798, #1492)"
+msgstr ""
+
+#: ../../../CHANGES:617
+msgid "Fix lexers popping from an empty stack (#1506)"
+msgstr ""
+
+#: ../../../CHANGES:618
+msgid "TypoScript uses ``.typoscript`` now (#1498)"
+msgstr ""
+
+#: ../../../CHANGES:619
+msgid "Updated Trove classifiers and ``pip`` requirements (PR#799)"
+msgstr ""
+
+#: ../../../CHANGES:624
+msgid "Version 2.3.1"
+msgstr ""
+
+#: ../../../CHANGES:625
+msgid "(released Dec 16, 2018)"
+msgstr ""
+
+#: ../../../CHANGES:629
+msgid "ASM (PR#784)"
+msgstr ""
+
+#: ../../../CHANGES:630
+msgid "Chapel (PR#735)"
+msgstr ""
+
+#: ../../../CHANGES:631
+msgid "Clean (PR#621)"
+msgstr ""
+
+#: ../../../CHANGES:632
+msgid "CSound (PR#684)"
+msgstr ""
+
+#: ../../../CHANGES:633
+msgid "Elm (PR#744)"
+msgstr ""
+
+#: ../../../CHANGES:634
+msgid "Fortran (PR#747)"
+msgstr ""
+
+#: ../../../CHANGES:635
+msgid "GLSL (PR#740)"
+msgstr ""
+
+#: ../../../CHANGES:636
+msgid "Haskell (PR#745)"
+msgstr ""
+
+#: ../../../CHANGES:637
+msgid "Hy (PR#754)"
+msgstr ""
+
+#: ../../../CHANGES:638
+msgid "Igor Pro (PR#764)"
+msgstr ""
+
+#: ../../../CHANGES:639
+msgid "PowerShell (PR#705)"
+msgstr ""
+
+#: ../../../CHANGES:640
+msgid "Python (PR#720, #1299, PR#715)"
+msgstr ""
+
+#: ../../../CHANGES:641
+msgid "SLexer (PR#680)"
+msgstr ""
+
+#: ../../../CHANGES:642
+msgid "YAML (PR#762, PR#724)"
+msgstr ""
+
+#: ../../../CHANGES:644
+msgid "Fix invalid string escape sequences"
+msgstr ""
+
+#: ../../../CHANGES:645
+msgid "Fix `FutureWarning` introduced by regex changes in Python 3.7"
+msgstr ""
+
+#: ../../../CHANGES:649
+msgid "Version 2.3.0"
+msgstr ""
+
+#: ../../../CHANGES:650
+msgid "(released Nov 25, 2018)"
+msgstr ""
+
+#: ../../../CHANGES:654
+msgid "Fennel (PR#783)"
+msgstr ""
+
+#: ../../../CHANGES:655
+msgid "HLSL (PR#675)"
+msgstr ""
+
+#: ../../../CHANGES:659
+msgid "Dockerfile (PR#714)"
+msgstr ""
+
+#: ../../../CHANGES:661
+msgid "Minimum Python versions changed to 2.7 and 3.5"
+msgstr ""
+
+#: ../../../CHANGES:662
+msgid "Added support for Python 3.7 generator changes (PR#772)"
+msgstr ""
+
+#: ../../../CHANGES:663
+msgid "Fix incorrect token type in SCSS for single-quote strings (#1322)"
+msgstr ""
+
+#: ../../../CHANGES:664
+msgid "Use `terminal256` formatter if `TERM` contains `256` (PR#666)"
+msgstr ""
+
+#: ../../../CHANGES:665
+msgid "Fix incorrect handling of GitHub style fences in Markdown (PR#741, #1389)"
+msgstr ""
+
+#: ../../../CHANGES:666
+msgid "Fix `%a` not being highlighted in Python3 strings (PR#727)"
+msgstr ""
+
+#: ../../../CHANGES:670
+msgid "Version 2.2.0"
+msgstr ""
+
+#: ../../../CHANGES:671
+msgid "(released Jan 22, 2017)"
+msgstr ""
+
+#: ../../../CHANGES:675
+msgid "AMPL"
+msgstr ""
+
+#: ../../../CHANGES:676
+msgid "TypoScript (#1173)"
+msgstr ""
+
+#: ../../../CHANGES:677
+msgid "Varnish config (PR#554)"
+msgstr ""
+
+#: ../../../CHANGES:678
+msgid "Clean (PR#503)"
+msgstr ""
+
+#: ../../../CHANGES:679
+msgid "WDiff (PR#513)"
+msgstr ""
+
+#: ../../../CHANGES:680
+msgid "Flatline (PR#551)"
+msgstr ""
+
+#: ../../../CHANGES:681
+msgid "Silver (PR#537)"
+msgstr ""
+
+#: ../../../CHANGES:682
+msgid "HSAIL (PR#518)"
+msgstr ""
+
+#: ../../../CHANGES:683
+msgid "JSGF (PR#546)"
+msgstr ""
+
+#: ../../../CHANGES:684
+msgid "NCAR command language (PR#536)"
+msgstr ""
+
+#: ../../../CHANGES:685
+msgid "Extempore (PR#530)"
+msgstr ""
+
+#: ../../../CHANGES:686
+msgid "Cap'n Proto (PR#595)"
+msgstr ""
+
+#: ../../../CHANGES:687
+msgid "Whiley (PR#573)"
+msgstr ""
+
+#: ../../../CHANGES:688
+msgid "Monte (PR#592)"
+msgstr ""
+
+#: ../../../CHANGES:689
+msgid "Crystal (PR#576)"
+msgstr ""
+
+#: ../../../CHANGES:690
+msgid "Snowball (PR#589)"
+msgstr ""
+
+#: ../../../CHANGES:691
+msgid "CapDL (PR#579)"
+msgstr ""
+
+#: ../../../CHANGES:692
+msgid "NuSMV (PR#564)"
+msgstr ""
+
+#: ../../../CHANGES:693
+msgid "SAS, Stata (PR#593)"
+msgstr ""
+
+#: ../../../CHANGES:695
+msgid ""
+"Added the ability to load lexer and formatter classes directly from files"
+" with the `-x` command line option and the "
+"`lexers.load_lexer_from_file()` and "
+"`formatters.load_formatter_from_file()` functions. (PR#559)"
+msgstr ""
+
+#: ../../../CHANGES:699
+msgid "Added `lexers.find_lexer_class_by_name()`. (#1203)"
+msgstr ""
+
+#: ../../../CHANGES:701
+msgid ""
+"Added new token types and lexing for magic methods and variables in "
+"Python and PHP."
+msgstr ""
+
+#: ../../../CHANGES:704
+msgid ""
+"Added a new token type for string affixes and lexing for them in Python, "
+"C++ and Postgresql lexers."
+msgstr ""
+
+#: ../../../CHANGES:707
+msgid ""
+"Added a new token type for heredoc (and similar) string delimiters and "
+"lexing for them in C++, Perl, PHP, Postgresql and Ruby lexers."
+msgstr ""
+
+#: ../../../CHANGES:710
+msgid ""
+"Styles can now define colors with ANSI colors for use in the 256-color "
+"terminal formatter. (PR#531)"
+msgstr ""
+
+#: ../../../CHANGES:713
+msgid "Improved the CSS lexer. (#1083, #1130)"
+msgstr ""
+
+#: ../../../CHANGES:715
+msgid "Added \"Rainbow Dash\" style. (PR#623)"
+msgstr ""
+
+#: ../../../CHANGES:717
+msgid ""
+"Delay loading `pkg_resources`, which takes a long while to import. "
+"(PR#690)"
+msgstr ""
+
+#: ../../../CHANGES:721
+msgid "Version 2.1.3"
+msgstr ""
+
+#: ../../../CHANGES:722
+msgid "(released Mar 2, 2016)"
+msgstr ""
+
+#: ../../../CHANGES:724
+msgid "Fixed regression in Bash lexer (PR#563)"
+msgstr ""
+
+#: ../../../CHANGES:728
+msgid "Version 2.1.2"
+msgstr ""
+
+#: ../../../CHANGES:729
+msgid "(released Feb 29, 2016)"
+msgstr ""
+
+#: ../../../CHANGES:731
+msgid "Fixed Python 3 regression in image formatter (#1215)"
+msgstr ""
+
+#: ../../../CHANGES:732
+msgid "Fixed regression in Bash lexer (PR#562)"
+msgstr ""
+
+#: ../../../CHANGES:736
+msgid "Version 2.1.1"
+msgstr ""
+
+#: ../../../CHANGES:737
+msgid "(relased Feb 14, 2016)"
+msgstr ""
+
+#: ../../../CHANGES:739
+msgid "Fixed Jython compatibility (#1205)"
+msgstr ""
+
+#: ../../../CHANGES:740
+msgid "Fixed HTML formatter output with leading empty lines (#1111)"
+msgstr ""
+
+#: ../../../CHANGES:741
+msgid "Added a mapping table for LaTeX encodings and added utf8 (#1152)"
+msgstr ""
+
+#: ../../../CHANGES:742
+msgid "Fixed image formatter font searching on Macs (#1188)"
+msgstr ""
+
+#: ../../../CHANGES:743
+msgid "Fixed deepcopy-ing of Token instances (#1168)"
+msgstr ""
+
+#: ../../../CHANGES:744
+msgid "Fixed Julia string interpolation (#1170)"
+msgstr ""
+
+#: ../../../CHANGES:745
+msgid "Fixed statefulness of HttpLexer between get_tokens calls"
+msgstr ""
+
+#: ../../../CHANGES:746
+msgid "Many smaller fixes to various lexers"
+msgstr ""
+
+#: ../../../CHANGES:750
+msgid "Version 2.1"
+msgstr ""
+
+#: ../../../CHANGES:751
+msgid "(released Jan 17, 2016)"
+msgstr ""
+
+#: ../../../CHANGES:755
+msgid "Emacs Lisp (PR#431)"
+msgstr ""
+
+#: ../../../CHANGES:756
+msgid "Arduino (PR#442)"
+msgstr ""
+
+#: ../../../CHANGES:757
+msgid "Modula-2 with multi-dialect support (#1090)"
+msgstr ""
+
+#: ../../../CHANGES:758
+msgid "Fortran fixed format (PR#213)"
+msgstr ""
+
+#: ../../../CHANGES:759
+msgid "Archetype Definition language (PR#483)"
+msgstr ""
+
+#: ../../../CHANGES:760
+msgid "Terraform (PR#432)"
+msgstr ""
+
+#: ../../../CHANGES:761
+msgid "Jcl, Easytrieve (PR#208)"
+msgstr ""
+
+#: ../../../CHANGES:762
+msgid "ParaSail (PR#381)"
+msgstr ""
+
+#: ../../../CHANGES:763
+msgid "Boogie (PR#420)"
+msgstr ""
+
+#: ../../../CHANGES:764
+msgid "Turtle (PR#425)"
+msgstr ""
+
+#: ../../../CHANGES:765
+msgid "Fish Shell (PR#422)"
+msgstr ""
+
+#: ../../../CHANGES:766
+msgid "Roboconf (PR#449)"
+msgstr ""
+
+#: ../../../CHANGES:767
+msgid "Test Anything Protocol (PR#428)"
+msgstr ""
+
+#: ../../../CHANGES:768
+msgid "Shen (PR#385)"
+msgstr ""
+
+#: ../../../CHANGES:769
+msgid "Component Pascal (PR#437)"
+msgstr ""
+
+#: ../../../CHANGES:770
+msgid "SuperCollider (PR#472)"
+msgstr ""
+
+#: ../../../CHANGES:771
+msgid "Shell consoles (Tcsh, PowerShell, MSDOS) (PR#479)"
+msgstr ""
+
+#: ../../../CHANGES:772
+msgid "Elm and J (PR#452)"
+msgstr ""
+
+#: ../../../CHANGES:773
+msgid "Crmsh (PR#440)"
+msgstr ""
+
+#: ../../../CHANGES:774
+msgid "Praat (PR#492)"
+msgstr ""
+
+#: ../../../CHANGES:775
+msgid "CSound (PR#494)"
+msgstr ""
+
+#: ../../../CHANGES:776
+msgid "Ezhil (PR#443)"
+msgstr ""
+
+#: ../../../CHANGES:777
+msgid "Thrift (PR#469)"
+msgstr ""
+
+#: ../../../CHANGES:778
+msgid "QVT Operational (PR#204)"
+msgstr ""
+
+#: ../../../CHANGES:779
+msgid "Hexdump (PR#508)"
+msgstr ""
+
+#: ../../../CHANGES:780
+msgid "CAmkES Configuration (PR#462)"
+msgstr ""
+
+#: ../../../CHANGES:784
+msgid "Lovelace (PR#456)"
+msgstr ""
+
+#: ../../../CHANGES:785
+msgid "Algol and Algol-nu (#1090)"
+msgstr ""
+
+#: ../../../CHANGES:787
+msgid "Added formatters:"
+msgstr ""
+
+#: ../../../CHANGES:789
+msgid "IRC (PR#458)"
+msgstr ""
+
+#: ../../../CHANGES:790
+msgid ""
+"True color (24-bit) terminal ANSI sequences (#1142) (formatter alias: "
+"\"16m\")"
+msgstr ""
+
+#: ../../../CHANGES:793
+msgid "New \"filename\" option for HTML formatter (PR#527)."
+msgstr ""
+
+#: ../../../CHANGES:795
+msgid "Improved performance of the HTML formatter for long lines (PR#504)."
+msgstr ""
+
+#: ../../../CHANGES:797
+msgid "Updated autopygmentize script (PR#445)."
+msgstr ""
+
+#: ../../../CHANGES:799
+msgid "Fixed style inheritance for non-standard token types in HTML output."
+msgstr ""
+
+#: ../../../CHANGES:801
+msgid "Added support for async/await to Python 3 lexer."
+msgstr ""
+
+#: ../../../CHANGES:803
+msgid ""
+"Rewrote linenos option for TerminalFormatter (it's better, but slightly "
+"different output than before) (#1147)."
+msgstr ""
+
+#: ../../../CHANGES:806
+msgid "Javascript lexer now supports most of ES6 (#1100)."
+msgstr ""
+
+#: ../../../CHANGES:808
+msgid "Cocoa builtins updated for iOS 8.1 (PR#433)."
+msgstr ""
+
+#: ../../../CHANGES:810
+msgid ""
+"Combined BashSessionLexer and ShellSessionLexer, new version should "
+"support the prompt styles of either."
+msgstr ""
+
+#: ../../../CHANGES:813
+msgid "Added option to pygmentize to show a full traceback on exceptions."
+msgstr ""
+
+#: ../../../CHANGES:815
+msgid ""
+"Fixed incomplete output on Windows and Python 3 (e.g. when using iPython "
+"Notebook) (#1153)."
+msgstr ""
+
+#: ../../../CHANGES:818
+msgid "Allowed more traceback styles in Python console lexer (PR#253)."
+msgstr ""
+
+#: ../../../CHANGES:820
+msgid "Added decorators to TypeScript (PR#509)."
+msgstr ""
+
+#: ../../../CHANGES:822
+msgid "Fix highlighting of certain IRC logs formats (#1076)."
+msgstr ""
+
+#: ../../../CHANGES:826
+msgid "Version 2.0.2"
+msgstr ""
+
+#: ../../../CHANGES:827
+msgid "(released Jan 20, 2015)"
+msgstr ""
+
+#: ../../../CHANGES:829
+msgid "Fix Python tracebacks getting duplicated in the console lexer (#1068)."
+msgstr ""
+
+#: ../../../CHANGES:831
+msgid "Backquote-delimited identifiers are now recognized in F# (#1062)."
+msgstr ""
+
+#: ../../../CHANGES:835
+msgid "Version 2.0.1"
+msgstr ""
+
+#: ../../../CHANGES:836
+msgid "(released Nov 10, 2014)"
+msgstr ""
+
+#: ../../../CHANGES:838
+msgid "Fix an encoding issue when using ``pygmentize`` with the ``-o`` option."
+msgstr ""
+
+#: ../../../CHANGES:842
+msgid "Version 2.0"
+msgstr ""
+
+#: ../../../CHANGES:843
+msgid "(released Nov 9, 2014)"
+msgstr ""
+
+#: ../../../CHANGES:845
+msgid ""
+"Default lexer encoding is now \"guess\", i.e. UTF-8 / Locale / Latin1 is "
+"tried in that order."
+msgstr ""
+
+#: ../../../CHANGES:848
+msgid "Major update to Swift lexer (PR#410)."
+msgstr ""
+
+#: ../../../CHANGES:850
+msgid "Multiple fixes to lexer guessing in conflicting cases:"
+msgstr ""
+
+#: ../../../CHANGES:852
+msgid "recognize HTML5 by doctype"
+msgstr ""
+
+#: ../../../CHANGES:853
+msgid "recognize XML by XML declaration"
+msgstr ""
+
+#: ../../../CHANGES:854
+msgid "don't recognize C/C++ as SystemVerilog"
+msgstr ""
+
+#: ../../../CHANGES:856
+msgid "Simplified regexes and builtin lists."
+msgstr ""
+
+#: ../../../CHANGES:860
+msgid "Version 2.0rc1"
+msgstr ""
+
+#: ../../../CHANGES:861
+msgid "(released Oct 16, 2014)"
+msgstr ""
+
+#: ../../../CHANGES:863
+msgid ""
+"Dropped Python 2.4 and 2.5 compatibility.  This is in favor of single-"
+"source compatibility between Python 2.6, 2.7 and 3.3+."
+msgstr ""
+
+#: ../../../CHANGES:866
+msgid "New website and documentation based on Sphinx (finally!)"
+msgstr ""
+
+#: ../../../CHANGES:868 ../../../CHANGES:1020 ../../../CHANGES:1037
+#: ../../../CHANGES:1106 ../../../CHANGES:1188 ../../../CHANGES:1264
+#: ../../../CHANGES:1320 ../../../CHANGES:1378 ../../../CHANGES:1500
+#: ../../../CHANGES:1556 ../../../CHANGES:1609 ../../../CHANGES:1670
+msgid "Lexers added:"
+msgstr ""
+
+#: ../../../CHANGES:870
+msgid "APL (#969)"
+msgstr ""
+
+#: ../../../CHANGES:871
+msgid "Agda and Literate Agda (PR#203)"
+msgstr ""
+
+#: ../../../CHANGES:872
+msgid "Alloy (PR#355)"
+msgstr ""
+
+#: ../../../CHANGES:873
+msgid "AmbientTalk"
+msgstr ""
+
+#: ../../../CHANGES:874
+msgid "BlitzBasic (PR#197)"
+msgstr ""
+
+#: ../../../CHANGES:875
+msgid "ChaiScript (PR#24)"
+msgstr ""
+
+#: ../../../CHANGES:876
+msgid "Chapel (PR#256)"
+msgstr ""
+
+#: ../../../CHANGES:877
+msgid "Cirru (PR#275)"
+msgstr ""
+
+#: ../../../CHANGES:878
+msgid "Clay (PR#184)"
+msgstr ""
+
+#: ../../../CHANGES:879
+msgid "ColdFusion CFC (PR#283)"
+msgstr ""
+
+#: ../../../CHANGES:880
+msgid "Cryptol and Literate Cryptol (PR#344)"
+msgstr ""
+
+#: ../../../CHANGES:881
+msgid "Cypher (PR#257)"
+msgstr ""
+
+#: ../../../CHANGES:882
+msgid "Docker config files"
+msgstr ""
+
+#: ../../../CHANGES:883
+msgid "EBNF (PR#193)"
+msgstr ""
+
+#: ../../../CHANGES:884
+msgid "Eiffel (PR#273)"
+msgstr ""
+
+#: ../../../CHANGES:885
+msgid "GAP (PR#311)"
+msgstr ""
+
+#: ../../../CHANGES:886
+msgid "Golo (PR#309)"
+msgstr ""
+
+#: ../../../CHANGES:887
+msgid "Handlebars (PR#186)"
+msgstr ""
+
+#: ../../../CHANGES:888
+msgid "Hy (PR#238)"
+msgstr ""
+
+#: ../../../CHANGES:889
+msgid "Idris and Literate Idris (PR#210)"
+msgstr ""
+
+#: ../../../CHANGES:890
+msgid "Igor Pro (PR#172)"
+msgstr ""
+
+#: ../../../CHANGES:891
+msgid "Inform 6/7 (PR#281)"
+msgstr ""
+
+#: ../../../CHANGES:892
+msgid "Intel objdump (PR#279)"
+msgstr ""
+
+#: ../../../CHANGES:893
+msgid "Isabelle (PR#386)"
+msgstr ""
+
+#: ../../../CHANGES:894
+msgid "Jasmin (PR#349)"
+msgstr ""
+
+#: ../../../CHANGES:895
+msgid "JSON-LD (PR#289)"
+msgstr ""
+
+#: ../../../CHANGES:896
+msgid "Kal (PR#233)"
+msgstr ""
+
+#: ../../../CHANGES:897
+msgid "Lean (PR#399)"
+msgstr ""
+
+#: ../../../CHANGES:898
+msgid "LSL (PR#296)"
+msgstr ""
+
+#: ../../../CHANGES:899
+msgid "Limbo (PR#291)"
+msgstr ""
+
+#: ../../../CHANGES:900
+msgid "Liquid (#977)"
+msgstr ""
+
+#: ../../../CHANGES:901
+msgid "MQL (PR#285)"
+msgstr ""
+
+#: ../../../CHANGES:902
+msgid "MaskJS (PR#280)"
+msgstr ""
+
+#: ../../../CHANGES:903
+msgid "Mozilla preprocessors"
+msgstr ""
+
+#: ../../../CHANGES:904
+msgid "Mathematica (PR#245)"
+msgstr ""
+
+#: ../../../CHANGES:905
+msgid "NesC (PR#166)"
+msgstr ""
+
+#: ../../../CHANGES:906
+msgid "Nit (PR#375)"
+msgstr ""
+
+#: ../../../CHANGES:907
+msgid "Nix (PR#267)"
+msgstr ""
+
+#: ../../../CHANGES:908
+msgid "Pan"
+msgstr ""
+
+#: ../../../CHANGES:909
+msgid "Pawn (PR#211)"
+msgstr ""
+
+#: ../../../CHANGES:910
+msgid "Perl 6 (PR#181)"
+msgstr ""
+
+#: ../../../CHANGES:911
+msgid "Pig (PR#304)"
+msgstr ""
+
+#: ../../../CHANGES:912
+msgid "Pike (PR#237)"
+msgstr ""
+
+#: ../../../CHANGES:913
+msgid "QBasic (PR#182)"
+msgstr ""
+
+#: ../../../CHANGES:914
+msgid "Red (PR#341)"
+msgstr ""
+
+#: ../../../CHANGES:915
+msgid "ResourceBundle (#1038)"
+msgstr ""
+
+#: ../../../CHANGES:916
+msgid "Rexx (PR#199)"
+msgstr ""
+
+#: ../../../CHANGES:917
+msgid "Rql (PR#251)"
+msgstr ""
+
+#: ../../../CHANGES:918
+msgid "Rsl"
+msgstr ""
+
+#: ../../../CHANGES:919
+msgid "SPARQL (PR#78)"
+msgstr ""
+
+#: ../../../CHANGES:920
+msgid "Slim (PR#366)"
+msgstr ""
+
+#: ../../../CHANGES:921
+msgid "Swift (PR#371)"
+msgstr ""
+
+#: ../../../CHANGES:922
+msgid "Swig (PR#168)"
+msgstr ""
+
+#: ../../../CHANGES:923
+msgid "TADS 3 (PR#407)"
+msgstr ""
+
+#: ../../../CHANGES:924
+msgid "Todo.txt todo lists"
+msgstr ""
+
+#: ../../../CHANGES:925
+msgid "Twig (PR#404)"
+msgstr ""
+
+#: ../../../CHANGES:927
+msgid ""
+"Added a helper to \"optimize\" regular expressions that match one of many"
+" literal words; this can save 20% and more lexing time with lexers that "
+"highlight many keywords or builtins."
+msgstr ""
+
+#: ../../../CHANGES:931
+msgid ""
+"New styles: \"xcode\" and \"igor\", similar to the default highlighting "
+"of the respective IDEs."
+msgstr ""
+
+#: ../../../CHANGES:934
+msgid ""
+"The command-line \"pygmentize\" tool now tries a little harder to find "
+"the correct encoding for files and the terminal (#979)."
+msgstr ""
+
+#: ../../../CHANGES:937
+msgid ""
+"Added \"inencoding\" option for lexers to override \"encoding\" analogous"
+" to \"outencoding\" (#800)."
+msgstr ""
+
+#: ../../../CHANGES:940
+msgid ""
+"Added line-by-line \"streaming\" mode for pygmentize with the \"-s\" "
+"option. (PR#165)  Only fully works for lexers that have no constructs "
+"spanning lines!"
+msgstr ""
+
+#: ../../../CHANGES:944
+msgid ""
+"Added an \"envname\" option to the LaTeX formatter to select a "
+"replacement verbatim environment (PR#235)."
+msgstr ""
+
+#: ../../../CHANGES:947
+msgid "Updated the Makefile lexer to yield a little more useful highlighting."
+msgstr ""
+
+#: ../../../CHANGES:949
+msgid "Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive."
+msgstr ""
+
+#: ../../../CHANGES:951
+msgid ""
+"File name matching in lexers and formatters will now use a regex cache "
+"for speed (PR#205)."
+msgstr ""
+
+#: ../../../CHANGES:954
+msgid ""
+"Pygments will now recognize \"vim\" modelines when guessing the lexer for"
+" a file based on content (PR#118)."
+msgstr ""
+
+#: ../../../CHANGES:957
+msgid ""
+"Major restructure of the ``pygments.lexers`` module namespace.  There are"
+" now many more modules with less lexers per module.  Old modules are "
+"still around and re-export the lexers they previously contained."
+msgstr ""
+
+#: ../../../CHANGES:961
+msgid "The NameHighlightFilter now works with any Name.* token type (#790)."
+msgstr ""
+
+#: ../../../CHANGES:963
+msgid "Python 3 lexer: add new exceptions from PEP 3151."
+msgstr ""
+
+#: ../../../CHANGES:965
+msgid "Opa lexer: add new keywords (PR#170)."
+msgstr ""
+
+#: ../../../CHANGES:967
+msgid ""
+"Julia lexer: add keywords and underscore-separated number literals "
+"(PR#176)."
+msgstr ""
+
+#: ../../../CHANGES:970
+msgid ""
+"Lasso lexer: fix method highlighting, update builtins. Fix guessing so "
+"that plain XML isn't always taken as Lasso (PR#163)."
+msgstr ""
+
+#: ../../../CHANGES:973
+msgid "Objective C/C++ lexers: allow \"@\" prefixing any expression (#871)."
+msgstr ""
+
+#: ../../../CHANGES:975
+msgid ""
+"Ruby lexer: fix lexing of Name::Space tokens (#860) and of symbols in "
+"hashes (#873)."
+msgstr ""
+
+#: ../../../CHANGES:978
+msgid ""
+"Stan lexer: update for version 2.4.0 of the language (PR#162, PR#255, "
+"PR#377)."
+msgstr ""
+
+#: ../../../CHANGES:980
+msgid "JavaScript lexer: add the \"yield\" keyword (PR#196)."
+msgstr ""
+
+#: ../../../CHANGES:982
+msgid "HTTP lexer: support for PATCH method (PR#190)."
+msgstr ""
+
+#: ../../../CHANGES:984
+msgid "Koka lexer: update to newest language spec (PR#201)."
+msgstr ""
+
+#: ../../../CHANGES:986
+msgid "Haxe lexer: rewrite and support for Haxe 3 (PR#174)."
+msgstr ""
+
+#: ../../../CHANGES:988
+msgid "Prolog lexer: add different kinds of numeric literals (#864)."
+msgstr ""
+
+#: ../../../CHANGES:990
+msgid ""
+"F# lexer: rewrite with newest spec for F# 3.0 (#842), fix a bug with "
+"dotted chains (#948)."
+msgstr ""
+
+#: ../../../CHANGES:993
+msgid "Kotlin lexer: general update (PR#271)."
+msgstr ""
+
+#: ../../../CHANGES:995
+msgid "Rebol lexer: fix comment detection and analyse_text (PR#261)."
+msgstr ""
+
+#: ../../../CHANGES:997
+msgid "LLVM lexer: update keywords to v3.4 (PR#258)."
+msgstr ""
+
+#: ../../../CHANGES:999
+msgid "PHP lexer: add new keywords and binary literals (PR#222)."
+msgstr ""
+
+#: ../../../CHANGES:1001
+msgid "external/markdown-processor.py updated to newest python-markdown (PR#221)."
+msgstr ""
+
+#: ../../../CHANGES:1003
+msgid "CSS lexer: some highlighting order fixes (PR#231)."
+msgstr ""
+
+#: ../../../CHANGES:1005
+msgid "Ceylon lexer: fix parsing of nested multiline comments (#915)."
+msgstr ""
+
+#: ../../../CHANGES:1007
+msgid "C family lexers: fix parsing of indented preprocessor directives (#944)."
+msgstr ""
+
+#: ../../../CHANGES:1009
+msgid "Rust lexer: update to 0.9 language version (PR#270, PR#388)."
+msgstr ""
+
+#: ../../../CHANGES:1011
+msgid "Elixir lexer: update to 0.15 language version (PR#392)."
+msgstr ""
+
+#: ../../../CHANGES:1013
+msgid "Fix swallowing incomplete tracebacks in Python console lexer (#874)."
+msgstr ""
+
+#: ../../../CHANGES:1017
+msgid "Version 1.6"
+msgstr ""
+
+#: ../../../CHANGES:1018
+msgid "(released Feb 3, 2013)"
+msgstr ""
+
+#: ../../../CHANGES:1022
+msgid "Dylan console (PR#149)"
+msgstr ""
+
+#: ../../../CHANGES:1023
+msgid "Logos (PR#150)"
+msgstr ""
+
+#: ../../../CHANGES:1024
+msgid "Shell sessions (PR#158)"
+msgstr ""
+
+#: ../../../CHANGES:1026
+msgid "Fix guessed lexers not receiving lexer options (#838)."
+msgstr ""
+
+#: ../../../CHANGES:1028
+msgid "Fix unquoted HTML attribute lexing in Opa (#841)."
+msgstr ""
+
+#: ../../../CHANGES:1030
+msgid "Fixes to the Dart lexer (PR#160)."
+msgstr ""
+
+#: ../../../CHANGES:1034
+msgid "Version 1.6rc1"
+msgstr ""
+
+#: ../../../CHANGES:1035
+msgid "(released Jan 9, 2013)"
+msgstr ""
+
+#: ../../../CHANGES:1039
+msgid "AspectJ (PR#90)"
+msgstr ""
+
+#: ../../../CHANGES:1040
+msgid "AutoIt (PR#122)"
+msgstr ""
+
+#: ../../../CHANGES:1041
+msgid "BUGS-like languages (PR#89)"
+msgstr ""
+
+#: ../../../CHANGES:1042
+msgid "Ceylon (PR#86)"
+msgstr ""
+
+#: ../../../CHANGES:1043
+msgid "Croc (new name for MiniD)"
+msgstr ""
+
+#: ../../../CHANGES:1044
+msgid "CUDA (PR#75)"
+msgstr ""
+
+#: ../../../CHANGES:1045
+msgid "Dg (PR#116)"
+msgstr ""
+
+#: ../../../CHANGES:1046
+msgid "IDL (PR#115)"
+msgstr ""
+
+#: ../../../CHANGES:1047
+msgid "Jags (PR#89)"
+msgstr ""
+
+#: ../../../CHANGES:1048
+msgid "Julia (PR#61)"
+msgstr ""
+
+#: ../../../CHANGES:1049
+msgid "Kconfig (#711)"
+msgstr ""
+
+#: ../../../CHANGES:1050
+msgid "Lasso (PR#95, PR#113)"
+msgstr ""
+
+#: ../../../CHANGES:1051
+msgid "LiveScript (PR#84)"
+msgstr ""
+
+#: ../../../CHANGES:1052
+msgid "Monkey (PR#117)"
+msgstr ""
+
+#: ../../../CHANGES:1053
+msgid "Mscgen (PR#80)"
+msgstr ""
+
+#: ../../../CHANGES:1054
+msgid "NSIS scripts (PR#136)"
+msgstr ""
+
+#: ../../../CHANGES:1055
+msgid "OpenCOBOL (PR#72)"
+msgstr ""
+
+#: ../../../CHANGES:1056
+msgid "QML (PR#123)"
+msgstr ""
+
+#: ../../../CHANGES:1057
+msgid "Puppet (PR#133)"
+msgstr ""
+
+#: ../../../CHANGES:1058
+msgid "Racket (PR#94)"
+msgstr ""
+
+#: ../../../CHANGES:1059
+msgid "Rdoc (PR#99)"
+msgstr ""
+
+#: ../../../CHANGES:1060
+msgid "Robot Framework (PR#137)"
+msgstr ""
+
+#: ../../../CHANGES:1061
+msgid "RPM spec files (PR#124)"
+msgstr ""
+
+#: ../../../CHANGES:1062
+msgid "Rust (PR#67)"
+msgstr ""
+
+#: ../../../CHANGES:1063
+msgid "Smali (Dalvik assembly)"
+msgstr ""
+
+#: ../../../CHANGES:1064
+msgid "SourcePawn (PR#39)"
+msgstr ""
+
+#: ../../../CHANGES:1065
+msgid "Stan (PR#89)"
+msgstr ""
+
+#: ../../../CHANGES:1066
+msgid "Treetop (PR#125)"
+msgstr ""
+
+#: ../../../CHANGES:1067
+msgid "TypeScript (PR#114)"
+msgstr ""
+
+#: ../../../CHANGES:1068
+msgid "VGL (PR#12)"
+msgstr ""
+
+#: ../../../CHANGES:1069
+msgid "Visual FoxPro (#762)"
+msgstr ""
+
+#: ../../../CHANGES:1070
+msgid "Windows Registry (#819)"
+msgstr ""
+
+#: ../../../CHANGES:1071
+msgid "Xtend (PR#68)"
+msgstr ""
+
+#: ../../../CHANGES:1073
+msgid ""
+"The HTML formatter now supports linking to tags using CTags files, when "
+"the python-ctags package is installed (PR#87)."
+msgstr ""
+
+#: ../../../CHANGES:1076
+msgid ""
+"The HTML formatter now has a \"linespans\" option that wraps every line "
+"in a <span> tag with a specific id (PR#82)."
+msgstr ""
+
+#: ../../../CHANGES:1079
+msgid ""
+"When deriving a lexer from another lexer with token definitions, "
+"definitions for states not in the child lexer are now inherited.  If you "
+"override a state in the child lexer, an \"inherit\" keyword has been "
+"added to insert the base state at that position (PR#141)."
+msgstr ""
+
+#: ../../../CHANGES:1084
+msgid ""
+"The C family lexers now inherit token definitions from a common base "
+"class, removing code duplication (PR#141)."
+msgstr ""
+
+#: ../../../CHANGES:1087
+msgid "Use \"colorama\" on Windows for console color output (PR#142)."
+msgstr ""
+
+#: ../../../CHANGES:1089
+msgid "Fix Template Haskell highlighting (PR#63)."
+msgstr ""
+
+#: ../../../CHANGES:1091
+msgid "Fix some S/R lexer errors (PR#91)."
+msgstr ""
+
+#: ../../../CHANGES:1093
+msgid "Fix a bug in the Prolog lexer with names that start with 'is' (#810)."
+msgstr ""
+
+#: ../../../CHANGES:1095
+msgid "Rewrite Dylan lexer, add Dylan LID lexer (PR#147)."
+msgstr ""
+
+#: ../../../CHANGES:1097
+msgid "Add a Java quickstart document (PR#146)."
+msgstr ""
+
+#: ../../../CHANGES:1099
+msgid ""
+"Add a \"external/autopygmentize\" file that can be used as .lessfilter "
+"(#802)."
+msgstr ""
+
+#: ../../../CHANGES:1103
+msgid "Version 1.5"
+msgstr ""
+
+#: ../../../CHANGES:1104
+msgid "(codename Zeitdilatation, released Mar 10, 2012)"
+msgstr ""
+
+#: ../../../CHANGES:1108
+msgid "Awk (#630)"
+msgstr ""
+
+#: ../../../CHANGES:1109
+msgid "Fancy (#633)"
+msgstr ""
+
+#: ../../../CHANGES:1110
+msgid "PyPy Log"
+msgstr ""
+
+#: ../../../CHANGES:1111
+msgid "eC"
+msgstr ""
+
+#: ../../../CHANGES:1112
+msgid "Nimrod"
+msgstr ""
+
+#: ../../../CHANGES:1113
+msgid "Nemerle (#667)"
+msgstr ""
+
+#: ../../../CHANGES:1114
+msgid "F# (#353)"
+msgstr ""
+
+#: ../../../CHANGES:1115
+msgid "Groovy (#501)"
+msgstr ""
+
+#: ../../../CHANGES:1116
+msgid "PostgreSQL (#660)"
+msgstr ""
+
+#: ../../../CHANGES:1117
+msgid "DTD"
+msgstr ""
+
+#: ../../../CHANGES:1118
+msgid "Gosu (#634)"
+msgstr ""
+
+#: ../../../CHANGES:1119
+msgid "Octave (PR#22)"
+msgstr ""
+
+#: ../../../CHANGES:1120
+msgid "Standard ML (PR#14)"
+msgstr ""
+
+#: ../../../CHANGES:1121
+msgid "CFengine3 (#601)"
+msgstr ""
+
+#: ../../../CHANGES:1122
+msgid "Opa (PR#37)"
+msgstr ""
+
+#: ../../../CHANGES:1123
+msgid "HTTP sessions (PR#42)"
+msgstr ""
+
+#: ../../../CHANGES:1124
+msgid "JSON (PR#31)"
+msgstr ""
+
+#: ../../../CHANGES:1125
+msgid "SNOBOL (PR#30)"
+msgstr ""
+
+#: ../../../CHANGES:1126
+msgid "MoonScript (PR#43)"
+msgstr ""
+
+#: ../../../CHANGES:1127
+msgid "ECL (PR#29)"
+msgstr ""
+
+#: ../../../CHANGES:1128
+msgid "Urbiscript (PR#17)"
+msgstr ""
+
+#: ../../../CHANGES:1129
+msgid "OpenEdge ABL (PR#27)"
+msgstr ""
+
+#: ../../../CHANGES:1130
+msgid "SystemVerilog (PR#35)"
+msgstr ""
+
+#: ../../../CHANGES:1131
+msgid "Coq (#734)"
+msgstr ""
+
+#: ../../../CHANGES:1132
+msgid "PowerShell (#654)"
+msgstr ""
+
+#: ../../../CHANGES:1133
+msgid "Dart (#715)"
+msgstr ""
+
+#: ../../../CHANGES:1134
+msgid "Fantom (PR#36)"
+msgstr ""
+
+#: ../../../CHANGES:1135
+msgid "Bro (PR#5)"
+msgstr ""
+
+#: ../../../CHANGES:1136
+msgid "NewLISP (PR#26)"
+msgstr ""
+
+#: ../../../CHANGES:1137
+msgid "VHDL (PR#45)"
+msgstr ""
+
+#: ../../../CHANGES:1138
+msgid "Scilab (#740)"
+msgstr ""
+
+#: ../../../CHANGES:1139
+msgid "Elixir (PR#57)"
+msgstr ""
+
+#: ../../../CHANGES:1140
+msgid "Tea (PR#56)"
+msgstr ""
+
+#: ../../../CHANGES:1141
+msgid "Kotlin (PR#58)"
+msgstr ""
+
+#: ../../../CHANGES:1143
+msgid "Fix Python 3 terminal highlighting with pygmentize (#691)."
+msgstr ""
+
+#: ../../../CHANGES:1145
+msgid "In the LaTeX formatter, escape special &, < and > chars (#648)."
+msgstr ""
+
+#: ../../../CHANGES:1147
+msgid ""
+"In the LaTeX formatter, fix display problems for styles with token "
+"background colors (#670)."
+msgstr ""
+
+#: ../../../CHANGES:1150
+msgid "Enhancements to the Squid conf lexer (#664)."
+msgstr ""
+
+#: ../../../CHANGES:1152
+msgid "Several fixes to the reStructuredText lexer (#636)."
+msgstr ""
+
+#: ../../../CHANGES:1154
+msgid "Recognize methods in the ObjC lexer (#638)."
+msgstr ""
+
+#: ../../../CHANGES:1156
+msgid "Fix Lua \"class\" highlighting: it does not have classes (#665)."
+msgstr ""
+
+#: ../../../CHANGES:1158
+msgid ""
+"Fix degenerate regex in Scala lexer (#671) and highlighting bugs (#713, "
+"708)."
+msgstr ""
+
+#: ../../../CHANGES:1160
+msgid "Fix number pattern order in Ocaml lexer (#647)."
+msgstr ""
+
+#: ../../../CHANGES:1162
+msgid "Fix generic type highlighting in ActionScript 3 (#666)."
+msgstr ""
+
+#: ../../../CHANGES:1164
+msgid "Fixes to the Clojure lexer (PR#9)."
+msgstr ""
+
+#: ../../../CHANGES:1166
+msgid "Fix degenerate regex in Nemerle lexer (#706)."
+msgstr ""
+
+#: ../../../CHANGES:1168
+msgid "Fix infinite looping in CoffeeScript lexer (#729)."
+msgstr ""
+
+#: ../../../CHANGES:1170
+msgid "Fix crashes and analysis with ObjectiveC lexer (#693, #696)."
+msgstr ""
+
+#: ../../../CHANGES:1172
+msgid "Add some Fortran 2003 keywords."
+msgstr ""
+
+#: ../../../CHANGES:1174
+msgid "Fix Boo string regexes (#679)."
+msgstr ""
+
+#: ../../../CHANGES:1176
+msgid "Add \"rrt\" style (#727)."
+msgstr ""
+
+#: ../../../CHANGES:1178
+msgid "Fix infinite looping in Darcs Patch lexer."
+msgstr ""
+
+#: ../../../CHANGES:1180
+msgid ""
+"Lots of misc fixes to character-eating bugs and ordering problems in many"
+" different lexers."
+msgstr ""
+
+#: ../../../CHANGES:1185
+msgid "Version 1.4"
+msgstr ""
+
+#: ../../../CHANGES:1186
+msgid "(codename Unschärfe, released Jan 03, 2011)"
+msgstr ""
+
+#: ../../../CHANGES:1190
+msgid "Factor (#520)"
+msgstr ""
+
+#: ../../../CHANGES:1191
+msgid "PostScript (#486)"
+msgstr ""
+
+#: ../../../CHANGES:1192
+msgid "Verilog (#491)"
+msgstr ""
+
+#: ../../../CHANGES:1193
+msgid "BlitzMax Basic (#478)"
+msgstr ""
+
+#: ../../../CHANGES:1194
+msgid "Ioke (#465)"
+msgstr ""
+
+#: ../../../CHANGES:1195
+msgid "Java properties, split out of the INI lexer (#445)"
+msgstr ""
+
+#: ../../../CHANGES:1196
+msgid "Scss (#509)"
+msgstr ""
+
+#: ../../../CHANGES:1197
+msgid "Duel/JBST"
+msgstr ""
+
+#: ../../../CHANGES:1198
+msgid "XQuery (#617)"
+msgstr ""
+
+#: ../../../CHANGES:1199
+msgid "Mason (#615)"
+msgstr ""
+
+#: ../../../CHANGES:1200
+msgid "GoodData (#609)"
+msgstr ""
+
+#: ../../../CHANGES:1201
+msgid "SSP (#473)"
+msgstr ""
+
+#: ../../../CHANGES:1202
+msgid "Autohotkey (#417)"
+msgstr ""
+
+#: ../../../CHANGES:1203
+msgid "Google Protocol Buffers"
+msgstr ""
+
+#: ../../../CHANGES:1204
+msgid "Hybris (#506)"
+msgstr ""
+
+#: ../../../CHANGES:1206
+msgid "Do not fail in analyse_text methods (#618)."
+msgstr ""
+
+#: ../../../CHANGES:1208
+msgid "Performance improvements in the HTML formatter (#523)."
+msgstr ""
+
+#: ../../../CHANGES:1210
+msgid ""
+"With the ``noclasses`` option in the HTML formatter, some styles present "
+"in the stylesheet were not added as inline styles."
+msgstr ""
+
+#: ../../../CHANGES:1213
+msgid "Four fixes to the Lua lexer (#480, #481, #482, #497)."
+msgstr ""
+
+#: ../../../CHANGES:1215
+msgid ""
+"More context-sensitive Gherkin lexer with support for more i18n "
+"translations."
+msgstr ""
+
+#: ../../../CHANGES:1217
+msgid "Support new OO keywords in Matlab lexer (#521)."
+msgstr ""
+
+#: ../../../CHANGES:1219
+msgid "Small fix in the CoffeeScript lexer (#519)."
+msgstr ""
+
+#: ../../../CHANGES:1221
+msgid "A bugfix for backslashes in ocaml strings (#499)."
+msgstr ""
+
+#: ../../../CHANGES:1223
+msgid "Fix unicode/raw docstrings in the Python lexer (#489)."
+msgstr ""
+
+#: ../../../CHANGES:1225
+msgid "Allow PIL to work without PIL.pth (#502)."
+msgstr ""
+
+#: ../../../CHANGES:1227
+msgid "Allow seconds as a unit in CSS (#496)."
+msgstr ""
+
+#: ../../../CHANGES:1229
+msgid "Support ``application/javascript`` as a JavaScript mime type (#504)."
+msgstr ""
+
+#: ../../../CHANGES:1231
+msgid ""
+"Support `Offload <https://offload.codeplay.com/>`_ C++ Extensions as "
+"keywords in the C++ lexer (#484)."
+msgstr ""
+
+#: ../../../CHANGES:1234
+msgid "Escape more characters in LaTeX output (#505)."
+msgstr ""
+
+#: ../../../CHANGES:1236
+msgid "Update Haml/Sass lexers to version 3 (#509)."
+msgstr ""
+
+#: ../../../CHANGES:1238
+msgid "Small PHP lexer string escaping fix (#515)."
+msgstr ""
+
+#: ../../../CHANGES:1240
+msgid ""
+"Support comments before preprocessor directives, and unsigned/ long long "
+"literals in C/C++ (#613, #616)."
+msgstr ""
+
+#: ../../../CHANGES:1243
+msgid "Support line continuations in the INI lexer (#494)."
+msgstr ""
+
+#: ../../../CHANGES:1245
+msgid "Fix lexing of Dylan string and char literals (#628)."
+msgstr ""
+
+#: ../../../CHANGES:1247
+msgid "Fix class/procedure name highlighting in VB.NET lexer (#624)."
+msgstr ""
+
+#: ../../../CHANGES:1251
+msgid "Version 1.3.1"
+msgstr ""
+
+#: ../../../CHANGES:1252
+msgid "(bugfix release, released Mar 05, 2010)"
+msgstr ""
+
+#: ../../../CHANGES:1254
+msgid "The ``pygmentize`` script was missing from the distribution."
+msgstr ""
+
+#: ../../../CHANGES:1258
+msgid "Version 1.3"
+msgstr ""
+
+#: ../../../CHANGES:1259
+msgid "(codename Schneeglöckchen, released Mar 01, 2010)"
+msgstr ""
+
+#: ../../../CHANGES:1261
+msgid ""
+"Added the ``ensurenl`` lexer option, which can be used to suppress the "
+"automatic addition of a newline to the lexer input."
+msgstr ""
+
+#: ../../../CHANGES:1266
+msgid "Ada"
+msgstr ""
+
+#: ../../../CHANGES:1267 ../../../CHANGES:1327
+msgid "Coldfusion"
+msgstr ""
+
+#: ../../../CHANGES:1268
+msgid "Modula-2"
+msgstr ""
+
+#: ../../../CHANGES:1269 ../../../CHANGES:1328
+msgid "Haxe"
+msgstr ""
+
+#: ../../../CHANGES:1270 ../../../CHANGES:1329
+msgid "R console"
+msgstr ""
+
+#: ../../../CHANGES:1271
+msgid "Objective-J"
+msgstr ""
+
+#: ../../../CHANGES:1272
+msgid "Haml and Sass"
+msgstr ""
+
+#: ../../../CHANGES:1273
+msgid "CoffeeScript"
+msgstr ""
+
+#: ../../../CHANGES:1275
+msgid "Enhanced reStructuredText highlighting."
+msgstr ""
+
+#: ../../../CHANGES:1277
+msgid "Added support for PHP 5.3 namespaces in the PHP lexer."
+msgstr ""
+
+#: ../../../CHANGES:1279
+msgid ""
+"Added a bash completion script for `pygmentize`, to the external/ "
+"directory (#466)."
+msgstr ""
+
+#: ../../../CHANGES:1282
+msgid "Fixed a bug in `do_insertions()` used for multi-lexer languages."
+msgstr ""
+
+#: ../../../CHANGES:1284
+msgid "Fixed a Ruby regex highlighting bug (#476)."
+msgstr ""
+
+#: ../../../CHANGES:1286
+msgid "Fixed regex highlighting bugs in Perl lexer (#258)."
+msgstr ""
+
+#: ../../../CHANGES:1288
+msgid "Add small enhancements to the C lexer (#467) and Bash lexer (#469)."
+msgstr ""
+
+#: ../../../CHANGES:1290
+msgid ""
+"Small fixes for the Tcl, Debian control file, Nginx config, Smalltalk, "
+"Objective-C, Clojure, Lua lexers."
+msgstr ""
+
+#: ../../../CHANGES:1293
+msgid "Gherkin lexer: Fixed single apostrophe bug and added new i18n keywords."
+msgstr ""
+
+#: ../../../CHANGES:1297
+msgid "Version 1.2.2"
+msgstr ""
+
+#: ../../../CHANGES:1298 ../../../CHANGES:1308
+msgid "(bugfix release, released Jan 02, 2010)"
+msgstr ""
+
+#: ../../../CHANGES:1300
+msgid ""
+"Removed a backwards incompatibility in the LaTeX formatter that caused "
+"Sphinx to produce invalid commands when writing LaTeX output (#463)."
+msgstr ""
+
+#: ../../../CHANGES:1303
+msgid "Fixed a forever-backtracking regex in the BashLexer (#462)."
+msgstr ""
+
+#: ../../../CHANGES:1307
+msgid "Version 1.2.1"
+msgstr ""
+
+#: ../../../CHANGES:1310
+msgid ""
+"Fixed mishandling of an ellipsis in place of the frames in a Python "
+"console traceback, resulting in clobbered output."
+msgstr ""
+
+#: ../../../CHANGES:1315
+msgid "Version 1.2"
+msgstr ""
+
+#: ../../../CHANGES:1316
+msgid "(codename Neujahr, released Jan 01, 2010)"
+msgstr ""
+
+#: ../../../CHANGES:1318
+msgid "Dropped Python 2.3 compatibility."
+msgstr ""
+
+#: ../../../CHANGES:1322
+msgid "Asymptote"
+msgstr ""
+
+#: ../../../CHANGES:1323
+msgid "Go"
+msgstr ""
+
+#: ../../../CHANGES:1324
+msgid "Gherkin (Cucumber)"
+msgstr ""
+
+#: ../../../CHANGES:1325
+msgid "CMake"
+msgstr ""
+
+#: ../../../CHANGES:1326
+msgid "Ooc"
+msgstr ""
+
+#: ../../../CHANGES:1331
+msgid ""
+"Added options for rendering LaTeX in source code comments in the LaTeX "
+"formatter (#461)."
+msgstr ""
+
+#: ../../../CHANGES:1334
+msgid "Updated the Logtalk lexer."
+msgstr ""
+
+#: ../../../CHANGES:1336
+msgid "Added `line_number_start` option to image formatter (#456)."
+msgstr ""
+
+#: ../../../CHANGES:1338
+msgid "Added `hl_lines` and `hl_color` options to image formatter (#457)."
+msgstr ""
+
+#: ../../../CHANGES:1340
+msgid ""
+"Fixed the HtmlFormatter's handling of noclasses=True to not output any "
+"classes (#427)."
+msgstr ""
+
+#: ../../../CHANGES:1343
+msgid "Added the Monokai style (#453)."
+msgstr ""
+
+#: ../../../CHANGES:1345
+msgid "Fixed LLVM lexer identifier syntax and added new keywords (#442)."
+msgstr ""
+
+#: ../../../CHANGES:1347
+msgid ""
+"Fixed the PythonTracebackLexer to handle non-traceback data in header or "
+"trailer, and support more partial tracebacks that start on line 2 (#437)."
+msgstr ""
+
+#: ../../../CHANGES:1350
+msgid "Fixed the CLexer to not highlight ternary statements as labels."
+msgstr ""
+
+#: ../../../CHANGES:1352
+msgid "Fixed lexing of some Ruby quoting peculiarities (#460)."
+msgstr ""
+
+#: ../../../CHANGES:1354
+msgid "A few ASM lexer fixes (#450)."
+msgstr ""
+
+#: ../../../CHANGES:1358
+msgid "Version 1.1.1"
+msgstr ""
+
+#: ../../../CHANGES:1359
+msgid "(bugfix release, released Sep 15, 2009)"
+msgstr ""
+
+#: ../../../CHANGES:1361
+msgid "Fixed the BBCode lexer (#435)."
+msgstr ""
+
+#: ../../../CHANGES:1363
+msgid "Added support for new Jinja2 keywords."
+msgstr ""
+
+#: ../../../CHANGES:1365
+msgid "Fixed test suite failures."
+msgstr ""
+
+#: ../../../CHANGES:1367
+msgid "Added Gentoo-specific suffixes to Bash lexer."
+msgstr ""
+
+#: ../../../CHANGES:1371
+msgid "Version 1.1"
+msgstr ""
+
+#: ../../../CHANGES:1372
+msgid "(codename Brillouin, released Sep 11, 2009)"
+msgstr ""
+
+#: ../../../CHANGES:1374
+msgid ""
+"Ported Pygments to Python 3.  This needed a few changes in the way "
+"encodings are handled; they may affect corner cases when used with Python"
+" 2 as well."
+msgstr ""
+
+#: ../../../CHANGES:1380
+msgid "Antlr/Ragel, thanks to Ana Nelson"
+msgstr ""
+
+#: ../../../CHANGES:1381
+msgid "(Ba)sh shell"
+msgstr ""
+
+#: ../../../CHANGES:1382
+msgid "Erlang shell"
+msgstr ""
+
+#: ../../../CHANGES:1383
+msgid "GLSL"
+msgstr ""
+
+#: ../../../CHANGES:1384
+msgid "Prolog"
+msgstr ""
+
+#: ../../../CHANGES:1385
+msgid "Evoque"
+msgstr ""
+
+#: ../../../CHANGES:1386
+msgid "Modelica"
+msgstr ""
+
+#: ../../../CHANGES:1387
+msgid "Rebol"
+msgstr ""
+
+#: ../../../CHANGES:1388
+msgid "MXML"
+msgstr ""
+
+#: ../../../CHANGES:1389
+msgid "Cython"
+msgstr ""
+
+#: ../../../CHANGES:1390
+msgid "ABAP"
+msgstr ""
+
+#: ../../../CHANGES:1391
+msgid "ASP.net (VB/C#)"
+msgstr ""
+
+#: ../../../CHANGES:1392
+msgid "Vala"
+msgstr ""
+
+#: ../../../CHANGES:1393
+msgid "Newspeak"
+msgstr ""
+
+#: ../../../CHANGES:1395
+msgid ""
+"Fixed the LaTeX formatter's output so that output generated for one style"
+" can be used with the style definitions of another (#384)."
+msgstr ""
+
+#: ../../../CHANGES:1398
+msgid ""
+"Added \"anchorlinenos\" and \"noclobber_cssfile\" (#396) options to HTML "
+"formatter."
+msgstr ""
+
+#: ../../../CHANGES:1401
+msgid "Support multiline strings in Lua lexer."
+msgstr ""
+
+#: ../../../CHANGES:1403
+msgid ""
+"Rewrite of the JavaScript lexer by Pumbaa80 to better support regular "
+"expression literals (#403)."
+msgstr ""
+
+#: ../../../CHANGES:1406
+msgid ""
+"When pygmentize is asked to highlight a file for which multiple lexers "
+"match the filename, use the analyse_text guessing engine to determine the"
+" winner (#355)."
+msgstr ""
+
+#: ../../../CHANGES:1410
+msgid ""
+"Fixed minor bugs in the JavaScript lexer (#383), the Matlab lexer (#378),"
+" the Scala lexer (#392), the INI lexer (#391), the Clojure lexer (#387) "
+"and the AS3 lexer (#389)."
+msgstr ""
+
+#: ../../../CHANGES:1414
+msgid "Fixed three Perl heredoc lexing bugs (#379, #400, #422)."
+msgstr ""
+
+#: ../../../CHANGES:1416
+msgid "Fixed a bug in the image formatter which misdetected lines (#380)."
+msgstr ""
+
+#: ../../../CHANGES:1418
+msgid "Fixed bugs lexing extended Ruby strings and regexes."
+msgstr ""
+
+#: ../../../CHANGES:1420
+msgid "Fixed a bug when lexing git diffs."
+msgstr ""
+
+#: ../../../CHANGES:1422
+msgid "Fixed a bug lexing the empty commit in the PHP lexer (#405)."
+msgstr ""
+
+#: ../../../CHANGES:1424
+msgid "Fixed a bug causing Python numbers to be mishighlighted as floats (#397)."
+msgstr ""
+
+#: ../../../CHANGES:1426
+msgid "Fixed a bug when backslashes are used in odd locations in Python (#395)."
+msgstr ""
+
+#: ../../../CHANGES:1428
+msgid ""
+"Fixed various bugs in Matlab and S-Plus lexers, thanks to Winston Chang "
+"(#410, #411, #413, #414) and fmarc (#419)."
+msgstr ""
+
+#: ../../../CHANGES:1431
+msgid "Fixed a bug in Haskell single-line comment detection (#426)."
+msgstr ""
+
+#: ../../../CHANGES:1433
+msgid "Added new-style reStructuredText directive for docutils 0.5+ (#428)."
+msgstr ""
+
+#: ../../../CHANGES:1437
+msgid "Version 1.0"
+msgstr ""
+
+#: ../../../CHANGES:1438
+msgid "(codename Dreiundzwanzig, released Nov 23, 2008)"
+msgstr ""
+
+#: ../../../CHANGES:1440
+msgid ""
+"Don't use join(splitlines()) when converting newlines to ``\\n``, because"
+" that doesn't keep all newlines at the end when the ``stripnl`` lexer "
+"option is False."
+msgstr ""
+
+#: ../../../CHANGES:1444
+msgid ""
+"Added ``-N`` option to command-line interface to get a lexer name for a "
+"given filename."
+msgstr ""
+
+#: ../../../CHANGES:1447
+msgid "Added Tango style, written by Andre Roberge for the Crunchy project."
+msgstr ""
+
+#: ../../../CHANGES:1449
+msgid "Added Python3TracebackLexer and ``python3`` option to PythonConsoleLexer."
+msgstr ""
+
+#: ../../../CHANGES:1452
+msgid "Fixed a few bugs in the Haskell lexer."
+msgstr ""
+
+#: ../../../CHANGES:1454
+msgid ""
+"Fixed PythonTracebackLexer to be able to recognize SyntaxError and "
+"KeyboardInterrupt (#360)."
+msgstr ""
+
+#: ../../../CHANGES:1457
+msgid "Provide one formatter class per image format, so that surprises like::"
+msgstr ""
+
+#: ../../../CHANGES:1461
+msgid "creating a PNG file are avoided."
+msgstr ""
+
+#: ../../../CHANGES:1463
+msgid "Actually use the `font_size` option of the image formatter."
+msgstr ""
+
+#: ../../../CHANGES:1465
+msgid "Fixed numpy lexer that it doesn't listen for `*.py` any longer."
+msgstr ""
+
+#: ../../../CHANGES:1467
+msgid "Fixed HTML formatter so that text options can be Unicode strings (#371)."
+msgstr ""
+
+#: ../../../CHANGES:1470
+msgid "Unified Diff lexer supports the \"udiff\" alias now."
+msgstr ""
+
+#: ../../../CHANGES:1472
+msgid "Fixed a few issues in Scala lexer (#367)."
+msgstr ""
+
+#: ../../../CHANGES:1474
+msgid "RubyConsoleLexer now supports simple prompt mode (#363)."
+msgstr ""
+
+#: ../../../CHANGES:1476
+msgid "JavascriptLexer is smarter about what constitutes a regex (#356)."
+msgstr ""
+
+#: ../../../CHANGES:1478
+msgid "Add Applescript lexer, thanks to Andreas Amann (#330)."
+msgstr ""
+
+#: ../../../CHANGES:1480
+msgid "Make the codetags more strict about matching words (#368)."
+msgstr ""
+
+#: ../../../CHANGES:1482
+msgid ""
+"NginxConfLexer is a little more accurate on mimetypes and variables "
+"(#370)."
+msgstr ""
+
+#: ../../../CHANGES:1487
+msgid "Version 0.11.1"
+msgstr ""
+
+#: ../../../CHANGES:1488
+msgid "(released Aug 24, 2008)"
+msgstr ""
+
+#: ../../../CHANGES:1490
+msgid "Fixed a Jython compatibility issue in pygments.unistring (#358)."
+msgstr ""
+
+#: ../../../CHANGES:1494
+msgid "Version 0.11"
+msgstr ""
+
+#: ../../../CHANGES:1495
+msgid "(codename Straußenei, released Aug 23, 2008)"
+msgstr ""
+
+#: ../../../CHANGES:1497
+msgid ""
+"Many thanks go to Tim Hatch for writing or integrating most of the bug "
+"fixes and new features."
+msgstr ""
+
+#: ../../../CHANGES:1502
+msgid "Nasm-style assembly language, thanks to delroth"
+msgstr ""
+
+#: ../../../CHANGES:1503
+msgid "YAML, thanks to Kirill Simonov"
+msgstr ""
+
+#: ../../../CHANGES:1504
+msgid "ActionScript 3, thanks to Pierre Bourdon"
+msgstr ""
+
+#: ../../../CHANGES:1505
+msgid "Cheetah/Spitfire templates, thanks to Matt Good"
+msgstr ""
+
+#: ../../../CHANGES:1506
+msgid "Lighttpd config files"
+msgstr ""
+
+#: ../../../CHANGES:1507
+msgid "Nginx config files"
+msgstr ""
+
+#: ../../../CHANGES:1508
+msgid "Gnuplot plotting scripts"
+msgstr ""
+
+#: ../../../CHANGES:1509
+msgid "Clojure"
+msgstr ""
+
+#: ../../../CHANGES:1510
+msgid "POV-Ray scene files"
+msgstr ""
+
+#: ../../../CHANGES:1511
+msgid "Sqlite3 interactive console sessions"
+msgstr ""
+
+#: ../../../CHANGES:1512
+msgid "Scala source files, thanks to Krzysiek Goj"
+msgstr ""
+
+#: ../../../CHANGES:1514 ../../../CHANGES:1622
+msgid "Lexers improved:"
+msgstr ""
+
+#: ../../../CHANGES:1516
+msgid "C lexer highlights standard library functions now and supports C99 types."
+msgstr ""
+
+#: ../../../CHANGES:1518
+msgid "Bash lexer now correctly highlights heredocs without preceding whitespace."
+msgstr ""
+
+#: ../../../CHANGES:1520
+msgid ""
+"Vim lexer now highlights hex colors properly and knows a couple more "
+"keywords."
+msgstr ""
+
+#: ../../../CHANGES:1522
+msgid ""
+"Irc logs lexer now handles xchat's default time format (#340) and "
+"correctly highlights lines ending in ``>``."
+msgstr ""
+
+#: ../../../CHANGES:1524
+msgid "Support more delimiters for perl regular expressions (#258)."
+msgstr ""
+
+#: ../../../CHANGES:1525
+msgid "ObjectiveC lexer now supports 2.0 features."
+msgstr ""
+
+#: ../../../CHANGES:1527
+msgid "Added \"Visual Studio\" style."
+msgstr ""
+
+#: ../../../CHANGES:1529
+msgid "Updated markdown processor to Markdown 1.7."
+msgstr ""
+
+#: ../../../CHANGES:1531
+msgid "Support roman/sans/mono style defs and use them in the LaTeX formatter."
+msgstr ""
+
+#: ../../../CHANGES:1534
+msgid ""
+"The RawTokenFormatter is no longer registered to ``*.raw`` and it's "
+"documented that tokenization with this lexer may raise exceptions."
+msgstr ""
+
+#: ../../../CHANGES:1537
+msgid "New option ``hl_lines`` to HTML formatter, to highlight certain lines."
+msgstr ""
+
+#: ../../../CHANGES:1540
+msgid "New option ``prestyles`` to HTML formatter."
+msgstr ""
+
+#: ../../../CHANGES:1542
+msgid ""
+"New option *-g* to pygmentize, to allow lexer guessing based on filetext "
+"(can be slowish, so file extensions are still checked first)."
+msgstr ""
+
+#: ../../../CHANGES:1546
+msgid ""
+"``guess_lexer()`` now makes its decision much faster due to a cache of "
+"whether data is xml-like (a check which is used in several versions of "
+"``analyse_text()``.  Several lexers also have more accurate "
+"``analyse_text()`` now."
+msgstr ""
+
+#: ../../../CHANGES:1553
+msgid "Version 0.10"
+msgstr ""
+
+#: ../../../CHANGES:1554
+msgid "(codename Malzeug, released May 06, 2008)"
+msgstr ""
+
+#: ../../../CHANGES:1558
+msgid "Io"
+msgstr ""
+
+#: ../../../CHANGES:1559
+msgid "Smalltalk"
+msgstr ""
+
+#: ../../../CHANGES:1560
+msgid "Darcs patches"
+msgstr ""
+
+#: ../../../CHANGES:1561
+msgid "Tcl"
+msgstr ""
+
+#: ../../../CHANGES:1562
+msgid "Matlab"
+msgstr ""
+
+#: ../../../CHANGES:1563
+msgid "Matlab sessions"
+msgstr ""
+
+#: ../../../CHANGES:1564
+msgid "FORTRAN"
+msgstr ""
+
+#: ../../../CHANGES:1565
+msgid "XSLT"
+msgstr ""
+
+#: ../../../CHANGES:1566
+msgid "tcsh"
+msgstr ""
+
+#: ../../../CHANGES:1567
+msgid "NumPy"
+msgstr ""
+
+#: ../../../CHANGES:1568
+msgid "Python 3"
+msgstr ""
+
+#: ../../../CHANGES:1569
+msgid "S, S-plus, R statistics languages"
+msgstr ""
+
+#: ../../../CHANGES:1570
+msgid "Logtalk"
+msgstr ""
+
+#: ../../../CHANGES:1572
+msgid ""
+"In the LatexFormatter, the *commandprefix* option is now by default 'PY' "
+"instead of 'C', since the latter resulted in several collisions with "
+"other packages.  Also, the special meaning of the *arg* argument to "
+"``get_style_defs()`` was removed."
+msgstr ""
+
+#: ../../../CHANGES:1577
+msgid ""
+"Added ImageFormatter, to format code as PNG, JPG, GIF or BMP. (Needs the "
+"Python Imaging Library.)"
+msgstr ""
+
+#: ../../../CHANGES:1580
+msgid "Support doc comments in the PHP lexer."
+msgstr ""
+
+#: ../../../CHANGES:1582
+msgid "Handle format specifications in the Perl lexer."
+msgstr ""
+
+#: ../../../CHANGES:1584
+msgid "Fix comment handling in the Batch lexer."
+msgstr ""
+
+#: ../../../CHANGES:1586
+msgid "Add more file name extensions for the C++, INI and XML lexers."
+msgstr ""
+
+#: ../../../CHANGES:1588
+msgid "Fixes in the IRC and MuPad lexers."
+msgstr ""
+
+#: ../../../CHANGES:1590
+msgid "Fix function and interface name highlighting in the Java lexer."
+msgstr ""
+
+#: ../../../CHANGES:1592
+msgid "Fix at-rule handling in the CSS lexer."
+msgstr ""
+
+#: ../../../CHANGES:1594
+msgid "Handle KeyboardInterrupts gracefully in pygmentize."
+msgstr ""
+
+#: ../../../CHANGES:1596
+msgid "Added BlackWhiteStyle."
+msgstr ""
+
+#: ../../../CHANGES:1598
+msgid ""
+"Bash lexer now correctly highlights math, does not require whitespace "
+"after semicolons, and correctly highlights boolean operators."
+msgstr ""
+
+#: ../../../CHANGES:1602
+msgid "Makefile lexer is now capable of handling BSD and GNU make syntax."
+msgstr ""
+
+#: ../../../CHANGES:1606
+msgid "Version 0.9"
+msgstr ""
+
+#: ../../../CHANGES:1607
+msgid "(codename Herbstzeitlose, released Oct 14, 2007)"
+msgstr ""
+
+#: ../../../CHANGES:1611
+msgid "Erlang"
+msgstr ""
+
+#: ../../../CHANGES:1612
+msgid "ActionScript"
+msgstr ""
+
+#: ../../../CHANGES:1613
+msgid "Literate Haskell"
+msgstr ""
+
+#: ../../../CHANGES:1614
+msgid "Common Lisp"
+msgstr ""
+
+#: ../../../CHANGES:1615
+msgid "Various assembly languages"
+msgstr ""
+
+#: ../../../CHANGES:1616
+msgid "Gettext catalogs"
+msgstr ""
+
+#: ../../../CHANGES:1617
+msgid "Squid configuration"
+msgstr ""
+
+#: ../../../CHANGES:1618
+msgid "Debian control files"
+msgstr ""
+
+#: ../../../CHANGES:1619
+msgid "MySQL-style SQL"
+msgstr ""
+
+#: ../../../CHANGES:1620
+msgid "MOOCode"
+msgstr ""
+
+#: ../../../CHANGES:1624
+msgid "Greatly improved the Haskell and OCaml lexers."
+msgstr ""
+
+#: ../../../CHANGES:1625
+msgid "Improved the Bash lexer's handling of nested constructs."
+msgstr ""
+
+#: ../../../CHANGES:1626
+msgid ""
+"The C# and Java lexers exhibited abysmal performance with some input "
+"code; this should now be fixed."
+msgstr ""
+
+#: ../../../CHANGES:1628
+msgid "The IRC logs lexer is now able to colorize weechat logs too."
+msgstr ""
+
+#: ../../../CHANGES:1629
+msgid "The Lua lexer now recognizes multi-line comments."
+msgstr ""
+
+#: ../../../CHANGES:1630
+msgid "Fixed bugs in the D and MiniD lexer."
+msgstr ""
+
+#: ../../../CHANGES:1632
+msgid ""
+"The encoding handling of the command line mode (pygmentize) was enhanced."
+" You shouldn't get UnicodeErrors from it anymore if you don't give an "
+"encoding option."
+msgstr ""
+
+#: ../../../CHANGES:1636
+msgid ""
+"Added a ``-P`` option to the command line mode which can be used to give "
+"options whose values contain commas or equals signs."
+msgstr ""
+
+#: ../../../CHANGES:1639
+msgid "Added 256-color terminal formatter."
+msgstr ""
+
+#: ../../../CHANGES:1641
+msgid "Added an experimental SVG formatter."
+msgstr ""
+
+#: ../../../CHANGES:1643
+msgid ""
+"Added the ``lineanchors`` option to the HTML formatter, thanks to Ian "
+"Charnas for the idea."
+msgstr ""
+
+#: ../../../CHANGES:1646
+msgid "Gave the line numbers table a CSS class in the HTML formatter."
+msgstr ""
+
+#: ../../../CHANGES:1648
+msgid "Added a Vim 7-like style."
+msgstr ""
+
+#: ../../../CHANGES:1652
+msgid "Version 0.8.1"
+msgstr ""
+
+#: ../../../CHANGES:1653
+msgid "(released Jun 27, 2007)"
+msgstr ""
+
+#: ../../../CHANGES:1655
+msgid "Fixed POD highlighting in the Ruby lexer."
+msgstr ""
+
+#: ../../../CHANGES:1657
+msgid "Fixed Unicode class and namespace name highlighting in the C# lexer."
+msgstr ""
+
+#: ../../../CHANGES:1659
+msgid "Fixed Unicode string prefix highlighting in the Python lexer."
+msgstr ""
+
+#: ../../../CHANGES:1661
+msgid "Fixed a bug in the D and MiniD lexers."
+msgstr ""
+
+#: ../../../CHANGES:1663
+msgid "Fixed the included MoinMoin parser."
+msgstr ""
+
+#: ../../../CHANGES:1667
+msgid "Version 0.8"
+msgstr ""
+
+#: ../../../CHANGES:1668
+msgid "(codename Maikäfer, released May 30, 2007)"
+msgstr ""
+
+#: ../../../CHANGES:1672
+msgid "Haskell, thanks to Adam Blinkinsop"
+msgstr ""
+
+#: ../../../CHANGES:1673
+msgid "Redcode, thanks to Adam Blinkinsop"
+msgstr ""
+
+#: ../../../CHANGES:1674
+msgid "D, thanks to Kirk McDonald"
+msgstr ""
+
+#: ../../../CHANGES:1675
+msgid "MuPad, thanks to Christopher Creutzig"
+msgstr ""
+
+#: ../../../CHANGES:1676
+msgid "MiniD, thanks to Jarrett Billingsley"
+msgstr ""
+
+#: ../../../CHANGES:1677
+msgid "Vim Script, by Tim Hatch"
+msgstr ""
+
+#: ../../../CHANGES:1679
+msgid ""
+"The HTML formatter now has a second line-numbers mode in which it will "
+"just integrate the numbers in the same ``<pre>`` tag as the code."
+msgstr ""
+
+#: ../../../CHANGES:1683
+msgid ""
+"The `CSharpLexer` now is Unicode-aware, which means that it has an option"
+" that can be set so that it correctly lexes Unicode identifiers allowed "
+"by the C# specs."
+msgstr ""
+
+#: ../../../CHANGES:1687
+msgid ""
+"Added a `RaiseOnErrorTokenFilter` that raises an exception when the lexer"
+" generates an error token, and a `VisibleWhitespaceFilter` that converts "
+"whitespace (spaces, tabs, newlines) into visible characters."
+msgstr ""
+
+#: ../../../CHANGES:1692
+msgid "Fixed the `do_insertions()` helper function to yield correct indices."
+msgstr ""
+
+#: ../../../CHANGES:1695
+msgid ""
+"The ReST lexer now automatically highlights source code blocks in \".. "
+"sourcecode:: language\" and \".. code:: language\" directive blocks."
+msgstr ""
+
+#: ../../../CHANGES:1699
+msgid ""
+"Improved the default style (thanks to Tiberius Teng). The old default is "
+"still available as the \"emacs\" style (which was an alias before)."
+msgstr ""
+
+#: ../../../CHANGES:1703
+msgid ""
+"The `get_style_defs` method of HTML formatters now uses the `cssclass` "
+"option as the default selector if it was given."
+msgstr ""
+
+#: ../../../CHANGES:1706
+msgid "Improved the ReST and Bash lexers a bit."
+msgstr ""
+
+#: ../../../CHANGES:1708
+msgid "Fixed a few bugs in the Makefile and Bash lexers, thanks to Tim Hatch."
+msgstr ""
+
+#: ../../../CHANGES:1711
+msgid ""
+"Fixed a bug in the command line code that disallowed ``-O`` options when "
+"using the ``-S`` option."
+msgstr ""
+
+#: ../../../CHANGES:1714
+msgid "Fixed a bug in the `RawTokenFormatter`."
+msgstr ""
+
+#: ../../../CHANGES:1718
+msgid "Version 0.7.1"
+msgstr ""
+
+#: ../../../CHANGES:1719
+msgid "(released Feb 15, 2007)"
+msgstr ""
+
+#: ../../../CHANGES:1721
+msgid ""
+"Fixed little highlighting bugs in the Python, Java, Scheme and Apache "
+"Config lexers."
+msgstr ""
+
+#: ../../../CHANGES:1724
+msgid "Updated the included manpage."
+msgstr ""
+
+#: ../../../CHANGES:1726
+msgid "Included a built version of the documentation in the source tarball."
+msgstr ""
+
+#: ../../../CHANGES:1730
+msgid "Version 0.7"
+msgstr ""
+
+#: ../../../CHANGES:1731
+msgid "(codename Faschingskrapfn, released Feb 14, 2007)"
+msgstr ""
+
+#: ../../../CHANGES:1733
+msgid ""
+"Added a MoinMoin parser that uses Pygments. With it, you get Pygments "
+"highlighting in Moin Wiki pages."
+msgstr ""
+
+#: ../../../CHANGES:1736
+msgid ""
+"Changed the exception raised if no suitable lexer, formatter etc. is "
+"found in one of the `get_*_by_*` functions to a custom exception, "
+"`pygments.util.ClassNotFound`. It is, however, a subclass of `ValueError`"
+" in order to retain backwards compatibility."
+msgstr ""
+
+#: ../../../CHANGES:1741
+msgid ""
+"Added a `-H` command line option which can be used to get the docstring "
+"of a lexer, formatter or filter."
+msgstr ""
+
+#: ../../../CHANGES:1744
+msgid ""
+"Made the handling of lexers and formatters more consistent. The aliases "
+"and filename patterns of formatters are now attributes on them."
+msgstr ""
+
+#: ../../../CHANGES:1748
+msgid "Added an OCaml lexer, thanks to Adam Blinkinsop."
+msgstr ""
+
+#: ../../../CHANGES:1750
+msgid ""
+"Made the HTML formatter more flexible, and easily subclassable in order "
+"to make it easy to implement custom wrappers, e.g. alternate line number "
+"markup. See the documentation."
+msgstr ""
+
+#: ../../../CHANGES:1754
+msgid ""
+"Added an `outencoding` option to all formatters, making it possible to "
+"override the `encoding` (which is used by lexers and formatters) when "
+"using the command line interface. Also, if using the terminal formatter "
+"and the output file is a terminal and has an encoding attribute, use it "
+"if no encoding is given."
+msgstr ""
+
+#: ../../../CHANGES:1760
+msgid ""
+"Made it possible to just drop style modules into the `styles` subpackage "
+"of the Pygments installation."
+msgstr ""
+
+#: ../../../CHANGES:1763
+msgid "Added a \"state\" keyword argument to the `using` helper."
+msgstr ""
+
+#: ../../../CHANGES:1765
+msgid ""
+"Added a `commandprefix` option to the `LatexFormatter` which allows to "
+"control how the command names are constructed."
+msgstr ""
+
+#: ../../../CHANGES:1768
+msgid "Added quite a few new lexers, thanks to Tim Hatch:"
+msgstr ""
+
+#: ../../../CHANGES:1770
+msgid "Java Server Pages"
+msgstr ""
+
+#: ../../../CHANGES:1771
+msgid "Windows batch files"
+msgstr ""
+
+#: ../../../CHANGES:1772
+msgid "Trac Wiki markup"
+msgstr ""
+
+#: ../../../CHANGES:1773
+msgid "Python tracebacks"
+msgstr ""
+
+#: ../../../CHANGES:1774
+msgid "ReStructuredText"
+msgstr ""
+
+#: ../../../CHANGES:1775
+msgid "Dylan"
+msgstr ""
+
+#: ../../../CHANGES:1776
+msgid "and the Befunge esoteric programming language (yay!)"
+msgstr ""
+
+#: ../../../CHANGES:1778
+msgid "Added Mako lexers by Ben Bangert."
+msgstr ""
+
+#: ../../../CHANGES:1780
+msgid ""
+"Added \"fruity\" style, another dark background originally vim-based "
+"theme."
+msgstr ""
+
+#: ../../../CHANGES:1783
+msgid "Added sources.list lexer by Dennis Kaarsemaker."
+msgstr ""
+
+#: ../../../CHANGES:1785
+msgid "Added token stream filters, and a pygmentize option to use them."
+msgstr ""
+
+#: ../../../CHANGES:1787
+msgid "Changed behavior of `in` Operator for tokens."
+msgstr ""
+
+#: ../../../CHANGES:1789
+msgid "Added mimetypes for all lexers."
+msgstr ""
+
+#: ../../../CHANGES:1791
+msgid "Fixed some problems lexing Python strings."
+msgstr ""
+
+#: ../../../CHANGES:1793
+msgid "Fixed tickets: #167, #178, #179, #180, #185, #201."
+msgstr ""
+
+#: ../../../CHANGES:1797
+msgid "Version 0.6"
+msgstr ""
+
+#: ../../../CHANGES:1798
+msgid "(codename Zimtstern, released Dec 20, 2006)"
+msgstr ""
+
+#: ../../../CHANGES:1800
+msgid ""
+"Added option for the HTML formatter to write the CSS to an external file "
+"in \"full document\" mode."
+msgstr ""
+
+#: ../../../CHANGES:1803
+msgid "Added RTF formatter."
+msgstr ""
+
+#: ../../../CHANGES:1805
+msgid "Added Bash and Apache configuration lexers (thanks to Tim Hatch)."
+msgstr ""
+
+#: ../../../CHANGES:1807
+msgid "Improved guessing methods for various lexers."
+msgstr ""
+
+#: ../../../CHANGES:1809
+msgid "Added `@media` support to CSS lexer (thanks to Tim Hatch)."
+msgstr ""
+
+#: ../../../CHANGES:1811
+msgid "Added a Groff lexer (thanks to Tim Hatch)."
+msgstr ""
+
+#: ../../../CHANGES:1813
+msgid "License change to BSD."
+msgstr ""
+
+#: ../../../CHANGES:1815
+msgid "Added lexers for the Myghty template language."
+msgstr ""
+
+#: ../../../CHANGES:1817
+msgid "Added a Scheme lexer (thanks to Marek Kubica)."
+msgstr ""
+
+#: ../../../CHANGES:1819
+msgid ""
+"Added some functions to iterate over existing lexers, formatters and "
+"lexers."
+msgstr ""
+
+#: ../../../CHANGES:1822
+msgid ""
+"The HtmlFormatter's `get_style_defs()` can now take a list as an argument"
+" to generate CSS with multiple prefixes."
+msgstr ""
+
+#: ../../../CHANGES:1825
+msgid "Support for guessing input encoding added."
+msgstr ""
+
+#: ../../../CHANGES:1827
+msgid ""
+"Encoding support added: all processing is now done with Unicode strings, "
+"input and output are converted from and optionally to byte strings (see "
+"the ``encoding`` option of lexers and formatters)."
+msgstr ""
+
+#: ../../../CHANGES:1831
+msgid ""
+"Some improvements in the C(++) lexers handling comments and line "
+"continuations."
+msgstr ""
+
+#: ../../../CHANGES:1836
+msgid "Version 0.5.1"
+msgstr ""
+
+#: ../../../CHANGES:1837
+msgid "(released Oct 30, 2006)"
+msgstr ""
+
+#: ../../../CHANGES:1839
+msgid "Fixed traceback in ``pygmentize -L`` (thanks to Piotr Ozarowski)."
+msgstr ""
+
+#: ../../../CHANGES:1843
+msgid "Version 0.5"
+msgstr ""
+
+#: ../../../CHANGES:1844
+msgid "(codename PyKleur, released Oct 30, 2006)"
+msgstr ""
+
+#: ../../../CHANGES:1846
+msgid "Initial public release."
+msgstr ""
+
