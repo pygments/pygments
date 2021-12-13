@@ -728,6 +728,7 @@ class TerraformLexer(ExtendedRegexLexer):
             # e.g. backend "consul" {
             (r'(\s*)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")(\s+)(\{\}|\{)',
              bygroups(Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
+             default('#pop'),
         ],
         'identifier': [
             (r'\b(var\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
