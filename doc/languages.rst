@@ -56,6 +56,7 @@ Programming languages
 * `Dylan <https://opendylan.org/>`_ (incl. console)
 * `Eiffel <https://www.eiffel.org/>`_
 * `Elm <https://elm-lang.org/>`_
+* `Elpi <http://github.com/LPCIC/elpi>`_
 * `Emacs Lisp <https://www.gnu.org/software/emacs/manual/html_node/elisp/>`_
 * Email
 * `Erlang <https://www.erlang.org/>`_ (incl. shell sessions)
