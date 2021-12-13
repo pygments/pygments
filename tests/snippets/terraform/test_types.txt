@@ -5,6 +5,8 @@ module "consul" {
 output "instance_ip_addr" {
 provider "empty" {}
 provider "aws" {
+  project = "test-app"
+}
 provisioner "local-exec" {
 resource "aws_internet_gateway" "base_igw" {
 variable "aws_region" {
@@ -18,7 +20,7 @@ variable "set-str" {
 '"consul"'    Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
 ' '           Text.Whitespace
@@ -27,42 +29,53 @@ variable "set-str" {
 '"example"'   Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'module'      Keyword.Reserved
 ' '           Text.Whitespace
 '"consul"'    Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'output'      Keyword.Reserved
 ' '           Text.Whitespace
 '"instance_ip_addr"' Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'provider'    Keyword.Reserved
 ' '           Text.Whitespace
 '"empty"'     Name.Variable
 ' '           Text.Whitespace
 '{}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'provider'    Keyword.Reserved
 ' '           Text.Whitespace
 '"aws"'       Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'project'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"test-app"'  Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
 
 'provisioner' Keyword.Reserved
 ' '           Text.Whitespace
 '"local-exec"' Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'resource'    Keyword.Reserved
 ' '           Text.Whitespace
@@ -71,21 +84,21 @@ variable "set-str" {
 '"base_igw"'  Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'variable'    Keyword.Reserved
 ' '           Text.Whitespace
 '"aws_region"' Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'variable'    Keyword.Reserved
 ' '           Text.Whitespace
 '"set-str"'   Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'type'        Name.Attribute
