@@ -9,9 +9,10 @@
 """
 
 import re
+import keyword
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-    default, words, combined, do_insertions
+    default, words, combined, do_insertions, this
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error
@@ -110,6 +111,7 @@ class PythonLexer(RegexLexer):
             (r'\\\n', Text),
             (r'\\', Text),
             include('keywords'),
+            include('soft-keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text),
@@ -206,6 +208,20 @@ class PythonLexer(RegexLexer):
                 'yield from', 'as', 'with'), suffix=r'\b'),
              Keyword),
             (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
+        ],
+        'soft-keywords': [
+            # `match`, `case` and `_` soft keywords
+            (r'(^[ \t]*)'              # at beginning of line + possible indentation
+             r'(match|case)\b'         # a possible keyword
+             r'(?![ \t]*(?:'           # not followed by...
+             r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't 
+             r'|'.join(keyword.kwlist) + r')\b))',                 # pattern matching
+             bygroups(Text, Keyword), 'soft-keywords-inner'),
+        ],
+        'soft-keywords-inner': [
+            # optional `_` keyword
+            (r'(\s+)([^\n_]*)(_\b)', bygroups(Text, using(this), Keyword)),
+            default('#pop')
         ],
         'builtins': [
             (words((
