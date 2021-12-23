@@ -2,7 +2,7 @@
 # Pygments documentation build configuration file
 #
 
-import sys, os, itertools
+import re, sys, os, itertools
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -260,5 +260,22 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         ctx['styles_sub_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
 
 
+def source_read(app, docname, source):
+    # linkify issue / PR numbers in changelog
+    if docname == 'docs/changelog':
+        with open('../CHANGES') as f:
+            changelog = f.read()
+
+        idx = changelog.find('\nVersion 2.4.2\n')
+
+        def linkify(match):
+            url = 'https://github.com/pygments/pygments/issues/' + match[1]
+            return '`{} <{}>`_'.format(match[0], url)
+
+        linkified = re.sub(r'(?:PR)?#([0-9]+)\b', linkify, changelog[:idx])
+        source[0] = linkified + changelog[idx:]
+
+
 def setup(app):
     app.connect('html-page-context', pg_context)
+    app.connect('source-read', source_read)
