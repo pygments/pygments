@@ -21,20 +21,27 @@
     <h2>Enter code and select a language</h2>
     <form>
         <p>
-            <label for="lang">Language:</label> &nbsp;<select id="lang">
-                <option value="">Guess the lexer</option>
-                {% for name, info, _, _ in lexers %}
-                    <option value="{{info.0}}">{{name}}</option>
-                {% endfor %}
-            </select>
+            <label>Language
+                <select id="lang">
+                    <option value="">Guess the lexer</option>
+                    {% for name, info, _, _ in lexers %}
+                        <option value="{{info.0}}">{{name}}</option>
+                    {% endfor %}
+                </select>
+            </label>
             <span id=guessed-lexer></span>
         </p>
-        <p><label for="file">Upload a file here:</label> &nbsp;
-	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
-	<p><textarea id="code" rows="1" cols="60"></textarea></p>
-	<div style="display: flex">
-        <div class=flex-grow-1>
-            <label for="style">Style:</label> &nbsp;<select id="style">
+        <p>
+            <label>Upload a file here:
+                <input type="file" id="file" onchange="new_file()"> or enter code below:
+            </label>
+        </p>
+	    <p>
+            <textarea id="code" rows="1" cols="60"></textarea>
+        </p>
+	<div style="display: flex; gap: 1em;">
+        <label>Style
+            <select id="style">
                 <optgroup label="Good contrast">
                 {% for style in styles_aa %}
                     <option>{{style.name}}</option>
@@ -46,9 +53,10 @@
                 {% endfor %}
                 </optgroup>
             </select>
-        </div>
+        </label>
+        <div class=flex-grow-1></div>
         <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
-	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset">
+	    <input type="reset" value="Reset">
     </div>
     </form>
 </div>
@@ -64,8 +72,7 @@
 
 <div id="code-header" hidden>
     <div class=flex-grow-1></div>
-    <input type="button" value="Download" onclick="download_code()">
-    &nbsp;&nbsp;&nbsp;
+    <button onclick="download_code()">Download</button>
     <a id="copylink" role="button">Copy link</a>
     <span hidden id="uri-too-long">(Copy link unavailable because code too long)</span>
 </div>
