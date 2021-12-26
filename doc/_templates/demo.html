@@ -11,35 +11,41 @@
 {% block body %}
 {{ body }}
 
-<h1>Demo - Try it out!</h1>
-<p>The highlighting here is performed in-browser using
-    a WebAssembly translation of the latest Pygments master branch, courtesy of
-    <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
-<p>Your content is neither sent over the web nor stored anywhere.</p>
+<h1>Try out Pygments!</h1>
+
+<noscript>
+    <h2>This website requires JavaScript (and WebAssembly)</h2>
+
+    You can also try out pygments locally by running <code>pip install pygments</code>.
+    Then you can use <a href="{{pathto('docs/cmdline')}}">the command-line interface</a>.
+</noscript>
 
 <div id="try">
-    <h2>Enter code and select a language</h2>
+    <p>
+        <label>Language
+            <select id="lang" autofocus>
+                <option value="">guess the language</option>
+                {% for name, info, _, _ in lexers %}
+                    <option value="{{info.0}}">{{name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <span id=guessed-lexer></span>
+    </p>
+    <p>
+        <label>
+            Enter some code:
+            <textarea id="code" rows="1" cols="60" spellcheck="false"></textarea>
+        </label>
+    </p>
     <form>
-        <p>
-            <label>Language
-                <select id="lang">
-                    <option value="">Guess the lexer</option>
-                    {% for name, info, _, _ in lexers %}
-                        <option value="{{info.0}}">{{name}}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            <span id=guessed-lexer></span>
-        </p>
-        <p>
-            <label>Upload a file here:
-                <input type="file" id="file"> or enter code below:
-            </label>
-        </p>
-	    <p>
-            <textarea id="code" rows="1" cols="60"></textarea>
-        </p>
-	<div style="display: flex; gap: 1em;">
+        <label>
+            Alternatively you can upload a file:
+            <input type="file" id="file">
+        </label>
+        <input type="reset" value="Reset">
+    </form>
+	<div id="format-settings">
         <label>Style
             <select id="style">
                 <optgroup label="Good contrast">
@@ -56,7 +62,6 @@
         </label>
         <div class=flex-grow-1></div>
         <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
-	    <input type="reset" value="Reset">
     </div>
     </form>
 </div>
@@ -76,5 +81,11 @@
     <a id="copylink" role="button">Copy link</a>
     <span hidden id="uri-too-long">(Copy link unavailable because code too long)</span>
 </div>
+
+<p>The highlighting here is performed in-browser using
+    a WebAssembly translation of the latest Pygments master branch, courtesy of
+    <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
+<p>Your content is neither sent over the web nor stored anywhere.</p>
+
 <script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
