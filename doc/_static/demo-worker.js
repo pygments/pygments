@@ -17,17 +17,34 @@ self.onmessage = async (event) => {
         self.pyodide.globals['code'] = event.data.highlight.code;
         self.pyodide.globals['lexer_name'] = event.data.highlight.lexer;
 
-        const html = self.pyodide.runPython(`
-            import pygments.lexers, pygments.formatters.html
+        self.pyodide.runPython(`
+            import pygments.lexers
 
             lexer = pygments.lexers.get_lexer_by_name(lexer_name)
-            fmter = pygments.formatters.html.HtmlFormatter(cssclass='demo-highlight')
             if type(code) == memoryview:
                 code = bytes(code)
-            pygments.highlight(code, lexer, fmter)
+            tokens = lexer.get_tokens(code)
         `);
 
-        self.postMessage({html});
+        const formatter = event.data.highlight.formatter;
+        if (formatter == 'html') {
+
+            const html = self.pyodide.runPython(`
+                import io
+                from pygments.formatters.html import HtmlFormatter
+
+                fmter = HtmlFormatter(cssclass='demo-highlight')
+                buf = io.StringIO()
+                fmter.format(tokens, buf)
+                buf.getvalue()
+            `);
+            self.postMessage({html});
+        } else if (formatter == 'tokens') {
+            const tokens = self.pyodide.runPython('list(tokens)');
+            self.postMessage({tokens});
+        } else {
+            console.warn('unknown formatter:', formatter);
+        }
     } else if (event.data.guess_lexer) {
         self.pyodide.globals['code'] = event.data.guess_lexer.code;
         self.pyodide.globals['filename'] = event.data.guess_lexer.filename;

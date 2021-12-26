@@ -5,6 +5,7 @@ document.getElementById("hlbtn").disabled = true;
 const loadingDiv = document.getElementById("loading");
 const langSelect = document.getElementById("lang");
 const styleSelect = document.getElementById("style");
+const formatterSelect = document.getElementById("formatter");
 const highlightBtn = document.getElementById("hlbtn");
 const outputDiv = document.getElementById("hlcode");
 const codeHeader = document.getElementById("code-header");
@@ -23,6 +24,9 @@ if (qvars.code !== undefined) {
 }
 if (qvars.style !== undefined) {
     styleSelect.value = qvars.style;
+}
+if (qvars.formatter !== undefined) {
+    formatterSelect.value = qvars.formatter;
 }
 
 styleSelect.addEventListener('change', () => {
@@ -48,6 +52,26 @@ highlightWorker.onmessage = async (msg) => {
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
         style.textContent = styles[styleSelect.value];
+    } else if (msg.data.tokens) {
+        const table = document.createElement('table');
+        table.className = 'tokens';
+        for (const [tokenType, value] of msg.data.tokens) {
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            td1.textContent = tokenType.join('.');
+            const td2 = document.createElement('td');
+            const inlineCode = document.createElement('code');
+            inlineCode.textContent = value;
+            td2.appendChild(inlineCode);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+        }
+        outputDiv.innerHTML = '';
+        outputDiv.appendChild(table);
+
+        codeHeader.hidden = false;
+        loadingDiv.hidden = true;
     } else if (msg.data.lexer) {
         await highlight(msg.data.lexer);
     } else {
@@ -57,7 +81,12 @@ highlightWorker.onmessage = async (msg) => {
 
 function updateCopyLink() {
     var url = document.location.origin + document.location.pathname +
-        "?" + new URLSearchParams({lexer: langSelect.value, code: textarea.value, style: styleSelect.value}).toString()
+        "?" + new URLSearchParams({
+            lexer: langSelect.value,
+            style: styleSelect.value,
+            formatter: formatterSelect.value,
+            code: textarea.value,
+        }).toString()
     if (url.length > 8201) {
         // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
         copyLink.hidden = true;
@@ -98,7 +127,7 @@ async function highlight(guessedLexer) {
 
     document.getElementById('guessed-lexer').textContent = guessedLexer;
 
-    highlightWorker.postMessage({highlight: {code, lexer}});
+    highlightWorker.postMessage({highlight: {code, lexer, formatter: formatterSelect.value}});
 
     if (code instanceof ArrayBuffer) {
         copyLink.hidden = true;
