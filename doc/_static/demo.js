@@ -7,6 +7,7 @@ const langSelect = document.getElementById("lang");
 const highlightBtn = document.getElementById("hlbtn");
 const outputDiv = document.getElementById("hlcode");
 const codeHeader = document.getElementById("hlcodedl");
+const copyLink = document.getElementById("copylink");
 
 const qvars = getQueryVariables();
 if (qvars['lexer']) {
@@ -76,13 +77,13 @@ async function highlight() {
     let code;
     if (file) {
         code = await file.arrayBuffer();
-        document.getElementById("copy_btn").style.display = "none";
+        copyLink.hidden = true;
     } else {
         code = document.getElementById("code").value;
         var link = document.location.origin + document.location.pathname +
             "?lexer=" + encodeURIComponent(lexer) + "&code=" + encodeURIComponent(code);
-        document.getElementById("copy_field").value = link;
-        document.getElementById("copy_btn").style.display = "";
+        copyLink.href = link;
+        copyLink.hidden = false;
     }
 
     highlightWorker.postMessage({code, lexer, style});
@@ -92,12 +93,10 @@ async function highlight() {
     document.getElementById('loading-text').textContent = 'highlighting code...';
 }
 
-function copy_link() {
-    var copy_field = document.getElementById("copy_field");
-    copy_field.select();
-    copy_field.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-}
+copyLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await navigator.clipboard.writeText(e.target.href);
+});
 
 function download_code() {
     var filename = "highlighted.html";

@@ -51,10 +51,9 @@
 <div id="hlcode"></div>
 
 <div id="hlcodedl" hidden>
-    <input type="text" id="copy_field" style="opacity: 0">
     <input type="button" value="Download" onclick="download_code()">
     &nbsp;&nbsp;&nbsp;
-    <input type="button" value="Copy link" onclick="copy_link()" id="copy_btn">
+    <a id="copylink" role="button">Copy link</a>
 </div>
 <script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
