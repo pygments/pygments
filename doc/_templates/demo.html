@@ -57,7 +57,7 @@
             <select id="style">
                 <optgroup label="Good contrast">
                 {% for style in styles_aa %}
-                    <option>{{style.name}}</option>
+                    <option data-wcag=aa>{{style.name}}</option>
                 {% endfor %}
                 </optgroup>
                 <optgroup label="Suboptimal contrast">
@@ -67,6 +67,7 @@
                 </optgroup>
             </select>
         </label>
+        <span id=contrast-warning hidden>style may have poor contrast</span>
         <div class=flex-grow-1></div>
         <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
     </div>

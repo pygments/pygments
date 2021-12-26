@@ -13,6 +13,7 @@ const copyLink = document.getElementById("copylink");
 const style = document.getElementById("css-style");
 const textarea = document.getElementById("code");
 const uriTooLongMsg = document.getElementById('uri-too-long');
+const contrastWarning = document.getElementById('contrast-warning');
 
 const qvars = Object.fromEntries(new URLSearchParams(window.location.search));
 if (qvars.lexer) {
@@ -24,6 +25,7 @@ if (qvars.code !== undefined) {
 }
 if (qvars.style !== undefined) {
     styleSelect.value = qvars.style;
+    updateContrastWarning();
 }
 if (qvars.formatter !== undefined) {
     formatterSelect.value = qvars.formatter;
@@ -32,7 +34,12 @@ if (qvars.formatter !== undefined) {
 styleSelect.addEventListener('change', () => {
     style.textContent = styles[styleSelect.value];
     updateCopyLink();
+    updateContrastWarning();
 });
+
+function updateContrastWarning() {
+    contrastWarning.hidden = styleSelect.selectedOptions[0].dataset.wcag == 'aa';
+}
 
 let styles;
 
