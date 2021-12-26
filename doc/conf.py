@@ -230,9 +230,8 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
 
     if pagename == 'demo':
         ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(), key=lambda x: x[0].lower())
-        ctx['styles'] = list(pygments.styles.get_all_styles())
 
-    if pagename == 'styles':
+    if pagename in ('styles', 'demo'):
         with open('examples/example.py') as f:
             html = f.read()
         lexer = pygments.lexers.get_lexer_for_filename('example.py')
@@ -255,13 +254,15 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
                         bg_luminance=(0.2126*bg_r + 0.7152*bg_g + 0.0722*bg_b)
                     )
                 )
+
         # sort styles according to their background luminance (light styles first)
         # if styles have the same background luminance sort them by their name
+        sortkey = lambda s: (-s['bg_luminance'], s['name'])
         # the default style is always displayed first
         default_style = ctx['styles_aa'].pop(0)
-        ctx['styles_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_aa'].sort(key=sortkey)
         ctx['styles_aa'].insert(0, default_style)
-        ctx['styles_sub_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_sub_aa'].sort(key=sortkey)
 
 
 def source_read(app, docname, source):

@@ -29,9 +29,16 @@
             </select>
             &nbsp;&nbsp;&middot;&nbsp;&nbsp;
             <label for="style">Style:</label> &nbsp;<select id="style">
-                {% for style in styles %}
-                    <option>{{style}}</option>
+                <optgroup label="Good contrast">
+                {% for style in styles_aa %}
+                    <option>{{style.name}}</option>
                 {% endfor %}
+                </optgroup>
+                <optgroup label="Suboptimal contrast">
+                {% for style in styles_sub_aa %}
+                    <option>{{style.name}}</option>
+                {% endfor %}
+                </optgroup>
             </select></p>
         <p><label for="file">Upload a file here:</label> &nbsp;
 	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
