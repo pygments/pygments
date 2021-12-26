@@ -11,12 +11,12 @@ const codeHeader = document.getElementById("code-header");
 const copyLink = document.getElementById("copylink");
 const style = document.getElementById("css-style");
 
-const qvars = getQueryVariables();
-if (qvars['lexer']) {
-    langSelect.value = qvars['lexer'];
+const qvars = Object.fromEntries(new URLSearchParams(window.location.search));
+if (qvars.lexer) {
+    langSelect.value = qvars.lexer;
 }
-if (qvars['code'] !== undefined) {
-    document.getElementById("code").value = qvars['code'];
+if (qvars.code !== undefined) {
+    document.getElementById("code").value = qvars.code;
     loadingDiv.hidden = false;
 }
 
@@ -33,7 +33,7 @@ highlightWorker.onmessage = async (msg) => {
         highlightBtn.disabled = false;
         highlightBtn.textContent = 'Highlight';
 
-        if (qvars['code'] !== undefined) {
+        if (qvars.code !== undefined) {
             loadingDiv.hidden = true;
             await highlight();
         }
@@ -49,19 +49,8 @@ highlightWorker.onmessage = async (msg) => {
     }
 };
 
-function getQueryVariables() {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    var var_obj = {};
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-	var_obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-    }
-    return var_obj;
-}
-
 function new_file() {
-    pyodide.globals['fname'] = document.getElementById("file").files[0].name;
+    pyodide.globals.fname = document.getElementById("file").files[0].name;
     var alias = pyodide.runPython('pygments.lexers.find_lexer_class_for_filename(fname).aliases[0]');
     var sel = document.getElementById("lang");
     for (var i = 0; i < sel.length; i++) {
@@ -106,7 +95,7 @@ async function highlight(guessedLexer) {
         uriTooLongMsg.hidden = true;
     } else {
         var url = document.location.origin + document.location.pathname +
-            "?lexer=" + encodeURIComponent(langSelect.value) + "&code=" + encodeURIComponent(code);
+            "?" + new URLSearchParams({lexer: langSelect.value, code}).toString()
         if (url.length > 8201) {
             // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
             copyLink.hidden = true;
