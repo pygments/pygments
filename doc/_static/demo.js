@@ -74,16 +74,28 @@ async function highlight() {
     var style = document.getElementById("style").value;
 
     var file = document.getElementById("file").files[0];
+
+    const uriTooLongMsg = document.getElementById('uri-too-long');
+
     let code;
     if (file) {
         code = await file.arrayBuffer();
         copyLink.hidden = true;
+        uriTooLongMsg.hidden = true;
     } else {
         code = document.getElementById("code").value;
-        var link = document.location.origin + document.location.pathname +
+        var url = document.location.origin + document.location.pathname +
             "?lexer=" + encodeURIComponent(lexer) + "&code=" + encodeURIComponent(code);
-        copyLink.href = link;
-        copyLink.hidden = false;
+        if (url.length > 8201) {
+            // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
+            copyLink.hidden = true;
+            uriTooLongMsg.hidden = false;
+        } else {
+            copyLink.href = url;
+            copyLink.textContent = 'Copy link';
+            copyLink.hidden = false;
+            uriTooLongMsg.hidden = true;
+        }
     }
 
     highlightWorker.postMessage({code, lexer, style});
