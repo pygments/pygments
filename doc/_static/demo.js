@@ -10,18 +10,24 @@ const outputDiv = document.getElementById("hlcode");
 const codeHeader = document.getElementById("code-header");
 const copyLink = document.getElementById("copylink");
 const style = document.getElementById("css-style");
+const textarea = document.getElementById("code");
+const uriTooLongMsg = document.getElementById('uri-too-long');
 
 const qvars = Object.fromEntries(new URLSearchParams(window.location.search));
 if (qvars.lexer) {
     langSelect.value = qvars.lexer;
 }
 if (qvars.code !== undefined) {
-    document.getElementById("code").value = qvars.code;
+    textarea.value = qvars.code;
     loadingDiv.hidden = false;
+}
+if (qvars.style !== undefined) {
+    styleSelect.value = qvars.style;
 }
 
 styleSelect.addEventListener('change', () => {
     style.textContent = styles[styleSelect.value];
+    updateCopyLink();
 });
 
 let styles;
@@ -49,6 +55,21 @@ highlightWorker.onmessage = async (msg) => {
     }
 };
 
+function updateCopyLink() {
+    var url = document.location.origin + document.location.pathname +
+        "?" + new URLSearchParams({lexer: langSelect.value, code: textarea.value, style: styleSelect.value}).toString()
+    if (url.length > 8201) {
+        // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
+        copyLink.hidden = true;
+        uriTooLongMsg.hidden = false;
+    } else {
+        copyLink.href = url;
+        copyLink.textContent = 'Copy link';
+        copyLink.hidden = false;
+        uriTooLongMsg.hidden = true;
+    }
+}
+
 async function highlight(guessedLexer) {
     var lexer = langSelect.value || guessedLexer;
     var file = document.getElementById("file").files[0];
@@ -57,7 +78,7 @@ async function highlight(guessedLexer) {
     if (file) {
         code = await file.arrayBuffer();
     } else {
-        code = document.getElementById("code").value;
+        code = textarea.value;
     }
 
     outputDiv.innerHTML = '';
@@ -79,24 +100,11 @@ async function highlight(guessedLexer) {
 
     highlightWorker.postMessage({highlight: {code, lexer}});
 
-    const uriTooLongMsg = document.getElementById('uri-too-long');
-
     if (code instanceof ArrayBuffer) {
         copyLink.hidden = true;
         uriTooLongMsg.hidden = true;
     } else {
-        var url = document.location.origin + document.location.pathname +
-            "?" + new URLSearchParams({lexer: langSelect.value, code}).toString()
-        if (url.length > 8201) {
-            // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
-            copyLink.hidden = true;
-            uriTooLongMsg.hidden = false;
-        } else {
-            copyLink.href = url;
-            copyLink.textContent = 'Copy link';
-            copyLink.hidden = false;
-            uriTooLongMsg.hidden = true;
-        }
+        updateCopyLink();
     }
 }
 
