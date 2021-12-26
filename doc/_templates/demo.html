@@ -38,13 +38,13 @@
             <textarea id="code" rows="1" cols="60" spellcheck="false"></textarea>
         </label>
     </p>
-    <form>
+    <p>
         <label>
             Alternatively you can upload a file:
             <input type="file" id="file">
         </label>
-        <input type="reset" value="Reset">
-    </form>
+        <button id="reset-file">Reset</button>
+    </p>
 	<div id="format-settings">
         <label>
             Formatter
@@ -68,14 +68,12 @@
             </select>
         </label>
         <span id=contrast-warning hidden>style may have poor contrast</span>
-        <div class=flex-grow-1></div>
-        <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
     </div>
     </form>
 </div>
 
 <div id="loading" hidden>
-    <img src="{{ pathto("_static/spinner.gif", 1) }}" style="vertical-align: middle">
+    <img src="{{ pathto("_static/spinner.gif", 1) }}" width="20">
     <span id="loading-text">loading Python...</span>
 </div>
 

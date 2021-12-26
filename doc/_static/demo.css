@@ -58,9 +58,13 @@
     content: ')';
 }
 
-#loading:not([hidden]) {
+#loading[hidden] {
+    visibility: hidden;
     display: flex;
-    justify-content: center;
+}
+
+#loading {
+    display: flex;
     align-items: center;
     gap: 1em;
 }

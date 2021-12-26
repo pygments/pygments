@@ -1,12 +1,7 @@
-// otherwise the button is enabled when refreshing the page
-document.getElementById("hlbtn").disabled = true;
-
-
 const loadingDiv = document.getElementById("loading");
 const langSelect = document.getElementById("lang");
 const styleSelect = document.getElementById("style");
 const formatterSelect = document.getElementById("formatter");
-const highlightBtn = document.getElementById("hlbtn");
 const outputDiv = document.getElementById("hlcode");
 const codeHeader = document.getElementById("code-header");
 const copyLink = document.getElementById("copylink");
@@ -14,6 +9,8 @@ const style = document.getElementById("css-style");
 const textarea = document.getElementById("code");
 const uriTooLongMsg = document.getElementById('uri-too-long');
 const contrastWarning = document.getElementById('contrast-warning');
+const fileInput = document.getElementById("file");
+const fileInputResetButton = document.getElementById('reset-file');
 
 const qvars = Object.fromEntries(new URLSearchParams(window.location.search));
 if (qvars.lexer) {
@@ -41,18 +38,52 @@ function updateContrastWarning() {
     contrastWarning.hidden = styleSelect.selectedOptions[0].dataset.wcag == 'aa';
 }
 
+function debounce(func, timeout) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), timeout);
+    };
+}
+
+const highlightShortDebounce = debounce(highlight, 50);
+const highlightLongDebounce = debounce(highlight, 500);
+
+function debouncedUpdate() {
+    if (fileInput.files.length > 0)
+        return;
+
+    if (textarea.value.length < 1000) {
+        highlightShortDebounce();
+    } else {
+        highlightLongDebounce();
+    }
+}
+
+langSelect.addEventListener('change', debouncedUpdate);
+textarea.addEventListener('input', debouncedUpdate);
+formatterSelect.addEventListener('change', debouncedUpdate);
+fileInput.addEventListener('change', () => {
+    fileInputResetButton.hidden = false;
+    highlight();
+});
+fileInputResetButton.hidden = fileInput.files.length == 0;
+fileInputResetButton.addEventListener('click', () => {
+    fileInputResetButton.hidden = true;
+    fileInput.value = '';
+    highlight();
+});
+
 let styles;
 
 const highlightWorker = new Worker("/_static/demo-worker.js");
-highlightWorker.onmessage = async (msg) => {
+highlightWorker.onmessage = (msg) => {
     if (msg.data.loaded) {
         styles = msg.data.loaded.styles;
-        highlightBtn.disabled = false;
-        highlightBtn.textContent = 'Highlight';
 
-        if (qvars.code !== undefined) {
+        if (qvars.code !== undefined || textarea.value) {
             loadingDiv.hidden = true;
-            await highlight();
+            highlight();
         }
     } else if (msg.data.html) {
         outputDiv.innerHTML = msg.data.html;
@@ -80,7 +111,7 @@ highlightWorker.onmessage = async (msg) => {
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
     } else if (msg.data.lexer) {
-        await highlight(msg.data.lexer);
+        highlight(msg.data.lexer);
     } else {
         console.warn('unexpected message from highlight worker', msg);
     }
@@ -108,7 +139,7 @@ function updateCopyLink() {
 
 async function highlight(guessedLexer) {
     var lexer = langSelect.value || guessedLexer;
-    var file = document.getElementById("file").files[0];
+    var file = fileInput.files[0];
 
     let code;
     if (file) {
@@ -117,8 +148,6 @@ async function highlight(guessedLexer) {
         code = textarea.value;
     }
 
-    outputDiv.innerHTML = '';
-    codeHeader.hidden = true;
     loadingDiv.hidden = false;
 
     if (!lexer) {
