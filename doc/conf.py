@@ -228,6 +228,10 @@ man_pages = [
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
 
+    if pagename == 'demo':
+        ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(), key=lambda x: x[0].lower())
+        ctx['styles'] = list(pygments.styles.get_all_styles())
+
     if pagename == 'styles':
         with open('examples/example.py') as f:
             html = f.read()

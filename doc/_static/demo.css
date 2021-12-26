@@ -32,16 +32,9 @@
     padding: 0 15px;
 }
 
-#loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: auto auto;
-    background-color: #cccccccc;
+#loading:not([hidden]) {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    gap: 1em;
 }

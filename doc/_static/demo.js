@@ -1,42 +1,29 @@
+// otherwise the button is enabled when refreshing the page
+document.getElementById("hlbtn").disabled = true;
+
+const loadingDiv = document.getElementById("loading");
+
+let qvars = getQueryVariables();
+
+var sel = document.getElementById("lang");
+if (qvars['lexer']) {
+    sel.value = qvars['lexer'];
+}
+if (qvars['code'] !== undefined) {
+    document.getElementById("code").value = qvars['code'];
+    loadingDiv.hidden = false;
+}
+
 languagePluginLoader.then(() => {
     // pyodide is now ready to use...
     pyodide.loadPackage('Pygments').then(() => {
-        pyodide.runPython('import pygments.lexers, pygments.formatters.html, pygments.styles');
-
-        let qvars = getQueryVariables();
-
-        var lexerlist = pyodide.runPython('list(pygments.lexers.get_all_lexers())');
-        lexerlist.sort((a,b) => a[1][0] < b[1][0] ? -1 : 1);
-        var sel = document.getElementById("lang");
-        for (lex of lexerlist) {
-            if (lex[1][0] === undefined) {
-                continue;
-            }
-            var opt = document.createElement("option");
-            opt.text = lex[0];
-            opt.value = lex[1][0];
-            sel.add(opt);
-            if (lex[1].indexOf(qvars['lexer']) >= 0) {
-                opt.selected = true;
-            }
-        }
-
-        var stylelist = pyodide.runPython('list(pygments.styles.get_all_styles())');
-        var sel = document.getElementById("style");
-        for (sty of stylelist) {
-            if (sty != "default") {
-                var opt = document.createElement("option");
-                opt.text = sty;
-                opt.value = sty;
-                sel.add(opt);
-            }
-        }
+        pyodide.runPython('import pygments.lexers, pygments.formatters.html');
 
         document.getElementById("hlbtn").disabled = false;
-        document.getElementById("loading").style.display = "none";
+        document.getElementById("hlbtn").textContent = 'Highlight';
 
         if (qvars['code'] !== undefined) {
-            document.getElementById("code").value = qvars['code'];
+            loadingDiv.hidden = true;
             highlight();
         }
     });

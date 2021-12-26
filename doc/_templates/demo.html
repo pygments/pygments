@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css" href="{{ pathto("_static/demo.css", 1) }}">
 <script type="text/javascript">var languagePluginUrl = "{{ pathto("_static/pyodide/", 1) }}";</script>
 <script type="text/javascript" src="{{ pathto("_static/pyodide/pyodide.js", 1) }}"></script>
-<script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
 
 {% block htmltitle %}<title>Demo{{ titlesuffix }}</title>{% endblock %}
@@ -26,23 +25,29 @@
         <p><span id="aroundlang">
             <label for="lang">Language:</label> &nbsp;<select id="lang" onchange="reset_err_hl()">
                 <option value="">&nbsp;&nbsp;Select a lexer&nbsp;&nbsp;</option>
+                {% for name, info, _, _ in lexers %}
+                    <option value="{{info.0}}">{{name}}</option>
+                {% endfor %}
             </select>
 	    &nbsp;&nbsp;</span>
             &middot;&nbsp;&nbsp;
             <label for="style">Style:</label> &nbsp;<select id="style">
-                <option value="default">default&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                {% for style in styles %}
+                    <option>{{style}}</option>
+                {% endfor %}
             </select></p>
         <p><label for="file">Upload a file here:</label> &nbsp;
 	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
 	<p><textarea id="code" rows="1" cols="60"></textarea></p>
 	<p style="text-align: right">
-            <input type="button" value="Highlight!" onclick="highlight()" id="hlbtn" disabled>
+            <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
 	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset"></p>
     </form>
-    <div id="loading">
-        <p><img src="{{ pathto("_static/spinner.gif", 1) }}" style="vertical-align: middle"></p>
-        <p>Loading Python...</p>
-    </div>
+</div>
+
+<div id="loading" hidden>
+    <img src="{{ pathto("_static/spinner.gif", 1) }}" style="vertical-align: middle">
+    <span id="loading-text">loading Python...</span>
 </div>
 
 <div id="hlcode"></div>
@@ -53,4 +58,5 @@
     &nbsp;&nbsp;&nbsp;
     <input type="button" value="Copy link" onclick="copy_link()" id="copy_btn">
 </div>
+<script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
