@@ -6,7 +6,7 @@ const loadingDiv = document.getElementById("loading");
 const langSelect = document.getElementById("lang");
 const highlightBtn = document.getElementById("hlbtn");
 const outputDiv = document.getElementById("hlcode");
-const codeHeader = document.getElementById("hlcodedl");
+const codeHeader = document.getElementById("code-header");
 const copyLink = document.getElementById("copylink");
 
 const qvars = getQueryVariables();
@@ -32,6 +32,10 @@ highlightWorker.onmessage = async (msg) => {
         outputDiv.innerHTML = msg.data.html;
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
+    } else if (msg.data.lexer) {
+        await highlight(msg.data.lexer);
+    } else {
+        console.warn('unexpected message from highlight worker', msg);
     }
 };
 
@@ -53,39 +57,47 @@ function new_file() {
     for (var i = 0; i < sel.length; i++) {
         if (sel.options[i].value == alias) {
             sel.selectedIndex = i;
-            reset_err_hl();
             break;
         }
     }
 }
 
-function reset_err_hl() {
-    document.getElementById("aroundlang").style.backgroundColor = null;
-}
-
-async function highlight() {
-    var lexer = document.getElementById("lang").value;
-
-    if (lexer == "") {
-        document.getElementById("aroundlang").style.backgroundColor = "#ffcccc";
-        return;
-    }
-
+async function highlight(guessedLexer) {
+    var lexer = langSelect.value || guessedLexer;
     var style = document.getElementById("style").value;
-
     var file = document.getElementById("file").files[0];
-
-    const uriTooLongMsg = document.getElementById('uri-too-long');
 
     let code;
     if (file) {
         code = await file.arrayBuffer();
+    } else {
+        code = document.getElementById("code").value;
+    }
+
+    outputDiv.innerHTML = '';
+    codeHeader.hidden = true;
+    loadingDiv.hidden = false;
+
+    if (!lexer) {
+        highlightWorker.postMessage({guess_lexer: {code}});
+        document.getElementById('loading-text').textContent = 'guessing lexer...';
+        return;
+    }
+
+    document.getElementById('loading-text').textContent = 'highlighting code...';
+
+    document.getElementById('guessed-lexer').textContent = guessedLexer;
+
+    highlightWorker.postMessage({highlight: {code, lexer, style}});
+
+    const uriTooLongMsg = document.getElementById('uri-too-long');
+
+    if (code instanceof ArrayBuffer) {
         copyLink.hidden = true;
         uriTooLongMsg.hidden = true;
     } else {
-        code = document.getElementById("code").value;
         var url = document.location.origin + document.location.pathname +
-            "?lexer=" + encodeURIComponent(lexer) + "&code=" + encodeURIComponent(code);
+            "?lexer=" + encodeURIComponent(langSelect.value) + "&code=" + encodeURIComponent(code);
         if (url.length > 8201) {
             // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
             copyLink.hidden = true;
@@ -97,12 +109,6 @@ async function highlight() {
             uriTooLongMsg.hidden = true;
         }
     }
-
-    highlightWorker.postMessage({code, lexer, style});
-    outputDiv.innerHTML = '';
-    codeHeader.hidden = true;
-    loadingDiv.hidden = false;
-    document.getElementById('loading-text').textContent = 'highlighting code...';
 }
 
 copyLink.addEventListener('click', async (e) => {

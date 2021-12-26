@@ -27,9 +27,15 @@
     border-radius: 0;
 }
 
-#hlcodedl {
-    text-align: right;
+#code-header:not([hidden]) {
+    display: flex;
     padding: 0 15px;
+}
+#guessed-lexer {
+    flex-grow: 1;
+}
+#guessed-lexer:not(:empty):before {
+    content: 'guessed lexer: ';
 }
 
 #loading:not([hidden]) {
