@@ -4,8 +4,6 @@
 {% block extrahead %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ pathto("_static/demo.css", 1) }}">
-<script type="text/javascript">var languagePluginUrl = "{{ pathto("_static/pyodide/", 1) }}";</script>
-<script type="text/javascript" src="{{ pathto("_static/pyodide/pyodide.js", 1) }}"></script>
 {% endblock %}
 
 {% block htmltitle %}<title>Demo{{ titlesuffix }}</title>{% endblock %}
@@ -52,7 +50,7 @@
 
 <div id="hlcode"></div>
 
-<div id="hlcodedl" style="display: none">
+<div id="hlcodedl" hidden>
     <input type="text" id="copy_field" style="opacity: 0">
     <input type="button" value="Download" onclick="download_code()">
     &nbsp;&nbsp;&nbsp;

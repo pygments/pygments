@@ -1,33 +1,38 @@
 // otherwise the button is enabled when refreshing the page
 document.getElementById("hlbtn").disabled = true;
 
+
 const loadingDiv = document.getElementById("loading");
+const langSelect = document.getElementById("lang");
+const highlightBtn = document.getElementById("hlbtn");
+const outputDiv = document.getElementById("hlcode");
+const codeHeader = document.getElementById("hlcodedl");
 
-let qvars = getQueryVariables();
-
-var sel = document.getElementById("lang");
+const qvars = getQueryVariables();
 if (qvars['lexer']) {
-    sel.value = qvars['lexer'];
+    langSelect.value = qvars['lexer'];
 }
 if (qvars['code'] !== undefined) {
     document.getElementById("code").value = qvars['code'];
     loadingDiv.hidden = false;
 }
 
-languagePluginLoader.then(() => {
-    // pyodide is now ready to use...
-    pyodide.loadPackage('Pygments').then(() => {
-        pyodide.runPython('import pygments.lexers, pygments.formatters.html');
-
-        document.getElementById("hlbtn").disabled = false;
-        document.getElementById("hlbtn").textContent = 'Highlight';
+const highlightWorker = new Worker("/_static/demo-worker.js");
+highlightWorker.onmessage = async (msg) => {
+    if (msg.data.loaded) {
+        highlightBtn.disabled = false;
+        highlightBtn.textContent = 'Highlight';
 
         if (qvars['code'] !== undefined) {
             loadingDiv.hidden = true;
-            highlight();
+            await highlight();
         }
-    });
-});
+    } else if (msg.data.html) {
+        outputDiv.innerHTML = msg.data.html;
+        codeHeader.hidden = false;
+        loadingDiv.hidden = true;
+    }
+};
 
 function getQueryVariables() {
     var query = window.location.search.substring(1);
@@ -57,46 +62,34 @@ function reset_err_hl() {
     document.getElementById("aroundlang").style.backgroundColor = null;
 }
 
-function highlight() {
-    var select = document.getElementById("lang");
-    var alias = select.options.item(select.selectedIndex).value
+async function highlight() {
+    var lexer = document.getElementById("lang").value;
 
-    if (alias == "") {
+    if (lexer == "") {
         document.getElementById("aroundlang").style.backgroundColor = "#ffcccc";
         return;
     }
-    pyodide.globals['alias'] = alias;
 
-    var select = document.getElementById("style");
-    pyodide.globals['style'] = select.options.item(select.selectedIndex).value;
-
-    pyodide.runPython('lexer = pygments.lexers.get_lexer_by_name(alias)');
-    pyodide.runPython('fmter = pygments.formatters.html.HtmlFormatter(noclasses=True, style=style)');
+    var style = document.getElementById("style").value;
 
     var file = document.getElementById("file").files[0];
+    let code;
     if (file) {
-        file.arrayBuffer().then(function(buf) {
-            pyodide.globals['code_mem'] = buf;
-            pyodide.runPython('code = bytes(code_mem)');
-            document.getElementById("copy_btn").style.display = "none";
-            highlight_now();
-        });
+        code = await file.arrayBuffer();
+        document.getElementById("copy_btn").style.display = "none";
     } else {
-        var code = document.getElementById("code").value;
-        pyodide.globals['code'] = code;
+        code = document.getElementById("code").value;
         var link = document.location.origin + document.location.pathname +
-            "?lexer=" + encodeURIComponent(alias) + "&code=" + encodeURIComponent(code);
+            "?lexer=" + encodeURIComponent(lexer) + "&code=" + encodeURIComponent(code);
         document.getElementById("copy_field").value = link;
         document.getElementById("copy_btn").style.display = "";
-        highlight_now();
     }
-}
 
-function highlight_now() {
-    var out = document.getElementById("hlcode");
-    out.innerHTML = pyodide.runPython('pygments.highlight(code, lexer, fmter)');
-    document.location.hash = "#try";
-    document.getElementById("hlcodedl").style.display = "block";
+    highlightWorker.postMessage({code, lexer, style});
+    outputDiv.innerHTML = '';
+    codeHeader.hidden = true;
+    loadingDiv.hidden = false;
+    document.getElementById('loading-text').textContent = 'highlighting code...';
 }
 
 function copy_link() {
