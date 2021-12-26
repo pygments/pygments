@@ -30,6 +30,7 @@ self.onmessage = async (event) => {
         self.postMessage({html});
     } else if (event.data.guess_lexer) {
         self.pyodide.globals['code'] = event.data.guess_lexer.code;
+        self.pyodide.globals['filename'] = event.data.guess_lexer.filename;
         const lexer = self.pyodide.runPython(`
             import sys
             sys.setrecursionlimit(1000)
@@ -41,7 +42,11 @@ self.onmessage = async (event) => {
             if type(code) == memoryview:
                 code = bytes(code)
 
-            pygments.lexers.guess_lexer(code).aliases[0]
+            if filename:
+                lexer = pygments.lexers.guess_lexer_for_filename(filename, code)
+            else:
+                lexer = pygments.lexers.guess_lexer(code)
+            lexer.aliases[0]
         `);
         self.postMessage({lexer});
     } else {

@@ -49,18 +49,6 @@ highlightWorker.onmessage = async (msg) => {
     }
 };
 
-function new_file() {
-    pyodide.globals.fname = document.getElementById("file").files[0].name;
-    var alias = pyodide.runPython('pygments.lexers.find_lexer_class_for_filename(fname).aliases[0]');
-    var sel = document.getElementById("lang");
-    for (var i = 0; i < sel.length; i++) {
-        if (sel.options[i].value == alias) {
-            sel.selectedIndex = i;
-            break;
-        }
-    }
-}
-
 async function highlight(guessedLexer) {
     var lexer = langSelect.value || guessedLexer;
     var file = document.getElementById("file").files[0];
@@ -77,7 +65,10 @@ async function highlight(guessedLexer) {
     loadingDiv.hidden = false;
 
     if (!lexer) {
-        highlightWorker.postMessage({guess_lexer: {code}});
+        const guess_lexer = {code};
+        if (file)
+            guess_lexer.filename = file.name;
+        highlightWorker.postMessage({guess_lexer});
         document.getElementById('loading-text').textContent = 'guessing lexer...';
         return;
     }
