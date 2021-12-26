@@ -4,20 +4,24 @@ importScripts('/_static/pyodide/pyodide.js');
 (async function() {
     await languagePluginLoader;
     await self.pyodide.loadPackage(["Pygments"]);
-    self.postMessage({loaded: true})
+    const styles = self.pyodide.runPython(`
+        from pygments.formatters.html import HtmlFormatter
+        from pygments.styles import STYLE_MAP
+        {s: HtmlFormatter(style=s).get_style_defs('.demo-highlight') for s in STYLE_MAP}
+    `);
+    self.postMessage({loaded: {styles}})
 })();
 
 self.onmessage = async (event) => {
     if (event.data.highlight) {
         self.pyodide.globals['code'] = event.data.highlight.code;
         self.pyodide.globals['lexer_name'] = event.data.highlight.lexer;
-        self.pyodide.globals['style_name'] = event.data.highlight.style;
 
         const html = self.pyodide.runPython(`
             import pygments.lexers, pygments.formatters.html
 
             lexer = pygments.lexers.get_lexer_by_name(lexer_name)
-            fmter = pygments.formatters.html.HtmlFormatter(noclasses=True, style=style_name)
+            fmter = pygments.formatters.html.HtmlFormatter(cssclass='demo-highlight')
             if type(code) == memoryview:
                 code = bytes(code)
             pygments.highlight(code, lexer, fmter)

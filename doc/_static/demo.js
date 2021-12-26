@@ -4,10 +4,12 @@ document.getElementById("hlbtn").disabled = true;
 
 const loadingDiv = document.getElementById("loading");
 const langSelect = document.getElementById("lang");
+const styleSelect = document.getElementById("style");
 const highlightBtn = document.getElementById("hlbtn");
 const outputDiv = document.getElementById("hlcode");
 const codeHeader = document.getElementById("code-header");
 const copyLink = document.getElementById("copylink");
+const style = document.getElementById("css-style");
 
 const qvars = getQueryVariables();
 if (qvars['lexer']) {
@@ -18,9 +20,16 @@ if (qvars['code'] !== undefined) {
     loadingDiv.hidden = false;
 }
 
+styleSelect.addEventListener('change', () => {
+    style.textContent = styles[styleSelect.value];
+});
+
+let styles;
+
 const highlightWorker = new Worker("/_static/demo-worker.js");
 highlightWorker.onmessage = async (msg) => {
     if (msg.data.loaded) {
+        styles = msg.data.loaded.styles;
         highlightBtn.disabled = false;
         highlightBtn.textContent = 'Highlight';
 
@@ -32,6 +41,7 @@ highlightWorker.onmessage = async (msg) => {
         outputDiv.innerHTML = msg.data.html;
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
+        style.textContent = styles[styleSelect.value];
     } else if (msg.data.lexer) {
         await highlight(msg.data.lexer);
     } else {
@@ -64,7 +74,6 @@ function new_file() {
 
 async function highlight(guessedLexer) {
     var lexer = langSelect.value || guessedLexer;
-    var style = document.getElementById("style").value;
     var file = document.getElementById("file").files[0];
 
     let code;
@@ -88,7 +97,7 @@ async function highlight(guessedLexer) {
 
     document.getElementById('guessed-lexer').textContent = guessedLexer;
 
-    highlightWorker.postMessage({highlight: {code, lexer, style}});
+    highlightWorker.postMessage({highlight: {code, lexer}});
 
     const uriTooLongMsg = document.getElementById('uri-too-long');
 
@@ -118,7 +127,7 @@ copyLink.addEventListener('click', async (e) => {
 
 function download_code() {
     var filename = "highlighted.html";
-    var hlcode = document.getElementById("hlcode").innerHTML;
+    var hlcode = document.getElementById("hlcode").innerHTML + style.outerHTML;
     var blob = new Blob([hlcode], {type: 'text/html'});
     if (window.navigator.msSaveOrOpenBlob) {
         window.navigator.msSaveBlob(blob, filename);

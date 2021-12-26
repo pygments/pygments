@@ -27,7 +27,13 @@
                     <option value="{{info.0}}">{{name}}</option>
                 {% endfor %}
             </select>
-            &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+            <span id=guessed-lexer></span>
+        </p>
+        <p><label for="file">Upload a file here:</label> &nbsp;
+	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
+	<p><textarea id="code" rows="1" cols="60"></textarea></p>
+	<div style="display: flex">
+        <div class=flex-grow-1>
             <label for="style">Style:</label> &nbsp;<select id="style">
                 <optgroup label="Good contrast">
                 {% for style in styles_aa %}
@@ -39,13 +45,11 @@
                     <option>{{style.name}}</option>
                 {% endfor %}
                 </optgroup>
-            </select></p>
-        <p><label for="file">Upload a file here:</label> &nbsp;
-	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
-	<p><textarea id="code" rows="1" cols="60"></textarea></p>
-	<p style="text-align: right">
-            <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
-	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset"></p>
+            </select>
+        </div>
+        <button type="button" onclick="highlight()" id="hlbtn" disabled>Loading Python...</button>
+	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset">
+    </div>
     </form>
 </div>
 
@@ -54,10 +58,12 @@
     <span id="loading-text">loading Python...</span>
 </div>
 
+<style id=css-style></style>
+
 <div id="hlcode"></div>
 
 <div id="code-header" hidden>
-    <span id=guessed-lexer></span>
+    <div class=flex-grow-1></div>
     <input type="button" value="Download" onclick="download_code()">
     &nbsp;&nbsp;&nbsp;
     <a id="copylink" role="button">Copy link</a>

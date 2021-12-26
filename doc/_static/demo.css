@@ -31,11 +31,17 @@
     display: flex;
     padding: 0 15px;
 }
-#guessed-lexer {
+.flex-grow-1 {
     flex-grow: 1;
 }
+#lexer {
+    margin-right: 0.5em;
+}
 #guessed-lexer:not(:empty):before {
-    content: 'guessed lexer: ';
+    content: '(guessed ';
+}
+#guessed-lexer:not(:empty):after {
+    content: ')';
 }
 
 #loading:not([hidden]) {
