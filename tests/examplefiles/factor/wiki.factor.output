@@ -1,2267 +1,2396 @@
 '! Copyright (C) 2008 Slava Pestov' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '! See http://factorcode.org/license.txt for BSD license.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'USING:'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'accessors'   Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'kernel'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'hashtables'  Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'calendar'    Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'random'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'assocs'      Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespaces'  Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'make'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'splitting'   Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'sequences'   Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'sorting'     Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'math.order'  Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'present'     Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'io.files'    Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'io.directories' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'io.encodings.ascii' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'syndication' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'farkup'      Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'html.components' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'html.forms'  Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http.server' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http.server.dispatchers' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.actions' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.utilities' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.redirection' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.auth' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.auth.login' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.boilerplate' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'furnace.syndication' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'validators'  Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'db.types'    Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'db.tuples'   Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'lcs'         Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'urls'        Name.Namespace
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
 'IN:'         Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'webapps.wiki' Name.Namespace
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'rest'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'path'        Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"$wiki/"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '%'           Text
-' '           Text
+' '           Text.Whitespace
 '%'           Text
-' '           Text
+' '           Text.Whitespace
 '"/"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '%'           Text
-' '           Text
+' '           Text.Whitespace
 'present'     Text
-' '           Text
+' '           Text.Whitespace
 '%'           Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 'make'        Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<url>'       Text
-' '           Text
-'swap '       Name.Builtin
+' '           Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 '>>path'      Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'view-url'    Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 '"view"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'edit-url'    Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 '"edit"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'revisions-url' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'revision-url' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'id'          Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 '"revision"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'user-edits-url' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'url'         Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 '"user-edits"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'wiki-url'    Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TUPLE:'      Keyword
-' '           Text
+' '           Text.Whitespace
 'wiki'        Name.Class
-' < '         Text
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
 'dispatcher'  Name.Class
-' '           Text
-';\n'         Keyword
-
-'\n'          Text
+' '           Text.Whitespace
+';'           Keyword
+'\n\n'        Text.Whitespace
 
 'SYMBOL:'     Keyword
-' '           Text
+' '           Text.Whitespace
 'can-delete-wiki-articles?' Name.Function
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'can-delete-wiki-articles?' Text
-' '           Text
+' '           Text.Whitespace
 'define-capability' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'TUPLE:'      Keyword
-' '           Text
+' '           Text.Whitespace
 'article'     Name.Class
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'revision'    Name.Variable
-' '           Text
-';\n'         Keyword
-
-'\n'          Text
+' '           Text.Whitespace
+';'           Keyword
+'\n\n'        Text.Whitespace
 
 'article'     Text
-' '           Text
+' '           Text.Whitespace
 '"ARTICLES"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '"TITLE"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'VARCHAR'     Text
-' '           Text
+' '           Text.Whitespace
 '256 '        Literal.Number
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '+user-assigned-id+' Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"revision"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '"REVISION"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'INTEGER'     Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '! revision id' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'define-persistent' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<article>'   Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'article'     Name.Variable
-' '           Text
-') '          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+' '           Text.Whitespace
 'article'     Text
-' '           Text
-'new '        Name.Builtin
-'swap '       Name.Builtin
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 '>>title'     Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TUPLE:'      Keyword
-' '           Text
+' '           Text.Whitespace
 'revision'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'date'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'description' Name.Variable
-' '           Text
-';\n'         Keyword
-
-'\n'          Text
+' '           Text.Whitespace
+';'           Keyword
+'\n\n'        Text.Whitespace
 
 'revision'    Text
-' '           Text
+' '           Text.Whitespace
 '"REVISIONS"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"id"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '"ID"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'INTEGER'     Text
-' '           Text
+' '           Text.Whitespace
 '+db-assigned-id+' Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '"TITLE"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'VARCHAR'     Text
-' '           Text
+' '           Text.Whitespace
 '256 '        Literal.Number
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '! article id' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '"AUTHOR"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'VARCHAR'     Text
-' '           Text
+' '           Text.Whitespace
 '256 '        Literal.Number
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '! uid'       Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"date"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '"DATE"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'TIMESTAMP'   Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"content"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '"CONTENT"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'TEXT'        Text
-' '           Text
+' '           Text.Whitespace
 '+not-null+'  Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"description"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '"DESCRIPTION"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'TEXT'        Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'define-persistent' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'M:'          Keyword
-' '           Text
+' '           Text.Whitespace
 'revision'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'feed-entry-title' Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
-'drop '       Name.Builtin
+' '           Text.Whitespace
+'drop'        Name.Builtin
+' '           Text.Whitespace
 '" by "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'author>>'    Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'tri '        Name.Builtin
-'3append '    Name.Builtin
-';\n'         Keyword
+' '           Text.Whitespace
+'tri'         Name.Builtin
+' '           Text.Whitespace
+'3append'     Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'M:'          Keyword
-' '           Text
+' '           Text.Whitespace
 'revision'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'feed-entry-date' Name.Function
-' '           Text
+' '           Text.Whitespace
 'date>>'      Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'M:'          Keyword
-' '           Text
+' '           Text.Whitespace
 'revision'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'feed-entry-url' Name.Function
-' '           Text
+' '           Text.Whitespace
 'id>>'        Text
-' '           Text
+' '           Text.Whitespace
 'revision-url' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'reverse-chronological-order' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'seq'         Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'sorted'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'date>>'      Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'inv-sort-with' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'id'          Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'revision'    Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 'revision'    Text
-' '           Text
-'new '        Name.Builtin
-'swap '       Name.Builtin
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 '>>id'        Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'validate-title' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-one-line'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'validate-params' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'validate-author' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-username'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'validate-params' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<article-boilerplate>' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'responder'   Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 "responder'"  Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<boilerplate>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"page-common"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<main-article-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Front Page"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'view-url'    Text
-' '           Text
+' '           Text.Whitespace
 '<redirect>'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>display'   Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'latest-revision' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'revision/f'  Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<article>'   Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-'\n    '      Text
-'dup '        Name.Builtin
+'\n    '      Text.Whitespace
+'dup'         Name.Builtin
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'revision>>'  Text
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'when '       Name.Builtin
-';\n'         Keyword
+' '           Text.Whitespace
+'when'        Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<view-article-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'validate-title' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
-'dup '        Name.Builtin
+' '           Text.Whitespace
+'dup'         Name.Builtin
+' '           Text.Whitespace
 'latest-revision' Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'from-object' Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"view"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '<chloe-content>' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'edit-url'    Text
-' '           Text
+' '           Text.Whitespace
 '<redirect>'  Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 ']'           Text
-' '           Text
-'?if\n'       Name.Builtin
-
-'        '    Text
+' '           Text.Whitespace
+'?if'         Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>display'   Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<article-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<view-revision-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"id"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'validate-integer-id' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '"id"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'select-tuple' Text
-' '           Text
+' '           Text.Whitespace
 'from-object' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"view"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n    \n    ' Text
+'\n    \n    ' Text.Whitespace
 '<article-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<random-article-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'article'     Text
-' '           Text
-'new '        Name.Builtin
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
 'select-tuples' Text
-' '           Text
+' '           Text.Whitespace
 'random'      Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Front Page"' Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'if*\n'       Name.Builtin
-
-'            ' Text
+' '           Text.Whitespace
+'if*'         Name.Builtin
+'\n            ' Text.Whitespace
 'view-url'    Text
-' '           Text
+' '           Text.Whitespace
 '<redirect>'  Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>display'   Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'amend-article' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'revision'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'article'     Name.Variable
-' '           Text
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
-'swap '       Name.Builtin
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 'id>>'        Text
-' '           Text
+' '           Text.Whitespace
 '>>revision'  Text
-' '           Text
+' '           Text.Whitespace
 'update-tuple' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'add-article' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'revision'    Name.Variable
-' '           Text
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'id>>'        Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'bi '         Name.Builtin
+' '           Text.Whitespace
+'bi'          Name.Builtin
+' '           Text.Whitespace
 'article'     Text
-' '           Text
-'boa '        Name.Builtin
+' '           Text.Whitespace
+'boa'         Name.Builtin
+' '           Text.Whitespace
 'insert-tuple' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'add-revision' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'revision'    Name.Variable
-' '           Text
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'insert-tuple' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Text
-'\n        '  Text
-'dup '        Name.Builtin
+'\n        '  Text.Whitespace
+'dup'         Name.Builtin
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 '<article>'   Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'amend-article' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'add-article' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'if*\n'       Name.Builtin
-
-'    '        Text
+' '           Text.Whitespace
+'if*'         Name.Builtin
+'\n    '      Text.Whitespace
 ']'           Text
-'\n    '      Text
-'bi '         Name.Builtin
-';\n'         Keyword
+'\n    '      Text.Whitespace
+'bi'          Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<edit-article-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'validate-title' Text
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '<article>'   Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'revision>>'  Text
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
-'f '          Name.Constant
+' '           Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
-'if*\n'       Name.Builtin
-
-'\n            ' Text
+'\n            ' Text.Whitespace
+'if*'         Name.Builtin
+'\n\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'content>>'   Text
-' '           Text
+' '           Text.Whitespace
 '"content"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
-'bi\n'        Name.Builtin
-
-'        '    Text
+'\n            ' Text.Whitespace
+'bi'          Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"edit"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<article-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<submit-article-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'validate-title' Text
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '{'           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"content"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-required'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"description"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-one-line'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'v-optional'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'validate-params' Text
-'\n\n            ' Text
-'f '          Name.Constant
+'\n\n            ' Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'now'         Text
-' '           Text
+' '           Text.Whitespace
 '>>date'      Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'username'    Text
-' '           Text
+' '           Text.Whitespace
 '>>author'    Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '"content"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>content'   Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '"description"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>description' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'add-revision' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 'view-url'    Text
-' '           Text
+' '           Text.Whitespace
 '<redirect>'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'bi\n'        Name.Builtin
-
-'        '    Text
+' '           Text.Whitespace
+'bi'          Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>submit'    Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<protected>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"edit wiki articles"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>description' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<revisions-boilerplate>' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'responder'   Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'responder'   Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<boilerplate>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"revisions-common"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list-revisions' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'seq'         Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
-'f '          Name.Constant
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-' '           Text
+' '           Text.Whitespace
 'select-tuples' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'reverse-chronological-order' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<list-revisions-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'validate-title' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'list-revisions' Text
-' '           Text
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<revisions-boilerplate>' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<article-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<list-revisions-feed-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<feed-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'validate-title' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Revisions of "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
-'append '     Name.Builtin
+' '           Text.Whitespace
+'append'      Name.Builtin
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 'revisions-url' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>url'       Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'list-revisions' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>entries'   Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'rollback-description' Name.Function
-' '           Text
-'( '          Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
 'description' Name.Variable
-' '           Text
-'-- '         Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 "description'" Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Rollback of \'"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\'"'        Literal.String
-' '           Text
-'surround '   Name.Builtin
+' '           Text.Whitespace
+'surround'    Name.Builtin
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Rollback"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'if* '        Name.Builtin
-';\n'         Keyword
+' '           Text.Whitespace
+'if*'         Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<rollback-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'validate-integer-id' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>validate'  Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '"id"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-'\n                ' Text
-'f '          Name.Constant
+'\n                ' Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '>>id'        Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'now'         Text
-' '           Text
+' '           Text.Whitespace
 '>>date'      Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'username'    Text
-' '           Text
+' '           Text.Whitespace
 '>>author'    Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'rollback-description' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'change-description' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'add-revision' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 'revisions-url' Text
-' '           Text
+' '           Text.Whitespace
 '<redirect>'  Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'bi\n'        Name.Builtin
-
-'        '    Text
+' '           Text.Whitespace
+'bi'          Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>submit'    Text
-'\n    \n    ' Text
+'\n    \n    ' Text.Whitespace
 '<protected>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"rollback wiki articles"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>description' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list-changes' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'seq'         Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
-'f '          Name.Constant
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 'select-tuples' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'reverse-chronological-order' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<list-changes-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'list-changes' Text
-' '           Text
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"changes"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<revisions-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<list-changes-feed-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<feed-action>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
-'URL" $wiki/changes"' Literal.String
-' '           Text
+' '           Text.Whitespace
+'URL"'        Literal.String
+' '           Text.Whitespace
+'$wiki/changes"' Literal.String
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>url'       Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"All changes"' Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'list-changes' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>entries'   Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<delete-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<action>'    Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'validate-title' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>validate'  Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '<article>'   Text
-' '           Text
+' '           Text.Whitespace
 'delete-tuples' Text
-'\n            ' Text
-'f '          Name.Constant
+'\n            ' Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-' '           Text
+' '           Text.Whitespace
 'delete-tuples' Text
-'\n            ' Text
-'URL" $wiki"' Literal.String
-' '           Text
+'\n            ' Text.Whitespace
+'URL"'        Literal.String
+' '           Text.Whitespace
+'$wiki"'      Literal.String
+' '           Text.Whitespace
 '<redirect>'  Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>submit'    Text
-'\n\n     '   Text
+'\n\n     '   Text.Whitespace
 '<protected>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"delete wiki articles"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>description' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'can-delete-wiki-articles?' Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>capabilities' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<diff-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"old-id"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-integer'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 '"new-id"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'v-integer'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 'validate-params' Text
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '"old-id"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '"new-id"'    Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 'select-tuple' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'bi@\n'       Name.Builtin
-
-'            ' Text
+' '           Text.Whitespace
+'bi@'         Name.Builtin
+'\n            ' Text.Whitespace
 '['           Text
-'\n                ' Text
-'over '       Name.Builtin
+'\n                ' Text.Whitespace
+'over'        Name.Builtin
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"old"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'from-object' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'nest-form'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"new"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'from-object' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'nest-form'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n                ' Text
-'bi*\n'       Name.Builtin
-
-'            ' Text
+'\n                ' Text.Whitespace
+'bi*'         Name.Builtin
+'\n            ' Text.Whitespace
 ']'           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'content>>'   Text
-' '           Text
+' '           Text.Whitespace
 'string-lines' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'bi@ '        Name.Builtin
+' '           Text.Whitespace
+'bi@'         Name.Builtin
+' '           Text.Whitespace
 'diff'        Text
-' '           Text
+' '           Text.Whitespace
 '"diff"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-'\n            ' Text
-'2bi\n'       Name.Builtin
-
-'        '    Text
+'\n            ' Text.Whitespace
+'2bi'         Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"diff"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<article-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<list-articles-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
-'f '          Name.Constant
+'\n            ' Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<article>'   Text
-' '           Text
+' '           Text.Whitespace
 'select-tuples' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'title>>'     Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'sort-with'   Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 '"articles"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"articles"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list-user-edits' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'seq'         Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
-'f '          Name.Constant
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 '>>author'    Text
-' '           Text
+' '           Text.Whitespace
 'select-tuples' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'reverse-chronological-order' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<user-edits-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<page-action>' Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'validate-author' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 'list-user-edits' Text
-' '           Text
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'set-value'   Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"user-edits"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '<revisions-boilerplate>' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<user-edits-feed-action>' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'action'      Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '<feed-action>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>rest'      Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'validate-author' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"Edits by "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
-'append '     Name.Builtin
+' '           Text.Whitespace
+'append'      Name.Builtin
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>title'     Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Text
-' '           Text
+' '           Text.Whitespace
 'user-edits-url' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>url'       Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'list-user-edits' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>entries'   Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'init-sidebars' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '"Contents"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'latest-revision' Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"contents"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'from-object' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'nest-form'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'when*\n'     Name.Builtin
-
-'    '        Text
+' '           Text.Whitespace
+'when*'       Name.Builtin
+'\n    '      Text.Whitespace
 '"Footer"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'latest-revision' Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 '"footer"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'from-object' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'nest-form'   Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'when* '      Name.Builtin
-';\n'         Keyword
+' '           Text.Whitespace
+'when*'       Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'init-relative-link-prefix' Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
-'URL" $wiki/view/"' Literal.String
-' '           Text
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
+'URL"'        Literal.String
+' '           Text.Whitespace
+'$wiki/view/"' Literal.String
+' '           Text.Whitespace
 'adjust-url'  Text
-' '           Text
+' '           Text.Whitespace
 'present'     Text
-' '           Text
+' '           Text.Whitespace
 'relative-link-prefix' Text
-' '           Text
-'set '        Name.Builtin
-';\n'         Keyword
+' '           Text.Whitespace
+'set'         Name.Builtin
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<wiki>'      Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
 'dispatcher'  Name.Variable
-' '           Text
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 'new-dispatcher' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<main-article-action>' Text
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<view-article-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"view"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<view-revision-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"revision"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<random-article-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"random"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<list-revisions-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"revisions"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<list-revisions-feed-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"revisions.atom"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<diff-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"diff"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<edit-article-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"edit"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<submit-article-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"submit"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<rollback-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"rollback"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<user-edits-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"user-edits"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<list-articles-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"articles"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<list-changes-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"changes"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<user-edits-feed-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"user-edits.atom"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<list-changes-feed-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"changes.atom"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<delete-action>' Text
-' '           Text
+' '           Text.Whitespace
 '"delete"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'add-responder' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<boilerplate>' Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-' '           Text
+' '           Text.Whitespace
 'init-sidebars' Text
-' '           Text
+' '           Text.Whitespace
 'init-relative-link-prefix' Text
-' '           Text
+' '           Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '>>init'      Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Text
-' '           Text
+' '           Text.Whitespace
 'wiki'        Text
-' '           Text
+' '           Text.Whitespace
 '"wiki-common"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Text
-' '           Text
+' '           Text.Whitespace
 '>>template'  Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Keyword
-' '           Text
+' '           Text.Whitespace
 'init-wiki'   Name.Function
-' '           Text
-'( '          Name.Function
-'-- '         Name.Function
-')\n'         Name.Function
-
-'    '        Text
+' '           Text.Whitespace
+'('           Name.Function
+' '           Text.Whitespace
+'--'          Name.Function
+' '           Text.Whitespace
+')'           Name.Function
+'\n    '      Text.Whitespace
 '"resource:extra/webapps/wiki/initial-content"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Text
-'\n            ' Text
-'dup '        Name.Builtin
+'\n            ' Text.Whitespace
+'dup'         Name.Builtin
+' '           Text.Whitespace
 '".txt"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '?tail'       Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-'\n                ' Text
-'swap '       Name.Builtin
+'\n                ' Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 'ascii'       Text
-' '           Text
+' '           Text.Whitespace
 'file-contents' Text
-'\n                ' Text
-'f '          Name.Constant
+'\n                ' Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
 '<revision>'  Text
-'\n                    ' Text
-'swap '       Name.Builtin
+'\n                    ' Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 '>>content'   Text
-'\n                    ' Text
-'swap '       Name.Builtin
+'\n                    ' Text.Whitespace
+'swap'        Name.Builtin
+' '           Text.Whitespace
 '>>title'     Text
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '"slava"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '>>author'    Text
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'now'         Text
-' '           Text
+' '           Text.Whitespace
 '>>date'      Text
-'\n                ' Text
+'\n                ' Text.Whitespace
 'add-revision' Text
-'\n            ' Text
+'\n            ' Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '['           Text
-' '           Text
-'2drop '      Name.Builtin
+' '           Text.Whitespace
+'2drop'       Name.Builtin
+' '           Text.Whitespace
 ']'           Text
-' '           Text
-'if\n'        Name.Builtin
-
-'        '    Text
+' '           Text.Whitespace
+'if'          Name.Builtin
+'\n        '  Text.Whitespace
 ']'           Text
-' '           Text
-'each\n'      Name.Builtin
-
-'    '        Text
+' '           Text.Whitespace
+'each'        Name.Builtin
+'\n    '      Text.Whitespace
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 'with-directory-files' Text
-' '           Text
-';\n'         Keyword
+' '           Text.Whitespace
+';'           Keyword
+'\n'          Text.Whitespace

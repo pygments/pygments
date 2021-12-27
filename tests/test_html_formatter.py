@@ -99,7 +99,7 @@ def test_lineanchors():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre><span></span><a id=\"foo-1\" name=\"foo-1\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-1\" name=\"foo-1\" href=\"foo-1\">", html)
 
 
 def test_lineanchors_with_startnum():
@@ -108,7 +108,7 @@ def test_lineanchors_with_startnum():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre><span></span><a id=\"foo-5\" name=\"foo-5\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"foo-5\">", html)
 
 
 def test_valid_output():

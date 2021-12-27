@@ -2,7 +2,7 @@
 # Pygments documentation build configuration file
 #
 
-import sys, os, itertools
+import re, sys, os, itertools
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -236,18 +236,46 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         ctx['styles_aa'] = []
         ctx['styles_sub_aa'] = []
         for style in pygments.styles.get_all_styles():
-            aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
-            ctx['styles_aa' if aa else 'styles_sub_aa'].append(
-                dict(
-                    name=style,
-                    html=pygments.highlight(
-                        html,
-                        lexer,
-                        pygments.formatters.HtmlFormatter(noclasses=True, style=style),
-                    ),
+            if not pygments.styles.get_style_by_name(style).web_style_gallery_exclude:
+                aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
+                bg_r, bg_g, bg_b = test_contrasts.hex2rgb(pygments.styles.get_style_by_name(style).background_color)
+                ctx['styles_aa' if aa else 'styles_sub_aa'].append(
+                    dict(
+                        name=style,
+                        html=pygments.highlight(
+                            html,
+                            lexer,
+                            pygments.formatters.HtmlFormatter(noclasses=True, style=style),
+                        ),
+                        # from https://en.wikipedia.org/wiki/Relative_luminance
+                        bg_luminance=(0.2126*bg_r + 0.7152*bg_g + 0.0722*bg_b)
+                    )
                 )
-            )
+        # sort styles according to their background luminance (light styles first)
+        # if styles have the same background luminance sort them by their name
+        # the default style is always displayed first
+        default_style = ctx['styles_aa'].pop(0)
+        ctx['styles_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_aa'].insert(0, default_style)
+        ctx['styles_sub_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+
+
+def source_read(app, docname, source):
+    # linkify issue / PR numbers in changelog
+    if docname == 'docs/changelog':
+        with open('../CHANGES') as f:
+            changelog = f.read()
+
+        idx = changelog.find('\nVersion 2.4.2\n')
+
+        def linkify(match):
+            url = 'https://github.com/pygments/pygments/issues/' + match[1]
+            return '`{} <{}>`_'.format(match[0], url)
+
+        linkified = re.sub(r'(?:PR)?#([0-9]+)\b', linkify, changelog[:idx])
+        source[0] = linkified + changelog[idx:]
 
 
 def setup(app):
     app.connect('html-page-context', pg_context)
+    app.connect('source-read', source_read)

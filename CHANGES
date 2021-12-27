@@ -13,30 +13,56 @@ Version 2.11.0
 
 - Added lexers:
 
+  * BDD (#1803)
+  * Elpi (#1894)
+  * LilyPond (#1845, #1968, #1971). This comes with a custom style as well.
   * Maxima (#1885)
+  * Savi (#1863)
+  * Sed (#1935)
+  * Sophia contracts (#1974)
+  * Spice (#1980)
+  * ``.SRCINFO`` (#1951)
 
 - Updated lexers:
 
+  * Assembly: Fix incorrect token endings (#1895, #1961)
   * Bibtex: Distinguish between ``comment`` and ``commentary`` (#1899, #1806)
   * C family: Support unicode identifiers (#1848)
+  * CDDL: Fix slow lexing speed (#1959)
   * Debian control: Add missing fields (#1946)
+  * Devicetree: Recognize hexadecimal addresses for nodes (#1949)
+  * GDScript: Add ``void`` data type (#1948)
   * HTML, XML: Improve comment handling (#1896)
-  * Java: Add ``yield`` (#1941)
+  * Java: Add ``yield`` (#1941) and sealed classes/record (#1902)
+  * Makefiles (#1860, #1898)
   * Prolog: Support escaped ``\`` inside quoted strings (#1479)
   * RobotFramework: Improve empty brace handling (#1921, #1922)
-  * Terraform: Support heredocs (#1909)
   * Terraform: Add the 'set' type
+  * Terraform: Support heredocs (#1909)
 
 - Added styles:
 
   * Dracula (#1796)
+  * LilyPond (#1845) -- to be used for the ``LilyPond`` language.
+  * One-Dark (#1924)
+
+.. note::
+
+  All of the new styles unfortunately do not conform to WCAG recommendations.
 
 - There is new infrastructure in place to improve style accessibility. The default style has been updated to conform to WCAG recommendations. All styles are now checked for sufficient contrast by default to prevent regressions. (#1919, #1937, #1938, #1940)
 - Clean up unused imports (#1887)
 - Fix multiple lexers producing repeated single-character tokens
-- Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1914, #1911, #1923)
+- Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1908, #1914, #1911, #1923, #1939, #1957)
 - Remove duplicated assignments in the Paraiso style (#1934)
 - ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
+- Use the ``shell`` lexer for ``kshrc`` files (#1947)
+- Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)
+- Add a ``groff`` formatter (#1873)
+- Update documentation (#1928)
+- Line anchors now link to themselves (#1973)
+- Add official support for Python 3.10 (#1917)
+- Fix several missing colors in dark styles: Gruvbox dark, Monokai, Rrt, Sas, Strata dark (#1955)
 
 
 Version 2.10.0
@@ -59,6 +85,7 @@ Version 2.10.0
   * Fennel (#1862)
   * JavaScript (#1741, #1814)
   * LLVM (#1824)
+  * Python (#1852)
   * Rust
   
     - Fix lexing of "break" and "continue" (#1843)
@@ -67,6 +94,7 @@ Version 2.10.0
   * Scala: Add support for the ``\`` operator (#1857)
   * Swift (#1767, #1842)
   * Tcl: Allow ``,`` and ``@`` in strings (#1834, #1742)
+  * TOML (#1870, #1872)
 
 - Fix assert statements in TNT lexer.
 - Token types across all lexers have been unified (using the most common token
@@ -102,6 +130,7 @@ Version 2.9.0
   * Chapel (#1743)
   * Coq (#1721)
   * Cython (#853)
+  * DeviceTree (#1755)
   * Groovy (#1765)
   * Julia (#1715)
   * Octave: Allow multiline and block-percent comments (#1726)
@@ -121,6 +150,7 @@ Version 2.9.0
 - Improve line number colors (#1779, #1778)
 - Fix CTag related issue (#1724)
 - Recognize ``.leex`` as Elixir templates
+- Fix incorrect variable being accessed (#1748)
 
 - Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
 
@@ -171,6 +201,7 @@ Version 2.8.0
     - Update builtin functions (#1705)
     - Various cleanups (#1673)
 
+  * OpenEdge (#1696)
   * Python: Improve handling of raw f-strings (#1681, #1683)
   * Ruby: Better method name handling (#1531)
   * Stata: Updated keywords (#1470)
