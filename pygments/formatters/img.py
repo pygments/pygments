@@ -67,12 +67,13 @@ class FontManager:
         self.font_size = font_size
         self.fonts = {}
         self.encoding = None
+        self.variable = False
         if hasattr(font_name, 'read') or os.path.isfile(font_name):
             font = ImageFont.truetype(font_name, self.font_size)
-            self.fonts['NORMAL'] = font
-            self.fonts['BOLD'] = font
-            self.fonts['ITALIC'] = font
-            self.fonts['BOLDITALIC'] = font
+            self.variable = True
+            for style in STYLES:
+                self.fonts[style] = font
+
             return
 
         if sys.platform.startswith('win'):
@@ -226,14 +227,42 @@ class FontManager:
         Get the font based on bold and italic flags.
         """
         if bold and oblique:
+            if self.variable:
+                return self.get_style('BOLDITALIC')
+
             return self.fonts['BOLDITALIC']
         elif bold:
+            if self.variable:
+                return self.get_style('BOLD')
+
             return self.fonts['BOLD']
         elif oblique:
+            if self.variable:
+                return self.get_style('ITALIC')
+
             return self.fonts['ITALIC']
         else:
+            if self.variable:
+                return self.get_style('NORMAL')
+
             return self.fonts['NORMAL']
 
+    def get_style(self, style):
+        """
+        Get the specified style of the font if it is a variable font.
+        If not found, return the normal font.
+        """
+        font = self.fonts[style]
+        for style_name in STYLES[style]:
+            try:
+                font.set_variation_by_name(style_name)
+                return font
+            except ValueError:
+                pass
+            except OSError:
+                return font
+
+        return font
 
 class ImageFormatter(Formatter):
     """
