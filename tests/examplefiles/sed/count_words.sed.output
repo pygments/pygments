@@ -1,0 +1,329 @@
+'#!/usr/bin/sed -nf' Comment.Single
+'\n\n'        Text.Whitespace
+
+"# Add n+1 a's to hold space (+1 is for the newline)" Comment.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'.'           Literal.String.Regex
+'/'           Punctuation
+'a'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+'\n'          Text.Whitespace
+
+'H'           Keyword
+'\n'          Text.Whitespace
+
+'x'           Keyword
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'\\n'         Literal.String.Regex
+'/'           Punctuation
+'a'           Literal.String.Single
+'/'           Punctuation
+'\n\n'        Text.Whitespace
+
+"# Do the carry.  The t's and b's are not necessary," Comment.Single
+'\n'          Text.Whitespace
+
+'# but they do speed up the thing' Comment.Single
+'\n'          Text.Whitespace
+
+'t'           Keyword
+' a'          Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' a'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'aaaaaaaaaa'  Literal.String.Regex
+'/'           Punctuation
+'b'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' b'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' b'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'bbbbbbbbbb'  Literal.String.Regex
+'/'           Punctuation
+'c'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' c'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' c'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'cccccccccc'  Literal.String.Regex
+'/'           Punctuation
+'d'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' d'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' d'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'dddddddddd'  Literal.String.Regex
+'/'           Punctuation
+'e'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' e'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' e'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'eeeeeeeeee'  Literal.String.Regex
+'/'           Punctuation
+'f'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' f'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' f'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'ffffffffff'  Literal.String.Regex
+'/'           Punctuation
+'g'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' g'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' g'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'gggggggggg'  Literal.String.Regex
+'/'           Punctuation
+'h'           Literal.String.Single
+'/'           Punctuation
+'g'           Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+' h'          Literal.String.Single
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+' h'          Literal.String.Single
+';'           Punctuation
+'  '          Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'hhhhhhhhhh'  Literal.String.Regex
+'/'           Punctuation
+'/'           Punctuation
+'g'           Keyword
+'\n\n'        Text.Whitespace
+
+':'           Keyword
+' done'       Literal.String.Single
+'\n'          Text.Whitespace
+
+'$'           Operator
+'!'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'h'           Keyword
+'\n  '        Text.Whitespace
+'b'           Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# On the last line, convert back to decimal' Comment.Single
+'\n\n'        Text.Whitespace
+
+':'           Keyword
+' loop'       Literal.String.Single
+'\n'          Text.Whitespace
+
+'/'           Punctuation
+'a'           Literal.String.Regex
+'/'           Punctuation
+'!'           Punctuation
+' '           Text.Whitespace
+'s'           Keyword
+'/'           Punctuation
+'[b-h]*'      Literal.String.Regex
+'/'           Punctuation
+'&0'          Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaaaaaaa'   Literal.String.Regex
+'/'           Punctuation
+'9'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaaaaaa'    Literal.String.Regex
+'/'           Punctuation
+'8'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaaaaa'     Literal.String.Regex
+'/'           Punctuation
+'7'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaaaa'      Literal.String.Regex
+'/'           Punctuation
+'6'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaaa'       Literal.String.Regex
+'/'           Punctuation
+'5'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaaa'        Literal.String.Regex
+'/'           Punctuation
+'4'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aaa'         Literal.String.Regex
+'/'           Punctuation
+'3'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'aa'          Literal.String.Regex
+'/'           Punctuation
+'2'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'a'           Literal.String.Regex
+'/'           Punctuation
+'1'           Literal.String.Single
+'/'           Punctuation
+'\n\n'        Text.Whitespace
+
+':'           Keyword
+' next'       Literal.String.Single
+'\n'          Text.Whitespace
+
+'y'           Keyword
+'/'           Punctuation
+'bcdefgh'     Literal.String.Single
+'/'           Punctuation
+'abcdefg'     Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'/'           Punctuation
+'[a-h]'       Literal.String.Regex
+'/'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword
+' loop'       Literal.String.Single
+'\n'          Text.Whitespace
+
+'p'           Keyword
+'\n'          Text.Whitespace

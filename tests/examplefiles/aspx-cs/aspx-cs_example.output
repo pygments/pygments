@@ -1,11 +1,11 @@
 '<%@'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'Page'        Name
-' '           Text
+' '           Text.Whitespace
 'Language'    Name
 '='           Punctuation
 '"C#"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '\n \n'       Text
 
@@ -17,40 +17,40 @@
 'runat='      Name.Attribute
 '"server"'    Literal.String
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Page_Load'   Name.Function
 '('           Punctuation
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EventArgs'   Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Label1'      Name
 '.'           Punctuation
 'Text'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'DateTime'    Name
 '.'           Punctuation
 'Now'         Name
@@ -59,14 +59,14 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
 '</script>'   Name.Tag
 '\n \n'       Text

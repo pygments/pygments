@@ -1,92 +1,92 @@
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Boo'         Name
 '.'           Punctuation
 'Lang'        Name
 '.'           Punctuation
 'Interpreter' Name
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Boo'         Name
 '.'           Punctuation
 'Lang'        Name
 '.'           Punctuation
 'Interpreter' Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ObjectInterpreter' Name.Class
 '('           Punctuation
 'AbstractInterpreter' Name
 ')'           Punctuation
 ':'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '_context'    Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'object'      Name
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '['           Punctuation
 'getter'      Name.Builtin
 '('           Punctuation
 'Value'       Name
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '_value'      Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'object'      Name
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'constructor' Name.Function
 '('           Punctuation
 'context'     Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_context'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'context'     Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'self'        Name.Builtin
 '.'           Punctuation
 'RememberLastValue' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Lookup'      Name.Function
 '('           Punctuation
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'property'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_context'    Name
 '.'           Punctuation
 'GetType'     Name
@@ -97,39 +97,39 @@
 '('           Punctuation
 'name'        Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'property'    Name.Builtin
 '.'           Punctuation
 'PropertyType' Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'property'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'null'        Name.Builtin
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'GetValue'    Name.Function
 '('           Punctuation
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_context'    Name
 '.'           Punctuation
 'GetType'     Name
@@ -143,125 +143,125 @@
 '.'           Punctuation
 'GetValue'    Name
 '('           Punctuation
-'\n                                          ' Text
+'\n                                          ' Text.Whitespace
 '_context'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'null'        Name.Builtin
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SetLastValue' Name.Function
 '('           Punctuation
 'value'       Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_value'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SetValue'    Name.Function
 '('           Punctuation
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'raise'       Keyword
-' '           Text
+' '           Text.Whitespace
 'InvalidOperationException' Name
 '('           Punctuation
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Declare'     Name.Function
 '('           Punctuation
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Type'        Name
 ')'           Punctuation
 ':'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'raise'       Keyword
-' '           Text
+' '           Text.Whitespace
 'InvalidOperationException' Name
 '('           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Person'      Name.Class
 ':'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Punctuation
 'property'    Name.Builtin
 '('           Punctuation
 'FirstName'   Name
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '_fname'      Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Person'      Name
 '('           Punctuation
 'FirstName'   Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Homer"'     Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ObjectInterpreter' Name
 '('           Punctuation
 'p'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Name
 '.'           Punctuation
@@ -269,11 +269,11 @@
 '('           Punctuation
 '\'"Hello, ${FirstName.ToUpper()}!"\'' Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Punctuation
 'Value'       Name
-'\n'          Text
+'\n'          Text.Whitespace

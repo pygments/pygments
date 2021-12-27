@@ -6,8 +6,8 @@ here: token # innocent: comment
 ---tokens---
 'here'        Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'token'       Literal.Scalar.Plain
-' '           Text
+' '           Text.Whitespace
 '# innocent: comment' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

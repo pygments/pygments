@@ -1,65 +1,65 @@
 'Library'     Name.Attribute
 ':'           Operator
-'       '     Text
+'       '     Text.Whitespace
 'io'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Synopsis'    Name.Attribute
 ':'           Operator
-'      '      Text
+'      '      Text.Whitespace
 'A portable IO library' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Author'      Name.Attribute
 ':'           Operator
-'        '    Text
+'        '    Text.Whitespace
 'Gail Zacharias' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Files'       Name.Attribute
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'library\n\tstreams/defs\n\tstreams/stream\n\tstreams/sequence-stream\n        streams/native-buffer\n\tstreams/buffer\n\tstreams/typed-stream\n\tstreams/external-stream\n\tstreams/buffered-stream\n\tstreams/convenience\n\tstreams/wrapper-stream\n\tstreams/cleanup-streams\n        streams/native-speed\n        streams/async-writes\n        streams/file-stream\n        streams/multi-buffered-streams\n        pprint\n        print\n        print-double-integer-kludge\n\tformat\n\tbuffered-format\n\tformat-condition\n        unix-file-accessor\n\tunix-standard-io\n\tunix-interface\n\tformat-out' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C-Source-Files' Name.Attribute
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'unix-portability.c' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Major-Version' Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Minor-Version' Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Target-Type' Name.Attribute
 ':'           Operator
-'   '         Text
+'   '         Text.Whitespace
 'dll'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Copyright'   Name.Attribute
 ':'           Operator
-'    '        Text
+'    '        Text.Whitespace
 'Original Code is Copyright (c) 1995-2004 Functional Objects, Inc.\n              All rights reserved.' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'License'     Name.Attribute
 ':'           Operator
-'      '      Text
+'      '      Text.Whitespace
 'See License.txt in this distribution for details.' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Warranty'    Name.Attribute
 ':'           Operator
-'     '       Text
+'     '       Text.Whitespace
 'Distributed WITHOUT WARRANTY OF ANY KIND' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

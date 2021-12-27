@@ -44,7 +44,8 @@ is a token type (like `Name.Builtin`).  That means: When `regex` matches, emit a
 token with the match text and type `tokentype` and push `new_state` on the state
 stack.  If the new state is ``'#pop'``, the topmost state is popped from the
 stack instead.  To pop more than one state, use ``'#pop:2'`` and so on.
-``'#push'`` is a synonym for pushing the current state on the stack.
+``'#push'`` is a synonym for pushing a second time the current state on top of
+the stack.
 
 The following example shows the `DiffLexer` from the builtin lexers.  Note that
 it contains some additional attributes `name`, `aliases` and `filenames` which
