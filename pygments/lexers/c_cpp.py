@@ -252,8 +252,8 @@ class CLexer(CFamilyLexer):
     """
     name = 'C'
     aliases = ['c']
-    filenames = ['*.c', '*.h', '*.idc']
-    mimetypes = ['text/x-chdr', 'text/x-csrc']
+    filenames = ['*.c', '*.h', '*.idc', '*.x[bp]m']
+    mimetypes = ['text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap']
     priority = 0.1
 
     tokens = {
