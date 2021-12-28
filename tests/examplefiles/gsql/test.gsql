@@ -1,4 +1,4 @@
-CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH motionData { 
+CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH motionData {
 	# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;
 	MapAccum<VERTEX<motionMember>, MapAccum<STRING, FLOAT>> @@likenessAccum;
 	MapAccum<VERTEX<motionMember>, FLOAT> @@BirthYearAccum;
@@ -12,63 +12,63 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	AvgAccum @@StepsAccum;
 	AvgAccum @@BoutsAccum;
 	AvgAccum @@MilesAccum;
-	
+
 	# Universal Vars
 	INT lastMax = 0;
 	INT lastMin = 1000;
 	FLOAT mult;
-	
+
 	# Age Vars
 	INT ageRange;
 	INT birthYear;
-	
+
 	# Height Vars
 	INT heightRange;
 	INT height;
-	
+
 	# Height Vars
 	INT weightRange;
 	INT weight;
-	
+
 	# Location Vars
 	FLOAT locRange;
 	VERTEX memLoc;
-	
+
 	# Activity Vars
 	DATETIME lastRecording;
-	
+
 	# lastRecording = to_datetime("2018-05-19");
 	lastRecording = to_datetime(inDate);
 
     /*
 
-    test comment block 
+    test comment block
 
     */
-	
-	
+
+
 	members = {motionMember.*};
-	
+
 	birthYear = Get_Birth_Year(m1);
 	height = m1.Height;
 	weight = m1.Weight;
 	temp = SELECT loc FROM members:member -(:e) - location: loc
 	  WHERE member == m1
-	    ACCUM 
+	    ACCUM
 	      @@MemLocAccum += loc;
 	FOREACH loc in @@MemLocAccum DO
 	  memLoc = loc;
 	  END;
-	  
+
 	PRINT memLoc;
 	PRINT birthYear;
 	PRINT height;
 	PRINT weight;
-	
+
 	results = SELECT member FROM members:member
-	  ACCUM 
+	  ACCUM
 	    @@BirthYearAccum += (member -> abs(Get_Birth_Year(member) - birthYear));
-	
+
 	FOREACH (member,bys) in @@BirthYearAccum DO
 	  IF bys > lastMax THEN
 	    lastMax = bys;
@@ -77,25 +77,25 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	    lastMin = bys;
 	    END;
 	  END;
-	
+
 	ageRange = lastMax - lastMin;
 	print ageRange;
 	mult = 1.0/ageRange;
-	
-	
+
+
 	FOREACH (member,bys) in @@BirthYearAccum DO
 	  bys = 1 - bys * mult;
 	  @@likenessAccum += (member -> ("age" -> bys));
 	  END;
-	
+
 	lastMax = 0;
 	lastMin = 1000;
 	mult = 0;
-	
+
 	results = SELECT member FROM members:member
-	  ACCUM 
+	  ACCUM
 	    @@HeightAccum += (member -> abs(member.Height - height));
-	
+
 	FOREACH (member,heights) in @@HeightAccum DO
 	  IF heights < height THEN
 	    IF heights > lastMax THEN
@@ -106,12 +106,12 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	      END;
 	    END;
 	  END;
-	
+
 	heightRange = lastMax - lastMin;
 	print heightRange;
 	mult = 1.0/heightRange;
-	
-	
+
+
 	FOREACH (member,heights) in @@HeightAccum DO
 	  IF heights < height THEN
 	    heights = 1 - heights * mult;
@@ -120,15 +120,15 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	    END;
 	  @@likenessAccum += (member -> ("height" -> heights));
 	  END;
-	
+
 	lastMax = 0;
 	lastMin = 1000;
 	mult = 0;
-	
+
 	results = SELECT member FROM members:member
-	  ACCUM 
+	  ACCUM
 	    @@WeightAccum += (member -> abs(member.Weight - weight));
-	
+
 	FOREACH (member,weights) in @@WeightAccum DO
 	  IF weights < weight THEN
 	    IF weights > lastMax THEN
@@ -139,12 +139,12 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	      END;
 	    END;
 	  END;
-	
+
 	weightRange = lastMax - lastMin;
 	print weightRange;
 	mult = 1.0/weightRange;
-	
-	
+
+
 	FOREACH (member,weights) in @@WeightAccum DO
 	  IF weights < weight THEN
 	    weights = 1 - weights * mult;
@@ -153,13 +153,13 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	    END;
 	  @@likenessAccum += (member -> ("weight" -> weights));
 	  END;
-	
+
 	lastMax = 0;
 	lastMin = 1000;
 	mult = 0;
-	
+
 	resultsLoc = SELECT loc FROM members:member -(:e) - location: loc
-	  ACCUM 
+	  ACCUM
 	    @@LocAccum += (member -> Check_Distance(loc,memLoc));
 	FOREACH (member,loc) in @@LocAccum DO
 	  IF loc < 5800 THEN
@@ -171,14 +171,14 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	      END;
 	    END;
 	  END;
-	
+
 	PRINT lastMax;
 	PRINT lastMin;
-	
+
 	locRange = lastMax - lastMin;
 	print locRange;
 	mult = 1.0/locRange;
-	
+
 	FOREACH (member,loc) in @@LocAccum DO
 	  IF loc > 5800 THEN
 	    loc = -1;
@@ -187,20 +187,20 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	    END;
 	  @@likenessAccum += (member -> ("distance" -> loc));
 	  END;
-	
+
 	lastMax = 0;
 	lastMin = 1000;
 	mult = 0;
-	
+
 	incentives = {incentive.*};
-	
+
 	incentives = SELECT incent FROM incentives:incent - (:e) - lookupRule:rule WHERE
 	  rule.RuleName == "Tenacity" AND incent.IncentiveDate > datetime_sub(lastRecording, INTERVAL 1 MONTH) AND incent.IncentiveDate < lastRecording;
-	
+
 	members = SELECT member FROM incentives:incent - (:e) - motionMember:member
 	  ACCUM
 	    @@DayIncentives += (member -> (incent));
-	
+
 	FOREACH (member, incent) IN @@DayIncentives DO
 	  @@StepsAccum = 0;
 	  FOREACH Incentive IN incent DO
@@ -215,9 +215,25 @@ CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH 
 	  @@MemberStats += (member -> ("milesAvg" -> @@MilesAccum));
 	  @@MemberStats += (member -> ("milesSlope" -> Linear_Regression(incent, 3)));
 	  END;
-	
-	
+
+
 	PRINT @@MemberStats;
 	PRINT @@likenessAccum;
-	
+
 }
+
+# Test end-of-line comments and multiline comments for PR#2002
+USE GLOBAL # end of line comment
+DROP GRAPH Patents
+CREATE GRAPH Patents()
+
+CREATE SCHEMA_CHANGE JOB do_schema_change FOR GRAPH Patents { # add vertex and edge types
+       /*
+       We add vertex and edge types to our empty graph
+       The job will be run then we will drop the job
+       */
+  ADD VERTEX Address(PRIMARY_ID id STRING, line1 STRING, line2 STRING, line3 STRING) WITH PRIMARY_ID_AS_ATTRIBUTE="true"; # ID will be concatenation of several fields
+
+}
+RUN SCHEMA_CHANGE JOB do_schema_change
+DROP JOB do_schema_change

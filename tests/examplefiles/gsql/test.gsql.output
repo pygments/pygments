@@ -23,10 +23,9 @@
 'motionData'  Name
 ' '           Text.Whitespace
 '{'           Punctuation
-' \n\t'       Text.Whitespace
-'# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\t'        Text.Whitespace
+'# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;' Comment.Single
+'\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
 '<VERTEX<motionMember>' Name.Constant
 ','           Operator
@@ -107,10 +106,9 @@
 ' '           Text.Whitespace
 '@@MilesAccum' Name.Variable
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Universal Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Universal Vars' Comment.Single
+'\n\t'        Text.Whitespace
 'INT'         Keyword
 ' '           Text.Whitespace
 'lastMax'     Name
@@ -133,10 +131,9 @@
 ' '           Text.Whitespace
 'mult'        Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Age Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Age Vars'  Comment.Single
+'\n\t'        Text.Whitespace
 'INT'         Keyword
 ' '           Text.Whitespace
 'ageRange'    Name
@@ -146,10 +143,9 @@
 ' '           Text.Whitespace
 'birthYear'   Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Height Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Height Vars' Comment.Single
+'\n\t'        Text.Whitespace
 'INT'         Keyword
 ' '           Text.Whitespace
 'heightRange' Name
@@ -159,10 +155,9 @@
 ' '           Text.Whitespace
 'height'      Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Height Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Height Vars' Comment.Single
+'\n\t'        Text.Whitespace
 'INT'         Keyword
 ' '           Text.Whitespace
 'weightRange' Name
@@ -172,10 +167,9 @@
 ' '           Text.Whitespace
 'weight'      Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Location Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Location Vars' Comment.Single
+'\n\t'        Text.Whitespace
 'FLOAT'       Keyword
 ' '           Text.Whitespace
 'locRange'    Name
@@ -185,18 +179,16 @@
 ' '           Text.Whitespace
 'memLoc'      Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# Activity Vars\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# Activity Vars' Comment.Single
+'\n\t'        Text.Whitespace
 'DATETIME'    Keyword
 ' '           Text.Whitespace
 'lastRecording' Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
-'# lastRecording = to_datetime("2018-05-19");\n' Comment.Single
-
-'\t'          Text.Whitespace
+'\n\n\t'      Text.Whitespace
+'# lastRecording = to_datetime("2018-05-19");' Comment.Single
+'\n\t'        Text.Whitespace
 'lastRecording' Name
 ' '           Text.Whitespace
 '='           Operator
@@ -207,8 +199,8 @@
 ')'           Operator
 ';'           Operator
 '\n\n    '    Text.Whitespace
-'/*\n\n    test comment block \n\n    */' Comment.Multiline
-'\n\t\n\t\n\t' Text.Whitespace
+'/*\n\n    test comment block\n\n    */' Comment.Multiline
+'\n\n\n\t'    Text.Whitespace
 'members'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -219,7 +211,7 @@
 '*'           Punctuation
 '}'           Punctuation
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'birthYear'   Name
 ' '           Text.Whitespace
 '='           Operator
@@ -282,7 +274,7 @@
 'm1'          Name
 '\n\t    '    Text.Whitespace
 'ACCUM'       Keyword
-' \n\t      ' Text.Whitespace
+'\n\t      '  Text.Whitespace
 '@@MemLocAccum' Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -308,7 +300,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t  \n\t'  Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'PRINT'       Keyword
 ' '           Text.Whitespace
 'memLoc'      Name
@@ -328,7 +320,7 @@
 ' '           Text.Whitespace
 'weight'      Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'results'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -344,7 +336,7 @@
 'member'      Name
 '\n\t  '      Text.Whitespace
 'ACCUM'       Keyword
-' \n\t    '   Text.Whitespace
+'\n\t    '    Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -366,7 +358,7 @@
 ')'           Operator
 ')'           Operator
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -423,7 +415,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'ageRange'    Name
 ' '           Text.Whitespace
 '='           Operator
@@ -448,7 +440,7 @@
 '/'           Operator
 'ageRange'    Name
 ';'           Operator
-'\n\t\n\t\n\t' Text.Whitespace
+'\n\n\n\t'    Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -498,7 +490,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -519,7 +511,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'results'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -535,7 +527,7 @@
 'member'      Name
 '\n\t  '      Text.Whitespace
 'ACCUM'       Keyword
-' \n\t    '   Text.Whitespace
+'\n\t    '    Text.Whitespace
 '@@HeightAccum' Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -556,7 +548,7 @@
 ')'           Operator
 ')'           Operator
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -626,7 +618,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'heightRange' Name
 ' '           Text.Whitespace
 '='           Operator
@@ -651,7 +643,7 @@
 '/'           Operator
 'heightRange' Name
 ';'           Operator
-'\n\t\n\t\n\t' Text.Whitespace
+'\n\n\n\t'    Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -723,7 +715,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -744,7 +736,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'results'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -760,7 +752,7 @@
 'member'      Name
 '\n\t  '      Text.Whitespace
 'ACCUM'       Keyword
-' \n\t    '   Text.Whitespace
+'\n\t    '    Text.Whitespace
 '@@WeightAccum' Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -781,7 +773,7 @@
 ')'           Operator
 ')'           Operator
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -851,7 +843,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'weightRange' Name
 ' '           Text.Whitespace
 '='           Operator
@@ -876,7 +868,7 @@
 '/'           Operator
 'weightRange' Name
 ';'           Operator
-'\n\t\n\t\n\t' Text.Whitespace
+'\n\n\n\t'    Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -948,7 +940,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -969,7 +961,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'resultsLoc'  Name
 ' '           Text.Whitespace
 '='           Operator
@@ -997,7 +989,7 @@
 'loc'         Name
 '\n\t  '      Text.Whitespace
 'ACCUM'       Keyword
-' \n\t    '   Text.Whitespace
+'\n\t    '    Text.Whitespace
 '@@LocAccum'  Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -1090,7 +1082,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'PRINT'       Keyword
 ' '           Text.Whitespace
 'lastMax'     Name
@@ -1100,7 +1092,7 @@
 ' '           Text.Whitespace
 'lastMin'     Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'locRange'    Name
 ' '           Text.Whitespace
 '='           Operator
@@ -1125,7 +1117,7 @@
 '/'           Operator
 'locRange'    Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -1198,7 +1190,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -1219,7 +1211,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'incentives'  Name
 ' '           Text.Whitespace
 '='           Operator
@@ -1230,7 +1222,7 @@
 '*'           Punctuation
 '}'           Punctuation
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'incentives'  Name
 ' '           Text.Whitespace
 '='           Operator
@@ -1295,7 +1287,7 @@
 ' '           Text.Whitespace
 'lastRecording' Name
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'members'     Name
 ' '           Text.Whitespace
 '='           Operator
@@ -1336,7 +1328,7 @@
 ')'           Operator
 ')'           Operator
 ';'           Operator
-'\n\t\n\t'    Text.Whitespace
+'\n\n\t'      Text.Whitespace
 'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
@@ -1438,11 +1430,10 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'# @@MemberStats += (member -> ("boutsAvg" -> @@BoutsAccum));\n' Comment.Single
-
-'\t  # @@MemberStats += (member -> ("boutsSlope" -> Linear_Regression(incent, 2)));\n' Comment.Single
-
-'\t  '        Text.Whitespace
+'# @@MemberStats += (member -> ("boutsAvg" -> @@BoutsAccum));' Comment.Single
+'\n\t  '      Text.Whitespace
+'# @@MemberStats += (member -> ("boutsSlope" -> Linear_Regression(incent, 2)));' Comment.Single
+'\n\t  '      Text.Whitespace
 '@@MemberStats' Name.Variable
 ' '           Text.Whitespace
 '+= '         Operator
@@ -1487,7 +1478,7 @@
 '\n\t  '      Text.Whitespace
 'END'         Keyword
 ';'           Operator
-'\n\t\n\t\n\t' Text.Whitespace
+'\n\n\n\t'    Text.Whitespace
 'PRINT'       Keyword
 ' '           Text.Whitespace
 '@@MemberStats' Name.Variable
@@ -1497,7 +1488,110 @@
 ' '           Text.Whitespace
 '@@likenessAccum' Name.Variable
 ';'           Operator
-'\n\t\n'      Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Test end-of-line comments and multiline comments for PR#2002' Comment.Single
+'\n'          Text.Whitespace
+
+'USE'         Name
+' '           Text.Whitespace
+'GLOBAL'      Name
+' '           Text.Whitespace
+'# end of line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'DROP'        Name
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+'('           Operator
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'SCHEMA_CHANGE' Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'# add vertex and edge types' Comment.Single
+'\n       '   Text.Whitespace
+'/*\n       We add vertex and edge types to our empty graph\n       The job will be run then we will drop the job\n       */' Comment.Multiline
+'\n  '        Text.Whitespace
+'ADD'         Name
+' '           Text.Whitespace
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'Address'     Name
+'('           Operator
+'PRIMARY_ID'  Keyword
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line1'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line2'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line3'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+')'           Operator
+' '           Text.Whitespace
+'WITH'        Keyword
+' '           Text.Whitespace
+'PRIMARY_ID_AS_ATTRIBUTE' Name
+'='           Operator
+'"true"'      Literal.String
+';'           Operator
+' '           Text.Whitespace
+'# ID will be concatenation of several fields' Comment.Single
+'\n\n'        Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'RUN'         Keyword
+' '           Text.Whitespace
+'SCHEMA_CHANGE' Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
+'\n'          Text.Whitespace
+
+'DROP'        Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
 '\n'          Text.Whitespace
