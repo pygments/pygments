@@ -15,9 +15,9 @@ Version 2.11.0
 
   * BDD (#1803)
   * Elpi (#1894)
-  * LilyPond (#1845, #1968, #1971). This comes with a custom style as well.
+  * LilyPond (#1845, #1968, #1971, #2001). This comes with a custom style as well.
   * Maxima (#1885)
-  * Rita (#1541)
+  * Rita (#1541, #2003)
   * Savi (#1863)
   * Sed (#1935)
   * Sophia contracts (#1974)
@@ -69,6 +69,7 @@ Version 2.11.0
 - Fix several missing colors in dark styles: Gruvbox dark, Monokai, Rrt, Sas, Strata dark (#1955)
 - Associate ``.xbm`` and ``.xpm`` files with the C lexer (#1802)
 - Associate more file types with ``man`` pages
+- The ``HtmlFormatter`` can now emit tooltips for each token to ease debugging of lexers (#1822)
 
 
 Version 2.10.0
