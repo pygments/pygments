@@ -22,14 +22,12 @@ class RitaLexer(RegexLexer):
     """
     Lexer for `RITA <https://github.com/zaibacu/rita-dsl>`_
 
-     .. versionadded:: 2.7
+     .. versionadded:: 2.11
     """
     name = 'Rita'
     filenames = ['*.rita']
     aliases = ['rita']
     mimetypes = ['text/rita']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [
