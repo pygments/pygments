@@ -405,6 +405,7 @@ LEXERS = {
     'RexxLexer': ('pygments.lexers.scripting', 'Rexx', ('rexx', 'arexx'), ('*.rexx', '*.rex', '*.rx', '*.arexx'), ('text/x-rexx',)),
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ('text/html+ruby',)),
     'RideLexer': ('pygments.lexers.ride', 'Ride', ('ride',), ('*.ride',), ('text/x-ride',)),
+    'RitaLexer': ('pygments.lexers.rita', 'Rita', ('rita',), ('*.rita',), ('text/rita',)),
     'RoboconfGraphLexer': ('pygments.lexers.roboconf', 'Roboconf Graph', ('roboconf-graph',), ('*.graph',), ()),
     'RoboconfInstancesLexer': ('pygments.lexers.roboconf', 'Roboconf Instances', ('roboconf-instances',), ('*.instances',), ()),
     'RobotFrameworkLexer': ('pygments.lexers.robotframework', 'RobotFramework', ('robotframework',), ('*.robot',), ('text/x-robotframework',)),
