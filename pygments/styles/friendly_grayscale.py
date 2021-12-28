@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles.friendly_grayscale
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -8,7 +7,7 @@
     using the luminosity value calculated by
     http://www.workwithcolor.com/color-converter-01.htm
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,6 +19,8 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 class FriendlyGrayscaleStyle(Style):
     """
     A modern grayscale style based on the friendly style.
+
+    .. versionadded:: 2.11
     """
 
     background_color = "#f0f0f0"
