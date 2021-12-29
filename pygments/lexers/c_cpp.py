@@ -270,11 +270,9 @@ class CLexer(CFamilyLexer):
         ]
     }
 
-    def analyse_text(text):
-        if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
-            return 0.1
-        if re.search(r'^\s*#ifn?def ', text, re.MULTILINE):
-            return 0.1
+    def recognize_text(text):
+        yield re.search(r'^\s*#include [<"]', text, re.MULTILINE), 0.1
+        yield re.search(r'^\s*#ifn?def ', text, re.MULTILINE), 0.1
 
 
 class CppLexer(CFamilyLexer):

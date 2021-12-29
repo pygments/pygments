@@ -21,6 +21,13 @@ def get_input(lexer, filename):
     return Path(TESTDIR, 'examplefiles', lexer, filename).read_text(encoding='utf-8')
 
 
+def test_guess():
+    lx = guess_lexer('<test>\n#include <stdio.h>;\n</test>')
+    assert lx.__class__.__name__ == 'XmlLexer'
+    lx = guess_lexer('#include <stdio.h>; char *str = "<test></test>";')
+    assert lx.__class__.__name__ == 'CLexer'
+
+
 @pytest.mark.skip(reason="This is identified as T-SQL")
 def test_guess_lexer_fsharp():
     lx = guess_lexer(get_input('fsharp', 'Deflate.fs'))

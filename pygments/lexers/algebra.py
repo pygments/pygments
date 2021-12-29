@@ -67,24 +67,18 @@ class GAPLexer(RegexLexer):
         ],
     }
 
-    def analyse_text(text):
-        score = 0.0
-
+    def recognize_text(text):
         # Declaration part
-        if re.search(
+        yield re.search(
             r"(InstallTrueMethod|Declare(Attribute|Category|Filter|Operation" +
             r"|GlobalFunction|Synonym|SynonymAttr|Property))", text
-        ):
-            score += 0.7
+        ), 0.5
 
         # Implementation part
-        if re.search(
+        yield re.search(
             r"(DeclareRepresentation|Install(GlobalFunction|Method|" +
             r"ImmediateMethod|OtherMethod)|New(Family|Type)|Objectify)", text
-        ):
-            score += 0.7
-
-        return min(score, 1.0)
+        ), 0.5
 
 
 class MathematicaLexer(RegexLexer):
