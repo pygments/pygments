@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, this
+from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name,\
     String, Number, Whitespace
 
@@ -76,11 +76,12 @@ class CypherLexer(RegexLexer):
                 bygroups(Keyword, Whitespace, Keyword)),
             (r'(using)(\s+)(periodic)(\s+)(commit)\b',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword)),
-            (r'(all|any|as|asc|ascending|assert|call|case|create|'
-             r'delete|desc|descending|distinct|end|fieldterminator|'
-             r'foreach|in|limit|match|merge|none|not|null|'
-             r'remove|return|set|skip|single|start|then|union|'
-             r'unwind|yield|where|when|with)\b', Keyword),
+            (words((
+                'all', 'any', 'as', 'asc', 'ascending', 'assert', 'call', 'case', 'create', 
+                'delete', 'desc', 'descending', 'distinct', 'end', 'fieldterminator', 
+                'foreach', 'in', 'limit', 'match', 'merge', 'none', 'not', 'null', 
+                'remove', 'return', 'set', 'skip', 'single', 'start', 'then', 'union', 
+                'unwind', 'yield', 'where', 'when', 'with'), suffix=r'\b'), Keyword),
         ],
         'relations': [
             (r'(-\[)(.*?)(\]->)', bygroups(Operator, using(this), Operator)),
