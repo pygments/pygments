@@ -739,7 +739,7 @@ class PythonTracebackLexer(RegexLexer):
             # Either `PEP 657 <https://www.python.org/dev/peps/pep-0657/>`
             # error locations in Python 3.11+, or single-caret markers
             # for syntax errors before that.
-            (r'^( {4,})(\^+)(\n)',
+            (r'^( {4,})([~^]+)(\n)',
              bygroups(Text, Punctuation.Marker, Text),
              '#pop'),
             default('#pop'),
