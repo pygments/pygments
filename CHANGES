@@ -68,12 +68,12 @@ Version 2.11.0
 - ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
 - Use the ``shell`` lexer for ``kshrc`` files (#1947)
 - Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)
+- Use the C lexer for ``.xbm`` and ``.xpm`` files (#1802)
 - Add a ``groff`` formatter (#1873)
 - Update documentation (#1928)
 - Line anchors now link to themselves (#1973)
 - Add official support for Python 3.10 (#1917)
 - Fix several missing colors in dark styles: Gruvbox dark, Monokai, Rrt, Sas, Strata dark (#1955)
-- Associate ``.xbm`` and ``.xpm`` files with the C lexer (#1802)
 - Associate more file types with ``man`` pages
 - The ``HtmlFormatter`` can now emit tooltips for each token to ease debugging of lexers (#1822)
 - Add ``f90`` as an alias for ``fortran`` (#2000)
