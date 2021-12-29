@@ -1,106 +1,106 @@
 '#include'    Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"colors.inc"' Literal.String.Double
-'    \n\n'    Text
+'    \n\n'    Text.Whitespace
 
 'background'  Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Cyan'        Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'camera'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'location'    Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '3'           Literal.Number.Integer
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'look_at'     Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'sphere'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<'           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '>'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 'texture'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'pigment'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Yellow'      Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'light_source' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '3'           Literal.Number.Integer
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
-' '           Text
+' '           Text.Whitespace
 'White'       Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
