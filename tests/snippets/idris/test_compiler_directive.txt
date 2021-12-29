@@ -4,17 +4,17 @@
 
 ---tokens---
 '%link'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'C'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'object.o'    Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%name'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Vect'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'xs'          Text
-'\n'          Text
+'\n'          Text.Whitespace
