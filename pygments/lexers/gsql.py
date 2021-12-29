@@ -71,12 +71,11 @@ class GSQLLexer(RegexLexer):
         'relations': [
             (r'(-\s?)(\(.*\:\w?\))(\s?-)', bygroups(Operator, using(this), Operator)),
             (r'->|<-', Operator),
-            (r'[.*{}]', Punctuation),
+            (r'[.*{}\[\]\<\>\_]', Punctuation),
         ],
         'strings': [
-            (r'"(?:\\[tbnrf\'"\\]|[^\\"])*"', String),
+            (r'"([^"\\]|\\.)*"', String),
             (r'@{1,2}\w+', Name.Variable),
-            (r'(\<\w+)?\<(\w+\>?\,?\s?)+\>+', Name.Constant),
         ],
         'whitespace': [
             (r'\s+', Whitespace),
