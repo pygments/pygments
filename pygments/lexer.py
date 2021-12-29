@@ -42,6 +42,8 @@ class LexerMeta(type):
     def __new__(mcs, name, bases, d):
         if 'analyse_text' in d:
             d['analyse_text'] = make_analysator(d['analyse_text'])
+        if 'recognize_text' in d:
+            d['recognize_text'] = staticmethod(d['recognize_text'])
         return type.__new__(mcs, name, bases, d)
 
 

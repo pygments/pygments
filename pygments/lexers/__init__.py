@@ -307,16 +307,34 @@ def guess_lexer(_text, **options):
         except ClassNotFound:
             pass
 
-    best_lexer = [0.0, None]
+    best_pos = float('inf')
+    best_score = 0.0
+    best_lexer = find_lexer_class('TextLexer')
+
     for lexer in _iter_lexerclasses():
-        rv = lexer.analyse_text(_text)
-        if rv == 1.0:
+        pos = float('inf')
+        if hasattr(lexer, 'recognize_text'):
+            score = 0
+            for match, s in lexer.recognize_text(_text):
+                if match is None or match == -1:
+                    continue
+
+                if isinstance(match, int):
+                    pos = min(pos, match)
+                else: # assuming match is re.Match
+                    pos = min(pos, match.start())
+
+                score += s
+        else:
+            score = lexer.analyse_text(_text)
+
+        if score == 1.0:
             return lexer(**options)
-        if rv > best_lexer[0]:
-            best_lexer[:] = (rv, lexer)
-    if not best_lexer[0] or best_lexer[1] is None:
-        raise ClassNotFound('no lexer matching the text found')
-    return best_lexer[1](**options)
+        if pos < best_pos or (pos == best_pos and score > best_score):
+            best_pos = pos
+            best_score = score
+            best_lexer = lexer
+    return best_lexer(**options)
 
 
 class _automodule(types.ModuleType):
