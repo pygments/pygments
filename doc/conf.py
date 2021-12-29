@@ -224,6 +224,7 @@ man_pages = [
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'http://docs.python.org/': None}
 
+rst_prolog = '.. |language_count| replace:: {}'.format(len(list(pygments.lexers.get_all_lexers())))
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
