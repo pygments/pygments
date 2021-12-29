@@ -238,6 +238,7 @@ CREATE SCHEMA_CHANGE JOB do_schema_change FOR GRAPH Patents { # add vertex and e
 RUN SCHEMA_CHANGE JOB do_schema_change
 DROP JOB do_schema_change
 
+# Tests for PR#2006
 # Test lexer hang with params following SET<STRING> param
 CREATE QUERY tg_astar (VERTEX source_vertex, VERTEX target_vertex, SET<STRING> e_type, STRING wt_type, STRING latitude, STRING longitude,
 STRING wt_attr, BOOL display = False) {
