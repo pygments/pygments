@@ -171,7 +171,7 @@ LEXERS = {
     'FloScriptLexer': ('pygments.lexers.floscript', 'FloScript', ('floscript', 'flo'), ('*.flo',), ()),
     'ForthLexer': ('pygments.lexers.forth', 'Forth', ('forth',), ('*.frt', '*.fs'), ('application/x-forth',)),
     'FortranFixedLexer': ('pygments.lexers.fortran', 'FortranFixed', ('fortranfixed',), ('*.f', '*.F'), ()),
-    'FortranLexer': ('pygments.lexers.fortran', 'Fortran', ('fortran',), ('*.f03', '*.f90', '*.F03', '*.F90'), ('text/x-fortran',)),
+    'FortranLexer': ('pygments.lexers.fortran', 'Fortran', ('fortran', 'f90'), ('*.f03', '*.f90', '*.F03', '*.F90'), ('text/x-fortran',)),
     'FoxProLexer': ('pygments.lexers.foxpro', 'FoxPro', ('foxpro', 'vfp', 'clipper', 'xbase'), ('*.PRG', '*.prg'), ()),
     'FreeFemLexer': ('pygments.lexers.freefem', 'Freefem', ('freefem',), ('*.edp',), ('text/x-freefem',)),
     'FutharkLexer': ('pygments.lexers.futhark', 'Futhark', ('futhark',), ('*.fut',), ('text/x-futhark',)),
