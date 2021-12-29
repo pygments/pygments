@@ -6,7 +6,9 @@
 '('           Operator
 'VERTEX'      Keyword
 ' '           Text.Whitespace
-'<motionMember>' Name.Constant
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
 ' '           Text.Whitespace
 'm1'          Name
 ','           Operator
@@ -27,67 +29,139 @@
 '# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;' Comment.Single
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'MapAccum'    Name.Builtin
-'<STRING, FLOAT>>' Name.Constant
+'<'           Punctuation
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@likenessAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>, FLOAT>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>, FLOAT>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@HeightAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>, FLOAT>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@WeightAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'ListAccum'   Name.Builtin
-'<VERTEX<location>>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'location'    Name
+'>'           Punctuation
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@MemLocAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>, FLOAT>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@LocAccum'  Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'BagAccum'    Name.Builtin
-'<VERTEX<incentive>>>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'incentive'   Name
+'>'           Punctuation
+'>'           Punctuation
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@DayIncentives' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'MapAccum'    Name.Builtin
-'<VERTEX<motionMember>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'MapAccum'    Name.Builtin
-'<STRING, FLOAT>>' Name.Constant
+'<'           Punctuation
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+'>'           Punctuation
 ' '           Text.Whitespace
 '@@MemberStats' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
 'BagAccum'    Name.Builtin
-'<VERTEX<incentive>>' Name.Constant
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'incentive'   Name
+'>'           Punctuation
+'>'           Punctuation
 ' '           Text.Whitespace
 '@MemberIncentives' Name.Variable
 ';'           Operator
@@ -377,7 +451,7 @@
 ' '           Text.Whitespace
 'bys'         Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -397,7 +471,7 @@
 ' '           Text.Whitespace
 'bys'         Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -567,7 +641,7 @@
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'height'      Name
 ' '           Text.Whitespace
@@ -577,7 +651,7 @@
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -597,7 +671,7 @@
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -662,7 +736,7 @@
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'height'      Name
 ' '           Text.Whitespace
@@ -792,7 +866,7 @@
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'weight'      Name
 ' '           Text.Whitespace
@@ -802,7 +876,7 @@
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -822,7 +896,7 @@
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -887,7 +961,7 @@
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'weight'      Name
 ' '           Text.Whitespace
@@ -1025,7 +1099,7 @@
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 '5800'        Literal.Number
 ' '           Text.Whitespace
@@ -1035,7 +1109,7 @@
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -1058,7 +1132,7 @@
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -1136,7 +1210,7 @@
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 '5800'        Literal.Number
 ' '           Text.Whitespace
@@ -1263,7 +1337,7 @@
 '.'           Punctuation
 'IncentiveDate' Name
 ' '           Text.Whitespace
-'>'           Operator
+'>'           Punctuation
 ' '           Text.Whitespace
 'datetime_sub' Keyword
 '('           Operator
@@ -1283,7 +1357,7 @@
 '.'           Punctuation
 'IncentiveDate' Name
 ' '           Text.Whitespace
-'<'           Operator
+'<'           Punctuation
 ' '           Text.Whitespace
 'lastRecording' Name
 ';'           Operator
@@ -1594,4 +1668,143 @@
 'JOB'         Name
 ' '           Text.Whitespace
 'do_schema_change' Name
+'\n\n'        Text.Whitespace
+
+'# Test lexer hang with params following SET<STRING> param' Comment.Single
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'QUERY'       Keyword
+' '           Text.Whitespace
+'tg_astar'    Name
+' '           Text.Whitespace
+'('           Operator
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'source_vertex' Name
+','           Operator
+' '           Text.Whitespace
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'target_vertex' Name
+','           Operator
+' '           Text.Whitespace
+'SET'         Keyword
+'<'           Punctuation
+'STRING'      Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'e_type'      Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'wt_type'     Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'latitude'    Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'longitude'   Name
+','           Operator
+'\n'          Text.Whitespace
+
+'STRING'      Keyword
+' '           Text.Whitespace
+'wt_attr'     Name
+','           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword
+' '           Text.Whitespace
+'display'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'False'       Keyword
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n       '   Text.Whitespace
+'# empty body for testing' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Test $(0), $"field", and empty positional parameter _' Comment.Single
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'LOADING'     Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'load_job_supplychain' Name
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'SupplyChain' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'DEFINE'      Name
+' '           Text.Whitespace
+'FILENAME'    Name
+' '           Text.Whitespace
+'Inventory'   Name
+'='           Operator
+'"m1:/home/tigergraph/mydata/supplychain/Inventory.csv"' Literal.String
+';'           Operator
+'\n  '        Text.Whitespace
+'LOAD'        Name
+' '           Text.Whitespace
+'Inventory'   Name
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'EDGE'        Keyword
+' '           Text.Whitespace
+'in_warehouse_inventory' Name
+' '           Text.Whitespace
+'VALUES'      Keyword
+'('           Operator
+'$'           Operator
+'"warehouse"' Literal.String
+','           Operator
+' '           Text.Whitespace
+'$'           Operator
+'1'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'$'           Operator
+'2'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'USING'       Name
+' '           Text.Whitespace
+'SEPARATOR'   Name
+'='           Operator
+'","'         Literal.String
+','           Operator
+' '           Text.Whitespace
+'HEADER'      Name
+'='           Operator
+'"true"'      Literal.String
+','           Operator
+' '           Text.Whitespace
+'EOL'         Name
+'='           Operator
+'"\\n"'       Literal.String
+';'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
 '\n'          Text.Whitespace

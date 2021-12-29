@@ -237,3 +237,15 @@ CREATE SCHEMA_CHANGE JOB do_schema_change FOR GRAPH Patents { # add vertex and e
 }
 RUN SCHEMA_CHANGE JOB do_schema_change
 DROP JOB do_schema_change
+
+# Test lexer hang with params following SET<STRING> param
+CREATE QUERY tg_astar (VERTEX source_vertex, VERTEX target_vertex, SET<STRING> e_type, STRING wt_type, STRING latitude, STRING longitude,
+STRING wt_attr, BOOL display = False) {
+       # empty body for testing
+}
+
+# Test $(0), $"field", and empty positional parameter _
+CREATE LOADING JOB load_job_supplychain FOR GRAPH SupplyChain {
+  DEFINE FILENAME Inventory="m1:/home/tigergraph/mydata/supplychain/Inventory.csv";
+  LOAD Inventory TO EDGE in_warehouse_inventory VALUES($"warehouse", $1, $2) USING SEPARATOR=",", HEADER="true", EOL="\n";
+}
