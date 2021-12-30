@@ -1,15 +1,11 @@
 Pygments changelog
 ==================
 
-Since 2.5.0, issue numbers refer to the tracker at
-<https://github.com/pygments/pygments/issues>,
-pull request numbers to the requests at
-<https://github.com/pygments/pygments/pulls>.
-
+Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
 Version 2.11.0
 --------------
-(not released yet)
+(released December 30th, 2021)
 
 - Added lexers:
 
@@ -34,7 +30,11 @@ Version 2.11.0
   * Debian control: Add missing fields (#1946)
   * Devicetree: Recognize hexadecimal addresses for nodes (#1949)
   * GDScript: Add ``void`` data type (#1948)
-  * GSQL: Fix comment handling (#2002)
+  * GSQL
+
+    - Fix comment handling (#2002)
+    - Fix catastrophic backtracking (#2006)
+
   * HTML, XML: Improve comment handling (#1896)
   * Java: Add ``yield`` (#1941) and sealed classes/record (#1902)
   * Makefiles (#1860, #1898)
@@ -46,8 +46,10 @@ Version 2.11.0
     - Support the pattern matching keywords (#1797, #1994)
 
   * RobotFramework: Improve empty brace handling (#1921, #1922)
-  * Terraform: Add the 'set' type
-  * Terraform: Support heredocs (#1909)
+  * Terraform
+  
+    - Add the 'set' type (#1909)
+    - Support heredocs (#1909)
 
 - Added styles:
 
