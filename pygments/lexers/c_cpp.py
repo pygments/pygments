@@ -117,7 +117,7 @@ class CFamilyLexer(RegexLexer):
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+             r'(\s*\([^;]*?\))'                          # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
@@ -125,10 +125,11 @@ class CFamilyLexer(RegexLexer):
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+             r'(\s*\([^;]*?\))'                          # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
+            include('types'),
             default('statement'),
         ],
         'statement': [
