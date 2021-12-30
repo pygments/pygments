@@ -28,7 +28,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'return'      Name.Other
+'return'      Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
@@ -39,7 +39,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'return'      Name.Other
+'return'      Keyword
 ' '           Text.Whitespace
 'fib'         Name.Other
 '('           Punctuation
@@ -98,7 +98,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'return'      Name.Other
+'return'      Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
@@ -149,11 +149,15 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'int'         Keyword.Type
+'short'       Keyword.Type
 ' '           Text.Whitespace
 'number'      Name.Other
 ' '           Text.Whitespace
 '='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'short'       Keyword.Type
+')'           Punctuation
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ';'           Punctuation
@@ -162,7 +166,7 @@
 '    '        Text.Whitespace
 'printf'      Name.Builtin
 '('           Punctuation
-'"Fibonacci of %d: %d"' Literal.String
+'"Fibonacci of %d: %d\\n"' Literal.String
 ','           Punctuation
 ' '           Text.Whitespace
 'number'      Name.Other
@@ -170,6 +174,10 @@
 ' '           Text.Whitespace
 'fib'         Name.Other
 '('           Punctuation
+'('           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
 'number'      Name.Other
 ')'           Punctuation
 ')'           Punctuation
@@ -177,7 +185,22 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'base'        Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
 'number'      Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'base'        Name.Other
 ' '           Text.Whitespace
 '+='          Operator
 ' '           Text.Whitespace
@@ -186,17 +209,60 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
+'base'        Name.Other
+' '           Text.Whitespace
+'<<='         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'base'        Name.Other
+' '           Text.Whitespace
+'>>='         Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'base'        Name.Other
+' '           Text.Whitespace
+'-='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'printf'      Name.Builtin
 '('           Punctuation
-'"Faculty of %d: %d"' Literal.String
+'"Faculty of %d: %d\\n"' Literal.String
 ','           Punctuation
 ' '           Text.Whitespace
-'number'      Name.Other
+'base'        Name.Other
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'fac'         Name.Other
 '('           Punctuation
-'number'      Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'base'        Name.Other
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
