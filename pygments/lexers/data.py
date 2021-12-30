@@ -589,7 +589,7 @@ class JsonLexer(Lexer):
             elif character == ':':
                 # Yield from the queue. Replace string token types.
                 for _start, _token, _text in queue:
-                    if _token is Text:
+                    if _token is Text or _token is Whitespace:
                         yield _start, _token, _text
                     elif _token is String.Double:
                         yield _start, Name.Tag, _text
