@@ -33,7 +33,7 @@ class NSISLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[;#].*\n', Comment),
+            (r'([;#].*)(\n)', bygroups(Comment, Whitespace)),
             (r"'.*?'", String.Single),
             (r'"', String.Double, 'str_double'),
             (r'`', String.Backtick, 'str_backtick'),
@@ -47,7 +47,7 @@ class NSISLexer(RegexLexer):
         ],
         'basic': [
             (r'(\n)(Function)(\s+)([._a-z][.\w]*)\b',
-             bygroups(Text, Keyword, Text, Name.Function)),
+             bygroups(Whitespace, Keyword, Whitespace, Name.Function)),
             (r'\b([_a-z]\w*)(::)([a-z][a-z0-9]*)\b',
              bygroups(Keyword.Namespace, Punctuation, Name.Function)),
             (r'\b([_a-z]\w*)(:)', bygroups(Name.Label, Punctuation)),
@@ -160,20 +160,20 @@ class RPMSpecLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*\n', Comment),
+            (r'#.*$', Comment),
             include('basic'),
         ],
         'description': [
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
-            (r'\n', Text),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'changelog': [
-            (r'\*.*\n', Generic.Subheading),
+            (r'\*.*$', Generic.Subheading),
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
-            (r'\n', Text),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'string': [
@@ -198,10 +198,11 @@ class RPMSpecLexer(RegexLexer):
             include('interpol'),
             (r"'.*?'", String.Single),
             (r'"', String.Double, 'string'),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'macro': [
-            (r'%define.*\n', Comment.Preproc),
+            (r'%define.*$', Comment.Preproc),
             (r'%\{\!\?.*%define.*\}', Comment.Preproc),
             (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$',
              bygroups(Comment.Preproc, Text)),
@@ -230,10 +231,10 @@ class SourcesListLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'#.*?$', Comment),
             (r'^(deb(?:-src)?)(\s+)',
-             bygroups(Keyword, Text), 'distribution')
+             bygroups(Keyword, Whitespace), 'distribution')
         ],
         'distribution': [
             (r'#.*?$', Comment, '#pop'),
@@ -241,7 +242,7 @@ class SourcesListLexer(RegexLexer):
             (r'[^\s$[]+', String),
             (r'\[', String.Other, 'escaped-distribution'),
             (r'\$', String),
-            (r'\s+', Text, 'components')
+            (r'\s+', Whitespace, 'components')
         ],
         'escaped-distribution': [
             (r'\]', String.Other, '#pop'),
@@ -252,7 +253,7 @@ class SourcesListLexer(RegexLexer):
         'components': [
             (r'#.*?$', Comment, '#pop:2'),
             (r'$', Text, '#pop:2'),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\S+', Keyword.Pseudo),
         ]
     }

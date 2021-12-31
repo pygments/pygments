@@ -1,12 +1,16 @@
-'; bigtest.nsi\n' Comment
+'; bigtest.nsi' Comment
+'\n'          Text.Whitespace
 
-';\n'         Comment
+';'           Comment
+'\n'          Text.Whitespace
 
-'; This script attempts to test most of the functionality of the NSIS exehead.\n' Comment
+'; This script attempts to test most of the functionality of the NSIS exehead.' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -40,7 +44,8 @@
 '!endif'      Comment.Preproc
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -162,7 +167,8 @@
 'admin'       Name.Constant
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -196,7 +202,8 @@
 'instfiles'   Text
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -204,7 +211,8 @@
 ' '           Text.Whitespace
 'NOINSTTYPES' Text
 ' '           Text.Whitespace
-'; only if not defined\n' Comment
+'; only if not defined' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'InstType'    Keyword
@@ -231,10 +239,12 @@
 'Base'        Literal.String.Double
 '"'           Literal.String.Double
 '\n  '        Text.Whitespace
-';InstType /NOCUSTOM\n' Comment
+';InstType /NOCUSTOM' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-';InstType /COMPONENTSONLYONCUSTOM\n' Comment
+';InstType /COMPONENTSONLYONCUSTOM' Comment
+'\n'          Text.Whitespace
 
 '!endif'      Comment.Preproc
 '\n\n'        Text.Whitespace
@@ -249,7 +259,8 @@
 'show'        Name.Constant
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -258,10 +269,12 @@
 '"'           Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text.Whitespace
-'; empty string makes it hidden, so would starting with -\n' Comment
+'; empty string makes it hidden, so would starting with -' Comment
+'\n'          Text.Whitespace
 
 '\n  '        Text.Whitespace
-'; write reg info\n' Comment
+'; write reg info' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'StrCpy'      Keyword
@@ -296,7 +309,8 @@
 '$INSTDIR'    Name.Variable.Global
 '"'           Literal.String.Double
 '\n\n  '      Text.Whitespace
-'; write uninstall strings\n' Comment
+'; write uninstall strings' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'WriteRegStr' Keyword
@@ -348,7 +362,8 @@
 '\\MyProjectFamily\\MyProject' Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text.Whitespace
-'; 2 recursively create a directory for fun.\n' Comment
+'; 2 recursively create a directory for fun.' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'WriteUninstaller' Keyword
@@ -359,7 +374,8 @@
 '\n  \n  '    Text.Whitespace
 'Nop'         Keyword
 ' '           Text.Whitespace
-'; for fun\n' Comment
+'; for fun'   Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -820,7 +836,8 @@
 ' '           Text.Whitespace
 'NoOverwrite' Text
 ' '           Text.Whitespace
-"; skipped if file doesn't exist\n" Comment
+"; skipped if file doesn't exist" Comment
+'\n'          Text.Whitespace
 
 '\n    '      Text.Whitespace
 'BranchTest69' Name.Label
@@ -830,7 +847,8 @@
 ' '           Text.Whitespace
 'ifnewer'     Name.Constant
 ' '           Text.Whitespace
-'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
+'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS' Comment
+'\n'          Text.Whitespace
 
 '\n  '        Text.Whitespace
 'NoOverwrite' Name.Label
@@ -842,14 +860,16 @@
 'LogicLib.nsi' Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text.Whitespace
-'; skipped if answered no\n' Comment
+'; skipped if answered no' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'SetOverwrite' Keyword
 ' '           Text.Whitespace
 'try'         Name.Constant
 ' '           Text.Whitespace
-'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
+'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS' Comment
+'\n'          Text.Whitespace
 
 '\n  '        Text.Whitespace
 'MessageBox'  Keyword
@@ -1096,7 +1116,8 @@
 'SectionEnd'  Keyword
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1117,7 +1138,8 @@
 ' '           Text.Whitespace
 '$INSTDIR'    Name.Variable.Global
 ' '           Text.Whitespace
-'; for working directory\n' Comment
+'; for working directory' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'CreateShortCut' Keyword
@@ -1132,10 +1154,12 @@
 '\\bt-uninst.exe' Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text.Whitespace
-'; use defaults for parameters, icon, etc.\n' Comment
+'; use defaults for parameters, icon, etc.' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-"; this one will use notepad's icon, start it minimized, and give it a hotkey (of Ctrl+Shift+Q)\n" Comment
+"; this one will use notepad's icon, start it minimized, and give it a hotkey (of Ctrl+Shift+Q)" Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'CreateShortCut' Keyword
@@ -1318,11 +1342,13 @@
 'FunctionEnd' Keyword
 '\n\n'        Text.Whitespace
 
-';--------------------------------\n' Comment
+';--------------------------------' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-'; Uninstaller\n' Comment
+'; Uninstaller' Comment
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1433,7 +1459,8 @@
 '\\cpdest'    Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text.Whitespace
-'; skipped if no\n' Comment
+'; skipped if no' Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'NoDelete'    Name.Label
@@ -1481,7 +1508,8 @@
 ' '           Text.Whitespace
 '0'           Text
 ' '           Text.Whitespace
-"; skipped if file doesn't exist\n" Comment
+"; skipped if file doesn't exist" Comment
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'NoErrorMsg'  Name.Label
