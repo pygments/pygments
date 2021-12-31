@@ -10,7 +10,7 @@ Version 2.11.1
 - Updated lexers:
 
   * C-family: Handle return types with multiple tokens (e.g. ``unsigned int``) (#2008)
-  * JSON: Fix a regression which caused whitespace before ``:`` to result in ``Error`` tokens
+  * JSON: Fix a regression which caused whitespace before ``:`` to result in ``Error`` tokens (#2010)
   * SPICE: Various improvements (#2009)
 
 Version 2.11.0
