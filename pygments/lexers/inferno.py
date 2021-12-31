@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
-    Name, String, Number
+    Name, String, Number, Whitespace
 
 __all__ = ['LimboLexer']
 
@@ -34,10 +34,10 @@ class LimboLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^(\s*)([a-zA-Z_]\w*:(\s*)\n)',
-             bygroups(Text, Name.Label)),
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'^(\s*)([a-zA-Z_]\w*:)(\s*\n)',
+             bygroups(Whitespace, Name.Label, Whitespace)),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'#(\n|(.|\n)*?[^\\]\n)', Comment.Single),
         ],
         'string': [
