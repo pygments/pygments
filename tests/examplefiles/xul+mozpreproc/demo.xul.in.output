@@ -1,13 +1,15 @@
 '<?xml version="1.0" encoding="iso-8859-1"?>' Comment.Preproc
 '\n'          Text
 
-'<window'     Name.Tag
+'<'           Punctuation
+'window'      Name.Tag
 '\n'          Text
 
-'   '         Text
-'xmlns='      Name.Attribute
+'   '         Text.Whitespace
+'xmlns'       Name.Attribute
+'='           Operator
 '"http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 '\n'          Text
 
 '#'           Comment.Preproc
@@ -19,17 +21,23 @@
 ')'           Punctuation
 '\n'          Text
 
-'<description' Name.Tag
-' '           Text
-'value='      Name.Attribute
+'<'           Punctuation
+'description' Name.Tag
+' '           Text.Whitespace
+'value'       Name.Attribute
+'='           Operator
 '"Text"'      Literal.String
-' '           Text
-'/>'          Name.Tag
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
 '\n'          Text
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Text
 
-'</window>'   Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'window'      Name.Tag
+'>'           Punctuation
 '\n'          Text

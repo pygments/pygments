@@ -7,16 +7,18 @@
 '"C#"'        Literal.String
 ' '           Text.Whitespace
 '%>'          Name.Tag
-'\n \n'       Text
+'\n \n'       Text.Whitespace
 
 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' Comment.Preproc
-'\n \n'       Text
+'\n \n'       Text.Whitespace
 
-'<script'     Name.Tag
-' '           Text
-'runat='      Name.Attribute
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text.Whitespace
@@ -68,63 +70,99 @@
 ' '           Text.Whitespace
 '\n'          Text.Whitespace
 
-'</script>'   Name.Tag
-'\n \n'       Text
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n \n'       Text.Whitespace
 
-'<html'       Name.Tag
-' '           Text
-'xmlns='      Name.Attribute
+'<'           Punctuation
+'html'        Name.Tag
+' '           Text.Whitespace
+'xmlns'       Name.Attribute
+'='           Operator
 '"http://www.w3.org/1999/xhtml"' Literal.String
-'>'           Name.Tag
-'\n'          Text
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<head'       Name.Tag
-' '           Text
-'runat='      Name.Attribute
+'<'           Punctuation
+'head'        Name.Tag
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'>'           Name.Tag
-'\n    '      Text
-'<title'      Name.Tag
-'>'           Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
 'Sample page' Text
-'</title>'    Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'</head>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<body'       Name.Tag
-'>'           Name.Tag
-'\n    '      Text
-'<form'       Name.Tag
-' '           Text
-'id='         Name.Attribute
+'<'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
 '"form1"'     Literal.String
-' '           Text
-'runat='      Name.Attribute
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'>'           Name.Tag
-'\n    '      Text
-'<div'        Name.Tag
-'>'           Name.Tag
-'\n        The current time is: ' Text
-'<asp:Label'  Name.Tag
-' '           Text
-'runat='      Name.Attribute
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'The current time is: ' Text
+'<'           Punctuation
+'asp:Label'   Name.Tag
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-' '           Text
-'id='         Name.Attribute
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
 '"Label1"'    Literal.String
-' '           Text
-'/>'          Name.Tag
-'\n    '      Text
-'</div>'      Name.Tag
-'\n    '      Text
-'</form>'     Name.Tag
-'\n \n'       Text
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n \n'       Text.Whitespace
 
-'</body>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'</html>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

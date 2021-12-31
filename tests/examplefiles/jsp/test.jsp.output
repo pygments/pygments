@@ -19,7 +19,7 @@
 ' '           Text
 '%>'          Keyword
 ' -->'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%='         Keyword
 ' '           Text
@@ -34,7 +34,7 @@
 '\n'          Text
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text
@@ -48,7 +48,7 @@
 ';'           Punctuation
 ' '           Text
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text
@@ -64,7 +64,7 @@
 ';'           Punctuation
 ' '           Text
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text
@@ -83,7 +83,7 @@
 ';'           Punctuation
 ' '           Text
 '%>'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<%'          Keyword
 '\n'          Text
@@ -122,7 +122,7 @@
 '\n'          Text
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%@'         Keyword
 ' '           Text
@@ -135,7 +135,7 @@
 '"'           Literal.String
 ' '           Text
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 '\n'          Text
@@ -215,16 +215,22 @@
 '\n'          Text
 
 '%>'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<jsp:useBean id="calendar" scope="page" class="employee.Calendar" />' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'<h2'         Name.Tag
-'>'           Name.Tag
-'\nCalendar of ' Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'Calendar of ' Text
 '<jsp:getProperty name="calendar" property="username" />' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'</h2>'       Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

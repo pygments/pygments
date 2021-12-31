@@ -88,35 +88,45 @@
 '\n'          Text
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'<html'       Name.Tag
-'>'           Name.Tag
-'\n'          Text
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<head'       Name.Tag
-'>'           Name.Tag
-'\n'          Text
+'<'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<title'      Name.Tag
-'>'           Name.Tag
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
 'Example'     Text
-'<title'      Name.Tag
-'>'           Name.Tag
-'\n'          Text
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<body'       Name.Tag
-'>'           Name.Tag
-'\n'          Text
+'<'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'<a'          Name.Tag
-' '           Text
-'href='       Name.Attribute
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text.Whitespace
+'href'        Name.Attribute
+'='           Operator
 '"http://example.com"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 'Test link'   Text
-'</a>'        Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 ' '           Text
@@ -225,4 +235,4 @@
 '\n'          Text
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
