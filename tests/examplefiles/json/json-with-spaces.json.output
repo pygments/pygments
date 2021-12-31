@@ -3,7 +3,7 @@
 ' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
-'"bar"'       Literal.String.Double
+'"bar bar\tbar"' Literal.String.Double
 ' '           Text.Whitespace
 ','           Punctuation
 ' '           Text.Whitespace
@@ -31,7 +31,7 @@
 '\t'          Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'"c"'         Name.Tag
+'"c  d"'      Name.Tag
 '    '        Text.Whitespace
 ':'           Punctuation
 '\n\t '       Text.Whitespace
