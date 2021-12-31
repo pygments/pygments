@@ -772,7 +772,7 @@ class HtmlFormatter(Formatter):
         for t, line in inner:
             if t:
                 i += 1
-                href = "" if self.linenos  else ' href="%s-%d"' % (s, i)
+                href = "" if self.linenos else ' href="#%s-%d"' % (s, i)
                 yield 1, '<a id="%s-%d" name="%s-%d"%s></a>' % (s, i, s, i, href) + line
             else:
                 yield 0, line
