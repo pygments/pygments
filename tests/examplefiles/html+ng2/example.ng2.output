@@ -32,24 +32,24 @@
 '\n    '      Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'click'       Name.Attribute
 ')'           Punctuation
 '='           Operator
 '"deleteOrder()"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Punctuation
 'ngIf'        Name.Attribute
 '='           Operator
 '"cancelable"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'value'       Name.Attribute
 ']'           Punctuation
 '='           Operator
 '"test"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '[('          Punctuation
 'twoWayTest'  Name.Attribute
 ')]'          Punctuation
@@ -68,7 +68,7 @@
 '\n        '  Text
 '<'           Punctuation
 'li'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '*'           Punctuation
 'ngFor'       Name.Attribute
 '='           Operator

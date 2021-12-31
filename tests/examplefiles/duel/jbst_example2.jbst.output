@@ -16,7 +16,7 @@
 
 '<'           Punctuation
 'script'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/javascript"' Literal.String
@@ -234,7 +234,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"example"'   Literal.String
@@ -295,11 +295,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"items"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'jbst:visible' Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -324,7 +324,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'jbst:control' Name.Tag
-' '           Text
+' '           Text.Whitespace
 'data'        Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -343,7 +343,7 @@
 '\n\t\t\t'    Text
 '<'           Punctuation
 'li'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"'           Literal.String

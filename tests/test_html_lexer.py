@@ -55,7 +55,7 @@ def test_long_unclosed_javascript_fragment(lexer_html):
     tokens_intro = [
         (Token.Punctuation, '<'),
         (Token.Name.Tag, 'script'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Name.Attribute, 'type'),
         (Token.Operator, '='),
         (Token.Literal.String, '"text/javascript"'),

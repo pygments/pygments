@@ -13,7 +13,7 @@ import re
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Punctuation
+    Punctuation, Whitespace
 from pygments.util import looks_like_xml, html_doctype_matches
 
 from pygments.lexers.javascript import JavascriptLexer
@@ -46,30 +46,30 @@ class HtmlLexer(RegexLexer):
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),
             (r'(<)(\s*)(script)(\s*)',
-             bygroups(Punctuation, Text, Name.Tag, Text),
+             bygroups(Punctuation, Whitespace, Name.Tag, Whitespace),
              ('script-content', 'tag')),
             (r'(<)(\s*)(style)(\s*)',
-             bygroups(Punctuation, Text, Name.Tag, Text),
+             bygroups(Punctuation, Whitespace, Name.Tag, Whitespace),
              ('style-content', 'tag')),
             # note: this allows tag names not used in HTML like <x:with-dash>,
             # this is to support yet-unknown template engines and the like
             (r'(<)(\s*)([\w:.-]+)',
-             bygroups(Punctuation, Text, Name.Tag), 'tag'),
+             bygroups(Punctuation, Whitespace, Name.Tag), 'tag'),
             (r'(<)(\s*)(/)(\s*)([\w:.-]+)(\s*)(>)',
-             bygroups(Punctuation, Text, Punctuation, Text, Name.Tag, Text,
-                      Punctuation)),
+             bygroups(Punctuation, Whitespace, Punctuation, Whitespace,
+                 Name.Tag, Whitespace, Punctuation)),
         ],
         'tag': [
-            (r'\s+', Text),
-            (r'([\w:-]+\s*)(=)(\s*)', bygroups(Name.Attribute, Operator, Text),
-             'attr'),
+            (r'\s+', Whitespace),
+            (r'([\w:-]+)(\s*)(=)(\s*)', bygroups(Name.Attribute, Whitespace,
+                Operator, Whitespace), 'attr'),
             (r'[\w:-]+', Name.Attribute),
-            (r'(/?)(\s*)(>)', bygroups(Punctuation, Text, Punctuation), '#pop'),
+            (r'(/?)(\s*)(>)', bygroups(Punctuation, Whitespace, Punctuation), '#pop'),
         ],
         'script-content': [
             (r'(<)(\s*)(/)(\s*)(script)(\s*)(>)',
-             bygroups(Punctuation, Text, Punctuation, Text, Name.Tag, Text,
-                      Punctuation), '#pop'),
+             bygroups(Punctuation, Whitespace, Punctuation, Whitespace,
+                 Name.Tag, Whitespace, Punctuation), '#pop'),
             (r'.+?(?=<\s*/\s*script\s*>)', using(JavascriptLexer)),
             # fallback cases for when there is no closing script tag
             # first look for newline and then go back into root state
@@ -80,8 +80,8 @@ class HtmlLexer(RegexLexer):
         ],
         'style-content': [
             (r'(<)(\s*)(/)(\s*)(style)(\s*)(>)',
-             bygroups(Punctuation, Text, Punctuation, Text, Name.Tag, Text,
-                      Punctuation),'#pop'),
+             bygroups(Punctuation, Whitespace, Punctuation, Whitespace,
+                 Name.Tag, Whitespace, Punctuation),'#pop'),
             (r'.+?(?=<\s*/\s*style\s*>)', using(CssLexer)),
             # fallback cases for when there is no closing style tag
             # first look for newline and then go back into root state
@@ -121,24 +121,24 @@ class DtdLexer(RegexLexer):
             include('common'),
 
             (r'(<!ELEMENT)(\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Tag), 'element'),
+                bygroups(Keyword, Whitespace, Name.Tag), 'element'),
             (r'(<!ATTLIST)(\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Tag), 'attlist'),
+                bygroups(Keyword, Whitespace, Name.Tag), 'attlist'),
             (r'(<!ENTITY)(\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Entity), 'entity'),
+                bygroups(Keyword, Whitespace, Name.Entity), 'entity'),
             (r'(<!NOTATION)(\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Tag), 'notation'),
+                bygroups(Keyword, Whitespace, Name.Tag), 'notation'),
             (r'(<!\[)([^\[\s]+)(\s*)(\[)',  # conditional sections
-                bygroups(Keyword, Name.Entity, Text, Keyword)),
+                bygroups(Keyword, Name.Entity, Whitespace, Keyword)),
 
             (r'(<!DOCTYPE)(\s+)([^>\s]+)',
-                bygroups(Keyword, Text, Name.Tag)),
+                bygroups(Keyword, Whitespace, Name.Tag)),
             (r'PUBLIC|SYSTEM', Keyword.Constant),
             (r'[\[\]>]', Keyword),
         ],
 
         'common': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'(%|&)[^;]*;', Name.Entity),
             ('<!--', Comment, 'comment'),
             (r'[(|)*,?+]', Operator),

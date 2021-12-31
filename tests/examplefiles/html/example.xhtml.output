@@ -8,11 +8,11 @@
 '\n    '      Text
 '<'           Punctuation
 'script'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
 '"javascript"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/javascript"' Literal.String
@@ -275,7 +275,7 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"path"'      Literal.String
@@ -296,7 +296,7 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"error"'     Literal.String
@@ -316,7 +316,7 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"load"'      Literal.String
@@ -327,7 +327,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.uri}"' Literal.String
@@ -347,7 +347,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.referer}"' Literal.String
@@ -367,7 +367,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/"'         Literal.String
@@ -389,7 +389,7 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"source"'    Literal.String
@@ -408,12 +408,12 @@
 " #{error.hot_file =~ /\\.xhtml$/ ? '(line numbering is aproximate due to template transformation)' : nil}:\n      " Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n      '    Text
@@ -421,7 +421,7 @@
 '\n          ' Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"background: #eee"' Literal.String
@@ -455,11 +455,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"return toggleVisible(document.getElementById(\'trace\'));"' Literal.String
@@ -476,11 +476,11 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"trace"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"display: none;"' Literal.String
@@ -493,11 +493,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"return toggleVisible(document.getElementById(\'trace_#{step_idx}\'));"' Literal.String
@@ -514,15 +514,15 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"source"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"trace_#{step_idx}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"display: none;"' Literal.String
@@ -532,7 +532,7 @@
 '\n          ' Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"background: #eee"' Literal.String
@@ -575,11 +575,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"document.getElementById(\'request\').style.display = \'block\'; return false"' Literal.String
@@ -596,11 +596,11 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"request"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"display: none"' Literal.String
@@ -653,13 +653,13 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '#{request.headers.collect { |k, v| "#{k} => #{v}" }.join(\'' Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 "')}"         Text
@@ -678,11 +678,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"document.getElementById(\'response\').style.display = \'block\'; return false"' Literal.String
@@ -699,11 +699,11 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"response"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"display: none"' Literal.String
@@ -753,11 +753,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"document.getElementById(\'session\').style.display = \'block\'; return false"' Literal.String
@@ -774,11 +774,11 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"session"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"display: none"' Literal.String
@@ -808,18 +808,18 @@
 '\n\n    '    Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n    Powered by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"http://www.nitrohq.com"' Literal.String
@@ -856,7 +856,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/"'         Literal.String
@@ -869,7 +869,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#@base"'    Literal.String
@@ -882,7 +882,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/list"' Literal.String
@@ -902,7 +902,7 @@
 '\n    '      Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.uri.gsub(/\\/all$/, \'\')}"' Literal.String
@@ -917,7 +917,7 @@
 '\n    '      Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.uri}/all"' Literal.String
@@ -957,7 +957,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/new"' Literal.String
@@ -974,7 +974,7 @@
 '\n  '        Text
 '<'           Punctuation
 'form'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'action'      Name.Attribute
 '='           Operator
 '"search"'    Literal.String
@@ -982,29 +982,29 @@
 '\n    Search #{"%plural%".humanize}: ' Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"q"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '&nbsp;'      Name.Entity
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"submit"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Attribute
 '='           Operator
 '"Search"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n  '        Text
@@ -1025,14 +1025,14 @@
 '\n      '    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Attribute
 '='           Operator
 '"100%"'      Literal.String
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1051,7 +1051,7 @@
 '\n        '  Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'nowrap'      Name.Attribute
 '='           Operator
 '"1"'         Literal.String
@@ -1069,7 +1069,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1089,7 +1089,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/delete/#{obj.oid}"' Literal.String
@@ -1134,7 +1134,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/"'         Literal.String
@@ -1147,7 +1147,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#@base"'    Literal.String
@@ -1165,7 +1165,7 @@
 '\n  '        Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/new"' Literal.String
@@ -1182,7 +1182,7 @@
 '\n  '        Text
 '<'           Punctuation
 'form'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'action'      Name.Attribute
 '='           Operator
 '"#{base}/search"' Literal.String
@@ -1190,29 +1190,29 @@
 '\n    Search #{"%plural%".humanize}: ' Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"q"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '&nbsp;'      Name.Entity
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"submit"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Attribute
 '='           Operator
 '"Search"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n  '        Text
@@ -1238,14 +1238,14 @@
 '\n      '    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Attribute
 '='           Operator
 '"100%"'      Literal.String
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1264,7 +1264,7 @@
 '\n        '  Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'nowrap'      Name.Attribute
 '='           Operator
 '"1"'         Literal.String
@@ -1282,7 +1282,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1302,11 +1302,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/delete/#{obj.oid}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"confirm(\'Are you sure?\')"' Literal.String
@@ -1335,11 +1335,11 @@
 '\n  '        Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pager"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'if'          Name.Attribute
 '='           Operator
 '"@pager and @pager.navigation?"' Literal.String
@@ -1368,7 +1368,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/"'         Literal.String
@@ -1381,7 +1381,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#@base"'    Literal.String
@@ -1394,7 +1394,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/list"' Literal.String
@@ -1414,7 +1414,7 @@
 '\n    '      Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.uri.gsub(/\\/all$/, \'\')}"' Literal.String
@@ -1429,7 +1429,7 @@
 '\n    '      Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{request.uri}/all"' Literal.String
@@ -1460,7 +1460,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/"'         Literal.String
@@ -1473,7 +1473,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#@base"'    Literal.String
@@ -1486,7 +1486,7 @@
 ' > '         Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/list"' Literal.String
@@ -1508,7 +1508,7 @@
 '\n  '        Text
 '<'           Punctuation
 'form'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'action'      Name.Attribute
 '='           Operator
 '"#{base}/search"' Literal.String
@@ -1516,29 +1516,29 @@
 '\n    Search #{"%plural%".humanize}: ' Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"q"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '&nbsp;'      Name.Entity
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"submit"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Attribute
 '='           Operator
 '"Search"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n  '        Text
@@ -1577,14 +1577,14 @@
 '\n        '  Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Attribute
 '='           Operator
 '"100%"'      Literal.String
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1603,7 +1603,7 @@
 '\n          ' Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'nowrap'      Name.Attribute
 '='           Operator
 '"1"'         Literal.String
@@ -1621,7 +1621,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/edit/#{obj.oid}"' Literal.String
@@ -1641,7 +1641,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/delete/#{obj.oid}"' Literal.String
@@ -1670,11 +1670,11 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pager"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'if'          Name.Attribute
 '='           Operator
 '"@pager and @pager.navigation?"' Literal.String
@@ -1714,7 +1714,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#{base}/list"' Literal.String
@@ -1766,7 +1766,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 "'/'"         Literal.String
@@ -1819,7 +1819,7 @@
 '\n      '    Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'colspan'     Name.Attribute
 '='           Operator
 '"2"'         Literal.String
@@ -1855,7 +1855,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"#@base/#{Scaffolding.class_to_path(c).plural}/list"' Literal.String
@@ -1884,11 +1884,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"delete_all/#{c.name}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"return confirm(\'Delete all instances?\')"' Literal.String
@@ -1908,11 +1908,11 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"destroy/#{c.name}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'onclick'     Name.Attribute
 '='           Operator
 '"return confirm(\'Drop the schema?\')"' Literal.String
@@ -1929,7 +1929,7 @@
 '\n      '    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Attribute
 '='           Operator
 '"100%"'      Literal.String
@@ -1963,7 +1963,7 @@
 '\n  \n  '    Text
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Attribute
 '='           Operator
 '"100%"'      Literal.String
@@ -2122,22 +2122,22 @@
 
 '<'           Punctuation
 'render'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"blog/inc1"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'render'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 "'blog/inc2'" Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\n'        Text
@@ -2169,7 +2169,7 @@
 
 '<'           Punctuation
 'Page'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Attribute
 '='           Operator
 '"Questions and Tips by Tags"' Literal.String
@@ -2177,7 +2177,7 @@
 '\n  '        Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"left"'      Literal.String
@@ -2202,7 +2202,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"results"'   Literal.String
@@ -2215,7 +2215,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/question/#{q.oid}"' Literal.String
@@ -2243,7 +2243,7 @@
 '\n        '  Text
 '<'           Punctuation
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"float:right;"' Literal.String
@@ -2263,7 +2263,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pager"'     Literal.String
@@ -2278,7 +2278,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"results_none"' Literal.String
@@ -2298,7 +2298,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/ask"'      Literal.String
@@ -2337,7 +2337,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"results"'   Literal.String
@@ -2350,7 +2350,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/tip/#{t.oid}"' Literal.String
@@ -2385,7 +2385,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pager"'     Literal.String
@@ -2415,7 +2415,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"results"'   Literal.String
@@ -2428,7 +2428,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/tutorial/#{t.oid}"' Literal.String
@@ -2463,7 +2463,7 @@
 '\n    '      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pager"'     Literal.String
@@ -2480,7 +2480,7 @@
 '\n      '    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"cloud"'     Literal.String
@@ -2492,11 +2492,11 @@
 '\n          ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/tags/#{t.name}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"font-size:#{(1+((t.popularity.to_i/sum.to_f)*2)).to_s[0..3]}em;"' Literal.String
@@ -2527,11 +2527,11 @@
 '\n  \n  '    Text
 '<'           Punctuation
 'render'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"/right"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n'          Text
