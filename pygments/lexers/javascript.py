@@ -441,11 +441,11 @@ class DartLexer(RegexLexer):
             (r'#!(.*?)$', Comment.Preproc),
             (r'\b(import|export)\b', Keyword, 'import_decl'),
             (r'\b(library|source|part of|part)\b', Keyword),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'\b(class|extension|mixin)\b(\s+)',
-             bygroups(Keyword.Declaration, Text), 'class'),
+             bygroups(Keyword.Declaration, Whitespace), 'class'),
             (r'\b(as|assert|break|case|catch|const|continue|default|do|else|finally|'
              r'for|if|in|is|new|rethrow|return|super|switch|this|throw|try|while)\b',
              Keyword),
@@ -464,7 +464,7 @@ class DartLexer(RegexLexer):
             # DIGIT+ (‘.’ DIGIT*)? EXPONENT?
             (r'\d+(\.\d*)?([eE][+-]?\d+)?', Number),
             (r'\.\d+([eE][+-]?\d+)?', Number),  # ‘.’ DIGIT+ EXPONENT?
-            (r'\n', Text)
+            (r'\n', Whitespace)
             # pseudo-keyword negate intentionally left out
         ],
         'class': [
@@ -472,7 +472,7 @@ class DartLexer(RegexLexer):
         ],
         'import_decl': [
             include('string_literal'),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\b(as|deferred|show|hide)\b', Keyword),
             (r'[a-zA-Z_$]\w*', Name),
             (r'\,', Punctuation),
@@ -553,7 +553,7 @@ class LassoLexer(RegexLexer):
         'root': [
             (r'^#![ \S]+lasso9\b', Comment.Preproc, 'lasso'),
             (r'(?=\[|<)', Other, 'delimiters'),
-            (r'\s+', Other),
+            (r'\s+', Whitespace),
             default(('delimiters', 'lassofile')),
         ],
         'delimiters': [
@@ -589,8 +589,8 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'whitespacecomments': [
-            (r'\s+', Text),
-            (r'//.*?\n', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'(//.*?)(\s*)$', bygroups(Comment.Single, Whitespace)),
             (r'/\*\*!.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
         ],
@@ -610,18 +610,20 @@ class LassoLexer(RegexLexer):
             # names
             (r'\$[a-z_][\w.]*', Name.Variable),
             (r'#([a-z_][\w.]*|\d+\b)', Name.Variable.Instance),
-            (r"(\.\s*)('[a-z_][\w.]*')",
-                bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
-            (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
-                bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(\.\.?\s*)([a-z_][\w.]*(=(?!=))?)',
-                bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
-            (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
-                bygroups(Operator, Name.Other.Member)),
+            (r"(\.)(\s*)('[a-z_][\w.]*')",
+                bygroups(Name.Builtin.Pseudo, Whitespace, Name.Variable.Class)),
+            (r"(self)(\s*)(->)(\s*)('[a-z_][\w.]*')",
+                bygroups(Name.Builtin.Pseudo, Whitespace, Operator, Whitespace,
+                    Name.Variable.Class)),
+            (r'(\.\.?)(\s*)([a-z_][\w.]*(=(?!=))?)',
+                bygroups(Name.Builtin.Pseudo, Whitespace, Name.Other.Member)),
+            (r'(->\\?|&)(\s*)([a-z_][\w.]*(=(?!=))?)',
+                bygroups(Operator, Whitespace, Name.Other.Member)),
             (r'(?<!->)(self|inherited|currentcapture|givenblock)\b',
                 Name.Builtin.Pseudo),
             (r'-(?!infinity)[a-z_][\w.]*', Name.Attribute),
-            (r'::\s*[a-z_][\w.]*', Name.Label),
+            (r'(::)(\s*)([a-z_][\w.]*)',
+                bygroups(Punctuation, Whitespace, Name.Label)),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
              r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
              r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
@@ -633,18 +635,20 @@ class LassoLexer(RegexLexer):
              r'Error_UpdateError)\b', Name.Exception),
 
             # definitions
-            (r'(define)(\s+)([a-z_][\w.]*)(\s*=>\s*)(type|trait|thread)\b',
-                bygroups(Keyword.Declaration, Text, Name.Class, Operator, Keyword)),
-            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%])',
-                bygroups(Keyword.Declaration, Text, Name.Class, Operator,
-                         Name.Function), 'signature'),
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*)(=>)(\s*)(type|trait|thread)\b',
+                bygroups(Keyword.Declaration, Whitespace, Name.Class,
+                    Whitespace, Operator, Whitespace, Keyword)),
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*)(->)(\s*)([a-z_][\w.]*=?|[-+*/%])',
+                bygroups(Keyword.Declaration, Whitespace, Name.Class,
+                    Whitespace, Operator, Whitespace, Name.Function),
+                'signature'),
             (r'(define)(\s+)([a-z_][\w.]*)',
-                bygroups(Keyword.Declaration, Text, Name.Function), 'signature'),
+                bygroups(Keyword.Declaration, Whitespace, Name.Function), 'signature'),
             (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|[-+*/%])'
-             r'(?=\s*\())', bygroups(Keyword, Text, Name.Function),
+             r'(?=\s*\())', bygroups(Keyword, Whitespace, Name.Function),
                 'signature'),
             (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*)',
-                bygroups(Keyword, Text, Name.Function)),
+                bygroups(Keyword, Whitespace, Name.Function)),
 
             # keywords
             (r'(true|false|none|minimal|full|all|void)\b', Keyword.Constant),
@@ -652,8 +656,8 @@ class LassoLexer(RegexLexer):
             (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
              r'null|boolean|bytes|keyword|list|locale|queue|set|stack|'
              r'staticarray)\b', Keyword.Type),
-            (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
-            (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
+            (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Whitespace, Keyword)),
+            (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Whitespace, Name)),
             (r'require\b', Keyword, 'requiresection'),
             (r'(/?)(Namespace_Using)\b', bygroups(Punctuation, Keyword.Namespace)),
             (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
@@ -679,8 +683,9 @@ class LassoLexer(RegexLexer):
             # other
             (r',', Punctuation, 'commamember'),
             (r'(and|or|not)\b', Operator.Word),
-            (r'([a-z_][\w.]*)(\s*::\s*[a-z_][\w.]*)?(\s*=(?!=))',
-                bygroups(Name, Name.Label, Operator)),
+            (r'([a-z_][\w.]*)(\s*)(::)(\s*)([a-z_][\w.]*)?(\s*=(?!=))',
+                bygroups(Name, Whitespace, Punctuation, Whitespace, Name.Label,
+                    Operator)),
             (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
             (r'(=)(n?bw|n?ew|n?cn|lte?|gte?|n?eq|n?rx|ft)\b',
                 bygroups(Operator, Operator.Word)),
@@ -719,7 +724,8 @@ class LassoLexer(RegexLexer):
             (r'(([a-z_][\w.]*=?|[-+*/%])(?=\s*\())', Name, 'requiresignature'),
             (r'(([a-z_][\w.]*=?|[-+*/%])(?=(\s*::\s*[\w.]+)?\s*,))', Name),
             (r'[a-z_][\w.]*=?|[-+*/%]', Name, '#pop'),
-            (r'::\s*[a-z_][\w.]*', Name.Label),
+            (r'(::)(\s*)([a-z_][\w.]*)',
+                bygroups(Punctuation, Whitespace, Name.Label)),
             (r',', Punctuation),
             include('whitespacecomments'),
         ],
@@ -727,7 +733,8 @@ class LassoLexer(RegexLexer):
             (r'(\)(?=(\s*::\s*[\w.]+)?\s*,))', Punctuation, '#pop'),
             (r'\)', Punctuation, '#pop:2'),
             (r'-?[a-z_][\w.]*', Name.Attribute),
-            (r'::\s*[a-z_][\w.]*', Name.Label),
+            (r'(::)(\s*)([a-z_][\w.]*)',
+                bygroups(Punctuation, Whitespace, Name.Label)),
             (r'\.\.\.', Name.Builtin.Pseudo),
             (r'[(,]', Punctuation),
             include('whitespacecomments'),
