@@ -324,9 +324,9 @@ class LiveScriptLexer(RegexLexer):
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'#.*?\n', Comment.Single),
+            (r'(#.*?)(\n)', bygroups(Comment.Single, Whitespace)),
         ],
         'multilineregex': [
             include('commentsandwhitespace'),
@@ -367,10 +367,13 @@ class LiveScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
              r'globalThis|Symbol|Symbol|BigInt)\b', Name.Builtin),
-            (r'[$a-zA-Z_][\w.\-:$]*\s*[:=]\s', Name.Variable,
-             'slashstartsregex'),
-            (r'@[$a-zA-Z_][\w.\-:$]*\s*[:=]\s', Name.Variable.Instance,
-             'slashstartsregex'),
+            (r'([$a-zA-Z_][\w.\-:$]*)(\s*)([:=])(\s+)',
+                bygroups(Name.Variable, Whitespace, Operator, Whitespace),
+                'slashstartsregex'),
+            (r'(@[$a-zA-Z_][\w.\-:$]*)(\s*)([:=])(\s+)',
+                bygroups(Name.Variable.Instance, Whitespace, Operator,
+                    Whitespace),
+                'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][\w-]*', Name.Other, 'slashstartsregex'),
             (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?(?:[a-zA-Z_]+)?', Number.Float),
