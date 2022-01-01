@@ -2,7 +2,8 @@
 '// Node.js REPL Session' Comment.Single
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'let'         Keyword.Declaration
 ' '           Text.Whitespace
 'a'           Name.Other
@@ -15,14 +16,16 @@
 'undefined'   Keyword.Constant
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'a'           Name.Other
 '\n'          Text.Whitespace
 
 '3'           Literal.Number.Float
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'let'         Keyword.Declaration
 ' '           Text.Whitespace
 'b'           Name.Other
@@ -35,14 +38,16 @@
 'undefined'   Keyword.Constant
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
 '\n'          Text.Whitespace
 
 "'4'"         Literal.String.Single
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
 ' '           Text.Whitespace
 '=='          Operator
@@ -53,7 +58,8 @@
 'false'       Keyword.Constant
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
 ' '           Text.Whitespace
 '==='         Operator
@@ -64,7 +70,8 @@
 'false'       Keyword.Constant
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'a'           Name.Other
@@ -94,7 +101,8 @@
 'undefined'   Keyword.Constant
 '\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'c'           Name.Other
 '\n'          Text.Whitespace
 

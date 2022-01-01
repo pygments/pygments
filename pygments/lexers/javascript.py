@@ -223,7 +223,7 @@ class KalLexer(RegexLexer):
              Operator),
             (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
              r'doesnt\s+exist)\b', Operator.Word),
-            (r'(?:\([^()]+\))?(\s*)(>)',
+            (r'(\([^()]+\))?(\s*)(>)',
                 bygroups(Name.Function, Whitespace, Punctuation)),
             (r'[{(]', Punctuation),
             (r'\[', Punctuation, 'listcomprehension'),
@@ -1261,12 +1261,12 @@ class EarlGreyLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             include('control'),
             (r'[^\S\n]+', Text),
-            (r';;.*\n', Comment),
+            (r'(;;.*)(\n)', bygroups(Comment, Whitespace)),
             (r'[\[\]{}:(),;]', Punctuation),
-            (r'\\\n', Text),
+            (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),
             (r'\\', Text),
             include('errors'),
             (words((
@@ -1305,7 +1305,7 @@ class EarlGreyLexer(RegexLexer):
              bygroups(Punctuation, Name.Class.DBS)),
             (r'(\[)([\^#][a-zA-Z$_](?:[\w$\-]*[\w$])?)(\])',
              bygroups(Punctuation, Name.Entity.DBS, Punctuation)),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'%', Operator.DBS, '#pop'),
         ],
         'import_paths': [
@@ -1335,8 +1335,8 @@ class EarlGreyLexer(RegexLexer):
                 (?!and|as|each\*|each|in|is|mod|of|or|when|where|with)
                 (?=(?:[+\-*/~^<>%&|?!@#.])?[a-zA-Z$_](?:[\w$-]*[\w$])?)''',
              Keyword.Control),
-            (r'([a-zA-Z$_](?:[\w$-]*[\w$])?)(?!\n)\s+(?=[\'"\d{\[(])',
-             Keyword.Control),
+            (r'([a-zA-Z$_](?:[\w$-]*[\w$])?)(?!\n)(\s+)(?=[\'"\d{\[(])',
+             bygroups(Keyword.Control, Whitespace)),
             (r'''(?x)
                 (?:
                     (?<=[%=])|
@@ -1345,11 +1345,11 @@ class EarlGreyLexer(RegexLexer):
                     (?<=each\*|where)
                 )(\s+)
                 ([a-zA-Z$_](?:[\w$-]*[\w$])?)(:)''',
-             bygroups(Text, Keyword.Control, Punctuation)),
+             bygroups(Whitespace, Keyword.Control, Punctuation)),
             (r'''(?x)
                 (?<![+\-*/~^<>%&|?!@#.])(\s+)
                 ([a-zA-Z$_](?:[\w$-]*[\w$])?)(:)''',
-             bygroups(Text, Keyword.Control, Punctuation)),
+             bygroups(Whitespace, Keyword.Control, Punctuation)),
         ],
         'nested': [
             (r'''(?x)
@@ -1480,8 +1480,8 @@ class JuttleLexer(RegexLexer):
 
     tokens = {
         'commentsandwhitespace': [
-            (r'\s+', Text),
-            (r'//.*?\n', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline)
         ],
         'slashstartsregex': [
@@ -1562,8 +1562,9 @@ class NodeConsoleLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
             if line.startswith('> '):
-                insertions.append((len(curcode), 
-                    [(0, Generic.Prompt, line[:2])]))
+                insertions.append((len(curcode),
+                    [(0, Generic.Prompt, line[:1]),
+                     (1, Whitespace, line[1:2])]))
 
                 curcode += line[2:]
             elif line.startswith('...'):
