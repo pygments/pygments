@@ -75,7 +75,7 @@ def test_long_unclosed_javascript_fragment(lexer_html):
     # unclosed
     assert tokens[len(tokens_intro):-1] == tokens_body * reps
     # and of course, the newline we get for free from get_tokens
-    assert tokens[-1] == (Token.Text, "\n")
+    assert tokens[-1] == (Token.Text.Whitespace, "\n")
 
 
 def test_long_unclosed_css_fragment(lexer_html):

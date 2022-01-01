@@ -13,7 +13,7 @@ import re
 from pygments.lexer import bygroups, combined, default, do_insertions, include, \
     inherit, Lexer, RegexLexer, this, using, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Other, Generic
+    Number, Punctuation, Other, Generic, Whitespace
 from pygments.util import get_bool_opt
 import pygments.unistring as uni
 
@@ -46,9 +46,9 @@ class JavascriptLexer(RegexLexer):
 
     tokens = {
         'commentsandwhitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'<!--', Comment),
-            (r'//.*?\n', Comment.Single),
+            (r'//.*?$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline)
         ],
         'slashstartsregex': [
@@ -59,10 +59,10 @@ class JavascriptLexer(RegexLexer):
             default('#pop')
         ],
         'badregex': [
-            (r'\n', Text, '#pop')
+            (r'\n', Whitespace, '#pop')
         ],
         'root': [
-            (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
+            (r'\A#! ?/.*?$', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
 
@@ -110,7 +110,7 @@ class JavascriptLexer(RegexLexer):
 
             # Match stuff like: super(argument, list)
             (r'(super)(\s*)(\([\w,?.$\s]+\s*\))',
-             bygroups(Keyword, Text), 'slashstartsregex'),
+             bygroups(Keyword, Whitespace), 'slashstartsregex'),
             # Match stuff like: function() {...}
             (r'([a-zA-Z_?.$][\w?.$]*)(?=\(\) \{)', Name.Other, 'slashstartsregex'),
 

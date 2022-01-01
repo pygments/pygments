@@ -1,90 +1,90 @@
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Animal'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'constructor' Keyword.Reserved
 '('           Punctuation
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'move'        Name.Other
 '('           Punctuation
 'meters'      Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'alert'       Name.Other
 '('           Punctuation
 'this'        Keyword
 '.'           Punctuation
 'name'        Name.Other
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '" moved "'   Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'meters'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"m."'        Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Snake'       Name.Other
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Animal'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'constructor' Keyword.Reserved
 '('           Punctuation
 'name'        Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'super'       Keyword
 '('           Punctuation
 'name'        Name.Other
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'move'        Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'alert'       Name.Other
 '('           Punctuation
 '"Slithering..."' Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'super'       Keyword
 '.'           Punctuation
 'move'        Name.Other
@@ -92,50 +92,50 @@
 '5'           Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Horse'       Name.Other
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Animal'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'constructor' Keyword.Reserved
 '('           Punctuation
 'name'        Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'super'       Keyword
 '('           Punctuation
 'name'        Name.Other
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'move'        Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'alert'       Name.Other
 '('           Punctuation
 '"Galloping..."' Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'super'       Keyword
 '.'           Punctuation
 'move'        Name.Other
@@ -143,98 +143,98 @@
 '45'          Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@View'       Keyword.Declaration
 '('           Punctuation
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'templateUrl' Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '"app/components/LoginForm.html"' Literal.String.Double
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'directives'  Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'FORM_DIRECTIVES' Name.Other
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NgIf'        Name.Other
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@Component'  Keyword.Declaration
 '('           Punctuation
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'selector'    Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '"login-form"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'LoginForm'   Name.Other
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'sam'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Snake'       Name.Other
 '('           Punctuation
 '"Sammy the Python"' Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'tom'         Name.Other
 ': '          Text
 'Animal'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Horse'       Name.Other
 '('           Punctuation
 '"Tommy the Palomino"' Literal.String.Double
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'sam'         Name.Other
 '.'           Punctuation
 'move'        Name.Other
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tom'         Name.Other
 '.'           Punctuation
@@ -242,4 +242,4 @@
 '('           Punctuation
 '34'          Literal.Number.Float
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

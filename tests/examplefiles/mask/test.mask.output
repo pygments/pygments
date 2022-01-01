@@ -144,19 +144,19 @@
 '~['          Literal.String.Interpol
 ':'           Literal.String.Interpol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '$obj'        Name.Other
 '.'           Punctuation
 'foo'         Name.Other
 '('           Punctuation
 '"username"'  Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Float
 ']'           Literal.String.Interpol
 "'"           Literal.String.Single
