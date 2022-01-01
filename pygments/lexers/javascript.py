@@ -189,18 +189,20 @@ class KalLexer(RegexLexer):
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
-            (r'#(?!##[^#]).*?\n', Comment.Single),
+            (r'(#(?!##[^#]).*?)(\n)', bygroups(Comment.Single, Whitespace)),
         ],
         'functiondef': [
-            (r'[$a-zA-Z_][\w$]*\s*', Name.Function, '#pop'),
+            (r'([$a-zA-Z_][\w$]*)(\s*)', bygroups(Name.Function, Whitespace),
+                '#pop'),
             include('commentsandwhitespace'),
         ],
         'classdef': [
-            (r'\binherits\s+from\b', Keyword),
-            (r'[$a-zA-Z_][\w$]*\s*\n', Name.Class, '#pop'),
-            (r'[$a-zA-Z_][\w$]*\s*', Name.Class),
+            (r'\b(inherits)(\s+)(from)\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'([$a-zA-Z_][\w$]*)(?=\s*\n)', Name.Class, '#pop'),
+            (r'[$a-zA-Z_][\w$]*\b', Name.Class),
             include('commentsandwhitespace'),
         ],
         'listcomprehension': [
@@ -209,7 +211,7 @@ class KalLexer(RegexLexer):
             include('root'),
         ],
         'waitfor': [
-            (r'\n', Punctuation, '#pop'),
+            (r'\n', Whitespace, '#pop'),
             (r'\bfrom\b', Keyword),
             include('root'),
         ],
@@ -221,29 +223,48 @@ class KalLexer(RegexLexer):
              Operator),
             (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
              r'doesnt\s+exist)\b', Operator.Word),
-            (r'(?:\([^()]+\))?\s*>', Name.Function),
+            (r'(?:\([^()]+\))?(\s*)(>)',
+                bygroups(Name.Function, Whitespace, Punctuation)),
             (r'[{(]', Punctuation),
             (r'\[', Punctuation, 'listcomprehension'),
             (r'[})\].,]', Punctuation),
             (r'\b(function|method|task)\b', Keyword.Declaration, 'functiondef'),
             (r'\bclass\b', Keyword.Declaration, 'classdef'),
-            (r'\b(safe\s+)?wait\s+for\b', Keyword, 'waitfor'),
+            (r'\b(safe(?=\s))?(\s*)(wait(?=\s))(\s+)(for)\b',
+                bygroups(Keyword, Whitespace, Keyword, Whitespace,
+                    Keyword), 'waitfor'),
             (r'\b(me|this)(\.[$a-zA-Z_][\w.$]*)?\b', Name.Variable.Instance),
-            (r'(?<![.$])(for(\s+(parallel|series))?|in|of|while|until|'
-             r'break|return|continue|'
-             r'when|if|unless|else|otherwise|except\s+when|'
-             r'throw|raise|fail\s+with|try|catch|finally|new|delete|'
-             r'typeof|instanceof|super|run\s+in\s+parallel|'
-             r'inherits\s+from)\b', Keyword),
-            (r'(?<![.$])(true|false|yes|no|on|off|null|nothing|none|'
-             r'NaN|Infinity|undefined)\b',
-             Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|'
-             r'Number|Object|RegExp|String|decodeURI|'
-             r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|document|'
-             r'window|globalThis|Symbol|print)\b', Name.Builtin),
-            (r'[$a-zA-Z_][\w.$]*\s*(:|[+\-*/]?\=)?\b', Name.Variable),
+            (r'(?<![.$])(run)(\s+)(in)(\s+)(parallel)\b',
+                bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword)),
+            (r'(?<![.$])(for)(\s+)(parallel|series)?\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(?<![.$])(except)(\s+)(when)?\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(?<![.$])(fail)(\s+)(with)?\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(?<![.$])(inherits)(\s+)(from)?\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(?<![.$])(for)(\s+)(parallel|series)?\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (words((
+                'in', 'of', 'while', 'until', 'break', 'return', 'continue',
+                'when', 'if', 'unless', 'else', 'otherwise', 'throw', 'raise',
+                'try', 'catch', 'finally', 'new', 'delete', 'typeof',
+                'instanceof', 'super'), prefix=r'(?<![.$])', suffix=r'\b'),
+                Keyword),
+            (words((
+                'true', 'false', 'yes', 'no', 'on', 'off', 'null', 'nothing',
+                'none', 'NaN', 'Infinity', 'undefined'), prefix=r'(?<![.$])',
+                suffix=r'\b'), Keyword.Constant),
+            (words((
+                'Array', 'Boolean', 'Date', 'Error', 'Function', 'Math',
+                'Number', 'Object', 'RegExp', 'String', 'decodeURI',
+                'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'eval',
+                'isFinite', 'isNaN', 'isSafeInteger', 'parseFloat', 'parseInt',
+                'document', 'window', 'globalThis', 'Symbol', 'print'),
+                suffix=r'\b'), Name.Builtin),
+            (r'([$a-zA-Z_][\w.$]*)(\s*)(:|[+\-*/]?\=)?\b',
+                bygroups(Name.Variable, Whitespace, Operator)),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
