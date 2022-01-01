@@ -1033,9 +1033,9 @@ class CoffeeScriptLexer(RegexLexer):
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
-            (r'#(?!##[^#]).*?\n', Comment.Single),
+            (r'(#(?!##[^#]).*?)(\n)', bygroups(Comment.Single, Whitespace)),
         ],
         'multilineregex': [
             (r'[^/#]+', String.Regex),
@@ -1074,10 +1074,12 @@ class CoffeeScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|globalThis|Symbol)\b',
              Name.Builtin),
-            (r'[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable,
-             'slashstartsregex'),
-            (r'@[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable.Instance,
-             'slashstartsregex'),
+            (r'([$a-zA-Z_][\w.:$]*)(\s*)([:=])(\s+)',
+                bygroups(Name.Variable, Whitespace, Operator, Whitespace),
+                'slashstartsregex'),
+            (r'(@[$a-zA-Z_][\w.:$]*)(\s*)([:=])(\s+)',
+                bygroups(Name.Variable.Instance, Whitespace, Operator, Whitespace),
+                'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][\w$]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
@@ -1138,8 +1140,8 @@ class MaskLexer(RegexLexer):
     flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (r'//.*?\n', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'[{};>]', Punctuation),
             (r"'''", String, 'string-trpl-single'),
@@ -1174,19 +1176,23 @@ class MaskLexer(RegexLexer):
         ],
         'interpolation': [
             (r'\]', String.Interpol, '#pop'),
-            (r'\s*:', String.Interpol, 'expression'),
-            (r'\s*\w+:', Name.Other),
+            (r'(\s*)(:)', bygroups(Whitespace, String.Interpol), 'expression'),
+            (r'(\s*)(\w+)(:)', bygroups(Whitespace, Name.Other, Punctuation)),
             (r'[^\]]+', String.Interpol)
         ],
         'expression': [
             (r'[^\]]+', using(JavascriptLexer), '#pop')
         ],
         'node': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\.', Name.Variable.Class, 'node-class'),
             (r'\#', Name.Function, 'node-id'),
-            (r'style[ \t]*=', Name.Attribute, 'node-attr-style-value'),
-            (r'[\w:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
+            (r'(style)([ \t]*)(=)',
+                bygroups(Name.Attribute, Whitespace, Operator),
+                'node-attr-style-value'),
+            (r'([\w:-]+)([ \t]*)(=)',
+                bygroups(Name.Attribute, Whitespace, Operator),
+                'node-attr-value'),
             (r'[\w:-]+', Name.Attribute),
             (r'[>{;]', Punctuation, '#pop')
         ],
@@ -1201,20 +1207,20 @@ class MaskLexer(RegexLexer):
             default('#pop')
         ],
         'node-attr-value': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\w+', Name.Variable, '#pop'),
             (r"'", String, 'string-single-pop2'),
             (r'"', String, 'string-double-pop2'),
             default('#pop')
         ],
         'node-attr-style-value': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r"'", String.Single, 'css-single-end'),
             (r'"', String.Single, 'css-double-end'),
             include('node-attr-value')
         ],
         'css-base': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r";", Punctuation),
             (r"[\w\-]+\s*:", Name.Builtin)
         ],

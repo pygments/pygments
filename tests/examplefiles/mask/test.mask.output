@@ -1,4 +1,5 @@
-'// comment\n' Comment.Single
+'// comment'  Comment.Single
+'\n'          Text.Whitespace
 
 'h4'          Name.Tag
 '.'           Name.Variable.Class
@@ -9,25 +10,28 @@
 'class-2'     Name.Variable.Class
 '.'           Name.Variable.Class
 'other'       Name.Variable.Class
-' '           Text
-'checked='    Name.Attribute
+' '           Text.Whitespace
+'checked'     Name.Attribute
+'='           Operator
 "'"           Literal.String
 't'           Literal.String.Single
 'r'           Literal.String.Single
 'u'           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'disabled'    Name.Attribute
-' '           Text
-'name ='      Name.Attribute
-' '           Text
+' '           Text.Whitespace
+'name'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'param'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 'E'           Literal.String.Single
 'n'           Literal.String.Single
@@ -39,21 +43,24 @@
 '.'           Literal.String.Single
 '.'           Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'input'       Name.Tag
-' '           Text
-'placeholder=' Name.Attribute
+' '           Text.Whitespace
+'placeholder' Name.Attribute
+'='           Operator
 'Password'    Name.Variable
-' '           Text
-'type='       Name.Attribute
+' '           Text.Whitespace
+'type'        Name.Attribute
+'='           Operator
 'password'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':dualbind'   Name.Class
-' '           Text
-'x-signal='   Name.Attribute
+' '           Text.Whitespace
+'x-signal'    Name.Attribute
+'='           Operator
 "'"           Literal.String
 'd'           Literal.String.Single
 'o'           Literal.String.Single
@@ -66,17 +73,19 @@
 't'           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
-'value='      Name.Attribute
+' '           Text.Whitespace
+'value'       Name.Attribute
+'='           Operator
 'user'        Name.Variable
 '.'           Name.Variable.Class
 'passord'     Name.Variable.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%'           Name.Class
-' '           Text
-'each='       Name.Attribute
+' '           Text.Whitespace
+'each'        Name.Attribute
+'='           Operator
 "'"           Literal.String
 'f'           Literal.String.Single
 'l'           Literal.String.Single
@@ -86,60 +95,63 @@
 'r'           Literal.String.Single
 's'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' \n    '     Text
+' \n    '     Text.Whitespace
 'div'         Name.Tag
-' '           Text
-'style='      Name.Attribute
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
 "'"           Literal.String.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'position:'   Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'absolute'    Name.Entity
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'display:'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'inline-block' Name.Entity
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'background:' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'url("image.png") center center no-repeat' Name.Entity
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#skippedDiv' Name.Function
 '.'           Name.Variable.Class
 'other'       Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'img'         Name.Tag
-' '           Text
-'src='        Name.Attribute
+' '           Text.Whitespace
+'src'         Name.Attribute
+'='           Operator
 "'"           Literal.String
 '~['          Literal.String.Interpol
 'url'         Literal.String.Interpol
 ']'           Literal.String.Interpol
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'div'         Name.Tag
-' '           Text
-'style='      Name.Attribute
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
 '"'           Literal.String.Single
 'text-align:' Name.Builtin
 'center'      Name.Entity
 ';'           Punctuation
 '"'           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String
 '~['          Literal.String.Interpol
 ':'           Literal.String.Interpol
@@ -160,20 +172,21 @@
 '2'           Literal.Number.Float
 ']'           Literal.String.Interpol
 "'"           Literal.String.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"'           Literal.String
 '~['          Literal.String.Interpol
-'Localize:'   Name.Other
+'Localize'    Name.Other
+':'           Punctuation
 ' stringId'   Literal.String.Interpol
 ']'           Literal.String.Interpol
 '"'           Literal.String.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"""'         Literal.String
 '\n'          Literal.String.Single
 
@@ -207,11 +220,11 @@
 ' '           Literal.String.Single
 ' '           Literal.String.Single
 '"""'         Literal.String.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 '\n'          Literal.String.Single
 
@@ -243,11 +256,11 @@
 ' '           Literal.String.Single
 ' '           Literal.String.Single
 "'"           Literal.String.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'H'           Literal.String.Single
 'e'           Literal.String.Single
@@ -263,52 +276,53 @@
 'd'           Literal.String.Single
 "'"           Literal.String.Single
 '"'           Literal.String.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 ':customComponent' Name.Class
-' '           Text
-'x-value='    Name.Attribute
+' '           Text.Whitespace
+'x-value'     Name.Attribute
+'='           Operator
 "'"           Literal.String
 't'           Literal.String.Single
 't'           Literal.String.Single
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "/* footer > '(c) 2014' */" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.skippedDiv' Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '#skipped'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'tr'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 ';'           Literal.String.Single
 ')'           Literal.String.Single
 "'"           Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'br'          Name.Tag
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
