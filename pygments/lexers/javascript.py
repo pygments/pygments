@@ -815,11 +815,11 @@ class ObjectiveJLexer(RegexLexer):
                       using(this))),
 
             # class definition
-            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
+            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Whitespace),
              'classname'),
-            (r'(@class|@protocol)(\s*)', bygroups(Keyword, Text),
+            (r'(@class|@protocol)(\s*)', bygroups(Keyword, Whitespace),
              'forward_classname'),
-            (r'(\s*)(@end)(\s*)', bygroups(Text, Keyword, Text)),
+            (r'(\s*)(@end)(\s*)', bygroups(Whitespace, Keyword, Whitespace)),
 
             include('statements'),
             ('[{()}]', Punctuation),
@@ -827,20 +827,20 @@ class ObjectiveJLexer(RegexLexer):
         ],
         'whitespace': [
             (r'(@import)(\s+)("(?:\\\\|\\"|[^"])*")',
-             bygroups(Comment.Preproc, Text, String.Double)),
+             bygroups(Comment.Preproc, Whitespace, String.Double)),
             (r'(@import)(\s+)(<(?:\\\\|\\>|[^>])*>)',
-             bygroups(Comment.Preproc, Text, String.Double)),
+             bygroups(Comment.Preproc, Whitespace, String.Double)),
             (r'(#(?:include|import))(\s+)("(?:\\\\|\\"|[^"])*")',
-             bygroups(Comment.Preproc, Text, String.Double)),
+             bygroups(Comment.Preproc, Whitespace, String.Double)),
             (r'(#(?:include|import))(\s+)(<(?:\\\\|\\>|[^>])*>)',
-             bygroups(Comment.Preproc, Text, String.Double)),
+             bygroups(Comment.Preproc, Whitespace, String.Double)),
 
             (r'#if\s+0', Comment.Preproc, 'if0'),
             (r'#', Comment.Preproc, 'macro'),
 
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text),  # line continuation
+            (r'\s+', Whitespace),
+            (r'(\\)(\n)',
+                bygroups(String.Escape, Whitespace)),  # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'<!--', Comment),
@@ -853,7 +853,7 @@ class ObjectiveJLexer(RegexLexer):
             default('#pop'),
         ],
         'badregex': [
-            (r'\n', Text, '#pop'),
+            (r'\n', Whitespace, '#pop'),
         ],
         'statements': [
             (r'(L|@)?"', String, 'string'),
@@ -920,10 +920,10 @@ class ObjectiveJLexer(RegexLexer):
             (r'([a-zA-Z_]\w*)', Name.Class, '#pop'),
         ],
         'forward_classname': [
-            (r'([a-zA-Z_]\w*)(\s*,\s*)',
-             bygroups(Name.Class, Text), '#push'),
-            (r'([a-zA-Z_]\w*)(\s*;?)',
-             bygroups(Name.Class, Text), '#pop'),
+            (r'([a-zA-Z_]\w*)(\s*)(,)(\s*)',
+             bygroups(Name.Class, Whitespace, Text, Whitespace), '#push'),
+            (r'([a-zA-Z_]\w*)(\s*)(;?)',
+             bygroups(Name.Class, Whitespace, Text), '#pop'),
         ],
         'function_signature': [
             include('whitespace'),
@@ -986,21 +986,21 @@ class ObjectiveJLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
             (r'[^\\"\n]+', String),  # all other characters
-            (r'\\\n', String),  # line continuation
+            (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),  # line continuation
             (r'\\', String),  # stray backslash
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace), '#pop'),
             (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
+            (r'(?<=\\)\n', Whitespace),
+            (r'\n', Whitespace, '#pop'),
         ],
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
+            (r'(.*?)(\n)', bygroups(Comment, Whitespace)),
         ]
     }
 
