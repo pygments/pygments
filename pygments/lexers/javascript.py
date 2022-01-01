@@ -159,11 +159,11 @@ class TypeScriptLexer(JavascriptLexer):
             # Match variable type keywords
             (r'\b(string|boolean|number)\b', Keyword.Type),
             # Match stuff like: module name {...}
-            (r'\b(module)(\s*)(\s*[\w?.$][\w?.$]*)(\s*)',
-             bygroups(Keyword.Reserved, Text, Name.Other, Text), 'slashstartsregex'),
+            (r'\b(module)(\s*)([\w?.$]+)(\s*)',
+             bygroups(Keyword.Reserved, Whitespace, Name.Other, Whitespace), 'slashstartsregex'),
             # Match stuff like: (function: return type)
-            (r'([\w?.$][\w?.$]*)(\s*:\s*)([\w?.$][\w?.$]*)',
-             bygroups(Name.Other, Text, Keyword.Type)),
+            (r'([\w?.$]+)(\s*)(:)(\s*)([\w?.$]+)',
+             bygroups(Name.Other, Whitespace, Operator, Whitespace, Keyword.Type)),
             # Match stuff like: Decorators
             (r'@' + JS_IDENT, Keyword.Declaration),
             inherit,
