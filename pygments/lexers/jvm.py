@@ -37,7 +37,7 @@ class JavaLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(^\s*)((?:public|private|protected|static|strictfp)(?:\s+))*(record)\b',
+            (r'(^\s*)((?:(?:public|private|protected|static|strictfp)(?:\s+))*)(record)\b',
              bygroups(Text, using(this), Keyword.Declaration), 'class'),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
