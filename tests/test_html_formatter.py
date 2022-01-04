@@ -99,7 +99,7 @@ def test_lineanchors():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-1\" name=\"foo-1\" href=\"foo-1\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-1\" name=\"foo-1\" href=\"#foo-1\">", html)
 
 
 def test_lineanchors_with_startnum():
@@ -108,7 +108,7 @@ def test_lineanchors_with_startnum():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"foo-5\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"#foo-5\">", html)
 
 
 def test_valid_output():
@@ -247,3 +247,17 @@ def test_filename():
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
     assert re.search("<span class=\"filename\">test.py</span><pre>", html)
+
+
+def test_debug_token_types():
+    fmt_nod_token_types = HtmlFormatter(debug_token_types=False)
+    outfile_nod_token_types = StringIO()
+    fmt_nod_token_types.format(tokensource, outfile_nod_token_types)
+    html_nod_token_types = outfile_nod_token_types.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' not in html_nod_token_types
+
+    fmt_debug_token_types = HtmlFormatter(debug_token_types=True)
+    outfile_debug_token_types = StringIO()
+    fmt_debug_token_types.format(tokensource, outfile_debug_token_types)
+    html_debug_token_types = outfile_debug_token_types.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' in html_debug_token_types

@@ -1,897 +1,747 @@
 'library'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee'        Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'use'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee.std_logic_unsigned.' Name.Namespace
 'all'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'use'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee.std_logic_1164.' Name.Namespace
 'all'         Keyword
 ';'           Punctuation
-'   \n'       Text
+'   \n'       Text.Whitespace
 
 'use'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee.numeric_std.' Name.Namespace
 'all'         Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'entity'      Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench' Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 '--test'      Comment.Single
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'generic'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- test'     Comment.Single
-'\n'          Text
-
-'\t    '      Text
+'\n\t    '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-- test'     Comment.Single
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- test'     Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench' Name.Class
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- test'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'architecture' Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench_arch' Name.Class
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench' Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'  \n\n    '  Text
+'  \n\n    '  Text.Whitespace
 'component'   Keyword
-' '           Text
+' '           Text.Whitespace
 'top'         Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'generic'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'integer'     Keyword.Type
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'port'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'clk'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'd1'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'd2'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'operation'   Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
 '*'           Operator
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'component'   Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'clk'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'operation'   Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'd1'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'd2'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
 '*'           Operator
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'test_type'   Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a1'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a2'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a3'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a4'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a5'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a6'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a7'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a8'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a9'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a10'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'attribute'   Keyword
-' '           Text
+' '           Text.Whitespace
 'enum_encoding' Name
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'my_state'    Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 '"001 010 011 100 111"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'begin'       Keyword
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'TESTUNIT'    Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'top'         Name
-' '           Text
+' '           Text.Whitespace
 'generic'     Keyword
-' '           Text
+' '           Text.Whitespace
 'map'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ')'           Punctuation
-'\n'          Text
-
-'                   ' Text
+'\n                   ' Text.Whitespace
 'port'        Keyword
-' '           Text
+' '           Text.Whitespace
 'map'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clk'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'clk'         Name
 ','           Punctuation
-'\n'          Text
-
-'                             ' Text
+'\n                             ' Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'rst'         Name
 ','           Punctuation
-'\n'          Text
-
-'                             ' Text
+'\n                             ' Text.Whitespace
 'd1'          Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'd1'          Name
 ','           Punctuation
-'\n'          Text
-
-'                             ' Text
+'\n                             ' Text.Whitespace
 'd2'          Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'd2'          Name
 ','           Punctuation
-'\n'          Text
-
-'                             ' Text
+'\n                             ' Text.Whitespace
 'operation'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'operation'   Name
 ','           Punctuation
-'\n'          Text
-
-'                             ' Text
+'\n                             ' Text.Whitespace
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'result'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'clock_process' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'process'     Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'begin'       Keyword
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'clk'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'clk'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'1'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'process'     Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'data_process' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'process'     Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'begin'       Keyword
-'       \n\t\t\n\t\t' Text
+'       \n\t\t\n\t\t' Text.Whitespace
 '-- test case #1\t' Comment.Single
-'\n'          Text
-
-'\t   \t'     Text
+'\n\t   \t'   Text.Whitespace
 'operation'   Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n        ' Text
+'\n\t\t\n        ' Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'1'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n\t\t'  Text
+'\n\t\t\n\t\t' Text.Whitespace
 'd1'          Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '60'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'd1'          Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'd2'          Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '12'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'd2'          Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '360'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n\t\t'  Text
+'\n\t\t\n\t\t' Text.Whitespace
 'assert'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '720'         Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'result'      Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'\t\t\t'      Text
+'\n\t\t\t'    Text.Whitespace
 'report'      Name
-' '           Text
+' '           Text.Whitespace
 '"Test case #1 failed"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'severity'    Keyword
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ';'           Punctuation
-' \n            \n\t\t' Text
+' \n            \n\t\t' Text.Whitespace
 '-- test case #2\t' Comment.Single
-'\n'          Text
-
-'\t   \t'     Text
+'\n\t   \t'   Text.Whitespace
 'operation'   Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n        ' Text
+'\n\t\t\n        ' Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'1'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'rst'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n\t\t'  Text
+'\n\t\t\n\t\t' Text.Whitespace
 'd1'          Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '55'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'd1'          Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'd2'          Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'd2'          Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'wait'        Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '360'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'\t\t\n\t\t'  Text
+'\n\t\t\n\t\t' Text.Whitespace
 'assert'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 'to_unsigned' Name
 '('           Punctuation
 '55'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'result'      Name
 "'length"     Name.Attribute
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'\t\t\t'      Text
+'\n\t\t\t'    Text.Whitespace
 'report'      Name
-' '           Text
+' '           Text.Whitespace
 '"Test case #2 failed"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'severity'    Keyword
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ';'           Punctuation
-'\n'          Text
-
-'            \n        ' Text
+'\n            \n        ' Text.Whitespace
 '-- etc '     Comment.Single
-'\n'          Text
-
-'            \n    ' Text
+'\n            \n    ' Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'process'     Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench_arch' Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'configuration' Keyword
-' '           Text
+' '           Text.Whitespace
 'testbench_for_top' Name.Class
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench' Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'top_testbench_arch' Name
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'TESTUNIT'    Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'top'         Name
-'\n'          Text
-
-'\t\t\t'      Text
+'\n\t\t\t'    Text.Whitespace
 'use'         Keyword
-' '           Text
+' '           Text.Whitespace
 'entity'      Keyword
-' '           Text
+' '           Text.Whitespace
 'work'        Name.Namespace
 '.'           Punctuation
 'top'         Name
@@ -899,664 +749,570 @@
 'top_arch'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t\t'        Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'testbench_for_top' Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'compare'     Name
 '('           Punctuation
 'A'           Name
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Name
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_Logic'   Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'real'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 '.'           Punctuation
 '14159'       Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'half_pi'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'real'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pi'          Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '.'           Punctuation
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'cycle_time'  Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'time'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'N'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N5'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'begin'       Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'1'"         Literal.String.Char
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compare'     Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'procedure'   Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name
 '('           Punctuation
 'P'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '7'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'                ' Text
+'\n                ' Text.Whitespace
 'U'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'variable'    Keyword
-' '           Text
+' '           Text.Whitespace
 'my_line'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'alias'       Keyword
-' '           Text
+' '           Text.Whitespace
 'swrite'      Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'write'       Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'line'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'side'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'width'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'begin'       Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'swrite'      Name
 '('           Punctuation
 'my_line'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"sqrt( "'    Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'write'       Name
 '('           Punctuation
 'my_line'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'P'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'swrite'      Name
 '('           Punctuation
 'my_line'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" )= "'      Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'write'       Name
 '('           Punctuation
 'my_line'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'U'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'writeline'   Name
 '('           Punctuation
 'output'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'my_line'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'entity'      Keyword
-' '           Text
+' '           Text.Whitespace
 'add32csa'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword
-'          '  Text
+'          '  Text.Whitespace
 '-- one stage of carry save adder for multiplier' Comment.Single
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'port'        Keyword
 '('           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'b'           Name
-'       '     Text
+'       '     Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'                      ' Text
+'                      ' Text.Whitespace
 '-- a multiplier bit' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'a'           Name
-'       '     Text
+'       '     Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '-- multiplicand' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'sum_in'      Name
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '-- sums from previous stage' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'cin'         Name
-'     '       Text
+'     '       Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '-- carrys from previous stage' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'sum_out'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '-- sums to next stage' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'cout'        Name
-'    '        Text
+'    '        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- carrys to next stage' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'add32csa'    Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+'\n\n\n'      Text.Whitespace
 
 'ARCHITECTURE' Keyword
-' '           Text
+' '           Text.Whitespace
 'circuits'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'add32csa'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'IS'          Keyword
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'SIGNAL'      Keyword
-' '           Text
+' '           Text.Whitespace
 'zero'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'STD_LOGIC_VECTOR' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'X"00000000"' Literal.Number.Hex
 ';'           Punctuation
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'SIGNAL'      Keyword
-' '           Text
+' '           Text.Whitespace
 'aa'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'std_logic_vector' Keyword.Type
 '('           Punctuation
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'downto'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'X"00000000"' Literal.Number.Hex
 ';'           Punctuation
-'\n'          Text
-
-'  \n  '      Text
+'\n  \n  '    Text.Whitespace
 'COMPONENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'fadd'        Name.Class
-'    '        Text
+'    '        Text.Whitespace
 '-- duplicates entity port' Comment.Single
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'PoRT'        Keyword
 '('           Punctuation
 'a'           Name
-'    '        Text
+'    '        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'b'           Name
-'    '        Text
+'    '        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'cin'         Name
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 's'           Name
-'    '        Text
+'    '        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'cout'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'std_logic'   Keyword.Type
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'comPonent'   Keyword
-' '           Text
+' '           Text.Whitespace
 'fadd'        Name.Class
 ';'           Punctuation
-'\n'          Text
-
-'  \n'        Text
+'\n  \n'      Text.Whitespace
 
 'begin'       Keyword
-'  '          Text
+'  '          Text.Whitespace
 '-- circuits of add32csa' Comment.Single
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'aa'          Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '='           Operator
 "'1'"         Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'zero'        Name
-' '           Text
+' '           Text.Whitespace
 'after'       Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ns'          Name
 ';'           Punctuation
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'stage'       Name.Class
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword
-' '           Text
+' '           Text.Whitespace
 '31'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'sta'         Name
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'fadd'        Name
-' '           Text
+' '           Text.Whitespace
 'port'        Keyword
-' '           Text
+' '           Text.Whitespace
 'map'         Keyword
 '('           Punctuation
 'aa'          Name
@@ -1564,49 +1320,47 @@
 'I'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sum_in'      Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cin'         Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sum_out'     Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cout'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'  '          Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-' '           Text
+' '           Text.Whitespace
 'stage'       Name.Class
 ';'           Punctuation
-'  \n'        Text
+'  \n'        Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'architecture' Keyword
-' '           Text
+' '           Text.Whitespace
 'circuits'    Name.Class
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- of add32csa' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

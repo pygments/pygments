@@ -1,2280 +1,2280 @@
 '{-'          Comment.Multiline
 '# LANGUAGE DeriveDataTypeable, FlexibleContexts, GeneralizedNewtypeDeriving\n  , MultiParamTypeClasses, OverloadedStrings, ScopedTypeVariables, TemplateHaskell\n  , TypeFamilies, FlexibleInstances #' Comment.Multiline
 '-}'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'module'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Main'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Applicative' Name.Namespace
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'Applicative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Alternative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<$>'         Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Exception.Lifted' Name.Namespace
-'    '        Text
+'    '        Text.Whitespace
 '('           Punctuation
 'bracket'     Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Monad.Trans.Control' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'MonadBaseControl' Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Monad' Name.Namespace
-'        '    Text
+'        '    Text.Whitespace
 '('           Punctuation
 'MonadPlus'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mplus'       Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Monad.Reader' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'MonadReader' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ReaderT'     Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ask'         Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Control.Monad.Trans' Name.Namespace
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'MonadIO'     Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Acid'   Name.Namespace
-'            ' Text
+'            ' Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EventState'  Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EventResult' Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Query'       Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'QueryEvent'  Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Update'      Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'UpdateEvent' Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IsAcidic'    Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'makeAcidic'  Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'openLocalState' Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Acid.Local' Name.Namespace
-'      '      Text
+'      '      Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'createCheckpointAndClose' Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'openLocalStateFrom' Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Acid.Advanced' Name.Namespace
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 "query'"      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "update'"     Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Maybe'  Name.Namespace
-'           ' Text
+'           ' Text.Whitespace
 '('           Punctuation
 'fromMaybe'   Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.SafeCopy' Name.Namespace
-'        '    Text
+'        '    Text.Whitespace
 '('           Punctuation
 'SafeCopy'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'base'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'deriveSafeCopy' Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Data'   Name.Namespace
-'            ' Text
+'            ' Text.Whitespace
 '('           Punctuation
 'Data'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Typeable'    Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Lens'   Name.Namespace
-'            ' Text
+'            ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '%='          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '!='          Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Lens.Template' Name.Namespace
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'makeLens'    Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Text.Lazy' Name.Namespace
-'       '     Text
+'       '     Text.Whitespace
 '('           Punctuation
 'Text'        Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Happstack.Server' Name.Namespace
-'     '       Text
+'     '       Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Happstack'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasRqData'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Method'      Keyword.Type
 '('           Punctuation
 'GET'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'POST'        Keyword.Type
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Request'     Keyword.Type
 '('           Punctuation
 'rqMethod'    Name.Function
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ServerPartT' Keyword.Type
 '('           Punctuation
 '..'          Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'WebMonad'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FilterMonad' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ServerMonad' Keyword.Type
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'askRq'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'decodeBody'  Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'dir'         Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defaultBodyPolicy' Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lookText'    Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mapServerPartT' Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nullConf'    Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nullDir'     Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ok'          Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'simpleHTTP'  Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'toResponse'  Name.Function
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Prelude'     Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'hiding'      Keyword
-'       '     Text
+'       '     Text.Whitespace
 '('           Punctuation
 'head'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'System.FilePath' Name.Namespace
-'      '      Text
+'      '      Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '</>'         Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Text.Blaze'  Name.Namespace
-'           ' Text
+'           ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '!'           Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Text.Blaze.Html4.Strict' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'body'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'head'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'input'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'form'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'toHtml'      Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Text.Blaze.Html4.Strict.Attributes' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'action'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'enctype'     Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'for'         Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'method'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type_'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Function
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'st'          Name
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n   '       Text
+'\n   '       Text.Whitespace
 'getAcidState' Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'st'          Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'query'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'forall'      Name
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 '.'           Operator
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Functor'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-'\n         ' Text
+'\n         ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadIO'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-'\n         ' Text
+'\n         ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'QueryEvent'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-'\n         ' Text
+'\n         ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' \n         ' Text
+' \n         ' Text.Whitespace
 'event'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventResult' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'query'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'as'          Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'getAcidState' Name
-'\n       '   Text
+'\n       '   Text.Whitespace
 "query'"      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'as'          Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'update'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'forall'      Name
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 '.'           Operator
-' \n          ' Text
+' \n          ' Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Functor'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadIO'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'UpdateEvent' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' \n          ' Text
+' \n          ' Text.Whitespace
 'event'       Name
-' \n       '  Text
+' \n       '  Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventResult' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'update'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'as'          Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'getAcidState' Name
-'\n       '   Text
+'\n       '   Text.Whitespace
 "update'"     Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'as'          Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EventState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'event'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'event'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- | bracket the opening and close of the `AcidState` handle. ' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- automatically creates a checkpoint on close' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'withLocalState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'MonadBaseControl' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadIO'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IsAcidic'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'st'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Typeable'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'st'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' \n                  ' Text
+' \n                  ' Text.Whitespace
 'Maybe'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FilePath'    Keyword.Type
-'           ' Text
+'           ' Text.Whitespace
 '-- ^ path to state directory' Comment.Single
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'st'          Name
-'                     ' Text
+'                     ' Text.Whitespace
 '-- ^ initial state value' Comment.Single
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'st'          Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-- ^ function which uses the `AcidState` handle' Comment.Single
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'withLocalState' Name.Function
-' '           Text
+' '           Text.Whitespace
 'mPath'       Name
-' '           Text
+' '           Text.Whitespace
 'initialState' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'bracket'     Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'liftIO'      Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'maybe'       Name
-' '           Text
+' '           Text.Whitespace
 'openLocalState' Name
-' '           Text
+' '           Text.Whitespace
 'openLocalStateFrom' Name
-' '           Text
+' '           Text.Whitespace
 'mPath'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initialState' Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'liftIO'      Name
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 'createCheckpointAndClose' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- State that stores a hit count' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_count'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'deriving'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Eq'          Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ord'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Typeable'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Show'        Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'deriveSafeCopy' Name
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 "'base"       Name
-' '           Text
+' '           Text.Whitespace
 "''CountState" Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'makeLens'    Name
-' '           Text
+' '           Text.Whitespace
 "''CountState" Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'initialCountState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'initialCountState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_count'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'incCount'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Update'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'incCount'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '%='          Operator
-' '           Text
+' '           Text.Whitespace
 'succ'        Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'makeAcidic'  Name
-' '           Text
+' '           Text.Whitespace
 "''CountState" Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'incCount"   Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- State that stores a greeting' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '_greeting'   Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'deriving'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Eq'          Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ord'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Typeable'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Show'        Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'deriveSafeCopy' Name
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 "'base"       Name
-' '           Text
+' '           Text.Whitespace
 "''GreetingState" Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'makeLens'    Name
-' '           Text
+' '           Text.Whitespace
 "''GreetingState" Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'initialGreetingState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'initialGreetingState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_greeting'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Hello'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'getGreeting' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Query'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'getGreeting' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '_greeting'   Name
-' '           Text
+' '           Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'setGreeting' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Update'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'setGreeting' Name.Function
-' '           Text
+' '           Text.Whitespace
 'txt'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'txt'         Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'makeAcidic'  Name
-' '           Text
+' '           Text.Whitespace
 "''GreetingState" Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'getGreeting" Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'setGreeting" Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'acidCountState' Name
-'    '        Text
+'    '        Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'acidGreetingState' Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'withAcid'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Maybe'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FilePath'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'withAcid'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'mBasePath'   Name
-' '           Text
+' '           Text.Whitespace
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'let'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'fromMaybe'   Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '_state'      Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'mBasePath'   Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'count'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 'initialCountState' Name
-'    '        Text
+'    '        Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n       '   Text
+'\n       '   Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'greeting'    Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initialGreetingState' Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n           ' Text
+'\n           ' Text.Whitespace
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 'g'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'newtype'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unApp'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ReaderT'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'deriving'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Functor'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Alternative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Applicative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Monad'       Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadPlus'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadIO'     Keyword.Type
-'\n               ' Text
+'\n               ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasRqData'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ServerMonad' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
 'WebMonad'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FilterMonad' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n               ' Text
+'\n               ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Happstack'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadReader' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Acid'        Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'runApp'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Acid'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'runApp'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'acid'        Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'sp'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'mapServerPartT' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'flip'        Name
-' '           Text
+' '           Text.Whitespace
 'runReaderT'  Name
-' '           Text
+' '           Text.Whitespace
 'acid'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sp'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'instance'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n    '      Text
+'\n    '      Text.Whitespace
 'getAcidState' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'acidCountState' Name
-'    '        Text
+'    '        Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-' \n\n'       Text
+' \n\n'       Text.Whitespace
 
 'instance'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n    '      Text
+'\n    '      Text.Whitespace
 'getAcidState' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'acidGreetingState' Name
-' '           Text
+' '           Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'page'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'page'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'nullDir'     Name
-'\n       '   Text
+'\n       '   Text.Whitespace
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'greet'       Name
-'\n       '   Text
+'\n       '   Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'update'      Name
-' '           Text
+' '           Text.Whitespace
 'IncCount'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '-- ^ a CountState event' Comment.Single
-'\n       '   Text
+'\n       '   Text.Whitespace
 'ok'          Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'toResponse'  Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'html'        Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n            ' Text
+'\n            ' Text.Whitespace
 'head'        Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n              ' Text
+'\n              ' Text.Whitespace
 'title'       Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'acid-state demo' Literal.String
 '"'           Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 'body'        Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n              ' Text
+'\n              ' Text.Whitespace
 'form'        Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '/'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'method'      Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'POST'        Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'enctype'     Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'multipart/form-data' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n                ' Text
+'\n                ' Text.Whitespace
 'label'       Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'new message: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'for'         Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'msg'         Literal.String
 '"'           Literal.String
-'\n                ' Text
+'\n                ' Text.Whitespace
 'input'       Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_'       Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'text'        Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'id'          Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'msg'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'greeting'    Literal.String
 '"'           Literal.String
-'\n                ' Text
+'\n                ' Text.Whitespace
 'input'       Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_'       Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'submit'      Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'update message' Literal.String
 '"'           Literal.String
-'\n              ' Text
+'\n              ' Text.Whitespace
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'toHtml'      Name
-' '           Text
+' '           Text.Whitespace
 'g'           Name
-'\n              ' Text
+'\n              ' Text.Whitespace
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'This page has been loaded ' Literal.String
 '"'           Literal.String
-' \n                     ' Text
+' \n                     ' Text.Whitespace
 'toHtml'      Name
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"'           Literal.String
 ' time(s).'   Literal.String
 '"'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'where'       Keyword.Reserved
-'\n    '      Text
+'\n    '      Text.Whitespace
 'greet'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'rqMethod'    Name
-' '           Text
+' '           Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'askRq'       Name
-'\n           ' Text
+'\n           ' Text.Whitespace
 'case'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword.Reserved
-'\n             ' Text
+'\n             ' Text.Whitespace
 'POST'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' \n                 ' Text
+' \n                 ' Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'decodeBody'  Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'defaultBodyPolicy' Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '/tmp/'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.Number.Integer
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'newGreeting' Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'lookText'    Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'greeting'    Literal.String
 '"'           Literal.String
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'update'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'SetGreeting' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'newGreeting' Name
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '-- ^ a GreetingState event' Comment.Single
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'return'      Name
-' '           Text
+' '           Text.Whitespace
 'newGreeting' Name
-'\n             ' Text
+'\n             ' Text.Whitespace
 'GET'         Keyword.Type
-'  '          Text
+'  '          Text.Whitespace
 '->'          Operator.Word
-' \n                 ' Text
+' \n                 ' Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'query'       Name
-' '           Text
+' '           Text.Whitespace
 'GetGreeting' Keyword.Type
-'                  ' Text
+'                  ' Text.Whitespace
 '-- ^ a GreetingState event' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '()'          Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'withAcid'    Name
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'acid'        Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 'simpleHTTP'  Name
-' '           Text
+' '           Text.Whitespace
 'nullConf'    Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'runApp'      Name
-' '           Text
+' '           Text.Whitespace
 'acid'        Name
-' '           Text
+' '           Text.Whitespace
 'page'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'newtype'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'deriving'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Eq'          Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ord'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Data'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Typeable'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SafeCopy'    Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'initialFooState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'initialFooState' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'askFoo'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Query'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Text'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'askFoo'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Operator
 '('           Punctuation
 'makeAcidic'  Name
-' '           Text
+' '           Text.Whitespace
 "''FooState"  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'askFoo"     Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooPlugin'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Happstack'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooPlugin'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'dir'         Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n       '   Text
+'\n       '   Text.Whitespace
 'txt'         Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'query'       Name
-' '           Text
+' '           Text.Whitespace
 'AskFoo'      Keyword.Type
-'\n       '   Text
+'\n       '   Text.Whitespace
 'ok'          Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'toResponse'  Name
-' '           Text
+' '           Text.Whitespace
 'txt'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "Acid'"       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 "Acid'"       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "acidCountState'" Name
-'    '        Text
+'    '        Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CountState'  Keyword.Type
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "acidGreetingState'" Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GreetingState' Keyword.Type
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "acidFooState'" Name
-'      '      Text
+'      '      Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 "withAcid'"   Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Maybe'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FilePath'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 "Acid'"       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 "withAcid'"   Name.Function
-' '           Text
+' '           Text.Whitespace
 'mBasePath'   Name
-' '           Text
+' '           Text.Whitespace
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 'let'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'fromMaybe'   Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '_state'      Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'mBasePath'   Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'count'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 'initialCountState' Name
-'    '        Text
+'    '        Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n       '   Text
+'\n       '   Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'greeting'    Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initialGreetingState' Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n       '   Text
+'\n       '   Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 'initialFooState' Name
-'      '      Text
+'      '      Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n           ' Text
+'\n           ' Text.Whitespace
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 "Acid'"       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'newtype'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "App'"        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 "App'"        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "unApp'"      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ReaderT'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 "Acid'"       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'deriving'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Functor'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Alternative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Applicative' Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Monad'       Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadPlus'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadIO'     Keyword.Type
-'\n               ' Text
+'\n               ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HasRqData'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ServerMonad' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
 'WebMonad'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FilterMonad' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n               ' Text
+'\n               ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Happstack'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadReader' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 "Acid'"       Keyword.Type
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'instance'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 "App'"        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n    '      Text
+'\n    '      Text.Whitespace
 'getAcidState' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 "acidFooState'" Name
-' '           Text
+' '           Text.Whitespace
 '<$>'         Operator
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooAppPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "App'"        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooAppPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'fooPlugin'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooReaderPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ReaderT'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fooReaderPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'fooPlugin'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'instance'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasAcidState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ReaderT'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'AcidState'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FooState'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n    '      Text
+'\n    '      Text.Whitespace
 'getAcidState' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ask'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'withFooPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'MonadIO'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MonadBaseControl' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' \n                 ' Text
+' \n                 ' Text.Whitespace
 'FilePath'    Keyword.Type
-'                          ' Text
+'                          ' Text.Whitespace
 '-- ^ path to state directory' Comment.Single
-'\n              ' Text
+'\n              ' Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ServerPartT' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Response'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '-- ^ function that uses fooPlugin' Comment.Single
-'\n              ' Text
+'\n              ' Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'm'           Name
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'withFooPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-'\n       '   Text
+'\n       '   Text.Whitespace
 'do'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'withLocalState' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Just'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'basePath'    Name
-' '           Text
+' '           Text.Whitespace
 '</>'         Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initialFooState' Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'fooState'    Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' \n              ' Text
+' \n              ' Text.Whitespace
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 'runReaderT'  Name
-' '           Text
+' '           Text.Whitespace
 'fooReaderPlugin' Name
-' '           Text
+' '           Text.Whitespace
 'fooState'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 "main'"       Name.Function
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '()'          Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "main'"       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' \n    '     Text
+' \n    '     Text.Whitespace
 'withFooPlugin' Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '_state'      Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 "fooPlugin'"  Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 'withAcid'    Name
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Name.Function
 'acid'        Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n            ' Text
+'\n            ' Text.Whitespace
 'simpleHTTP'  Name
-' '           Text
+' '           Text.Whitespace
 'nullConf'    Name
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
-' '           Text
+' '           Text.Whitespace
 "fooPlugin'"  Name
-' '           Text
+' '           Text.Whitespace
 '`'           Punctuation
 'mplus'       Name
 '`'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'runApp'      Name
-' '           Text
+' '           Text.Whitespace
 'acid'        Name
-' '           Text
+' '           Text.Whitespace
 'page'        Name
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,7 +1,7 @@
 '\\version'   Keyword
 ' '           Whitespace
 '"'           Literal.String
-'2.23.3'      Literal.String
+'2.23.6'      Literal.String
 '"'           Literal.String
 '\n\n'        Whitespace
 
@@ -20,8 +20,13 @@
 '\\include'   Keyword
 ' '           Whitespace
 '"'           Literal.String
-'lilypond-book-preamble.ly' Literal.String
+'arabic.ly'   Literal.String
 '"'           Literal.String
+'\n'          Whitespace
+
+'\\language'  Keyword
+' '           Whitespace
+'nederlands'  Name.PitchLanguage
 '\n\n'        Whitespace
 
 '\\header'    Keyword
@@ -32,25 +37,12 @@
 ' '           Whitespace
 '='           Punctuation
 ' '           Whitespace
-'"'           Literal.String
-'This is an assignment to a string. Escape ' Literal.String
-'\\"'         Literal.String.Escape
-' sequences ' Literal.String
-'\\n'         Literal.String.Escape
-' are\nrecognized.\n' Literal.String
-
-'"'           Literal.String
-'\n  '        Whitespace
-'composer'    Name.Builtin.HeaderVariable
-' '           Whitespace
-'='           Punctuation
-' '           Whitespace
 '\\markup'    Name.Builtin.MarkupCommand
 ' '           Whitespace
 '\\smallCaps' Name.Builtin.MarkupCommand
 ' '           Whitespace
 '"'           Literal.String
-'And this is a markup' Literal.String
+'Some markup' Literal.String
 '"'           Literal.String
 '\n'          Whitespace
 
@@ -67,6 +59,24 @@
 ' '           Whitespace
 '{'           Punctuation
 '\n  '        Whitespace
+'oddHeaderMarkup' Name.Lvalue
+' '           Whitespace
+'='           Punctuation
+' '           Whitespace
+'"'           Literal.String
+'This is an assignment to a string.\nEscape ' Literal.String
+'\\"'         Literal.String.Escape
+' sequences ' Literal.String
+'\\n'         Literal.String.Escape
+' are recognized.' Literal.String
+'"'           Literal.String
+'\n  '        Whitespace
+'evenHeaderMarkup' Name.Lvalue
+' '           Whitespace
+'='           Punctuation
+' '           Whitespace
+'\\oddHeaderMarkup' Name.BackslashReference
+'\n  '        Whitespace
 'indent'      Name.Builtin.PaperVariable
 ' '           Whitespace
 '='           Punctuation
@@ -74,11 +84,20 @@
 '30'          Literal.Number
 '\\staff-space' Literal.Number
 '\n  '        Whitespace
-'page-count'  Name.Builtin.PaperVariable
+'system-system-spacing' Name.Builtin.PaperVariable
+'.'           Punctuation
+'basic-distance' Name.Builtin.PaperVariable
 ' '           Whitespace
 '='           Punctuation
 ' '           Whitespace
-'1'           Literal.Number
+'20'          Literal.Number
+'\n  '        Whitespace
+'ragged-bottom' Name.Builtin.PaperVariable
+' '           Whitespace
+'='           Punctuation
+' '           Whitespace
+'#'           Punctuation
+'#t'          Name.Constant
 '\n'          Whitespace
 
 '}'           Punctuation
@@ -381,6 +400,8 @@
 '\n    '      Whitespace
 '\\cadenzaOff' Name.Builtin.MusicCommand
 '\n    '      Whitespace
+'\\pageBreak' Name.Builtin.MusicFunction
+'\n    '      Whitespace
 '\\once'      Name.Builtin.MusicFunction
 ' '           Whitespace
 '\\hide'      Name.Builtin.MusicFunction
@@ -419,12 +440,21 @@
 '='           Punctuation
 ' '           Whitespace
 '#'           Punctuation
-'5'           Literal.Number.Integer
+'7'           Literal.Number.Integer
 '\n    '      Whitespace
 "c''?"        Pitch
 '2.'          Literal.Number
 ':'           Punctuation
 '16'          Literal.Number
+'\\tweak'     Name.Builtin.MusicFunction
+' '           Whitespace
+'bound-details' Name.Builtin.GrobProperty
+' '           Whitespace
+'.'           Punctuation
+'left'        Name.Builtin.GrobProperty
+'.'           Punctuation
+'padding'     Name.Builtin.GrobProperty
+'-5'          Literal.Number
 '\\-'         Name.Builtin.Articulation
 '^"'          Literal.String
 'Some music'  Literal.String
@@ -480,6 +510,8 @@
 'r'           Pitch
 '\n             ' Whitespace
 '}'           Punctuation
+'\n    '      Whitespace
+'\\break'     Name.Builtin.MusicCommand
 '\n    '      Whitespace
 '\\repeat'    Name.Builtin.MusicFunction
 ' '           Whitespace
@@ -556,8 +588,10 @@
 ' '           Whitespace
 'cis'         Pitch
 ':'           Punctuation
+'dim'         ChordModifier
 '3'           Literal.Number
 '+'           Text
+'\\dim'       Name.Builtin.Dynamic
 ' '           Whitespace
 'des'         Pitch
 ':'           Punctuation
@@ -566,6 +600,7 @@
 '/'           Text
 '+'           Text
 'e'           Pitch
+'\\!'         Name.Builtin.Dynamic
 '\n  '        Whitespace
 '}'           Punctuation
 '\n  '        Whitespace

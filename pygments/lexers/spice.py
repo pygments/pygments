@@ -39,10 +39,10 @@ class SpiceLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|as)\b', Keyword.Namespace),
             (r'(f|p|type|struct|const)\b', Keyword.Declaration),
-            (words(('if', 'else', 'for', 'while', 'break', 'continue'), suffix=r'\b'), Keyword),
+            (words(('if', 'else', 'for', 'foreach', 'while', 'break', 'continue', 'return', 'new', 'ext'), suffix=r'\b'), Keyword),
             (r'(true|false)\b', Keyword.Constant),
-            (words(('printf', 'new'), suffix=r'\b(\()'), bygroups(Name.Builtin, Punctuation)),
-            (words(('double', 'int', 'string', 'bool', 'dyn'), suffix=r'\b'), Keyword.Type),
+            (words(('printf', 'sizeof'), suffix=r'\b(\()'), bygroups(Name.Builtin, Punctuation)),
+            (words(('double', 'int', 'short', 'long', 'byte', 'char', 'string', 'bool', 'dyn'), suffix=r'\b'), Keyword.Type),
             # double_lit
             (r'\d+(\.\d+[eE][+\-]?\d+|\.\d*|[eE][+\-]?\d+)', Number.Double),
             (r'\.\d+([eE][+\-]?\d+)?', Number.Double),
@@ -52,7 +52,7 @@ class SpiceLexer(RegexLexer):
             # -- interpreted_string_lit
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Tokens
-            (r'(<<=|>>=|<<|>>|<=|>=|\+=|-=|\*=|/=|&&|\|\||&|\||\+\+|--|==|!=|[+\-*/&])', Operator),
+            (r'(<<=|>>=|<<|>>|<=|>=|\+=|-=|\*=|/=|&&|\|\||&|\||\+\+|--|\%|==|!=|[.]{3}|[+\-*/&])', Operator),
             (r'[|<>=!()\[\]{}.,;:\?]', Punctuation),
             # identifier
             (r'[^\W\d]\w*', Name.Other),

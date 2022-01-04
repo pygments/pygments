@@ -1,4 +1,4 @@
-\version "2.23.3"
+\version "2.23.6"
 
 % This is a test file for Pygments' LilyPond support. To compile
 % it with Guile 1 (as in official releases as of this writing),
@@ -12,20 +12,22 @@
   end the whole comment:
   %{ %}
 
-\include "lilypond-book-preamble.ly"
+\include "arabic.ly"
+\language nederlands
 
 \header {
-  title = "This is an assignment to a string. Escape \" sequences \n are
-recognized.
-"
-  composer = \markup \smallCaps "And this is a markup"
+  title = \markup \smallCaps "Some markup"
 }
 % The following is just a comment.
 %}
 
 \paper {
+  oddHeaderMarkup = "This is an assignment to a string.
+Escape \" sequences \n are recognized."
+  evenHeaderMarkup = \oddHeaderMarkup
   indent = 30\staff-space
-  page-count = 1
+  system-system-spacing.basic-distance = 20
+  ragged-bottom = ##t
 }
 
 myFunc =
@@ -74,11 +76,12 @@ piuPiano = \markup \italic "più piano"
     deses\longa) \myFunc { r } 4 des8 8[ <des ges>8]\)
     \bar "||"
     \cadenzaOff
+    \pageBreak
     \once \hide NoteHead
     \once \override NoteHead.no-ledgers = ##t
     \once \omit Dots
-    \once \override Staff.DurationLine.thickness = #5
-    c''?2.:16\-^"Some music" |
+    \once \override Staff.DurationLine.thickness = #7
+    c''?2.:16\tweak bound-details .left.padding-5\-^"Some music" |
     \mySecondFunc
       R1*1/2^\markup \center-column {
                Some
@@ -88,6 +91,7 @@ piuPiano = \markup \italic "più piano"
                \bold \italic Column!
                \small-italic super
              }
+    \break
     \repeat unfold 4 { c8\< c^\> c\p\! }
     c_\piuPiano^\markup dolce
   }
@@ -96,7 +100,7 @@ piuPiano = \markup \italic "più piano"
     My Lily -- Song
   }
   \chordmode {
-    c cis:3+ des:maj7/+e
+    c cis:dim3+\dim des:maj7/+e\!
   }
   \new TabVoice {
     f'4\^ g'4\^ f'2

@@ -589,7 +589,13 @@ class JsonLexer(Lexer):
             elif character == ':':
                 # Yield from the queue. Replace string token types.
                 for _start, _token, _text in queue:
-                    if _token is Text:
+                    # There can be only two types of tokens before a ':':
+                    # Whitespace, or a quoted string. If it's a quoted string
+                    # we emit Name.Tag, otherwise, we yield the whitespace
+                    # tokens. In all other cases this is invalid JSON. This
+                    # allows for things like '"foo" "bar": "baz"' but we're not
+                    # a validating JSON lexer so it's acceptable
+                    if _token is Whitespace:
                         yield _start, _token, _text
                     elif _token is String.Double:
                         yield _start, Name.Tag, _text

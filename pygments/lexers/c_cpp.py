@@ -117,7 +117,7 @@ class CFamilyLexer(RegexLexer):
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+             r'(\s*\([^;]*?\))'                          # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
@@ -125,10 +125,11 @@ class CFamilyLexer(RegexLexer):
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+             r'(\s*\([^;]*?\))'                          # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
+            include('types'),
             default('statement'),
         ],
         'statement': [
@@ -252,8 +253,8 @@ class CLexer(CFamilyLexer):
     """
     name = 'C'
     aliases = ['c']
-    filenames = ['*.c', '*.h', '*.idc']
-    mimetypes = ['text/x-chdr', 'text/x-csrc']
+    filenames = ['*.c', '*.h', '*.idc', '*.x[bp]m']
+    mimetypes = ['text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap']
     priority = 0.1
 
     tokens = {
