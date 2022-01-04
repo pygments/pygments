@@ -768,7 +768,7 @@ class PovrayLexer(RegexLexer):
              Name.Builtin),
             # TODO: <=, etc
             (r'[\[\](){}<>;,]', Punctuation),
-            (r'[-+*/=]', Operator),
+            (r'[-+*/=.]', Operator),
             (r'\b(x|y|z|u|v)\b', Name.Builtin.Pseudo),
             (r'[a-zA-Z_]\w*', Name),
             (r'[0-9]+\.[0-9]*', Number.Float),
