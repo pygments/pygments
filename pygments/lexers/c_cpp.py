@@ -52,6 +52,8 @@ class CFamilyLexer(RegexLexer):
              bygroups(using(this), Comment.Preproc), 'if0'),
             ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
+            (r'(^[ \t]*)(?!(?:public|private|protected|default)\b)(case\b\s+)?(' + _ident + r')(\s*)(:)(?!:)',
+             bygroups(Whitespace, using(this), Name.Label, Whitespace, Punctuation)),
             (r'\n', Whitespace),
             (r'[^\S\n]+', Whitespace),
             (r'\\\n', Text),  # line continuation
@@ -79,7 +81,6 @@ class CFamilyLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Whitespace, Punctuation)),
             (_ident, Name)
         ],
         'types': [
