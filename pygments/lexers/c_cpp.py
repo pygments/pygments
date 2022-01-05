@@ -25,9 +25,6 @@ class CFamilyLexer(RegexLexer):
     definitions.
     """
 
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
     # The trailing ?, rather than *, avoids a geometric performance drop here.
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
