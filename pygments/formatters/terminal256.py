@@ -279,7 +279,7 @@ class Terminal256Formatter(Formatter):
 
                 except KeyError:
                     # ottype = ttype
-                    ttype = ttype[:-1]
+                    ttype = ttype.parent
                     # outfile.write( '!' + str(ottype) + '->' + str(ttype) + '!' )
 
             if not_found:

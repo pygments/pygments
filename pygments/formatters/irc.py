@@ -140,7 +140,7 @@ class IRCFormatter(Formatter):
                 value = value[:-1]
             color = self.colorscheme.get(ttype)
             while color is None:
-                ttype = ttype[:-1]
+                ttype = ttype.parent
                 color = self.colorscheme.get(ttype)
             if color:
                 color = color[self.darkbg]

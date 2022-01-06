@@ -17,6 +17,7 @@ Version 2.11.2
 
 - Fix links to line numbers not working correctly (#2014)
 - Remove ``underline`` from ``Whitespace`` style in the ``Tango`` theme (#2020)
+- Fix ``IRC`` and ``Terminal256`` formatters not backtracking correctly for custom token types, resulting in some unstyled tokens (#1986)
 
 Version 2.11.1
 --------------
