@@ -1762,9 +1762,9 @@ class SarlLexer(RegexLexer):
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
              r'([a-zA-Z_$][\w$]*)'                      # method name
              r'(\s*)(\()',                             # signature start
-             bygroups(using(this), Name.Function, Text, Operator)),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+             bygroups(using(this), Name.Function, Whitespace, Operator)),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'@[a-zA-Z_][\w.]*', Name.Decorator),
             (r'(as|break|case|catch|default|do|else|extends|extension|finally|'
@@ -1776,12 +1776,12 @@ class SarlLexer(RegexLexer):
              Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
-            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace)),
             (r'(false|it|null|occurrence|this|true|void)\b', Keyword.Constant),
             (r'(agent|annotation|artifact|behavior|capacity|class|enum|event|'
-             r'interface|skill|space)(\s+)', bygroups(Keyword.Declaration, Text),
+             r'interface|skill|space)(\s+)', bygroups(Keyword.Declaration, Whitespace),
              'class'),
-            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_]\w*:', Name.Label),
@@ -1790,7 +1790,7 @@ class SarlLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
-            (r'\n', Text)
+            (r'\n', Whitespace)
         ],
         'class': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')
