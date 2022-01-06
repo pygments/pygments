@@ -13,7 +13,7 @@ import re
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
     this, combined, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 from pygments.util import shebang_matches
 from pygments import unistring as uni
 
@@ -38,9 +38,9 @@ class JavaLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(^\s*)((?:(?:public|private|protected|static|strictfp)(?:\s+))*)(record)\b',
-             bygroups(Text, using(this), Keyword.Declaration), 'class'),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+             bygroups(Whitespace, using(this), Keyword.Declaration), 'class'),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             # keywords: go before method names to avoid lexing "throw new XYZ"
             # as a method signature
@@ -51,26 +51,25 @@ class JavaLexer(RegexLexer):
             (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
              r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
              r'(\s*)(\()',                              # signature start
-             bygroups(using(this), Name.Function, Text, Punctuation)),
+             bygroups(using(this), Name.Function, Whitespace, Punctuation)),
             (r'@[^\W\d][\w.]*', Name.Decorator),
             (r'(abstract|const|enum|extends|final|implements|native|private|'
              r'protected|public|sealed|static|strictfp|super|synchronized|throws|'
              r'transient|volatile|yield)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
-            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(class|interface)\b', Keyword.Declaration, 'class'),
-            (r'(var)(\s+)', bygroups(Keyword.Declaration, Text),
-             'var'),
-            (r'(import(?:\s+static)?)(\s+)', bygroups(Keyword.Namespace, Text),
+            (r'(var)(\s+)', bygroups(Keyword.Declaration, Whitespace), 'var'),
+            (r'(import(?:\s+static)?)(\s+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
             (r'"', String, 'string'),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
             (r'(\.)((?:[^\W\d]|\$)[\w$]*)', bygroups(Punctuation,
                                                      Name.Attribute)),
-            (r'^(\s*)(default)(:)', bygroups(Text, Keyword, Punctuation)),
-            (r'^(\s*)((?:[^\W\d]|\$)[\w$]*)(:)', bygroups(Text, Name.Label,
+            (r'^(\s*)(default)(:)', bygroups(Whitespace, Keyword, Punctuation)),
+            (r'^(\s*)((?:[^\W\d]|\$)[\w$]*)(:)', bygroups(Whitespace, Name.Label,
                                                           Punctuation)),
             (r'([^\W\d]|\$)[\w$]*', Name),
             (r'([0-9][0-9_]*\.([0-9][0-9_]*)?|'
@@ -87,7 +86,7 @@ class JavaLexer(RegexLexer):
             (r'0|[1-9][0-9_]*[lL]?', Number.Integer),
             (r'[~^*!%&\[\]<>|+=/?-]', Operator),
             (r'[{}();:.,]', Punctuation),
-            (r'\n', Text)
+            (r'\n', Whitespace)
         ],
         'class': [
             (r'\s+', Text),
