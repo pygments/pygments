@@ -5,22 +5,22 @@ val something = "something"
 
 ---tokens---
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'something'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'something'   Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'Here is '    Literal.String
 '$'           Literal.String.Interpol
 'something'   Name
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'Here is '    Literal.String
@@ -32,4 +32,4 @@ val something = "something"
 ')'           Punctuation
 '}'           Literal.String.Interpol
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

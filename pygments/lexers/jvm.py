@@ -967,17 +967,17 @@ class TeaLangLexer(RegexLexer):
             (r'^(\s*(?:[a-zA-Z_][\w\.\[\]]*\s+)+?)'  # return arguments
              r'([a-zA-Z_]\w*)'                       # method name
              r'(\s*)(\()',                           # signature start
-             bygroups(using(this), Name.Function, Text, Operator)),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+             bygroups(using(this), Name.Function, Whitespace, Operator)),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'@[a-zA-Z_][\w\.]*', Name.Decorator),
             (r'(and|break|else|foreach|if|in|not|or|reverse)\b',
              Keyword),
             (r'(as|call|define)\b', Keyword.Declaration),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(template)(\s+)', bygroups(Keyword.Declaration, Text), 'template'),
-            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(template)(\s+)', bygroups(Keyword.Declaration, Whitespace), 'template'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'(\.)([a-zA-Z_]\w*)', bygroups(Operator, Name.Attribute)),
@@ -987,7 +987,7 @@ class TeaLangLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
-            (r'\n', Text)
+            (r'\n', Whitespace)
         ],
         'template': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')
@@ -1021,9 +1021,9 @@ class CeylonLexer(RegexLexer):
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
              r'([a-zA-Z_]\w*)'                      # method name
              r'(\s*)(\()',                          # signature start
-             bygroups(using(this), Name.Function, Text, Operator)),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+             bygroups(using(this), Name.Function, Whitespace, Operator)),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*', Comment.Multiline, 'comment'),
             (r'(shared|abstract|formal|default|actual|variable|deprecated|small|'
              r'late|literal|doc|by|see|throws|optional|license|tagged|final|native|'
@@ -1035,11 +1035,11 @@ class CeylonLexer(RegexLexer):
              r'super|given|of|out|assign)\b', Keyword.Declaration),
             (r'(function|value|void|new)\b',
              Keyword.Type),
-            (r'(assembly|module|package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(assembly|module|package)(\s+)', bygroups(Keyword.Namespace, Whitespace)),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(class|interface|object|alias)(\s+)',
-             bygroups(Keyword.Declaration, Text), 'class'),
-            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+             bygroups(Keyword.Declaration, Whitespace), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'\\.'|'[^\\]'|'\\\{#[0-9a-fA-F]{4}\}'", String.Char),
             (r'(\.)([a-z_]\w*)',
@@ -1059,7 +1059,7 @@ class CeylonLexer(RegexLexer):
             (r'\$[01]+', Number.Bin),
             (r'\d{1,3}(_\d{3})+[kMGTP]?', Number.Integer),
             (r'[0-9]+[kMGTP]?', Number.Integer),
-            (r'\n', Text)
+            (r'\n', Whitespace)
         ],
         'class': [
             (r'[A-Za-z_]\w*', Name.Class, '#pop')
@@ -1111,13 +1111,13 @@ class KotlinLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespaces
-            (r'[^\S\n]+', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text),  # line continuation
-            (r'\n', Text),
+            (r'[^\S\n]+', Whitespace),
+            (r'\s+', Whitespace),
+            (r'\\$', String.Escape),  # line continuation
+            (r'\n', Whitespace),
             # Comments
-            (r'//.*?\n', Comment.Single),
-            (r'^#!/.+?\n', Comment.Single),  # shebang for kotlin scripts
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'^(#!/.+?)(\n)', bygroups(Comment.Single, Whitespace)),  # shebang for kotlin scripts
             (r'/[*].*?[*]/', Comment.Multiline),
             # Keywords
             (r'as\?', Keyword),
@@ -1133,7 +1133,7 @@ class KotlinLexer(RegexLexer):
             # Constants
             (r'(true|false|null)\b', Keyword.Constant),
             # Imports
-            (r'(package|import)(\s+)(\S+)', bygroups(Keyword, Text, Name.Namespace)),
+            (r'(package|import)(\s+)(\S+)', bygroups(Keyword, Whitespace, Name.Namespace)),
             # Dot access
             (r'(\?\.)((?:[^\W\d]|\$)[\w$]*)', bygroups(Operator, Name.Attribute)),
             (r'(\.)((?:[^\W\d]|\$)[\w$]*)', bygroups(Punctuation, Name.Attribute)),
@@ -1142,18 +1142,18 @@ class KotlinLexer(RegexLexer):
             # Labels
             (r'[^\W\d][\w.]+@', Name.Decorator),
             # Object expression
-            (r'(object)(\s+)(:)(\s+)', bygroups(Keyword, Text, Punctuation, Text), 'class'),
+            (r'(object)(\s+)(:)(\s+)', bygroups(Keyword, Whitespace, Punctuation, Whitespace), 'class'),
             # Types
             (r'((?:(?:' + modifiers + r'|fun)\s+)*)(class|interface|object)(\s+)',
-             bygroups(using(this, state='modifiers'), Keyword.Declaration, Text), 'class'),
+             bygroups(using(this, state='modifiers'), Keyword.Declaration, Whitespace), 'class'),
             # Variables
-            (r'(var|val)(\s+)(\()', bygroups(Keyword.Declaration, Text, Punctuation),
+            (r'(var|val)(\s+)(\()', bygroups(Keyword.Declaration, Whitespace, Punctuation),
              'destructuring_assignment'),
             (r'((?:(?:' + modifiers + r')\s+)*)(var|val)(\s+)',
-             bygroups(using(this, state='modifiers'), Keyword.Declaration, Text), 'variable'),
+             bygroups(using(this, state='modifiers'), Keyword.Declaration, Whitespace), 'variable'),
             # Functions
             (r'((?:(?:' + modifiers + r')\s+)*)(fun)(\s+)',
-             bygroups(using(this, state='modifiers'), Keyword.Declaration, Text), 'function'),
+             bygroups(using(this, state='modifiers'), Keyword.Declaration, Whitespace), 'function'),
             # Operators
             (r'::|!!|\?[:.]', Operator),
             (r'[~^*!%&\[\]<>|+=/?-]', Operator),
@@ -1177,9 +1177,9 @@ class KotlinLexer(RegexLexer):
         ],
         'destructuring_assignment': [
             (r',', Punctuation),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (kt_id, Name.Variable),
-            (r'(:)(\s+)(' + kt_id + ')', bygroups(Punctuation, Text, Name)),
+            (r'(:)(\s+)(' + kt_id + ')', bygroups(Punctuation, Whitespace, Name)),
             (r'<', Operator, 'generic'),
             (r'\)', Punctuation, '#pop')
         ],
@@ -1189,16 +1189,16 @@ class KotlinLexer(RegexLexer):
             (kt_id, Name.Function, '#pop')
         ],
         'generic': [
-            (r'(>)(\s*)', bygroups(Operator, Text), '#pop'),
+            (r'(>)(\s*)', bygroups(Operator, Whitespace), '#pop'),
             (r':', Punctuation),
             (r'(reified|out|in)\b', Keyword),
             (r',', Punctuation),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (kt_id, Name)
         ],
         'modifiers': [
             (r'\w+', Keyword.Declaration),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             default('#pop')
         ],
         'string': [
