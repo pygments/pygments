@@ -144,6 +144,8 @@ class GroffFormatter(Formatter):
             self._write_lineno(outfile)
 
         for ttype, value in tokensource:
+            while ttype not in self.styles:
+                ttype = ttype.parent
             start, end = self.styles[ttype]
 
             for line in value.splitlines(True):
