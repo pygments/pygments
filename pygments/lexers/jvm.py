@@ -888,7 +888,7 @@ class ClojureLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r'[,]', Text),
+            (r',+', Text),
             (r'\s+', Whitespace),
 
             # numbers
@@ -1253,9 +1253,9 @@ class XtendLexer(RegexLexer):
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
              r'([a-zA-Z_$][\w$]*)'                  # method name
              r'(\s*)(\()',                          # signature start
-             bygroups(using(this), Name.Function, Text, Operator)),
-            (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+             bygroups(using(this), Name.Function, Whitespace, Operator)),
+            (r'[^\S\n]+', Whitespace),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'@[a-zA-Z_][\w.]*', Name.Decorator),
             (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
@@ -1267,11 +1267,11 @@ class XtendLexer(RegexLexer):
              r'transient|volatile)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
-            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(class|interface)(\s+)', bygroups(Keyword.Declaration, Text),
+            (r'(class|interface)(\s+)', bygroups(Keyword.Declaration, Whitespace),
              'class'),
-            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r"(''')", String, 'template'),
             (r'(\u00BB)', String, 'template'),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
@@ -1282,7 +1282,7 @@ class XtendLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
-            (r'\n', Text)
+            (r'\n', Whitespace)
         ],
         'class': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')
@@ -1314,10 +1314,10 @@ class PigLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'--.*', Comment),
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
-            (r'\\\n', Text),
+            (r'\\$', String.Escape),
             (r'\\', Text),
             (r'\'(?:\\[ntbrf\\\']|\\u[0-9a-f]{4}|[^\'\\\n\r])*\'', String),
             include('keywords'),
@@ -1328,9 +1328,9 @@ class PigLexer(RegexLexer):
             (r'[0-9]*\.[0-9]+(e[0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
-            (r'\n', Text),
+            (r'\n', Whitespace),
             (r'([a-z_]\w*)(\s*)(\()',
-             bygroups(Name.Function, Text, Punctuation)),
+             bygroups(Name.Function, Whitespace, Punctuation)),
             (r'[()#:]', Text),
             (r'[^(:#\'")\s]+', Text),
             (r'\S+\s+', Text)   # TODO: make tests pass without \s+
@@ -1378,7 +1378,7 @@ class GoloLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^\S\n]+', Text),
+            (r'[^\S\n]+', Whitespace),
 
             (r'#.*$', Comment),
 
@@ -1390,19 +1390,19 @@ class GoloLexer(RegexLexer):
             (r'[]{}|(),[]', Punctuation),
 
             (r'(module|import)(\s+)',
-                bygroups(Keyword.Namespace, Text),
+                bygroups(Keyword.Namespace, Whitespace),
                 'modname'),
             (r'\b([a-zA-Z_][\w$.]*)(::)',  bygroups(Name.Namespace, Punctuation)),
             (r'\b([a-zA-Z_][\w$]*(?:\.[a-zA-Z_][\w$]*)+)\b', Name.Namespace),
 
             (r'(let|var)(\s+)',
-                bygroups(Keyword.Declaration, Text),
+                bygroups(Keyword.Declaration, Whitespace),
                 'varname'),
             (r'(struct)(\s+)',
-                bygroups(Keyword.Declaration, Text),
+                bygroups(Keyword.Declaration, Whitespace),
                 'structname'),
             (r'(function)(\s+)',
-                bygroups(Keyword.Declaration, Text),
+                bygroups(Keyword.Declaration, Whitespace),
                 'funcname'),
 
             (r'(null|true|false)\b', Keyword.Constant),
