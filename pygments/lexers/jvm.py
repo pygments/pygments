@@ -1498,12 +1498,12 @@ class JasminLexer(RegexLexer):
 
     tokens = {
         'default': [
-            (r'\n', Text, '#pop'),
+            (r'\n', Whitespace, '#pop'),
             (r"'", String.Single, ('#pop', 'quote')),
             (r'"', String.Double, 'string'),
             (r'=', Punctuation),
             (r':', Punctuation, 'label'),
-            (_ws, Text),
+            (_ws, Whitespace),
             (r';.*', Comment.Single),
             (r'(\$[-+])?0x-?[\da-fA-F]+%s' % _break, Number.Hex),
             (r'(\$[-+]|\+)?-?\d+%s' % _break, Number.Integer),
@@ -1591,27 +1591,27 @@ class JasminLexer(RegexLexer):
             (r'[^"\\]+', String.Double)
         ],
         'root': [
-            (r'\n+', Text),
+            (r'\n+', Whitespace),
             (r"'", String.Single, 'quote'),
             include('default'),
             (r'(%s)([ \t\r]*)(:)' % _name,
-             bygroups(Name.Label, Text, Punctuation)),
+             bygroups(Name.Label, Whitespace, Punctuation)),
             (_name, String.Other)
         ],
         'annotation': [
-            (r'\n', Text, ('#pop', 'annotation-body')),
+            (r'\n', Whitespace, ('#pop', 'annotation-body')),
             (r'default%s' % _break, Keyword.Reserved,
              ('#pop', 'annotation-default')),
             include('default')
         ],
         'annotation-body': [
-            (r'\n+', Text),
+            (r'\n+', Whitespace),
             (r'\.end%s' % _break, Keyword.Reserved, '#pop'),
             include('default'),
             (_name, String.Other, ('annotation-items', 'descriptor/no-dots'))
         ],
         'annotation-default': [
-            (r'\n+', Text),
+            (r'\n+', Whitespace),
             (r'\.end%s' % _break, Keyword.Reserved, '#pop'),
             include('default'),
             default(('annotation-items', 'descriptor/no-dots'))
@@ -1665,7 +1665,7 @@ class JasminLexer(RegexLexer):
             default('descriptor/convert-dots')
         ],
         'enclosing-method': [
-            (_ws, Text),
+            (_ws, Whitespace),
             (r'(?=[^%s]*\()' % _separator, Text, ('#pop', 'invocation')),
             default(('#pop', 'class/convert-dots'))
         ],
@@ -1711,7 +1711,7 @@ class JasminLexer(RegexLexer):
              bygroups(Name.Namespace, Name.Class, Name.Variable.Class), '#pop')
         ],
         'table': [
-            (r'\n+', Text),
+            (r'\n+', Whitespace),
             (r'default%s' % _break, Keyword.Reserved, '#pop'),
             include('default'),
             (_name, Name.Label)
