@@ -13,6 +13,7 @@ Version 2.11.2
 
 - Updated lexers:
 
+  * C-family: Fix incorrect handling of labels (#2022, #1996, #1182)
   * Java: Fixed an issue with ``record`` keywords result in ``Error`` tokens in some cases (#2018)
 
 - Fix links to line numbers not working correctly (#2014)
