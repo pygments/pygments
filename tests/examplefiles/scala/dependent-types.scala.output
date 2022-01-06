@@ -1,102 +1,102 @@
 'trait'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Entry'       Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Key'         Name.Class
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Key'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'extractKey'  Name.Function
 '('           Punctuation
 'e'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Entry'       Name.Class
 ')'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'Key'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'key'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'extractor'   Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'e'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Entry'       Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'Key'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'extractKey'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Extractor'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Function1'   Name.Class
 '['           Punctuation
 'Entry'       Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Entry'       Name.Class
 '#'           Name
 'Key'         Name.Class
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'apply'       Name.Function
 '('           Punctuation
 'e'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Entry'       Name.Class
 ')'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'Key'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

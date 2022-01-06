@@ -3,35 +3,35 @@ def f(using y: Char = if true then 'a' else 2): Int = ???
 
 ---tokens---
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Char'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'a'"         Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '???'         Operator
-'\n'          Text
+'\n'          Text.Whitespace

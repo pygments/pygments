@@ -1,41 +1,41 @@
 '// Symbols:\n' Comment.Single
 
 "'*"          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '//test\n'    Comment.Single
 
 "'*"          Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'symbol_*"   Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'symbol1"    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "//'\n"       Comment.Single
 
 "'ξφδ"        Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'φδφ0"       Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'δφξφξ_+-"   Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'***"        Literal.String.Symbol
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Not (just) symbols:\n' Comment.Single
 
 "'symbol"     Literal.String.Symbol
 '*'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'**"         Literal.String.Symbol
 '_x'          Name
-' '           Text
+' '           Text.Whitespace
 "//'\n"       Comment.Single
 
 "'x'"         Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
