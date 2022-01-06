@@ -667,7 +667,7 @@ class HtmlFormatter(Formatter):
         mw = len(str(lncount + fl - 1))
         sp = self.linenospecial
         st = self.linenostep
-        la = self.lineanchors
+        anchor_name = self.lineanchors or self.linespans
         aln = self.anchorlinenos
         nocls = self.noclasses
 
@@ -680,7 +680,7 @@ class HtmlFormatter(Formatter):
             if print_line:
                 line = '%*d' % (mw, i)
                 if aln:
-                    line = '<a href="#%s-%d">%s</a>' % (la, i, line)
+                    line = '<a href="#%s-%d">%s</a>' % (anchor_name, i, line)
             else:
                 line = ' ' * mw
 
@@ -729,7 +729,7 @@ class HtmlFormatter(Formatter):
         st = self.linenostep
         num = self.linenostart
         mw = len(str(len(inner_lines) + num - 1))
-        la = self.lineanchors
+        anchor_name = self.lineanchors or self.linespans
         aln = self.anchorlinenos
         nocls = self.noclasses
 
@@ -759,7 +759,7 @@ class HtmlFormatter(Formatter):
                 linenos = line
 
             if aln:
-                yield 1, ('<a href="#%s-%d">%s</a>' % (la, num, linenos) +
+                yield 1, ('<a href="#%s-%d">%s</a>' % (anchor_name, num, linenos) +
                           inner_line)
             else:
                 yield 1, linenos + inner_line
