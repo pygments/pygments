@@ -39,7 +39,7 @@ class BnfLexer(RegexLexer):
     * We don't distinguish any operators and punctuation except
       `::=`.
 
-    Though these desision making might cause too minimal highlighting
+    Though these decision making might cause too minimal highlighting
     and you might be disappointed, but it is reasonable for us.
 
     .. versionadded:: 2.1

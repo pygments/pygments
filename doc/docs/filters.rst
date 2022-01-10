@@ -11,7 +11,7 @@ done by filters. The most common example of filters transform each token by
 applying a simple rules such as highlighting the token if it is a TODO or
 another special word, or converting keywords to uppercase to enforce a style
 guide. More complex filters can transform the stream of tokens, such as removing
-the line identation or merging tokens together. It should be noted that pygments
+the line indentation or merging tokens together. It should be noted that pygments
 filters are entirely unrelated to Python's `filter
 <https://docs.python.org/3/library/functions.html#filter>`_.
 

@@ -200,9 +200,9 @@ class LogtalkLexer(RegexLexer):
             (r'(>>|<<|/\\|\\\\|\\)', Operator),
             # Predicate aliases
             (r'\bas\b', Operator),
-            # Arithemtic evaluation
+            # Arithmetic evaluation
             (r'\bis\b', Keyword),
-            # Arithemtic comparison
+            # Arithmetic comparison
             (r'(=:=|=\\=|<|=<|>=|>)', Operator),
             # Term creation and decomposition
             (r'=\.\.', Operator),
@@ -213,7 +213,7 @@ class LogtalkLexer(RegexLexer):
             # Evaluable functors
             (r'(//|[-+*/])', Operator),
             (r'\b(e|pi|div|mod|rem)\b', Operator),
-            # Other arithemtic functors
+            # Other arithmetic functors
             (r'\b\*\*\b', Operator),
             # DCG rules
             (r'-->', Operator),

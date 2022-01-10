@@ -83,7 +83,7 @@ class SedLexer(RegexLexer):
     mimetypes = ['text/x-sed']
     flags = re.MULTILINE
 
-    # Match the contents within delimeters such as /<contents>/
+    # Match the contents within delimiters such as /<contents>/
     _inside_delims = r'((?:(?:\\[^\n]|[^\\])*?\\\n)*?(?:\\.|[^\\])*?)'
 
     tokens = {

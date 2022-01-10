@@ -906,7 +906,7 @@ class HxmlLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Seperator
+            # Separator
             (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),
             # Compiler switches with one dash
             (r'(-)(prompt|debug|v)', bygroups(Punctuation, Keyword.Keyword)),

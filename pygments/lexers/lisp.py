@@ -119,7 +119,7 @@ class SchemeLexer(RegexLexer):
             (r';.*?$', Comment.Single),
             # multi-line comment
             (r'#\|', Comment.Multiline, 'multiline-comment'),
-            # commented form (entire sexpr folliwng)
+            # commented form (entire sexpr following)
             (r'#;\s*\(', Comment, 'commented-form'),
             # signifies that the program text that follows is written with the
             # lexical and datum syntax described in r6rs

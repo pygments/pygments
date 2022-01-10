@@ -104,7 +104,7 @@ class RustLexer(RegexLexer):
             # Prelude (taken from Rust's src/libstd/prelude.rs)
             builtin_funcs_types,
             builtin_macros,
-            # Path seperators, so types don't catch them.
+            # Path separators, so types don't catch them.
             (r'::\b', Text),
             # Types in positions.
             (r'(?::|->)', Text, 'typename'),
