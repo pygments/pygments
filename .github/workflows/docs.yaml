@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: "3.10"
     - name: Checkout Pygments
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Install Sphinx & WCAG contrast ratio
       run: pip install Sphinx wcag-contrast-ratio
     - name: Create Pyodide WASM package
