@@ -122,7 +122,7 @@ class CddlLexer(RegexLexer):
             include("commentsandwhitespace"),
             # tag types
             (r"#(\d\.{uint})?".format(uint=_re_uint), Keyword.Type),  # type or any
-            # occurence
+            # occurrence
             (
                 r"({uint})?(\*)({uint})?".format(uint=_re_uint),
                 bygroups(Number, Operator, Number),

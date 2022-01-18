@@ -88,7 +88,7 @@ class MIMELexer(RegexLexer):
             pos_body_start = pos_body_start + 1
             entire_body = entire_body[1:]
 
-        # if it is not a mulitpart
+        # if it is not a multipart
         if not self.content_type.startswith("multipart") or not self.boundary:
             for i, t, v in self.get_bodypart_tokens(entire_body):
                 yield pos_body_start + i, t, v

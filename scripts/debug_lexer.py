@@ -36,7 +36,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
         """
         Split ``text`` into (tokentype, text) pairs.
 
-        ``stack`` is the inital stack (default: ``['root']``)
+        ``stack`` is the initial stack (default: ``['root']``)
         """
         tokendefs = self._tokens
         self.ctx = ctx = LexerContext(text, 0)

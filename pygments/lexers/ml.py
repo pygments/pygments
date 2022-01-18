@@ -55,7 +55,7 @@ class SMLLexer(RegexLexer):
     # A character constant is a sequence of the form #s, where s is a string
     # constant denoting a string of size one character. This setup just parses
     # the entire string as either a String.Double or a String.Char (depending
-    # on the argument), even if the String.Char is an erronous
+    # on the argument), even if the String.Char is an erroneous
     # multiple-character string.
     def stringy(whatkind):
         return [

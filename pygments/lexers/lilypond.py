@@ -99,7 +99,7 @@ class LilyPondLexer(SchemeLexer):
             # - chord: < >,
             # - bar check: |,
             # - dot in nested properties: \revert NoteHead.color,
-            # - equals sign in assignemnts and lists for various commands:
+            # - equals sign in assignments and lists for various commands:
             #   \override Stem.color = red,
             # - comma as alternative syntax for lists: \time 3,3,2 4/4,
             # - colon in tremolos: c:32,

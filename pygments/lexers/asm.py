@@ -861,7 +861,7 @@ class TasmLexer(RegexLexer):
             include('punctuation'),
             (register, Name.Builtin),
             (identifier, Name.Variable),
-            # Do not match newline when it's preceeded by a backslash
+            # Do not match newline when it's preceded by a backslash
             (r'(\\)(\s*)(;.*)([\r\n])', bygroups(Text, Whitespace, Comment.Single, Whitespace)),
             (r'[\r\n]+', Whitespace, '#pop'),
             include('whitespace')
