@@ -214,6 +214,7 @@ Template languages
 * `Mako <https://www.makotemplates.org>`_ (the Myghty successor)
 * `Slim <http://slim-lang.com/>`_
 * `Smarty <https://www.smarty.net>`_ templates (PHP templating)
+* `UL4 <https://python.livinglogic.de/UL4.html>`_
 * `Tea <https://github.com/teatrove/teatrove/wiki/Tea-Template-Language>`_
 * `Twig <https://twig.symfony.com/>`_
 

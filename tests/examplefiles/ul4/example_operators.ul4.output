@@ -1,0 +1,444 @@
+'<?doc UL4 example for various operators?>' Literal.String.Doc
+'\n\n'        Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'//'          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'%'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'<<'          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'>>'          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'&'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'^'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'!='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'('           Operator
+'a'           Name
+')'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'['           Operator
+'a'           Name
+','           Operator
+' '           Text
+'b'           Name
+']'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'{'           Operator
+'a'           Name
+','           Operator
+' '           Text
+'b'           Name
+'}'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'{'           Operator
+'a'           Name
+':'           Operator
+' '           Text
+'b'           Name
+','           Operator
+' '           Text
+'c'           Name
+':'           Operator
+' '           Text
+'d'           Name
+'}'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'or'          Keyword
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'and'         Keyword
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'['           Operator
+'i'           Name
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'range'       Name
+'('           Operator
+'10'          Literal.Number.Integer
+')'           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'i'           Name
+']'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'if'          Keyword
+' '           Text
+'b'           Name
+' '           Text
+'else'        Keyword
+' '           Text
+'c'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'a'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'~'           Operator
+'a'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'+='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'-='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'*='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'/='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'//'          Operator
+'='           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'%'           Operator
+'='           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'<<'          Operator
+'='           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'>>'          Operator
+'='           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'&='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'|='          Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'^'           Operator
+'='           Operator
+' '           Text
+'b'           Name
+'?>'          Comment.Preproc
+'\n'          Other

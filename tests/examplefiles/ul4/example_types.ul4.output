@@ -1,0 +1,191 @@
+'<?'          Comment.Preproc
+'whitespace'  Keyword
+' '           Text
+'strip'       Comment.Preproc
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?doc UL4 example for variables types of constants?>' Literal.String.Doc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'None'        Keyword.Constant
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'True'        Keyword.Constant
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'False'       Keyword.Constant
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'0b101010'    Literal.Number.Bin
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'0o52'        Literal.Number.Oct
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'0x2a'        Literal.Number.Hex
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'42'          Literal.Number.Integer
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'42.5'        Literal.Number.Float
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'4.25e1'      Literal.Number.Float
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+"'"           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'\\a'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\f'         Literal.String.Escape
+'\\r'         Literal.String.Escape
+'b'           Literal.String
+'a'           Literal.String
+'z'           Literal.String
+"'"           Literal.String
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'"'           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'\\xff'       Literal.String.Escape
+'\\u3042'     Literal.String.Escape
+'\\U0010ffff' Literal.String.Escape
+'b'           Literal.String
+'a'           Literal.String
+'z'           Literal.String
+'"'           Literal.String
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+"'''"         Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+"'''"         Literal.String
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'@(2000-02-29)' Literal.Date
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'@(2000-02-29T12:34)' Literal.Date
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'@(2000-02-29T12:34:56)' Literal.Date
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'@(2000-02-29T12:34:56.987654)' Literal.Date
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'#fff'        Literal.Color
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'#fff8'       Literal.Color
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'#fff8f0'     Literal.Color
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text
+'#fff8f088'   Literal.Color
+'?>'          Comment.Preproc
+'\n'          Other
