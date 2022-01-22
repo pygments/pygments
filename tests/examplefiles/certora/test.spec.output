@@ -1,0 +1,197 @@
+'methods'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'getTotalFunds' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'returns'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'uint256'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'envfree'     Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ghost'       Keyword
+' '           Text.Whitespace
+'sumAllFunds' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'returns'     Keyword
+' '           Text.Whitespace
+'mathint'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'init_state'  Name
+' '           Text.Whitespace
+'axiom'       Keyword
+' '           Text.Whitespace
+'sumAllFunds' Name
+'('           Punctuation
+')'           Punctuation
+'=='          Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'// for the constructor' Comment.Singleline
+'\n\t'        Text.Whitespace
+'// axiom sumAllFunds() == 0; bad example use this for ' Comment.Singleline
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'hook'        Keyword
+' '           Text.Whitespace
+'Sstore'      Keyword
+' '           Text.Whitespace
+'funds'       Name
+'['           Punctuation
+'KEY'         Name
+' '           Text.Whitespace
+'address'     Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'balance'     Name
+'\n'          Text.Whitespace
+
+'// the old value ↓ already there' Comment.Singleline
+'\n    '      Text.Whitespace
+'('           Punctuation
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'old_balance' Name
+')'           Punctuation
+' '           Text.Whitespace
+'STORAGE'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'havoc'       Keyword
+' '           Text.Whitespace
+'sumAllFunds' Name
+' '           Text.Whitespace
+'assuming'    Keyword
+' '           Text.Whitespace
+'sumAllFunds' Name
+'@'           Keyword
+'new'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'sumAllFunds' Name
+'@'           Keyword
+'old'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+'\n      '    Text.Whitespace
+'balance'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'old_balance' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rule'        Keyword
+' '           Text.Whitespace
+'whoChangedMyGhost' Name
+'('           Punctuation
+'method'      Name
+' '           Text.Whitespace
+'f'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'mathint'     Name
+' '           Text.Whitespace
+'before'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sumAllFunds' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'env'         Name
+' '           Text.Whitespace
+'e'           Name
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'call'        Keyword
+'dataarg'     Name
+' '           Text.Whitespace
+'args'        Name
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'f'           Name
+'('           Punctuation
+'e'           Name
+','           Punctuation
+'args'        Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'mathint'     Name
+' '           Text.Whitespace
+'after'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sumAllFunds' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'assert'      Keyword
+'('           Punctuation
+' '           Text.Whitespace
+'before'      Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'after'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'invariant'   Keyword
+' '           Text.Whitespace
+'sumFunds'    Name
+'('           Punctuation
+')'           Punctuation
+' \n\t'       Text.Whitespace
+'sumAllFunds' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'getTotalFunds' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

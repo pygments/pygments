@@ -75,6 +75,7 @@ LEXERS = {
     'CPSALexer': ('pygments.lexers.lisp', 'CPSA', ('cpsa',), ('*.cpsa',), ()),
     'CSharpAspxLexer': ('pygments.lexers.dotnet', 'aspx-cs', ('aspx-cs',), ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd'), ()),
     'CSharpLexer': ('pygments.lexers.dotnet', 'C#', ('csharp', 'c#', 'cs'), ('*.cs',), ('text/x-csharp',)),
+    'CVLLexer': ('pygments.lexers.certora', 'Certora', ('certora', 'cvl', 'spec'), ('*.spec',), ()),
     'Ca65Lexer': ('pygments.lexers.asm', 'ca65 assembler', ('ca65',), ('*.s',), ()),
     'CadlLexer': ('pygments.lexers.archetype', 'cADL', ('cadl',), ('*.cadl',), ()),
     'CapDLLexer': ('pygments.lexers.esoteric', 'CapDL', ('capdl',), ('*.cdl',), ()),

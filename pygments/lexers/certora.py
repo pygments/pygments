@@ -9,19 +9,22 @@
 """
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import Comment, Keyword, Operator, Punctuation, Text
+from pygments.token import Comment, Keyword, Operator, Punctuation, Text, Name, Number, String, Whitespace
 
-from solidity import SolidityLexer
+from pygments.lexers.solidity import SolidityLexer
 
-__all__ = ['CVLLexerSimple']
+__all__ = ['CVLLexer']
 
-class CVLLexerSimple(RegexLexer):
+x = (words(("mathint", "calldataarg", "storage", "env", "method"), suffix=r'\b'),
+      Keyword.Type)
+
+class CVLLexer(RegexLexer):
     """
     For CVL source code.  Just do comments and highlight keywords
     """
 
     name      = 'Certora'
-    aliases   = ['certora', 'cvl']
+    aliases   = ['certora', 'cvl', 'spec']
     filenames = ['*.spec']
     mimetypes = []
 
@@ -29,9 +32,10 @@ class CVLLexerSimple(RegexLexer):
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'//.*?$', Comment.Singleline),
-            (SolidityLexer.datatypes,Keyword.Type),
-            (words(("mathint", "calldataarg", "storage", "env", "method")),
-                Keyword.Type)
+            (r'\s+', Whitespace),
+            (SolidityLexer.datatype,Keyword.Type),
+#            (words(("mathint", "calldataarg", "storage", "env", "method"), suffix=r'\b'),
+#                Keyword.Type)
             (words(("sort", "mapping", "ghost", "definition", "axiom",
                     "hook", "Sload", "Sstore", "Create", "STORAGE", 
                     "ALWAYS", "CONSTANT", "PER_CALLEE_CONSTANT", "NONDET", "HAVOC_ECF", "HAVOC_ALL", "AUTO", "DISPATCHER",
@@ -62,7 +66,7 @@ class CVLLexerSimple(RegexLexer):
         ],
 
         'comment': [
-            (r'^[*/', Comment.Multiline),
+            (r'[^*/]', Comment.Multiline),
             (r'/\*',  Comment.Multiline, '#push'),
             (r'\*/',  Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
