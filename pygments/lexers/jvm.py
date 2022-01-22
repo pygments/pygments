@@ -893,9 +893,9 @@ class ClojureLexer(RegexLexer):
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+/\d+', Number),
             (r'-?\d+', Number.Integer),
             (r'0x-?[abcdef\d]+', Number.Hex),
-            (r'-?\d+/\d+', Number),
 
             # strings, symbols and characters
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
