@@ -34,6 +34,7 @@ class CplintLexer(PrologLexer):
             (words(('gaussian','uniform_dens','dirichlet','gamma','beta','poisson','binomial','geometric',
               'exponential','pascal','multinomial',
               'uniform','discrete','finite'), suffix=r'\b'),Name.Builtin),
+            (r'([a-z]+)(:)', bygroups(String.Atom, Punctuation)),
             (r':',  Operator),
             (r'::', Operator),
             inherit,
