@@ -42,7 +42,7 @@ class SolidityLexer(RegexLexer):
             include('whitespace'),
             include('comments'),
             (r'\bpragma\s+solidity\b', Keyword, 'pragma'),
-            (r'\b(contract)(\s+)([a-zA-Z_]\w*)',
+            (r'\b(contract|interface)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword, Whitespace, Name.Entity)),
             (datatype + r'(\s+)((?:external|public|internal|private)\s+)?' +
              r'([a-zA-Z_]\w*)',
@@ -63,7 +63,7 @@ class SolidityLexer(RegexLexer):
             (datatype, Keyword.Type),
             include('constants'),
             (r'[a-zA-Z_]\w*', Text),
-            (r'[!<=>+*/-]', Operator),
+            (r'[!<=>+*/-^]', Operator),
             (r'[.;:{}(),\[\]]', Punctuation)
         ],
         'comments': [

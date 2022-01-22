@@ -1,0 +1,166 @@
+'contract'    Keyword
+' '           Text.Whitespace
+'Interest'    Name.Entity
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'days'        Name.Variable
+';'           Operator
+'\n  '        Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'interest'    Name.Variable
+';'           Operator
+'\n  '        Text.Whitespace
+'mapping'     Keyword.Type
+'('           Punctuation
+'address'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'principals'  Text
+';'           Operator
+'\n  '        Text.Whitespace
+'// decimals 18\n' Comment.Single
+
+'  '          Text.Whitespace
+'public'      Keyword.Type
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'constant'    Name.Variable
+' '           Text.Whitespace
+'e'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2718300000000000000' Literal.Number.Decimal
+';'           Operator
+'\n  \n  '    Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'balance'     Name.Variable
+'('           Punctuation
+'address'     Keyword.Type
+' '           Text.Whitespace
+'account'     Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'public'      Keyword.Type
+' '           Text.Whitespace
+'view'        Text
+' '           Text.Whitespace
+'returns'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'uint256'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword.Type
+' '           Text.Whitespace
+'continuous_interest' Text
+'('           Punctuation
+'principals'  Text
+'['           Operator
+'account'     Text
+']'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'interest'    Text
+','           Punctuation
+' '           Text.Whitespace
+'days'        Text
+')'           Punctuation
+';'           Operator
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n  \n  '    Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'advanceDays' Name.Variable
+'('           Punctuation
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'n'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'public'      Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'days'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'days'        Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'n'           Text
+';'           Operator
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n  \n  '    Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'continuous_interest' Name.Variable
+'('           Punctuation
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'p'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'r'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'t'           Name.Variable
+')'           Punctuation
+'\n      '    Text.Whitespace
+'internal'    Keyword.Type
+' '           Text.Whitespace
+'pure'        Text
+' '           Text.Whitespace
+'returns'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'uint256'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword.Type
+' '           Text.Whitespace
+'p'           Text
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'e'           Text
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'r'           Text
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'t'           Text
+')'           Punctuation
+';'           Operator
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

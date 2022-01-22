@@ -35,7 +35,7 @@
 ' '           Text.Whitespace
 'public '     Keyword
 'publicaddress' Name.Variable
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'uint'        Keyword.Type
 ' '           Text.Whitespace
@@ -44,7 +44,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '1234'        Literal.Number.Decimal
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -53,7 +53,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '0x12abcdEF'  Literal.Number.Hex
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'string'      Keyword.Type
 ' '           Text.Whitespace
@@ -62,7 +62,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '\'test "string" value\\\' single\'' Literal.String.Single
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 'string'      Keyword.Type
 ' '           Text.Whitespace
@@ -71,7 +71,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '"test \'string\' value\\" double"' Literal.String.Double
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'enum'        Keyword.Type
 ' '           Text.Whitespace
@@ -94,7 +94,7 @@
 'public'      Keyword.Type
 ' '           Text.Whitespace
 'state'       Text
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'struct'      Keyword.Type
 ' '           Text.Whitespace
@@ -105,12 +105,12 @@
 'string'      Keyword.Type
 ' '           Text.Whitespace
 'name'        Name.Variable
-';'           Punctuation
+';'           Operator
 '\n        '  Text.Whitespace
 'uint8'       Keyword.Type
 ' '           Text.Whitespace
 'type'        Name.Variable
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -125,7 +125,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 'registry'    Text
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'event'       Keyword.Type
 ' '           Text.Whitespace
@@ -135,7 +135,7 @@
 ' '           Text.Whitespace
 'value'       Name.Variable
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 'event'       Keyword.Type
 ' '           Text.Whitespace
@@ -145,7 +145,7 @@
 ' '           Text.Whitespace
 'time'        Name.Variable
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 'event'       Keyword.Type
 ' '           Text.Whitespace
@@ -155,7 +155,7 @@
 ' '           Text.Whitespace
 'value'       Name.Variable
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n\n    '    Text.Whitespace
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -186,29 +186,29 @@
 '{'           Punctuation
 '\n            ' Text.Whitespace
 'name'        Text
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '_name'       Text
 ','           Punctuation
 '\n            ' Text.Whitespace
 'type'        Text
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '_type'       Text
 '\n        '  Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n\n        ' Text.Whitespace
 'registry'    Text
-'['           Punctuation
+'['           Operator
 'msg.sender'  Keyword
-']'           Punctuation
+']'           Operator
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'newItem'     Text
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -244,7 +244,7 @@
 'type'        Text
 ')'           Punctuation
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -269,7 +269,7 @@
 ' '           Text.Whitespace
 'astronaut'   Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'state'       Text
 ' '           Text.Whitespace
@@ -278,13 +278,13 @@
 'State'       Text
 '.'           Punctuation
 'Paid'        Text
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'Paid'        Text
 '('           Punctuation
 'msg.value'   Keyword
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -307,7 +307,7 @@
 ' '           Text.Whitespace
 'arbiter'     Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'require'     Keyword.Type
 '('           Punctuation
@@ -320,7 +320,7 @@
 '.'           Punctuation
 'Paid'        Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'state'       Text
 ' '           Text.Whitespace
@@ -329,13 +329,13 @@
 'State'       Text
 '.'           Punctuation
 'Received'    Text
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'Received'    Text
 '('           Punctuation
 'now'         Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -358,7 +358,7 @@
 ' '           Text.Whitespace
 'shipper'     Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'require'     Keyword.Type
 '('           Punctuation
@@ -371,7 +371,7 @@
 '.'           Punctuation
 'Received'    Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'state'       Text
 ' '           Text.Whitespace
@@ -380,7 +380,7 @@
 'State'       Text
 '.'           Punctuation
 'Withdrawn'   Text
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'Withdraw'    Text
 '('           Punctuation
@@ -388,7 +388,7 @@
 '.'           Punctuation
 'balance'     Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n      '    Text.Whitespace
 'shipper'     Text
 '.'           Punctuation
@@ -398,7 +398,7 @@
 '.'           Punctuation
 'balance'     Text
 ')'           Punctuation
-';'           Punctuation
+';'           Operator
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
