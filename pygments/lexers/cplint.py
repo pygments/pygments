@@ -37,6 +37,12 @@ class CplintLexer(PrologLexer):
             (r'([a-z]+)(:)', bygroups(String.Atom, Punctuation)),
             (r':',  Operator),
             (r'::', Operator),
+            (r'~', Operator),
+            (r'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             r'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             r'(\s*)(:=)',
+             bygroups(Name.Function, Text, Operator)),  # function defn
+             (r':=', Operator),
             inherit,
         ],
     }
