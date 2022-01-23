@@ -1,10 +1,11 @@
 """
-    pygments.lexers.prolog
+    pygments.lexers.cplint
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Prolog and Prolog-like languages.
+    Lexer for the cplint language https://cplint.eu, including CP-logic, Logic Programs with Annotated Disjunctions, 
+    ProbLog and Distributional Clauses syntax
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2022 by Fabrizio Riguzzi
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,7 +21,9 @@ __all__ = ['CplintLexer']
 
 class CplintLexer(PrologLexer):
     """
-    Lexer for Prolog files.
+    Lexer for cplint files, https://cplint.eu, including CP-logic, Logic Programs with Annotated Disjunctions, 
+    ProbLog and Distributional Clauses syntax
+      .. versionadded:: 2.11
     """
     name = 'cplint'
     aliases = ['cplint']
