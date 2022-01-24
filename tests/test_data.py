@@ -11,8 +11,8 @@ import time
 import pytest
 
 from pygments.lexers.data import JsonLexer, JsonBareObjectLexer, JsonLdLexer
-from pygments.token import Token, Punctuation, Text, Number, String, Keyword, \
-        Name, Whitespace
+from pygments.token import Comment, Error, Token, Punctuation, Number, String, \
+        Keyword, Name, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -134,6 +134,64 @@ def test_json_round_trip_errors(lexer_json, text):
 
     tokens = list(lexer_json.get_tokens_unprocessed(text))
     assert ''.join(t[2] for t in tokens) == text
+
+
+def test_json_comments_single_line_positive_matches(lexer_json):
+    """Verify that single-line comments are tokenized correctly."""
+
+    text = '{"a//b"//C1\n:123/////C2\n}\n// // C3'
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert tokens[2] == (7, Comment.Single, "//C1")
+    assert tokens[6] == (16, Comment.Single, "/////C2")
+    assert tokens[10] == (26, Comment.Single, "// // C3")
+
+    comment_count = sum(1 for token in tokens if token[1] == Comment or token[1].parent == Comment)
+    assert comment_count == 3
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
+
+
+def test_json_comments_multiline_positive_matches(lexer_json):
+    """Verify that multiline comments are tokenized correctly."""
+
+    text = '/** / **/{"a /**/ b"/* \n */:123}'
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert tokens[0] == (0, Comment.Multiline, "/** / **/")
+    assert tokens[3] == (20, Comment.Multiline, "/* \n */")
+
+    comment_count = sum(1 for token in tokens if token[1] == Comment or token[1].parent == Comment)
+    assert comment_count == 2
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    (
+        # Unfinished comment openers
+        ('/', (0, Error, '/')),
+        ('1/', (1, Error, '/')),
+        ('/1', (0, Error, '/')),
+        ('""/', (2, Error, '/')),
+        # Unclosed multiline comments
+        ('/*', (0, Error, '/*')),
+        ('/**', (0, Error, '/**')),
+        ('/*/', (0, Error, '/*/')),
+        ('1/*', (1, Error, '/*')),
+        ('""/*', (2, Error, '/*')),
+        ('""/**', (2, Error, '/**')),
+    )
+)
+def test_json_comments_negative_matches(lexer_json, text, expected):
+    """Verify that the unfinished or unclosed comments are parsed as errors."""
+
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert expected in tokens
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
 
 
 def test_json_escape_backtracking(lexer_json):
