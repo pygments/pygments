@@ -35,7 +35,7 @@ class CplintLexer(PrologLexer):
     tokens = {
         'root': [
             (words(('gaussian','uniform_dens','dirichlet','gamma','beta','poisson','binomial','geometric',
-              'exponential','pascal','multinomial',
+              'exponential','pascal','multinomial','user',
               'uniform','discrete','finite'), suffix=r'\b'),Name.Builtin),
             (r'([a-z]+)(:)', bygroups(String.Atom, Punctuation)),
             (r'::', Operator),
