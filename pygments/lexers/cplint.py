@@ -5,7 +5,7 @@
     Lexer for the cplint language https://cplint.eu, including CP-logic, Logic Programs with Annotated Disjunctions, 
     ProbLog and Distributional Clauses syntax
 
-    :copyright: Copyright 2022 by Fabrizio Riguzzi
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
