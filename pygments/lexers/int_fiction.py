@@ -381,10 +381,10 @@ class Inform6Lexer(RegexLexer):
             include('_whitespace'),
             (words((
                 'additive', 'alias', 'buffer', 'class', 'creature', 'data', 'error', 'fatalerror',
-                'first', 'has', 'held', 'initial', 'initstr', 'last', 'long', 'meta', 'multi',
-                'multiexcept', 'multiheld', 'multiinside', 'noun', 'number', 'only', 'private',
-                'replace', 'reverse', 'scope', 'score', 'special', 'string', 'table', 'terminating',
-                'time', 'topic', 'warning', 'with'), suffix=r'\b'),
+                'first', 'has', 'held', 'individual', 'initial', 'initstr', 'last', 'long', 'meta',
+                'multi', 'multiexcept', 'multiheld', 'multiinside', 'noun', 'number', 'only',
+                'private', 'replace', 'reverse', 'scope', 'score', 'special', 'string', 'table',
+                'terminating', 'time', 'topic', 'warning', 'with'), suffix=r'\b'),
              Keyword, '#pop'),
             (r'static\b', Keyword),
             (r'[%s]{1,2}>|[+=]' % _dash, Punctuation, '#pop')
@@ -399,7 +399,8 @@ class Inform6Lexer(RegexLexer):
         ],
         'property-keyword*': [
             include('_whitespace'),
-            (r'(additive|long)\b', Keyword),
+            (words(('additive', 'individual', 'long'), suffix=r'\b(?!(\s*|(![^%s]*))*;)' % _newline),
+             Keyword),
             default('#pop')
         ],
         'trace-keyword?': [
