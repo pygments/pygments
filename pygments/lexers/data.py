@@ -636,16 +636,14 @@ class JsonLexer(Lexer):
                     # Whitespace, Comment, or a quoted string.
                     #
                     # If it's a quoted string we emit Name.Tag.
-                    # Otherwise, we yield the whitespace or comment tokens.
-                    # In all other cases this is invalid JSON.
-                    # This allows for things like '"foo" "bar": "baz"'
-                    # but we're not a validating JSON lexer, so it's OK.
-                    if _token is Whitespace or _token.parent is Comment:
-                        yield _start, _token, _text
-                    elif _token is String.Double:
+                    # Otherwise, we yield the original token.
+                    #
+                    # In all other cases this would be invalid JSON,
+                    # but this is not a validating JSON lexer, so it's OK.
+                    if _token is String.Double:
                         yield _start, Name.Tag, _text
                     else:
-                        yield _start, Error, _text
+                        yield _start, _token, _text
                 queue.clear()
 
                 in_punctuation = True
