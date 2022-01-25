@@ -28,7 +28,7 @@ class CplintLexer(PrologLexer):
     name = 'cplint'
     aliases = ['cplint']
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl']
-    mimetypes = ['text/x-prolog']
+    mimetypes = ['text/x-cplint']
 
     flags = re.UNICODE | re.MULTILINE
 
@@ -38,9 +38,10 @@ class CplintLexer(PrologLexer):
               'exponential','pascal','multinomial',
               'uniform','discrete','finite'), suffix=r'\b'),Name.Builtin),
             (r'([a-z]+)(:)', bygroups(String.Atom, Punctuation)),
-            (r':',  Operator),
             (r'::', Operator),
-            (r'~|~=', Operator),
+            (r':',  Operator),
+            (r'~=', Operator),
+            (r'~', Operator),
             (r'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
              r'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              r'(\s*)(:=)',
