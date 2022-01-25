@@ -4,7 +4,7 @@
 
     Lexer for Robot Framework.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -285,7 +285,7 @@ class KeywordCall(Tokenizer):
 
 
 class GherkinTokenizer:
-    _gherkin_prefix = re.compile('^(Given|When|Then|And) ', re.IGNORECASE)
+    _gherkin_prefix = re.compile('^(Given|When|Then|And|But) ', re.IGNORECASE)
 
     def tokenize(self, value, token):
         match = self._gherkin_prefix.match(value)
