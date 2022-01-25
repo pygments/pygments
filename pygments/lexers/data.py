@@ -604,6 +604,10 @@ class JsonLexer(Lexer):
                     in_comment_multiline = True
                     continue
 
+                # Exhaust the queue. Accept the existing token types.
+                yield from queue
+                queue.clear()
+
                 yield start, Error, text[start:stop]
                 # Fall through so the new character can be evaluated.
 

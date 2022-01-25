@@ -152,7 +152,7 @@ def test_json_string_escapes_positive_match(lexer_json, text):
     assert tokens[0][2] == text
 
 
-@pytest.mark.parametrize('text', ('+\n', '0\n', '""0\n', 'a\nb\n',))
+@pytest.mark.parametrize('text', ('+\n', '0\n', '""0\n', 'a\nb\n', '""/-'))
 def test_json_round_trip_errors(lexer_json, text):
     """Validate that past round-trip errors never crop up again."""
 
