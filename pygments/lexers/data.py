@@ -437,6 +437,12 @@ class JsonLexer(Lexer):
     """
     For JSON data structures.
 
+    Javascript-style comments are supported (like ``/* */`` and ``//``),
+    though comments are not part of the JSON specification.
+    This allows users to highlight JSON as it is used in the wild.
+
+    No validation is performed on the input JSON document.
+
     .. versionadded:: 1.5
     """
 
