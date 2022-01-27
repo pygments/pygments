@@ -285,7 +285,7 @@ class KeywordCall(Tokenizer):
 
 
 class GherkinTokenizer:
-    _gherkin_prefix = re.compile('^(Given|When|Then|And) ', re.IGNORECASE)
+    _gherkin_prefix = re.compile('^(Given|When|Then|And|But) ', re.IGNORECASE)
 
     def tokenize(self, value, token):
         match = self._gherkin_prefix.match(value)

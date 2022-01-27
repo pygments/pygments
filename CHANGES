@@ -7,6 +7,9 @@ Version 2.12.0
 --------------
 (not released yet)
 
+- Added ``plugins`` argument to ``get_all_lexers()``.
+
+
 Version 2.11.2
 --------------
 (released January 6th, 2022)
@@ -20,6 +23,7 @@ Version 2.11.2
 - Remove ``underline`` from ``Whitespace`` style in the ``Tango`` theme (#2020)
 - Fix ``IRC`` and ``Terminal256`` formatters not backtracking correctly for custom token types, resulting in some unstyled tokens (#1986)
 
+
 Version 2.11.1
 --------------
 (released December 31st, 2021)
@@ -29,6 +33,7 @@ Version 2.11.1
   * C-family: Handle return types with multiple tokens (e.g. ``unsigned int``) (#2008)
   * JSON: Fix a regression which caused whitespace before ``:`` to result in ``Error`` tokens (#2010)
   * SPICE: Various improvements (#2009)
+
 
 Version 2.11.0
 --------------
@@ -68,13 +73,13 @@ Version 2.11.0
   * objdump-nasm: Improve handling of ``--no-show-raw-insn`` dumps (#1981)
   * Prolog: Support escaped ``\`` inside quoted strings (#1479)
   * Python:
-  
+
     - Support ``~`` in tracebacks (#2004)
     - Support the pattern matching keywords (#1797, #1994)
 
   * RobotFramework: Improve empty brace handling (#1921, #1922)
   * Terraform
-  
+
     - Add the 'set' type (#1909)
     - Support heredocs (#1909)
 
@@ -130,7 +135,7 @@ Version 2.10.0
   * LLVM (#1824)
   * Python (#1852)
   * Rust
-  
+
     - Fix lexing of "break" and "continue" (#1843)
     - Improve attribute handling (#1813)
 
@@ -215,6 +220,7 @@ Version 2.9.0
 
   * Gruvbox light+dark (#1763)
 
+
 Version 2.8.0
 -------------
 (released February 14, 2021)
@@ -297,6 +303,7 @@ Version 2.8.0
 - Improve ``analyze_text`` logic for ``CBM Basic V2`` (#1607)
 - Improve LaTeX formatter (#1708, #1709)
 
+
 Version 2.7.4
 -------------
 (released January 12, 2021)
@@ -332,6 +339,7 @@ Version 2.7.4
 - Fix incorrect MATLAB example (#1582)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
+
 
 Version 2.7.3
 -------------
