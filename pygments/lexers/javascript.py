@@ -42,7 +42,7 @@ class JavascriptLexer(RegexLexer):
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript']
 
-    flags = re.DOTALL | re.UNICODE | re.MULTILINE
+    flags = re.DOTALL | re.MULTILINE
 
     tokens = {
         'commentsandwhitespace': [
@@ -1439,7 +1439,7 @@ class JuttleLexer(RegexLexer):
     mimetypes = ['application/juttle', 'application/x-juttle',
                  'text/x-juttle', 'text/juttle']
 
-    flags = re.DOTALL | re.UNICODE | re.MULTILINE
+    flags = re.DOTALL | re.MULTILINE
 
     tokens = {
         'commentsandwhitespace': [
@@ -1525,7 +1525,7 @@ class NodeConsoleLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
             if line.startswith('> '):
-                insertions.append((len(curcode), 
+                insertions.append((len(curcode),
                     [(0, Generic.Prompt, line[:2])]))
 
                 curcode += line[2:]
@@ -1534,21 +1534,21 @@ class NodeConsoleLexer(Lexer):
                 code = line.lstrip('.')
                 lead = len(line) - len(code)
 
-                insertions.append((len(curcode), 
+                insertions.append((len(curcode),
                     [(0, Generic.Prompt, line[:lead])]))
 
                 curcode += code
             else:
                 if curcode:
-                    yield from do_insertions(insertions, 
+                    yield from do_insertions(insertions,
                         jslexer.get_tokens_unprocessed(curcode))
 
                     curcode = ''
                     insertions = []
 
-                yield from do_insertions([], 
+                yield from do_insertions([],
                     jslexer.get_tokens_unprocessed(line))
 
         if curcode:
-            yield from do_insertions(insertions, 
+            yield from do_insertions(insertions,
                 jslexer.get_tokens_unprocessed(curcode))

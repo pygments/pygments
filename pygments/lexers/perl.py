@@ -234,7 +234,7 @@ class Perl6Lexer(ExtendedRegexLexer):
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
                  '*.rakutest', '*.rakudoc']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     PERL6_IDENTIFIER_RANGE = r"['\w:-]"
 

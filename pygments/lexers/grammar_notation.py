@@ -144,8 +144,6 @@ class JsgfLexer(RegexLexer):
     filenames = ['*.jsgf']
     mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             include('comments'),

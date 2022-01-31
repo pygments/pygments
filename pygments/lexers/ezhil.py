@@ -26,7 +26,6 @@ class EzhilLexer(RegexLexer):
     aliases = ['ezhil']
     filenames = ['*.n']
     mimetypes = ['text/x-ezhil']
-    flags = re.MULTILINE | re.UNICODE
     # Refer to tamil.utf8.tamil_letters from open-tamil for a stricter version of this.
     # This much simpler version is close enough, and includes combining marks.
     _TALETTERS = '[a-zA-Z_]|[\u0b80-\u0bff]'
@@ -58,8 +57,8 @@ class EzhilLexer(RegexLexer):
         ],
         'literal': [
             (r'".*?"', String),
-            (r'(?u)\d+((\.\d*)?[eE][+-]?\d+|\.\d*)', Number.Float),
-            (r'(?u)\d+', Number.Integer),
+            (r'\d+((\.\d*)?[eE][+-]?\d+|\.\d*)', Number.Float),
+            (r'\d+', Number.Integer),
         ]
     }
 

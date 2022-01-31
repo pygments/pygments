@@ -1299,7 +1299,7 @@ class RacketLexer(RegexLexer):
             (r'#\|', Comment.Multiline, 'block-comment'),
 
             # Whitespaces
-            (r'(?u)\s+', Text),
+            (r'\s+', Text),
 
             # Numbers: Keep in mind Racket reader hash prefixes, which
             # can denote the base or the type. These don't map neatly
@@ -1348,7 +1348,7 @@ class RacketLexer(RegexLexer):
             (r'#(true|false|[tTfF])', Name.Constant, '#pop'),
 
             # Keyword argument names (e.g. #:keyword)
-            (r'(?u)#:%s' % _symbol, Keyword.Declaration, '#pop'),
+            (r'#:%s' % _symbol, Keyword.Declaration, '#pop'),
 
             # Reader extensions
             (r'(#lang |#!)(\S+)',
@@ -1377,9 +1377,9 @@ class RacketLexer(RegexLexer):
             (r'quasiquote(?=[%s])' % _delimiters, Keyword,
              ('#pop', 'quasiquoted-datum')),
             (_opening_parenthesis, Punctuation, ('#pop', 'unquoted-list')),
-            (words(_keywords, prefix='(?u)', suffix='(?=[%s])' % _delimiters),
+            (words(_keywords, suffix='(?=[%s])' % _delimiters),
              Keyword, '#pop'),
-            (words(_builtins, prefix='(?u)', suffix='(?=[%s])' % _delimiters),
+            (words(_builtins, suffix='(?=[%s])' % _delimiters),
              Name.Builtin, '#pop'),
             (_symbol, Name, '#pop'),
             include('datum*')
@@ -1435,7 +1435,7 @@ class NewLispLexer(RegexLexer):
     filenames = ['*.lsp', '*.nl', '*.kif']
     mimetypes = ['text/x-newlisp', 'application/x-newlisp']
 
-    flags = re.IGNORECASE | re.MULTILINE | re.UNICODE
+    flags = re.IGNORECASE | re.MULTILINE
 
     # list of built-in functions for newLISP version 10.3
     builtins = (

@@ -29,8 +29,6 @@ class NixLexer(RegexLexer):
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
 
-    flags = re.MULTILINE | re.UNICODE
-
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']
     builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',

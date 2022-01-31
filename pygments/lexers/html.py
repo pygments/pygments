@@ -195,7 +195,7 @@ class XmlLexer(RegexLexer):
     Generic lexer for XML (eXtensible Markup Language).
     """
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'
     aliases = ['xml']
@@ -208,7 +208,7 @@ class XmlLexer(RegexLexer):
         'root': [
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),
-            (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),            
+            (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             (r'<!--(.|\n)*?-->', Comment.Multiline),
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),

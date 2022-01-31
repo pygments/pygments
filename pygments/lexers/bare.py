@@ -26,8 +26,6 @@ class BareLexer(RegexLexer):
     filenames = ['*.bare']
     aliases = ['bare']
 
-    flags = re.MULTILINE | re.UNICODE
-
     keywords = [
         'type',
         'enum',

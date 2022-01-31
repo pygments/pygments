@@ -28,8 +28,6 @@ class SpiceLexer(RegexLexer):
     aliases = ['spice', 'spicelang']
     mimetypes = ['text/x-spice']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             (r'\n', Whitespace),

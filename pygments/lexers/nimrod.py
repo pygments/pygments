@@ -29,7 +29,7 @@ class NimrodLexer(RegexLexer):
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
 
-    flags = re.MULTILINE | re.IGNORECASE | re.UNICODE
+    flags = re.MULTILINE | re.IGNORECASE
 
     def underscorize(words):
         newWords = []

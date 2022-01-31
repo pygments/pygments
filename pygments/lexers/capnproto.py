@@ -26,8 +26,6 @@ class CapnProtoLexer(RegexLexer):
     filenames = ['*.capnp']
     aliases = ['capnp']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),

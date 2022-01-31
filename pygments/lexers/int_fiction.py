@@ -30,7 +30,7 @@ class Inform6Lexer(RegexLexer):
     aliases = ['inform6', 'i6']
     filenames = ['*.inf']
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     _name = r'[a-zA-Z_]\w*'
 
@@ -537,7 +537,7 @@ class Inform7Lexer(RegexLexer):
     aliases = ['inform7', 'i7']
     filenames = ['*.ni', '*.i7x']
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     _dash = Inform6Lexer._dash
     _dquote = Inform6Lexer._dquote
