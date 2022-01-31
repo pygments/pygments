@@ -28,8 +28,6 @@ class GoLexer(RegexLexer):
     aliases = ['go', 'golang']
     mimetypes = ['text/x-gosrc']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             (r'\n', Whitespace),

@@ -513,8 +513,8 @@ class TransactSqlLexer(RegexLexer):
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
 
-    # Use re.UNICODE to allow non ASCII letters in names.
-    flags = re.IGNORECASE | re.UNICODE
+    flags = re.IGNORECASE
+
     tokens = {
         'root': [
             (r'\s+', Whitespace),

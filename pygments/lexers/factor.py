@@ -28,8 +28,6 @@ class FactorLexer(RegexLexer):
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']
 
-    flags = re.MULTILINE | re.UNICODE
-
     builtin_kernel = words((
         '-rot', '2bi', '2bi@', '2bi*', '2curry', '2dip', '2drop', '2dup', '2keep', '2nip',
         '2over', '2tri', '2tri@', '2tri*', '3bi', '3curry', '3dip', '3drop', '3dup', '3keep',

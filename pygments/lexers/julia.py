@@ -38,8 +38,6 @@ class JuliaLexer(RegexLexer):
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             (r'\n', Text),

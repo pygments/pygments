@@ -48,8 +48,6 @@ class MesonLexer(RegexLexer):
     filenames = ['meson.build', 'meson_options.txt']
     mimetypes = ['text/x-meson']
 
-    flags = re.MULTILINE | re.UNICODE
-
     tokens = {
         'root': [
             (r'#.*?$', Comment),
