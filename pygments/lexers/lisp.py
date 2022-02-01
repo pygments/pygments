@@ -45,6 +45,17 @@ class SchemeLexer(RegexLexer):
     # but this should be good enough for now
     valid_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
+    # Use within verbose regexes
+    token_end = r'''
+      (?=
+        \s         # whitespace
+        | ;        # comment
+        | \#[;|!] # fancy comments
+        | [)\]]    # end delimiters
+        | $        # end of file
+      )
+    '''
+
     # Recognizing builtins.
     def get_tokens_unprocessed(self, text):
         for index, token, value in super().get_tokens_unprocessed(text):
@@ -152,13 +163,7 @@ class SchemeLexer(RegexLexer):
           # Need to ensure we have a full token. 1+ is not a
           # number followed by something else, but a function
           # name.
-          (?=
-            \s         # whitespace
-            | ;        # comment
-            | \#[;|!] # fancy comments
-            | [)\]]    # end delimiters
-            | $        # end of file
-          )
+          {token_end}
         '''
 
         number_rules[base] = num
@@ -201,7 +206,9 @@ class SchemeLexer(RegexLexer):
             # multi-line comment
             (r'#\|', Comment.Multiline, 'multiline-comment'),
             # commented form (entire sexpr following)
-            (r'#;\s*\(', Comment, 'commented-form'),
+            (r'#;[([]', Comment, 'commented-form'),
+            # commented datum
+            (r'#;', Comment, 'commented-datum'),
             # signifies that the program text that follows is written with the
             # lexical and datum syntax described in r6rs
             (r'#!r6rs', Comment),
@@ -243,11 +250,11 @@ class SchemeLexer(RegexLexer):
 
             # Push scheme-root to enter a state that will parse as many things
             # as needed in the parentheses.
-            (r'\(|\[', Punctuation, 'scheme-root'),
+            (r'[([]', Punctuation, 'scheme-root'),
             # Pop one 'value', one 'scheme-root', and yet another 'value', so
             # we get back to a state parsing expressions as needed in the
             # enclosing context.
-            (r'\)|\]', Punctuation, '#pop:3'),
+            (r'[)\]]', Punctuation, '#pop:3'),
         ],
         'multiline-comment': [
             (r'#\|', Comment.Multiline, '#push'),
@@ -256,9 +263,12 @@ class SchemeLexer(RegexLexer):
             (r'[|#]', Comment.Multiline),
         ],
         'commented-form': [
-            (r'\(', Comment, '#push'),
-            (r'\)', Comment, '#pop'),
-            (r'[^()]+', Comment),
+            (r'[([]', Comment, '#push'),
+            (r'[)\]]', Comment, '#pop'),
+            (r'[^()[\]]+', Comment),
+        ],
+        'commented-datum': [
+            (rf'(?x).*?{token_end}', Comment, '#pop'),
         ],
         'string': [
             # Pops back from 'string', and pops 'value' as well.

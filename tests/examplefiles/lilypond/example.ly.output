@@ -11,7 +11,7 @@
 '% it with Guile 1 (as in official releases as of this writing),' Comment.Single
 '\n'          Whitespace
 
-'% remove the "commented form" below.' Comment.Single
+'% remove the "commented forms" below.' Comment.Single
 '\n\n'        Whitespace
 
 '%{\n  All supported constructs are covered in\n  this file.  For example, multi-line comments.\n\n  These are non-nested. The following will\n  end the whole comment:\n  %{ %}' Comment.Multiline
@@ -111,8 +111,13 @@
 '#'           Punctuation
 ' '           Text
 '#;('         Comment
-'This is a commented form. After it, we are still in Scheme mode.' Comment
+'This is a commented form. There is another just after.' Comment
 ')'           Comment
+'\n  '        Text
+'#;'          Comment
+'+inf.0'      Comment
+'\n  '        Text
+';; After these comments, we are still in Scheme mode.' Comment.Single
 '\n'          Text
 
 '('           Punctuation
