@@ -131,13 +131,14 @@
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
-'let* '       Keyword
+'let*'        Keyword
+' '           Text
 '('           Punctuation
 '('           Punctuation
 'repeated'    Name.Function
 ' '           Text
 '('           Punctuation
-'make-list'   Name.Function
+'make-list'   Name.Builtin.SchemeBuiltin
 ' '           Text
 'n'           Name.Variable
 ' '           Text
@@ -149,7 +150,8 @@
 'copied'      Name.Function
 ' '           Text
 '('           Punctuation
-'map '        Name.Builtin.SchemeBuiltin
+'map'         Name.Builtin.SchemeBuiltin
+' '           Text
 'ly:music-deep-copy' Name.Builtin.SchemeFunction
 ' '           Text
 'repeated'    Name.Variable
@@ -301,7 +303,7 @@
 
 '#'           Punctuation
 '('           Punctuation
-'symbol->string' Name.Variable
+'symbol->string' Name.Builtin.SchemeBuiltin
 ' '           Text
 "'some-symbol" Literal.String.Symbol
 ')'           Punctuation
