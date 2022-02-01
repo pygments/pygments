@@ -8,11 +8,13 @@
 '\n\n'        Text
 
 '('           Punctuation
-'define '     Keyword
+'define'      Keyword
+' '           Text
 'fact'        Name.Variable
 '\n\n  '      Text
 '('           Punctuation
-'lambda '     Keyword
+'lambda'      Keyword
+' '           Text
 '('           Punctuation
 'n'           Name.Function
 ')'           Punctuation
@@ -20,9 +22,11 @@
 ';; base case' Comment.Single
 '\n\n    '    Text
 '('           Punctuation
-'if '         Keyword
+'if'          Keyword
+' '           Text
 '('           Punctuation
-'= '          Name.Builtin
+'='           Name.Builtin
+' '           Text
 'n'           Name.Variable
 ' '           Text
 '0'           Literal.Number.Integer
@@ -37,14 +41,16 @@
 '; identity of *' Comment.Single
 '\n\n        ' Text
 '('           Punctuation
-'* '          Name.Builtin
+'*'           Name.Builtin
+' '           Text
 'n'           Name.Variable
 ' '           Text
 '('           Punctuation
 'fact'        Name.Function
 ' '           Text
 '('           Punctuation
-'- '          Name.Builtin
+'-'           Name.Builtin
+' '           Text
 'n'           Name.Variable
 ' '           Text
 '1'           Literal.Number.Integer
