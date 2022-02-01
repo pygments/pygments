@@ -284,7 +284,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 '\n    '      Text
-'"`feature?\' is deprecated.  Use `provided?\' instead."' Literal.String
+'"'           Literal.String
+"`feature?' is deprecated.  Use `provided?' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -313,7 +315,9 @@
 '('           Punctuation
 'primitive-load-path' Name.Function
 ' '           Text
-'"ice-9/r4rs.scm"' Literal.String
+'"'           Literal.String
+'ice-9/r4rs.scm' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\n\x0c\n'  Text
 
@@ -363,7 +367,9 @@
 '\n  '        Text
 '('           Punctuation
 'display '    Name.Builtin
-'";;; "'      Literal.String
+'"'           Literal.String
+';;; '        Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n  '        Text
 '('           Punctuation
@@ -422,7 +428,9 @@
 '\n      '    Text
 '('           Punctuation
 'display '    Name.Builtin
-'";;; WARNING "' Literal.String
+'"'           Literal.String
+';;; WARNING ' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n      '    Text
 '('           Punctuation
@@ -557,7 +565,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 ' '           Text
-'"`id\' is deprecated.  Use `identity\' instead."' Literal.String
+'"'           Literal.String
+"`id' is deprecated.  Use `identity' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -579,7 +589,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 ' '           Text
-'"`-1+\' is deprecated.  Use `1-\' instead."' Literal.String
+'"'           Literal.String
+"`-1+' is deprecated.  Use `1-' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -603,7 +615,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 ' '           Text
-'"`return-it\' is deprecated.  Use `noop\' instead."' Literal.String
+'"'           Literal.String
+"`return-it' is deprecated.  Use `noop' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -775,7 +789,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 ' '           Text
-'"`string-character-length\' is deprecated.  Use `string-length\' instead."' Literal.String
+'"'           Literal.String
+"`string-character-length' is deprecated.  Use `string-length' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -797,7 +813,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 ' '           Text
-'"`flags\' is deprecated.  Use `logior\' instead."' Literal.String
+'"'           Literal.String
+"`flags' is deprecated.  Use `logior' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -1069,7 +1087,9 @@
 '('           Punctuation
 'primitive-load-path' Name.Function
 ' '           Text
-'"ice-9/arrays.scm"' Literal.String
+'"'           Literal.String
+'ice-9/arrays.scm' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\n\x0c\n'  Text
@@ -1383,7 +1403,9 @@
 '('           Punctuation
 'make-vtable-vtable' Name.Function
 ' '           Text
-'"prpr"'      Literal.String
+'"'           Literal.String
+'prpr'        Literal.String
+'"'           Literal.String
 ' '           Text
 '0'           Literal.Number.Integer
 '\n\t\t      ' Text
@@ -1407,7 +1429,9 @@
 '\n\t\t\t       ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'"#<record-type-vtable>"' Literal.String
+'"'           Literal.String
+'#<record-type-vtable>' Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1418,7 +1442,9 @@
 '\n\t\t\t       ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'"#<record-type "' Literal.String
+'"'           Literal.String
+'#<record-type ' Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1436,7 +1462,9 @@
 '\n\t\t\t       ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'">"'         Literal.String
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1540,7 +1568,9 @@
 'f'           Name.Function
 ')'           Punctuation
 ' '           Text
-'"pw"'        Literal.String
+'"'           Literal.String
+'pw'          Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ' '           Text
 'fields'      Name.Variable
@@ -1562,7 +1592,9 @@
 '\n\t\t\t\t     ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'"#<"'        Literal.String
+'"'           Literal.String
+'#<'          Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1606,7 +1638,9 @@
 '\n\t\t\t\t\t ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'" "'         Literal.String
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1623,7 +1657,9 @@
 '\n\t\t\t\t\t ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'": "'        Literal.String
+'"'           Literal.String
+': '          Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -1662,7 +1698,9 @@
 '\n\t\t\t\t     ' Text
 '('           Punctuation
 'display '    Name.Builtin
-'">"'         Literal.String
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
 ' '           Text
 'p'           Name.Variable
 ')'           Punctuation
@@ -2616,7 +2654,9 @@
 '('           Punctuation
 'primitive-load-path' Name.Function
 ' '           Text
-'"ice-9/posix.scm"' Literal.String
+'"'           Literal.String
+'ice-9/posix.scm' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\n'        Text
@@ -2632,7 +2672,9 @@
 '('           Punctuation
 'primitive-load-path' Name.Function
 ' '           Text
-'"ice-9/networking.scm"' Literal.String
+'"'           Literal.String
+'ice-9/networking.scm' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\n'        Text
@@ -2797,7 +2839,9 @@
 'string-append ' Name.Builtin
 'str'         Name.Variable
 ' '           Text
-'"/."'        Literal.String
+'"'           Literal.String
+'/.'          Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t\t\t\t\t ' Text
 'OPEN_READ'   Name.Variable
@@ -2970,7 +3014,9 @@
 ' '           Text
 '#f'          Name.Constant
 ' '           Text
-'"?"'         Literal.String
+'"'           Literal.String
+'?'           Literal.String
+'"'           Literal.String
 ' '           Text
 '#f'          Name.Constant
 ' '           Text
@@ -2985,7 +3031,9 @@
 '('           Punctuation
 'msg'         Name.Function
 ' '           Text
-'"~A"'        Literal.String
+'"'           Literal.String
+'~A'          Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t '     Text
 '('           Punctuation
@@ -3015,7 +3063,9 @@
 'string-append ' Name.Builtin
 'msg'         Name.Variable
 ' '           Text
-'" ~S"'       Literal.String
+'"'           Literal.String
+' ~S'         Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t  '    Text
 '('           Punctuation
@@ -3109,7 +3159,9 @@
 'apply '      Name.Builtin
 'error'       Name.Variable
 ' '           Text
-'"unhandled-exception:"' Literal.String
+'"'           Literal.String
+'unhandled-exception:' Literal.String
+'"'           Literal.String
 ' '           Text
 'key'         Name.Variable
 ' '           Text
@@ -3869,7 +3921,9 @@
 ' '           Text
 'port/fd'     Name.Variable
 ' '           Text
-'"r"'         Literal.String
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
 ' '           Text
 'maybe-fd'    Name.Variable
 ')'           Punctuation
@@ -3894,7 +3948,9 @@
 ' '           Text
 'port/fd'     Name.Variable
 ' '           Text
-'"w"'         Literal.String
+'"'           Literal.String
+'w'           Literal.String
+'"'           Literal.String
 ' '           Text
 'maybe-fd'    Name.Variable
 ')'           Punctuation
@@ -4010,7 +4066,9 @@
 ' '           Text
 'fdes'        Name.Variable
 ' '           Text
-'"r"'         Literal.String
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -4125,7 +4183,9 @@
 ' '           Text
 'fdes'        Name.Variable
 ' '           Text
-'"w"'         Literal.String
+'"'           Literal.String
+'w'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -4251,7 +4311,9 @@
 'string-append ' Name.Builtin
 'name'        Name.Variable
 ' '           Text
-'"="'         Literal.String
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
 ' '           Text
 'value'       Name.Variable
 ')'           Punctuation
@@ -4287,7 +4349,9 @@
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
-'".scm"'      Literal.String
+'"'           Literal.String
+'.scm'        Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\n'        Text
@@ -4367,9 +4431,12 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n\t\t       ' Text
-'""'          Literal.String
+'"'           Literal.String
+'"'           Literal.String
 '\n\t\t       ' Text
-'"/"'         Literal.String
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t   '   Text
 'file'        Name.Variable
@@ -4425,7 +4492,9 @@
 '('           Punctuation
 'getenv'      Name.Function
 ' '           Text
-'"HOME"'      Literal.String
+'"'           Literal.String
+'HOME'        Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t   '   Text
 '('           Punctuation
@@ -4444,7 +4513,9 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n\t\t   '   Text
-'"/"'         Literal.String
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '  '          Text
@@ -4458,7 +4529,9 @@
 ' '           Text
 'home'        Name.Variable
 ' '           Text
-'".guile"'    Literal.String
+'"'           Literal.String
+'.guile'      Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -5804,7 +5877,9 @@
 '('           Punctuation
 'error'       Name.Function
 '\n                         ' Text
-'"#. read expansion found and read-eval? is #f."' Literal.String
+'"'           Literal.String
+'#. read expansion found and read-eval? is #f.' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -6194,7 +6269,9 @@
 'cons '       Name.Builtin
 '('           Punctuation
 'string-append ' Name.Builtin
-'"-"'         Literal.String
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
 ' '           Text
 'rest-car'    Name.Variable
 ')'           Punctuation
@@ -6506,17 +6583,22 @@
 '\n\t\t\t      ' Text
 '('           Punctuation
 'string-append ' Name.Builtin
-'"<"'         Literal.String
+'"'           Literal.String
+'<'           Literal.String
+'"'           Literal.String
 ' '           Text
 '('           Punctuation
 'car '        Name.Builtin
 'opts'        Name.Variable
 ')'           Punctuation
 ' '           Text
-'">"'         Literal.String
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n\t\t\t      ' Text
-'""'          Literal.String
+'"'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\t\t'      Text
@@ -6553,7 +6635,9 @@
 ' '           Text
 '('           Punctuation
 'display '    Name.Builtin
-'" "'         Literal.String
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 '\n\t\t\t\t     ' Text
@@ -6609,7 +6693,10 @@
 '#\\ '        Literal.String.Char
 ')'           Punctuation
 '\n\t\t\t\t ' Text
-'"\\n\\t"'    Literal.String
+'"'           Literal.String
+'\\n'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -7127,7 +7214,9 @@
 '\n  '        Text
 '('           Punctuation
 'display '    Name.Builtin
-'"#<"'        Literal.String
+'"'           Literal.String
+'#<'          Literal.String
+'"'           Literal.String
 ' '           Text
 'port'        Name.Variable
 ')'           Punctuation
@@ -7142,7 +7231,9 @@
 'mod'         Name.Variable
 ')'           Punctuation
 ' '           Text
-'"module"'    Literal.String
+'"'           Literal.String
+'module'      Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ' '           Text
 'port'        Name.Variable
@@ -7171,7 +7262,9 @@
 '\n\t  '      Text
 '('           Punctuation
 'display '    Name.Builtin
-'" "'         Literal.String
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
 ' '           Text
 'port'        Name.Variable
 ')'           Punctuation
@@ -7188,7 +7281,9 @@
 '\n  '        Text
 '('           Punctuation
 'display '    Name.Builtin
-'" "'         Literal.String
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
 ' '           Text
 'port'        Name.Variable
 ')'           Punctuation
@@ -7211,7 +7306,9 @@
 '\n  '        Text
 '('           Punctuation
 'display '    Name.Builtin
-'">"'         Literal.String
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
 ' '           Text
 'port'        Name.Variable
 ')'           Punctuation
@@ -7356,7 +7453,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Too many args to make-module."' Literal.String
+'"'           Literal.String
+'Too many args to make-module.' Literal.String
+'"'           Literal.String
 ' '           Text
 'args'        Name.Variable
 ')'           Punctuation
@@ -7417,7 +7516,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Illegal size to make-module."' Literal.String
+'"'           Literal.String
+'Illegal size to make-module.' Literal.String
+'"'           Literal.String
 ' '           Text
 'size'        Name.Variable
 ')'           Punctuation
@@ -7447,7 +7548,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Incorrect use list."' Literal.String
+'"'           Literal.String
+'Incorrect use list.' Literal.String
+'"'           Literal.String
 ' '           Text
 'uses'        Name.Variable
 ')'           Punctuation
@@ -7471,7 +7574,9 @@
 '('           Punctuation
 'error'       Name.Function
 '\n\t     '   Text
-'"Lazy-binder expected to be a procedure or #f."' Literal.String
+'"'           Literal.String
+'Lazy-binder expected to be a procedure or #f.' Literal.String
+'"'           Literal.String
 ' '           Text
 'binder'      Name.Variable
 ')'           Punctuation
@@ -7898,7 +8003,9 @@
 '('           Punctuation
 'issue-deprecation-warning' Name.Function
 '\n    '      Text
-'"`eval-in-module\' is deprecated.  Use `eval\' instead."' Literal.String
+'"'           Literal.String
+"`eval-in-module' is deprecated.  Use `eval' instead." Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
@@ -8922,7 +9029,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Locally unbound variable."' Literal.String
+'"'           Literal.String
+'Locally unbound variable.' Literal.String
+'"'           Literal.String
 ' '           Text
 'v'           Name.Variable
 ')'           Punctuation
@@ -9011,7 +9120,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Unbound variable."' Literal.String
+'"'           Literal.String
+'Unbound variable.' Literal.String
+'"'           Literal.String
 ' '           Text
 'v'           Name.Variable
 ')'           Punctuation
@@ -9287,7 +9398,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"Bad variable to module-add!"' Literal.String
+'"'           Literal.String
+'Bad variable to module-add!' Literal.String
+'"'           Literal.String
 ' '           Text
 'var'         Name.Variable
 ')'           Punctuation
@@ -9915,7 +10028,9 @@
 'oldname'     Name.Variable
 ')'           Punctuation
 ' '           Text
-'"."'         Literal.String
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -9928,7 +10043,9 @@
 'oldname'     Name.Variable
 ')'           Punctuation
 ' '           Text
-'"/"'         Literal.String
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
 ' '           Text
 'filename'    Name.Variable
 ')'           Punctuation
@@ -10019,7 +10136,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"No variable named"' Literal.String
+'"'           Literal.String
+'No variable named' Literal.String
+'"'           Literal.String
 ' '           Text
 'name'        Name.Variable
 ' '           Text
@@ -10099,7 +10218,9 @@
 '('           Punctuation
 'error'       Name.Function
 ' '           Text
-'"No variable named"' Literal.String
+'"'           Literal.String
+'No variable named' Literal.String
+'"'           Literal.String
 ' '           Text
 'name'        Name.Variable
 ' '           Text
