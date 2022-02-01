@@ -2,7 +2,11 @@
 '\n\n'        Text
 
 '#|'          Comment.Multiline
-'\n\n   The FACT procedure computes the factorial\n\n   of a non-negative integer.\n\n' Comment.Multiline
+'\n\n   The FACT procedure computes the factorial\n\n   of a non-negative integer.\n\n   ' Comment.Multiline
+'#|'          Comment.Multiline
+' These comments can be nested too. ' Comment.Multiline
+'|#'          Comment.Multiline
+'\n\n'        Comment.Multiline
 
 '|#'          Comment.Multiline
 '\n\n'        Text
@@ -35,9 +39,38 @@
 '#;('         Comment
 '= n 1'       Comment
 ')'           Comment
-'\n\n        ' Text
+'\n        '  Text
+'#;('         Comment
+'= n '        Comment
+'['           Comment
+'1+ '         Comment
+'('           Comment
+"eval '"      Comment
+'('           Comment
+'n'           Comment
+')'           Comment
+')'           Comment
+']'           Comment
+')'           Comment
 '1'           Literal.Number.Integer
-'       '     Text
+'\n        '  Text
+'#;['         Comment
+'= n '        Comment
+'('           Comment
+'1+ '         Comment
+'['           Comment
+"eval '"      Comment
+'['           Comment
+'n'           Comment
+']'           Comment
+']'           Comment
+')'           Comment
+']'           Comment
+';; another comment' Comment.Single
+'\n        '  Text
+'#;'          Comment
+'1'           Comment
+'\n        '  Text
 '; identity of *' Comment.Single
 '\n\n        ' Text
 '('           Punctuation
