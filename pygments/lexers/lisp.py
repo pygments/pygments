@@ -95,6 +95,124 @@ class SchemeLexer(RegexLexer):
     # but this should be good enough for now
     valid_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
+    # Scheme has funky syntactic rules for numbers. These are all
+    # valid number literals: 5.0e55|14, 14/13, -1+5j, +1@5, #b110,
+    # #o#Iinf.0-nan.0i.  This is adapted from the formal grammar given
+    # in http://www.r6rs.org/final/r6rs.pdf, section 4.2.1.  Take a
+    # deep breath ...
+
+    # It would be simpler if we could just not bother about invalid
+    # numbers like #b35. But we cannot parse 'abcdef' without #x as a
+    # number.
+
+    number_rules = {}
+    for base in (2, 8, 10, 16):
+        if base == 2:
+            digit = r'[01]'
+            radix = r'( \#[bB] )'
+        elif base == 8:
+            digit = r'[0-7]'
+            radix = r'( \#[oO] )'
+        elif base == 10:
+            digit = r'[0-9]'
+            radix = r'( (\#[dD])? )'
+        elif base == 16:
+            digit = r'[0-9a-fA-F]'
+            radix = r'( \#[xX] )'
+
+        # Radix, optional exactness indicator.
+        prefix = rf'''
+          (
+            {radix} (\#[iIeE])?
+            | \#[iIeE] {radix}
+          )
+        '''
+
+        # Simple unsigned number or fraction.
+        ureal = rf'''
+          (
+            {digit}+
+            ( / {digit}+ )?
+          )
+        '''
+
+        # Add decimal numbers.
+        if base == 10:
+            decimal = r'''
+              (
+                # Decimal part
+                (
+                  [0-9]+ ([.][0-9]*)?
+                  | [.][0-9]+
+                )
+
+                # Optional exponent
+                (
+                  [eEsSfFdDlL] [+-]? [0-9]+
+                )?
+
+                # Optional mantissa width
+                (
+                  \|[0-9]+
+                )?
+              )
+            '''
+            ureal = rf'''
+              (
+                {decimal} (?!/)
+                | {ureal}
+              )
+            '''
+
+        naninf = r'(nan.0|inf.0)'
+
+        real = rf'''
+          (
+            [+-] {naninf}  # Sign mandatory
+            | [+-]? {ureal}    # Sign optional
+          )
+        '''
+
+        complex_ = rf'''
+          (
+            {real}?  [+-]  ({naninf}|{ureal})?  i
+            | {real} (@ {real})?
+
+          )
+        '''
+
+        num = rf'''(?x)
+          (
+            {prefix}
+            {complex_}
+          )
+          # Need to ensure we have a full token. 1+ is not a
+          # number followed by something else, but a function
+          # name.
+          (?=
+            \s         # whitespace
+            | ;        # comment
+            | \#[;|!] # fancy comments
+            | [)\]]    # end delimiters
+            | $        # end of file
+          )
+        '''
+
+        number_rules[base] = num
+
+    # If you have a headache now, say thanks to RnRS editors.
+
+    # Doing it this way is simpler than splitting the number(10)
+    # regex in a floating-point and a no-floating-point version.
+    def decimal_cb(self, match):
+        if '.' in match.group():
+            token_type = Number.Float # includes [+-](inf|nan).0
+        else:
+            token_type = Number.Integer
+        yield match.start(), token_type, match.group()
+
+    # --
+
     # The 'scheme-root' state parses as many expressions as needed, always
     # delegating to the 'scheme-value' state. The latter parses one complete
     # expression and immediately pops back. This is needed for the LilyPondLexer.
@@ -129,11 +247,10 @@ class SchemeLexer(RegexLexer):
             (r'\s+', Text),
 
             # numbers
-            (r'-?\d+\.\d+', Number.Float, '#pop'),
-            (r'-?\d+', Number.Integer, '#pop'),
-            # support for uncommon kinds of numbers -
-            # have to figure out what the characters mean
-            # (r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
+            (number_rules[2], Number.Bin, '#pop'),
+            (number_rules[8], Number.Oct, '#pop'),
+            (number_rules[10], decimal_cb, '#pop'),
+            (number_rules[16], Number.Hex, '#pop'),
 
             # strings, symbols and characters
             (r'"', String, 'string'),

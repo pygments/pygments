@@ -476,8 +476,7 @@
 '('           Punctuation
 'define '     Keyword
 '('           Punctuation
-'1'           Literal.Number.Integer
-'+'           Name.Variable
+'1+'          Name.Function
 ' '           Text
 'n'           Name.Variable
 ')'           Punctuation
@@ -494,8 +493,7 @@
 '('           Punctuation
 'define '     Keyword
 '('           Punctuation
-'1'           Literal.Number.Integer
-'-'           Name.Variable
+'1-'          Name.Function
 ' '           Text
 'n'           Name.Variable
 ')'           Punctuation
@@ -580,8 +578,7 @@
 '('           Punctuation
 'define '     Keyword
 '('           Punctuation
-'-1'          Literal.Number.Integer
-'+'           Name.Variable
+'-1+'         Name.Function
 ' '           Text
 'n'           Name.Variable
 ')'           Punctuation
@@ -595,8 +592,7 @@
 ')'           Punctuation
 '\n   '       Text
 '('           Punctuation
-'1'           Literal.Number.Integer
-'-'           Name.Variable
+'1-'          Name.Function
 ' '           Text
 'n'           Name.Variable
 ')'           Punctuation
@@ -5609,14 +5605,14 @@
 '\n      '    Text
 '('           Punctuation
 '* '          Name.Builtin
-'-i'          Name.Variable
+'-i'          Literal.Number.Integer
 ' '           Text
 '('           Punctuation
 'asinh'       Name.Function
 ' '           Text
 '('           Punctuation
 '* '          Name.Builtin
-'+i'          Name.Variable
+'+i'          Literal.Number.Integer
 ' '           Text
 'z'           Name.Variable
 ')'           Punctuation
@@ -5677,14 +5673,14 @@
 ' '           Text
 '('           Punctuation
 '* '          Name.Builtin
-'+i'          Name.Variable
+'+i'          Literal.Number.Integer
 ' '           Text
 '('           Punctuation
 'asinh'       Name.Function
 ' '           Text
 '('           Punctuation
 '* '          Name.Builtin
-'+i'          Name.Variable
+'+i'          Literal.Number.Integer
 ' '           Text
 'z'           Name.Variable
 ')'           Punctuation
@@ -5734,21 +5730,21 @@
 '/ '          Name.Builtin
 '('           Punctuation
 '- '          Name.Builtin
-'+i'          Name.Variable
+'+i'          Literal.Number.Integer
 ' '           Text
 'z'           Name.Variable
 ')'           Punctuation
 ' '           Text
 '('           Punctuation
 '+ '          Name.Builtin
-'+i'          Name.Variable
+'+i'          Literal.Number.Integer
 ' '           Text
 'z'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text
-'+2i'         Name.Variable
+'+2i'         Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 '\n      '    Text

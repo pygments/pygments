@@ -1,0 +1,169 @@
+---input---
+;; All sorts of numbers, common and less common.
+
+0
+142
+-142
++142
+-0.5
++0.5
+-0.5e-10
++0.5e10
+0.5e+10
+.5F+10
+.123
+123.
+123.L-25|54
++inf.0
+-inf.0
+#b+nan.0-inf.0i
+1-2i
+1-i
++i
+-5f24@3.14159
+4/5
+5.4e5@4
+#i5
+#o5
+#i#o5
+#o#i5
+#b01/10
+#x0f42a
+#E#b01/10
+#d#I01/10
+#i-324@3.14159
+#o#I01/1022-inf.0i
+
+;; These are not numbers but plain symbols.
+
+1+
+1-
+i
+inf
+-inf
+nan
+-nan
+
+---tokens---
+';; All sorts of numbers, common and less common.' Comment.Single
+'\n\n'        Text
+
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'142'         Literal.Number.Integer
+'\n'          Text
+
+'-142'        Literal.Number.Integer
+'\n'          Text
+
+'+142'        Literal.Number.Integer
+'\n'          Text
+
+'-0.5'        Literal.Number.Float
+'\n'          Text
+
+'+0.5'        Literal.Number.Float
+'\n'          Text
+
+'-0.5e-10'    Literal.Number.Float
+'\n'          Text
+
+'+0.5e10'     Literal.Number.Float
+'\n'          Text
+
+'0.5e+10'     Literal.Number.Float
+'\n'          Text
+
+'.5F+10'      Literal.Number.Float
+'\n'          Text
+
+'.123'        Literal.Number.Float
+'\n'          Text
+
+'123.'        Literal.Number.Float
+'\n'          Text
+
+'123.L-25|54' Literal.Number.Float
+'\n'          Text
+
+'+inf.0'      Literal.Number.Float
+'\n'          Text
+
+'-inf.0'      Literal.Number.Float
+'\n'          Text
+
+'#b+nan.0-inf.0i' Literal.Number.Bin
+'\n'          Text
+
+'1-2i'        Literal.Number.Integer
+'\n'          Text
+
+'1-i'         Literal.Number.Integer
+'\n'          Text
+
+'+i'          Literal.Number.Integer
+'\n'          Text
+
+'-5f24@3.14159' Literal.Number.Float
+'\n'          Text
+
+'4/5'         Literal.Number.Integer
+'\n'          Text
+
+'5.4e5@4'     Literal.Number.Float
+'\n'          Text
+
+'#i5'         Literal.Number.Integer
+'\n'          Text
+
+'#o5'         Literal.Number.Oct
+'\n'          Text
+
+'#i#o5'       Literal.Number.Oct
+'\n'          Text
+
+'#o#i5'       Literal.Number.Oct
+'\n'          Text
+
+'#b01/10'     Literal.Number.Bin
+'\n'          Text
+
+'#x0f42a'     Literal.Number.Hex
+'\n'          Text
+
+'#E#b01/10'   Literal.Number.Bin
+'\n'          Text
+
+'#d#I01/10'   Literal.Number.Integer
+'\n'          Text
+
+'#i-324@3.14159' Literal.Number.Float
+'\n'          Text
+
+'#o#I01/1022-inf.0i' Literal.Number.Oct
+'\n\n'        Text
+
+';; These are not numbers but plain symbols.' Comment.Single
+'\n\n'        Text
+
+'1+'          Name.Variable
+'\n'          Text
+
+'1-'          Name.Variable
+'\n'          Text
+
+'i'           Name.Variable
+'\n'          Text
+
+'inf'         Name.Variable
+'\n'          Text
+
+'-inf'        Name.Variable
+'\n'          Text
+
+'nan'         Name.Variable
+'\n'          Text
+
+'-nan'        Name.Variable
+'\n'          Text
