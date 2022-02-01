@@ -222,9 +222,10 @@ class SchemeLexer(RegexLexer):
             (number_rules[10], decimal_cb, '#pop'),
             (number_rules[16], Number.Hex, '#pop'),
 
-            # strings, symbols and characters
+            # strings, symbols, keywords and characters
             (r'"', String, 'string'),
             (r"'" + valid_name, String.Symbol, "#pop"),
+            (r'#:' + valid_name, Keyword.Declaration, '#pop'),
             (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char, "#pop"),
 
             # constants
