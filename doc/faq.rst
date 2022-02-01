@@ -35,7 +35,7 @@ and in this case, source code!
 What are the system requirements?
 ---------------------------------
 
-Pygments only needs a standard Python install, version 3.5 or higher. No
+Pygments only needs a standard Python install, version 3.6 or higher. No
 additional libraries are needed.
 
 How can I use Pygments?
