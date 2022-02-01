@@ -136,7 +136,7 @@ class SchemeLexer(RegexLexer):
             # (r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String, "#pop"),
+            (r'"', String, 'string'),
             (r"'" + valid_name, String.Symbol, "#pop"),
             (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char, "#pop"),
 
@@ -187,6 +187,23 @@ class SchemeLexer(RegexLexer):
             (r'\)', Comment, '#pop'),
             (r'[^()]+', Comment),
         ],
+        'string': [
+            # Pops back from 'string', and pops 'value' as well.
+            ('"', String, '#pop:2'),
+            # Hex escape sequences, R6RS-style.
+            (r'\\x[0-9a-fA-F]+;', String.Escape),
+            # We try R6RS style first, but fall back to Guile-style.
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+            # Other special escape sequences implemented by Guile.
+            (r'\\u[0-9a-fA-F]{4}', String.Escape),
+            (r'\\U[0-9a-fA-F]{6}', String.Escape),
+            # Escape sequences are not overly standardized. Recognizing
+            # a single character after the backslash should be good enough.
+            # NB: we have DOTALL.
+            (r'\\.', String.Escape),
+            # The rest
+            (r'[^\\"]+', String),
+        ]
     }
 
 
