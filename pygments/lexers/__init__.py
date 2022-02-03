@@ -79,7 +79,7 @@ def find_lexer_class(name):
             return cls
 
 
-def find_lexer_class_by_name(_alias):
+def find_lexer_class_by_name(_alias, disabledbuiltin=[]):
     """Lookup a lexer class by alias.
 
     Like `get_lexer_by_name`, but does not instantiate the class.
@@ -90,6 +90,8 @@ def find_lexer_class_by_name(_alias):
         raise ClassNotFound('no lexer for alias %r found' % _alias)
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         if _alias.lower() in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
@@ -109,8 +111,12 @@ def get_lexer_by_name(_alias, **options):
     if not _alias:
         raise ClassNotFound('no lexer for alias %r found' % _alias)
 
+    disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         if _alias.lower() in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
@@ -157,7 +163,7 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
         raise ClassNotFound('error when loading custom lexer: %s' % err)
 
 
-def find_lexer_class_for_filename(_fn, code=None):
+def find_lexer_class_for_filename(_fn, code=None, disabledbuiltin=[]):
     """Get a lexer for a filename.
 
     If multiple lexers match the filename pattern, use ``analyse_text()`` to
@@ -167,7 +173,9 @@ def find_lexer_class_for_filename(_fn, code=None):
     """
     matches = []
     fn = basename(_fn)
-    for modname, name, _, filenames, _ in LEXERS.values():
+    for modname, name, aliases, filenames, _ in LEXERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         for filename in filenames:
             if _fn_matches(fn, filename):
                 if name not in _lexer_cache:
@@ -208,7 +216,8 @@ def get_lexer_for_filename(_fn, code=None, **options):
 
     Raises ClassNotFound if not found.
     """
-    res = find_lexer_class_for_filename(_fn, code)
+    disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+    res = find_lexer_class_for_filename(_fn, code, disabledbuiltin)
     if not res:
         raise ClassNotFound('no lexer for filename %r found' % _fn)
     return res(**options)
@@ -219,7 +228,10 @@ def get_lexer_for_mimetype(_mime, **options):
 
     Raises ClassNotFound if not found.
     """
-    for modname, name, _, _, mimetypes in LEXERS.values():
+    disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+    for modname, name, aliases, _, mimetypes in LEXERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         if _mime in mimetypes:
             if name not in _lexer_cache:
                 _load_lexers(modname)
@@ -230,10 +242,12 @@ def get_lexer_for_mimetype(_mime, **options):
     raise ClassNotFound('no lexer for mimetype %r found' % _mime)
 
 
-def _iter_lexerclasses(plugins=True):
+def _iter_lexerclasses(plugins=True, disabledbuiltin=[]):
     """Return an iterator over all lexer classes."""
     for key in sorted(LEXERS):
-        module_name, name = LEXERS[key][:2]
+        module_name, name, aliases = LEXERS[key][:3]
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         if name not in _lexer_cache:
             _load_lexers(module_name)
         yield _lexer_cache[name]
@@ -260,7 +274,8 @@ def guess_lexer_for_filename(_fn, _text, **options):
     fn = basename(_fn)
     primary = {}
     matching_lexers = set()
-    for lexer in _iter_lexerclasses():
+    disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+    for lexer in _iter_lexerclasses(True, disabledbuiltin):
         for filename in lexer.filenames:
             if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
@@ -311,8 +326,9 @@ def guess_lexer(_text, **options):
         except ClassNotFound:
             pass
 
+    disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
     best_lexer = [0.0, None]
-    for lexer in _iter_lexerclasses():
+    for lexer in _iter_lexerclasses(True, disabledbuiltin):
         rv = lexer.analyse_text(_text)
         if rv == 1.0:
             return lexer(**options)
