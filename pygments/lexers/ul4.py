@@ -156,7 +156,6 @@ class UL4Lexer(lexer.RegexLexer):
             (r"\?>", token.Comment.Preproc, "#pop"),
             (lexer.words(("for", "if", "def", "while", "renderblock", "renderblocks"), suffix=r"\b"), token.Keyword),
             (r"\s+", token.Text),
-            (r".", token.Error), # Unrecognized tag name
         ],
         # Content of the ``<?whitespace ...?>`` tag:
         # ``keep``, ``string`` or ``smart``
@@ -164,7 +163,6 @@ class UL4Lexer(lexer.RegexLexer):
             (r"\?>", token.Comment.Preproc, "#pop"),
             (lexer.words(("keep", "strip", "smart"), suffix=r"\b"), token.Comment.Preproc),
             (r"\s+", token.Text),
-            (r".", token.Error), # Unrecognized whitespace mode
         ],
         # Inside a string constant
         "string": [
