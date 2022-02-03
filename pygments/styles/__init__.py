@@ -61,8 +61,8 @@ STYLE_MAP = {
 }
 
 
-def get_style_by_name(name):
-    if name in STYLE_MAP:
+def get_style_by_name(name, disabledbuiltin=[]):
+    if name not in disabledbuiltin and name in STYLE_MAP:
         mod, cls = STYLE_MAP[name].split('::')
         builtin = "yes"
     else:
