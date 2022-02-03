@@ -123,7 +123,7 @@ class UL4Lexer(RegexLexer):
             (r"\?>", Comment.Preproc, "#pop"),
             # Start triple quoted string constant
             ("'''", String, "string13"),
-            ('""""', String, "string23"),
+            ('"""', String, "string23"),
             # Start single quoted string constant
             ("'", String, "string1"),
             ('"', String, "string2"),
@@ -170,32 +170,39 @@ class UL4Lexer(RegexLexer):
             (r"\s+", Text.Whitespace),
         ],
         # Inside a string constant
-        "string": [
-            ("\\\\['\"abtnfr]", String.Escape),
+        "stringescapes": [
+            (r"""\\[\\'"abtnfr]""", String.Escape),
             (r"\\x[0-9a-fA-F]{2}", String.Escape),
             (r"\\u[0-9a-fA-F]{4}", String.Escape),
             (r"\\U[0-9a-fA-F]{8}", String.Escape),
-            (r".", String),
         ],
         # Inside a triple quoted string started with ``'''``
         "string13": [
             (r"'''", String, "#pop"),
-            include("string"),
+            include("stringescapes"),
+            (r"[^\\']+", String),
+            (r'.', String),
         ],
         # Inside a triple quoted string started with ``"""``
         "string23": [
             (r'"""', String, "#pop"),
-            include("string"),
+            include("stringescapes"),
+            (r'[^\\"]+', String),
+            (r'.', String),
         ],
         # Inside a single quoted string started with ``'``
         "string1": [
             (r"'", String, "#pop"),
-            include("string"),
+            include("stringescapes"),
+            (r"[^\\']+", String),
+            (r'.', String),
         ],
         # Inside a single quoted string started with ``"``
         "string2": [
             (r'"', String, "#pop"),
-            include("string"),
+            include("stringescapes"),
+            (r'[^\\"]+', String),
+            (r'.', String),
         ],
     }
 
