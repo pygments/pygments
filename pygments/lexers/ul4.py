@@ -162,7 +162,7 @@ class UL4Lexer(lexer.RegexLexer):
         "whitespace": [
             (r"\?>", token.Comment.Preproc, "#pop"),
             (lexer.words(("keep", "strip", "smart"), suffix=r"\b"), token.Comment.Preproc),
-            (r"\s+", token.Text),
+            (r"\s+", token.Text.Whitespace),
         ],
         # Inside a string constant
         "string": [
