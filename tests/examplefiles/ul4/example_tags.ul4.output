@@ -1,6 +1,6 @@
 '<?'          Comment.Preproc
 'ul4'         Keyword
-' '           Text
+' '           Text.Whitespace
 'templatename' Name.Function
 '('           Operator
 ')'           Operator
@@ -9,7 +9,7 @@
 
 '<?'          Comment.Preproc
 'whitespace'  Keyword
-' '           Text
+' '           Text.Whitespace
 'keep'        Comment.Preproc
 '?>'          Comment.Preproc
 '\n'          Other
@@ -19,29 +19,29 @@
 
 '<?'          Comment.Preproc
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'gurk'        Name.Function
 '('           Operator
 'a'           Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'd'           Name
 ')'           Operator
 '?>'          Comment.Preproc
 '\n\t'        Other
 '<?'          Comment.Preproc
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'range'       Name
 '('           Operator
 '10'          Literal.Number.Integer
@@ -50,31 +50,31 @@
 '\n\t\t'      Other
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 '?>'          Comment.Preproc
 '\n\t\t'      Other
 '<?'          Comment.Preproc
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '?>'          Comment.Preproc
 '\n\t\t\t'    Other
 '<?'          Comment.Preproc
 'printx'      Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '?>'          Comment.Preproc
 '\n\t\t'      Other
 '<?'          Comment.Preproc
 'elif'        Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '?>'          Comment.Preproc
 '\n\t\t\t'    Other
 '<?'          Comment.Preproc
 'render'      Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '('           Operator
 ')'           Operator
@@ -94,31 +94,31 @@
 '\n\t\t'      Other
 '<?'          Comment.Preproc
 'code'        Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '?>'          Comment.Preproc
 '\n\t\t'      Other
 '<?'          Comment.Preproc
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Integer
 '?>'          Comment.Preproc
 '\n\t\t\t'    Other
 '<?'          Comment.Preproc
 'code'        Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '?>'          Comment.Preproc
 '\n\t\t'      Other
@@ -144,7 +144,7 @@
 
 '<?'          Comment.Preproc
 'renderblock' Keyword
-' '           Text
+' '           Text.Whitespace
 'hinz'        Name
 '('           Operator
 ')'           Operator
@@ -160,7 +160,7 @@
 
 '<?'          Comment.Preproc
 'renderblocks' Keyword
-' '           Text
+' '           Text.Whitespace
 'kunz'        Name
 '('           Operator
 ')'           Operator

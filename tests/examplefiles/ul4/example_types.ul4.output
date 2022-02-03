@@ -1,6 +1,6 @@
 '<?'          Comment.Preproc
 'whitespace'  Keyword
-' '           Text
+' '           Text.Whitespace
 'strip'       Comment.Preproc
 '?>'          Comment.Preproc
 '\n'          Other
@@ -10,182 +10,181 @@
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 'None'        Keyword.Constant
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword.Constant
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 'False'       Keyword.Constant
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '0b101010'    Literal.Number.Bin
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '0o52'        Literal.Number.Oct
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '0x2a'        Literal.Number.Hex
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Integer
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '42.5'        Literal.Number.Float
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '4.25e1'      Literal.Number.Float
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
+'bar'         Literal.String
+'\\\\'        Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\"'         Literal.String.Escape
 '\\a'         Literal.String.Escape
 '\\b'         Literal.String.Escape
 '\\t'         Literal.String.Escape
 '\\n'         Literal.String.Escape
 '\\f'         Literal.String.Escape
 '\\r'         Literal.String.Escape
-'b'           Literal.String
-'a'           Literal.String
-'z'           Literal.String
+'\\xff'       Literal.String.Escape
+'\\u3042'     Literal.String.Escape
+'\\U0010ffff' Literal.String.Escape
+'baz"'        Literal.String
 "'"           Literal.String
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
+'bar'         Literal.String
+'\\\\'        Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\a'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\f'         Literal.String.Escape
+'\\r'         Literal.String.Escape
 '\\xff'       Literal.String.Escape
 '\\u3042'     Literal.String.Escape
 '\\U0010ffff' Literal.String.Escape
-'b'           Literal.String
-'a'           Literal.String
-'z'           Literal.String
+"baz'"        Literal.String
 '"'           Literal.String
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
-'"'           Literal.String
-'"'           Literal.String
-'"'           Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'"'           Literal.String
-'"'           Literal.String
-'"'           Literal.String
+' '           Text.Whitespace
+'"""'         Literal.String
+'bar'         Literal.String
+'"""'         Literal.String
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 "'''"         Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
+'bar'         Literal.String
 "'''"         Literal.String
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '@(2000-02-29)' Literal.Date
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '@(2000-02-29T12:34)' Literal.Date
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '@(2000-02-29T12:34:56)' Literal.Date
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '@(2000-02-29T12:34:56.987654)' Literal.Date
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#fff'        Literal.Color
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#fff8'       Literal.Color
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#fff8f0'     Literal.Color
 '?>'          Comment.Preproc
 '\n'          Other
 
 '<?'          Comment.Preproc
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#fff8f088'   Literal.Color
 '?>'          Comment.Preproc
 '\n'          Other

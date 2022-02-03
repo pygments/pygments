@@ -1,6 +1,6 @@
 '<?'          Comment.Preproc
 'ul4'         Keyword
-' '           Text
+' '           Text.Whitespace
 'templatename' Name.Function
 '('           Operator
 ')'           Operator
@@ -9,7 +9,7 @@
 
 '<?'          Comment.Preproc
 'whitespace'  Keyword
-' '           Text
+' '           Text.Whitespace
 'smart'       Comment.Preproc
 '?>'          Comment.Preproc
 '\n'          Other
@@ -21,4 +21,31 @@
 '\n'          Other
 
 '<?ignore?>'  Comment
-'\n\tIgnore this\n\t<?ignore?>\n\t\t... and this\n\t<?end ignore?>\n\t... and this\n<?end ignore?>\n' Comment
+'\n\tIgnore ' Comment
+'<'           Comment
+'?this?>\n\t' Comment
+'<?ignore?>'  Comment
+'\n\t\t... and ' Comment
+'<'           Comment
+'?this?>\n\t' Comment
+'<?end ignore?>' Comment
+'\n\t... and ' Comment
+'<'           Comment
+'?this?>\n... and even ' Comment
+'<'           Comment
+'?this?>'     Comment
+'<?end ignore?>' Comment
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text.Whitespace
+'hint'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'ignored no longer' Literal.String
+'"'           Literal.String
+'?>'          Comment.Preproc
+'\n'          Other

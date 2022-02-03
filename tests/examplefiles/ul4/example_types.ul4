@@ -9,8 +9,8 @@
 <?print 42?>
 <?print 42.5?>
 <?print 4.25e1?>
-<?print 'bar\a\b\t\n\f\rbaz'?>
-<?print "bar\xff\u3042\U0010ffffbaz"?>
+<?print 'bar\\\'\"\a\b\t\n\f\r\xff\u3042\U0010ffffbaz"'?>
+<?print "bar\\\'\"\a\b\t\n\f\r\xff\u3042\U0010ffffbaz'"?>
 <?print """bar"""?>
 <?print '''bar'''?>
 <?print @(2000-02-29)?>
