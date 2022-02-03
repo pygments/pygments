@@ -153,7 +153,7 @@ class UL4Lexer(RegexLexer):
             # Variable names
             (r"[a-zA-Z_][a-zA-Z0-9_]*", Name),
             # Whitespace
-            (r"\s+", Text),
+            (r"\s+", Text.Whitespace),
         ],
         # ``<?end ...?>`` tag for closing the last open block
         "end": [
