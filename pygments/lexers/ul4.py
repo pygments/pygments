@@ -106,7 +106,7 @@ class UL4Lexer(lexer.RegexLexer):
         # Ignore mode ignores everything upto the matching ``<?end ignore?>`` tag
         "ignore": [
             # Nested ``<?ignore?>`` tag
-            (r"<\?\s*ignore\s*\?>", token.Comment, "ignore"),
+            (r"<\?\s*ignore\s*\?>", token.Comment, "#push"),
             # ``<?end ignore?>`` tag
             (r"<\?\s*end\s+ignore\s*\?>", token.Comment, "#pop"),
             # Everything else
