@@ -32,7 +32,7 @@ class UL4Lexer(lexer.RegexLexer):
     .. versionadded:: 2.12
     """
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     name = 'UL4'
     aliases = ['ul4']
