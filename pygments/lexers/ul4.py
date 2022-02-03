@@ -44,13 +44,13 @@ class UL4Lexer(lexer.RegexLexer):
                 # Template header without name:
                 # ``<?ul4?>``
                 r"(<\?)(\s*)(ul4)(\s*)(\?>)",
-                lexer.bygroups(token.Comment.Preproc, token.Text, token.Keyword, token.Text, token.Comment.Preproc),
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword, token.Text.Whitespace, token.Comment.Preproc),
             ),
             (
                 # Template header with name (potentially followed by the signature):
                 # ``<?ul4 foo(bar=42)?>``
                 r"(<\?)(\s*)(ul4)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?\b",
-                lexer.bygroups(token.Comment.Preproc, token.Text, token.Keyword, token.Text, token.Token.Name.Function),
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword, token.Text.Whitespace, token.Token.Name.Function),
                 "ul4", # Switch to "expression" mode
             ),
             (
@@ -75,14 +75,14 @@ class UL4Lexer(lexer.RegexLexer):
             (
                 # ``<?def?>`` tag for defining local templates
                 # ``<?def foo(bar=42)?>...<?end def?>``
-                r"(<\?\s*)(def)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?\b",
-                lexer.bygroups(token.Comment.Preproc, token.Keyword, token.Text, token.Token.Name.Function),
+                r"(<\?)(\s*)(def)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?\b",
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword, token.Text.Whitespace, token.Token.Name.Function),
                 "ul4", # Switch to "expression" mode
             ),
             (
                 # The rest of the supported tags
                 r"(<\?)(\s*)(printx|print|for|if|elif|else|while|code|renderblocks?|render)\b",
-                lexer.bygroups(token.Comment.Preproc, token.Text, token.Keyword),
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword),
                 "ul4", # Switch to "expression" mode
             ),
             (
@@ -90,13 +90,13 @@ class UL4Lexer(lexer.RegexLexer):
                 # ``<?if?>``, ``<?while?>``, ``<?renderblock?>`` and
                 # ``<?renderblocks?>`` blocks.
                 r"(<\?)(\s*)(end)\b",
-                lexer.bygroups(token.Comment.Preproc, token.Text, token.Keyword),
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword),
                 "end", # Switch to "end tag" mode
             ),
             (
                 # ``<?whitespace?>`` tag for configuring whitespace handlng
                 r"(<\?)(\s*)(whitespace)\b",
-                lexer.bygroups(token.Comment.Preproc, token.Text, token.Keyword),
+                lexer.bygroups(token.Comment.Preproc, token.Text.Whitespace, token.Keyword),
                 "whitespace", # Switch to "whitespace" mode
             ),
             # Plain text
