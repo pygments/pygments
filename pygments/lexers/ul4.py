@@ -114,7 +114,8 @@ class UL4Lexer(RegexLexer):
             # ``<?end ignore?>`` tag
             (r"<\?\s*end\s+ignore\s*\?>", Comment, "#pop"),
             # Everything else
-            (r".+", Comment),
+            (r"[^<]+", Comment),
+            (r".", Comment),
         ],
         # UL4 expressions
         "ul4": [
