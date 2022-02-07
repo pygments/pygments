@@ -44,15 +44,20 @@ class SpiceLexer(RegexLexer):
             # double_lit
             (r'\d+(\.\d+[eE][+\-]?\d+|\.\d*|[eE][+\-]?\d+)', Number.Double),
             (r'\.\d+([eE][+\-]?\d+)?', Number.Double),
+            # short_lit
+            (r'(0|[1-9][0-9]*s)', Number.Integer),
+            # long_lit
+            (r'(0|[1-9][0-9]*l)', Number.Integer.Long),
             # int_lit
             (r'(0|[1-9][0-9]*)', Number.Integer),
-            # StringLiteral
-            # -- interpreted_string_lit
+            # string_lit
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            # Tokens
+            # char_lit
+            (r'\'(\\\\|\\[^\\]|[^\'\\])*\'', String.Char),
+            # tokens
             (r'(<<=|>>=|<<|>>|<=|>=|\+=|-=|\*=|/=|&&|\|\||&|\||\+\+|--|\%|==|!=|[.]{3}|[+\-*/&])', Operator),
             (r'[|<>=!()\[\]{}.,;:\?]', Punctuation),
-            # identifier
+            # identifiers
             (r'[^\W\d]\w*', Name.Other),
         ]
     }
