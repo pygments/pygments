@@ -27,6 +27,7 @@ jobs:
       if: runner.os == 'Linux'
     - name: Test package
       run: pytest
+      if: runner.os != 'Linux'
 
   check:
     runs-on: ubuntu-latest
