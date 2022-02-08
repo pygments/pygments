@@ -16,6 +16,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import pathlib
 import pytest
 
 from tests.conftest import LexerInlineTestItem
@@ -23,7 +24,7 @@ from tests.conftest import LexerInlineTestItem
 
 def pytest_collect_file(parent, path):
     if path.ext == '.txt':
-        return LexerTestFile.from_parent(parent, fspath=path)
+        return LexerTestFile.from_parent(parent, path=pathlib.Path(path))
 
 
 class LexerTestFile(pytest.File):
