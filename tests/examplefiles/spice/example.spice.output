@@ -155,11 +155,7 @@
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'('           Punctuation
-'short'       Keyword.Type
-')'           Punctuation
-' '           Text.Whitespace
-'10'          Literal.Number.Integer
+'10s'         Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -264,6 +260,37 @@
 ' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Sizeof usage\n' Comment.Single
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'size'        Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sizeof'      Name.Builtin
+'('           Punctuation
+"'T'"         Literal.String.Char
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"Size of char is %d, %d\\n"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'size'        Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
