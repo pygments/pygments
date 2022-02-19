@@ -19,7 +19,7 @@ __all__ = ['SpiceLexer']
 
 class SpiceLexer(RegexLexer):
     """
-    For `Spice <http://spicelang.com>`_ source.
+    For `Spice <https://www.spicelang.com>`_ source.
 
     .. versionadded:: 2.11
     """
@@ -37,7 +37,7 @@ class SpiceLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|as)\b', Keyword.Namespace),
             (r'(f|p|type|struct|const)\b', Keyword.Declaration),
-            (words(('if', 'else', 'for', 'foreach', 'while', 'break', 'continue', 'return', 'new', 'ext'), suffix=r'\b'), Keyword),
+            (words(('if', 'else', 'for', 'foreach', 'while', 'break', 'continue', 'return', 'ext', 'inline', 'public'), suffix=r'\b'), Keyword),
             (r'(true|false)\b', Keyword.Constant),
             (words(('printf', 'sizeof'), suffix=r'\b(\()'), bygroups(Name.Builtin, Punctuation)),
             (words(('double', 'int', 'short', 'long', 'byte', 'char', 'string', 'bool', 'dyn'), suffix=r'\b'), Keyword.Type),

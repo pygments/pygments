@@ -7,7 +7,7 @@ f<int> fib(int n) {
 }
 
 // Function to compute factorial numbers recursively
-f<int> fac(int input) {
+inline f<int> fac(int input) {
     if input < 2 {
         return 1;
     }
