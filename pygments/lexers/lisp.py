@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal, Error
+    Number, Punctuation, Literal, Error, Whitespace
 
 from pygments.lexers.python import PythonLexer
 
@@ -214,7 +214,7 @@ class SchemeLexer(RegexLexer):
             (r'#!r6rs', Comment),
 
             # whitespaces - usually not relevant
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # numbers
             (number_rules[2], Number.Bin, '#pop'),
@@ -372,7 +372,7 @@ class CommonLispLexer(RegexLexer):
         ],
         'body': [
             # whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single-line comment
             (r';.*$', Comment.Single),
@@ -520,7 +520,8 @@ class HyLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r'[,\s]+', Text),
+            (r',+', Text),
+            (r'\s+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
@@ -1400,7 +1401,7 @@ class RacketLexer(RegexLexer):
             (r'#\|', Comment.Multiline, 'block-comment'),
 
             # Whitespaces
-            (r'\s+', Text),
+            (r'(?u)\s+', Whitespace),
 
             # Numbers: Keep in mind Racket reader hash prefixes, which
             # can denote the base or the type. These don't map neatly
@@ -1613,7 +1614,7 @@ class NewLispLexer(RegexLexer):
             (r'#.*$', Comment.Single),
 
             # whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # strings, symbols and characters
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
@@ -2225,7 +2226,7 @@ class EmacsLispLexer(RegexLexer):
         ],
         'body': [
             # whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single-line comment
             (r';.*$', Comment.Single),
@@ -2372,7 +2373,7 @@ class ShenLexer(RegexLexer):
         'root': [
             (r'(?s)\\\*.*?\*\\', Comment.Multiline),  # \* ... *\
             (r'\\\\.*', Comment.Single),              # \\ ...
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'_{5,}', Punctuation),
             (r'={5,}', Punctuation),
             (r'(;|:=|\||--?>|<--?)', Punctuation),
@@ -2394,7 +2395,7 @@ class ShenLexer(RegexLexer):
         return tokens
 
     def _relevant(self, token):
-        return token not in (Text, Comment.Single, Comment.Multiline)
+        return token not in (Text, Whitespace, Comment.Single, Comment.Multiline)
 
     def _process_declarations(self, tokens):
         opening_paren = False
@@ -2499,7 +2500,7 @@ class CPSALexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
@@ -2712,7 +2713,7 @@ class XtlangLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
@@ -2793,7 +2794,8 @@ class FennelLexer(RegexLexer):
             # the only comment form is a semicolon; goes to the end of the line
             (r';.*$', Comment.Single),
 
-            (r'[,\s]+', Text),
+            (r',+', Text),
+            (r'\s+', Whitespace),
             (r'-?\d+\.\d+', Number.Float),
             (r'-?\d+', Number.Integer),
 

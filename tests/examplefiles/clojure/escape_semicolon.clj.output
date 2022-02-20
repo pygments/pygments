@@ -1,21 +1,21 @@
 '('           Punctuation
 '= '          Name.Builtin
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int '        Name.Builtin
 '\\;'         Literal.String.Char
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'do '         Keyword
 '('           Punctuation
 '.readLine'   Name.Function
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':line-start' Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

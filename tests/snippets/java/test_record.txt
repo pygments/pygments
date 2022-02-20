@@ -7,61 +7,61 @@ String[] record = csvReader.getValues();
 
 ---tokens---
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'record'      Keyword.Declaration
 ' '           Text
 'RecordTest'  Name.Class
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'record'      Keyword.Declaration
 ' '           Text
 'RecordTest'  Name.Class
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'record'      Keyword.Declaration
 ' '           Text
 'Person'      Name.Class
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'firstName'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'lastName'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'String'      Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'record'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'csvReader'   Name
 '.'           Punctuation
 'getValues'   Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

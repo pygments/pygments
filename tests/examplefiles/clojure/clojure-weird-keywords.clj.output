@@ -1,38 +1,38 @@
 '; Note, clojure lexer is here (and is a good deal more liberal than the language spec:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/LispReader.java#L62' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'valid'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '#'           Operator
 '^'           Operator
 'java.lang.reflect.Method' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 ':keyword'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ':#initial-hash' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ':h#sh-in-middle' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ':hash-at-end#' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
 'js'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 ':keyword'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"value"'     Literal.String
 '}'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
