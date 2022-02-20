@@ -111,6 +111,7 @@ class ElpiLexer(RegexLexer):
         ],
         'elpi-ctype': [
             (r"(ctype\s+)(\")",bygroups(Keyword.Type,String.Double),'elpi-string'),
+            (r'->',Keyword.Type),
             (constant_re,Keyword.Type),
             (r"\(|\)",Keyword.Type),
             (r",",Text,'#pop'),
