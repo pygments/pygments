@@ -93,6 +93,14 @@ def test_all_options():
                     check(optdict)
 
 
+def test_linespans():
+    outfile = StringIO()
+    fmt = HtmlFormatter(linespans='L', anchorlinenos=True, linenos="inline")
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert re.search(r"""<span id="L-1">\s*<a href="#L-1"><span\s*class="linenos">\s*1</span></a>""", html)
+
+
 def test_lineanchors():
     optdict = dict(lineanchors="foo")
     outfile = StringIO()

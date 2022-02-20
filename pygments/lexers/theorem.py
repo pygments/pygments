@@ -29,7 +29,7 @@ class CoqLexer(RegexLexer):
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
 
-    flags = re.UNICODE
+    flags = 0 # no re.MULTILINE
 
     keywords1 = (
         # Vernacular commands
@@ -390,8 +390,6 @@ class LeanLexer(RegexLexer):
     aliases = ['lean']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [

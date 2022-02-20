@@ -1,33 +1,33 @@
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"'          Literal.String
 'n='          Literal.String
 '$'           Literal.String.Interpol
 'n'           Name
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a2'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"'          Literal.String
 'n='          Literal.String
 '$'           Literal.String.Interpol
@@ -35,28 +35,28 @@
 "''"          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"""'        Literal.String
 'n='          Literal.String
 '$'           Literal.String.Interpol
 'n'           Name
 '"""'         Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'f"'          Literal.String
 'n='          Literal.String
 '$'           Literal.String.Interpol
@@ -64,14 +64,14 @@
 '%f'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'f"""'        Literal.String
 'n='          Literal.String
 '$'           Literal.String.Interpol
@@ -79,41 +79,41 @@
 '%f'          Literal.String
 '"""'         Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'd2'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"""'        Literal.String
 'a'           Literal.String
 '"'           Literal.String
 '"""'         Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"'          Literal.String
 'abc'         Literal.String
 '\\u'         Literal.String
 '00e9'        Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"'          Literal.String
 'a'           Literal.String
 '${'          Literal.String.Interpol
@@ -122,101 +122,101 @@
 'b'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 's"'          Literal.String
 'a'           Literal.String
 '${'          Literal.String.Interpol
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '}'           Literal.String.Interpol
 'b'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 's"'          Literal.String
 '1 + 2 = '    Literal.String
 '${'          Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Literal.String.Interpol
 '.'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"""'        Literal.String
 '1 + 2 = '    Literal.String
 '${'          Literal.String.Interpol
-'\n  '        Text
+'\n  '        Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'add'         Name.Function
 '('           Punctuation
 'x'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'add'         Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Literal.String.Interpol
 '.'           Literal.String
 '"""'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '$'           Literal.String.Interpol
@@ -224,7 +224,7 @@
 '$'           Literal.String.Interpol
 'second'      Name
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '$'           Literal.String.Interpol
@@ -237,7 +237,7 @@
 '$'           Literal.String.Interpol
 'safeTagMarker' Name
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '$'           Literal.String.Interpol
@@ -258,14 +258,14 @@
 'b'           Name
 '}'           Literal.String.Interpol
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '${'          Literal.String.Interpol
 'x$'          Name
 '}'           Literal.String.Interpol
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '$'           Literal.String.Interpol
@@ -274,37 +274,37 @@
 '$'           Literal.String.Interpol
 'a'           Name
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '// $$ is an escape\n' Comment.Single
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
 '('           Punctuation
 'a'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 's"'          Literal.String
 '$'           Literal.String.Interpol
 'safeTagMarker' Name
 '${'          Literal.String.Interpol
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
 '('           Punctuation
 'a'           Name
@@ -313,4 +313,4 @@
 '$'           Literal.String.Interpol
 'safeTagMarker' Name
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

@@ -8,8 +8,8 @@ Switches d2SDq;
 Constant Story "Informal Testing";
 Constant Headline "^Not a game.^";!% This is a comment, not ICL.
 
-Release 4;
-Serial "200526";
+Release 5;
+Serial "220125";
 Version 5;
 
 Ifndef TARGET_ZCODE;
@@ -68,7 +68,19 @@ Origsource "^~@{.inf" 67;
 Origsource "^~@{.inf" 68 1;
 Origsource;
 
-Property long additive additive long alias;
+Property long
+    ! A long way from the property name
+    ! to the semicolon
+    ;
+Property additive;
+Property individual;
+Iffalse true;
+Property long individual;
+Property long individual individual;
+Property additive individual;
+Property individual individual;
+Endif;
+Property long additive long additive long alias;
 Property long long long wingspan alias alias;
 
 Class Flier with wingspan 5;

@@ -6,6 +6,8 @@
 
    of a non-negative integer.
 
+   #| These comments can be nested too. |#
+
 |#
 
 (define fact
@@ -17,7 +19,9 @@
     (if (= n 0)
 
         #;(= n 1)
-
-        1       ; identity of *
+        #;(= n [1+ (eval '(n))])1
+        #;[= n (1+ [eval '[n]])];; another comment
+        #;1
+        ; identity of *
 
         (* n (fact (- n 1))))))

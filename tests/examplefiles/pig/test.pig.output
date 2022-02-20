@@ -1,415 +1,415 @@
 "/**\n *  This script is an example recommender (using made up data) showing how you might modify item-item links\n *  by defining similar relations between items in a dataset and customizing the change in weighting.\n *  This example creates metadata by using the genre field as the metadata_field.  The items with\n *  the same genre have it's weight cut in half in order to boost the signals of movies that do not have the same genre.\n *  This technique requires a customization of the standard GetItemItemRecommendations macro\n */" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 "'recommenders.pig'" Literal.String
 ';'           Punctuation
-'\n\n\n\n'    Text
+'\n\n\n\n'    Text.Whitespace
 
 '%default'    Keyword
-' '           Text
+' '           Text.Whitespace
 'INPUT_PATH_PURCHASES' Text
-' '           Text
+' '           Text.Whitespace
 "'../data/retail/purchases.json'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%default'    Keyword
-' '           Text
+' '           Text.Whitespace
 'INPUT_PATH_WISHLIST' Text
-' '           Text
+' '           Text.Whitespace
 "'../data/retail/wishlists.json'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%default'    Keyword
-' '           Text
+' '           Text.Whitespace
 'INPUT_PATH_INVENTORY' Text
-' '           Text
+' '           Text.Whitespace
 "'../data/retail/inventory.json'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%default'    Keyword
-' '           Text
+' '           Text.Whitespace
 'OUTPUT_PATH' Text
-' '           Text
+' '           Text.Whitespace
 "'../data/retail/out/modify_item_item'" Literal.String
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '/******** Custom GetItemItemRecommnedations *********/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'recsys__GetItemItemRecommendations_ModifyCustom' Name.Function
 '('           Punctuation
 'user_item_signals,' Text
-' '           Text
+' '           Text.Whitespace
 'metadata'    Text
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'returns'     Keyword
-' '           Text
+' '           Text.Whitespace
 'item_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '-- Convert user_item_signals to an item_item_graph' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ii_links_raw,' Text
-' '           Text
+' '           Text.Whitespace
 'item_weights' Text
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-'   '         Text
+'   '         Text.Whitespace
 'recsys__BuildItemItemGraph' Name.Function
 '('           Punctuation
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '$user_item_signals,' Text
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '$LOGISTIC_PARAM,' Text
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '$MIN_LINK_WEIGHT,' Text
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '$MAX_LINKS_PER_USER' Text
-'\n                                     ' Text
+'\n                                     ' Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '-- NOTE this function is added in order to combine metadata with item-item links' Comment
-'\n        '  Text
+'\n        '  Text.Whitespace
 '-- See macro for more detailed explination' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ii_links_metadata' Text
-'           ' Text
+'           ' Text.Whitespace
 '='           Operator
-'   '         Text
+'   '         Text.Whitespace
 'recsys__AddMetadataToItemItemLinks' Name.Function
 '('           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 'ii_links_raw,' Text
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 '$metadata'   Text
-'\n                                    ' Text
+'\n                                    ' Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '/********* Custom Code starts here ********/' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '--The code here should adjust the weights based on an item-item link and the equality of metadata.' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '-- In this case, if the metadata is the same, the weight is reduced.  Otherwise the weight is left alone.' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ii_links_adjusted' Text
-'           ' Text
+'           ' Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ii_links_metadata' Text
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-' '           Text
+' '           Text.Whitespace
 'item_A,'     Text
-' '           Text
+' '           Text.Whitespace
 'item_B,'     Text
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 '-- the amount of weight adjusted is dependant on the domain of data and what is expected' Comment
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 '-- It is always best to adjust the weight by multiplying it by a factor rather than addition with a constant' Comment
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 '('           Punctuation
 'metadata_B'  Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'metadata_A'  Text
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'weight'      Text
-' '           Text
+' '           Text.Whitespace
 '*'           Text
-' '           Text
+' '           Text.Whitespace
 '0.5'         Literal.Number.Float
 ')'           Punctuation
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'weight'      Text
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'weight;'     Text
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 '/******** Custom Code stops here *********/' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '-- remove negative numbers just incase' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ii_links_adjusted_filt' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ii_links_adjusted' Text
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-' '           Text
+' '           Text.Whitespace
 'item_A,'     Text
-' '           Text
+' '           Text.Whitespace
 'item_B,'     Text
-'\n                                      ' Text
+'\n                                      ' Text.Whitespace
 '('           Punctuation
 'weight'      Text
-' '           Text
+' '           Text.Whitespace
 '<='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'weight'      Text
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'weight;'     Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '-- Adjust the weights of the graph to improve recommendations.' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ii_links'    Text
-'                    ' Text
+'                    ' Text.Whitespace
 '='           Operator
-'   '         Text
+'   '         Text.Whitespace
 'recsys__AdjustItemItemGraphWeight' Name.Function
 '('           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 'ii_links_adjusted_filt,' Text
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 'item_weights,' Text
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 '$BAYESIAN_PRIOR' Text
-'\n                                    ' Text
+'\n                                    ' Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '-- Use the item-item graph to create item-item recommendations.' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$item_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'recsys__BuildItemItemRecommendationsFromGraph' Name.Function
 '('           Punctuation
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 'ii_links,'   Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 '$NUM_RECS_PER_ITEM,' Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 '$NUM_RECS_PER_ITEM' Text
-'\n                       ' Text
+'\n                       ' Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '/******* Load Data **********/' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '--Get purchase signals' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'purchase_input' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'load'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$INPUT_PATH_PURCHASES'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'org.apache.pig.piggybank.storage.JsonLoader' Text
 '('           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 "'row_id: "   Text
 'int'         Keyword.Type
 ','           Operator
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 'movie_id'    Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 'movie_name'  Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 'user_id'     Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 'purchase_price' Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 "');\n\n"     Text
 
 '--Get wishlist signals' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'wishlist_input' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'load'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$INPUT_PATH_WISHLIST'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'org.apache.pig.piggybank.storage.JsonLoader' Text
 '('           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 "'row_id: "   Text
 'int'         Keyword.Type
 ','           Operator
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'movie_id'    Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'movie_name'  Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'user_id'     Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 "');\n\n\n"   Text
 
 '/******* Convert Data to Signals **********/' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Start with choosing 1 as max weight for a signal.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'purchase_signals' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'purchase_input' Text
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'user_id'     Text
-'    '        Text
+'    '        Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'user,'       Text
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'movie_name'  Text
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'item,'       Text
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '1.0'         Literal.Number.Float
-'        '    Text
+'        '    Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'weight;'     Text
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '-- Start with choosing 0.5 as weight for wishlist items because that is a weaker signal than' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- purchasing an item.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'wishlist_signals' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'wishlist_input' Text
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'user_id'     Text
-'    '        Text
+'    '        Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'user,'       Text
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'movie_name'  Text
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'item,'       Text
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '0.5'         Literal.Number.Float
-'        '    Text
+'        '    Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'weight;'     Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'user_signals' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'union'       Keyword
-' '           Text
+' '           Text.Whitespace
 'purchase_signals,' Text
-' '           Text
+' '           Text.Whitespace
 'wishlist_signals;' Text
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '/******** Changes for Modifying item-item links ******/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'inventory_input' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'load'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$INPUT_PATH_INVENTORY'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'org.apache.pig.piggybank.storage.JsonLoader' Text
 '('           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 "'movie_title: " Text
 'chararray'   Keyword.Type
 ','           Operator
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'genres'      Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'bag'         Keyword
 '{'           Punctuation
 'tuple'       Keyword.Type
@@ -422,281 +422,281 @@
 "');\n\n\n"   Text
 
 'metadata'    Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'inventory_input' Text
-' '           Text
+' '           Text.Whitespace
 'generate'    Keyword
-'\n              ' Text
+'\n              ' Text.Whitespace
 'FLATTEN'     Keyword
 '('           Punctuation
 'genres'      Text
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'metadata_field,' Text
-'\n              ' Text
+'\n              ' Text.Whitespace
 'movie_title' Text
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'item;'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- requires the macro to be written seperately' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 '--NOTE this macro is defined within this file for clarity' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'item_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'recsys__GetItemItemRecommendations_ModifyCustom' Name.Function
 '('           Punctuation
 'user_signals,' Text
-' '           Text
+' '           Text.Whitespace
 'metadata'    Text
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/******* No more changes ********/' Comment.Multiline
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 'user_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'recsys__GetUserItemRecommendations' Name.Function
 '('           Punctuation
 'user_signals,' Text
-' '           Text
+' '           Text.Whitespace
 'item_item_recs' Text
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '--Completely unrelated code stuck in the middle' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Text
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-'    '        Text
+'    '        Text.Whitespace
 'LOAD'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'s3n://my-s3-bucket/path/to/responses'" Literal.String
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 'USING'       Keyword
-' '           Text
+' '           Text.Whitespace
 'org.apache.pig.piggybank.storage.JsonLoader' Text
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'responses'   Text
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-'    '        Text
+'    '        Text.Whitespace
 'FOREACH'     Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Text
-' '           Text
+' '           Text.Whitespace
 'GENERATE'    Keyword
-' '           Text
+' '           Text.Whitespace
 'object'      Text
 '#'           Operator
 "'response'"  Literal.String
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 'response'    Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'map'         Keyword
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'out'         Text
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
-'    '        Text
+'    '        Text.Whitespace
 'FOREACH'     Keyword
-' '           Text
+' '           Text.Whitespace
 'responses'   Text
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 'GENERATE'    Keyword
-' '           Text
+' '           Text.Whitespace
 'response'    Text
 '#'           Operator
 "'id'"        Literal.String
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'response'    Text
 '#'           Operator
 "'thread'"    Literal.String
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 'thread'      Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ','           Operator
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 'response'    Text
 '#'           Operator
 "'comments'"  Literal.String
-' '           Text
+' '           Text.Whitespace
 'AS'          Keyword
-' '           Text
+' '           Text.Whitespace
 'comments'    Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 't'           Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'comment'     Text
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'chararray'   Keyword.Type
 ')'           Punctuation
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'STORE'       Keyword
-' '           Text
+' '           Text.Whitespace
 'out'         Text
-' '           Text
+' '           Text.Whitespace
 'INTO'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'s3n://path/to/output'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'USING'       Keyword
-' '           Text
+' '           Text.Whitespace
 'PigStorage'  Name.Builtin
 '('           Punctuation
 "'|'"         Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '/******* Store recommendations **********/' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '--  If your output folder exists already, hadoop will refuse to write data to it.' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'rmf'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$OUTPUT_PATH/item_item_recs;' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'rmf'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$OUTPUT_PATH/user_item_recs;' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'store'       Keyword
-' '           Text
+' '           Text.Whitespace
 'item_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 'into'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$OUTPUT_PATH/item_item_recs'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'PigStorage'  Name.Builtin
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'store'       Keyword
-' '           Text
+' '           Text.Whitespace
 'user_item_recs' Text
-' '           Text
+' '           Text.Whitespace
 'into'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$OUTPUT_PATH/user_item_recs'" Literal.String
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'PigStorage'  Name.Builtin
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- STORE the item_item_recs into dynamo' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'STORE'       Keyword
-' '           Text
+' '           Text.Whitespace
 'item_item_recs' Text
-'\n '         Text
+'\n '         Text.Whitespace
 'INTO'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$OUTPUT_PATH/unused-ii-table-data'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'USING'       Keyword
-' '           Text
+' '           Text.Whitespace
 'com.mortardata.pig.storage.DynamoDBStorage' Text
 '('           Punctuation
 "'$II_TABLE'" Literal.String
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 "'$AWS_ACCESS_KEY_ID'" Literal.String
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 "'$AWS_SECRET_ACCESS_KEY'" Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- STORE the user_item_recs into dynamo' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'STORE'       Keyword
-' '           Text
+' '           Text.Whitespace
 'user_item_recs' Text
-'\n '         Text
+'\n '         Text.Whitespace
 'INTO'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'$OUTPUT_PATH/unused-ui-table-data'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'USING'       Keyword
-' '           Text
+' '           Text.Whitespace
 'com.mortardata.pig.storage.DynamoDBStorage' Text
 '('           Punctuation
 "'$UI_TABLE'" Literal.String
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 "'$AWS_ACCESS_KEY_ID'" Literal.String
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 "'$AWS_SECRET_ACCESS_KEY'" Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

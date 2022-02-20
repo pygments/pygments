@@ -1,28 +1,28 @@
 'def'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '"long function name"' Name.Function
 '('           Operator
 'i'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assert'      Keyword
-' '           Text
+' '           Text.Whitespace
 "'long function name'" Literal.String.Single
 '('           Operator
 '1'           Literal.Number.Integer
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace

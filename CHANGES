@@ -7,7 +7,32 @@ Version 2.12.0
 --------------
 (not released yet)
 
-- Added ``plugins`` argument to ``get_all_lexers()``.
+- Updated lexers:
+
+  * Agda: Update keyword list (#2017)
+  * Clojure: Highlight ratios (#2042)
+  * Csound: Update to 6.17 (#2064)
+  * Elpi: Fix catastropic backtracking (#2053, #2061)
+  * Gherkin: Add ``But`` (#2046)
+  * Inform6: Update to 6.36 (#2050)
+  * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
+  * PHP: Update builtin function and keyword list (#2054, #2056)
+  * Scheme: Various improvements (#2060)
+  * Spice: Update the keyword list, add new types (#2063, #2067)
+  * Terraform: Support non-idiomatic comments (#2065, #2066)
+
+- Add ``plugins`` argument to ``get_all_lexers()``.
+- Bump minimal Python version to 3.6 (#2059)
+- Fix multiple lexers marking whitespace as ``Text`` (#2025)
+- Remove various redundant uses of ``re.UNICODE`` (#2058)
+- Associate ``.resource`` with the Robot framework (#2047)
+- Associate ``.cljc`` with Clojure (#2043)
+- Associate ``.tpp`` with C++ (#2031)
+- Remove traces of Python 2 from the documentation (#2039)
+- The ``native`` style was updated to meet the WCAG AAA contrast guidelines (#2038)
+- Fix various typos (#2030)
+- Fix ``Groff`` formatter not inheriting token styles correctly (#2024)
+- Various improvements to the CI (#2036)
 
 
 Version 2.11.2
@@ -17,7 +42,7 @@ Version 2.11.2
 - Updated lexers:
 
   * C-family: Fix incorrect handling of labels (#2022, #1996, #1182)
-  * Java: Fixed an issue with ``record`` keywords result in ``Error`` tokens in some cases (#2018)
+  * Java: Fixed an issue with ``record`` keywords result in ``Error`` tokens in some cases (#2016, #2018)
 
 - Fix links to line numbers not working correctly (#2014)
 - Remove ``underline`` from ``Whitespace`` style in the ``Tango`` theme (#2020)

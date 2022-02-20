@@ -35,8 +35,6 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
 
-    flags = re.MULTILINE | re.UNICODE
-
     reserved = ('case', 'class', 'data', 'default', 'deriving', 'do', 'else',
                 'family', 'if', 'in', 'infix[lr]?', 'instance',
                 'let', 'newtype', 'of', 'then', 'type', 'where', '_')
@@ -304,13 +302,13 @@ class AgdaLexer(RegexLexer):
     filenames = ['*.agda']
     mimetypes = ['text/x-agda']
 
-    reserved = ['abstract', 'codata', 'coinductive', 'constructor', 'data',
-                'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
-                'infixl', 'infixr', 'instance', 'let', 'mutual', 'open',
-                'pattern', 'postulate', 'primitive', 'private',
-                'quote', 'quoteGoal', 'quoteTerm',
+    reserved = ['abstract', 'codata', 'coinductive', 'constructor', 'data', 'do',
+                'eta-equality', 'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
+                'infixl', 'infixr', 'instance', 'interleaved', 'let', 'macro', 'mutual',
+                'no-eta-equality', 'open', 'overlap', 'pattern', 'postulate', 'primitive', 'private',
+                'quote', 'quoteTerm',
                 'record', 'renaming', 'rewrite', 'syntax', 'tactic',
-                'unquote', 'unquoteDecl', 'using', 'where', 'with']
+                'unquote', 'unquoteDecl', 'unquoteDef', 'using', 'variable', 'where', 'with']
 
     tokens = {
         'root': [

@@ -18,76 +18,73 @@
 '"text/javascript"' Literal.String
 '>'           Punctuation
 ''            Text
-'\n  '        Text
-'// <!--\n'   Comment.Single
-
-'    '        Text
+'\n  '        Text.Whitespace
+'// <!--'     Comment.Single
+'\n    '      Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'toggleVisible' Name.Other
 '('           Punctuation
 'element'     Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'element'     Name.Other
 '.'           Punctuation
 'style'       Name.Other
 '.'           Punctuation
 'display'     Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 "'block'"     Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'element'     Name.Other
 '.'           Punctuation
 'style'       Name.Other
 '.'           Punctuation
 'display'     Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'none'"      Literal.String.Single
 ';'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'element'     Name.Other
 '.'           Punctuation
 'style'       Name.Other
 '.'           Punctuation
 'display'     Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'block'"     Literal.String.Single
 ';'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '}'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Punctuation
-'      \n    ' Text
+'      \n    ' Text.Whitespace
 '}'           Punctuation
-'          \n    ' Text
-'// -->\n'    Comment.Single
-
-''            Text
-'    '        Text
+'          \n    ' Text.Whitespace
+'// -->'      Comment.Single
+'\n    '      Text.Whitespace
 '<'           Punctuation
 '/'           Punctuation
 'script'      Name.Tag

@@ -61,8 +61,6 @@ class PythonLexer(RegexLexer):
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']
 
-    flags = re.MULTILINE | re.UNICODE
-
     uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
 
     def innerstring_rules(ttype):
@@ -214,7 +212,7 @@ class PythonLexer(RegexLexer):
             (r'(^[ \t]*)'              # at beginning of line + possible indentation
              r'(match|case)\b'         # a possible keyword
              r'(?![ \t]*(?:'           # not followed by...
-             r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't 
+             r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't
              r'|'.join(keyword.kwlist) + r')\b))',                 # pattern matching
              bygroups(Text, Keyword), 'soft-keywords-inner'),
         ],

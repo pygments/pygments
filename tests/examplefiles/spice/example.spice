@@ -7,7 +7,7 @@ f<int> fib(int n) {
 }
 
 // Function to compute factorial numbers recursively
-f<int> fac(int input) {
+inline f<int> fac(int input) {
     if input < 2 {
         return 1;
     }
@@ -18,7 +18,7 @@ f<int> fac(int input) {
 * Entry point of the program
 */
 f<int> main() {
-    short number = (short) 10;
+    short number = 10s;
     printf("Fibonacci of %d: %d\n", number, fib((int) number));
     long base = (long) number;
     base += 1;
@@ -26,4 +26,7 @@ f<int> main() {
     base >>= 3 - 1;
     base -= 1;
     printf("Faculty of %d: %d\n", base + 7, fac((int) base + 7));
+    // Sizeof usage
+    int size = sizeof('T');
+    printf("Size of char is %d, %d\n", size, true);
 }

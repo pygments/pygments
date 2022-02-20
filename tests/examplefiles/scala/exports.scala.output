@@ -1,26 +1,26 @@
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 '// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
 '\n'          Text
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name.Namespace
@@ -28,166 +28,166 @@
 'y'           Name.Namespace
 '.'           Punctuation
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
 '\n'          Text
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
 '\n'          Text
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '`test-name`' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
 '\n'          Text
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
 '\n'          Text
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '`test-name`' Name
 '}'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'scanUnit'    Name.Namespace
 '.'           Punctuation
 'scan'        Name
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 'printUnit'   Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'status'      Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '_'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
 '}'           Punctuation
 '\n'          Text

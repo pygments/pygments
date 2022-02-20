@@ -111,7 +111,7 @@ class XQueryLexer(ExtendedRegexLexer):
     #                 aposattrcontentchar
     # x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
 
-    flags = re.DOTALL | re.MULTILINE | re.UNICODE
+    flags = re.DOTALL | re.MULTILINE
 
     def punctuation_root_callback(lexer, match, ctx):
         yield match.start(), Punctuation, match.group(1)

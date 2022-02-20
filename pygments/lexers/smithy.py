@@ -27,7 +27,6 @@ class SmithyLexer(RegexLexer):
     filenames = ['*.smithy']
     aliases = ['smithy']
 
-    flags = re.MULTILINE | re.UNICODE
     unquoted = r'[A-Za-z0-9_\.#$-]+'
     identifier = r"[A-Za-z0-9_\.#$-]+"
 

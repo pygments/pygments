@@ -3,14 +3,14 @@
 '/*'          Comment.Multiline
 ' Comment block ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Multi-line \n ' Comment.Multiline
 '*'           Comment.Multiline
 ' comment block\n ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 '  '          Comment.Multiline
@@ -27,7 +27,7 @@
 '*/'          Comment.Multiline
 ' '           Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 '*'           Comment.Multiline
@@ -44,7 +44,7 @@
 ' '           Comment.Multiline
 '*'           Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// /* Commented-out comment block\n' Comment.Single
 

@@ -1,117 +1,117 @@
 '#!/usr/bin/ioke\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Ioke'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'LanguageExperiment' Name.Class
-' '           Text
+' '           Text.Whitespace
 'with'        Keyword.Reserved
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'goal:'       Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 ':expressiveness' Literal.String.Symbol
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'data:'       Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'as'          Name
 '('           Punctuation
 'code'        Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'code:'       Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'as'          Name
 '('           Punctuation
 'data'        Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'features:'   Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':dynamic'    Literal.String.Symbol
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':object_oriented' Literal.String.Symbol
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':prototype_based' Literal.String.Symbol
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':homoiconic' Literal.String.Symbol
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':macros'     Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'runtimes:'   Literal.String.Other
 '('           Punctuation
 'JVM'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'CLR'         Name.Class
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'inspirations:' Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword.Reserved
 '('           Punctuation
 'Io'          Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Smalltalk'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ruby'        Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Lisp'        Name.Class
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'hello'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'method'      Name.Function
 '('           Punctuation
 '"'           Literal.String.Doc
@@ -151,14 +151,14 @@
 '!'           Literal.String.Doc
 '"'           Literal.String.Doc
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'name'        Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '"'           Literal.String
 'h'           Literal.String
 'e'           Literal.String
@@ -172,42 +172,42 @@
 '}'           Punctuation
 '!'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'println'     Keyword
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Ioke'        Name.Class
-' '           Text
+' '           Text.Whitespace
 'inspirations' Name
-' '           Text
+' '           Text.Whitespace
 'select'      Name
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'features'    Name
-' '           Text
+' '           Text.Whitespace
 'include?'    Name
 '('           Punctuation
 ':object_oriented' Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'each'        Name
 '('           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'hello'       Name
 '('           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

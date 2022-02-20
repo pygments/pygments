@@ -71,7 +71,7 @@ class ZephirLexer(RegexLexer):
             (r'(abstract|boolean|bool|char|class|const|double|enum|export|extends|final|'
              r'native|goto|implements|import|int|string|interface|long|ulong|char|uchar|'
              r'float|unsigned|private|protected|public|short|static|self|throws|reverse|'
-             r'transient|volatile)\b', Keyword.Reserved),
+             r'transient|volatile|readonly)\b', Keyword.Reserved),
             (r'(true|false|null|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|_REQUEST|_COOKIE|_SESSION|'
              r'_GET|_POST|_SERVER|this|stdClass|range|count|iterator|'
@@ -221,7 +221,7 @@ class PhpLexer(RegexLexer):
              r'array|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace|trait|yield|'
-             r'finally)\b', Keyword),
+             r'finally|match)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             include('magicconstants'),
             (r'\$\{\$+' + _ident_inner + r'\}', Name.Variable),

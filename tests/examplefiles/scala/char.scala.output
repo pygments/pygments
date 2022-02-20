@@ -1,13 +1,13 @@
 "'symbol"     Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'a'"         Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'\\u1234'"   Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Literal.String.Char
 '\\n'         Literal.String.Escape
 "'"           Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace

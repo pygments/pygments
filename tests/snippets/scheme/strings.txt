@@ -1,0 +1,85 @@
+---input---
+;; Test string escapes
+
+"basic string"
+
+"Strings can
+   span several
+
+          lines.
+                 "
+
+"Escapes:
+  \"
+  \\
+  \|
+  \a
+  \f
+  \n
+  \r
+  \t
+  \v
+  \b
+  \0
+  \(
+  \
+  \x125612;    (R6RS-style)
+  \x13         (Guile-style)
+  \u1234
+  \U123456
+"
+
+---tokens---
+';; Test string escapes' Comment.Single
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String
+'basic string' Literal.String
+'"'           Literal.String
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String
+'Strings can\n   span several\n\n          lines.\n                 ' Literal.String
+'"'           Literal.String
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String
+'Escapes:\n  ' Literal.String
+'\\"'         Literal.String.Escape
+'\n  '        Literal.String
+'\\\\'        Literal.String.Escape
+'\n  '        Literal.String
+'\\|'         Literal.String.Escape
+'\n  '        Literal.String
+'\\a'         Literal.String.Escape
+'\n  '        Literal.String
+'\\f'         Literal.String.Escape
+'\n  '        Literal.String
+'\\n'         Literal.String.Escape
+'\n  '        Literal.String
+'\\r'         Literal.String.Escape
+'\n  '        Literal.String
+'\\t'         Literal.String.Escape
+'\n  '        Literal.String
+'\\v'         Literal.String.Escape
+'\n  '        Literal.String
+'\\b'         Literal.String.Escape
+'\n  '        Literal.String
+'\\0'         Literal.String.Escape
+'\n  '        Literal.String
+'\\('         Literal.String.Escape
+'\n  '        Literal.String
+'\\\n'        Literal.String.Escape
+
+'  '          Literal.String
+'\\x125612;'  Literal.String.Escape
+'    (R6RS-style)\n  ' Literal.String
+'\\x13'       Literal.String.Escape
+'         (Guile-style)\n  ' Literal.String
+'\\u1234'     Literal.String.Escape
+'\n  '        Literal.String
+'\\U123456'   Literal.String.Escape
+'\n'          Literal.String
+
+'"'           Literal.String
+'\n'          Text.Whitespace

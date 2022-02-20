@@ -114,8 +114,6 @@ class CddlLexer(RegexLexer):
     _re_uint = r"(?:0b[01]+|0x[0-9a-fA-F]+|[1-9]\d*|0(?!\d))"
     _re_int = r"-?" + _re_uint
 
-    flags = re.UNICODE | re.MULTILINE
-
     tokens = {
         "commentsandwhitespace": [(r"\s+", Whitespace), (r";.+$", Comment.Single)],
         "root": [
