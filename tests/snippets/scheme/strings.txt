@@ -31,17 +31,17 @@
 
 ---tokens---
 ';; Test string escapes' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"'           Literal.String
 'basic string' Literal.String
 '"'           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"'           Literal.String
 'Strings can\n   span several\n\n          lines.\n                 ' Literal.String
 '"'           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"'           Literal.String
 'Escapes:\n  ' Literal.String
@@ -82,4 +82,4 @@
 '\n'          Literal.String
 
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number
+    Number, Whitespace
 
 __all__ = ['IoLexer']
 
@@ -28,11 +28,11 @@ class IoLexer(RegexLexer):
     mimetypes = ['text/x-iosrc']
     tokens = {
         'root': [
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             # Comments
-            (r'//(.*?)\n', Comment.Single),
-            (r'#(.*?)\n', Comment.Single),
+            (r'//(.*?)$', Comment.Single),
+            (r'#(.*?)$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'/\+', Comment.Multiline, 'nestedcomment'),
             # DoubleQuotedString
