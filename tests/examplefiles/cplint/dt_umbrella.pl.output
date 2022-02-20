@@ -1,0 +1,162 @@
+'% From [Van den Broeck et al., 2010].' Comment.Single
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'use_module'  Name.Function
+'('           Punctuation
+'library'     Name.Function
+'('           Punctuation
+'pita'        Literal.String.Atom
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'pita'        Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'begin_lpad'  Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'0.3'         Literal.Number.Float
+'::'          Operator
+'rain'        Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'0.5'         Literal.Number.Float
+'::'          Operator
+'wind'        Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'% decision facts' Comment.Single
+'\n'          Text
+
+'?'           Name.Builtin
+' '           Text
+'::'          Operator
+' '           Text
+'umbrella'    Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'?'           Name.Builtin
+' '           Text
+'::'          Operator
+' '           Text
+'raincoat'    Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'broken_umbrella' Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'rain'        Literal.String.Atom
+','           Punctuation
+'umbrella'    Literal.String.Atom
+','           Punctuation
+'wind'        Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'dry'         Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'rain'        Literal.String.Atom
+','           Punctuation
+' '           Text
+'raincoat'    Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'dry'         Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'rain'        Literal.String.Atom
+','           Punctuation
+' '           Text
+'umbrella'    Literal.String.Atom
+','           Punctuation
+' '           Text
+'\\+'         Literal.String.Atom
+'('           Punctuation
+'broken_umbrella' Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'dry'         Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'\\+'         Literal.String.Atom
+'('           Punctuation
+'rain'        Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'% utility facts' Comment.Single
+'\n'          Text
+
+'broken_umbrella' Literal.String.Atom
+' '           Text
+'=>'          Operator
+' '           Text
+'-'           Operator
+'40.'         Literal.Number.Float
+'\n'          Text
+
+'raincoat'    Literal.String.Atom
+' '           Text
+'=>'          Operator
+' '           Text
+'-'           Operator
+'20.'         Literal.Number.Float
+'\n'          Text
+
+'umbrella'    Literal.String.Atom
+' '           Text
+'=>'          Operator
+' '           Text
+'-'           Operator
+'2.'          Literal.Number.Float
+'\n'          Text
+
+'dry'         Literal.String.Atom
+' '           Text
+'=>'          Operator
+' '           Text
+'60.'         Literal.Number.Float
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'end_lpad'    Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'/*'          Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' ?- dt_solve(Strategy,Value).\n ' Comment.Multiline
+'*'           Comment.Multiline
+' Expected result:\n ' Comment.Multiline
+'*'           Comment.Multiline
+' Strategy = [umbrella]\n ' Comment.Multiline
+'*'           Comment.Multiline
+' Value = 43.0\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
