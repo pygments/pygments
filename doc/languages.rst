@@ -42,6 +42,7 @@ Programming languages
 * `Common Lisp <https://common-lisp.net/>`_
 * `Component Pascal <https://en.wikipedia.org/wiki/Component_Pascal>`_
 * `Coq <https://coq.inria.fr/>`_
+* `Cplint <https://cplint.eu/>`_
 * `Croc <http://www.croc-lang.org/>`_ (MiniD)
 * `Cryptol <https://cryptol.net/>`_ (incl. Literate Cryptol)
 * `Crystal <https://crystal-lang.org>`_
