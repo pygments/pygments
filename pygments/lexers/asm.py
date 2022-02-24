@@ -4,7 +4,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -131,6 +131,10 @@ def _objdump_lexer_tokens(asm_lexer):
             # Code line with disassembled instructions
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace,
+                         using(asm_lexer))),
+            # Code line without raw instructions (objdump --no-show-raw-insn)
+            ('( *)('+hex_re+r'+:)( *\t)([a-zA-Z].*?)$',
+                bygroups(Whitespace, Name.Label, Whitespace,
                          using(asm_lexer))),
             # Code line with ascii
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
@@ -771,7 +775,8 @@ class NasmLexer(RegexLexer):
         'whitespace': [
             (r'\n', Whitespace),
             (r'[ \t]+', Whitespace),
-            (r';.*', Comment.Single)
+            (r';.*', Comment.Single),
+            (r'#.*', Comment.Single)
         ],
         'punctuation': [
             (r'[,():\[\]]+', Punctuation),
@@ -856,7 +861,7 @@ class TasmLexer(RegexLexer):
             include('punctuation'),
             (register, Name.Builtin),
             (identifier, Name.Variable),
-            # Do not match newline when it's preceeded by a backslash
+            # Do not match newline when it's preceded by a backslash
             (r'(\\)(\s*)(;.*)([\r\n])', bygroups(Text, Whitespace, Comment.Single, Whitespace)),
             (r'[\r\n]+', Whitespace, '#pop'),
             include('whitespace')

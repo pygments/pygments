@@ -33,7 +33,7 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -513,8 +513,8 @@ class TransactSqlLexer(RegexLexer):
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
 
-    # Use re.UNICODE to allow non ASCII letters in names.
-    flags = re.IGNORECASE | re.UNICODE
+    flags = re.IGNORECASE
+
     tokens = {
         'root': [
             (r'\s+', Whitespace),

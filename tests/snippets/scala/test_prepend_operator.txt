@@ -3,8 +3,8 @@ a +: b
 
 ---tokens---
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+:'          Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace

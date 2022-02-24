@@ -4,7 +4,7 @@
 
     Lexers for Pascal family languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -363,7 +363,7 @@ class DelphiLexer(Lexer):
                     elif lowercase_name in self.keywords:
                         token = Keyword
                         # if we are in a special block and a
-                        # block ending keyword occours (and the parenthesis
+                        # block ending keyword occurs (and the parenthesis
                         # is balanced) we end the current block context
                         if (in_function_block or in_property_block) and \
                            lowercase_name in self.BLOCK_KEYWORDS and \

@@ -4,7 +4,7 @@
 
     Lexers for the Factor language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,8 +27,6 @@ class FactorLexer(RegexLexer):
     aliases = ['factor']
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']
-
-    flags = re.MULTILINE | re.UNICODE
 
     builtin_kernel = words((
         '-rot', '2bi', '2bi@', '2bi*', '2curry', '2dip', '2drop', '2dup', '2keep', '2nip',

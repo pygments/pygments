@@ -4,19 +4,20 @@
 
     Lexer for LilyPond.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import inherit, words
+from pygments.lexer import default, inherit, words
 from pygments.lexers.lisp import SchemeLexer
 from pygments.lexers._lilypond_builtins import (
-    keywords, clefs, scales, repeat_types, units, chord_modifiers, pitches,
-    music_functions, dynamics, articulations, music_commands, markup_commands,
-    grobs, translators, contexts, context_properties, grob_properties,
-    scheme_functions, paper_variables, header_variables
+    keywords, pitch_language_names, clefs, scales, repeat_types, units,
+    chord_modifiers, pitches, music_functions, dynamics, articulations,
+    music_commands, markup_commands, grobs, translators, contexts,
+    context_properties, grob_properties, scheme_functions, paper_variables,
+    header_variables
 )
 from pygments.token import Token
 
@@ -24,18 +25,15 @@ __all__ = ["LilyPondLexer"]
 
 NAME_END_RE = r"(?=\d|[^\w\-]|[\-_][\W\d])"
 
-def builtin_words_with_prefix(names, prefix):
-    return words(names, prefix, suffix=NAME_END_RE)
-
-def builtin_backslashed_words(names):
-    return builtin_words_with_prefix(names, prefix=r"[\-_^]?\\")
-
-def builtin_words(names):
-    # Backslashes are always allowed.  This is because you can often
-    # find a context where the form with the backslash will do something
-    # useful, for example:
-    # \layout { \context { \Score ... } }
-    return builtin_words_with_prefix(names, prefix=r"[\-_^]?\\?")
+def builtin_words(names, backslash, suffix=NAME_END_RE):
+    prefix = r"[\-_^]?"
+    if backslash == "mandatory":
+        prefix += r"\\"
+    elif backslash == "optional":
+        prefix += r"\\?"
+    else:
+        assert backslash == "disallowed"
+    return words(names, prefix, suffix)
 
 class LilyPondLexer(SchemeLexer):
     """
@@ -101,7 +99,7 @@ class LilyPondLexer(SchemeLexer):
             # - chord: < >,
             # - bar check: |,
             # - dot in nested properties: \revert NoteHead.color,
-            # - equals sign in assignemnts and lists for various commands:
+            # - equals sign in assignments and lists for various commands:
             #   \override Stem.color = red,
             # - comma as alternative syntax for lists: \time 3,3,2 4/4,
             # - colon in tremolos: c:32,
@@ -135,24 +133,32 @@ class LilyPondLexer(SchemeLexer):
             (r"[\-_^]?\\?\d+", Token.Name.Builtin.Articulation),
 
             # Builtins.
-            (builtin_backslashed_words(keywords), Token.Keyword),
-            (builtin_words(clefs), Token.Name.Builtin.Clef),
-            (builtin_backslashed_words(scales), Token.Name.Builtin.Scale),
-            (builtin_words(repeat_types), Token.Name.Builtin.RepeatType),
-            (builtin_backslashed_words(units), Token.Number),
-            (builtin_words(chord_modifiers), Token.ChordModifier),
-            (builtin_backslashed_words(music_functions), Token.Name.Builtin.MusicFunction),
-            (builtin_backslashed_words(dynamics), Token.Name.Builtin.Dynamic),
-            (builtin_backslashed_words(articulations), Token.Name.Builtin.Articulation),
-            (builtin_backslashed_words(music_commands), Token.Name.Builtin.MusicCommand),
-            (builtin_backslashed_words(markup_commands), Token.Name.Builtin.MarkupCommand),
-            (builtin_words(grobs), Token.Name.Builtin.Grob),
-            (builtin_words(translators), Token.Name.Builtin.Translator),
-            (builtin_words(contexts), Token.Name.Builtin.Context),
-            (builtin_words(context_properties), Token.Name.Builtin.ContextProperty),
-            (builtin_words(grob_properties), Token.Name.Builtin.GrobProperty),
-            (builtin_words(paper_variables), Token.Name.Builtin.PaperVariable),
-            (builtin_words(header_variables), Token.Name.Builtin.HeaderVariable),
+            (builtin_words(keywords, "mandatory"), Token.Keyword),
+            (builtin_words(pitch_language_names, "disallowed"), Token.Name.PitchLanguage),
+            (builtin_words(clefs, "disallowed"), Token.Name.Builtin.Clef),
+            (builtin_words(scales, "mandatory"), Token.Name.Builtin.Scale),
+            (builtin_words(repeat_types, "disallowed"), Token.Name.Builtin.RepeatType),
+            (builtin_words(units, "mandatory"), Token.Number),
+            (builtin_words(chord_modifiers, "disallowed"), Token.ChordModifier),
+            (builtin_words(music_functions, "mandatory"), Token.Name.Builtin.MusicFunction),
+            (builtin_words(dynamics, "mandatory"), Token.Name.Builtin.Dynamic),
+            # Those like slurs that don't take a backslash are covered above.
+            (builtin_words(articulations, "mandatory"), Token.Name.Builtin.Articulation),
+            (builtin_words(music_commands, "mandatory"), Token.Name.Builtin.MusicCommand),
+            (builtin_words(markup_commands, "mandatory"), Token.Name.Builtin.MarkupCommand),
+            (builtin_words(grobs, "disallowed"), Token.Name.Builtin.Grob),
+            (builtin_words(translators, "disallowed"), Token.Name.Builtin.Translator),
+            # Optional backslash because of \layout { \context { \Score ... } }.
+            (builtin_words(contexts, "optional"), Token.Name.Builtin.Context),
+            (builtin_words(context_properties, "disallowed"), Token.Name.Builtin.ContextProperty),
+            (builtin_words(grob_properties, "disallowed"),
+             Token.Name.Builtin.GrobProperty,
+             "maybe-subproperties"),
+            # Optional backslashes here because output definitions are wrappers
+            # around modules.  Concretely, you can do, e.g.,
+            # \paper { oddHeaderMarkup = \evenHeaderMarkup }
+            (builtin_words(paper_variables, "optional"), Token.Name.Builtin.PaperVariable),
+            (builtin_words(header_variables, "optional"), Token.Name.Builtin.HeaderVariable),
 
             # Other backslashed-escaped names (like dereferencing a
             # music variable), possibly with a direction specifier.
@@ -177,4 +183,14 @@ class LilyPondLexer(SchemeLexer):
             (r"#\{", Token.Punctuation, ("#pop", "root")),
             inherit,
         ],
+        # Grob subproperties are undeclared and it would be tedious
+        # to maintain them by hand. Instead, this state allows recognizing
+        # everything that looks like a-known-property.foo.bar-baz as
+        # one single property name.
+        "maybe-subproperties": [
+            (r"\.", Token.Punctuation),
+            (r"\s+", Token.Whitespace),
+            (r"([^\W\d])+" + NAME_END_RE, Token.Name.Builtin.GrobProperty),
+            default("#pop"),
+        ]
     }

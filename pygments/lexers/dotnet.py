@@ -4,7 +4,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -51,7 +51,7 @@ class CSharpLexer(RegexLexer):
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
@@ -77,7 +77,7 @@ class CSharpLexer(RegexLexer):
                 (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
-                 bygroups(Whitespace, using(this), Name.Function, Whitespace, 
+                 bygroups(Whitespace, using(this), Name.Function, Whitespace,
                      Punctuation)),
                 (r'^(\s*)(\[.*?\])', bygroups(Whitespace, Name.Attribute)),
                 (r'[^\S\n]+', Whitespace),
@@ -94,7 +94,7 @@ class CSharpLexer(RegexLexer):
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r'(#)([ \t]*)(if|endif|else|elif|define|undef|'
                  r'line|error|warning|region|endregion|pragma)\b(.*?)(\n)',
-                 bygroups(Comment.Preproc, Whitespace, Comment.Preproc, 
+                 bygroups(Comment.Preproc, Whitespace, Comment.Preproc,
                      Comment.Preproc, Whitespace)),
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Whitespace,
                  Keyword)),
@@ -166,7 +166,7 @@ class NemerleLexer(RegexLexer):
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
@@ -206,7 +206,7 @@ class NemerleLexer(RegexLexer):
                     'splice-string2'),
                 (r'<#', String, 'recursive-string'),
 
-                (r'(<\[)(\s*)(' + cs_ident + ':)?', bygroups(Keyword, 
+                (r'(<\[)(\s*)(' + cs_ident + ':)?', bygroups(Keyword,
                     Whitespace, Keyword)),
                 (r'\]\>', Keyword),
 
@@ -645,7 +645,7 @@ class FSharpLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
             (r'(#)([ \t]*)(if|endif|else|line|nowarn|light|\d+)\b(.*?)(\n)',
-             bygroups(Comment.Preproc, Whitespace, Comment.Preproc, 
+             bygroups(Comment.Preproc, Whitespace, Comment.Preproc,
                  Comment.Preproc, Whitespace)),
 
             (r"[^\W\d][\w']*", Name),

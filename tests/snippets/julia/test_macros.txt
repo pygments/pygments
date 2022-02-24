@@ -10,47 +10,47 @@
 
 ---tokens---
 '@generated'  Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@.'          Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@~'          Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@±'          Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@mymacro'    Name.Decorator
 '('           Punctuation
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@+¹ᵀ'        Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace

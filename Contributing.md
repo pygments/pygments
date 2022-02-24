@@ -5,6 +5,19 @@ The code is distributed under the BSD 2-clause license. Contributors making pull
 requests must agree that they are able and willing to put their contributions
 under that license.
 
+Goals & non-goals of Pygments
+=============================
+
+Python support
+--------------
+
+Pygments supports all supported Python versions as per the [Python Developer's Guide](https://devguide.python.org/#status-of-python-branches). Additionally, the default Python version of the latest stable version of RHEL, Ubuntu LTS, and Debian are supported, even if they're officially EOL. Supporting other end-of-life versions is a non-goal of Pygments.
+
+Validation
+----------
+
+Pygments does not attempt to validate the input. Accepting code that is not legal for a given language is acceptable if it simplifies the codebase and does not result in surprising behavior. For instance, in C89, accepting `//` based comments would be fine because de-facto all compilers supported it, and having a separate lexer for it would not be worth it.
+
 Contribution checklist
 ======================
 

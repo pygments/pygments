@@ -4,7 +4,7 @@
 
     Lexers for the Rust language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -104,7 +104,7 @@ class RustLexer(RegexLexer):
             # Prelude (taken from Rust's src/libstd/prelude.rs)
             builtin_funcs_types,
             builtin_macros,
-            # Path seperators, so types don't catch them.
+            # Path separators, so types don't catch them.
             (r'::\b', Text),
             # Types in positions.
             (r'(?::|->)', Text, 'typename'),

@@ -4,7 +4,7 @@
 
     Lexers for Prolog and Prolog-like languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,8 +25,6 @@ class PrologLexer(RegexLexer):
     aliases = ['prolog']
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
-
-    flags = re.UNICODE | re.MULTILINE
 
     tokens = {
         'root': [
@@ -200,9 +198,9 @@ class LogtalkLexer(RegexLexer):
             (r'(>>|<<|/\\|\\\\|\\)', Operator),
             # Predicate aliases
             (r'\bas\b', Operator),
-            # Arithemtic evaluation
+            # Arithmetic evaluation
             (r'\bis\b', Keyword),
-            # Arithemtic comparison
+            # Arithmetic comparison
             (r'(=:=|=\\=|<|=<|>=|>)', Operator),
             # Term creation and decomposition
             (r'=\.\.', Operator),
@@ -213,7 +211,7 @@ class LogtalkLexer(RegexLexer):
             # Evaluable functors
             (r'(//|[-+*/])', Operator),
             (r'\b(e|pi|div|mod|rem)\b', Operator),
-            # Other arithemtic functors
+            # Other arithmetic functors
             (r'\b\*\*\b', Operator),
             # DCG rules
             (r'-->', Operator),

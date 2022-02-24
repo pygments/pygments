@@ -4,7 +4,7 @@
 
     Lexers for configuration file formats.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -690,7 +690,7 @@ class TerraformLexer(ExtendedRegexLexer):
         ],
         'basic': [
             (r'\s*/\*', Comment.Multiline, 'comment'),
-            (r'\s*#.*\n', Comment.Single),
+            (r'\s*(#|//).*\n', Comment.Single),
             include('whitespace'),
 
             # e.g. terraform {
@@ -954,7 +954,7 @@ class PacmanConfLexer(RegexLexer):
              Name.Variable),
 
             # fallback
-            (r'\s+', Whitespace), 
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
     }
@@ -1057,9 +1057,9 @@ class TOMLLexer(RegexLexer):
 
 class NestedTextLexer(RegexLexer):
     """
-    Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data 
+    Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data
     format.
-    
+
     .. versionadded:: 2.9
     """
 
@@ -1079,7 +1079,7 @@ class NestedTextLexer(RegexLexer):
             (r'^(\s*)(.*?)(:)( ?)(.*?)(\s*)$', bygroups(Whitespace, Name, Punctuation, Whitespace, String, Whitespace)),
         ],
     }
-        
+
 
 class SingularityLexer(RegexLexer):
     """

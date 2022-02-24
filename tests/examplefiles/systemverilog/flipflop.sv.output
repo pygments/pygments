@@ -1,5 +1,5 @@
 'module'      Keyword
-' '           Text
+' '           Text.Whitespace
 'toplevel'    Name
 '('           Punctuation
 'clock'       Name
@@ -7,121 +7,91 @@
 'reset'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'input'       Keyword
-' '           Text
+' '           Text.Whitespace
 'clock'       Name
 ';'           Punctuation
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'input'       Keyword
-' '           Text
+' '           Text.Whitespace
 'reset'       Name
 ';'           Punctuation
-'\n'          Text
-
-' \n '        Text
+'\n \n '      Text.Whitespace
 'reg'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'flop1'       Name
 ';'           Punctuation
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'reg'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'flop2'       Name
 ';'           Punctuation
-'\n'          Text
-
-' \n '        Text
+'\n \n '      Text.Whitespace
 'always'      Keyword
-' '           Text
+' '           Text.Whitespace
 '@'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'posedge'     Keyword
-' '           Text
+' '           Text.Whitespace
 'reset'       Name
-' '           Text
+' '           Text.Whitespace
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'posedge'     Keyword
-' '           Text
+' '           Text.Whitespace
 'clock'       Name
 ')'           Punctuation
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'reset'       Name
 ')'           Punctuation
-'\n'          Text
-
-'   '         Text
+'\n   '       Text.Whitespace
 'begin'       Keyword
-'\n'          Text
-
-'     '       Text
+'\n     '     Text.Whitespace
 'flop1'       Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'     '       Text
+'\n     '     Text.Whitespace
 'flop2'       Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'   '         Text
+'\n   '       Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'else'        Keyword
-'\n'          Text
-
-'   '         Text
+'\n   '       Text.Whitespace
 'begin'       Keyword
-'\n'          Text
-
-'     '       Text
+'\n     '     Text.Whitespace
 'flop1'       Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'flop2'       Name
 ';'           Punctuation
-'\n'          Text
-
-'     '       Text
+'\n     '     Text.Whitespace
 'flop2'       Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'flop1'       Name
 ';'           Punctuation
-'\n'          Text
-
-'   '         Text
+'\n   '       Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endmodule'   Keyword
-'\n'          Text
+'\n'          Text.Whitespace

@@ -4,7 +4,7 @@
 
     Lexers for the NixOS Nix language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -28,8 +28,6 @@ class NixLexer(RegexLexer):
     aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
-
-    flags = re.MULTILINE | re.UNICODE
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']

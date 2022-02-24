@@ -8,7 +8,7 @@
     More information:
     https://datatracker.ietf.org/doc/rfc8610/
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -114,15 +114,13 @@ class CddlLexer(RegexLexer):
     _re_uint = r"(?:0b[01]+|0x[0-9a-fA-F]+|[1-9]\d*|0(?!\d))"
     _re_int = r"-?" + _re_uint
 
-    flags = re.UNICODE | re.MULTILINE
-
     tokens = {
         "commentsandwhitespace": [(r"\s+", Whitespace), (r";.+$", Comment.Single)],
         "root": [
             include("commentsandwhitespace"),
             # tag types
             (r"#(\d\.{uint})?".format(uint=_re_uint), Keyword.Type),  # type or any
-            # occurence
+            # occurrence
             (
                 r"({uint})?(\*)({uint})?".format(uint=_re_uint),
                 bygroups(Number, Operator, Number),

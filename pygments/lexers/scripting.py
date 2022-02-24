@@ -4,7 +4,7 @@
 
     Lexer for scripting and embedded languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -798,7 +798,7 @@ class RexxLexer(RegexLexer):
 
     def analyse_text(text):
         """
-        Check for inital comment and patterns that distinguish Rexx from other
+        Check for initial comment and patterns that distinguish Rexx from other
         C-like languages.
         """
         if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
@@ -975,7 +975,7 @@ class EasytrieveLexer(RegexLexer):
     #   * apostrophe (')
     #   * period (.)
     #   * comma (,)
-    #   * paranthesis ( and )
+    #   * parenthesis ( and )
     #   * colon (:)
     #
     # Additionally words end once a '*' appears, indicatins a comment.

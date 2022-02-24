@@ -4,7 +4,7 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -29,7 +29,7 @@ class CoqLexer(RegexLexer):
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
 
-    flags = re.UNICODE
+    flags = 0 # no re.MULTILINE
 
     keywords1 = (
         # Vernacular commands
@@ -390,8 +390,6 @@ class LeanLexer(RegexLexer):
     aliases = ['lean']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [

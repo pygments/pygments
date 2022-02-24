@@ -1,359 +1,359 @@
 '## CD ROM'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'cdrom:'      Literal.String
 '['           Literal.String.Other
 'Xubuntu 6.06.1 _Dapper Drake_ - Release i386 (20060807)' Literal.String.Other
 ']'           Literal.String.Other
 '/'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://foo.com/' Literal.String
 '$(ARCH)'     Name.Variable
 '/'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'foo'         Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '## Major bug fix updates produced after the final release of the' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## distribution.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-updates' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-updates' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "## Uncomment the following two lines to add software from the 'universe'" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## repository.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## team, and may not be under a free licence. Please satisfy yourself as to' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## your rights to use the software. Also, please note that software in' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## universe WILL NOT receive any review or updates from the Ubuntu security' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## team.'    Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "## Uncomment the following two lines to add software from the 'backports'" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## repository.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## N.B. software from this repository may not have been tested as' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## extensively as that contained in the main release, although it includes' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## newer versions of some applications which may provide useful features.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## Also, please note that software in backports WILL NOT receive any review' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## or updates from the Ubuntu security team.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-backports' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-backports' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://security.ubuntu.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-security' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://security.ubuntu.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-security' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://security.ubuntu.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-security' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb-src'     Keyword
-' '           Text
+' '           Text.Whitespace
 'http://security.ubuntu.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-security' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '## dapper-commercial by canonical' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## currently has realplay (realplayer 10) and opera (opera 9)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.canonical.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'dapper-commercial' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '## Bleeding edge wine repository for Dapper' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## only uncomment it if you need it' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## deb http://wine.budgetdedicated.com/apt dapper main' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## deb-src http://wine.budgetdedicated.com/apt dapper main' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '## skype'    Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## only uncomment it if you need it' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## deb http://download.skype.com/linux/repos/debian/ stable non-free' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://de.archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://de.archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy-updates' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://de.archive.ubuntu.com/ubuntu/' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy-backports' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://security.ubuntu.com/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy-security' Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://wine.budgetdedicated.com/apt' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'deb'         Keyword
-' '           Text
+' '           Text.Whitespace
 'http://archive.czessi.net/ubuntu' Literal.String
-' '           Text
+' '           Text.Whitespace
 'edgy'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'restricted'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'universe'    Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'multiverse'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'i18n-de'     Keyword.Pseudo
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace

@@ -4,7 +4,7 @@
 
     Pygments lexer for the Meson build system
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -47,8 +47,6 @@ class MesonLexer(RegexLexer):
     aliases = ['meson', 'meson.build']
     filenames = ['meson.build', 'meson_options.txt']
     mimetypes = ['text/x-meson']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [

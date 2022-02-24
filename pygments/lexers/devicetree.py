@@ -4,7 +4,7 @@
 
     Lexers for Devicetree language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -51,7 +51,7 @@ class DevicetreeLexer(RegexLexer):
             (r'\\\n', Text),  # line continuation
             (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
-            # Open until EOF, so no ending delimeter
+            # Open until EOF, so no ending delimiter
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
