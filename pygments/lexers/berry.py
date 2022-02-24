@@ -16,26 +16,22 @@ class BerryLexer(RegexLexer):
     filenames = ['*.be']
     mimetypes = ['text/x-berry', 'application/x-berry']
 
-    _name = r'\b[^\W\d]\w*'
-
-    # (def)\b((?:\s)*)
-    # (def)\b(\s*$)(?<!\()
-    # (def)\b((?:\s)*)(?=[^\W\d]\w*)
+    _name = r'(?:[^\W\d]\w*)'
 
     tokens = {
         'root': [
             include('whitespace'),
             include('numbers'),
             include('keywords'),
-            (r'(def)\b((?:\s)*)' + '(?=' + _name + ')', bygroups(Keyword.Declaration, Text), 'funcname'),
+            (r'(def)\b((?:\s)*)', bygroups(Keyword.Declaration, Text), 'funcname'),
             (r'(class)\b((?:\s)*)', bygroups(Keyword.Declaration, Text), 'classname'),
             (r'(import)\b((?:\s)*)', bygroups(Keyword.Namespace, Text), 'import'),
             include('expr')
         ],
         'expr': [
             (r'[^\S\n]+', Text),
-            (r'\.\.|[~!%^&*+=|?:<>/-]', Operator),
-            (r'[(){}\[\],.;]', Punctuation),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
             include('controls'),
             include('builtins'),
             include('funccall'),
@@ -66,7 +62,7 @@ class BerryLexer(RegexLexer):
                 'assert', 'bool', 'input', 'classname', 'classof', 'number', 'real',
                 'bytes', 'compile', 'map', 'list', 'int', 'isinstance', 'print',
                 'range', 'str', 'super', 'module', 'size', 'issubclass', 'open',
-                'file', 'type', 'call'), 
+                'file', 'rang', 'type', 'call'), 
                 suffix=r'\b'), Name.Builtin)
         ],
         'numbers': [
