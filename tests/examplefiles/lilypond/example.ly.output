@@ -321,6 +321,10 @@
 ' '           Whitespace
 'Staff'       Name.Builtin.Context
 ' '           Whitespace
+'='           Punctuation
+' '           Whitespace
+'myStaff'     Text
+' '           Whitespace
 '\\with'      Keyword
 ' '           Whitespace
 '{'           Punctuation
@@ -481,18 +485,11 @@
 ' '           Whitespace
 '{'           Punctuation
 '\n               ' Whitespace
-'S'           Text
-'o'           Text
-'m'           Text
-'e'           Pitch
+'Some'        Text
 '\n               ' Whitespace
-'T'           Text
-'e'           Text
-'x'           Text
-'t'           Text
+'Text'        Text
 '\n               ' Whitespace
-'I'           Text
-'n'           Text
+'In'          Text
 '\n               ' Whitespace
 'A'           Text
 '\n               ' Whitespace
@@ -500,21 +497,12 @@
 ' '           Whitespace
 '\\italic'    Name.Builtin.MarkupCommand
 ' '           Whitespace
-'C'           Text
-'o'           Text
-'l'           Text
-'u'           Text
-'m'           Text
-'n'           Text
+'Column'      Text
 '!'           Text
 '\n               ' Whitespace
 '\\small-italic' Name.BackslashReference
 ' '           Whitespace
-'s'           Text
-'u'           Text
-'p'           Text
-'e'           Text
-'r'           Pitch
+'super'       Text
 '\n             ' Whitespace
 '}'           Punctuation
 '\n    '      Whitespace
@@ -545,11 +533,7 @@
 '_\\piuPiano' Name.BackslashReference
 '^\\markup'   Name.Builtin.MarkupCommand
 ' '           Whitespace
-'d'           Text
-'o'           Text
-'l'           Text
-'c'           Text
-'e'           Pitch
+'dolce'       Text
 '\n  '        Whitespace
 '}'           Punctuation
 '\n  '        Whitespace
@@ -570,20 +554,13 @@
 '('           Punctuation
 ')'           Punctuation
 '\n    '      Whitespace
-'M'           Text
-'y'           Text
+'My'          Text
 ' '           Whitespace
-'L'           Text
-'i'           Text
-'l'           Text
-'y'           Text
+'Lily'        Text
 ' '           Whitespace
 '--'          Punctuation
 ' '           Whitespace
-'S'           Text
-'o'           Text
-'n'           Text
-'g'           Pitch
+'Song'        Text
 '\n  '        Whitespace
 '}'           Punctuation
 '\n  '        Whitespace
