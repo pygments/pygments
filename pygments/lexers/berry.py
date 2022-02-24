@@ -53,7 +53,7 @@ class BerryLexer(RegexLexer):
                 'as', 'break', 'continue', 'import', 'static', 'self', 'super'), 
                 suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|nil)\b', Keyword.Constant),
-            (r'(var|def)\b', Keyword.Declaration)
+            (r'var\b', Keyword.Declaration)
         ],
         'controls': [
             (words((
