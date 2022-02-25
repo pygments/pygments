@@ -169,8 +169,8 @@ class LilyPondLexer(SchemeLexer):
             (r"([^\W\d]|-)+(?=([^\W\d]|[\-.])*\s*=)", Token.Name.Lvalue),
 
             # Virtually everything can appear in markup mode, so we highlight
-            # as text.  Try to get a complete word, or we might wrongly the second
-            # half of a word that happens to be a builtin (e.g., "myStaff").
+            # as text.  Try to get a complete word, or we might wrongly lex
+            # a suffix that happens to be a builtin as a builtin (e.g., "myStaff").
             (r"([^\W\d]|-)+?" + NAME_END_RE, Token.Text),
             (r".", Token.Text),
         ],
