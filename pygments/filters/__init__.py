@@ -43,11 +43,15 @@ def get_filter_by_name(filtername, **options):
         raise ClassNotFound('filter %r not found' % filtername)
 
 
-def get_all_filters():
+def get_all_filters(plugins=True, disabledbuiltin=[]):
     """Return a generator of all filter names."""
-    yield from FILTERS
-    for name, _ in find_plugin_filters():
-        yield name
+    for filtername in FILTERS:
+        if filtername in disabledbuiltin:
+            continue
+        yield filtername
+    if plugins:
+        for name, _ in find_plugin_filters():
+            yield name
 
 
 def _replace_special(ttype, value, regex, specialttype,

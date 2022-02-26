@@ -64,18 +64,20 @@ def _parse_filters(f_strs):
     return filters
 
 
-def _print_help(what, name):
+def _print_help(what, name, **options):
     try:
         if what == 'lexer':
-            cls = get_lexer_by_name(name)
+            cls = get_lexer_by_name(name, options)
             print("Help on the %s lexer:" % cls.name)
             print(dedent(cls.__doc__))
         elif what == 'formatter':
-            cls = find_formatter_class(name)
+            disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
+            cls = find_formatter_class(name, disabledbuiltin)
             print("Help on the %s formatter:" % cls.name)
             print(dedent(cls.__doc__))
         elif what == 'filter':
-            cls = find_filter_class(name)
+            disabledbuiltin = options.get('disable_builtin_filters', '').lower().split(';')
+            cls = find_filter_class(name, disabledbuiltin)
             print("Help on the %s filter:" % name)
             print(dedent(cls.__doc__))
         return 0
@@ -84,14 +86,15 @@ def _print_help(what, name):
         return 1
 
 
-def _print_list(what):
+def _print_list(what, **options):
     if what == 'lexer':
         print()
         print("Lexers:")
         print("~~~~~~~")
 
         info = []
-        for fullname, names, exts, _ in get_all_lexers():
+        disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+        for fullname, names, exts, _ in get_all_lexers(True, disabledbuiltin):
             tup = (', '.join(names)+':', fullname,
                    exts and '(filenames ' + ', '.join(exts) + ')' or '')
             info.append(tup)
@@ -105,7 +108,8 @@ def _print_list(what):
         print("~~~~~~~~~~~")
 
         info = []
-        for cls in get_all_formatters():
+        disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
+        for cls in get_all_formatters(True, disabledbuiltin):
             doc = docstring_headline(cls)
             tup = (', '.join(cls.aliases) + ':', doc, cls.filenames and
                    '(filenames ' + ', '.join(cls.filenames) + ')' or '')
@@ -119,8 +123,9 @@ def _print_list(what):
         print("Filters:")
         print("~~~~~~~~")
 
-        for name in get_all_filters():
-            cls = find_filter_class(name)
+        disabledbuiltin = options.get('disable_builtin_filters', '').lower().split(';')
+        for name in get_all_filters(True, disabledbuiltin):
+            cls = find_filter_class(name, disabledbuiltin)
             print("* " + name + ':')
             print("    %s" % docstring_headline(cls))
 
@@ -129,18 +134,20 @@ def _print_list(what):
         print("Styles:")
         print("~~~~~~~")
 
-        for name in get_all_styles():
-            cls = get_style_by_name(name)
+        disabledbuiltin = options.get('disable_builtin_styles', '').lower().split(';')
+        for name in get_all_styles(True, disabledbuiltin):
+            cls = get_style_by_name(name, disabledbuiltin)
             print("* " + name + ':')
             print("    %s" % docstring_headline(cls))
 
 
-def _print_list_as_json(requested_items):
+def _print_list_as_json(requested_items, **options):
     import json
     result = {}
     if 'lexer' in requested_items:
         info = {}
-        for fullname, names, filenames, mimetypes in get_all_lexers():
+        disabledbuiltin = options.get('disable_builtin_lexers', '').lower().split(';')
+        for fullname, names, filenames, mimetypes in get_all_lexers(True, disabledbuiltin):
             info[fullname] = {
                 'aliases': names,
                 'filenames': filenames,
@@ -150,7 +157,8 @@ def _print_list_as_json(requested_items):
 
     if 'formatter' in requested_items:
         info = {}
-        for cls in get_all_formatters():
+        disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
+        for cls in get_all_formatters(True, disabledbuiltin):
             doc = docstring_headline(cls)
             info[cls.name] = {
                 'aliases': cls.aliases,
@@ -161,8 +169,9 @@ def _print_list_as_json(requested_items):
 
     if 'filter' in requested_items:
         info = {}
-        for name in get_all_filters():
-            cls = find_filter_class(name)
+        disabledbuiltin = options.get('disable_builtin_filters', '').lower().split(';')
+        for name in get_all_filters(True, disabledbuiltin):
+            cls = find_filter_class(name, disabledbuiltin)
             info[name] = {
                 'doc': docstring_headline(cls)
             }
@@ -170,8 +179,9 @@ def _print_list_as_json(requested_items):
 
     if 'style' in requested_items:
         info = {}
-        for name in get_all_styles():
-            cls = get_style_by_name(name)
+        disabledbuiltin = options.get('disable_builtin_styles', '').lower().split(';')
+        for name in get_all_styles(True, disabledbuiltin):
+            cls = get_style_by_name(name, disabledbuiltin)
             info[name] = {
                 'doc': docstring_headline(cls)
             }
@@ -189,20 +199,31 @@ def main_inner(parser, argns):
               'Chajdas and contributors.' % __version__)
         return 0
 
-    def is_only_option(opt):
-        return not any(v for (k, v) in vars(argns).items() if k != opt)
-
-    # handle ``pygmentize -L``
-    if argns.L is not None:
+    def has_invalid_options(validOptions):
         arg_set = set()
         for k, v in vars(argns).items():
             if v:
                 arg_set.add(k)
+        for opt in validOptions:
+            arg_set.discard(opt)
 
-        arg_set.discard('L')
-        arg_set.discard('json')
+        return len(arg_set) > 0
 
-        if arg_set:
+    # parse -O options
+    parsed_opts = _parse_options(argns.O or [])
+
+    # parse -P options
+    for p_opt in argns.P or []:
+        try:
+            name, value = p_opt.split('=', 1)
+        except ValueError:
+            parsed_opts[p_opt] = True
+        else:
+            parsed_opts[name] = value
+
+    # handle ``pygmentize -L``
+    if argns.L is not None:
+        if has_invalid_options({'L', 'O', 'P', 'json'}):
             parser.print_help(sys.stderr)
             return 2
 
@@ -218,33 +239,21 @@ def main_inner(parser, argns):
             largs = allowed_types
         if not argns.json:
             for arg in largs:
-                _print_list(arg)
+                _print_list(arg, **parsed_opts)
         else:
-            _print_list_as_json(largs)
+            _print_list_as_json(largs, **parsed_opts)
         return 0
 
     # handle ``pygmentize -H``
     if argns.H:
-        if not is_only_option('H'):
+        if has_invalid_options({'H', 'O', 'P'}):
             parser.print_help(sys.stderr)
             return 2
         what, name = argns.H
         if what not in ('lexer', 'formatter', 'filter'):
             parser.print_help(sys.stderr)
             return 2
-        return _print_help(what, name)
-
-    # parse -O options
-    parsed_opts = _parse_options(argns.O or [])
-
-    # parse -P options
-    for p_opt in argns.P or []:
-        try:
-            name, value = p_opt.split('=', 1)
-        except ValueError:
-            parsed_opts[p_opt] = True
-        else:
-            parsed_opts[name] = value
+        return _print_help(what, name, **parsed_opts)
 
     # encodings
     inencoding = parsed_opts.get('inencoding', parsed_opts.get('encoding'))
@@ -252,7 +261,8 @@ def main_inner(parser, argns):
 
     # handle ``pygmentize -N``
     if argns.N:
-        lexer = find_lexer_class_for_filename(argns.N)
+        disabledbuiltin = parsed_opts.get('disable_builtin_lexers', '').lower().split(';')
+        lexer = find_lexer_class_for_filename(argns.N, disabledbuiltin)
         if lexer is None:
             lexer = TextLexer
 
@@ -263,7 +273,7 @@ def main_inner(parser, argns):
     if argns.C:
         inp = sys.stdin.buffer.read()
         try:
-            lexer = guess_lexer(inp, inencoding=inencoding)
+            lexer = guess_lexer(inp, **parsed_opts)
         except ClassNotFound:
             lexer = TextLexer
 

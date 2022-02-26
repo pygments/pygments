@@ -47,7 +47,7 @@ def _load_lexers(module_name):
         _lexer_cache[cls.name] = cls
 
 
-def get_all_lexers(plugins=True):
+def get_all_lexers(plugins=True, disabledbuiltin=[]):
     """Return a generator of tuples in the form ``(name, aliases,
     filenames, mimetypes)`` of all know lexers.
 
@@ -55,6 +55,8 @@ def get_all_lexers(plugins=True):
     are also returned.  Otherwise, only builtin ones are considered.
     """
     for item in LEXERS.values():
+        if any(i in item[2] for i in disabledbuiltin):
+            continue
         yield item[1:]
     if plugins:
         for lexer in find_plugin_lexers():

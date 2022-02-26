@@ -41,15 +41,18 @@ def _load_formatters(module_name):
         _formatter_cache[cls.name] = cls
 
 
-def get_all_formatters():
+def get_all_formatters(plugins=True, disabledbuiltin=[]):
     """Return a generator for all formatter classes."""
     # NB: this returns formatter classes, not info like get_all_lexers().
     for info in FORMATTERS.values():
+        if any(i in info[2] for i in disabledbuiltin):
+            continue
         if info[1] not in _formatter_cache:
             _load_formatters(info[0])
         yield _formatter_cache[info[1]]
-    for _, formatter in find_plugin_formatters():
-        yield formatter
+    if plugins:
+        for _, formatter in find_plugin_formatters():
+            yield formatter
 
 
 def find_formatter_class(alias, disabledbuiltin=[]):
