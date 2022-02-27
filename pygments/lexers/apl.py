@@ -17,11 +17,12 @@ __all__ = ['APLLexer']
 
 class APLLexer(RegexLexer):
     """
-    A simple `APL <https://en.m.wikipedia.org/wiki/APL_(programming_language)>`_ lexer.
+    A simple APL lexer.
 
     .. versionadded:: 2.0
     """
     name = 'APL'
+    url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
     aliases = ['apl']
     filenames = [
         '*.apl', '*.aplf', '*.aplo', '*.apln',  

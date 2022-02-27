@@ -22,6 +22,7 @@ class DLexer(RegexLexer):
     .. versionadded:: 1.2
     """
     name = 'D'
+    url = 'https://dlang.org/'
     filenames = ['*.d', '*.di']
     aliases = ['d']
     mimetypes = ['text/x-dsrc']

@@ -29,13 +29,14 @@ class YamlLexerContext(LexerContext):
 
 class YamlLexer(ExtendedRegexLexer):
     """
-    Lexer for `YAML <http://yaml.org/>`_, a human-friendly data serialization
+    Lexer for YAML, a human-friendly data serialization
     language.
 
     .. versionadded:: 0.11
     """
 
     name = 'YAML'
+    url = 'http://yaml.org/'
     aliases = ['yaml']
     filenames = ['*.yaml', '*.yml']
     mimetypes = ['text/x-yaml']
@@ -447,6 +448,7 @@ class JsonLexer(Lexer):
     """
 
     name = 'JSON'
+    url = 'https://www.json.org'
     aliases = ['json', 'json-object']
     filenames = ['*.json', 'Pipfile.lock']
     mimetypes = ['application/json', 'application/json-object']
@@ -717,12 +719,13 @@ class JsonBareObjectLexer(JsonLexer):
 
 class JsonLdLexer(JsonLexer):
     """
-    For `JSON-LD <https://json-ld.org/>`_ linked data.
+    For JSON-LD linked data.
 
     .. versionadded:: 2.0
     """
 
     name = 'JSON-LD'
+    url = 'https://json-ld.org/'
     aliases = ['jsonld', 'json-ld']
     filenames = ['*.jsonld']
     mimetypes = ['application/ld+json']

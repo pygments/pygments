@@ -18,11 +18,12 @@ __all__ = ['BareLexer']
 
 class BareLexer(RegexLexer):
     """
-    For `BARE schema <https://baremessages.org>`_ schema source.
+    For BARE schema source.
 
     .. versionadded:: 2.7
     """
     name = 'BARE'
+    url = 'https://baremessages.org'
     filenames = ['*.bare']
     aliases = ['bare']
 

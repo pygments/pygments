@@ -84,11 +84,12 @@ class ProtoBufLexer(RegexLexer):
 
 class ThriftLexer(RegexLexer):
     """
-    For `Thrift <https://thrift.apache.org/>`__ interface definitions.
+    For Thrift interface definitions.
 
     .. versionadded:: 2.1
     """
     name = 'Thrift'
+    url = 'https://thrift.apache.org/'
     aliases = ['thrift']
     filenames = ['*.thrift']
     mimetypes = ['application/x-thrift']
@@ -350,11 +351,12 @@ BroLexer = ZeekLexer
 
 class PuppetLexer(RegexLexer):
     """
-    For `Puppet <http://puppetlabs.com/>`__ configuration DSL.
+    For Puppet configuration DSL.
 
     .. versionadded:: 1.6
     """
     name = 'Puppet'
+    url = 'https://puppet.com/'
     aliases = ['puppet']
     filenames = ['*.pp']
 

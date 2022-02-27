@@ -17,11 +17,12 @@ __all__ = ['ChapelLexer']
 
 class ChapelLexer(RegexLexer):
     """
-    For `Chapel <https://chapel-lang.org/>`_ source.
+    For Chapel source.
 
     .. versionadded:: 2.0
     """
     name = 'Chapel'
+    url = 'https://chapel-lang.org/'
     filenames = ['*.chpl']
     aliases = ['chapel', 'chpl']
     # mimetypes = ['text/x-chapel']

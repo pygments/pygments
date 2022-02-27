@@ -28,12 +28,13 @@ CRYSTAL_OPERATORS = [
 
 class CrystalLexer(ExtendedRegexLexer):
     """
-    For `Crystal <http://crystal-lang.org>`_ source code.
+    For Crystal source code.
 
     .. versionadded:: 2.2
     """
 
     name = 'Crystal'
+    url = 'http://crystal-lang.org'
     aliases = ['cr', 'crystal']
     filenames = ['*.cr']
     mimetypes = ['text/x-crystal']

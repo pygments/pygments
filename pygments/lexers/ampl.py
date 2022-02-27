@@ -17,11 +17,12 @@ __all__ = ['AmplLexer']
 
 class AmplLexer(RegexLexer):
     """
-    For `AMPL <http://ampl.com/>`_ source code.
+    For AMPL source code.
 
     .. versionadded:: 2.2
     """
     name = 'Ampl'
+    url = 'http://ampl.com/'
     aliases = ['ampl']
     filenames = ['*.run']
 

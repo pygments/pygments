@@ -19,12 +19,13 @@ __all__ = ['NixLexer']
 
 class NixLexer(RegexLexer):
     """
-    For the `Nix language <http://nixos.org/nix/>`_.
+    For the Nix language.
 
     .. versionadded:: 2.0
     """
 
     name = 'Nix'
+    url = 'http://nixos.org/nix/'
     aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']

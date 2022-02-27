@@ -37,7 +37,7 @@ def builtin_words(names, backslash, suffix=NAME_END_RE):
 
 class LilyPondLexer(SchemeLexer):
     """
-    Lexer for input to `LilyPond <https://lilypond.org>`_, a text-based music typesetter.
+    Lexer for input to LilyPond, a text-based music typesetter.
 
     .. important::
 
@@ -46,6 +46,7 @@ class LilyPondLexer(SchemeLexer):
     .. versionadded:: 2.11
     """
     name = 'LilyPond'
+    url = 'https://lilypond.org'
     aliases = ['lilypond']
     filenames = ['*.ly']
     mimetypes = []

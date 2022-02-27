@@ -270,6 +270,7 @@ class CssLexer(RegexLexer):
     """
 
     name = 'CSS'
+    url = 'https://www.w3.org/TR/CSS/#css'
     aliases = ['css']
     filenames = ['*.css']
     mimetypes = ['text/css']

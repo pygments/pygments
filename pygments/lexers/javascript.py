@@ -136,12 +136,13 @@ class JavascriptLexer(RegexLexer):
 
 class TypeScriptLexer(JavascriptLexer):
     """
-    For `TypeScript <http://typescriptlang.org/>`_ source code.
+    For TypeScript source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'TypeScript'
+    url = 'https://www.typescriptlang.org/'
     aliases = ['typescript', 'ts']
     filenames = ['*.ts']
     mimetypes = ['application/x-typescript', 'text/x-typescript']

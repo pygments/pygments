@@ -1006,13 +1006,14 @@ class AugeasLexer(RegexLexer):
 
 class TOMLLexer(RegexLexer):
     """
-    Lexer for `TOML <https://github.com/toml-lang/toml>`_, a simple language
+    Lexer for TOML, a simple language
     for config files.
 
     .. versionadded:: 2.4
     """
 
     name = 'TOML'
+    url = 'https://github.com/toml-lang/toml'
     aliases = ['toml']
     filenames = ['*.toml', 'Pipfile', 'poetry.lock']
 
@@ -1057,13 +1058,14 @@ class TOMLLexer(RegexLexer):
 
 class NestedTextLexer(RegexLexer):
     """
-    Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data
+    Lexer for NextedText, a human-friendly data
     format.
 
     .. versionadded:: 2.9
     """
 
     name = 'NestedText'
+    url = 'https://nestedtext.org'
     aliases = ['nestedtext', 'nt']
     filenames = ['*.nt']
 

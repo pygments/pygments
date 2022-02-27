@@ -21,12 +21,13 @@ DECL = TYPES + r'(\s+)' + IDENT
 
 class ArrowLexer(RegexLexer):
     """
-    Lexer for Arrow: https://pypi.org/project/py-arrow-lang/
+    Lexer for Arrow
 
     .. versionadded:: 2.7
     """
 
     name = 'Arrow'
+    url = 'https://pypi.org/project/py-arrow-lang/'
     aliases = ['arrow']
     filenames = ['*.arw']
 

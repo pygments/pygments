@@ -18,11 +18,12 @@ __all__ = ['CleanLexer']
 class CleanLexer(ExtendedRegexLexer):
     """
     Lexer for the general purpose, state-of-the-art, pure and lazy functional
-    programming language Clean (http://clean.cs.ru.nl/Clean).
+    programming language Clean.
 
     .. versionadded: 2.2
     """
     name = 'Clean'
+    url = 'http://clean.cs.ru.nl/Clean'
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
 
