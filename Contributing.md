@@ -26,6 +26,9 @@ Contribution checklist
   [a new formatter](https://pygments.org/docs/formatterdevelopment/) or
   [a new filter](https://pygments.org/docs/filterdevelopment/)
 
+* Make sure to add a test for your new functionality, and where applicable, 
+  write documentation.
+
 * When writing rules, try to merge simple rules. For instance, combine:
 
   ```python
@@ -46,7 +49,7 @@ Contribution checklist
   ```
 
 * Be careful with ``.*``. This matches greedily as much as it can. For instance,
-  rule like ``@.*@`` will match the whole string ``@first@ second @third@``,
+  a rule like ``@.*@`` will match the whole string ``@first@ second @third@``,
   instead of matching ``@first@`` and ``@second@``. You can use ``@.*?@`` in
   this case to stop early. The ``?`` tries to match _as few times_ as possible.
 
