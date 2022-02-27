@@ -235,7 +235,6 @@ def test_C_opt():
     ('-X',),
     ('-L', '-lpy'),
     ('-L', '-fhtml'),
-    ('-L', '-Ox'),
     ('-S', 'default', '-l', 'py', '-f', 'html'),
     ('-S', 'default'),
     ('-a', 'arg'),

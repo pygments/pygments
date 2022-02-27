@@ -67,7 +67,7 @@ def _parse_filters(f_strs):
 def _print_help(what, name, **options):
     try:
         if what == 'lexer':
-            cls = get_lexer_by_name(name, options)
+            cls = get_lexer_by_name(name, **options)
             print("Help on the %s lexer:" % cls.name)
             print(dedent(cls.__doc__))
         elif what == 'formatter':
