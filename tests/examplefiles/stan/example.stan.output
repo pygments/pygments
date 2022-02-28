@@ -1,4 +1,4 @@
-'/* \nA file for testing Stan syntax highlighting. \n\nIt is not a real model and will not compile\n*/' Comment.Multiline
+'/*\nA file for testing Stan syntax highlighting.\n\nIt is not a real model and will not compile\n*/' Comment.Multiline
 '\n'          Text
 
 '# also a comment' Comment.Single
@@ -185,7 +185,7 @@
 ' '           Text
 'waldo2'      Name
 ';'           Punctuation
-'\n  \n  '    Text
+'\n\n  '      Text
 'real'        Keyword.Type
 '<'           Operator
 'lower'       Keyword
@@ -220,6 +220,38 @@
 ' '           Text
 'foo3'        Name
 ';'           Punctuation
+'\n\n  '      Text
+'real'        Keyword.Type
+'<'           Operator
+'offset'      Keyword
+'='           Punctuation
+'10'          Literal.Number.Float
+'>'           Operator
+' '           Text
+'foo4'        Name
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+'<'           Operator
+'multiplier'  Keyword
+'='           Punctuation
+'2'           Literal.Number.Float
+'>'           Operator
+' '           Text
+'foo5'        Name
+';'           Punctuation
+'\n\n  '      Text
+'// newer array syntax' Comment.Single
+'\n  '        Text
+'array'       Keyword.Type
+'['           Punctuation
+'a3'          Name
+']'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'arr'         Name
+';'           Punctuation
 '\n'          Text
 
 '}'           Punctuation
@@ -248,7 +280,12 @@
 ' '           Text
 'qux2'        Name
 ';'           Punctuation
-'\n  \n  '    Text
+'\n  '        Text
+'complex'     Keyword.Type
+' '           Text
+'z'           Name
+';'           Punctuation
+'\n\n  '      Text
 '// all floating point literals should be recognized' Comment.Single
 '\n  '        Text
 '// all operators should be recognized' Comment.Single
@@ -290,6 +327,23 @@
 '12309865'    Literal.Number.Float
 ';'           Punctuation
 '\n  '        Text
+'// imaginary literals' Comment.Single
+'\n  '        Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'3i'          Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'3.4i'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'1e-2i'       Literal.Number.Float
+';'           Punctuation
+'\n  '        Text
 '// ./ and .* should be recognized as operators' Comment.Single
 '\n  '        Text
 'grault2'     Name
@@ -320,7 +374,7 @@
 ' '           Text
 'bar'         Name
 ';'           Punctuation
-'\n  \n'      Text
+'\n\n'        Text
 
 '}'           Punctuation
 '\n'          Text
@@ -346,7 +400,7 @@
 'transformed parameters' Keyword.Namespace
 ' '           Text
 '{'           Punctuation
-'    \n'      Text
+'\n'          Text
 
 '}'           Punctuation
 '\n'          Text
@@ -355,7 +409,7 @@
 ' '           Text
 '{'           Punctuation
 '\n  '        Text
-'// ~, <- are operators, ' Comment.Single
+'// ~, <- are operators,' Comment.Single
 '\n  '        Text
 '// T may be be recognized' Comment.Single
 '\n  '        Text
@@ -392,9 +446,9 @@
 '\n  '        Text
 'real'        Keyword.Type
 ' '           Text
-'public'      Keyword.Reserved
+'public'      Name
 ';'           Punctuation
-'\n  \n  '    Text
+'\n\n  '      Text
 '// control structures' Comment.Single
 '\n  '        Text
 'for'         Keyword
@@ -517,7 +571,7 @@
 ' '           Text
 'tmp'         Name
 ';'           Punctuation
-'   \n  '     Text
+'\n  '        Text
 'tmp'         Name
 ' '           Text
 '<'           Operator
@@ -614,6 +668,15 @@
 ' '           Text
 "'"           Operator
 ';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'%'           Operator
+'/'           Operator
+'%'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
 '\n\n  '      Text
 '// lp__ should be highlighted' Comment.Single
 '\n  '        Text
@@ -653,7 +716,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n  \n  '    Text
+'\n\n  '      Text
 '// print statement and string literal' Comment.Single
 '\n  '        Text
 'print'       Keyword
@@ -681,7 +744,7 @@
 '"I just don\'t like it"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n  \n'      Text
+'\n\n'        Text
 
 '}'           Punctuation
 '\n'          Text
