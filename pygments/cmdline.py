@@ -73,11 +73,15 @@ def _print_help(what, name, **options):
         elif what == 'formatter':
             disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
             cls = find_formatter_class(name, disabledbuiltin)
+            if cls is None:
+                raise ClassNotFound('no formatter with name %r found' % name)
             print("Help on the %s formatter:" % cls.name)
             print(dedent(cls.__doc__))
         elif what == 'filter':
             disabledbuiltin = options.get('disable_builtin_filters', '').lower().split(';')
             cls = find_filter_class(name, disabledbuiltin)
+            if cls is None:
+                raise ClassNotFound('no filter with name %r found' % name)
             print("Help on the %s filter:" % name)
             print(dedent(cls.__doc__))
         return 0

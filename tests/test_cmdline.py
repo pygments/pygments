@@ -162,6 +162,14 @@ def test_L_opt():
     o = check_success('-L', 'lexer')
     assert 'Lexers' in o and 'Formatters' not in o
     check_success('-L', 'lexers')
+    o = check_success('-L', 'lexer', '-Odisable_builtin_lexers=fortran;fortranfixed')
+    assert '* fortran' not in o
+    o = check_success('-L', 'formatter', '-Odisable_builtin_formatters=html')
+    assert '* html' not in o
+    o = check_success('-L', 'filter', '-Odisable_builtin_filters=gobble')
+    assert '* gobble' not in o
+    o = check_success('-L', 'style', '-Odisable_builtin_styles=monokai')
+    assert '* monokai' not in o
 
 
 def test_O_opt():
@@ -198,6 +206,12 @@ def test_H_opt():
     o = check_success('-H', 'filter', 'raiseonerror')
     assert 'raiseonerror' in o
     e = check_failure('-H', 'lexer', 'foobar')
+    assert 'not found' in e
+    e = check_failure('-H', 'lexer', 'python', '-Odisable_builtin_lexers=python')
+    assert 'not found' in e
+    e = check_failure('-H', 'formatter', 'html', '-Odisable_builtin_formatters=html')
+    assert 'not found' in e
+    e = check_failure('-H', 'filter', 'gobble', '-Odisable_builtin_filters=gobble')
     assert 'not found' in e
 
 
