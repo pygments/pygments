@@ -236,6 +236,8 @@ def test_N_opt():
     assert 'python' == o.strip()
     o = check_success('-N', 'test.unknown')
     assert 'text' == o.strip()
+    o = check_success('-N', 'test.py', '-Odisable_builtin_lexers=python')
+    assert 'text' == o.strip()
 
 
 def test_C_opt():

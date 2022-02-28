@@ -266,7 +266,7 @@ def main_inner(parser, argns):
     # handle ``pygmentize -N``
     if argns.N:
         disabledbuiltin = parsed_opts.get('disable_builtin_lexers', '').lower().split(';')
-        lexer = find_lexer_class_for_filename(argns.N, disabledbuiltin)
+        lexer = find_lexer_class_for_filename(argns.N, None, disabledbuiltin)
         if lexer is None:
             lexer = TextLexer
 
