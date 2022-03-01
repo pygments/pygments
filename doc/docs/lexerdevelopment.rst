@@ -291,7 +291,7 @@ and single-line with ``//`` until end of line)::
                 (r'/', Text)
             ],
             'comment': [
-                (r'[^*/]', Comment.Multiline),
+                (r'[^*/]+', Comment.Multiline),
                 (r'/\*', Comment.Multiline, '#push'),
                 (r'\*/', Comment.Multiline, '#pop'),
                 (r'[*/]', Comment.Multiline)
@@ -346,7 +346,7 @@ There are a few more things you can do with states:
               ...
           ],
           'directive': [
-              (r'[^>]*', Comment.Directive),
+              (r'[^>]+', Comment.Directive),
               (r'>', Comment, '#pop'),
           ],
           'comment': [
@@ -376,20 +376,20 @@ There are a few more things you can do with states:
       class ExampleLexer(RegexLexer):
           tokens = {
               'comments': [
-                  (r'/\*.*?\*/', Comment),
+                  (r'(?s)/\*.*?\*/', Comment),
                   (r'//.*?\n', Comment),
               ],
               'root': [
                   include('comments'),
-                  (r'(function )(\w+)( {)',
-                   bygroups(Keyword, Name, Keyword), 'function'),
-                  (r'.', Text),
+                  (r'(function)( )(\w+)( )({)',
+                   bygroups(Keyword, Whitespace, Name, Whitespace, Punctuation), 'function'),
+                  (r'.*\n', Text),
               ],
               'function': [
                   (r'[^}/]+', Text),
                   include('comments'),
                   (r'/', Text),
-                  (r'\}', Keyword, '#pop'),
+                  (r'\}', Punctuation, '#pop'),
               ]
           }
 
@@ -455,7 +455,7 @@ defined in the parent and child class are merged.  For example::
                   ('[a-z]+', Name),
                   (r'/\*', Comment, 'comment'),
                   ('"', String, 'string'),
-                  ('\s+', Text),
+                  (r'\s+', Text),
               ],
               'string': [
                   ('[^"]+', String),
