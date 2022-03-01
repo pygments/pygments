@@ -42,8 +42,6 @@ TYPES = (
 )
 
 FUNCTIONS = (
-    'Phi',
-    'Phi_approx',
     'abs',
     'acos',
     'acosh',
@@ -238,7 +236,6 @@ FUNCTIONS = (
     'integrate_ode_bdf',
     'integrate_ode_rk45',
     'inv',
-    'inv_Phi',
     'inv_chi_square_cdf',
     'inv_chi_square_lccdf',
     'inv_chi_square_lcdf',
@@ -254,6 +251,7 @@ FUNCTIONS = (
     'inv_gamma_lupdf',
     'inv_gamma_rng',
     'inv_logit',
+    'inv_Phi',
     'inv_sqrt',
     'inv_square',
     'inv_wishart_lpdf',
@@ -419,6 +417,8 @@ FUNCTIONS = (
     'pareto_type_2_lpdf',
     'pareto_type_2_lupdf',
     'pareto_type_2_rng',
+    'Phi',
+    'Phi_approx',
     'pi',
     'poisson_cdf',
     'poisson_lccdf',
@@ -434,6 +434,7 @@ FUNCTIONS = (
     'polar',
     'positive_infinity',
     'pow',
+    'print',
     'prod',
     'proj',
     'qr_Q',
@@ -452,6 +453,7 @@ FUNCTIONS = (
     'rayleigh_lupdf',
     'rayleigh_rng',
     'reduce_sum',
+    'reject',
     'rep_array',
     'rep_matrix',
     'rep_row_vector',
@@ -626,18 +628,13 @@ DISTRIBUTIONS = (
     'von_mises',
     'weibull',
     'wiener',
-    'wishart'
+    'wishart',
 )
 
 RESERVED = (
-    'for',
-    'in',
-    'while',
     'repeat',
     'until',
-    'if',
     'then',
-    'else',
     'true',
     'false',
     'var',

@@ -125,6 +125,8 @@ model {
   // reject statement
   reject("I just don't like it");
 
+  real var; // reserved word
+
 }
 generated quantities {
   real bar1;
