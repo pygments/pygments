@@ -72,14 +72,14 @@
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'my_parent_class' Name.Class
 ' '           Text.Whitespace
 'end'         Operator.Word
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'my_static_class' Name.Class
 ':'           Operator
 ' '           Text.Whitespace
@@ -524,7 +524,7 @@
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'node'        Name.Class
 '\n    '      Text.Whitespace
 'var'         Keyword.Declaration
@@ -721,7 +721,7 @@
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'btree'       Name.Class
 '\n    '      Text.Whitespace
 'var'         Keyword.Declaration

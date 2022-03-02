@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.berry
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for Berry.
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 from pygments.lexer import RegexLexer, words, default, include, bygroups
 from pygments.token import Text, Comment, Whitespace, Operator, Keyword, Name, String, Number, Punctuation
@@ -7,10 +17,11 @@ __all__ = ['BerryLexer']
 line_re = re.compile('.*?\n')
 
 class BerryLexer(RegexLexer):
+    """
+    For `berry <http://github.com/berry-lang/berry>`_ source code.
 
-    # For Berry <https://github.com/berry-lang/berry> source code (version v0.1.0)
-    # Contributed by Shaun Brown (Beormund) <https://github.com/Beormund>
-    
+    .. versionadded:: 0.1.0
+    """    
     name = 'Berry'
     aliases = ['berry', 'be']
     filenames = ['*.be']
@@ -18,22 +29,18 @@ class BerryLexer(RegexLexer):
 
     _name = r'\b[^\W\d]\w*'
 
-    # (def)\b((?:\s)*)
-    # (def)\b(\s*$)(?<!\()
-    # (def)\b((?:\s)*)(?=[^\W\d]\w*)
-
     tokens = {
         'root': [
             include('whitespace'),
             include('numbers'),
             include('keywords'),
-            (r'(def)\b((?:\s)*)' + '(?=' + _name + ')', bygroups(Keyword.Declaration, Text), 'funcname'),
-            (r'(class)\b((?:\s)*)', bygroups(Keyword.Declaration, Text), 'classname'),
-            (r'(import)\b((?:\s)*)', bygroups(Keyword.Namespace, Text), 'import'),
+            (rf'(def)(\s*)({_name})?', bygroups(Keyword.Declaration, Whitespace, Name.Function)),
+            (rf'\b(class)(\s+)({_name})', bygroups(Keyword.Declaration, Whitespace, Name.Class)),
+            (rf'\b(import)(\s+)({_name})', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
             include('expr')
         ],
         'expr': [
-            (r'[^\S\n]+', Text),
+            (r'[^\S\n]+', Whitespace),
             (r'\.\.|[~!%^&*+=|?:<>/-]', Operator),
             (r'[(){}\[\],.;]', Punctuation),
             include('controls'),
@@ -70,15 +77,12 @@ class BerryLexer(RegexLexer):
                 suffix=r'\b'), Name.Builtin)
         ],
         'numbers': [
-            (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
-            (r'[-]?\d+', Number.Integer),
-            (r'([-]?\d*\.?\d+)(?:[eE]([-+]?\d+))?', Number.Float)
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'-?\d+', Number.Integer),
+            (r'(-?\d+\.?|\.\d)\d*([eE][+-]?\d+)?', Number.Float)
         ],
         'name': [
             (_name, Name)
-        ],
-        'funcname': [
-            (_name, Name.Function, '#pop')
         ],
         'funccall': [
             ( _name + r'(?=\s*\()', Name.Function, '#pop')
@@ -86,14 +90,8 @@ class BerryLexer(RegexLexer):
         'member': [
             ( r'(?<=\.)' + _name + r'\b(?!\()', Name.Attribute, '#pop')
         ],
-        'classname': [
-            (_name, Name.Class, '#pop'),
-        ],
-        'import': [
-            (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
-        ],
         'strings': [
-            (r'"(?:\\?.)*?"', String.Double, '#pop'),
-            (r'\'(?:\\?.)*?\'', String.Single, '#pop')
+            (r'"([^\\]|\\.)*?"', String.Double, '#pop'),
+            (r'\'([^\\]|\\.)*?\'', String.Single, '#pop')
         ]
     }
