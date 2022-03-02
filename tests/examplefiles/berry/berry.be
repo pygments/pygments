@@ -52,8 +52,6 @@ class my_static_class: my_parent_class
     end
 end
 
-
-
 # anonymous function and closure
 def count(x)
     var arr = []
@@ -68,6 +66,12 @@ def count(x)
     end
     return arr
 end
+
+def definitive(s)
+    return s
+end
+
+print(definitive ('test'))
 
 for xx : count(6)
     print(xx()) # 0, 1, 4 ... n * n
@@ -397,3 +401,5 @@ print(string.format('%.3f', 12))
 print(string.format('%20.7f', 14.5))
 print(string.format('-- %-40s ---', 'this is a string format test'))
 print(string.format('-- %40s ---', 'this is a string format test'))
+
+#

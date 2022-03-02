@@ -20,7 +20,7 @@ class BerryLexer(RegexLexer):
     """
     For `berry <http://github.com/berry-lang/berry>`_ source code.
 
-    .. versionadded:: 0.1.0
+    .. versionadded:: 2.12.0
     """    
     name = 'Berry'
     aliases = ['berry', 'be']
@@ -34,7 +34,7 @@ class BerryLexer(RegexLexer):
             include('whitespace'),
             include('numbers'),
             include('keywords'),
-            (rf'(def)(\s*)({_name})?', bygroups(Keyword.Declaration, Whitespace, Name.Function)),
+            (rf'(def)(\s+)({_name})', bygroups(Keyword.Declaration, Whitespace, Name.Function)),
             (rf'\b(class)(\s+)({_name})', bygroups(Keyword.Declaration, Whitespace, Name.Class)),
             (rf'\b(import)(\s+)({_name})', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
             include('expr')
@@ -53,7 +53,7 @@ class BerryLexer(RegexLexer):
         'whitespace': [
             (r'\s+', Whitespace),
             (r'#-(.|\n)*?-#', Comment.Multiline),
-            (r'#(\n|[\w\W]*?\n)', Comment.Single)
+            (r'#.*?$', Comment.Single)
         ],
         'keywords': [
             (words((
@@ -66,7 +66,7 @@ class BerryLexer(RegexLexer):
             (words((
                 'if', 'elif', 'else', 'for', 'while', 'do', 'end', 'break', 
                 'continue', 'return', 'try', 'except', 'raise'),
-                suffix=r'\b'), Operator.Word)
+                suffix=r'\b'), Keyword)
         ],
         'builtins': [
             (words((

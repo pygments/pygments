@@ -1,6 +1,8 @@
-'#\n'         Comment.Single
+'#'           Comment.Single
+'\n'          Text.Whitespace
 
-'# single line comment\n' Comment.Single
+'# single line comment' Comment.Single
+'\n'          Text.Whitespace
 
 'var'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -10,10 +12,10 @@
 ' '           Text.Whitespace
 '"test"'      Literal.String.Double
 ' '           Text.Whitespace
-'# inline comment\n' Comment.Single
-
-'    '        Text.Whitespace
-'# single line comment\n' Comment.Single
+'# inline comment' Comment.Single
+'\n    '      Text.Whitespace
+'# single line comment' Comment.Single
+'\n'          Text.Whitespace
 
 '#- multi line comment on single line -#' Comment.Multiline
 '\n'          Text.Whitespace
@@ -75,7 +77,7 @@
 ' '           Text.Whitespace
 'my_parent_class' Name.Class
 ' '           Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
@@ -146,7 +148,7 @@
 's'           Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -295,13 +297,14 @@
 '\n            ' Text.Whitespace
 ']'           Punctuation
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
-'\n\n\n\n'    Text.Whitespace
+'end'         Keyword
+'\n\n'        Text.Whitespace
 
-'# anonymous function and closure\n' Comment.Single
+'# anonymous function and closure' Comment.Single
+'\n'          Text.Whitespace
 
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -319,7 +322,7 @@
 '['           Punctuation
 ']'           Punctuation
 '\n    '      Text.Whitespace
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -342,17 +345,16 @@
 'n'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'# loop variable cannot be used directly as free variable\n' Comment.Single
-
-'                ' Text.Whitespace
-'return'      Operator.Word
+'# loop variable cannot be used directly as free variable' Comment.Single
+'\n                ' Text.Whitespace
+'return'      Keyword
 ' '           Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 '\n                    ' Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'n'           Name
 ' '           Text.Whitespace
@@ -360,30 +362,54 @@
 ' '           Text.Whitespace
 'n'           Name
 '\n                ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 ' '           Text.Whitespace
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'# define and call anonymous function\n' Comment.Single
-
-'        '    Text.Whitespace
+'# define and call anonymous function' Comment.Single
+'\n        '  Text.Whitespace
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'arr'         Name
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
-'for'         Operator.Word
+'def'         Keyword.Declaration
+' '           Text.Whitespace
+'definitive'  Name.Function
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'s'           Name
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'print'       Name.Builtin
+'('           Punctuation
+'definitive'  Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+"'test'"      Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'for'         Keyword
 ' '           Text.Whitespace
 'xx'          Name
 ' '           Text.Whitespace
@@ -401,12 +427,13 @@
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'# 0, 1, 4 ... n * n\n' Comment.Single
+'# 0, 1, 4 ... n * n' Comment.Single
+'\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'count'       Name
 '\n\n\n'      Text.Whitespace
@@ -427,7 +454,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'do'          Operator.Word
+'do'          Keyword
 '\n    '      Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -435,7 +462,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'while'       Operator.Word
+'while'       Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -450,10 +477,10 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
 'print'       Name.Builtin
@@ -487,7 +514,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -500,7 +527,7 @@
 '100000000'   Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
 'print'       Name.Builtin
@@ -574,7 +601,7 @@
 ' '           Text.Whitespace
 'r'           Name
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -583,7 +610,7 @@
 'v'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'v'           Name
 ' '           Text.Whitespace
@@ -593,7 +620,7 @@
 '.'           Punctuation
 'v'           Name.Attribute
 '\n            ' Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -608,7 +635,7 @@
 'v'           Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n                ' Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -621,11 +648,11 @@
 'v'           Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n            ' Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -640,7 +667,7 @@
 'v'           Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n                ' Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -654,11 +681,11 @@
 'v'           Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -667,7 +694,7 @@
 'l'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
 'self'        Keyword.Reserved
@@ -684,7 +711,7 @@
 'l'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
 'l'           Name
 '.'           Punctuation
@@ -695,7 +722,7 @@
 'v'           Name.Attribute
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
 'self'        Keyword.Reserved
@@ -712,12 +739,12 @@
 'l'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'class'       Keyword.Declaration
@@ -735,7 +762,7 @@
 'v'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -750,7 +777,7 @@
 'v'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n            ' Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -763,9 +790,9 @@
 'v'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -782,7 +809,7 @@
 '['           Punctuation
 ']'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'self'        Keyword.Reserved
 '.'           Punctuation
@@ -797,16 +824,16 @@
 'l'           Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'l'           Name
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'var'         Keyword.Declaration
@@ -930,7 +957,7 @@
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'while'       Operator.Word
+'while'       Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -972,7 +999,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -990,7 +1017,7 @@
 ' '           Text.Whitespace
 'term'        Name
 '\n        '  Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n            ' Text.Whitespace
 'pi'          Name
 ' '           Text.Whitespace
@@ -1002,7 +1029,7 @@
 ' '           Text.Whitespace
 'term'        Name
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -1014,14 +1041,14 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'pi'          Name
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'print'       Name.Builtin
@@ -1047,7 +1074,7 @@
 '('           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'try'         Operator.Word
+'try'         Keyword
 '\n        '  Text.Whitespace
 'compile'     Name.Builtin
 '('           Punctuation
@@ -1056,7 +1083,7 @@
 '('           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'except'      Operator.Word
+'except'      Keyword
 ' '           Text.Whitespace
 '..'          Operator
 ' '           Text.Whitespace
@@ -1095,10 +1122,10 @@
 '('           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'test_func'   Name.Function
@@ -1118,7 +1145,7 @@
 'x'           Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
@@ -1127,13 +1154,13 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '\n        '  Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'fib'         Name.Function
 '('           Punctuation
@@ -1156,7 +1183,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'c'           Name
@@ -1181,7 +1208,8 @@
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'# minimum stack size: 78!!\n' Comment.Single
+'# minimum stack size: 78!!' Comment.Single
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 '('           Punctuation
@@ -1273,7 +1301,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'while'       Operator.Word
+'while'       Keyword
 ' '           Text.Whitespace
 'test'        Name
 ' '           Text.Whitespace
@@ -1311,7 +1339,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'type'        Name.Builtin
 '('           Punctuation
@@ -1330,7 +1358,7 @@
 '\n        '  Text.Whitespace
 'continue'    Keyword.Reserved
 '\n    '      Text.Whitespace
-'elif'        Operator.Word
+'elif'        Keyword
 ' '           Text.Whitespace
 'test'        Name
 ' '           Text.Whitespace
@@ -1343,7 +1371,7 @@
 "'This number is too large.'" Literal.String.Single
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'elif'        Operator.Word
+'elif'        Keyword
 ' '           Text.Whitespace
 'test'        Name
 ' '           Text.Whitespace
@@ -1356,7 +1384,7 @@
 "'This number is too small.'" Literal.String.Single
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'idx'         Name
 ' '           Text.Whitespace
@@ -1369,10 +1397,10 @@
 '1'           Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'test'        Name
 ' '           Text.Whitespace
@@ -1387,7 +1415,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'else'        Operator.Word
+'else'        Keyword
 '\n    '      Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
@@ -1398,7 +1426,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'import'      Keyword.Reserved
@@ -1458,7 +1486,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'# simple lambda example\n' Comment.Single
+'# simple lambda example' Comment.Single
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 '('           Punctuation
@@ -1494,7 +1523,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'# Y-Combinator and factorial functions\n' Comment.Single
+'# Y-Combinator and factorial functions' Comment.Single
+'\n'          Text.Whitespace
 
 'Y'           Name
 ' '           Text.Whitespace
@@ -1631,7 +1661,7 @@
 'path'        Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
@@ -1662,7 +1692,7 @@
 'name'        Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'os'          Name
 '.'           Punctuation
@@ -1682,7 +1712,7 @@
 'fullname'    Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'else'        Operator.Word
+'else'        Keyword
 '\n            ' Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
@@ -1698,12 +1728,12 @@
 'fullname'    Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'scandir'     Name.Function
@@ -1719,9 +1749,8 @@
 'data'        Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'# do once sort\n' Comment.Single
-
-'    '        Text.Whitespace
+'# do once sort' Comment.Single
+'\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
 'once'        Name.Function
@@ -1743,10 +1772,9 @@
 'left'        Name
 ']'           Punctuation
 ' '           Text.Whitespace
-'# use the 0th value as the pivot\n' Comment.Single
-
-'        '    Text.Whitespace
-'while'       Operator.Word
+'# use the 0th value as the pivot' Comment.Single
+'\n        '  Text.Whitespace
+'while'       Keyword
 ' '           Text.Whitespace
 'left'        Name
 ' '           Text.Whitespace
@@ -1754,13 +1782,11 @@
 ' '           Text.Whitespace
 'right'       Name
 ' '           Text.Whitespace
-'# check if sort is complete\n' Comment.Single
-
-'            ' Text.Whitespace
-'# put the value less than the pivot to the left\n' Comment.Single
-
-'            ' Text.Whitespace
-'while'       Operator.Word
+'# check if sort is complete' Comment.Single
+'\n            ' Text.Whitespace
+'# put the value less than the pivot to the left' Comment.Single
+'\n            ' Text.Whitespace
+'while'       Keyword
 ' '           Text.Whitespace
 'left'        Name
 ' '           Text.Whitespace
@@ -1788,10 +1814,9 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
-'# skip values greater than pivot\n' Comment.Single
-
-'            ' Text.Whitespace
-'end'         Operator.Word
+'# skip values greater than pivot' Comment.Single
+'\n            ' Text.Whitespace
+'end'         Keyword
 '\n            ' Text.Whitespace
 'data'        Name
 '['           Punctuation
@@ -1805,10 +1830,9 @@
 'right'       Name
 ']'           Punctuation
 '\n            ' Text.Whitespace
-'# put the value greater than the pivot on the right\n' Comment.Single
-
-'            ' Text.Whitespace
-'while'       Operator.Word
+'# put the value greater than the pivot on the right' Comment.Single
+'\n            ' Text.Whitespace
+'while'       Keyword
 ' '           Text.Whitespace
 'left'        Name
 ' '           Text.Whitespace
@@ -1836,10 +1860,9 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
-'# skip values less than pivot\n' Comment.Single
-
-'            ' Text.Whitespace
-'end'         Operator.Word
+'# skip values less than pivot' Comment.Single
+'\n            ' Text.Whitespace
+'end'         Keyword
 '\n            ' Text.Whitespace
 'data'        Name
 '['           Punctuation
@@ -1853,11 +1876,10 @@
 'left'        Name
 ']'           Punctuation
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'# now we have the index of the pivot, store it\n' Comment.Single
-
-'        '    Text.Whitespace
+'# now we have the index of the pivot, store it' Comment.Single
+'\n        '  Text.Whitespace
 'data'        Name
 '['           Punctuation
 'left'        Name
@@ -1867,18 +1889,16 @@
 ' '           Text.Whitespace
 'pivot'       Name
 '\n        '  Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'left'        Name
 ' '           Text.Whitespace
-'# return the index of the pivot\n' Comment.Single
-
-'    '        Text.Whitespace
-'end'         Operator.Word
+'# return the index of the pivot' Comment.Single
 '\n    '      Text.Whitespace
-'# recursive quick sort algorithm\n' Comment.Single
-
-'    '        Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'# recursive quick sort algorithm' Comment.Single
+'\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
 '_sort'       Name.Function
@@ -1889,7 +1909,7 @@
 'right'       Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'left'        Name
 ' '           Text.Whitespace
@@ -1897,9 +1917,8 @@
 ' '           Text.Whitespace
 'right'       Name
 ' '           Text.Whitespace
-'# executed when the array is not empty\n' Comment.Single
-
-'            ' Text.Whitespace
+'# executed when the array is not empty' Comment.Single
+'\n            ' Text.Whitespace
 'var'         Keyword.Declaration
 ' '           Text.Whitespace
 'index'       Name
@@ -1914,9 +1933,8 @@
 'right'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'# get index of pivot for divide and conquer\n' Comment.Single
-
-'            ' Text.Whitespace
+'# get index of pivot for divide and conquer' Comment.Single
+'\n            ' Text.Whitespace
 '_sort'       Name.Function
 '('           Punctuation
 'left'        Name
@@ -1929,9 +1947,8 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'# sort the data on the left\n' Comment.Single
-
-'            ' Text.Whitespace
+'# sort the data on the left' Comment.Single
+'\n            ' Text.Whitespace
 '_sort'       Name.Function
 '('           Punctuation
 'index'       Name
@@ -1944,16 +1961,14 @@
 'right'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'# sort the data on the right\n' Comment.Single
-
-'        '    Text.Whitespace
-'end'         Operator.Word
+'# sort the data on the right' Comment.Single
+'\n        '  Text.Whitespace
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'# start quick sort\n' Comment.Single
-
-'    '        Text.Whitespace
+'# start quick sort' Comment.Single
+'\n    '      Text.Whitespace
 '_sort'       Name.Function
 '('           Punctuation
 '0'           Literal.Number.Integer
@@ -1970,12 +1985,12 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'data'        Name
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'import'      Keyword.Reserved
@@ -1997,7 +2012,8 @@
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'# sse system time as a random seed\n' Comment.Single
+'# sse system time as a random seed' Comment.Single
+'\n'          Text.Whitespace
 
 'data'        Name
 ' '           Text.Whitespace
@@ -2007,9 +2023,10 @@
 ']'           Punctuation
 '\n'          Text.Whitespace
 
-'# put 20 random numbers into the array\n' Comment.Single
+'# put 20 random numbers into the array' Comment.Single
+'\n'          Text.Whitespace
 
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -2037,10 +2054,11 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n'          Text.Whitespace
 
-'# sort and print\n' Comment.Single
+'# sort and print' Comment.Single
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 '('           Punctuation
@@ -2051,7 +2069,7 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'do'          Operator.Word
+'do'          Keyword
 '\n    '      Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2064,7 +2082,7 @@
 ' '           Text.Whitespace
 'string'      Name
 '\n        '  Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'string'      Name
 '.'           Punctuation
@@ -2084,7 +2102,7 @@
 ' '           Text.Whitespace
 "'\\'EOS\\''" Literal.String.Single
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n    '    Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2096,7 +2114,7 @@
 'msg'         Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 '!'           Operator
 'ismult'      Name.Function
@@ -2113,15 +2131,15 @@
 'msg'         Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'while'       Operator.Word
+'while'       Keyword
 ' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n            ' Text.Whitespace
-'try'         Operator.Word
+'try'         Keyword
 '\n                ' Text.Whitespace
 'src'         Name
 ' '           Text.Whitespace
@@ -2137,14 +2155,14 @@
 "'>> '"       Literal.String.Single
 ')'           Punctuation
 '\n                ' Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'compile'     Name.Builtin
 '('           Punctuation
 'src'         Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'except'      Operator.Word
+'except'      Keyword
 ' '           Text.Whitespace
 "'syntax_error'" Literal.String.Single
 ' '           Text.Whitespace
@@ -2155,7 +2173,7 @@
 ' '           Text.Whitespace
 'm'           Name
 '\n                ' Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 '!'           Operator
 'ismult'      Name.Function
@@ -2172,15 +2190,15 @@
 'm'           Name
 ')'           Punctuation
 '\n                    ' Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 '\n                ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n    '    Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2202,7 +2220,7 @@
 "'> '"        Literal.String.Single
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'try'         Operator.Word
+'try'         Keyword
 '\n            ' Text.Whitespace
 'fun'         Name
 ' '           Text.Whitespace
@@ -2221,7 +2239,7 @@
 "')'"         Literal.String.Single
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'except'      Operator.Word
+'except'      Keyword
 ' '           Text.Whitespace
 "'syntax_error'" Literal.String.Single
 ' '           Text.Whitespace
@@ -2232,7 +2250,7 @@
 ' '           Text.Whitespace
 'm'           Name
 '\n            ' Text.Whitespace
-'try'         Operator.Word
+'try'         Keyword
 '\n                ' Text.Whitespace
 'fun'         Name
 ' '           Text.Whitespace
@@ -2243,7 +2261,7 @@
 'src'         Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'except'      Operator.Word
+'except'      Keyword
 ' '           Text.Whitespace
 "'syntax_error'" Literal.String.Single
 ' '           Text.Whitespace
@@ -2266,15 +2284,15 @@
 'm'           Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'fun'         Name
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n    '    Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2283,7 +2301,7 @@
 'fun'         Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'try'         Operator.Word
+'try'         Keyword
 '\n            ' Text.Whitespace
 'var'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2295,7 +2313,7 @@
 '('           Punctuation
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
@@ -2304,9 +2322,9 @@
 'res'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'except'      Operator.Word
+'except'      Keyword
 ' '           Text.Whitespace
 '..'          Operator
 ' '           Text.Whitespace
@@ -2340,9 +2358,9 @@
 '('           Punctuation
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n    '    Text.Whitespace
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2350,7 +2368,7 @@
 '('           Punctuation
 ')'           Punctuation
 ' \n        ' Text.Whitespace
-'while'       Operator.Word
+'while'       Keyword
 ' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n            ' Text.Whitespace
@@ -2364,7 +2382,7 @@
 '('           Punctuation
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'fun'         Name
 ' '           Text.Whitespace
@@ -2378,11 +2396,11 @@
 'fun'         Name
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n\n    '    Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
@@ -2394,7 +2412,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 's'           Name
@@ -2472,9 +2490,8 @@
 "'the type of \\'x\\' must be integer'" Literal.String.Single
 ')'           Punctuation
 '\n    '      Text.Whitespace
-"# test the 'x' bits\n" Comment.Single
-
-'    '        Text.Whitespace
+"# test the 'x' bits" Comment.Single
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
 ' '           Text.Whitespace
 'bits'        Name
@@ -2483,7 +2500,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -2495,7 +2512,7 @@
 ' '           Text.Whitespace
 '62'          Literal.Number.Integer
 '\n        '  Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
@@ -2526,11 +2543,11 @@
 '\n            ' Text.Whitespace
 'break'       Keyword.Reserved
 '\n        '  Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'if'          Operator.Word
+'if'          Keyword
 ' '           Text.Whitespace
 'type'        Name.Builtin
 '('           Punctuation
@@ -2579,7 +2596,7 @@
 ' '           Text.Whitespace
 'bits'        Name
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
 'var'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -2596,7 +2613,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'for'         Operator.Word
+'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
@@ -2640,14 +2657,14 @@
 ' '           Text.Whitespace
 "'0'"         Literal.String.Single
 '\n    '      Text.Whitespace
-'end'         Operator.Word
+'end'         Keyword
 '\n    '      Text.Whitespace
-'return'      Operator.Word
+'return'      Keyword
 ' '           Text.Whitespace
 'result'      Name
 '\n'          Text.Whitespace
 
-'end'         Operator.Word
+'end'         Keyword
 '\n\n'        Text.Whitespace
 
 'print'       Name.Builtin
@@ -2733,4 +2750,7 @@
 "'this is a string format test'" Literal.String.Single
 ')'           Punctuation
 ')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'#'           Comment.Single
 '\n'          Text.Whitespace
