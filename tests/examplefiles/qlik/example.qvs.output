@@ -32,19 +32,24 @@
 'folder_2'    Literal.String
 "'"           Literal.String
 '\n\n    '    Text.Whitespace
-'// Check the file exists\n' Comment.Singleline
+'// Check the file exists\n' Comment.Single
 
 '    '        Text.Whitespace
 'IF'          Keyword
 ' '           Text.Whitespace
-'FILESIZE('   Operator.Word
+'FILESIZE'    Name.Builtin
+'('           Punctuation
 "'"           Literal.String
-'$('          Keyword
+'$('          Literal.String.Interpol
 'vFilePath'   Name.Variable
-')'           Keyword
-'/$(vFolder)/file.qvd' Literal.String
+')'           Literal.String.Interpol
+'/'           Literal.String
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String
 "'"           Literal.String
-')'           Operator.Word
+')'           Punctuation
 ' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
@@ -58,7 +63,7 @@
 'LOAD'        Keyword
 '\n            ' Text.Whitespace
 '['           Keyword
-'Field 1'     Keyword
+'Field 1'     Literal.String.Symbol
 ']'           Keyword
 '   '         Text.Whitespace
 'AS'          Keyword
@@ -67,7 +72,7 @@
 ','           Punctuation
 '\n            ' Text.Whitespace
 '"'           Keyword
-'Field 2'     Keyword
+'Field 2'     Literal.String.Symbol
 '"'           Keyword
 '   '         Text.Whitespace
 'AS'          Keyword
@@ -78,23 +83,65 @@
 'FIELD_3'     Text
 ','           Punctuation
 '\n            ' Text.Whitespace
-'FileName('   Operator.Word
-')'           Operator.Word
+'FileName'    Name.Builtin
+'('           Punctuation
+')'           Punctuation
 '      '      Text.Whitespace
 'AS'          Keyword
 ' '           Text.Whitespace
 'SOURCE_FILE_' Text
-'$('          Keyword
+'$('          Literal.String.Interpol
 'vFilePath'   Name.Variable
-')'           Keyword
+')'           Literal.String.Interpol
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Literal.String
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String
+"'"           Literal.String
+'  '          Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'['           Keyword
+'Expand_Brackets' Literal.String.Symbol
+']'           Keyword
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'(This is a string)' Literal.String
+"'"           Literal.String
+'            ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'brackets_in_string' Text
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'This costs ' Literal.String
+'$'           Literal.String
+'10'          Literal.String
+"'"           Literal.String
+'                ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'dollar_in_string' Text
 '\n        '  Text.Whitespace
 'FROM'        Keyword
 '\n            ' Text.Whitespace
 '['           Keyword
-'$('          Keyword
+'$('          Literal.String.Interpol
 'vFilePath'   Name.Variable
-')'           Keyword
-'/$(vFolder)/file.qvd' Keyword
+')'           Literal.String.Interpol
+'/'           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String.Symbol
 ']'           Keyword
 ' '           Text.Whitespace
 '('           Punctuation
@@ -111,9 +158,10 @@
 'FIELD_1'     Text
 ','           Punctuation
 '\n            ' Text.Whitespace
-'SUM('        Operator.Word
+'SUM'         Name.Builtin
+'('           Punctuation
 'FIELD_2'     Text
-')'           Operator.Word
+')'           Punctuation
 '\n        '  Text.Whitespace
 'RESIDENT'    Keyword
 '\n            ' Text.Whitespace
@@ -131,9 +179,9 @@
 'TABLE_NAME'  Text
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'LOAD'        Keyword
+'load'        Keyword
 ' '           Text.Whitespace
-'DISTINCT'    Keyword
+'distinct'    Keyword
 '\n            ' Text.Whitespace
 'FIELD_1'     Text
 ','           Punctuation
@@ -144,7 +192,8 @@
 'FIELD_3'     Text
 ','           Punctuation
 '\n            ' Text.Whitespace
-'applymap('   Operator.Word
+'applymap'    Name.Builtin
+'('           Punctuation
 "'"           Literal.String
 'MAP_FIELD_1' Literal.String
 "'"           Literal.String
@@ -154,11 +203,32 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Operator.Word
+')'           Punctuation
 '     '       Text.Whitespace
 'AS'          Keyword
 ' '           Text.Whitespace
 'FIELD_2_SUM' Text
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'String'      Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+' '           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'Concatenation' Literal.String
+"'"           Literal.String
+'        '    Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'single_quote_test' Text
 ','           Punctuation
 '\n            ' Text.Whitespace
 "'"           Literal.String
@@ -173,7 +243,10 @@
 'AS'          Keyword
 ' '           Text.Whitespace
 '['           Keyword
-'String Field $(vFilePath)' Keyword
+'String Field ' Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
 ']'           Keyword
 ','           Punctuation
 '\n            ' Text.Whitespace
@@ -182,7 +255,10 @@
 'AS'          Keyword
 ' '           Text.Whitespace
 '"'           Keyword
-'Number Field $(vFilePath)' Keyword
+'Number Field ' Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
 '"'           Keyword
 ','           Punctuation
 '\n            ' Text.Whitespace
@@ -208,7 +284,7 @@
 ' '           Text.Whitespace
 'OPERATION_FIELD' Text
 '\n        '  Text.Whitespace
-'RESIDENT'    Keyword
+'Resident'    Keyword
 '\n            ' Text.Whitespace
 'TABLE_NAME'  Text
 '\n        '  Text.Whitespace
@@ -226,10 +302,14 @@
 'INTO'        Text
 ' '           Text.Whitespace
 '['           Keyword
-'$('          Keyword
+'$('          Literal.String.Interpol
 'vFilePath'   Name.Variable
-')'           Keyword
-'/$(vFolder)/file_output.qvd' Keyword
+')'           Literal.String.Interpol
+'/'           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file_output.qvd' Literal.String.Symbol
 ']'           Keyword
 ' '           Text.Whitespace
 '('           Punctuation
@@ -254,9 +334,9 @@
 ' '           Text.Whitespace
 'in'          Keyword
 ' '           Text.Whitespace
-'$('          Keyword
+'$('          Literal.String.Interpol
 'vFilePath'   Name.Variable
-')'           Keyword
+')'           Literal.String.Interpol
 '/'           Operator
 'file'        Text
 '.'           Punctuation

@@ -39,7 +39,7 @@ class QlikLexer(RegexLexer):
         # Handle multi-line comments
         "comment": [
             (r"\*/", Comment.Multiline, "#pop"),
-            (r"[^\*]+", Comment.Multiline),
+            (r"[^*]+", Comment.Multiline),
         ],
         # Handle numbers
         "numerics": [
@@ -61,7 +61,8 @@ class QlikLexer(RegexLexer):
                 "#pop",
             ),
             include("interp"),
-            (r"[^'(\$\()]+", String),
+            (r"[^'$]+", String),
+            (r"\$", String),
         ],
         #
         "assignment": [
@@ -70,12 +71,13 @@ class QlikLexer(RegexLexer):
         ],
         "field_name_quote": [
             (
-                r"(\")",
+                r'"',
                 Keyword,
                 "#pop",
             ),
             include("interp"),
-            (r"[^\"(\$\()]+", Keyword),
+            (r"[^\"$]+", String.Symbol),
+            (r"\$", String.Symbol),
         ],
         "field_name_bracket": [
             (
@@ -84,7 +86,8 @@ class QlikLexer(RegexLexer):
                 "#pop",
             ),
             include("interp"),
-            (r"[^\](\$\()]+", Keyword),
+            (r"[^\]$]+", String.Symbol),
+            (r"\$", String.Symbol),
         ],
         "function": [(r"\)", Punctuation, "#pop"), include("root")],
         "root": [

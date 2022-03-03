@@ -16,7 +16,9 @@ FOR EACH vFolder IN 'folder_1', 'folder_2'
             "Field 2"   AS FIELD_2,
             FIELD_3,
             FileName()      AS SOURCE_FILE_$(vFilePath),
-            '$(vFilePath)/$(vFolder)/file.qvd'  AS [Expand_Brackets]
+            '$(vFilePath)/$(vFolder)/file.qvd'  AS [Expand_Brackets],
+            '(This is a string)'            AS brackets_in_string
+            'This costs $10'                AS dollar_in_string
         FROM
             [$(vFilePath)/$(vFolder)/file.qvd] (qvd);
 
