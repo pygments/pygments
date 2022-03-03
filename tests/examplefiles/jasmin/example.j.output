@@ -1,53 +1,53 @@
 '; Example JVM assembly' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Tested with JasminXT 2.4' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.bytecode'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '49.0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.source'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld.java' Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.class'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'final'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'enum'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.super'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'Object'      Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.implements' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/io/'    Name.Namespace
 'Serializable' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.signature'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Ljava/lang/Object;Ljava/io/Serializable;' Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.enclosing'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 ''            Text
 'hw/jasmin.'  Name.Namespace
 'HelloWorldRunner.' Name.Class
@@ -55,269 +55,269 @@
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.deprecated' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'visible'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'I'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.debug'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Happy debugging!' Literal.String.Double
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.inner'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'interface'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'InnerInterface' Name.Class
-' '           Text
+' '           Text.Whitespace
 'inner'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'HelloWorld$InnerInterface' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'outer'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.inner'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'InnerClass'  Name.Class
-' '           Text
+' '           Text.Whitespace
 'inner'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld$InnerClass' Name.Class
-' '           Text
+' '           Text.Whitespace
 'outer'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'HelloWorld'  Literal.String.Single
 "'"           Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.field'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'volatile'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'transient'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'I'           Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.field'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'protected'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'final'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'serialVersionUID' Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'J'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'signature'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'TJ;'         Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2147483648'  Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.field'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'protected'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'protected'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '[[['         Punctuation
 'L'           Keyword.Type
 'com/oracle/util/' Name.Namespace
 'Checksums'   Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '.deprecated' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '.signature'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '[[[Lcom/oracle/util/Checksums;' Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '.attribute'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'foo'         Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foo.txt'     Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '.attribute'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'foo'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foo.txt'     Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'field'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.field'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'newline'     Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.field'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'defaultString' Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Ljava/lang/String;' Literal.String.Single
 "'"           Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '<init>'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.line'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.var'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'HelloWorld'  Name.Class
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokenonvirtual' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'Object/'     Name.Class
 '<init>'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -327,956 +327,956 @@
 ';'           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.throws'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java.lang/'  Name.Namespace
 'RuntimeException' Name.Exception
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.catch'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang.'  Name.Namespace
 'ClassCastException' Name.Exception
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'cast'        Name.Label
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'extra_l'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '/extra'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.signature'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '([Ljava/lang/String;)V' Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.stack'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'offset'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '/Input'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Object'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'String'      Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Uninitialized' Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'End'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Uninitialized' Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Top'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Float'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Long'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Double'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Null'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'UninitializedThis' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Object'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'String'      Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Uninitialized' Keyword
-' '           Text
+' '           Text.Whitespace
 'End'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Uninitialized' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Top'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Float'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Long'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Double'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Null'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'UninitializedThis' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.stack'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'offset'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'extra'       Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.stack'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.line'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0xd'         Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.var'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'args'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'L'           Keyword.Type
 'java/lang/'  Name.Namespace
 'String'      Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_w'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'arraylength' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifne'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '/Input'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'anewarray'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'String'      Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'L'           Keyword.Type
 'java/lang/'  Name.Namespace
 'String'      Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'World'       Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'putstatic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld.' Name.Class
 'defaultString' Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Name.Namespace
 'String'      Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/Input'      Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'multianewarray' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '[['          Punctuation
 'C'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aaload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aaload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_3'    Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<o'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokestatic' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'int'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<\\u0020'   Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dsub'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'd2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokestatic' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'double'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'D'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'd2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<!'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lxor'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ladd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lsub'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lneg'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokestatic' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'long'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 'J'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<H'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fconst_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup_x2'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fdiv'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fmul'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'f2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'swap'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokestatic' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'float'       Name.Function
 '('           Punctuation
 'F'           Keyword.Type
 ')'           Punctuation
 'F'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'f2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<e'         Name.Label
-'\t'          Text
+'\t'          Text.Whitespace
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2s'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2c'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2b'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'short'       Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'byte'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'sipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x65'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'baload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'sastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'saload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'int2short'   Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'int2char'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'int2byte'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '<<l'         Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x1b'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*2'          Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ishl'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lookupswitch' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '0'           Literal.Number.Integer
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/lookupswitch' Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '0x6c'        Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/lookupswitch' Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'default'     Keyword.Reserved
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*2'          Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/lookupswitch' Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'castore'     Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lcmp'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.set'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.set'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'j'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.var'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'i++'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'End'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.var'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'j'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'signature'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'I'           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'i++'         Name.Label
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'End'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'goto'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i++'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iinc'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
 ':'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'goto_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'j++'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iinc_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2'           Literal.Number.Integer
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'getstatic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'System/'     Name.Class
 'out'         Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/io/'    Name.Namespace
 'PrintStream' Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aaload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload_w'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'caload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokevirtual' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/io/'    Name.Namespace
 'PrintStream/' Name.Class
 'print'       Name.Function
@@ -1284,82 +1284,82 @@
 'C'           Keyword.Type
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmpne'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+6'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'jsr'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'extra'       Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmplt'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'j++'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmpgt'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'i++'         Name.Label
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<<\\u00a0'   Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'getstatic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'System/'     Name.Class
 'out'         Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/io/'    Name.Namespace
 'PrintStream' Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokestatic' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'get"example' Name.Function
 '('           Punctuation
@@ -1367,20 +1367,20 @@
 'L'           Keyword.Type
 'HelloWorld'  Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'getfield'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'newline'     Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokevirtual' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/io/'    Name.Namespace
 'PrintStream/' Name.Class
 'print'       Name.Function
@@ -1388,95 +1388,95 @@
 'C'           Keyword.Type
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'extra'       Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'tableswitch' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'extra_l'     Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'extra_string' Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'default'     Keyword.Reserved
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'End'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'nop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'extra_string' Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'getstatic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'System/'     Name.Class
 'out'         Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/io/'    Name.Namespace
 'PrintStream' Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aaload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokevirtual' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/io/'    Name.Namespace
 'PrintStream/' Name.Class
 'print'       Name.Function
@@ -1487,127 +1487,127 @@
 ';'           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'cast'        Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'String'      Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'Class'       Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Name.Namespace
 'String'      Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Name.Namespace
 'Class'       Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Z'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'int'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'checkcast'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'HelloWorld'  Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'extra_l'     Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'getstatic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'System/'     Name.Class
 'out'         Name.Variable.Class
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/io/'    Name.Namespace
 'PrintStream' Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '\\123'       Literal.String.Escape
 '.'           Literal.String.Double
@@ -1631,15 +1631,15 @@
 '.'           Literal.String.Double
 '\\\\'        Literal.String.Escape
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_5'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokeinterface' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'CharSequence/' Name.Class
 'charAt'      Name.Function
@@ -1647,13 +1647,13 @@
 'I'           Keyword.Type
 ')'           Punctuation
 'C'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokevirtual' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/io/'    Name.Namespace
 'PrintStream/' Name.Class
 'print'       Name.Function
@@ -1661,305 +1661,305 @@
 'C'           Keyword.Type
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/extra'      Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ret'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'get"example' Name.Function
 '('           Punctuation
 ')'           Punctuation
 'L'           Keyword.Type
 'HelloWorld'  Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.catch'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '53'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'using'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '59'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aconst_null' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'try'         Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'goto'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+0x11'      Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finally'     Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'putfield'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 'newline'     Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ret_w'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'nop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'areturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifnonnull'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$-2'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifnull'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+3'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'new'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokespecial' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld/' Name.Class
 '<init>'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'monitorenter' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'monitorexit' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'new'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'RuntimeException' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'invokespecial' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'java/lang/'  Name.Namespace
 'RuntimeException/' Name.Class
 '<init>'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'athrow'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aconst_null' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/try'        Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aconst_null' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_acmpeq'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+3'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'areturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'catch'       Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'jsr'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+10'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aconst_null' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_acmpne'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '/try'        Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'areturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'astore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'aload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'jsr_w'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'finally'     Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ret'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Literal.String.Single
 'single'      Literal.String.Single
@@ -1969,1253 +1969,1253 @@
 'label'       Literal.String.Single
 "'"           Literal.String.Single
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; Messes up [@ below if lexed sloppily' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'varargs'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 'I'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'invisible'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '[@'          Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '@'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'WhatIsThis???' Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '; name, type, exttype' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'I'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '; name, type' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'another-I'   Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Enum'        Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'e'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Ljava/util/logging/Level;' Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FINE'        Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '.annotation' Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 's'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 's'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foo'         Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'another-s'   Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 's'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'bar'         Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Enum'        Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'e'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Ljava/util/logging/Level;' Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FINE'        Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'FINE'        Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'FINE'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'FINE'        Literal.String.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'float'       Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'F'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '123.456'     Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'visibleparam' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'HelloWorld'  Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'x'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0x01'        Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0x02'        Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0x03'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'y'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'invisibleparam' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '255'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'HelloWorld'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'a'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'F'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.2'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'b'           Literal.String.Other
-' '           Text
+' '           Text.Whitespace
 'D'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3.4'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.annotation' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'default'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'I'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'annotation'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '20'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'instanceof'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Z'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x9'         Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0xB'         Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iand'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_5'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_4'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup_x1'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_m1'   Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '+-111'       Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ineg'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'swap'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'idiv'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup_x2'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ishr'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ishl'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'imul'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ior'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'bipush'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-73'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ixor'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'isub'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'irem'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iaload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'istore_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2_x1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmpeq'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+33'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmpge'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+28'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if_icmple'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+23'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifle'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+19'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifeq'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+15'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iflt'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+11'        Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifgt'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+7'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ifge'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '$+3'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ireturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'fpstrict'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'double'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'D'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '11'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dcmpg'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'double'      Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dcmpl'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '128.'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-240.221d'   Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dneg'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '158.d'       Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2_x2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'drem'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ddiv'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dmul'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'd2f'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'f2d'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'd2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2i'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iushr'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2d'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'daload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dstore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dload_w'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dreturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'long'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 'J'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '11'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'long'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5718613688'  Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '3143486100'  Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x3'         Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldiv'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lmul'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc2_w'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-10000000000' Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lrem'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc_w'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x60'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lor'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '0x33'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'land'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lshl'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lshr'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lushr'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ladd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2d'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'd2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'l2f'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'f2l'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'laload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lstore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lload_w'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'lreturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'float'       Name.Function
 '('           Punctuation
 'F'           Keyword.Type
 ')'           Punctuation
 'F'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'locals'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '.limit'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stack'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '9'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'iconst_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'newarray'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fcmpg'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup2_x2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fsub'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fneg'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'frem'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ldc'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '70'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i2f'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fadd'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'swap'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'pop'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fastore'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dup'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fcmpl'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'faload'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore_0'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_0'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore_1'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_1'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore_2'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_2'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore_3'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_3'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fstore_w'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fload_w'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'freturn'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'abstract'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'bridge'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'synthetic'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'acc1()V'     Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'breakpoint'  Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.method'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'native'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'synchronized' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'acc2'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'method'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace

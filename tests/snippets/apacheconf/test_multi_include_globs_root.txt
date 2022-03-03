@@ -3,7 +3,6 @@ Include /*conf/*.conf
 
 ---tokens---
 'Include'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/*conf/*.conf' Literal.String.Other
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace

@@ -33,179 +33,179 @@ resource "aws_security_group" "allow_tls" {
 
 ---tokens---
 'resource'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"aws_internet_gateway"' Name.Class
-' '           Text
+' '           Text.Whitespace
 '"base_igw"'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'vpc_id'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'aws_vpc.something.id' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'tags'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'Name'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"igw-${var.something}-${var.something}"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'resource'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"aws_security_group"' Name.Class
-' '           Text
+' '           Text.Whitespace
 '"allow_tls"' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'name'        Name.Attribute
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"allow_tls"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'description' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Allow TLS inbound traffic"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'vpc_id'      Name.Attribute
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'aws_vpc.main.id' Name.Variable
 '\n\n  # Ingress rules\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'ingress'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'description' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"TLS from VPC"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'from_port'   Name.Attribute
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '443'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'to_port'     Name.Attribute
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '443'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 '\n\n  # Egress rules\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'egress'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'from_port'   Name.Attribute
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'to_port'     Name.Attribute
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protocol'    Name.Attribute
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"-1"'        Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'cidr_blocks' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"0.0.0.0/0"' Literal.String.Double
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'tags'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'Name'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"allow_tls"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

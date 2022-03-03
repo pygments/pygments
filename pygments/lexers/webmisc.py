@@ -4,7 +4,7 @@
 
     Lexers for misc. web stuff.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,7 @@ import re
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal
+    Number, Punctuation, Literal, Whitespace
 
 from pygments.lexers.css import _indentation, _starts_block
 from pygments.lexers.html import HtmlLexer
@@ -111,7 +111,7 @@ class XQueryLexer(ExtendedRegexLexer):
     #                 aposattrcontentchar
     # x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
 
-    flags = re.DOTALL | re.MULTILINE | re.UNICODE
+    flags = re.DOTALL | re.MULTILINE
 
     def punctuation_root_callback(lexer, match, ctx):
         yield match.start(), Punctuation, match.group(1)
@@ -327,13 +327,13 @@ class XQueryLexer(ExtendedRegexLexer):
     tokens = {
         'comment': [
             # xquery comments
-            (r'(:\))', Comment, '#pop'),
-            (r'(\(:)', Comment, '#push'),
-            (r'[^:)]', Comment),
-            (r'([^:)]|:|\))', Comment),
+            (r'[^:()]+', Comment),
+            (r'\(:', Comment, '#push'),
+            (r':\)', Comment, '#pop'),
+            (r'[:()]', Comment),
         ],
         'whitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
         ],
         'operator': [
             include('whitespace'),
@@ -885,7 +885,7 @@ class CirruLexer(RegexLexer):
 
     tokens = {
         'string': [
-            (r'[^"\\\n]', String),
+            (r'[^"\\\n]+', String),
             (r'\\', String.Escape, 'escape'),
             (r'"', String, '#pop'),
         ],

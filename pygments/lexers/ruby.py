@@ -4,7 +4,7 @@
 
     Lexers for Ruby and related languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -35,7 +35,7 @@ class RubyLexer(ExtendedRegexLexer):
     name = 'Ruby'
     aliases = ['ruby', 'rb', 'duby']
     filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
-                 '*.rbx', '*.duby', 'Gemfile']
+                 '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile']
     mimetypes = ['text/x-ruby', 'application/x-ruby']
 
     flags = re.DOTALL | re.MULTILINE

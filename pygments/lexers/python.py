@@ -4,14 +4,15 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
+import keyword
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-    default, words, combined, do_insertions
+    default, words, combined, do_insertions, this
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error
@@ -59,8 +60,6 @@ class PythonLexer(RegexLexer):
     ]
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']
-
-    flags = re.MULTILINE | re.UNICODE
 
     uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
 
@@ -110,6 +109,7 @@ class PythonLexer(RegexLexer):
             (r'\\\n', Text),
             (r'\\', Text),
             include('keywords'),
+            include('soft-keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text),
@@ -206,6 +206,20 @@ class PythonLexer(RegexLexer):
                 'yield from', 'as', 'with'), suffix=r'\b'),
              Keyword),
             (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
+        ],
+        'soft-keywords': [
+            # `match`, `case` and `_` soft keywords
+            (r'(^[ \t]*)'              # at beginning of line + possible indentation
+             r'(match|case)\b'         # a possible keyword
+             r'(?![ \t]*(?:'           # not followed by...
+             r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't
+             r'|'.join(keyword.kwlist) + r')\b))',                 # pattern matching
+             bygroups(Text, Keyword), 'soft-keywords-inner'),
+        ],
+        'soft-keywords-inner': [
+            # optional `_` keyword
+            (r'(\s+)([^\n_]*)(_\b)', bygroups(Text, using(this), Keyword)),
+            default('#pop')
         ],
         'builtins': [
             (words((
@@ -739,7 +753,7 @@ class PythonTracebackLexer(RegexLexer):
             # Either `PEP 657 <https://www.python.org/dev/peps/pep-0657/>`
             # error locations in Python 3.11+, or single-caret markers
             # for syntax errors before that.
-            (r'^( {4,})(\^+)(\n)',
+            (r'^( {4,})([~^]+)(\n)',
              bygroups(Text, Punctuation.Marker, Text),
              '#pop'),
             default('#pop'),

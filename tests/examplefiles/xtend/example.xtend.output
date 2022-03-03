@@ -1,56 +1,56 @@
 'package'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'beer'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'static'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'extension'   Name
-' '           Text
+' '           Text.Whitespace
 'beer'        Name
 '.'           Operator
 'BottleSupport' Name
 '.'           Operator
 '*'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.junit.Test' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'BottleSong'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@Test'       Name.Decorator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'def'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'singIt'      Name.Function
 '('           Operator
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'println'     Name
 '('           Operator
 'singTheSong' Name
@@ -58,25 +58,25 @@
 '99'          Literal.Number.Integer
 ')'           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'def'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'singTheSong' Name.Function
 '('           Operator
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'all'         Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 "'''"         Literal.String
 '\n'          Literal.String
 
@@ -84,16 +84,16 @@
 '\t'          Literal.String
 '«'           Literal.String
 'FOR'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'all'         Name
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '»'           Literal.String
 '\n'          Literal.String
@@ -184,9 +184,9 @@
 '«'           Literal.String
 '('           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Operator
 '.'           Operator
@@ -359,64 +359,64 @@
 
 '\t'          Literal.String
 "'''"         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'def'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'java'        Name
 '.'           Operator
 'lang'        Name
 '.'           Operator
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'bottles'     Name.Function
 '('           Operator
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 "'no more bottles'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 "'one bottle'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'default'     Keyword
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 "'''"         Literal.String
 '«'           Literal.String
 'i'           Name
@@ -430,49 +430,49 @@
 'e'           Literal.String
 's'           Literal.String
 "'''"         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Operator
 '.'           Operator
 'toString'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Operator
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'def'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'Bottles'     Name.Function
 '('           Operator
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'bottles'     Name
 '('           Operator
 'i'           Name
 ')'           Operator
 '.'           Operator
 'toFirstUpper' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

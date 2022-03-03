@@ -1,5 +1,6 @@
 ---input---
 # Single line comment
+// Non-idiomatic single line comment
 /* multiline
 
   comment
@@ -8,6 +9,8 @@
 
 ---tokens---
 '# Single line comment\n' Comment.Single
+
+'// Non-idiomatic single line comment\n' Comment.Single
 
 '/*'          Comment.Multiline
 ' '           Comment.Multiline
@@ -38,4 +41,4 @@
 '\n'          Comment.Multiline
 
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,0 +1,79 @@
+'pkgbase'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c-intercal'  Text
+'\n\t'        Text.Whitespace
+'pkgdesc'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'A compiler for the INTERCAL language. INTERCAL is the original esoteric language, a farrago of features that will test the mettle of any programmer and bend the minds of most. Includes a compiler, debugger, and sample code.' Text
+'\n\t'        Text.Whitespace
+'pkgver'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.31'        Text
+'\n\t'        Text.Whitespace
+'pkgrel'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Text
+'\n\t'        Text.Whitespace
+'url'         Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://gitlab.com/esr/intercal' Text
+'\n\t'        Text.Whitespace
+'arch'        Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x86_64'      Text
+'\n\t'        Text.Whitespace
+'arch'        Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'i686'        Text
+'\n\t'        Text.Whitespace
+'license'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'GPL'         Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sh'          Text
+'\n\t'        Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'staticlibs'  Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'git+https://gitlab.com/esr/intercal#tag=0.31' Text
+'\n\t'        Text.Whitespace
+'sha256sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SKIP'        Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c-intercal'  Text
+'\n'          Text.Whitespace

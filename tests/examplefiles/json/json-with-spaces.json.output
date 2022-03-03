@@ -1,0 +1,46 @@
+'{'           Punctuation
+'"foo"'       Name.Tag
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'"bar bar\tbar"' Literal.String.Double
+' '           Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'"baz"'       Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\t'          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"a"'         Name.Tag
+'    '        Text.Whitespace
+':'           Punctuation
+'\n    '      Text.Whitespace
+'23'          Literal.Number.Integer
+'\t'          Text.Whitespace
+'}'           Punctuation
+'\n    \n    ' Text.Whitespace
+'],'          Punctuation
+' '           Text.Whitespace
+'"fobar"'     Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\t'          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"c  d"'      Name.Tag
+'    '        Text.Whitespace
+':'           Punctuation
+'\n\t '       Text.Whitespace
+'23'          Literal.Number.Integer
+'\t\t'        Text.Whitespace
+'}'           Punctuation
+'\n\t\t\n\t\t' Text.Whitespace
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

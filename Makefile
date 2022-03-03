@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+# :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
 # :license: BSD, see LICENSE for details.
 #
 
@@ -51,10 +51,10 @@ reindent:
 TEST = tests
 
 test:
-	@$(PYTHON) `which py.test` $(TEST)
+	@$(PYTHON) `which pytest` $(TEST)
 
 test-coverage:
-	@$(PYTHON) `which py.test` --cov --cov-report=html --cov-report=term $(TEST)
+	@$(PYTHON) `which pytest` --cov --cov-report=html --cov-report=term $(TEST)
 
 tox-test:
 	@tox -- $(TEST)

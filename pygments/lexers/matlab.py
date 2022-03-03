@@ -4,7 +4,7 @@
 
     Lexers for Matlab and related languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -3262,7 +3262,7 @@ class ScilabLexer(RegexLexer):
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
             # punctuation:
-            (r'[\[\](){}@.,=:;]', Punctuation),
+            (r'[\[\](){}@.,=:;]+', Punctuation),
 
             (r'"[^"]*"', String),
 
@@ -3276,6 +3276,7 @@ class ScilabLexer(RegexLexer):
             (r'\d+', Number.Integer),
 
             (r'[a-zA-Z_]\w*', Name),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'string': [

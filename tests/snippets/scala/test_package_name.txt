@@ -3,9 +3,9 @@ package p1.p2:
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'p1'          Name.Namespace
 '.'           Punctuation
 'p2'          Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

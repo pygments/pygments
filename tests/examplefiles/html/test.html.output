@@ -12,23 +12,23 @@
 'script'      Name.Tag
 '>'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'initCodeBlock' Name.Other
 '('           Punctuation
 'id'          Name.Other
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'el'          Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'document'    Name.Builtin
 '.'           Punctuation
 'getElementById' Name.Other
@@ -36,9 +36,9 @@
 'id'          Name.Other
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation
@@ -49,814 +49,814 @@
 '<'           Punctuation
 'style'       Name.Tag
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'border'      Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 'px'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'solid'       Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '#d0d0d0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'background-color' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#f0f0f0'     Literal.Number.Hex
 ';'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'margin-left' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin-right' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.'           Punctuation
 'syntaxheader' Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin-top'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '15'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin-bottom' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'text-align'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'right'       Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-size'   Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '11'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'border-bottom' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.'           Punctuation
 'linenos'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'left'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'display'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'linenos'     Name.Class
-' '           Text
+' '           Text.Whitespace
 'pre'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'padding-right' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'padding-left' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#666'        Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'pre'         Name.Tag
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin-top'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'cm'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#60a0b0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-style'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'italic'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 '/* comments */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'cm-proc'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#007020'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-style'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'normal'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 '/* preproc */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'kw'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#007020'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '/* keywords */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'kw-pseudo'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'normal'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '/* pseudo keywords */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'op'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#666666'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                 ' Text
+'                                 ' Text.Whitespace
 '/* operators */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'op-word'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#007020'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '/* word operators */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'bn'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#007020'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                  ' Text
+'                                  ' Text.Whitespace
 '/* builtins */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'fun'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#06287e'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 '/* func name */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'cls'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#0e84b5'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'           ' Text
+'           ' Text.Whitespace
 '/* class names */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'exc'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#007020'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '/* exceptions */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'var'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#bb60d5'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 '/* variables */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'const'       Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#60add5'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                              ' Text
+'                              ' Text.Whitespace
 '/* constants */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'entity'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#d55537'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'           ' Text
+'           ' Text.Whitespace
 '/* entities */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'attr'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#4070a0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                              ' Text
+'                              ' Text.Whitespace
 '/* attributes */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'tag'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#062873'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'             ' Text
+'             ' Text.Whitespace
 '/* tag names */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'deco'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#555555'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'           ' Text
+'           ' Text.Whitespace
 '/* decorators */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#4070a0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                   ' Text
+'                                   ' Text.Whitespace
 '/* strings */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st-int'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#70a0d0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-style'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'italic'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '/* interpolated str */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st-esc'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#4070a0'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '/* escaped str */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st-re'       Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#235388'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                           ' Text
+'                           ' Text.Whitespace
 '/* regular expr */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st-sym'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#517918'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '/* symbols */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'st-oth'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#c65d09'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '/* other strings */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'nb'          Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#40a070'     Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                                   ' Text
+'                                   ' Text.Whitespace
 '/* numbers */' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-hd'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'blue'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 '/* headings */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-sh'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'purple'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '/* subheadings */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-del'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'red'         Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '/* deleted text */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-ins'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'green'       Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 '/* inserted text */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-em'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-style'  Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'italic'      Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 '/* emphasized text */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'gen-sr'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'font-weight' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bold'        Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                  ' Text
+'                  ' Text.Whitespace
 '/* strong emph. text */' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.'           Punctuation
 'syntax'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'err'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'border'      Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 'px'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'solid'       Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'red'         Keyword.Constant
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'                     ' Text
+'                     ' Text.Whitespace
 '/* parser errors */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation

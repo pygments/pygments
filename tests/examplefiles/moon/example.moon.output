@@ -1,55 +1,36 @@
 '-- transform.moon' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- Leaf Corcoran (leafot@gmail.com) 2011' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- This is part of the MoonScript compiler. See <http://moonscript.org>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- MoonScript is licensed under the MIT License' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'module'      Name
 ' '           Text
 '"'           Literal.String.Double
-'m'           Literal.String
-'o'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'p'           Literal.String
-'t'           Literal.String
-'.'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'a'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'f'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
-'m'           Literal.String
+'moonscript.transform' Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'package'     Name
 '.'           Operator
 'seeall'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'types'       Name
 ' '           Text
@@ -58,24 +39,9 @@
 'require'     Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
-'m'           Literal.String
-'o'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'p'           Literal.String
-'t'           Literal.String
-'.'           Literal.String
-'t'           Literal.String
-'y'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'s'           Literal.String
+'moonscript.types' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'util'        Name
 ' '           Text
@@ -84,23 +50,9 @@
 'require'     Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
-'m'           Literal.String
-'o'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'p'           Literal.String
-'t'           Literal.String
-'.'           Literal.String
-'u'           Literal.String
-'t'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
+'moonscript.util' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Name
 ' '           Text
@@ -109,25 +61,11 @@
 'require'     Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
-'m'           Literal.String
-'o'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'p'           Literal.String
-'t'           Literal.String
-'.'           Literal.String
-'d'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
+'moonscript.data' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text
@@ -136,7 +74,7 @@
 'from'        Keyword
 ' '           Text
 'util'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text
@@ -154,7 +92,7 @@
 'from'        Keyword
 ' '           Text
 'types'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text
@@ -163,9 +101,9 @@
 'from'        Keyword
 ' '           Text
 'table'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text
@@ -182,17 +120,17 @@
 ','           Punctuation
 ' '           Text
 'Run'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- always declares as local' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'LocalName'   Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'new:'        Name.Variable
@@ -211,17 +149,9 @@
 '='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'e'           Literal.String
-'m'           Literal.String
-'p'           Literal.String
-'_'           Literal.String
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'temp_name'   Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'get_name:'   Name.Variable
@@ -229,14 +159,14 @@
 '=>'          Name.Function
 ' '           Text
 '@name'       Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'NameProxy'   Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'new:'        Name.Variable
@@ -246,7 +176,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'self'        Name.Builtin.Pseudo
@@ -257,19 +187,11 @@
 '='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'e'           Literal.String
-'m'           Literal.String
-'p'           Literal.String
-'_'           Literal.String
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'temp_name'   Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'get_name:'   Name.Variable
@@ -279,7 +201,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -287,7 +209,7 @@
 'not'         Keyword
 ' '           Text
 '@name'       Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '@name'       Name.Variable.Class
@@ -302,13 +224,13 @@
 ','           Punctuation
 ' '           Text
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@name'       Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'chain:'      Name.Variable
@@ -318,7 +240,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'items'       Name
@@ -330,7 +252,7 @@
 '}'           Keyword.Type
 ' '           Text
 '-- todo: fix ... propagation' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'items'       Name
@@ -345,7 +267,7 @@
 ' '           Text
 '*'           Operator
 'items'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -358,37 +280,30 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
+'string'      Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'i'           Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'i'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -396,25 +311,25 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'base:'       Name.Variable
 ' '           Text
 'self'        Name.Builtin.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'unpack'      Name
 ' '           Text
 'items'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'index:'      Name.Variable
@@ -424,7 +339,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -432,7 +347,7 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'base:'       Name.Variable
@@ -442,92 +357,66 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'index'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'key'         Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '__tostring:' Name.Variable
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
 ' '           Text
 '@name'       Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '('           Keyword.Type
 '"'           Literal.String.Double
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'<'           Literal.String
-'%'           Literal.String
-'s'           Literal.String
-'>'           Literal.String
+'name<%s>'    Literal.String
 '"'           Literal.String.Double
 ')'           Keyword.Type
 '\\'          Operator
 'format'      Name
 ' '           Text
 '@name'       Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '('           Keyword.Type
 '"'           Literal.String.Double
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'<'           Literal.String
-'p'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'f'           Literal.String
-'i'           Literal.String
-'x'           Literal.String
-'('           Literal.String
-'%'           Literal.String
-'s'           Literal.String
-')'           Literal.String
-'>'           Literal.String
+'name<prefix(%s)>' Literal.String
 '"'           Literal.String.Double
 ')'           Keyword.Type
 '\\'          Operator
 'format'      Name
 ' '           Text
 '@prefix'     Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'Run'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'new:'        Name.Variable
@@ -537,7 +426,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'self'        Name.Builtin.Pseudo
@@ -548,13 +437,11 @@
 '='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'r'           Literal.String
-'u'           Literal.String
-'n'           Literal.String
+'run'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'call:'       Name.Variable
@@ -564,7 +451,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'self'        Name.Builtin.Pseudo
@@ -572,15 +459,15 @@
 'fn'          Name
 ' '           Text
 'state'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- transform the last stm is a list of stms' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- will puke on group' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'apply_to_last' Name
 ' '           Text
@@ -594,11 +481,11 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- find last (real) exp' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'last_exp_id' Name
@@ -606,7 +493,7 @@
 '='           Operator
 ' '           Text
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'for'         Keyword
@@ -624,7 +511,7 @@
 ' '           Text
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'stm'         Name
@@ -635,7 +522,7 @@
 '['           Keyword.Type
 'i'           Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -656,7 +543,7 @@
 '!='          Operator
 ' '           Text
 'Run'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'last_exp_id' Name
@@ -664,13 +551,13 @@
 '='           Operator
 ' '           Text
 'i'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'break'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Keyword
@@ -687,7 +574,7 @@
 'ipairs'      Name.Builtin
 ' '           Text
 'stms'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -697,26 +584,26 @@
 '=='          Operator
 ' '           Text
 'last_exp_id' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'fn'          Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- is a body a sindle expression/statement' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'is_singular' Name
 ' '           Text
@@ -727,7 +614,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Keyword
@@ -742,17 +629,13 @@
 '!='          Operator
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'if'          Keyword
 ' '           Text
 '"'           Literal.String.Double
-'g'           Literal.String
-'r'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'p'           Literal.String
+'group'       Literal.String
 '"'           Literal.String.Double
 ' '           Text
 '=='          Operator
@@ -760,7 +643,7 @@
 'ntype'       Name
 ' '           Text
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'is_singular' Name
@@ -769,35 +652,33 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constructor_name' Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String
-'e'           Literal.String
-'w'           Literal.String
+'new'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'Transformer' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'new:'        Name.Variable
@@ -810,7 +691,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@seen_nodes' Name.Variable.Class
@@ -819,9 +700,9 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'transform:'  Name.Variable
@@ -837,11 +718,11 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- print scope, node, ...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'return'      Keyword
@@ -854,7 +735,7 @@
 '['           Keyword.Type
 'node'        Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@seen_nodes' Name.Variable.Class
@@ -865,13 +746,13 @@
 '='           Operator
 ' '           Text
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'while'       Keyword
 ' '           Text
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'transformer' Name
@@ -884,7 +765,7 @@
 ' '           Text
 'node'        Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'res'         Name
@@ -894,7 +775,7 @@
 'if'          Keyword
 ' '           Text
 'transformer' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'transformer' Name
@@ -911,15 +792,15 @@
 'or'          Keyword
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'return'      Keyword
@@ -933,7 +814,7 @@
 '=='          Operator
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'node'        Name
@@ -941,9 +822,9 @@
 '='           Operator
 ' '           Text
 'res'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '__call:'     Name.Variable
@@ -956,7 +837,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@transform'  Name.Variable.Class
@@ -968,9 +849,9 @@
 ','           Punctuation
 ' '           Text
 '...'         Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'instance:'   Name.Variable
@@ -980,7 +861,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'Transformer' Name.Class
@@ -989,9 +870,9 @@
 ','           Punctuation
 ' '           Text
 'scope'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'can_transform:' Name.Variable
@@ -1001,7 +882,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@transformers' Name.Variable.Class
@@ -1014,9 +895,9 @@
 '!='          Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'construct_comprehension' Name
 ' '           Text
@@ -1030,7 +911,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'current_stms' Name
@@ -1038,7 +919,7 @@
 '='           Operator
 ' '           Text
 'inner'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'for'         Keyword
@@ -1053,7 +934,7 @@
 'reversed'    Name
 ' '           Text
 'clauses'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 't'           Name
@@ -1064,7 +945,7 @@
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'current_stms' Name
@@ -1078,11 +959,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'f'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
+'for'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '_'           Name
@@ -1098,18 +977,12 @@
 'unpack'      Name
 ' '           Text
 'clause'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'f'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'a'           Literal.String
-'c'           Literal.String
-'h'           Literal.String
+'foreach'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -1121,7 +994,7 @@
 ' '           Text
 'current_stms' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'elseif'      Keyword
@@ -1131,12 +1004,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'w'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
+'when'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '_'           Name
@@ -1149,13 +1019,12 @@
 'unpack'      Name
 ' '           Text
 'clause'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -1164,50 +1033,21 @@
 ' '           Text
 'current_stms' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'error'       Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
-'U'           Literal.String
-'n'           Literal.String
-'k'           Literal.String
-'n'           Literal.String
-'o'           Literal.String
-'w'           Literal.String
-'n'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'p'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'u'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
-':'           Literal.String
-' '           Literal.String
+'Unknown comprehension clause: ' Literal.String
 '"'           Literal.String.Double
 '..'          Operator
 't'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'current_stms' Name
@@ -1217,18 +1057,18 @@
 '{'           Keyword.Type
 'current_stms' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'current_stms' Name
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Statement'   Name.Class
 ' '           Text
@@ -1237,7 +1077,7 @@
 'Transformer' Name.Class
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'assign:'     Name.Variable
@@ -1247,7 +1087,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -1263,11 +1103,11 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- bubble cascading assigns' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -1292,7 +1132,7 @@
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'values'      Name
@@ -1317,7 +1157,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 't'           Name
@@ -1327,7 +1167,7 @@
 'ntype'       Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'if'          Keyword
@@ -1337,17 +1177,12 @@
 'is_value'    Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'a'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'g'           Literal.String
-'n'           Literal.String
+'assign'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -1358,17 +1193,17 @@
 'stm'         Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -1376,45 +1211,39 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'e'           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
+'declare'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'names'       Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'values'      Name
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'export:'     Name.Variable
@@ -1424,11 +1253,11 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- assign values if they are included' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -1439,7 +1268,7 @@
 '>'           Operator
 ' '           Text
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -1452,13 +1281,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
+'class'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'cls'         Name
@@ -1471,7 +1296,7 @@
 '['           Keyword.Type
 '3'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -1479,17 +1304,12 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
-'t'           Literal.String
+'export'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -1499,19 +1319,19 @@
 'name'        Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'cls'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -1519,11 +1339,11 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -1531,7 +1351,7 @@
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'names:'      Name.Variable
@@ -1540,7 +1360,7 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'values:'     Name.Variable
@@ -1549,25 +1369,25 @@
 '['           Keyword.Type
 '3'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'update:'     Name.Variable
@@ -1577,7 +1397,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -1596,7 +1416,7 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'op_final'    Name
@@ -1608,32 +1428,15 @@
 'match'       Name
 ' '           Text
 '"'           Literal.String.Double
-'^'           Literal.String
-'('           Literal.String
-'.'           Literal.String
-'+'           Literal.String
-')'           Literal.String
-'='           Literal.String
-'$'           Literal.String
+'^(.+)=$'     Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'error'       Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
-'U'           Literal.String
-'n'           Literal.String
-'k'           Literal.String
-'n'           Literal.String
-'o'           Literal.String
-'w'           Literal.String
-'n'           Literal.String
-' '           Literal.String
-'o'           Literal.String
-'p'           Literal.String
-':'           Literal.String
-' '           Literal.String
+'Unknown op: ' Literal.String
 '"'           Literal.String.Double
 '..'          Operator
 'op'          Name
@@ -1643,7 +1446,7 @@
 'not'         Keyword
 ' '           Text
 'op_final'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -1655,9 +1458,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -1669,9 +1470,9 @@
 ' '           Text
 'exp'         Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'import:'     Name.Variable
@@ -1681,7 +1482,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -1697,9 +1498,9 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'stubs'       Name
@@ -1714,7 +1515,7 @@
 ' '           Text
 '*'           Operator
 'names'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -1727,36 +1528,30 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'table'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'name'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'name'        Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'real_names'  Name
@@ -1771,7 +1566,7 @@
 ' '           Text
 '*'           Operator
 'names'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'type'        Name.Builtin
@@ -1782,11 +1577,7 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'table'       Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'and'         Keyword
@@ -1799,9 +1590,9 @@
 'or'          Keyword
 ' '           Text
 'name'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -1814,14 +1605,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
+'string'      Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -1829,13 +1615,13 @@
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'names:'      Name.Variable
 ' '           Text
 'real_names'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'values:'     Name.Variable
@@ -1864,15 +1650,15 @@
 '*'           Operator
 'stubs'       Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'source_name' Name
@@ -1882,13 +1668,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'table'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -1896,36 +1678,29 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'e'           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
+'declare'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'real_names'  Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
+'do'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -1936,7 +1711,7 @@
 ','           Punctuation
 ' '           Text
 'source'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -1944,13 +1719,13 @@
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'names:'      Name.Variable
 ' '           Text
 'real_names'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'values:'     Name.Variable
@@ -1979,21 +1754,21 @@
 '*'           Operator
 'stubs'       Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'comprehension:' Name.Variable
@@ -2006,7 +1781,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -2022,9 +1797,9 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'action'      Name
@@ -2044,7 +1819,7 @@
 '{'           Keyword.Type
 'exp'         Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'construct_comprehension' Name
@@ -2056,13 +1831,13 @@
 ','           Punctuation
 ' '           Text
 'clauses'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- handle cascading return decorator' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'if:'         Name.Variable
@@ -2075,32 +1850,29 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'smart_node'  Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '-- mutate all the bodies' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'node'        Name
 '['           Keyword.Type
 "'"           Literal.String.Single
-'t'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
+'then'        Literal.String
 "'"           Literal.String.Single
 ']'           Keyword.Type
 ' '           Text
@@ -2111,16 +1883,13 @@
 'node'        Name
 '['           Keyword.Type
 "'"           Literal.String.Single
-'t'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
+'then'        Literal.String
 "'"           Literal.String.Single
 ']'           Keyword.Type
 ','           Punctuation
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'for'         Keyword
@@ -2134,7 +1903,7 @@
 ' '           Text
 '#'           Operator
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'case'        Name
@@ -2145,7 +1914,7 @@
 '['           Keyword.Type
 'i'           Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body_idx'    Name
@@ -2157,7 +1926,7 @@
 '['           Keyword.Type
 'i'           Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'case'        Name
@@ -2176,13 +1945,13 @@
 ','           Punctuation
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'with:'       Name.Variable
@@ -2195,7 +1964,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -2211,7 +1980,7 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'scope_name'  Name
@@ -2221,24 +1990,20 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'w'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+'with'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
+'do'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -2249,7 +2014,7 @@
 ','           Punctuation
 ' '           Text
 'exp'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'Run'         Name.Class
@@ -2259,20 +2024,12 @@
 '@set'        Name.Variable.Class
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'c'           Literal.String
-'o'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'_'           Literal.String
-'v'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
+'scope_var'   Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'scope_name'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -2280,25 +2037,25 @@
 'group'       Name
 ' '           Text
 'block'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'ret'         Name
 ' '           Text
 'scope_name'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'foreach:'    Name.Variable
@@ -2308,13 +2065,13 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'smart_node'  Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -2329,14 +2086,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'u'           Literal.String
-'n'           Literal.String
-'p'           Literal.String
-'a'           Literal.String
-'c'           Literal.String
-'k'           Literal.String
+'unpack'      Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'list'        Name
@@ -2349,9 +2101,9 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'index_name'  Name
@@ -2361,13 +2113,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'index'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'list_name'   Name
@@ -2377,14 +2125,11 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'l'           Literal.String
-'i'           Literal.String
-'s'           Literal.String
-'t'           Literal.String
+'list'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'slice_var'   Name
@@ -2392,7 +2137,7 @@
 '='           Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'bounds'      Name
@@ -2404,7 +2149,7 @@
 'is_slice'    Name
 ' '           Text
 'list'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'slice'       Name
@@ -2416,13 +2161,13 @@
 '#'           Operator
 'list'        Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'table.remove' Name.Builtin
 ' '           Text
 'list'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'table.remove' Name.Builtin
@@ -2431,9 +2176,9 @@
 ','           Punctuation
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'slice'       Name
@@ -2461,7 +2206,7 @@
 ' '           Text
 '"'           Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'max_tmp_name' Name
@@ -2471,11 +2216,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'m'           Literal.String
-'a'           Literal.String
-'x'           Literal.String
+'max'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'slice_var'   Name
@@ -2493,14 +2236,12 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -2513,24 +2254,17 @@
 ','           Punctuation
 ' '           Text
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '"'           Literal.String.Double
-'a'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
+'and'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'l'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+'length'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -2544,49 +2278,43 @@
 ','           Punctuation
 ' '           Text
 'max_tmp_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '"'           Literal.String.Double
-'o'           Literal.String
-'r'           Literal.String
+'or'          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'max_tmp_name' Name
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'l'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+'length'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'list_name'   Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'slice'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
@@ -2595,21 +2323,16 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'l'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+'length'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'list_name'   Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -2617,7 +2340,7 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -2628,52 +2351,45 @@
 ','           Punctuation
 ' '           Text
 'list'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'slice_var'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'f'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
+'for'         Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'name:'       Name.Variable
 ' '           Text
 'index_name'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'bounds:'     Name.Variable
 ' '           Text
 'bounds'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'body:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'a'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'g'           Literal.String
-'n'           Literal.String
+'assign'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -2690,7 +2406,7 @@
 'index_name'  Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'build'       Name
@@ -2700,21 +2416,21 @@
 'node'        Name
 '.'           Operator
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'switch:'     Name.Variable
@@ -2727,7 +2443,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -2743,7 +2459,7 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'exp_name'    Name
@@ -2753,17 +2469,15 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- convert switch conds into if statment conds' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'convert_cond' Name
@@ -2775,7 +2489,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 't'           Name
@@ -2791,7 +2505,7 @@
 'unpack'      Name
 ' '           Text
 'cond'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'out'         Name
@@ -2800,7 +2514,7 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'insert'      Name
@@ -2813,32 +2527,21 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'case'        Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'and'         Keyword
 ' '           Text
 '"'           Literal.String.Double
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
-'i'           Literal.String
-'f'           Literal.String
+'elseif'      Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'or'          Keyword
 ' '           Text
 '"'           Literal.String.Double
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'else'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -2848,12 +2551,9 @@
 '!='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'else'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -2863,9 +2563,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -2873,8 +2571,7 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'='           Literal.String
-'='           Literal.String
+'=='          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -2888,16 +2585,13 @@
 '!='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'else'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body'        Name
@@ -2905,15 +2599,15 @@
 '='           Operator
 ' '           Text
 'case_exp'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body'        Name
@@ -2926,9 +2620,9 @@
 ','           Punctuation
 ' '           Text
 'ret'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'insert'      Name
@@ -2937,15 +2631,15 @@
 ','           Punctuation
 ' '           Text
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'out'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'first'       Name
@@ -2953,7 +2647,7 @@
 '='           Operator
 ' '           Text
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if_stm'      Name
@@ -2962,11 +2656,10 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'for'         Keyword
@@ -2977,7 +2670,7 @@
 ' '           Text
 '*'           Operator
 'conds'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if_cond'     Name
@@ -2987,13 +2680,13 @@
 'convert_cond' Name
 ' '           Text
 'cond'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
 ' '           Text
 'first'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'first'       Name
@@ -3001,7 +2694,7 @@
 '='           Operator
 ' '           Text
 'false'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -3013,7 +2706,7 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -3025,11 +2718,11 @@
 '['           Keyword.Type
 '3'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -3038,9 +2731,9 @@
 ','           Punctuation
 ' '           Text
 'if_cond'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -3048,7 +2741,7 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -3059,17 +2752,17 @@
 ','           Punctuation
 ' '           Text
 'exp'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if_stm'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'class:'      Name.Variable
@@ -3079,7 +2772,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -3098,13 +2791,13 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- split apart properties and statements' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'statements'  Name
@@ -3113,7 +2806,7 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'properties'  Name
@@ -3122,7 +2815,7 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'for'         Keyword
@@ -3133,7 +2826,7 @@
 ' '           Text
 '*'           Operator
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'switch'      Keyword
@@ -3142,17 +2835,15 @@
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'when'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'t'           Literal.String
-'m'           Literal.String
+'stm'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'insert'      Name
@@ -3164,19 +2855,15 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'when'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'p'           Literal.String
-'r'           Literal.String
-'o'           Literal.String
-'p'           Literal.String
-'s'           Literal.String
+'props'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'for'         Keyword
@@ -3191,7 +2878,7 @@
 '2'           Literal.Number.Integer
 ','           Punctuation
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'insert'      Name
@@ -3200,13 +2887,13 @@
 ','           Punctuation
 ' '           Text
 'tuple'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- find constructor' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'constructor' Name
@@ -3214,7 +2901,7 @@
 '='           Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'properties'  Name
@@ -3229,7 +2916,7 @@
 ' '           Text
 '*'           Operator
 'properties'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -3242,7 +2929,7 @@
 '=='          Operator
 ' '           Text
 'constructor_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'constructor' Name
@@ -3253,21 +2940,21 @@
 '['           Keyword.Type
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'tuple'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'parent_cls_name' Name
@@ -3277,14 +2964,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'p'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'t'           Literal.String
+'parent'      Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'base_name'   Name
@@ -3294,12 +2976,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'b'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'base'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'self_name'   Name
@@ -3309,12 +2988,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'f'           Literal.String
+'self'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'cls_name'    Name
@@ -3324,15 +3000,11 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
+'class'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -3340,7 +3012,7 @@
 'not'         Keyword
 ' '           Text
 'constructor' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'constructor' Name
@@ -3352,7 +3024,7 @@
 'fndef'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'args:'       Name.Variable
@@ -3360,53 +3032,48 @@
 '{'           Keyword.Type
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'arrow:'      Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'f'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
+'fat'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'cond:'       Name.Variable
 ' '           Text
 'parent_cls_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'then:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'build'       Name
@@ -3418,60 +3085,51 @@
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'u'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
+'super'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'smart_node'  Name
 ' '           Text
 'constructor' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'constructor' Name
@@ -3481,13 +3139,11 @@
 '='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'f'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
+'fat'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'cls'         Name
@@ -3499,60 +3155,40 @@
 'table'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
+'__init'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'constructor' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'__base'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'base_name'   Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'__name'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
+'string'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3566,35 +3202,28 @@
 '}'           Keyword.Type
 ' '           Text
 '-- "quote the string"' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'p'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'t'           Literal.String
+'__parent'    Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'parent_cls_name' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '-- look up a name in the class object' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'class_lookup' Name
@@ -3604,81 +3233,68 @@
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'cond:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'v'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
+'val'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'='           Literal.String
-'='           Literal.String
+'=='          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
+'nil'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'a'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
+'and'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'parent_cls_name' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'then:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'parent_cls_name' Name
 '\\'          Operator
 'index'       Name
 '"'           Literal.String.Double
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'name'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'insert'      Name
@@ -3688,24 +3304,19 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'else'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'v'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
+'val'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'cls_mt'      Name
@@ -3717,18 +3328,12 @@
 'table'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'__index'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3737,7 +3342,7 @@
 'fndef'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'args:'       Name.Variable
@@ -3745,29 +3350,24 @@
 '{'           Keyword.Type
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
+'cls'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'name'        Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -3776,9 +3376,7 @@
 ' '           Text
 'LocalName'   Name.Class
 '"'           Literal.String.Double
-'v'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
+'val'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3787,27 +3385,19 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'r'           Literal.String
-'a'           Literal.String
-'w'           Literal.String
-'g'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
+'rawget'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3816,41 +3406,33 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'name'        Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'class_lookup' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'__call'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3859,7 +3441,7 @@
 'fndef'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'args:'       Name.Variable
@@ -3867,28 +3449,24 @@
 '{'           Keyword.Type
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
+'cls'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -3903,52 +3481,37 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'setmetatable' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'{'           Literal.String
-'}'           Literal.String
+'{}'          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'base_name'   Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'build'       Name
@@ -3956,32 +3519,20 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'.'           Literal.String
-'_'           Literal.String
-'_'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
+'cls.__init'  Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -3990,36 +3541,34 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'self_name'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'cls'         Name
@@ -4031,34 +3580,20 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'setmetatable' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -4069,13 +3604,13 @@
 'cls_mt'      Name
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'value'       Name
@@ -4083,13 +3618,13 @@
 '='           Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'with'        Keyword
 ' '           Text
 'build'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'value'       Name
@@ -4100,23 +3635,19 @@
 'block_exp'   Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'Run'         Name.Class
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '@set'        Name.Variable.Class
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'u'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
+'super'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -4128,13 +3659,13 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'if'          Keyword
 ' '           Text
 'chain'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'slice'       Name
@@ -4157,7 +3688,7 @@
 ','           Punctuation
 ']'           Keyword.Type
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'new_chain'   Name
@@ -4166,19 +3697,15 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'h'           Literal.String
-'a'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
+'chain'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'parent_cls_name' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'head'        Name
@@ -4189,9 +3716,9 @@
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'if'          Keyword
@@ -4201,15 +3728,15 @@
 '=='          Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 'return'      Keyword
 ' '           Text
 'parent_cls_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'switch'      Keyword
@@ -4218,22 +3745,19 @@
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 '-- calling super, inject calling name and self into chain' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 'when'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'calling_name' Name
@@ -4244,21 +3768,9 @@
 '\\'          Operator
 'get'         Name
 '"'           Literal.String.Double
-'c'           Literal.String
-'u'           Literal.String
-'r'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'t'           Literal.String
-'_'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'o'           Literal.String
-'c'           Literal.String
-'k'           Literal.String
+'current_block' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'slice'       Name
@@ -4270,19 +3782,13 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'f'           Literal.String
+'self'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -4294,7 +3800,7 @@
 ']'           Keyword.Type
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'act'         Name
@@ -4311,31 +3817,21 @@
 '!='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'v'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'u'           Literal.String
-'e'           Literal.String
+'value'       Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'then'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'index'       Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'else'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'insert'      Name
@@ -4349,25 +3845,21 @@
 ' '           Text
 'calling_name' Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 '-- colon call on super, replace class with self as first arg' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 'when'        Keyword
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'o'           Literal.String
-'l'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
+'colon'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'call'        Name
@@ -4378,7 +3870,7 @@
 '['           Keyword.Type
 '3'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'insert'      Name
@@ -4388,9 +3880,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -4399,7 +3889,7 @@
 '2'           Literal.Number.Integer
 ']'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 'slice'       Name
@@ -4412,20 +3902,14 @@
 '{'           Keyword.Type
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'f'           Literal.String
+'self'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -4439,9 +3923,9 @@
 '}'           Keyword.Type
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'insert'      Name
@@ -4459,23 +3943,23 @@
 ' '           Text
 '*'           Operator
 'slice'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'new_chain'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'parent_cls_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4494,15 +3978,13 @@
 'and'         Keyword
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
+'nil'         Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'or'          Keyword
 ' '           Text
 'parent_val'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4513,17 +3995,13 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'table'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'properties'  Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4533,88 +4011,67 @@
 '\\'          Operator
 'chain'       Name
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'__index'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'base_name'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'cond:'       Name.Variable
 ' '           Text
 'parent_cls_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'then:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '.'           Operator
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'base:'       Name.Variable
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'setmetatable' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 'base_name'   Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                ' Text
 '.'           Operator
@@ -4629,42 +4086,35 @@
 '  '          Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'b'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'__base'      Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4674,7 +4124,7 @@
 ','           Punctuation
 ' '           Text
 'cls'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4684,20 +4134,14 @@
 '\\'          Operator
 'chain'       Name
 '"'           Literal.String.Double
-'_'           Literal.String
-'_'           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
+'__class'     Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'cls_name'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4713,7 +4157,7 @@
 '0'           Literal.Number.Integer
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '.'           Operator
@@ -4721,22 +4165,19 @@
 ' '           Text
 'LocalName'   Name.Class
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'f'           Literal.String
+'self'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'cls_name'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '.'           Operator
 'group'       Name
 ' '           Text
 'statements'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
@@ -4745,19 +4186,19 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'cls_name'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'value'       Name
@@ -4768,7 +4209,7 @@
 'group'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
@@ -4779,14 +4220,14 @@
 '{'           Keyword.Type
 'name'        Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '.'           Operator
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'names:'      Name.Variable
@@ -4794,7 +4235,7 @@
 '{'           Keyword.Type
 'name'        Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'values:'     Name.Variable
@@ -4802,31 +4243,31 @@
 '{'           Keyword.Type
 'value'       Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'value'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'Accumulator' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'body_idx:'   Name.Variable
@@ -4848,15 +4289,15 @@
 '4'           Literal.Number.Integer
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'new:'        Name.Variable
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@accum_name' Name.Variable.Class
@@ -4866,13 +4307,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'a'           Literal.String
-'c'           Literal.String
-'c'           Literal.String
-'u'           Literal.String
-'m'           Literal.String
+'accum'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@value_name' Name.Variable.Class
@@ -4882,13 +4319,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'v'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'u'           Literal.String
-'e'           Literal.String
+'value'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@len_name'   Name.Variable.Class
@@ -4898,17 +4331,15 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'l'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
+'len'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- wraps node and mutates body' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'convert:'    Name.Variable
@@ -4918,7 +4349,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'index'       Name
@@ -4931,7 +4362,7 @@
 ' '           Text
 'node'        Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'node'        Name
@@ -4947,19 +4378,19 @@
 '['           Keyword.Type
 'index'       Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@wrap'       Name.Variable.Class
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- wrap the node into a block_exp' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'wrap:'       Name.Variable
@@ -4969,7 +4400,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -4977,7 +4408,7 @@
 'block_exp'   Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -4991,7 +4422,7 @@
 '.'           Operator
 'table'       Name
 '!'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -5002,29 +4433,29 @@
 ','           Punctuation
 ' '           Text
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '@accum_name' Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- mutates the body of a loop construct to save last value into accumulator' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- can optionally skip nil results' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'mutate_body:' Name.Variable
@@ -5039,7 +4470,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'val'         Name
@@ -5057,7 +4488,7 @@
 'is_singular' Name
 ' '           Text
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'with'        Keyword
@@ -5066,7 +4497,7 @@
 '['           Keyword.Type
 '1'           Literal.Number.Integer
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'body'        Name
@@ -5075,11 +4506,11 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'body'        Name
@@ -5096,7 +4527,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -5107,13 +4538,13 @@
 ','           Punctuation
 ' '           Text
 'n'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '@value_name' Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'update'      Name
@@ -5121,17 +4552,12 @@
 '='           Operator
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'u'           Literal.String
-'p'           Literal.String
-'d'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'e'           Literal.String
+'update'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -5139,14 +4565,13 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'+'           Literal.String
-'='           Literal.String
+'+='          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '1'           Literal.Number.Integer
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -5162,19 +4587,19 @@
 ','           Punctuation
 ' '           Text
 'val'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
 ' '           Text
 'skip_nil'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'table.insert' Name.Builtin
@@ -5185,22 +4610,19 @@
 'build'       Name
 '['           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'f'           Literal.String
+'if'          Literal.String
 '"'           Literal.String.Double
 ']'           Keyword.Type
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'cond:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'e'           Literal.String
-'x'           Literal.String
-'p'           Literal.String
+'exp'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -5208,32 +4630,29 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'!'           Literal.String
-'='           Literal.String
+'!='          Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
+'nil'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'then:'       Name.Variable
 ' '           Text
 'update'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'table.insert' Name.Builtin
@@ -5246,15 +4665,15 @@
 'group'       Name
 ' '           Text
 'update'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'default_accumulator' Name
 ' '           Text
@@ -5265,7 +4684,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'Accumulator' Name.Class
@@ -5274,11 +4693,11 @@
 'convert'     Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'implicitly_return' Name
 ' '           Text
@@ -5289,7 +4708,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'fn'          Name
@@ -5301,7 +4720,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 't'           Name
@@ -5311,7 +4730,7 @@
 'ntype'       Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -5332,11 +4751,11 @@
 'is_value'    Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'elseif'      Keyword
@@ -5347,7 +4766,7 @@
 '['           Keyword.Type
 't'           Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'scope'       Name
@@ -5360,11 +4779,11 @@
 ','           Punctuation
 ' '           Text
 'fn'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
@@ -5374,19 +4793,7 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'p'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
+'comprehension' Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'and'         Keyword
@@ -5398,39 +4805,34 @@
 'comprehension_has_value' Name
 ' '           Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'stm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'r'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'u'           Literal.String
-'r'           Literal.String
-'n'           Literal.String
+'return'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
 'stm'         Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'fn'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Value'       Name.Class
 ' '           Text
@@ -5439,27 +4841,27 @@
 'Transformer' Name.Class
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'for:'        Name.Variable
 ' '           Text
 'default_accumulator' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'while:'      Name.Variable
 ' '           Text
 'default_accumulator' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'foreach:'    Name.Variable
 ' '           Text
 'default_accumulator' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'comprehension:' Name.Variable
@@ -5469,7 +4871,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'a'           Name
@@ -5478,7 +4880,7 @@
 ' '           Text
 'Accumulator' Name.Class
 '!'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'node'        Name
@@ -5497,7 +4899,7 @@
 ')'           Keyword.Type
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'a'           Name
@@ -5510,7 +4912,7 @@
 ','           Punctuation
 ' '           Text
 'false'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'a'           Name
@@ -5518,9 +4920,9 @@
 'wrap'        Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'tblcomprehension:' Name.Variable
@@ -5530,7 +4932,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -5549,9 +4951,9 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'accum'       Name
@@ -5561,11 +4963,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
+'tbl'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'dest'        Name
@@ -5585,11 +4985,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
+'index'       Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -5597,7 +4993,7 @@
 '}'           Keyword.Type
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'inner'       Name
@@ -5612,9 +5008,9 @@
 ','           Punctuation
 ' '           Text
 'value_exp'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -5622,7 +5018,7 @@
 'block_exp'   Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'build'       Name
@@ -5636,7 +5032,7 @@
 '.'           Operator
 'table'       Name
 '!'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'construct_comprehension' Name
@@ -5647,17 +5043,17 @@
 ','           Punctuation
 ' '           Text
 'clauses'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'accum'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'fndef:'      Name.Variable
@@ -5667,13 +5063,13 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'smart_node'  Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'node'        Name
@@ -5692,13 +5088,13 @@
 'implicitly_return' Name
 ' '           Text
 'self'        Name.Builtin.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'if:'         Name.Variable
@@ -5718,7 +5114,7 @@
 'node'        Name
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'with:'       Name.Variable
@@ -5738,7 +5134,7 @@
 'node'        Name
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'switch:'     Name.Variable
@@ -5748,7 +5144,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -5760,13 +5156,13 @@
 'node'        Name
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '-- pull out colon chain' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'chain:'      Name.Variable
@@ -5776,7 +5172,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'stub'        Name
@@ -5788,7 +5184,7 @@
 '#'           Operator
 'node'        Name
 ']'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'if'          Keyword
@@ -5801,11 +5197,7 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'t'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
+'table'       Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'and'         Keyword
@@ -5818,18 +5210,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String
-'o'           Literal.String
-'l'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'_'           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'u'           Literal.String
-'b'           Literal.String
+'colon_stub'  Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'table.remove' Name.Builtin
@@ -5839,9 +5222,9 @@
 ' '           Text
 '#'           Operator
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'base_name'   Name
@@ -5851,12 +5234,9 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'b'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'base'        Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'fn_name'     Name
@@ -5866,12 +5246,11 @@
 'NameProxy'   Name.Class
 ' '           Text
 '"'           Literal.String.Double
-'f'           Literal.String
-'n'           Literal.String
+'fn'          Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'is_super'    Name
@@ -5886,13 +5265,9 @@
 '=='          Operator
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'u'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
+'super'       Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '@transform'  Name.Variable.Class
@@ -5904,7 +5279,7 @@
 'block_exp'   Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -5912,7 +5287,7 @@
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'names:'      Name.Variable
@@ -5920,7 +5295,7 @@
 '{'           Keyword.Type
 'base_name'   Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'values:'     Name.Variable
@@ -5928,13 +5303,13 @@
 '{'           Keyword.Type
 'node'        Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -5942,7 +5317,7 @@
 'assign'      Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'names:'      Name.Variable
@@ -5950,13 +5325,13 @@
 '{'           Keyword.Type
 'fn_name'     Name
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'values:'     Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'build'       Name
@@ -5972,9 +5347,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
+'dot'         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -5985,17 +5358,17 @@
 '}'           Keyword.Type
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'build'       Name
@@ -6003,7 +5376,7 @@
 'fndef'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'args:'       Name.Variable
@@ -6011,19 +5384,17 @@
 '{'           Keyword.Type
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 'body:'       Name.Variable
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'build'       Name
@@ -6031,7 +5402,7 @@
 'chain'       Name
 ' '           Text
 '{'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text
 'base:'       Name.Variable
@@ -6041,10 +5412,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -6054,10 +5422,7 @@
 'and'         Keyword
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'f'           Literal.String
+'self'        Literal.String
 '"'           Literal.String.Double
 ' '           Text
 'or'          Keyword
@@ -6066,31 +5431,29 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          '  Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'block_exp:'  Name.Variable
@@ -6100,7 +5463,7 @@
 ')'           Keyword.Type
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '_'           Name
@@ -6113,9 +5476,9 @@
 'unpack'      Name
 ' '           Text
 'node'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'fn'          Name
@@ -6123,7 +5486,7 @@
 '='           Operator
 ' '           Text
 'nil'         Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'arg_list'    Name
@@ -6132,9 +5495,9 @@
 ' '           Text
 '{'           Keyword.Type
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'insert'      Name
@@ -6145,13 +5508,13 @@
 'Run'         Name.Class
 ' '           Text
 '=>'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'if'          Keyword
 ' '           Text
 '@has_varargs' Name.Variable.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -6160,11 +5523,9 @@
 ','           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'insert'      Name
@@ -6176,14 +5537,12 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'.'           Literal.String
-'.'           Literal.String
-'.'           Literal.String
+'...'         Literal.String
 '"'           Literal.String.Double
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'fn'          Name
@@ -6199,7 +5558,7 @@
 'body:'       Name.Variable
 ' '           Text
 'body'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'build'       Name
@@ -6212,12 +5571,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'p'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'s'           Literal.String
+'parens'      Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -6227,10 +5581,7 @@
 ' '           Text
 '{'           Keyword.Type
 '"'           Literal.String.Double
-'c'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
+'call'        Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
@@ -6238,7 +5589,7 @@
 '}'           Keyword.Type
 ' '           Text
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace

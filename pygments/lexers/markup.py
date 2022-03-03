@@ -4,7 +4,7 @@
 
     Lexers for non-HTML markup languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -339,7 +339,7 @@ class GroffLexer(RegexLexer):
 
     name = 'Groff'
     aliases = ['groff', 'nroff', 'man']
-    filenames = ['*.[1234567]', '*.man']
+    filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm']
     mimetypes = ['application/x-troff', 'text/troff']
 
     tokens = {

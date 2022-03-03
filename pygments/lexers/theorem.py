@@ -4,7 +4,7 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -29,21 +29,21 @@ class CoqLexer(RegexLexer):
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
 
-    flags = re.UNICODE
+    flags = 0 # no re.MULTILINE
 
     keywords1 = (
         # Vernacular commands
         'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
-        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Hypothesis',
+        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Axioms', 'Hypothesis',
         'Hypotheses', 'Notation', 'Local', 'Tactic', 'Reserved', 'Scope',
-        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Let', 'Ltac',
-        'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
-        'Arguments', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
+        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Example', 'Let',
+        'Ltac', 'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
+        'Arguments', 'Types', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
         'Implicits', 'Inductive', 'CoInductive', 'Record', 'Structure',
-        'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
-        'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
-        'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
-        'Abort', 'Admitted',
+        'Variant', 'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Fact',
+        'Remark', 'Corollary', 'Proposition', 'Property', 'Goal',
+        'Proof', 'Restart', 'Save', 'Qed', 'Defined', 'Abort', 'Admitted',
+        'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
         'outside', 'Check', 'Global', 'Instance', 'Class', 'Existing',
         'Universe', 'Polymorphic', 'Monomorphic', 'Context'
@@ -74,7 +74,8 @@ class CoqLexer(RegexLexer):
     )
     keywords5 = (
         # Terminators
-        'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
+        'by', 'now', 'done', 'exact', 'reflexivity',
+        'tauto', 'romega', 'omega', 'lia', 'nia', 'lra', 'nra', 'psatz',
         'assumption', 'solve', 'contradiction', 'discriminate',
         'congruence',
     )
@@ -389,8 +390,6 @@ class LeanLexer(RegexLexer):
     aliases = ['lean']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [

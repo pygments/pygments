@@ -1,24 +1,18 @@
+<section>
 <h3>Download</h3>
-{% if version.endswith('(hg)') %}
-<p>This documentation is for version <b>{{ version }}</b>, which is
-  not released yet.</p>
-<p>You can use it from the
-  <a href="https://github.com/pygments/pygments/">Git repo</a> or look for
-  released versions in the <a href="https://pypi.python.org/pypi/Pygments">Python
-    Package Index</a>.</p>
-{% else %}
-<p>Current version: <b>{{ version }}</b></p>
+<p>Current version: <b>{{ version }}</b><br><a href="{{ pathto('docs/changelog') }}">Changelog</a></p>
 <p>Get Pygments from the <a href="https://pypi.python.org/pypi/Pygments">Python Package
     Index</a>, or install it with:</p>
 <pre>pip install Pygments</pre>
-{% endif %}
-
+</section>
+<section>
 <h3>Questions? Suggestions?</h3>
 
 <p><img src="{{ pathto("_static/github.png", 1) }}" width="24" />
     Clone at <a href="https://github.com/pygments/pygments">GitHub</a>.</p>
 <p>You can also open an issue at the
   <a href="https://github.com/pygments/pygments/issues">tracker</a>.</p>
+</section>
 
 <p class="logo">A <a href="https://www.pocoo.org/">
     <img src="{{ pathto("_static/pocoo.png", 1) }}" /></a> project</a></p>

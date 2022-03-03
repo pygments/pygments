@@ -7,44 +7,44 @@ end
 
 ---tokens---
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'T'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'line'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__LINE__'    Keyword.Pseudo
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forall'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'T'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.is_a?'      Keyword.Pseudo
 '('           Punctuation
 'String'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pp!'         Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

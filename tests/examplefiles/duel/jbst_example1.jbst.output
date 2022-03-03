@@ -1,16 +1,16 @@
 '<%@'         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'Control'     Name.Other
-' '           Text
+' '           Text.Whitespace
 'Name'        Name.Other
 '='           Operator
 '"MyApp.MyJbstControl"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'Language'    Name.Other
 '='           Operator
 '"JavaScript"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '\n\n'        Text
 
@@ -22,25 +22,25 @@
 '"text/javascript"' Literal.String
 '>'           Punctuation
 ''            Text
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '/* initialization code block, executed only once as control is loaded */' Comment.Multiline
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'generateValue' Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Date'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
@@ -49,10 +49,10 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation
@@ -62,57 +62,57 @@
 
 '<%!'         Name.Tag
 ''            Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/* initialization code block, executed only once as control is loaded */' Comment.Multiline
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/* alternate syntax to script block above */' Comment.Multiline
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'myInitTime'  Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'generateValue' Name.Other
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Name.Tag
 '\n\n'        Text
 
 '<%'          Name.Tag
 ''            Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/* data binding code block, executed each time as control is data bound */' Comment.Multiline
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'myBindTime'  Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'generateValue' Name.Other
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Name.Tag
 '\n\n'        Text
 
 '<%'          Name.Tag
 '--'          Operator
-' '           Text
+' '           Text.Whitespace
 'JBST'        Name.Other
-' '           Text
+' '           Text.Whitespace
 'Comment'     Name.Other
-' '           Text
+' '           Text.Whitespace
 '--'          Operator
 '%>'          Name.Tag
 '\n'          Text
@@ -126,13 +126,13 @@
 '>'           Punctuation
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'myBindTime'  Name.Other
-' '           Text
+' '           Text.Whitespace
 '/* data binding expression */' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '<'           Punctuation
 '/'           Punctuation
@@ -149,13 +149,13 @@
 '>'           Punctuation
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'myInitTime'  Name.Other
-' '           Text
+' '           Text.Whitespace
 '/* data binding expression */' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '<'           Punctuation
 '/'           Punctuation
@@ -163,9 +163,7 @@
 '>'           Punctuation
 '\n\n'        Text
 
-'<!--'        Comment
-' HTML Comment ' Comment
-'-->'         Comment
+'<!-- HTML Comment -->' Comment.Multiline
 '\n'          Text
 
 '<'           Punctuation
@@ -177,18 +175,18 @@
 '>'           Punctuation
 '<%'          Name.Tag
 '$'           Name.Other
-' '           Text
+' '           Text.Whitespace
 'Resources'   Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'localizationKey' Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '<%'          Name.Tag
 '--'          Operator
-' '           Text
+' '           Text.Whitespace
 'JBST'        Name.Other
-' '           Text
+' '           Text.Whitespace
 'globalization' Name.Other
 '--'          Operator
 '%>'          Name.Tag

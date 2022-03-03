@@ -1,109 +1,109 @@
 'apply'       Name
-' '           Text
+' '           Text.Whitespace
 'plugin:'     Name.Label
-' '           Text
+' '           Text.Whitespace
 "'java'"      Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'repositories' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'mavenCentral' Name
 '('           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'dependencies' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'testCompile' Name
-' '           Text
+' '           Text.Whitespace
 "'junit:junit:4.12'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'task'        Name
-' '           Text
+' '           Text.Whitespace
 'sayHello'    Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'def'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'SomeClass'   Name
 '.'           Operator
 'worldString' Name.Attribute
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'println'     Name
-' '           Text
+' '           Text.Whitespace
 '"Hello ${x}"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SomeClass'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'getWorldString' Name
 '('           Operator
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"world"'     Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

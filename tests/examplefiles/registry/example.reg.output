@@ -1,82 +1,82 @@
 'Windows Registry Editor Version 5.00' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '['           Keyword
 'HKEY_CURRENT_USER' Name.Builtin
 '\\SOFTWARE\\Pygments]' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@'           Name.Attribute
 '='           Operator
 '"Hello"'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Key With Spaces"' Name.Attribute
 '='           Operator
 '"Something"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Key With ="' Name.Attribute
 '='           Operator
 '"With Quotes"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Key With = 2"' Name.Attribute
 '='           Operator
 'dword'       Name.Variable
 ':'           Punctuation
 '123'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Key"'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Value"'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Hex"'       Name.Attribute
 '='           Operator
 'hex(0)'      Name.Variable
 ':'           Punctuation
 '1,2,3,a,b,f' Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Hex 2"'     Name.Attribute
 '='           Operator
 'hex(5)'      Name.Variable
 ':'           Punctuation
 '80,00,00,ff' Literal.Number
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '['           Keyword
 '-'           Operator
 'HKEY_CURRENT_USER' Name.Builtin
 '\\SOFTWARE\\Pygments\\Subkey]' Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '['           Keyword
 'HKEY_CURRENT_USER' Name.Builtin
 '\\SOFTWARE\\Pygments\\Subkey2]' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@'           Name.Attribute
 '='           Operator
 '-'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Foo"'       Name.Attribute
 '='           Operator
 '-'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Foo"'       Name.Attribute
 '='           Operator
 '"Value"'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

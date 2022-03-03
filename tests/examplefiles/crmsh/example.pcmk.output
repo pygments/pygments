@@ -944,7 +944,8 @@
 'Master'      Operator.Word
 '\n'          Text.Whitespace
 
-'# drbd device is the nfs-vg PV\n' Comment
+'# drbd device is the nfs-vg PV' Comment
+'\n'          Text.Whitespace
 
 'order'       Keyword
 ' '           Text.Whitespace
@@ -961,7 +962,8 @@
 'start'       Operator.Word
 '\n'          Text.Whitespace
 
-'# need fs1 for the NFS server\n' Comment
+'# need fs1 for the NFS server' Comment
+'\n'          Text.Whitespace
 
 'order'       Keyword
 ' '           Text.Whitespace

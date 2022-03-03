@@ -1,0 +1,370 @@
+'('           Punctuation
+'ns '         Keyword.Declaration
+'re-frame.loggers' Name.Variable
+'\n  '        Text.Whitespace
+'('           Punctuation
+':require'    Literal.String.Symbol
+'\n   '       Text.Whitespace
+'['           Punctuation
+'clojure.set' Name.Variable
+' '           Text.Whitespace
+':refer'      Literal.String.Symbol
+' '           Text.Whitespace
+'['           Punctuation
+'difference'  Name.Variable
+']'           Punctuation
+']'           Punctuation
+'\n   '       Text.Whitespace
+'#'           Operator
+'?'           Name.Variable
+'@'           Operator
+'('           Punctuation
+':clj'        Literal.String.Symbol
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'clojure.string' Name.Variable
+' '           Text.Whitespace
+':as'         Literal.String.Symbol
+' '           Text.Whitespace
+'str'         Name.Variable
+']'           Punctuation
+'\n             ' Text.Whitespace
+'['           Punctuation
+'clojure.tools.logging' Name.Variable
+' '           Text.Whitespace
+':as'         Literal.String.Symbol
+' '           Text.Whitespace
+'log'         Name.Variable
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'#'           Operator
+'?'           Name.Variable
+'('           Punctuation
+':clj'        Literal.String.Symbol
+' '           Text.Whitespace
+'('           Punctuation
+'defn '       Keyword.Declaration
+'log'         Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'level'       Name.Variable
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'args'        Name.Variable
+']'           Punctuation
+'\n          ' Text.Whitespace
+'('           Punctuation
+'log/log'     Name.Function
+' '           Text.Whitespace
+'level'       Name.Variable
+' '           Text.Whitespace
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'= '          Name.Builtin
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'('           Punctuation
+'count '      Name.Builtin
+'args'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                           ' Text.Whitespace
+'('           Punctuation
+'first '      Name.Builtin
+'args'        Name.Variable
+')'           Punctuation
+'\n                           ' Text.Whitespace
+'('           Punctuation
+'str/join'    Name.Function
+' '           Text.Whitespace
+'" "'         Literal.String
+' '           Text.Whitespace
+'args'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+';; XXX should loggers be put in the registrar ??' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'def '        Keyword
+'^'           Operator
+':private'    Literal.String.Symbol
+' '           Text.Whitespace
+'loggers'     Name.Variable
+'\n  '        Text.Whitespace
+'"Holds the current set of logging functions.\n   By default, re-frame uses the functions provided by js/console.\n   Use `set-loggers!` to change these defaults\n  "' Literal.String
+'\n  '        Text.Whitespace
+'('           Punctuation
+'atom'        Name.Function
+' '           Text.Whitespace
+'#'           Operator
+'?'           Name.Variable
+'('           Punctuation
+':cljs'       Literal.String.Symbol
+' '           Text.Whitespace
+'{'           Punctuation
+':log'        Literal.String.Symbol
+'       '     Text.Whitespace
+'('           Punctuation
+'js/console.log.bind' Name.Function
+'   '         Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                  ' Text.Whitespace
+':warn'       Literal.String.Symbol
+'      '      Text.Whitespace
+'('           Punctuation
+'js/console.warn.bind' Name.Function
+'  '          Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                  ' Text.Whitespace
+':error'      Literal.String.Symbol
+'     '       Text.Whitespace
+'('           Punctuation
+'js/console.error.bind' Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                  ' Text.Whitespace
+':debug'      Literal.String.Symbol
+'     '       Text.Whitespace
+'('           Punctuation
+'js/console.debug.bind' Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                  ' Text.Whitespace
+':group'      Literal.String.Symbol
+'     '       Text.Whitespace
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'.-group'     Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'         '   Text.Whitespace
+';; console.group does not exist  < IE 11' Comment.Single
+'\n                               ' Text.Whitespace
+'('           Punctuation
+'js/console.group.bind' Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                               ' Text.Whitespace
+'('           Punctuation
+'js/console.log.bind' Name.Function
+'   '         Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text.Whitespace
+':groupEnd'   Literal.String.Symbol
+'  '          Text.Whitespace
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'.-groupEnd'  Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'        '    Text.Whitespace
+';; console.groupEnd does not exist  < IE 11' Comment.Single
+'\n                               ' Text.Whitespace
+'('           Punctuation
+'js/console.groupEnd.bind' Name.Function
+' '           Text.Whitespace
+'js/console'  Name.Variable
+')'           Punctuation
+'\n                               ' Text.Whitespace
+'#'           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n        '  Text.Whitespace
+';; clojure versions' Comment.Single
+'\n        '  Text.Whitespace
+'#'           Operator
+'?'           Name.Variable
+'('           Punctuation
+':clj'        Literal.String.Symbol
+' '           Text.Whitespace
+'{'           Punctuation
+':log'        Literal.String.Symbol
+'      '      Text.Whitespace
+'('           Punctuation
+'partial '    Name.Builtin
+'log'         Name.Variable
+' '           Text.Whitespace
+':info'       Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text.Whitespace
+':warn'       Literal.String.Symbol
+'     '       Text.Whitespace
+'('           Punctuation
+'partial '    Name.Builtin
+'log'         Name.Variable
+' '           Text.Whitespace
+':warn'       Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text.Whitespace
+':error'      Literal.String.Symbol
+'    '        Text.Whitespace
+'('           Punctuation
+'partial '    Name.Builtin
+'log'         Name.Variable
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text.Whitespace
+':debug'      Literal.String.Symbol
+'    '        Text.Whitespace
+'('           Punctuation
+'partial '    Name.Builtin
+'log'         Name.Variable
+' '           Text.Whitespace
+':debug'      Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text.Whitespace
+':group'      Literal.String.Symbol
+'    '        Text.Whitespace
+'('           Punctuation
+'partial '    Name.Builtin
+'log'         Name.Variable
+' '           Text.Whitespace
+':info'       Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text.Whitespace
+':groupEnd'   Literal.String.Symbol
+'  '          Text.Whitespace
+'#'           Operator
+'('           Punctuation
+')'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'console'     Name.Variable
+'\n  '        Text.Whitespace
+'['           Punctuation
+'level'       Name.Variable
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'args'        Name.Variable
+']'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'assert '     Name.Builtin
+'('           Punctuation
+'contains? '  Name.Builtin
+'@'           Operator
+'loggers'     Name.Variable
+' '           Text.Whitespace
+'level'       Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'str '        Name.Builtin
+'"re-frame: log called with unknown level: "' Literal.String
+' '           Text.Whitespace
+'level'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'apply '      Name.Builtin
+'('           Punctuation
+'level'       Name.Function
+' '           Text.Whitespace
+'@'           Operator
+'loggers'     Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'args'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'set-loggers!' Name.Variable
+'\n  '        Text.Whitespace
+'['           Punctuation
+'new-loggers' Name.Variable
+']'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'assert '     Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'empty?'      Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'difference ' Name.Builtin
+'('           Punctuation
+'set '        Name.Builtin
+'('           Punctuation
+'keys '       Name.Builtin
+'new-loggers' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'-> '         Name.Builtin
+'@'           Operator
+'loggers'     Name.Variable
+' '           Text.Whitespace
+'keys '       Name.Builtin
+'set'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'"Unknown keys in new-loggers"' Literal.String
+')'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'swap!'       Name.Function
+' '           Text.Whitespace
+'loggers'     Name.Variable
+' '           Text.Whitespace
+'merge '      Name.Builtin
+'new-loggers' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'get-loggers' Name.Variable
+'\n  '        Text.Whitespace
+'"Get the current logging functions used by re-frame."' Literal.String
+'\n  '        Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'\n  '        Text.Whitespace
+'@'           Operator
+'loggers'     Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace

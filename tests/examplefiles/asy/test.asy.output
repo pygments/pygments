@@ -2,67 +2,67 @@
 
 '// written by stefan knorr\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// import needed packages\n' Comment
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// function definition\n' Comment
 
 'picture'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CreateKOOS'  Name.Function
 '('           Punctuation
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Scale'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'legend'      Name.Function
 ')'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '// draw labeled coordinate system as picture\n' Comment
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'picture'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ReturnPic'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.2'         Literal.Number.Float
 '*'           Operator
 'Scale'       Name.Function
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'draw'        Name.Function
 '('           Punctuation
 'ReturnPic'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '-'           Operator
@@ -79,23 +79,23 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bar'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'EndArrow'    Name.Function
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '// x axis\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'draw'        Name.Function
 '('           Punctuation
 'ReturnPic'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '0'           Literal.Number.Integer
@@ -112,218 +112,218 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bar'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'EndArrow'    Name.Function
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '// y axis\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'label'       Name.Function
 '('           Punctuation
 'ReturnPic'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\varepsilon$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'S'           Name.Variable
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SW'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'             ' Text
+'             ' Text.Whitespace
 '// x axis label\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'label'       Name.Function
 '('           Punctuation
 'ReturnPic'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\sigma$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SW'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                  ' Text
+'                  ' Text.Whitespace
 '// y axis label\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'label'       Name.Function
 '('           Punctuation
 'ReturnPic'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'legend'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.7'         Literal.Number.Float
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NW'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                 ' Text
+'                 ' Text.Whitespace
 "// add label 'legend' \n" Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ReturnPic'   Name
 ';'           Punctuation
-'                                         ' Text
+'                                         ' Text.Whitespace
 '// return picture\n' Comment
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// some global definitions\n' Comment
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '13'          Literal.Number.Integer
 'mm'          Name.Variable
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 '// universal scale factor for the whole file\n' Comment
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.25'        Literal.Number.Float
 ';'           Punctuation
-'                       ' Text
+'                       ' Text.Whitespace
 '// gradient for lines\n' Comment
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.04'        Literal.Number.Float
 ';'           Punctuation
-'                     ' Text
+'                     ' Text.Whitespace
 "// radius for the rounded path'\n" Comment
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'lw'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-'                            ' Text
+'                            ' Text.Whitespace
 '// linewidth\n' Comment
 
 'pair'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'                      ' Text
+'                      ' Text.Whitespace
 '// start point for graphs\n' Comment
 
 'pair'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'                      ' Text
+'                      ' Text.Whitespace
 '// end point for graphs\n' Comment
 
 'path'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// local graph\n' Comment
 
 'pen'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// actual pen for each drawing\n' Comment
 
 'picture'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'T'           Name
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'                            ' Text
+'                            ' Text.Whitespace
 '// vector of all four diagrams\n' Comment
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'inc'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2.8'         Literal.Number.Float
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '// increment-offset for combining pictures\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//////////////////////////////////////// 1st diagram\n' Comment
 
@@ -331,133 +331,133 @@
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CreateKOOS'  Name
 '('           Punctuation
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$T_1$"'     Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'                                        ' Text
+'                                        ' Text.Whitespace
 '// initialise T[1] as empty diagram with label $T_1$                  \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 ';'           Punctuation
-'                                                            ' Text
+'                                                            ' Text.Whitespace
 "//  # pointwise definition of current path 'graph'                    \n" Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '1.6'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.6'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                                 \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'E'           Name.Variable
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.4'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.4'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                                 \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 ';'           Punctuation
-'                                                   ' Text
+'                                                   ' Text.Whitespace
 '//  #\n'     Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 "// round edges of 'graph' using roundedpath() in roundedpath.asy      \n" Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'rgb'         Name.Function
 '('           Punctuation
 '0'           Literal.Number.Integer
@@ -466,15 +466,15 @@
 ','           Punctuation
 '0.6'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 'lw'          Name
 ')'           Punctuation
 ';'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '// define pen for drawing in 1st diagram                              \n' Comment
 
 'draw'        Name.Function
@@ -484,14 +484,14 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw 'graph' with 'ActPen' into 'T[1]' (1st hysteresis branch)     \n" Comment
 
 'draw'        Name.Function
@@ -501,7 +501,7 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rotate'      Name.Function
 '('           Punctuation
 '180'         Literal.Number.Integer
@@ -515,81 +515,81 @@
 '*'           Operator
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw rotated 'graph' (2nd hysteresis branch)                       \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.6'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.6'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.1'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '// define branch from origin to hysteresis\n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 '// round this path                        \n' Comment
 
 'draw'        Name.Function
@@ -599,19 +599,19 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                                            ' Text
+'                                            ' Text.Whitespace
 "// draw this path into 'T[1]'             \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//////////////////////////////////////// 2nd diagram\n' Comment
 
@@ -619,134 +619,134 @@
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CreateKOOS'  Name
 '('           Punctuation
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$T_2$"'     Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'                                        ' Text
+'                                        ' Text.Whitespace
 '// initialise T[2] as empty diagram with label $T_2$              \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 ';'           Punctuation
-'                                                            ' Text
+'                                                            ' Text.Whitespace
 "//  # pointwise definition of current path 'graph'                \n" Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '1.3'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.3'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'E'           Name.Variable
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.7'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.7'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                        ' Text
+'                        ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 ';'           Punctuation
-'                                                   ' Text
+'                                                   ' Text.Whitespace
 '//  #\n'     Comment
 
-'                                                                                                \n' Text
+'                                                                                                \n' Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 "// round edges of 'graph' using roundedpath() in roundedpath.asy      \n" Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'rgb'         Name.Function
 '('           Punctuation
 '0.2'         Literal.Number.Float
@@ -755,15 +755,15 @@
 ','           Punctuation
 '0.4'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 'lw'          Name
 ')'           Punctuation
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// define pen for drawing in 2nd diagram                              \n' Comment
 
 'draw'        Name.Function
@@ -773,14 +773,14 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw 'graph' with 'ActPen' into 'T[2]' (1st hysteresis branch)     \n" Comment
 
 'draw'        Name.Function
@@ -790,7 +790,7 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rotate'      Name.Function
 '('           Punctuation
 '180'         Literal.Number.Integer
@@ -804,81 +804,81 @@
 '*'           Operator
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw rotated 'graph' (2nd hysteresis branch)                       \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.3'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.3'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.3'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.3'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.1'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '// define branch from origin to hysteresis\n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 '// round this path                        \n' Comment
 
 'draw'        Name.Function
@@ -888,19 +888,19 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                                            ' Text
+'                                            ' Text.Whitespace
 "// draw this path into 'T[2]'             \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//////////////////////////////////////// 3rd diagram\n' Comment
 
@@ -908,199 +908,199 @@
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CreateKOOS'  Name
 '('           Punctuation
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$T_3$"'     Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'                                        ' Text
+'                                        ' Text.Whitespace
 '// initialise T[3] as empty diagram with label $T_3$              \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 ';'           Punctuation
-'                                                            ' Text
+'                                                            ' Text.Whitespace
 "//  # pointwise definition of current path 'graph'                \n" Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.7'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.7'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.3'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.3'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'                                               ' Text
+'                                               ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.6'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                                     ' Text
+'                                     ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'E'           Name.Variable
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.4'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.4'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 ';'           Punctuation
-'                                                   ' Text
+'                                                   ' Text.Whitespace
 '//  #                                                             \n' Comment
 
-'                                                                                                                                        \n' Text
+'                                                                                                                                        \n' Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 "// round edges of 'graph' using roundedpath() in roundedpath.asy  \n" Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'rgb'         Name.Function
 '('           Punctuation
 '0.6'         Literal.Number.Float
@@ -1109,15 +1109,15 @@
 ','           Punctuation
 '0.2'         Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 'lw'          Name
 ')'           Punctuation
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// define pen for drawing in 3rd diagram                          \n' Comment
 
 'draw'        Name.Function
@@ -1127,14 +1127,14 @@
 '3'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw 'graph' with 'ActPen' into 'T[3]' (1st hysteresis branch) \n" Comment
 
 'draw'        Name.Function
@@ -1144,7 +1144,7 @@
 '3'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rotate'      Name.Function
 '('           Punctuation
 '180'         Literal.Number.Integer
@@ -1158,16 +1158,16 @@
 '*'           Operator
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw rotated 'graph' (2nd hysteresis branch)                   \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//////////////////////////////////////// 4th diagram\n' Comment
 
@@ -1175,199 +1175,199 @@
 '['           Punctuation
 '4'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CreateKOOS'  Name
 '('           Punctuation
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$T_4$"'     Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'                                        ' Text
+'                                        ' Text.Whitespace
 '// initialise T[4] as empty diagram with label $T_4$              \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 ';'           Punctuation
-'                                                            ' Text
+'                                                            ' Text.Whitespace
 "//  # pointwise definition of current path 'graph'                \n" Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.4'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.4'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.6'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'                                               ' Text
+'                                               ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grad'        Name
 '*'           Operator
 '0.9'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.9'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                                     ' Text
+'                                     ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'E'           Name.Variable
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.1'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.1'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 '//  #                                                             \n' Comment
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'E'           Name.Variable
 ';'           Punctuation
-'                                                   ' Text
+'                                                   ' Text.Whitespace
 '//  #                                                             \n' Comment
 
-'                                                                                                                                        \n' Text
+'                                                                                                                                        \n' Text.Whitespace
 
 'graph'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'roundedpath' Name.Function
 '('           Punctuation
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'radius'      Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                                ' Text
+'                                ' Text.Whitespace
 "// round edges of 'graph' using roundedpath() in roundedpath.asy  \n" Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'rgb'         Name.Function
 '('           Punctuation
 '0.6'         Literal.Number.Float
@@ -1376,15 +1376,15 @@
 ','           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 'lw'          Name
 ')'           Punctuation
 ';'           Punctuation
-'                               ' Text
+'                               ' Text.Whitespace
 '// define pen for drawing in 4th diagram                          \n' Comment
 
 'draw'        Name.Function
@@ -1394,14 +1394,14 @@
 '4'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw 'graph' with 'ActPen' into 'T[4]' (1st hysteresis branch) \n" Comment
 
 'draw'        Name.Function
@@ -1411,7 +1411,7 @@
 '4'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rotate'      Name.Function
 '('           Punctuation
 '180'         Literal.Number.Integer
@@ -1425,35 +1425,35 @@
 '*'           Operator
 'graph'       Name.Function
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                          ' Text
+'                          ' Text.Whitespace
 "// draw rotated 'graph' (3nd hysteresis branch)                   \n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// add some labels and black dots to the first two pictures\n' Comment
 
 'pair'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'SWW'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Operator
 '0.8'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '0.6'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'label'       Name.Function
 '('           Punctuation
@@ -1462,23 +1462,23 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\sigma_f$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NE'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// sigma_f\n' Comment
 
 'draw'        Name.Function
@@ -1488,27 +1488,27 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.6'         Literal.Number.Float
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '3'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'label'       Name.Function
 '('           Punctuation
@@ -1517,23 +1517,23 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\sigma_f$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.3'         Literal.Number.Float
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NE'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                             ' Text
+'                             ' Text.Whitespace
 '// sigma_f\n' Comment
 
 'draw'        Name.Function
@@ -1543,27 +1543,27 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.3'         Literal.Number.Float
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '3'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'label'       Name.Function
 '('           Punctuation
@@ -1572,23 +1572,23 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\varepsilon_p$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.7'         Literal.Number.Float
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SWW'         Name
 ')'           Punctuation
 ';'           Punctuation
-'                       ' Text
+'                       ' Text.Whitespace
 '// epsilon_p\n' Comment
 
 'draw'        Name.Function
@@ -1598,27 +1598,27 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.75'        Literal.Number.Float
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '3'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'label'       Name.Function
 '('           Punctuation
@@ -1627,23 +1627,23 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"$\\varepsilon_p$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.7'         Literal.Number.Float
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SWW'         Name
 ')'           Punctuation
 ';'           Punctuation
-'                       ' Text
+'                       ' Text.Whitespace
 '// epsilon_p\n' Comment
 
 'draw'        Name.Function
@@ -1653,31 +1653,31 @@
 '2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.75'        Literal.Number.Float
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '3'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// add all pictures T[1...4] to the current one\n' Comment
 
@@ -1695,7 +1695,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'add'         Name.Function
 '('           Punctuation
@@ -1715,7 +1715,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'add'         Name.Function
 '('           Punctuation
@@ -1735,7 +1735,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'add'         Name.Function
 '('           Punctuation
@@ -1755,35 +1755,35 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// draw line of constant \\sigma and all intersection points with the graphs in T[1...4]\n' Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'dashed'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'gray'        Name.Function
 '('           Punctuation
 '0.5'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                           ' Text
+'                           ' Text.Whitespace
 '// pen definition\n' Comment
 
 'draw'        Name.Function
@@ -1792,7 +1792,7 @@
 '-'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -1810,48 +1810,48 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'                    ' Text
+'                    ' Text.Whitespace
 '// draw backgoundline\n' Comment
 
 'label'       Name.Function
 '('           Punctuation
 '"$\\sigma_s$"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 'S'           Name.Variable
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'W'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'                            ' Text
+'                            ' Text.Whitespace
 "// label 'sigma_s'\n" Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'path'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mark'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'scale'       Name.Function
 '('           Punctuation
 '2'           Literal.Number.Integer
@@ -1859,26 +1859,26 @@
 '*'           Operator
 'unitcircle'  Name.Variable
 ';'           Punctuation
-'                                  ' Text
+'                                  ' Text.Whitespace
 '// define mark-symbol to be used for intersections\n' Comment
 
 'ActPen'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'linewidth'   Name.Function
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'gray'        Name.Function
 '('           Punctuation
 '0.5'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'                                    ' Text
+'                                    ' Text.Whitespace
 '// define pen for intersection mark\n' Comment
 
 'draw'        Name.Function
@@ -1886,17 +1886,17 @@
 'shift'       Name.Function
 '('           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.55'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -1904,7 +1904,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -1912,11 +1912,11 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  # draw all intersections\n' Comment
 
 'draw'        Name.Function
@@ -1926,15 +1926,15 @@
 '('           Punctuation
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '1.45'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -1942,7 +1942,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -1950,11 +1950,11 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  #\n'     Comment
 
 'draw'        Name.Function
@@ -1962,17 +1962,17 @@
 'shift'       Name.Function
 '('           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.55'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -1980,7 +1980,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -1988,11 +1988,11 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  #\n'     Comment
 
 'draw'        Name.Function
@@ -2000,17 +2000,17 @@
 'shift'       Name.Function
 '('           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.55'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -2018,7 +2018,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -2026,11 +2026,11 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  # \n'    Comment
 
 'draw'        Name.Function
@@ -2038,13 +2038,13 @@
 'shift'       Name.Function
 '('           Punctuation
 '('           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.45'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -2052,7 +2052,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -2060,11 +2060,11 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  # \n'    Comment
 
 'draw'        Name.Function
@@ -2072,13 +2072,13 @@
 'shift'       Name.Function
 '('           Punctuation
 '('           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 'grad'        Name
 '*'           Operator
 '0.45'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 '*'           Operator
 'inc'         Name
@@ -2086,7 +2086,7 @@
 '*'           Operator
 'S'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.45'        Literal.Number.Float
 '*'           Operator
 'S'           Name.Variable
@@ -2094,9 +2094,9 @@
 '*'           Operator
 'mark'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ActPen'      Name
 ')'           Punctuation
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '//  #\n'     Comment

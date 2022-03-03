@@ -4,7 +4,7 @@
 
     Lexers for installer/packager DSLs and formats.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -33,7 +33,7 @@ class NSISLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[;#].*\n', Comment),
+            (r'([;#].*)(\n)', bygroups(Comment, Whitespace)),
             (r"'.*?'", String.Single),
             (r'"', String.Double, 'str_double'),
             (r'`', String.Backtick, 'str_backtick'),
@@ -42,11 +42,12 @@ class NSISLexer(RegexLexer):
             include('basic'),
             (r'\$\{[a-z_|][\w|]*\}', Keyword.Pseudo),
             (r'/[a-z_]\w*', Name.Attribute),
-            ('.', Text),
+            (r'\s+', Whitespace),
+            (r'[\w.]+', Text),
         ],
         'basic': [
             (r'(\n)(Function)(\s+)([._a-z][.\w]*)\b',
-             bygroups(Text, Keyword, Text, Name.Function)),
+             bygroups(Whitespace, Keyword, Whitespace, Name.Function)),
             (r'\b([_a-z]\w*)(::)([a-z][a-z0-9]*)\b',
              bygroups(Keyword.Namespace, Punctuation, Name.Function)),
             (r'\b([_a-z]\w*)(:)', bygroups(Name.Label, Punctuation)),
@@ -128,16 +129,16 @@ class NSISLexer(RegexLexer):
             (r'\$[a-z_]\w*', Name.Variable),
         ],
         'str_double': [
-            (r'"', String, '#pop'),
+            (r'"', String.Double, '#pop'),
             (r'\$(\\[nrt"]|\$)', String.Escape),
             include('interpol'),
-            (r'.', String.Double),
+            (r'[^"]+', String.Double),
         ],
         'str_backtick': [
-            (r'`', String, '#pop'),
+            (r'`', String.Double, '#pop'),
             (r'\$(\\[nrt"]|\$)', String.Escape),
             include('interpol'),
-            (r'.', String.Double),
+            (r'[^`]+', String.Double),
         ],
     }
 
@@ -159,20 +160,20 @@ class RPMSpecLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*\n', Comment),
+            (r'#.*$', Comment),
             include('basic'),
         ],
         'description': [
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
-            (r'\n', Text),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'changelog': [
-            (r'\*.*\n', Generic.Subheading),
+            (r'\*.*$', Generic.Subheading),
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
-            (r'\n', Text),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'string': [
@@ -197,10 +198,11 @@ class RPMSpecLexer(RegexLexer):
             include('interpol'),
             (r"'.*?'", String.Single),
             (r'"', String.Double, 'string'),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'macro': [
-            (r'%define.*\n', Comment.Preproc),
+            (r'%define.*$', Comment.Preproc),
             (r'%\{\!\?.*%define.*\}', Comment.Preproc),
             (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$',
              bygroups(Comment.Preproc, Text)),
@@ -229,10 +231,10 @@ class SourcesListLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'#.*?$', Comment),
             (r'^(deb(?:-src)?)(\s+)',
-             bygroups(Keyword, Text), 'distribution')
+             bygroups(Keyword, Whitespace), 'distribution')
         ],
         'distribution': [
             (r'#.*?$', Comment, '#pop'),
@@ -240,7 +242,7 @@ class SourcesListLexer(RegexLexer):
             (r'[^\s$[]+', String),
             (r'\[', String.Other, 'escaped-distribution'),
             (r'\$', String),
-            (r'\s+', Text, 'components')
+            (r'\s+', Whitespace, 'components')
         ],
         'escaped-distribution': [
             (r'\]', String.Other, '#pop'),
@@ -251,7 +253,7 @@ class SourcesListLexer(RegexLexer):
         'components': [
             (r'#.*?$', Comment, '#pop:2'),
             (r'$', Text, '#pop:2'),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\S+', Keyword.Pseudo),
         ]
     }
@@ -267,6 +269,9 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
+    Specification of `control`` files is available at
+    https://www.debian.org/doc/debian-policy/ch-controlfields.html
+
     .. versionadded:: 0.9
     """
     name = 'Debian Control file'
@@ -276,8 +281,12 @@ class DebianControlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
-            (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
-            (r'^((Build-)?Depends)', Keyword, 'depends'),
+            (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text),
+             'maintainer'),
+            (r'^((?:Build-|Pre-)?Depends(?:-Indep|-Arch)?)(:\s*)',
+             bygroups(Keyword, Text), 'depends'),
+            (r'^(Recommends|Suggests|Enhances)(:\s*)', bygroups(Keyword, Text),
+             'depends'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
@@ -288,10 +297,11 @@ class DebianControlLexer(RegexLexer):
              bygroups(Keyword, Whitespace, String)),
         ],
         'maintainer': [
-            (r'<[^>]+>', Generic.Strong),
             (r'<[^>]+>$', Generic.Strong, '#pop'),
+            (r'<[^>]+>', Generic.Strong),
             (r',\n?', Text),
-            (r'.', Text),
+            (r'[^,<]+$', Text, '#pop'),
+            (r'[^,<]+', Text),
         ],
         'description': [
             (r'(.*)(Homepage)(: )(\S+)',
@@ -301,21 +311,18 @@ class DebianControlLexer(RegexLexer):
             default('#pop'),
         ],
         'depends': [
-            (r':\s*', Text),
-            (r'(\$)(\{)(\w+\s*:\s*\w+)', bygroups(Operator, Text, Name.Entity)),
+            (r'(\$)(\{)(\w+\s*:\s*\w+)(\})',
+             bygroups(Operator, Text, Name.Entity, Text)),
             (r'\(', Text, 'depend_vers'),
-            (r',', Text),
             (r'\|', Operator),
-            (r'[\s]+', Text),
-            (r'[})]\s*$', Text, '#pop'),
-            (r'\}', Text),
-            (r'[^,]$', Name.Function, '#pop'),
-            (r'([+.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
+            (r',\n', Text),
+            (r'\n', Text, '#pop'),
+            (r'[,\s]', Text),
+            (r'[+.a-zA-Z0-9-]+', Name.Function),
             (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
-            (r'\),', Text, '#pop'),
-            (r'\)[^,]', Text, '#pop:2'),
-            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number))
+            (r'\)', Text, '#pop'),
+            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number)),
         ]
     }

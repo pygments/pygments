@@ -3,13 +3,13 @@ signal sig (arg1, arg2)
 
 ---tokens---
 'signal'      Keyword
-' '           Text
+' '           Text.Whitespace
 'sig'         Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'arg1'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'arg2'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -42,6 +42,7 @@ Programming languages
 * `Common Lisp <https://common-lisp.net/>`_
 * `Component Pascal <https://en.wikipedia.org/wiki/Component_Pascal>`_
 * `Coq <https://coq.inria.fr/>`_
+* `Cplint <https://cplint.eu/>`_
 * `Croc <http://www.croc-lang.org/>`_ (MiniD)
 * `Cryptol <https://cryptol.net/>`_ (incl. Literate Cryptol)
 * `Crystal <https://crystal-lang.org>`_
@@ -56,6 +57,7 @@ Programming languages
 * `Dylan <https://opendylan.org/>`_ (incl. console)
 * `Eiffel <https://www.eiffel.org/>`_
 * `Elm <https://elm-lang.org/>`_
+* `Elpi <http://github.com/LPCIC/elpi>`_
 * `Emacs Lisp <https://www.gnu.org/software/emacs/manual/html_node/elisp/>`_
 * Email
 * `Erlang <https://www.erlang.org/>`_ (incl. shell sessions)
@@ -153,6 +155,7 @@ Programming languages
 * `Rust <https://rust-lang.org>`_
 * S, S-Plus, `R <https://www.r-project.org/>`_
 * `Scala <https://scala-lang.org/>`_
+* `Savi <https://github.com/savi-lang/savi/>`_
 * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_
 * `Scheme <http://www.scheme-reports.org/>`_
 * `Scilab <https://www.scilab.org/>`_
@@ -167,6 +170,7 @@ Programming languages
 * `Snowball <https://snowballstem.org/>`_
 * `Solidity <https://solidity.readthedocs.io/>`_
 * `SourcePawn <https://github.com/alliedmodders/sourcepawn>`_
+* `Spice <https://www.spicelang.com>`_
 * `Stan <https://mc-stan.org/>`_
 * `Standard ML <https://smlfamily.github.io/>`_
 * `Stata <https://www.stata.com/features/programming-language/>`_
@@ -220,6 +224,7 @@ Other markup
 * Apache config files
 * Apache Pig
 * BBCode
+* Bdd
 * CapDL
 * `Cap'n Proto <https://capnproto.org>`_
 * `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
@@ -250,6 +255,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* `LilyPond <https://lilypond.org/>`_
 * Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts
@@ -273,6 +279,7 @@ Other markup
 * Ragel
 * Redcode
 * ReST
+* `Rita <https://github.com/zaibacu/rita-dsl>`_
 * `Roboconf <http://roboconf.net/en/roboconf.html>`_
 * Robot Framework
 * RPM spec files
@@ -282,6 +289,7 @@ Other markup
 * Sieve
 * Singularity
 * `Smithy <https://awslabs.github.io/smithy/>`_
+* `Sophia <https://buildwithsophia.com/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration
@@ -359,6 +367,9 @@ prompt.
 Well, why not write your own? Contributing to Pygments is easy and fun.  Take a
 look at the :doc:`docs on lexer development <docs/lexerdevelopment>`.  Pull
 requests are welcome on `GitHub <https://github.com/pygments/pygments>`_.
+Be sure to read the `contributing guidelines`_.
+
+.. _contributing guidelines: https://github.com/pygments/pygments/blob/master/Contributing.md
 
 Note: the languages listed here are supported in the development version. The
 latest release may lack a few of them.

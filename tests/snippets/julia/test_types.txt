@@ -20,16 +20,16 @@ g(C) <: T
 'Union'       Keyword.Type
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MyType'      Keyword.Type
 '{'           Punctuation
 'Nothing'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Any'         Keyword.Type
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
@@ -41,36 +41,36 @@ g(C) <: T
 'S'           Keyword.Type
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword
-' '           Text
+' '           Text.Whitespace
 'S'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
 '::'          Operator
 'T'           Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'T'           Keyword.Type
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
@@ -81,35 +81,35 @@ g(C) <: T
 'T'           Keyword.Type
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
 '::'          Operator
 'AT'          Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword
-' '           Text
+' '           Text.Whitespace
 'AT'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'AbstractArray' Keyword.Type
 '{'           Punctuation
 'MyType'      Keyword.Type
 ','           Punctuation
 '1'           Literal.Number.Integer
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
@@ -119,11 +119,11 @@ g(C) <: T
 ':named'      Literal.String.Symbol
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
 '('           Punctuation
@@ -133,25 +133,25 @@ g(C) <: T
 'sin'         Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Number'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '>:'          Operator
-' '           Text
+' '           Text.Whitespace
 'MyInt'       Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AT'          Keyword.Type
 '{'           Punctuation
@@ -159,11 +159,11 @@ g(C) <: T
 ','           Punctuation
 '1'           Literal.Number.Integer
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'B'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'B'           Keyword.Type
 '>:'          Operator
@@ -173,24 +173,24 @@ g(C) <: T
 ','           Punctuation
 '1'           Literal.Number.Integer
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 'B'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'g'           Name
 '('           Punctuation
 'C'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace

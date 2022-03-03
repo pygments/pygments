@@ -4,7 +4,7 @@
 
     Lexer for scripting and embedded languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -184,7 +184,7 @@ class MoonScriptLexer(LuaLexer):
             (r'(?i)\d+e[+-]?\d+', Number.Float),
             (r'(?i)0x[0-9a-f]*', Number.Hex),
             (r'\d+', Number.Integer),
-            (r'\n', Text),
+            (r'\n', Whitespace),
             (r'[^\S\n]+', Text),
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'(->|=>)', Name.Function),
@@ -213,11 +213,11 @@ class MoonScriptLexer(LuaLexer):
         ],
         'sqs': [
             ("'", String.Single, '#pop'),
-            (".", String)
+            ("[^']+", String)
         ],
         'dqs': [
             ('"', String.Double, '#pop'),
-            (".", String)
+            ('[^"]+', String)
         ]
     }
 
@@ -719,7 +719,7 @@ class RexxLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s', Whitespace),
+            (r'\s+', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"', String, 'string_double'),
             (r"'", String, 'string_single'),
@@ -766,7 +766,7 @@ class RexxLexer(RegexLexer):
             (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'string_single': [
-            (r'[^\'\n]', String),
+            (r'[^\'\n]+', String),
             (r'\'\'', String),
             (r'\'', String, '#pop'),
             (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
@@ -798,7 +798,7 @@ class RexxLexer(RegexLexer):
 
     def analyse_text(text):
         """
-        Check for inital comment and patterns that distinguish Rexx from other
+        Check for initial comment and patterns that distinguish Rexx from other
         C-like languages.
         """
         if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
@@ -975,7 +975,7 @@ class EasytrieveLexer(RegexLexer):
     #   * apostrophe (')
     #   * period (.)
     #   * comma (,)
-    #   * paranthesis ( and )
+    #   * parenthesis ( and )
     #   * colon (:)
     #
     # Additionally words end once a '*' appears, indicatins a comment.

@@ -1,25 +1,25 @@
 '# Computes Number of Public Methods (NPM) for each project, per-type' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Output is: NPM[ProjectID][TypeName] = NPM value' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'p'           Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Project'     Name.Classes
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'input'       Keyword.Reserved
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'NPM'         Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'output'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'sum'         Keyword.Type
 '['           Punctuation
 'string'      Keyword.Type
@@ -27,65 +27,53 @@
 '['           Punctuation
 'string'      Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'visit'       Keyword.Reserved
 '('           Punctuation
 'p'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'visitor'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 '# only look at the latest snapshot' Comment.Single
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'before'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CodeRepository' Name.Classes
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
+'\n\t\t'      Text.Whitespace
 'snapshot'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'getsnapshot(' Name.Function
 'n'           Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
+'\n\t\t'      Text.Whitespace
 'foreach'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'def('        Name.Function
 'snapshot'    Name.Variable
 '['           Punctuation
@@ -93,11 +81,7 @@
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
-'\t'          Text
+'\n\t\t\t'    Text.Whitespace
 'visit'       Keyword.Reserved
 '('           Punctuation
 'snapshot'    Name.Variable
@@ -106,59 +90,45 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
+'\n\t\t'      Text.Whitespace
 'stop'        Keyword.Reserved
 ';'           Punctuation
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'\t'          Text
+'\n\t'        Text.Whitespace
 'before'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'node'        Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Declaration' Name.Classes
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'node'        Name.Variable
 '.'           Punctuation
 'kind'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'TypeKind'    Name.Classes
 '.'           Punctuation
 'CLASS'       Name.Variable
 ')'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
-'\t'          Text
+'\n\t\t\t'    Text.Whitespace
 'foreach'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'has_modifier_public' Name.Variable
 '('           Punctuation
 'node'        Name.Variable
@@ -169,12 +139,7 @@
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'\t'          Text
-'\t'          Text
-'\t'          Text
-'\t'          Text
+'\n\t\t\t\t'  Text.Whitespace
 'NPM'         Name.Variable
 '['           Punctuation
 'p'           Name.Variable
@@ -186,14 +151,14 @@
 '.'           Punctuation
 'name'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

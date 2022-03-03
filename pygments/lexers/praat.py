@@ -4,7 +4,7 @@
 
     Lexer for Praat
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -287,7 +287,7 @@ class PraatLexer(RegexLexer):
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
              bygroups(Keyword, Text, Name.Variable)),
 
-            # Ideally processing of the number would happend in the 'number'
+            # Ideally processing of the number would happen in the 'number'
             # but that doesn't seem to work
             (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?)(\d+(?:\.\d*)?'
              r'(?:[eE][-+]?\d+)?%?)',
