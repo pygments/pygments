@@ -64,11 +64,7 @@ class QlikLexer(RegexLexer):
         ],
         # Handle strings
         "string": [
-            (
-                r"'",
-                String,
-                "#pop",
-            ),
+            (r"'", String, "#pop"),
             include("interp"),
             (r"[^'$]+", String),
             (r"\$", String),
@@ -79,13 +75,13 @@ class QlikLexer(RegexLexer):
             include("root"),
         ],
         "field_name_quote": [
-            (r'"', String.Symbol, "#pop",),
+            (r'"', String.Symbol, "#pop"),
             include("interp"),
             (r"[^\"$]+", String.Symbol),
             (r"\$", String.Symbol),
         ],
         "field_name_bracket": [
-            (r"\]", String.Symbol, "#pop",),
+            (r"\]", String.Symbol, "#pop"),
             include("interp"),
             (r"[^\]$]+", String.Symbol),
             (r"\$", String.Symbol),
