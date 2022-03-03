@@ -1,17 +1,26 @@
 """
     pygments.lexers.qlik
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the qlik scripting language
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, words
-from pygments.token import *
+from pygments.token import (
+    Comment,
+    Keyword,
+    Name,
+    Number,
+    Operator,
+    Punctuation,
+    String,
+    Text,
+)
 from pygments.lexers._qlik_builtins import (
     OPERATORS_LIST,
     STATEMENT_LIST,
@@ -70,21 +79,13 @@ class QlikLexer(RegexLexer):
             include("root"),
         ],
         "field_name_quote": [
-            (
-                r'"',
-                Keyword,
-                "#pop",
-            ),
+            (r'"', String.Symbol, "#pop",),
             include("interp"),
             (r"[^\"$]+", String.Symbol),
             (r"\$", String.Symbol),
         ],
         "field_name_bracket": [
-            (
-                r"\]",
-                Keyword,
-                "#pop",
-            ),
+            (r"\]", String.Symbol, "#pop",),
             include("interp"),
             (r"[^\]$]+", String.Symbol),
             (r"\$", String.Symbol),
@@ -126,9 +127,9 @@ class QlikLexer(RegexLexer):
             # interpolation - e.g. $(variableName)
             include("interp"),
             # Quotes denote a field/file name
-            (r'"', Keyword, "field_name_quote"),
+            (r'"', String.Symbol, "field_name_quote"),
             # Square brackets denote a field/file name
-            (r"\[", Keyword, "field_name_bracket"),
+            (r"\[", String.Symbol, "field_name_bracket"),
             # Strings
             (r"'", String, "string"),
             # Numbers
