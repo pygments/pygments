@@ -96,6 +96,7 @@ Programming languages
 * `Julia <https://julialang.org>`_
 * `JSLT <https://github.com/schibsted/jslt>`_
 * `Kotlin <https://kotlinlang.org/>`_
+* `K <https://code.kx.com/>`_
 * `Lasso <http://www.lassosoft.com/>`_ (incl. templating)
 * `Limbo <http://www.vitanuova.com/inferno/limbo.html>`_
 * `LiveScript <https://livescript.net/>`_
@@ -141,6 +142,7 @@ Programming languages
 * `Prolog <https://en.wikipedia.org/wiki/Prolog>`_
 * `Python <https://python.org/>`_ 2.x and 3.x (incl. console sessions and
   tracebacks)
+* `Q <https://code.kx.com/>`_
 * `QBasic <https://en.wikipedia.org/wiki/QBasic>`_
 * `Racket <https://racket-lang.org/>`_
 * `Raku <https://www.raku.org/>`_ a.k.a. Perl 6

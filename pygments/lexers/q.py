@@ -28,7 +28,7 @@ __all__ = ["KLexer", "QLexer"]
 
 class KLexer(RegexLexer):
     """
-    For `K <http://kx.com/>`_ source code.
+    For `K <https://code.kx.com/>`_ source code.
 
     .. versionadded:: 2.12
     """
@@ -189,7 +189,7 @@ class KLexer(RegexLexer):
 
 class QLexer(KLexer):
     """
-    For `Q <http://kx.com/>`_ source code.
+    For `Q <https://code.kx.com/>`_ source code.
 
     .. versionadded:: 2.12
     """
