@@ -22,11 +22,13 @@ a:1 / this is no longer part of the system command
 q)1+2
 
 /
-this
-is
-a 
-multi-line
-comment
+this is a
+multi-line comment
+\
+
+ /
+this is not a
+multi-line comment
 \
 
 "string with escapted quote \" and random escape \\"

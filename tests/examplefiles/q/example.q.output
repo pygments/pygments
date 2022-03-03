@@ -66,9 +66,30 @@
 
 '/\n'         Comment.Multiline
 
-'this\nis\na \nmulti-line\ncomment\n' Comment.Multiline
+'this is a\nmulti-line comment\n' Comment.Multiline
 
 '\\'          Comment.Multiline
+'\n\n '       Text.Whitespace
+'/'           Comment.Single
+'\n'          Text.Whitespace
+
+'this'        Name
+' '           Text.Whitespace
+'is'          Name
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'multi'       Name
+'-'           Operator
+'line'        Name
+' '           Text.Whitespace
+'comment'     Name
+'\n'          Text.Whitespace
+
+'\\'          Operator
 '\n\n'        Text.Whitespace
 
 '"'           Literal.String.Double

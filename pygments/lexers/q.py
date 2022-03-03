@@ -43,8 +43,7 @@ class KLexer(RegexLexer):
             (r"^#!.*", Comment.Hashbang),
             # Comments
             (r"^/\s*\n", Comment.Multiline, "comments"),
-            (r"([ \t]+)(/.*)", bygroups(Whitespace, Comment.Single)),
-            (r"^/.*\S.*", Comment.Single),
+            (r"(?<!\S)/.*", Comment.Single),
             # Whitespace
             (r"\s+", Whitespace),
             # Strings
