@@ -39,26 +39,29 @@ class QlikLexer(RegexLexer):
         # Handle multi-line comments
         "comment": [
             (r"\*/", Comment.Multiline, "#pop"),
-            (r"[^\*/]+", Comment.Multiline),
+            (r"[^\*]+", Comment.Multiline),
         ],
         # Handle numbers
         "numerics": [
-            (r"\b[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?\b", Number.Float),
-            (r"\b[0-9]+\b", Number.Integer),
+            (r"\b\d+\.\d+(e\d+)?[fd]?\b", Number.Float),
+            (r"\b\d+\b", Number.Integer),
         ],
         # Handle variable names in things
         "interp": [
-            (r"(\$\()(\w+)(\))", bygroups(Keyword, Name.Variable, Keyword)),
+            (
+                r"(\$\()(\w+)(\))",
+                bygroups(String.Interpol, Name.Variable, String.Interpol),
+            ),
         ],
         # Handle strings
         "string": [
             (
-                r"(\')",
+                r"'",
                 String,
                 "#pop",
             ),
             include("interp"),
-            (r"[^\']+", String),
+            (r"[^'(\$\()]+", String),
         ],
         #
         "assignment": [
@@ -72,23 +75,23 @@ class QlikLexer(RegexLexer):
                 "#pop",
             ),
             include("interp"),
-            (r"[^\"]+", Keyword),
+            (r"[^\"(\$\()]+", Keyword),
         ],
         "field_name_bracket": [
             (
-                r"(\])",
+                r"\]",
                 Keyword,
                 "#pop",
             ),
             include("interp"),
-            (r"[^\]]+", Keyword),
+            (r"[^\](\$\()]+", Keyword),
         ],
-        "function": [(r"\)", Operator.Word, "#pop"), include("root")],
+        "function": [(r"\)", Punctuation, "#pop"), include("root")],
         "root": [
             # Whitespace and comments
             (r"\s+", Text.Whitespace),
             (r"/\*", Comment.Multiline, "comment"),
-            (r"//.*\n", Comment.Singleline),
+            (r"//.*\n", Comment.Single),
             # variable assignment
             (
                 r"(let|set)(\s+)",
@@ -116,7 +119,7 @@ class QlikLexer(RegexLexer):
             # Constants
             (words(CONSTANT_LIST, suffix=r"\b"), Keyword.Constant),
             # Functions
-            (words(SCRIPT_FUNCTIONS, suffix=r"\s*\("), Operator.Word, "function"),
+            (words(SCRIPT_FUNCTIONS, suffix=r"(?=\s*\()"), Name.Builtin, "function"),
             # interpolation - e.g. $(variableName)
             include("interp"),
             # Quotes denote a field/file name
@@ -124,16 +127,16 @@ class QlikLexer(RegexLexer):
             # Square brackets denote a field/file name
             (r"\[", Keyword, "field_name_bracket"),
             # Strings
-            (r"\'", String, "string"),
+            (r"'", String, "string"),
             # Numbers
             include("numerics"),
             # Operator symbols
             (words(OPERATORS_LIST["symbols"]), Operator),
             # Strings denoted by single quotes
-            (r"'.+'", String),
+            (r"'.+?'", String),
             # Words as text
             (r"\b\w+\b", Text),
-            # Basic punction
-            (r"(\,|\;|\.|\(|\)|\\|\/)", Punctuation),
+            # Basic punctuation
+            (r"[,;.()\\/]", Punctuation),
         ],
     }

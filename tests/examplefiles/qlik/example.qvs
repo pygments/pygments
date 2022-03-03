@@ -15,7 +15,8 @@ FOR EACH vFolder IN 'folder_1', 'folder_2'
             [Field 1]   AS FIELD_1,
             "Field 2"   AS FIELD_2,
             FIELD_3,
-            FileName()      AS SOURCE_FILE_$(vFilePath)
+            FileName()      AS SOURCE_FILE_$(vFilePath),
+            '$(vFilePath)/$(vFolder)/file.qvd'  AS [Expand_Brackets]
         FROM
             [$(vFilePath)/$(vFolder)/file.qvd] (qvd);
 
@@ -29,15 +30,16 @@ FOR EACH vFolder IN 'folder_1', 'folder_2'
             FIELD_1;
 
         LEFT JOIN(TABLE_NAME)
-        LOAD DISTINCT
+        load distinct
             FIELD_1,
             FIELD_2,
             FIELD_3,
             applymap('MAP_FIELD_1', FIELD_1, 0)     AS FIELD_2_SUM,
+            'String' & ' ' & 'Concatenation'        AS single_quote_test,
             'Token String ''Name'''                 AS [String Field $(vFilePath)],
             3.14159                                 AS "Number Field $(vFilePath)",
             3 * 10 + 6 / 2 - 5                      AS OPERATION_FIELD
-        RESIDENT
+        Resident
             TABLE_NAME
         ORDER BY
             FIELD_3 DESC;
