@@ -30,8 +30,6 @@ from pygments.lexers._qlik_builtins import (
 
 __all__ = ["QlikLexer"]
 
-field_name_options = r"(\w|\[[\w\s]\]|\"[\w\s]\")"
-
 
 class QlikLexer(RegexLexer):
     """
