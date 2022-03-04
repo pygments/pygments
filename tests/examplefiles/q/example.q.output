@@ -77,7 +77,7 @@
 ' '           Text.Whitespace
 'is'          Name
 ' '           Text.Whitespace
-'not'         Operator.Word
+'not'         Name.Builtin
 ' '           Text.Whitespace
 'a'           Name
 '\n'          Text.Whitespace
@@ -109,7 +109,7 @@
 
 '`'           Literal.String.Symbol
 '/'           Operator
-'not'         Operator.Word
+'not'         Name.Builtin
 '/'           Operator
 'a'           Name
 '/'           Operator
@@ -354,133 +354,133 @@
 '\n'          Text.Whitespace
 
 '('           Punctuation
-'abs'         Keyword
+'abs'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'acos'        Keyword
+'acos'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'asin'        Keyword
+'asin'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'atan'        Keyword
+'atan'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'avg'         Keyword
+'avg'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'bin'         Keyword
+'bin'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'binr'        Keyword
+'binr'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'by'          Keyword
+'by'          Operator.Word
 ' '           Text.Whitespace
-'cor'         Keyword
+'cor'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'cos'         Keyword
+'cos'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'cov'         Keyword
+'cov'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'dev'         Keyword
-';'           Punctuation
-'\n '         Text.Whitespace
-'delete'      Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'div'         Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'do'          Keyword
-' '           Text.Whitespace
-'enlist'      Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'exec'        Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'exit'        Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'exp'         Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'from'        Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'getenv'      Keyword
-';'           Punctuation
-' '           Text.Whitespace
-'hopen'       Keyword
-' '           Text.Whitespace
-'if'          Keyword
+'dev'         Operator.Word
 ';'           Punctuation
 '\n '         Text.Whitespace
-'in'          Keyword
+'delete'      Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'insert'      Keyword
+'div'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'last'        Keyword
+'do'          Operator.Word
+' '           Text.Whitespace
+'enlist'      Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'like'        Keyword
+'exec'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'log'         Keyword
+'exit'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'max'         Keyword
+'exp'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'min'         Keyword
+'from'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'prd'         Keyword
-' '           Text.Whitespace
-'select'      Keyword
+'getenv'      Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'setenv'      Keyword
-';'           Punctuation
+'hopen'       Operator.Word
 ' '           Text.Whitespace
-'sin'         Keyword
+'if'          Operator.Word
 ';'           Punctuation
 '\n '         Text.Whitespace
-'sqrt'        Keyword
+'in'          Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'ss'          Keyword
+'insert'      Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'sum'         Keyword
-' '           Text.Whitespace
-'tan'         Keyword
+'last'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'update'      Keyword
+'like'        Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'var'         Keyword
-' '           Text.Whitespace
-'wavg'        Keyword
+'log'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'while'       Keyword
+'max'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'within'      Keyword
+'min'         Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'wsum'        Keyword
+'prd'         Operator.Word
+' '           Text.Whitespace
+'select'      Operator.Word
 ';'           Punctuation
 ' '           Text.Whitespace
-'xexp'        Keyword
+'setenv'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'sin'         Operator.Word
+';'           Punctuation
+'\n '         Text.Whitespace
+'sqrt'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'ss'          Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'sum'         Operator.Word
+' '           Text.Whitespace
+'tan'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'update'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'var'         Operator.Word
+' '           Text.Whitespace
+'wavg'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'while'       Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'within'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'wsum'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'xexp'        Operator.Word
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -488,412 +488,412 @@
 '\n'          Text.Whitespace
 
 '('           Punctuation
-'aj'          Operator.Word
+'aj'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'aj0'         Operator.Word
+'aj0'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ajf'         Operator.Word
+'ajf'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ajf0'        Operator.Word
+'ajf0'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'all'         Operator.Word
+'all'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'and'         Operator.Word
+'and'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'any'         Operator.Word
+'any'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'asc'         Operator.Word
+'asc'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'asof'        Operator.Word
+'asof'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'attr'        Operator.Word
+'attr'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'avgs'        Operator.Word
+'avgs'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ceiling'     Operator.Word
-';'           Punctuation
-'\n '         Text.Whitespace
-'cols'        Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'count'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'cross'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'csv'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'cut'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'deltas'      Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'desc'        Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'differ'      Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'distinct'    Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'dsave'       Operator.Word
+'ceiling'     Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'each'        Operator.Word
+'cols'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ej'          Operator.Word
+'count'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ema'         Operator.Word
+'cross'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'eval'        Operator.Word
+'csv'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'except'      Operator.Word
+'cut'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'fby'         Operator.Word
+'deltas'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'fills'       Operator.Word
+'desc'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'first'       Operator.Word
+'differ'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'fkeys'       Operator.Word
+'distinct'    Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'flip'        Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'floor'       Operator.Word
+'dsave'       Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'get'         Operator.Word
+'each'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'group'       Operator.Word
+'ej'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'gtime'       Operator.Word
+'ema'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'hclose'      Operator.Word
+'eval'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'hcount'      Operator.Word
+'except'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'hdel'        Operator.Word
+'fby'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'hsym'        Operator.Word
+'fills'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'iasc'        Operator.Word
+'first'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'idesc'       Operator.Word
+'fkeys'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ij'          Operator.Word
+'flip'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ijf'         Operator.Word
-';'           Punctuation
-'\n '         Text.Whitespace
-'inter'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'inv'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'key'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'keys'        Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'lj'          Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'ljf'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'load'        Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'lower'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'lsq'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'ltime'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'ltrim'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'mavg'        Operator.Word
+'floor'       Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'maxs'        Operator.Word
+'get'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mcount'      Operator.Word
+'group'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'md5'         Operator.Word
+'gtime'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mdev'        Operator.Word
+'hclose'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'med'         Operator.Word
+'hcount'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'meta'        Operator.Word
+'hdel'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mins'        Operator.Word
+'hsym'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mmax'        Operator.Word
+'iasc'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mmin'        Operator.Word
+'idesc'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mmu'         Operator.Word
+'ij'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'mod'         Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'msum'        Operator.Word
+'ijf'         Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'neg'         Operator.Word
+'inter'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'next'        Operator.Word
+'inv'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'not'         Operator.Word
+'key'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'null'        Operator.Word
+'keys'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'or'          Operator.Word
+'lj'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'over'        Operator.Word
+'ljf'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'parse'       Operator.Word
+'load'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'peach'       Operator.Word
+'lower'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'pj'          Operator.Word
+'lsq'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'prds'        Operator.Word
+'ltime'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'prior'       Operator.Word
+'ltrim'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'prev'        Operator.Word
+'mavg'        Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'rand'        Operator.Word
+'maxs'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'rank'        Operator.Word
+'mcount'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ratios'      Operator.Word
+'md5'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'raze'        Operator.Word
+'mdev'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'read0'       Operator.Word
+'med'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'read1'       Operator.Word
+'meta'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'reciprocal'  Operator.Word
+'mins'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'reval'       Operator.Word
+'mmax'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'reverse'     Operator.Word
+'mmin'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mmu'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mod'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'msum'        Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'rload'       Operator.Word
+'neg'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'rotate'      Operator.Word
+'next'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'rsave'       Operator.Word
+'not'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'rtrim'       Operator.Word
+'null'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'save'        Operator.Word
+'or'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'scan'        Operator.Word
+'over'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'scov'        Operator.Word
+'parse'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'sdev'        Operator.Word
+'peach'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'set'         Operator.Word
+'pj'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'show'        Operator.Word
+'prds'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'prior'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'prev'        Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'signum'      Operator.Word
+'rand'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ssr'         Operator.Word
+'rank'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'string'      Operator.Word
+'ratios'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'sublist'     Operator.Word
+'raze'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'sums'        Operator.Word
+'read0'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'sv'          Operator.Word
+'read1'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'svar'        Operator.Word
+'reciprocal'  Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'system'      Operator.Word
+'reval'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'tables'      Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'til'         Operator.Word
+'reverse'     Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'trim'        Operator.Word
+'rload'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'txf'         Operator.Word
+'rotate'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'type'        Operator.Word
+'rsave'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'uj'          Operator.Word
+'rtrim'       Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ujf'         Operator.Word
+'save'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ungroup'     Operator.Word
+'scan'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'union'       Operator.Word
+'scov'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'upper'       Operator.Word
+'sdev'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'upsert'      Operator.Word
+'set'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'value'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'view'        Operator.Word
+'show'        Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'views'       Operator.Word
+'signum'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'vs'          Operator.Word
+'ssr'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'where'       Operator.Word
+'string'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'wj'          Operator.Word
+'sublist'     Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'wj1'         Operator.Word
+'sums'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'ww'          Operator.Word
+'sv'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xasc'        Operator.Word
+'svar'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xbar'        Operator.Word
+'system'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xcol'        Operator.Word
+'tables'      Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xcols'       Operator.Word
-';'           Punctuation
-' '           Text.Whitespace
-'xdesc'       Operator.Word
+'til'         Name.Builtin
 ';'           Punctuation
 '\n '         Text.Whitespace
-'xgroup'      Operator.Word
+'trim'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xkey'        Operator.Word
+'txf'         Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xlog'        Operator.Word
+'type'        Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xprev'       Operator.Word
+'uj'          Name.Builtin
 ';'           Punctuation
 ' '           Text.Whitespace
-'xrank'       Operator.Word
+'ujf'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ungroup'     Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'union'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'upper'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'upsert'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'view'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'views'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'vs'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'where'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'wj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'wj1'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ww'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xasc'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xbar'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xcol'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xcols'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xdesc'       Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'xgroup'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xkey'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xlog'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xprev'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xrank'       Name.Builtin
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 

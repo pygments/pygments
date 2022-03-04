@@ -67,7 +67,7 @@ class KLexer(RegexLexer):
                      "within", "wsum", "xexp"),
                     suffix=r"\b",
                 ),
-                Keyword,
+                Operator.Word,
             ),
         ],
         "declarations": [
@@ -228,7 +228,7 @@ class QLexer(KLexer):
                      "xlog", "xprev", "xrank"),
                     suffix=r"\b",
                 ),
-                Operator.Word,
+                Name.Builtin,
             ),
             inherit,
         ],
