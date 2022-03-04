@@ -9,6 +9,7 @@
 """
 
 import codecs
+from typing import Generic, TypeVar
 
 from pygments.util import get_bool_opt
 from pygments.styles import get_style_by_name
@@ -21,8 +22,11 @@ def _lookup_style(style):
         return get_style_by_name(style)
     return style
 
+_T = TypeVar('_T', str, bytes)
+# Formatter is only generic for the benefit of the Pygments type stubs
+# living in the typeshed (https://github.com/python/typeshed).
 
-class Formatter:
+class Formatter(Generic[_T]):
     """
     Converts a token stream to text.
 

@@ -228,7 +228,7 @@ class FontManager:
             return self.fonts['NORMAL']
 
 
-class ImageFormatter(Formatter):
+class ImageFormatter(Formatter[bytes]):
     """
     Create a PNG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
