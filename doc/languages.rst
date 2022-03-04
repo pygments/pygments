@@ -143,6 +143,7 @@ Programming languages
 * `Python <https://python.org/>`_ 2.x and 3.x (incl. console sessions and
   tracebacks)
 * `QBasic <https://en.wikipedia.org/wiki/QBasic>`_
+* `Qlik <https://www.qlik.com/us/>`_
 * `Racket <https://racket-lang.org/>`_
 * `Raku <https://www.raku.org/>`_ a.k.a. Perl 6
 * `ReasonML <https://reasonml.github.io/>`_
