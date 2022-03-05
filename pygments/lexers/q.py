@@ -78,7 +78,7 @@ class KLexer(RegexLexer):
                 bygroups(Comment.Preproc, Comment.Single),
             ),
             # Generic System Commands
-            (r"^\\\w+.*$", Comment.Preproc),
+            (r"^\\\w.*", Comment.Preproc),
             # Prompt
             (r"^[a-zA-Z]\)", Generic.Prompt),
             # Function Names
