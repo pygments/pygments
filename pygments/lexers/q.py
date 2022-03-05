@@ -74,7 +74,7 @@ class KLexer(RegexLexer):
             # Timing
             (r"^\\ts?", Comment.Preproc),
             (
-                r"^(\\\w\s+[^/\n]*?)([/].*)",
+                r"^(\\\w\s+[^/\n]*?)(/.*)",
                 bygroups(Comment.Preproc, Comment.Single),
             ),
             # Generic System Commands
@@ -134,8 +134,8 @@ class KLexer(RegexLexer):
             (
                 (
                     r"(?:[0-9]{4}[.][0-9]{2}[.][0-9]{2}|[0-9]+)"
-                    "D(?:[0-9](?:[0-9](?:[:][0-9]{2}"
-                    "(?:[:][0-9]{2}(?:[.][0-9]*)?)?)?)?)?"
+                    "D(?:[0-9](?:[0-9](?::[0-9]{2}"
+                    "(?::[0-9]{2}(?:[.][0-9]*)?)?)?)?)?"
                 ),
                 Literal.Date,
             ),
@@ -144,13 +144,13 @@ class KLexer(RegexLexer):
                 (
                     r"[0-9]{4}[.][0-9]{2}"
                     "(?:m|[.][0-9]{2}(?:T(?:[0-9]{2}:[0-9]{2}"
-                    "(?:[:][0-9]{2}(?:[.][0-9]*)?)?)?)?)"
+                    "(?::[0-9]{2}(?:[.][0-9]*)?)?)?)?)"
                 ),
                 Literal.Date,
             ),
             # Times
             (
-                (r"[0-9]{2}:[0-9]{2}(?:[:][0-9]{2}(?:[.][0-9]{1,3})?)?"),
+                (r"[0-9]{2}:[0-9]{2}(?::[0-9]{2}(?:[.][0-9]{1,3})?)?"),
                 Literal.Date,
             ),
             # GUIDs
@@ -168,7 +168,7 @@ class KLexer(RegexLexer):
             (r"([0-9]*[.][0-9]+|[0-9]+[.][0-9]*)[ef]?", Number.Float),
             (r"[0-9]+[ef]", Number.Float),
             # Characters
-            (r"[0-9]+[c]", Number),
+            (r"[0-9]+c", Number),
             # Integers
             (r"[0-9]+[ihtuv]", Number.Integer),
             # Long Integers
@@ -177,7 +177,7 @@ class KLexer(RegexLexer):
         "comments": [
             (r"[^\\]+", Comment.Multiline),
             (r"^\\", Comment.Multiline, "#pop"),
-            (r"[\\]", Comment.Multiline),
+            (r"\\", Comment.Multiline),
         ],
         "strings": [
             (r'[^"\\]+', String.Double),
