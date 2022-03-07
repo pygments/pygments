@@ -163,7 +163,7 @@ class UL4Lexer(RegexLexer):
             (r"\s+", Text),
         ],
         # Content of the ``<?whitespace ...?>`` tag:
-        # ``keep``, ``string`` or ``smart``
+        # ``keep``, ``strip`` or ``smart``
         "whitespace": [
             (r"\?>", Comment.Preproc, "#pop"),
             (words(("keep", "strip", "smart"), suffix=r"\b"), Comment.Preproc),
