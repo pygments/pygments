@@ -60,13 +60,13 @@ class UL4Lexer(RegexLexer):
             (
                 # Comment:
                 # ``<?note foobar?>``
-                r"<\?\s*note\s+.*?\?>",
+                r"<\?\s*note\s.*?\?>",
                 Comment,
             ),
             (
                 # Template documentation:
                 # ``<?doc foobar?>``
-                r"<\?\s*doc\s+.*?\?>",
+                r"<\?\s*doc\s.*?\?>",
                 String.Doc,
             ),
             (
