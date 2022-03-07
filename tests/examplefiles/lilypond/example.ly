@@ -66,7 +66,7 @@ piuPiano = \markup \italic "più piano"
 #(symbol->string 'some-symbol)
 
 <<
-  \new Staff \with {
+  \new Staff = myStaff \with {
     \consists Duration_line_engraver
   }
   \relative c' {
