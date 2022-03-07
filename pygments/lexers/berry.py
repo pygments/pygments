@@ -85,10 +85,10 @@ class BerryLexer(RegexLexer):
             (_name, Name)
         ],
         'funccall': [
-            ( _name + r'(?=\s*\()', Name.Function, '#pop')
+            (rf'{_name}(?=\s*\()', Name.Function, '#pop')
         ],
         'member': [
-            ( r'(?<=\.)' + _name + r'\b(?!\()', Name.Attribute, '#pop')
+            (rf'(?<=\.){_name}\b(?!\()', Name.Attribute, '#pop')
         ],
         'strings': [
             (r'"([^\\]|\\.)*?"', String.Double, '#pop'),
