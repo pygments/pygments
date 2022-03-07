@@ -24,6 +24,7 @@ Programming languages
 * `BARE <https://baremessages.org/>`_
 * `BBC Basic <http://www.bbcbasic.co.uk/bbcbasic.html>`_
 * `Befunge <https://github.com/catseye/Befunge-93>`_
+* `Berry <https://github.com/berry-lang/berry>`_
 * `BlitzBasic <https://en.wikipedia.org/wiki/Blitz_BASIC>`_
 * `Boa <https://boa.cs.iastate.edu/docs/>`_
 * `Boo <https://boo-language.github.io/>`_
