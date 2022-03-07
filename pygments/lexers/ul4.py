@@ -53,7 +53,7 @@ class UL4Lexer(RegexLexer):
             (
                 # Template header with name (potentially followed by the signature):
                 # ``<?ul4 foo(bar=42)?>``
-                r"(<\?)(\s*)(ul4)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?\b",
+                r"(<\?)(\s*)(ul4)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?",
                 bygroups(Comment.Preproc, Text.Whitespace, Keyword, Text.Whitespace, Name.Function),
                 "ul4", # Switch to "expression" mode
             ),
@@ -79,7 +79,7 @@ class UL4Lexer(RegexLexer):
             (
                 # ``<?def?>`` tag for defining local templates
                 # ``<?def foo(bar=42)?>...<?end def?>``
-                r"(<\?)(\s*)(def)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?\b",
+                r"(<\?)(\s*)(def)(\s*)([a-zA-Z_][a-zA-Z_0-9]*)?",
                 bygroups(Comment.Preproc, Text.Whitespace, Keyword, Text.Whitespace, Name.Function),
                 "ul4", # Switch to "expression" mode
             ),
