@@ -364,14 +364,14 @@ class IsabelleLexer(RegexLexer):
         ],
         'string': [
             (r'[^"\\]+', String),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<[\^\w]*>', String.Symbol),
             (r'\\"', String),
             (r'\\', String),
             (r'"', String, '#pop'),
         ],
         'fact': [
             (r'[^`\\]+', String.Other),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<[\^\w]*>', String.Symbol),
             (r'\\`', String.Other),
             (r'\\', String.Other),
             (r'`', String.Other, '#pop'),
