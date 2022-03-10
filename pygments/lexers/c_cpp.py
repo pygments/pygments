@@ -181,8 +181,8 @@ class CFamilyLexer(RegexLexer):
         ],
         # Mark identifiers preceded by `case` keyword as constants.
         'case-value': [
-            (r'(:)(?!:)', Punctuation, '#pop'),
-            (_namespaced_ident, Name.Constant),
+            (r'(?<!:)(:)(?!:)', Punctuation, '#pop'),
+            (_ident, Name.Constant),
             include('whitespace'),
             include('statements'),
         ]
