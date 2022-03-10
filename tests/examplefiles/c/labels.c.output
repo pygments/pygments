@@ -73,7 +73,10 @@
 ' '           Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'std::bar'    Name.Constant
+'std'         Name.Constant
+':'           Operator
+':'           Operator
+'bar'         Name.Constant
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
