@@ -336,7 +336,7 @@ class IsabelleLexer(RegexLexer):
 
             (words(keyword_proof_script, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 
-            (r'\\<\w*>', Text.Symbol),
+            (r'\\<[\^\w]*>', Text.Symbol),
 
             (r"[^\W\d][.\w']*", Name),
             (r"\?[^\W\d][.\w']*", Name),
