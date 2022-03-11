@@ -218,6 +218,10 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),
                 ('[0-9]+', Number, '#pop'),
                 ],
+	# 7.1.4.6 - Integer interpretation
+	'intexpr': [
+		include('expr'),
+		],
         # 7.1.4.8 - Extrinsic function exfunc
         # 7.1.4.9 - Extrinsic special variable exvar - Same syntax, no actuallist
         'exfunc': [
@@ -228,6 +232,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'svn': [
                 (svn_re, Name.Variable.Magic, '#pop'),
                 ],
+	# 7.1.4.12 - Name value 'namevalue'
+	'namevalue': [
+		include('expr'),
+		],
         # 7.1.5 - Intrinsic function function
         'function': [
                 include('function_ascii'),
@@ -243,6 +251,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_order'),
 		include('function_piece'),
 		include('function_qlength'),
+		include('function_qsubscript'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -299,6 +308,9 @@ class MumpsLexer(ExtendedRegexLexer):
 		(words(('$QLENGTH', '$QL'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
 		],
         # 7.1.5.14 - $QSUBSCRIPT
+	'function_qsubscript': [
+		(words(('$QSUBSCRIPT', '$QS'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'comma', 'namevalue', 'open_paren'))
+		],
         # 7.1.5.15 - $QUERY
         # 7.1.5.16 - $RANDOM
         # 7.1.5.17 - $REVERSE
