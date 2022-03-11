@@ -1656,6 +1656,60 @@ def testFuncQL(lexer):
 	(Text, '\n')
 	])
 
+def testFuncQSubscript(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'w'),
+	(Whitespace, ' '),
+	(String, '"Env: "'),
+	(Operator, '_'),
+	(Name.Function, '$QSubscript'),
+	(Punctuation, '('),
+	(Name.Variable, 'glo'),
+	(Punctuation, ','),
+	(Operator, '-'),
+	(Number, '1'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+def testFuncQS(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'w'),
+	(Whitespace, ' '),
+	(String, '"Variable: "'),
+	(Operator, '_'),
+	(Name.Function, '$QS'),
+	(Punctuation, '('),
+	(Name.Variable, 'glo'),
+	(Punctuation, ','),
+	(Number, '0'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+def testFuncQS2(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'w'),
+	(Whitespace, ' '),
+	(String, '"A: "'),
+	(Operator, '_'),
+	(Name.Function, '$qs'),
+	(Punctuation, '('),
+	(Name.Variable, 'var'),
+	(Punctuation, '('),
+	(String, '"A"'),
+	(Punctuation, ','),
+	(Number, '7'),
+	(Punctuation, ')'),
+	(Punctuation, ','),
+	(Number, '0'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
