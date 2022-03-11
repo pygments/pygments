@@ -1632,6 +1632,30 @@ def testFuncQLength(lexer):
 	(Text, '\n')
 	])
 
+def testFuncQL(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'w'),
+	(Whitespace, ' '),
+	(String, '"Depth: "'),
+	(Operator, '_'),
+	(Name.Function, '$ql'),
+	(Punctuation, '('),
+	(Name.Function, '$na'),
+	(Punctuation, '('),
+	(Operator, '@'),
+	(Name.Variable, 'glo'),
+	(Operator, '@'),
+	(Punctuation, '('),
+	(String, '"data"'),
+	(Punctuation, ','),
+	(Name.Variable, 'sub2'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
