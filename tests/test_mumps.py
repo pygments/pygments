@@ -1710,6 +1710,47 @@ def testFuncQS2(lexer):
 	(Text, '\n')
 	])
 
+def testFuncQuery(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'set'),
+	(Whitespace, ' '),
+	(Name.Variable, 'next'),
+	(Operator, '='),
+	(Name.Function, '$Query'),
+	(Punctuation, '('),
+	(Operator, '@'),
+	(Name.Variable, 'current'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+def testFuncQ(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'for'),
+	(Whitespace, '  '),
+	(Keyword, 'set'),
+	(Whitespace, ' '),
+	(Name.Variable, 'ptr'),
+	(Operator, '='),
+	(Name.Function, '$q'),
+	(Punctuation, '('),
+	(Operator, '@'),
+	(Name.Variable, 'ptr'),
+	(Punctuation, ')'),
+	(Whitespace, ' '),
+	(Keyword, 'q'),
+	(Punctuation, ':'),
+	(Name.Variable, 'ptr'),
+	(Operator, '='),
+	(String, '""'),
+	(Text, '\n')
+	])
+
+
+	
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
