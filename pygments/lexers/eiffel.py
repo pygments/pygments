@@ -17,11 +17,12 @@ __all__ = ['EiffelLexer']
 
 class EiffelLexer(RegexLexer):
     """
-    For `Eiffel <http://www.eiffel.com>`_ source code.
+    For Eiffel source code.
 
     .. versionadded:: 2.0
     """
     name = 'Eiffel'
+    url = 'http://www.eiffel.com'
     aliases = ['eiffel']
     filenames = ['*.e']
     mimetypes = ['text/x-eiffel']

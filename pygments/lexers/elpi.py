@@ -16,12 +16,13 @@ __all__ = ['ElpiLexer']
 
 class ElpiLexer(RegexLexer):
     """
-    Lexer for the `Elpi <http://github.com/LPCIC/elpi>`_ programming language.
+    Lexer for the Elpi programming language.
 
     .. versionadded::2.11
     """
 
     name = 'Elpi'
+    url = 'http://github.com/LPCIC/elpi'
     aliases = ['elpi']
     filenames = ['*.elpi']
     mimetypes = ['text/x-elpi']
