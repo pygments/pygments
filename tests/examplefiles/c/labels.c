@@ -6,7 +6,7 @@ int id() {
     switch (2) {
         case Qfalse:
             break;
-        case Qnil:
+        case Qnil: case foo: case std::bar():
             return Qnil;
         default:
             return 0;
