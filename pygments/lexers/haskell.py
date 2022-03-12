@@ -31,6 +31,7 @@ class HaskellLexer(RegexLexer):
     .. versionadded:: 0.8
     """
     name = 'Haskell'
+    url = 'https://www.haskell.org/'
     aliases = ['haskell', 'hs']
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
@@ -187,6 +188,7 @@ class IdrisLexer(RegexLexer):
     .. versionadded:: 2.0
     """
     name = 'Idris'
+    url = 'https://www.idris-lang.org/'
     aliases = ['idris', 'idr']
     filenames = ['*.idr']
     mimetypes = ['text/x-idris']
@@ -291,13 +293,14 @@ class IdrisLexer(RegexLexer):
 
 class AgdaLexer(RegexLexer):
     """
-    For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
-    dependently typed functional programming language and proof assistant.
+    For the Agda dependently typed functional programming language and
+    proof assistant.
 
     .. versionadded:: 2.0
     """
 
     name = 'Agda'
+    url = 'http://wiki.portal.chalmers.se/agda/pmwiki.php'
     aliases = ['agda']
     filenames = ['*.agda']
     mimetypes = ['text/x-agda']
@@ -653,13 +656,13 @@ class LiterateCryptolLexer(LiterateLexer):
 
 class KokaLexer(RegexLexer):
     """
-    Lexer for the `Koka <http://koka.codeplex.com>`_
-    language.
+    Lexer for the Koka language.
 
     .. versionadded:: 1.6
     """
 
     name = 'Koka'
+    url = 'https://koka-lang.github.io/koka/doc/index.html'
     aliases = ['koka']
     filenames = ['*.kk', '*.kki']
     mimetypes = ['text/x-koka']

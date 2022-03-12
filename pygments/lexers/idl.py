@@ -24,6 +24,7 @@ class IDLLexer(RegexLexer):
     .. versionadded:: 1.6
     """
     name = 'IDL'
+    url = 'https://www.l3harrisgeospatial.com/Software-Technology/IDL'
     aliases = ['idl']
     filenames = ['*.pro']
     mimetypes = ['text/idl']

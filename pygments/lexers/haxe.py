@@ -20,12 +20,13 @@ __all__ = ['HaxeLexer', 'HxmlLexer']
 
 class HaxeLexer(ExtendedRegexLexer):
     """
-    For Haxe source code (http://haxe.org/).
+    For Haxe source code.
 
     .. versionadded:: 1.3
     """
 
     name = 'Haxe'
+    url = 'http://haxe.org/'
     aliases = ['haxe', 'hxsl', 'hx']
     filenames = ['*.hx', '*.hxsl']
     mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
@@ -896,11 +897,12 @@ class HaxeLexer(ExtendedRegexLexer):
 
 class HxmlLexer(RegexLexer):
     """
-    Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
+    Lexer for haXe build files.
 
     .. versionadded:: 1.6
     """
     name = 'Hxml'
+    url = 'https://haxe.org/manual/compiler-usage-hxml.html'
     aliases = ['haxeml', 'hxml']
     filenames = ['*.hxml']
 
