@@ -1,6 +1,6 @@
 """
-    pygments.lexers.uxntal
-    ~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.tal
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for Uxntal
 
