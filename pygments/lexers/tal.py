@@ -2,7 +2,7 @@
     pygments.lexers.tal
     ~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Uxntal
+    Lexer for Uxntal
 
     .. versionadded:: 2.12
 
@@ -11,7 +11,6 @@
 """
 
 import re
-import keyword
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Number, Punctuation, Whitespace, Literal
@@ -39,7 +38,8 @@ class TalLexer(RegexLexer):
         'comment': [
             (r'(?<!\S)\((?!\S)', Comment.Multiline, '#push'), # nested comments
             (r'(?<!\S)\)(?!\S)', Comment.Multiline, '#pop'), # nested comments
-            (r'(\S[()]|[()]\S|[^()])+', Comment.Multiline), # comments
+            (r'[^()]+', Comment.Multiline), # comments
+            (r'[()]+', Comment.Multiline), # comments
         ],
         'root': [
             (r'\s+', Whitespace), # spaces
