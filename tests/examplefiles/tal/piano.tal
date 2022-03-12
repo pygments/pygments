@@ -100,6 +100,12 @@
 
 BRK
 
+( this data exists to test literals
+  as well as multi-line ( and nested )
+  comments )
+@test-dat "this 20 "is 20 'a 20 "test 00
+@test-ptr :test-dat
+
 @on-frame ( -> )
 	
 	.adsr-view/y2 LDZ2 #0020 -- .Screen/y DEO2

@@ -13,7 +13,7 @@
 import re
 import keyword
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Number, Punctuation, Whitespace, Literal
 
 __all__ = ['TalLexer']
@@ -25,24 +25,32 @@ class TalLexer(RegexLexer):
     filenames = ['*.tal']
     mimetypes = ['text/x-uxntal']
 
+    instructions = [
+        'BRK', 'LIT', 'INC', 'POP', 'DUP', 'NIP', 'SWP', 'OVR', 'ROT',
+        'EQU', 'NEQ', 'GTH', 'LTH', 'JMP', 'JCN', 'JSR', 'STH',
+        'LDZ', 'STZ', 'LDR', 'STR', 'LDA', 'STA', 'DEI', 'DEO',
+        'ADD', 'SUB', 'MUL', 'DIV', 'AND', 'ORA', 'EOR', 'SFT'
+    ]
+
     tokens = {
+        # the comment delimiters must not be adjacent to non-space characters.
+        # this means ( foo ) is a valid comment but (foo) is not. this also
+        # applies to nested comments.
         'comment': [
-            (r'(?:(?<=\s)|^)\((?:(?=\s)|$)', Comment.Multiline, '#push'), # nested comments
-            (r'(?:(?<=\s)|^)\)(?:(?=\s)|$)', Comment.Multiline, '#pop'), # nested comments
-            (r'\S+', Comment.Multiline), # comments
-            (r'\s+', Comment.Multiline), # comments
+            (r'(?<!\S)\((?!\S)', Comment.Multiline, '#push'), # nested comments
+            (r'(?<!\S)\)(?!\S)', Comment.Multiline, '#pop'), # nested comments
+            (r'(\S[()]|[()]\S|[^()])+', Comment.Multiline), # comments
         ],
         'root': [
             (r'\s+', Whitespace), # spaces
-            (r'(?:(?<=\s)|^)\((?:(?=\s)|$)', Comment.Multiline, 'comment'), # comments
-            (r'(?:(?<=\s)|^)(BRK|LIT|INC|POP|DUP|NIP|SWP|OVR|ROT|EQU|NEQ|GTH|LTH|JMP|JCN|JSR|STH|LDZ|STZ|LDR|STR|LDA|STA|DEI|DEO|ADD|SUB|MUL|DIV|AND|ORA|EOR|SFT)2?k?r?(?:(?=\s)|$)', Keyword.Reserved), # instructions
-            (r'(?:(?<=\s)|^)[][{}](?:(?=\s)|$)', Punctuation), # delimiers
-            (r'#([0-9a-f]{2}){1,2}', Number.Hex), # integer
+            (r'(?<!\S)\((?!\S)', Comment.Multiline, 'comment'), # comments
+            (words(instructions, prefix=r'(?<!\S)', suffix=r'2?k?r?(?!\S)'), Keyword.Reserved), # instructions
+            (r'[][{}](?!\S)', Punctuation), # delimiters
+            (r'#([0-9a-f]{2}){1,2}(?!\S)', Number.Hex), # integer
             (r'"\S+', String), # raw string
-            (r'\'\S', String.Char), # raw char
-            (r'([0-9a-f]{2}){1,2}(?:(?=\s)|$)', Literal), # raw integer
-            (r'\|[0-9a-f]{1,4}(?:(?=\s)|$)', Keyword.Declaration), # abs pad
-            (r'\$[0-9a-f]{1,4}(?:(?=\s)|$)', Keyword.Constant), # rel pad
+            (r"'\S(?!\S)", String.Char), # raw char
+            (r'([0-9a-f]{2}){1,2}(?!\S)', Literal), # raw integer
+            (r'[|$][0-9a-f]{1,4}(?!\S)', Keyword.Declaration), # abs/rel pad
             (r'%\S+', Name.Decorator), # macro
             (r'@\S+', Name.Function), # label
             (r'&\S+', Name.Label), # sublabel

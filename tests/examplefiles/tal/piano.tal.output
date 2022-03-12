@@ -1,7 +1,5 @@
 '('           Comment.Multiline
-' '           Comment.Multiline
-'piano'       Comment.Multiline
-' '           Comment.Multiline
+' piano '     Comment.Multiline
 ')'           Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -308,9 +306,7 @@
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
-' '           Comment.Multiline
-'devices'     Comment.Multiline
-' '           Comment.Multiline
+' devices '   Comment.Multiline
 ')'           Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -320,39 +316,39 @@
 '     '       Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&wst'        Name.Label
 '      '      Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&rst'        Name.Label
 '    '        Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pad'        Name.Label
 '    '        Text.Whitespace
-'$4'          Keyword.Constant
+'$4'          Keyword.Declaration
 ' '           Text.Whitespace
 '&r'          Name.Label
 '      '      Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&g'          Name.Label
 '      '      Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&b'          Name.Label
 '      '      Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&debug'      Name.Label
 '  '          Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&halt'       Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|10'         Keyword.Declaration
@@ -361,23 +357,23 @@
 '    '        Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&read'       Name.Label
 '     '       Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pad'        Name.Label
 '    '        Text.Whitespace
-'$5'          Keyword.Constant
+'$5'          Keyword.Declaration
 ' '           Text.Whitespace
 '&write'      Name.Label
 '  '          Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&error'      Name.Label
 '  '          Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|20'         Keyword.Declaration
@@ -386,43 +382,43 @@
 '     '       Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&width'      Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&height'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&auto'       Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pad'        Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&x'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&addr'       Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pixel'      Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&sprite'     Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|30'         Keyword.Declaration
@@ -431,39 +427,39 @@
 '     '       Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&position'   Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&output'     Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pad'        Name.Label
 '    '        Text.Whitespace
-'$3'          Keyword.Constant
+'$3'          Keyword.Declaration
 ' '           Text.Whitespace
 '&adsr'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&length'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&addr'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&volume'     Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pitch'      Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|80'         Keyword.Declaration
@@ -472,15 +468,15 @@
 ' '           Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&button'     Name.Label
 '   '         Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&key'        Name.Label
 '    '        Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|90'         Keyword.Declaration
@@ -489,31 +485,31 @@
 '      '      Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&x'          Name.Label
 '        '    Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y'          Name.Label
 '      '      Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&state'      Name.Label
 '  '          Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&pad'        Name.Label
 '    '        Text.Whitespace
-'$3'          Keyword.Constant
+'$3'          Keyword.Declaration
 ' '           Text.Whitespace
 '&modx'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&mody'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '|a0'         Keyword.Declaration
@@ -522,45 +518,43 @@
 '       '     Text.Whitespace
 '&vector'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&success'    Name.Label
 '  '          Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&stat'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&delete'     Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&append'     Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 ' '           Text.Whitespace
 '&name'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&length'     Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&read'       Name.Label
 '   '         Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&write'      Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
-' '           Comment.Multiline
-'variables'   Comment.Multiline
-' '           Comment.Multiline
+' variables ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -569,112 +563,106 @@
 
 '@last-note'  Name.Function
 '   '         Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@octave'     Name.Function
 '      '      Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@pointer'    Name.Function
 '     \n\t'   Text.Whitespace
 '&x'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@center'     Name.Function
 '      \n\t'  Text.Whitespace
 '&x'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y'          Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@adsr-view'  Name.Function
 '   \n\t'     Text.Whitespace
 '&x1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&x2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@wave-view'  Name.Function
 '   \n\t'     Text.Whitespace
 '&x1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&x2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n'          Text.Whitespace
 
 '@octave-view' Name.Function
 ' \n\t'       Text.Whitespace
 '&x1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y1'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&x2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 ' '           Text.Whitespace
 '&y2'         Name.Label
 ' '           Text.Whitespace
-'$2'          Keyword.Constant
+'$2'          Keyword.Declaration
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
-' '           Comment.Multiline
-'program'     Comment.Multiline
-' '           Comment.Multiline
+' program '   Comment.Multiline
 ')'           Comment.Multiline
 '\n\n'        Text.Whitespace
 
 '|0100'       Keyword.Declaration
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'theme'       Comment.Multiline
-' '           Comment.Multiline
+' theme '     Comment.Multiline
 ')'           Comment.Multiline
 ' \n\t'       Text.Whitespace
 '#0fe5'       Literal.Number.Hex
@@ -696,9 +684,7 @@
 'DEO2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'vectors'     Comment.Multiline
-' '           Comment.Multiline
+' vectors '   Comment.Multiline
 ')'           Comment.Multiline
 ' \n\t'       Text.Whitespace
 ';on-frame'   Name.Variable.Global
@@ -726,11 +712,7 @@
 'DEO2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'find'        Comment.Multiline
-' '           Comment.Multiline
-'center'      Comment.Multiline
-' '           Comment.Multiline
+' find center ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.Screen/width' Name.Variable.Magic
@@ -754,11 +736,7 @@
 'STZ2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'place'       Comment.Multiline
-' '           Comment.Multiline
-'octave'      Comment.Multiline
-' '           Comment.Multiline
+' place octave ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.center/x'   Name.Variable.Magic
@@ -810,11 +788,7 @@
 'STZ2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'place'       Comment.Multiline
-' '           Comment.Multiline
-'adsr'        Comment.Multiline
-' '           Comment.Multiline
+' place adsr ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.center/x'   Name.Variable.Magic
@@ -866,11 +840,7 @@
 'STZ2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'place'       Comment.Multiline
-' '           Comment.Multiline
-'waveform'    Comment.Multiline
-' '           Comment.Multiline
+' place waveform ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.center/x'   Name.Variable.Magic
@@ -922,11 +892,7 @@
 'STZ2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'default'     Comment.Multiline
-' '           Comment.Multiline
-'settings'    Comment.Multiline
-' '           Comment.Multiline
+' default settings ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '#ff'         Literal.Number.Hex
@@ -960,11 +926,7 @@
 'DEO2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'inital'      Comment.Multiline
-' '           Comment.Multiline
-'drawing'     Comment.Multiline
-' '           Comment.Multiline
+' inital drawing ' Comment.Multiline
 ')'           Comment.Multiline
 ' \n\t'       Text.Whitespace
 ';draw-octave' Name.Variable.Global
@@ -983,12 +945,43 @@
 'BRK'         Keyword.Reserved
 '\n\n'        Text.Whitespace
 
+'('           Comment.Multiline
+' this data exists to test literals\n  as well as multi-line ' Comment.Multiline
+'('           Comment.Multiline
+' and nested ' Comment.Multiline
+')'           Comment.Multiline
+'\n  comments ' Comment.Multiline
+')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'@test-dat'   Name.Function
+' '           Text.Whitespace
+'"this'       Literal.String
+' '           Text.Whitespace
+'20'          Literal
+' '           Text.Whitespace
+'"is'         Literal.String
+' '           Text.Whitespace
+'20'          Literal
+' '           Text.Whitespace
+"'a"          Literal.String.Char
+' '           Text.Whitespace
+'20'          Literal
+' '           Text.Whitespace
+'"test'       Literal.String
+' '           Text.Whitespace
+'00'          Literal
+'\n'          Text.Whitespace
+
+'@test-ptr'   Name.Function
+' '           Text.Whitespace
+':test-dat'   Literal
+'\n\n'        Text.Whitespace
+
 '@on-frame'   Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '.adsr-view/y2' Name.Variable.Magic
@@ -1106,19 +1099,11 @@
 '@on-control' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'clear'       Comment.Multiline
-' '           Comment.Multiline
-'last'        Comment.Multiline
-' '           Comment.Multiline
-'cursor'      Comment.Multiline
-' '           Comment.Multiline
+' clear last cursor ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.pointer/x'  Name.Variable.Magic
@@ -1422,9 +1407,7 @@
 'POP'         Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'release'     Comment.Multiline
-' '           Comment.Multiline
+' release '   Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '#00'         Literal.Number.Hex
@@ -1718,9 +1701,7 @@
 '@on-message' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '.Console/read' Name.Variable.Magic
@@ -1742,9 +1723,7 @@
 '@on-mouse'   Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 ';draw-cursor' Name.Variable.Global
@@ -1830,9 +1809,7 @@
 '@on-touch-wave-view' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 '.Mouse/x'    Name.Variable.Magic
@@ -1864,9 +1841,7 @@
 '@on-touch-octave-view' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 '.Mouse/x'    Name.Variable.Magic
@@ -1982,9 +1957,7 @@
 'POP'         Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'release'     Comment.Multiline
-' '           Comment.Multiline
+' release '   Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#00'         Literal.Number.Hex
@@ -2056,9 +2029,7 @@
 'JSR2'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'release'     Comment.Multiline
-' '           Comment.Multiline
+' release '   Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#00'         Literal.Number.Hex
@@ -2080,9 +2051,7 @@
 '@on-touch-adsr-view' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'->'          Comment.Multiline
-' '           Comment.Multiline
+' -> '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 '.Mouse/x'    Name.Variable.Magic
@@ -2402,9 +2371,7 @@
 'POP'         Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'release'     Comment.Multiline
-' '           Comment.Multiline
+' release '   Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#00'         Literal.Number.Hex
@@ -2428,11 +2395,7 @@
 '@play'       Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'pitch'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' pitch -- '  Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 'DUP'         Keyword.Reserved
@@ -2456,19 +2419,11 @@
 '@draw-cursor' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' -- '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'clear'       Comment.Multiline
-' '           Comment.Multiline
-'last'        Comment.Multiline
-' '           Comment.Multiline
-'cursor'      Comment.Multiline
-' '           Comment.Multiline
+' clear last cursor ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 ';cursor'     Name.Variable.Global
@@ -2500,13 +2455,7 @@
 'DEO'         Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'record'      Comment.Multiline
-' '           Comment.Multiline
-'pointer'     Comment.Multiline
-' '           Comment.Multiline
-'positions'   Comment.Multiline
-' '           Comment.Multiline
+' record pointer positions ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.Mouse/x'    Name.Variable.Magic
@@ -2538,13 +2487,7 @@
 'DEO2'        Keyword.Reserved
 '  \n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'colorize'    Comment.Multiline
-' '           Comment.Multiline
-'on'          Comment.Multiline
-' '           Comment.Multiline
-'state'       Comment.Multiline
-' '           Comment.Multiline
+' colorize on state ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '#41'         Literal.Number.Hex
@@ -2574,9 +2517,7 @@
 '@draw-octave' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' -- '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '.octave-view/x1' Name.Variable.Magic
@@ -2810,13 +2751,7 @@
 '@draw-key'   Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'addr*'       Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' addr* color -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\t\n\t'  Text.Whitespace
 'STH'         Keyword.Reserved
@@ -2862,15 +2797,11 @@
 '@draw-adsr'  Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' -- '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'adsr'        Comment.Multiline
-' '           Comment.Multiline
+' adsr '      Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.adsr-view/x1' Name.Variable.Magic
@@ -2970,9 +2901,7 @@
 'JSR2'        Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'volume'      Comment.Multiline
-' '           Comment.Multiline
+' volume '    Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.adsr-view/x2' Name.Variable.Magic
@@ -3030,15 +2959,11 @@
 '@draw-wave'  Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' -- '        Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'clear'       Comment.Multiline
-' '           Comment.Multiline
+' clear '     Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '.wave-view/x1' Name.Variable.Magic
@@ -3080,9 +3005,7 @@
 'DEO2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'waveform'    Comment.Multiline
-' '           Comment.Multiline
+' waveform '  Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '#ff'         Literal.Number.Hex
@@ -3092,11 +3015,7 @@
 '&loop'       Name.Label
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'dotted'      Comment.Multiline
-' '           Comment.Multiline
-'line'        Comment.Multiline
-' '           Comment.Multiline
+' dotted line ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\t'      Text.Whitespace
 'DUP'         Keyword.Reserved
@@ -3168,9 +3087,7 @@
 'DEO2'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP'         Keyword.Reserved
@@ -3216,9 +3133,7 @@
 'POP2'        Keyword.Reserved
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'range'       Comment.Multiline
-' '           Comment.Multiline
+' range '     Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 'AUTO-X'      Name
@@ -3284,11 +3199,7 @@
 '@draw-wave-length' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' color -- '  Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 'STH'         Keyword.Reserved
@@ -3328,9 +3239,7 @@
 'DEO2'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'STHkr'       Keyword.Reserved
@@ -3360,21 +3269,11 @@
 '@draw-knob'  Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x*'          Comment.Multiline
-' '           Comment.Multiline
-'y*'          Comment.Multiline
-' '           Comment.Multiline
-'value'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' x* y* value -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'load'        Comment.Multiline
-' '           Comment.Multiline
+' load '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'STH'         Keyword.Reserved
@@ -3394,9 +3293,7 @@
 'DEO2'        Keyword.Reserved
 ' \n\t\t'     Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -3428,9 +3325,7 @@
 'DEO2'        Keyword.Reserved
 ' \n\t\t'     Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -3462,9 +3357,7 @@
 'DEO2'        Keyword.Reserved
 ' \n\t\t'     Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -3496,9 +3389,7 @@
 'DEO2'        Keyword.Reserved
 ' \n\t\t'     Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -3548,9 +3439,7 @@
 'DEO2'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -3622,9 +3511,7 @@
 'DEO2'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 '#05'         Literal.Number.Hex
@@ -3640,13 +3527,7 @@
 '@draw-short' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'short*'      Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' short* color -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 'STH'         Keyword.Reserved
@@ -3665,13 +3546,7 @@
 '@draw-byte'  Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'byte'        Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' byte color -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 'STH'         Keyword.Reserved
@@ -3698,13 +3573,7 @@
 '@draw-hex'   Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'char'        Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' char color -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\n\t'      Text.Whitespace
 'SWP'         Keyword.Reserved
@@ -3732,19 +3601,7 @@
 '@fill-rect'  Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x1*'         Comment.Multiline
-' '           Comment.Multiline
-'y1*'         Comment.Multiline
-' '           Comment.Multiline
-'x2*'         Comment.Multiline
-' '           Comment.Multiline
-'y2*'         Comment.Multiline
-' '           Comment.Multiline
-'color'       Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
+' x1* y1* x2* y2* color -- ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 ',&color'     Name.Variable.Instance
@@ -3752,15 +3609,7 @@
 'STR'         Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x1'          Comment.Multiline
-' '           Comment.Multiline
-'x2'          Comment.Multiline
-' '           Comment.Multiline
-'y1'          Comment.Multiline
-' '           Comment.Multiline
-'y2'          Comment.Multiline
-' '           Comment.Multiline
+' x1 x2 y1 y2 ' Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'ROT2'        Keyword.Reserved
@@ -3768,9 +3617,7 @@
 '&ver'        Name.Label
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'save'        Comment.Multiline
-' '           Comment.Multiline
+' save '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -3792,9 +3639,7 @@
 '&hor'        Name.Label
 '\n\t\t\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'save'        Comment.Multiline
-' '           Comment.Multiline
+' save '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -3804,9 +3649,7 @@
 'DEO2'        Keyword.Reserved
 '\n\t\t\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'draw'        Comment.Multiline
-' '           Comment.Multiline
+' draw '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 ',&color'     Name.Variable.Instance
@@ -3818,9 +3661,7 @@
 'DEO'         Keyword.Reserved
 '\n\t\t\t'    Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'incr'        Comment.Multiline
-' '           Comment.Multiline
+' incr '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'INC2'        Keyword.Reserved
@@ -3844,9 +3685,7 @@
 'STH2r'       Keyword.Reserved
 '\n\t\t'      Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'incr'        Comment.Multiline
-' '           Comment.Multiline
+' incr '      Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'INC2'        Keyword.Reserved
@@ -3874,35 +3713,19 @@
 '\n\t'        Text.Whitespace
 '&color'      Name.Label
 ' '           Text.Whitespace
-'$1'          Keyword.Constant
+'$1'          Keyword.Declaration
 '\n\n'        Text.Whitespace
 
 '@within-rect' Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x*'          Comment.Multiline
-' '           Comment.Multiline
-'y*'          Comment.Multiline
-' '           Comment.Multiline
-'rect'        Comment.Multiline
-' '           Comment.Multiline
-'--'          Comment.Multiline
-' '           Comment.Multiline
-'flag'        Comment.Multiline
-' '           Comment.Multiline
+' x* y* rect -- flag ' Comment.Multiline
 ')'           Comment.Multiline
 '\n\t\n\t'    Text.Whitespace
 'STH'         Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'y'           Comment.Multiline
-' '           Comment.Multiline
-'<'           Comment.Multiline
-' '           Comment.Multiline
-'rect.y1'     Comment.Multiline
-' '           Comment.Multiline
+' y < rect.y1 ' Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -3922,13 +3745,7 @@
 'JCN'         Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'y'           Comment.Multiline
-' '           Comment.Multiline
-'>'           Comment.Multiline
-' '           Comment.Multiline
-'rect.y2'     Comment.Multiline
-' '           Comment.Multiline
+' y > rect.y2 ' Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -3950,13 +3767,7 @@
 'SWP2'        Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x'           Comment.Multiline
-' '           Comment.Multiline
-'<'           Comment.Multiline
-' '           Comment.Multiline
-'rect.x1'     Comment.Multiline
-' '           Comment.Multiline
+' x < rect.x1 ' Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -3972,13 +3783,7 @@
 'JCN'         Keyword.Reserved
 '\n\t'        Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'x'           Comment.Multiline
-' '           Comment.Multiline
-'>'           Comment.Multiline
-' '           Comment.Multiline
-'rect.x2'     Comment.Multiline
-' '           Comment.Multiline
+' x > rect.x2 ' Comment.Multiline
 ')'           Comment.Multiline
 ' '           Text.Whitespace
 'DUP2'        Keyword.Reserved
@@ -4268,9 +4073,7 @@
 '@font-hex'   Name.Function
 ' '           Text.Whitespace
 '('           Comment.Multiline
-' '           Comment.Multiline
-'0-F'         Comment.Multiline
-' '           Comment.Multiline
+' 0-F '       Comment.Multiline
 ')'           Comment.Multiline
 '\n\t'        Text.Whitespace
 '007c'        Literal
