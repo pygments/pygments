@@ -19,11 +19,12 @@ __all__ = ['GoLexer']
 
 class GoLexer(RegexLexer):
     """
-    For `Go <http://golang.org>`_ source.
+    For Go source.
 
     .. versionadded:: 1.2
     """
     name = 'Go'
+    url = 'https://go.dev/'
     filenames = ['*.go']
     aliases = ['go', 'golang']
     mimetypes = ['text/x-gosrc']
