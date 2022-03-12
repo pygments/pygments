@@ -546,6 +546,7 @@ class SassLexer(ExtendedRegexLexer):
     """
 
     name = 'Sass'
+    url = 'https://sass-lang.com/'
     aliases = ['sass']
     filenames = ['*.sass']
     mimetypes = ['text/x-sass']
@@ -626,6 +627,7 @@ class ScssLexer(RegexLexer):
     """
 
     name = 'SCSS'
+    url = 'https://sass-lang.com/'
     aliases = ['scss']
     filenames = ['*.scss']
     mimetypes = ['text/x-scss']
@@ -672,12 +674,13 @@ class ScssLexer(RegexLexer):
 
 class LessCssLexer(CssLexer):
     """
-    For `LESS <http://lesscss.org/>`_ styleshets.
+    For LESS styleshets.
 
     .. versionadded:: 2.1
     """
 
     name = 'LessCss'
+    url = 'http://lesscss.org/'
     aliases = ['less']
     filenames = ['*.less']
     mimetypes = ['text/x-less-css']

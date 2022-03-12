@@ -22,13 +22,13 @@ __all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
 
 class ProtoBufLexer(RegexLexer):
     """
-    Lexer for `Protocol Buffer <http://code.google.com/p/protobuf/>`_
-    definition files.
+    Lexer for Protocol Buffer definition files.
 
     .. versionadded:: 1.4
     """
 
     name = 'Protocol Buffer'
+    url = 'https://developers.google.com/protocol-buffers/'
     aliases = ['protobuf', 'proto']
     filenames = ['*.proto']
 
@@ -190,11 +190,12 @@ class ThriftLexer(RegexLexer):
 
 class ZeekLexer(RegexLexer):
     """
-    For `Zeek <https://www.zeek.org/>`_ scripts.
+    For Zeek scripts.
 
     .. versionadded:: 2.5
     """
     name = 'Zeek'
+    url = 'https://www.zeek.org/'
     aliases = ['zeek', 'bro']
     filenames = ['*.zeek', '*.bro']
 
@@ -439,13 +440,14 @@ class PuppetLexer(RegexLexer):
 
 class RslLexer(RegexLexer):
     """
-    `RSL <http://en.wikipedia.org/wiki/RAISE>`_ is the formal specification
+    RSL is the formal specification
     language used in RAISE (Rigorous Approach to Industrial Software Engineering)
     method.
 
     .. versionadded:: 2.0
     """
     name = 'RSL'
+    url = 'http://en.wikipedia.org/wiki/RAISE'
     aliases = ['rsl']
     filenames = ['*.rsl']
     mimetypes = ['text/rsl']
@@ -502,11 +504,12 @@ class RslLexer(RegexLexer):
 
 class MscgenLexer(RegexLexer):
     """
-    For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
+    For Mscgen files.
 
     .. versionadded:: 1.6
     """
     name = 'Mscgen'
+    url = 'http://www.mcternan.me.uk/mscgen/'
     aliases = ['mscgen', 'msc']
     filenames = ['*.msc']
 
@@ -551,12 +554,12 @@ class MscgenLexer(RegexLexer):
 
 class VGLLexer(RegexLexer):
     """
-    For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
-    source code.
+    For SampleManager VGL source code.
 
     .. versionadded:: 1.6
     """
     name = 'VGL'
+    url = 'http://www.thermoscientific.com/samplemanager'
     aliases = ['vgl']
     filenames = ['*.rpf']
 
@@ -585,12 +588,13 @@ class VGLLexer(RegexLexer):
 
 class AlloyLexer(RegexLexer):
     """
-    For `Alloy <http://alloy.mit.edu>`_ source code.
+    For Alloy source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Alloy'
+    url = 'http://alloy.mit.edu'
     aliases = ['alloy']
     filenames = ['*.als']
     mimetypes = ['text/x-alloy']
@@ -645,7 +649,7 @@ class AlloyLexer(RegexLexer):
 
 class PanLexer(RegexLexer):
     """
-    Lexer for `pan <https://github.com/quattor/pan/>`_ source files.
+    Lexer for pan source files.
 
     Based on tcsh lexer.
 
@@ -653,6 +657,7 @@ class PanLexer(RegexLexer):
     """
 
     name = 'Pan'
+    url = 'https://github.com/quattor/pan/'
     aliases = ['pan']
     filenames = ['*.pan']
 
@@ -713,12 +718,12 @@ class PanLexer(RegexLexer):
 
 class CrmshLexer(RegexLexer):
     """
-    Lexer for `crmsh <http://crmsh.github.io/>`_ configuration files
-    for Pacemaker clusters.
+    Lexer for crmsh configuration files for Pacemaker clusters.
 
     .. versionadded:: 2.1
     """
     name = 'Crmsh'
+    url = 'http://crmsh.github.io/'
     aliases = ['crmsh', 'pcmk']
     filenames = ['*.crmsh', '*.pcmk']
     mimetypes = []
@@ -783,11 +788,12 @@ class CrmshLexer(RegexLexer):
 
 class FlatlineLexer(RegexLexer):
     """
-    Lexer for `Flatline <https://github.com/bigmlcom/flatline>`_ expressions.
+    Lexer for Flatline expressions.
 
     .. versionadded:: 2.2
     """
     name = 'Flatline'
+    url = 'https://github.com/bigmlcom/flatline'
     aliases = ['flatline']
     filenames = []
     mimetypes = ['text/x-flatline']
@@ -859,12 +865,13 @@ class FlatlineLexer(RegexLexer):
 
 class SnowballLexer(ExtendedRegexLexer):
     """
-    Lexer for `Snowball <http://snowballstem.org/>`_ source code.
+    Lexer for Snowball source code.
 
     .. versionadded:: 2.2
     """
 
     name = 'Snowball'
+    url = 'http://snowballstem.org/'
     aliases = ['snowball']
     filenames = ['*.sbl']
 

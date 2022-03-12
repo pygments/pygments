@@ -187,9 +187,10 @@ class DLexer(RegexLexer):
 
 class CrocLexer(RegexLexer):
     """
-    For `Croc <http://jfbillingsley.com/croc>`_ source.
+    For Croc source.
     """
     name = 'Croc'
+    url = 'http://jfbillingsley.com/croc'
     filenames = ['*.croc']
     aliases = ['croc']
     mimetypes = ['text/x-crocsrc']

@@ -17,12 +17,13 @@ __all__ = ['DevicetreeLexer']
 
 class DevicetreeLexer(RegexLexer):
     """
-    Lexer for `Devicetree <https://www.devicetree.org/>`_ files.
+    Lexer for Devicetree files.
 
     .. versionadded:: 2.7
     """
 
     name = 'Devicetree'
+    url = 'https://www.devicetree.org/'
     aliases = ['devicetree', 'dts']
     filenames = ['*.dts', '*.dtsi']
     mimetypes = ['text/x-c']
