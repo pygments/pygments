@@ -1942,7 +1942,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'TYPE_VOID'   Name.Label
+'TYPE_VOID'   Name.Constant
 ':'           Punctuation
 '    '        Text.Whitespace
 'return'      Keyword
@@ -1956,7 +1956,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'TYPE_INT'    Name.Label
+'TYPE_INT'    Name.Constant
 ':'           Punctuation
 '     '       Text.Whitespace
 'return'      Keyword
@@ -1970,7 +1970,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'TYPE_FLOAT'  Name.Label
+'TYPE_FLOAT'  Name.Constant
 ':'           Punctuation
 '   '         Text.Whitespace
 'return'      Keyword
@@ -1984,7 +1984,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'TYPE_BOOLEAN' Name.Label
+'TYPE_BOOLEAN' Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'return'      Keyword
@@ -8004,7 +8004,7 @@
 '      '      Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qfalse'      Name.Label
+'Qfalse'      Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8016,7 +8016,7 @@
 '      '      Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qnil'        Name.Label
+'Qnil'        Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11707,7 +11707,7 @@
 '\t  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_STRING'    Name.Label
+'T_STRING'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11719,7 +11719,7 @@
 '\t  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_ARRAY'     Name.Label
+'T_ARRAY'     Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14168,7 +14168,7 @@
 '\t  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qfalse'      Name.Label
+'Qfalse'      Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14180,7 +14180,7 @@
 '\t  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qnil'        Name.Label
+'Qnil'        Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 

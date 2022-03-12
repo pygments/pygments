@@ -741,7 +741,7 @@ class ExtendedRegexLexer(RegexLexer):
                         elif isinstance(new_state, int):
                             # see RegexLexer for why this check is made
                             if abs(new_state) >= len(ctx.stack):
-                                del ctx.state[1:]
+                                del ctx.stack[1:]
                             else:
                                 del ctx.stack[new_state:]
                         elif new_state == '#push':

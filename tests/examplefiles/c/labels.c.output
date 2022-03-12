@@ -51,7 +51,7 @@
 '        '    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qfalse'      Name.Label
+'Qfalse'      Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -63,7 +63,22 @@
 '        '    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'Qnil'        Name.Label
+'Qnil'        Name.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'foo'         Name.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'std'         Name.Constant
+':'           Operator
+':'           Operator
+'bar'         Name.Constant
+'('           Punctuation
+')'           Punctuation
 ':'           Punctuation
 '\n'          Text.Whitespace
 
