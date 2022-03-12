@@ -39,6 +39,13 @@ All formatters support these options:
 
     .. versionadded:: 0.7
 
+`disable_builtin_formatters`
+    Allows for a semicolon-delimited (`;`) list of formatter names, in order
+    to specify which built-in formatters should be disabled. This allows for
+    formatters from plugins to override built-in formatters.
+
+    .. versionadded:: 2.12.0
+
 
 Formatter classes
 =================

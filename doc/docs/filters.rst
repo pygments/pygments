@@ -42,6 +42,19 @@ If you want to write your own filter, have a look at :doc:`Write your own filter
 <filterdevelopment>`.
 
 
+Common options
+==============
+
+All filters support these options:
+
+`disable_builtin_filters`
+    Allows for a semicolon-delimited (`;`) list of filter names, in order
+    to specify which built-in filters should be disabled. This allows for
+    filters from plugins to override built-in filters.
+
+    .. versionadded:: 2.12.0
+
+
 Builtin Filters
 ===============
 
