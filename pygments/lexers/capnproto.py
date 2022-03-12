@@ -23,7 +23,7 @@ class CapnProtoLexer(RegexLexer):
     .. versionadded:: 2.2
     """
     name = 'Cap\'n Proto'
-    url = 'https://capnproto.org/'
+    url = 'https://capnproto.org'
     filenames = ['*.capnp']
     aliases = ['capnp']
 

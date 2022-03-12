@@ -300,6 +300,7 @@ class CppLexer(CFamilyLexer):
         (default: ``True``).
     """
     name = 'C++'
+    url = 'https://isocpp.org/'
     aliases = ['cpp', 'c++']
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
