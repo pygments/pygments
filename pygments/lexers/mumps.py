@@ -49,9 +49,9 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = "[-+']"
     # 7.2.1 - binaryop
-    binaryop_re = '\\*\\*|[-_+*/\\\\#]'
+    binaryop_re = r'\*\*|[-_+*/\\#]'
     # 7.2.2 - truthop
-    relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
+    relation_re = r'\]\]|[<>=\[\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
 
@@ -94,13 +94,13 @@ class MumpsLexer(ExtendedRegexLexer):
             ('(' + name_re + ')( +)', bygroups(Name.Label, Whitespace), ('#pop', 'linebody')), 
             (' ', Whitespace, ('#pop', 'linebody')),
             # 6.2.2 formalline
-            ( name_re + '(?=\\()', Name.Function, 'formallist'),
+            ( name_re + r'(?=\()', Name.Function, 'formallist'),
             ],
         # 6.2.2 Formal line 'formalline'
         'formallist': [
-            ('(\\()(\\))', bygroups(Punctuation, Punctuation), '#pop'),
-            ('\\(', Punctuation, 'l_name'),
-            ('\\)', Punctuation, '#pop'),
+            (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
+            (r'\(', Punctuation, 'l_name'),
+            (r'\)', Punctuation, '#pop'),
             ],
         # list of 'name' continuation
         'l_name': L('name'),
@@ -153,15 +153,15 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('namind')
                 ],
         'rgvn': [
-                ('\\^(?=\\()', Name.Variable.Global, ('#pop', 'subscripts')),
-                ('\\^(?=\\|)', Name.Variable.Global, ('#pop', 'opt_subscripts', 'gname', 'environment')), 
-                ('\\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
+                (r'\^(?=\()', Name.Variable.Global, ('#pop', 'subscripts')),
+                (r'\^(?=\|)', Name.Variable.Global, ('#pop', 'opt_subscripts', 'gname', 'environment')), 
+                (r'\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
                 ],
         'environment': [
-                ('\\|', Punctuation, ('#pop', 'vert_bar', 'expr')),
+                (r'\|', Punctuation, ('#pop', 'vert_bar', 'expr')),
                 ],
         'vert_bar': [
-                ('\\|', Punctuation, '#pop'),
+                (r'\|', Punctuation, '#pop'),
                 ],
         'gname': [
                 (name_re, Name.Variable.Global, '#pop'),
@@ -195,7 +195,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.3 - Structured system variable ssvn
         'ssvn': [
-                ('\\^\\$[A-Z]+', Name.Variable.Magic, ('#pop', 'subscripts')),
+                (r'\^\$[A-Z]+', Name.Variable.Magic, ('#pop', 'subscripts')),
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
@@ -214,8 +214,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.4.2 - Numeric literal 'numlit'
         'numlit': [
-                ('[0-9]*\\.[0-9]+E[+-]?[0-9]+', Number, '#pop'),
-                ('[0-9]*\\.[0-9]+', Number, '#pop'),
+                (r'[0-9]*\.[0-9]+E[+-]?[0-9]+', Number, '#pop'),
+                (r'[0-9]*\.[0-9]+', Number, '#pop'),
                 ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),
                 ('[0-9]+', Number, '#pop'),
                 ],
@@ -230,8 +230,8 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.1.4.8 - Extrinsic function exfunc
         # 7.1.4.9 - Extrinsic special variable exvar - Same syntax, no actuallist
         'exfunc': [
-                ('\\$\\$', Punctuation, ('#pop', 'opt_actuallist', 'labelref_func')),
-                ('\\$(?=&)', Punctuation, ('#pop', 'opt_actuallist', 'externref_func')),
+                (r'\$\$', Punctuation, ('#pop', 'opt_actuallist', 'labelref_func')),
+                (r'\$(?=&)', Punctuation, ('#pop', 'opt_actuallist', 'externref_func')),
                 ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
@@ -355,7 +355,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ( '\'', Operator), # The "not" can happen multiple times
                 ( binaryop_re, Operator, 'expratom'),
                 ( truthop_re, Operator, 'expratom'),
-                ( '\\?', Operator, 'pattern'),
+                ( r'\?', Operator, 'pattern'),
                 default('#pop')
                 ],
         # 7.2.3 - Pattern match 'pattern'
@@ -365,13 +365,13 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'patatom': [
                 # Detect the repcount, then jump to detecting the pattern code
-                ( '([0-9]+)(\\.)([0-9]*)', bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice')),
-                ( '(\\.)([0-9]*)', bygroups(Punctuation, Number), ('#pop', 'patatom_choice')),
+                ( r'([0-9]+)(\.)([0-9]*)', bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice')),
+                ( r'(\.)([0-9]*)', bygroups(Punctuation, Number), ('#pop', 'patatom_choice')),
                 ( '[0-9]+', Number, ('#pop', 'patatom_choice')),
                 ],
         'more_patatoms': [
-                ( '([0-9]+)(\\.?)([0-9]*)', bygroups(Number, Punctuation, Number), 'patatom_choice'),
-                ( '(\\.?)([0-9]*)', bygroups(Punctuation, Number), 'patatom_choice'),
+                ( r'([0-9]+)(\.?)([0-9]*)', bygroups(Number, Punctuation, Number), 'patatom_choice'),
+                ( r'(\.?)([0-9]*)', bygroups(Punctuation, Number), 'patatom_choice'),
                 ( '[0-9]+', Number, 'patatom_choice'),
                 default('#pop')
                 ],
@@ -387,7 +387,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'alternation': [
                 (',', Punctuation, 'patatom'),
-                ('\\)', Punctuation, '#pop')
+                (r'\)', Punctuation, '#pop')
                 ],
         ###
         # 8 - Commands
@@ -420,11 +420,11 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.1.6.1 - Entry reference entryref
         'entryref': [
                 ( name_re, Name.Label, ('#pop', 'opt_routineref', 'opt_offset')),
-                ( '\\^', Punctuation, ('#pop', 'routineref')),
+                ( r'\^', Punctuation, ('#pop', 'routineref')),
                 ( '@', Operator, ('#pop', 'opt_routineref', 'opt_offset', 'expratom')),
                 ],
         'opt_offset': [
-                ('\\+', Operator, ('#pop', 'expr')),
+                (r'\+', Operator, ('#pop', 'expr')),
                 default('#pop'),
                 ],
         'routineref': [
@@ -435,24 +435,24 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'routinename', 'opt_environment'))
                 ],
         'opt_routineref': [
-                ('\\^', Punctuation, ('#pop', 'routineref')),
+                (r'\^', Punctuation, ('#pop', 'routineref')),
                 default('#pop'),
                 ],
         # 8.1.6.2 - Label reference labelref
         'labelref': [
                 ( name_re , Name.Label, ('#pop', 'opt_routineref_strict')),
-                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
+                (r'\^', Punctuation, ('#pop', 'routineref_strict')),
                 ],
         'labelref_func': [
                 ( name_re , Name.Function, ('#pop', 'opt_routineref_strict')),
-                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
+                (r'\^', Punctuation, ('#pop', 'routineref_strict')),
                 ],
         'opt_environment': [
                 include('environment'),
                 default('#pop')
                 ],
         'opt_routineref_strict': [
-                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
+                (r'\^', Punctuation, ('#pop', 'routineref_strict')),
                 default('#pop')
                 ],
         # 8.1.6.3 - External reference externref
@@ -463,7 +463,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('&', Punctuation, ('#pop', 'labelref_func', 'opt_packagename'))
                 ],
         'opt_packagename': [
-                ('(' + name_re + ')(\\.)', bygroups(Name.Namespace, Punctuation), '#pop'),
+                ('(' + name_re + r')(\.)', bygroups(Name.Namespace, Punctuation), '#pop'),
                 default('#pop')
                 ],
         # 8.1.7 - Parameter passing
