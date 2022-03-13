@@ -1748,8 +1748,43 @@ def testFuncQ(lexer):
 	(Text, '\n')
 	])
 
+def testFuncRandom(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'if'),
+	(Whitespace, ' '),
+	(Name.Function, '$RANDOM'),
+	(Punctuation, '('),
+	(Number, '2'),
+	(Punctuation, ')'),
+	(Whitespace, ' '),
+	(Keyword, 'write'),
+	(Whitespace, ' '),
+	(String, 'Heads!'),
+	(Text, '\n')
+	])
 
-	
+def testFuncR(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'if'),
+	(Whitespace, ' '),
+	(Name.Function, '$r'),
+	(Punctuation, '('),
+	(Number, '20'),
+	(Punctuation, ')'),
+	(Operator, '+'),
+	(Number, '1'),
+	(Operator, '='),
+	(Number, '20'),
+	(Whitespace, ' '),
+	(Keyword, 'write'),
+	(Whitespace, ' '),
+	(String, 'Critical!'),
+	(Whitespace, ' '),
+	(Comment, '; Need to add one to get range 1-20'),
+	(Text, '\n')
+	])
 
 # Command tests
 def testBreak(lexer):
