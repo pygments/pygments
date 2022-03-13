@@ -181,6 +181,7 @@ Programming languages
 * `Swift <https://swift.org/>`_
 * `Swig <http://swig.org/>`_
 * `SuperCollider <https://supercollider.github.io/>`_
+* `Tal <https://wiki.xxiivv.com/site/uxntal.html>`_
 * `Tcl <https://www.tcl.tk/about/language.html>`_
 * `Tera Term language <https://ttssh2.osdn.jp/>`_
 * `TypeScript <https://www.typescriptlang.org/>`_
