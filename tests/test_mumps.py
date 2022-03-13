@@ -1849,6 +1849,77 @@ def testFuncRe(lexer):
 	(Text, '\n')
 	])
 
+def testFuncSelect(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'write'),
+	(Whitespace, ' '),
+	(Name.Function, '$select'),
+	(Punctuation, '('),
+	(Name.Variable, 'roll'),
+	(Operator, '='),
+	(Number, '1'),
+	(Punctuation, ':'),
+	(String, '"Fumble!"'),
+	(Punctuation, ','),
+	(Name.Variable, 'roll'),
+	(Operator, '='),
+	(Number, '20'),
+	(Punctuation, ':'),
+	(String, '"Critical!"'),
+	(Punctuation, ','),
+	(Name.Variable, 'roll'),
+	(Operator, '<'),
+	(Name.Variable, 'target'),
+	(Punctuation, ':'),
+	(String, '"Fail"'),
+	(Punctuation, ','),
+	(Number, '1'),
+	(Punctuation, ':'),
+	(String, '"Success"'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+def testFuncS(lexer):
+    assertTokenList(lexer, [
+	(Whitespace, ' '),
+	(Keyword, 'set'),
+	(Whitespace, ' '),
+	(Name.Variable, 'greeting'),
+	(Operator, '='),
+	(Name.Function, '$S'),
+	(Punctuation, '('),
+	(Name.Variable, 'time'),
+	(Operator, '<'),
+	(Number, '36000'),
+	(Punctuation, ':'),
+	(String, '"Good morning"'),
+	(Punctuation, ','),
+	(Name.Variable, 'time'),
+	(Operator, '<'),
+	(Number, '46800'),
+	(Punctuation, ':'),
+	(String, '"Good day"'),
+	(Punctuation, ','),
+	(Name.Variable, 'time'),
+	(Operator, '<'),
+	(Number, '61200'),
+	(Punctuation, ':'),
+	(String, '"Good afternoon"'),
+	(Punctuation, ','),
+	(Name.Variable, 'time'),
+	(Operator, '<'),
+	(Number, '68400'),
+	(Punctuation, ':'),
+	(String, '"Good evening"'),
+	(Punctuation, ','),
+	(Number, '1'),
+	(Punctuation, ':'),
+	(String, '"Good night"'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
 
 # Command tests
 def testBreak(lexer):
