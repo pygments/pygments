@@ -253,6 +253,7 @@ class MumpsLexer(ExtendedRegexLexer):
 		include('function_qlength'),
 		include('function_qsubscript'),
 		include('function_query'),
+		include('function_random'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -317,6 +318,9 @@ class MumpsLexer(ExtendedRegexLexer):
 		(words(('$QUERY', '$Q'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren'))
 		],
         # 7.1.5.16 - $RANDOM
+	'function_random': [
+		(words(('$RANDOM', '$R'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'open_paren'))
+		],
         # 7.1.5.17 - $REVERSE
         # 7.1.5.18 - $SELECT
         # 7.1.5.19 - $STACK
