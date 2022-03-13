@@ -218,14 +218,14 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),
                 ('[0-9]+', Number, '#pop'),
                 ],
-	# 7.1.4.6 - Integer interpretation
-	'intexpr': [
-		include('expr'),
-		],
-	# 7.1.4.7 - Truth-value interpretation
-	'tvexpr': [
-		include('expr'),
-		],
+        # 7.1.4.6 - Integer interpretation
+        'intexpr': [
+                include('expr'),
+                ],
+        # 7.1.4.7 - Truth-value interpretation
+        'tvexpr': [
+                include('expr'),
+                ],
         # 7.1.4.8 - Extrinsic function exfunc
         # 7.1.4.9 - Extrinsic special variable exvar - Same syntax, no actuallist
         'exfunc': [
@@ -236,10 +236,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'svn': [
                 (svn_re, Name.Variable.Magic, '#pop'),
                 ],
-	# 7.1.4.12 - Name value 'namevalue'
-	'namevalue': [
-		include('expr'),
-		],
+        # 7.1.4.12 - Name value 'namevalue'
+        'namevalue': [
+                include('expr'),
+                ],
         # 7.1.5 - Intrinsic function function
         'function': [
                 include('function_ascii'),
@@ -253,18 +253,22 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_length'),
                 include('function_name'),
                 include('function_order'),
-		include('function_piece'),
-		include('function_qlength'),
-		include('function_qsubscript'),
-		include('function_query'),
-		include('function_random'),
-		include('function_reverse'),
-		include('function_select'),
+                include('function_piece'),
+                include('function_qlength'),
+                include('function_qsubscript'),
+                include('function_query'),
+                include('function_random'),
+                include('function_reverse'),
+                include('function_select'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
-                (words(('$ASCII', '$A'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'open_paren')),
+                (words(('$ASCII', '$A'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'open_paren')),
                 ],
+	'opt_param_comma': [
+		include('comma'),
+		default('#pop:2')
+		],
         # 7.1.5.2 - $CHAR
         'function_char': [
                 (words(('$CHAR', '$C'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
@@ -277,70 +281,70 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.5.4 - $EXTRACT
         'function_extract': [
-                (words(('$EXTRACT', '$E'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'list_comma', 'expr', 'open_paren')),
+                (words(('$EXTRACT', '$E'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'opt_param_comma', 'expr', 'open_paren')),
                 ],
         # 7.1.5.5 - $FIND
         'function_find': [
-                (words(('$FIND' , '$F'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren')),
+                (words(('$FIND' , '$F'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'comma', 'expr', 'open_paren')),
                 ],
         # 7.1.5.6 - $FNUMBER
         'function_fnumber': [
-                (words(('$FNUMBER', '$FN'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr','open_paren')),
+                (words(('$FNUMBER', '$FN'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'comma', 'expr','open_paren')),
                 ],
         # 7.1.5.7 - $GET
         'function_get': [
-                (words(('$GET', '$G'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'glvn', 'open_paren')),
+                (words(('$GET', '$G'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'glvn', 'open_paren')),
                 ],
         # 7.1.5.8 - $JUSTIFY
         'function_justify': [
-                (words(('$JUSTIFY', '$J'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren'))
+                (words(('$JUSTIFY', '$J'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'comma', 'expr', 'open_paren'))
                 ],
         # 7.1.5.9 - $LENGTH
         'function_length': [
-                (words(('$LENGTH', '$L'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'open_paren'))
+                (words(('$LENGTH', '$L'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'open_paren'))
                 ],
         # 7.1.5.10 - $NAME
         'function_name': [
-                (words(('$NAME', '$NA'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'glvn', 'open_paren'))
+                (words(('$NAME', '$NA'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'glvn', 'open_paren'))
                 ],
         # 7.1.5.11 - $ORDER
         'function_order': [
-                (words(('$ORDER', '$O'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'glvn', 'open_paren'))
+                (words(('$ORDER', '$O'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'glvn', 'open_paren'))
                 ],
         # 7.1.5.12 - $PIECE
-	'function_piece': [
-		(words(('$PIECE', '$P'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'list_comma', 'expr', 'list_comma', 'expr', 'comma', 'expr', 'open_paren'))
-		],
+        'function_piece': [
+                (words(('$PIECE', '$P'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'opt_param_comma', 'expr', 'comma', 'expr', 'open_paren'))
+                ],
         # 7.1.5.13 - $QLENGTH
-	'function_qlength': [
-		(words(('$QLENGTH', '$QL'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
-		],
+        'function_qlength': [
+                (words(('$QLENGTH', '$QL'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
+                ],
         # 7.1.5.14 - $QSUBSCRIPT
-	'function_qsubscript': [
-		(words(('$QSUBSCRIPT', '$QS'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'comma', 'namevalue', 'open_paren'))
-		],
+        'function_qsubscript': [
+                (words(('$QSUBSCRIPT', '$QS'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'comma', 'namevalue', 'open_paren'))
+                ],
         # 7.1.5.15 - $QUERY
-	'function_query': [
-		(words(('$QUERY', '$Q'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren'))
-		],
+        'function_query': [
+                (words(('$QUERY', '$Q'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'glvn', 'open_paren'))
+                ],
         # 7.1.5.16 - $RANDOM
-	'function_random': [
-		(words(('$RANDOM', '$R'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'open_paren'))
-		],
+        'function_random': [
+                (words(('$RANDOM', '$R'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'intexpr', 'open_paren'))
+                ],
         # 7.1.5.17 - $REVERSE
-	'function_reverse': [
-		(words(('$REVERSE', '$RE'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
-		],
+        'function_reverse': [
+                (words(('$REVERSE', '$RE'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
+                ],
         # 7.1.5.18 - $SELECT
-	'function_select': [
-		(words(('$SELECT', '$S'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_selectatom', 'open_paren'))
-		],
-	'l_selectatom': [
-		default(('list_comma', 'selectatom'))
-		],
-	'selectatom': [
-		default(('#pop', 'expr', 'colon', 'tvexpr'))
-		],
+        'function_select': [
+                (words(('$SELECT', '$S'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_selectatom', 'open_paren'))
+                ],
+        'l_selectatom': [
+                default(('list_comma', 'selectatom'))
+                ],
+        'selectatom': [
+                default(('#pop', 'expr', 'colon', 'tvexpr'))
+                ],
         # 7.1.5.19 - $STACK
         # 7.1.5.20 - $TEXT
         # 7.1.5.21 - $TRANSLATE
@@ -537,7 +541,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('expr'),
                 ],
         'colon_group': [
-		include('colon'),
+                include('colon'),
                 (r'\)', Punctuation, '#pop:2'),
                 ],
         'l_closearg': [
@@ -705,12 +709,12 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_openargument': [
             default(('list_comma', 'openargument')),
             ],
-	'colon': [
+        'colon': [
             (':', Punctuation, '#pop')
-	    ],
+            ],
         'colon_sep': [
             (':(?=:)', Punctuation, '#pop:2'),
-	    include('colon'),
+            include('colon'),
             default('#pop:2')
             ],
         'mnemonicspec': [
@@ -837,7 +841,7 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'expr', 'opt_equals_sep', 'tstartkeyword'))
             ],
         'opt_equals_sep': [
-	    include('equals'),
+            include('equals'),
             default('#pop:2')
             ],
         'tstartkeyword': [
