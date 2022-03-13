@@ -1760,7 +1760,7 @@ def testFuncRandom(lexer):
 	(Whitespace, ' '),
 	(Keyword, 'write'),
 	(Whitespace, ' '),
-	(String, 'Heads!'),
+	(String, '"Heads!"'),
 	(Text, '\n')
 	])
 
@@ -1780,7 +1780,7 @@ def testFuncR(lexer):
 	(Whitespace, ' '),
 	(Keyword, 'write'),
 	(Whitespace, ' '),
-	(String, 'Critical!'),
+	(String, '"Critical!"'),
 	(Whitespace, ' '),
 	(Comment, '; Need to add one to get range 1-20'),
 	(Text, '\n')
