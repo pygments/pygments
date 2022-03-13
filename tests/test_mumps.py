@@ -1786,6 +1786,70 @@ def testFuncR(lexer):
 	(Text, '\n')
 	])
 
+def testFuncReverse(lexer):
+    assertTokenList(lexer, [
+	(Name.Function, 'isPalindrome'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ')'),
+	(Whitespace, ' '),
+	(Keyword, 'quit'),
+	(Whitespace, ' '),
+	(Name.Variable, 'str'),
+	(Operator, '='),
+	(Name.Function, '$REVERSE'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+def testFuncRe(lexer):
+    assertTokenList(lexer, [
+	(Name.Function, 'rotateLeft'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ','),
+	(Name.Variable, 'num'),
+	(Punctuation, ')'),
+	(Whitespace, ' '),
+	(Keyword, 'q'),
+	(Whitespace, ' '),
+	(Name.Function, '$re'),
+	(Punctuation, '('),
+	(Name.Function, '$re'),
+	(Punctuation, '('),
+	(Name.Function, '$e'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ','),
+	(Number, '1'),
+	(Punctuation, ','),
+	(Name.Variable, 'num'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Operator, '_'),
+	(Name.Function, '$re'),
+	(Punctuation, '('),
+	(Name.Function, '$e'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ','),
+	(Name.Variable, 'num'),
+	(Operator, '+'),
+	(Number, '1'),
+	(Punctuation, ','),
+	(Name.Function, '$l'),
+	(Punctuation, '('),
+	(Name.Variable, 'str'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Punctuation, ')'),
+	(Text, '\n')
+	])
+
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
