@@ -48,8 +48,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
 
 class ErbLexer(Lexer):
     """
-    Generic `ERB <http://ruby-doc.org/core/classes/ERB.html>`_ (Ruby Templating)
-    lexer.
+    Generic ERB (Ruby Templating) lexer.
 
     Just highlights ruby code between the preprocessor directives, other data
     is left untouched by the lexer.
@@ -58,6 +57,7 @@ class ErbLexer(Lexer):
     """
 
     name = 'ERB'
+    url = 'https://github.com/ruby/erb'
     aliases = ['erb']
     mimetypes = ['application/x-ruby-templating']
 
@@ -143,13 +143,14 @@ class ErbLexer(Lexer):
 
 class SmartyLexer(RegexLexer):
     """
-    Generic `Smarty <http://smarty.php.net/>`_ template lexer.
+    Generic Smarty template lexer.
 
     Just highlights smarty code between the preprocessor directives, other
     data is left untouched by the lexer.
     """
 
     name = 'Smarty'
+    url = 'https://www.smarty.net/'
     aliases = ['smarty']
     filenames = ['*.tpl']
     mimetypes = ['application/x-smarty']
@@ -199,13 +200,14 @@ class SmartyLexer(RegexLexer):
 
 class VelocityLexer(RegexLexer):
     """
-    Generic `Velocity <http://velocity.apache.org/>`_ template lexer.
+    Generic Velocity template lexer.
 
     Just highlights velocity directives and variable references, other
     data is left untouched by the lexer.
     """
 
     name = 'Velocity'
+    url = 'https://velocity.apache.org/'
     aliases = ['velocity']
     filenames = ['*.vm', '*.fhtml']
 
@@ -402,15 +404,14 @@ class DjangoLexer(RegexLexer):
 
 class MyghtyLexer(RegexLexer):
     """
-    Generic `myghty templates`_ lexer. Code that isn't Myghty
+    Generic myghty templates lexer. Code that isn't Myghty
     markup is yielded as `Token.Other`.
 
     .. versionadded:: 0.6
-
-    .. _myghty templates: http://www.myghty.org/
     """
 
     name = 'Myghty'
+    url = 'http://www.myghty.org/'
     aliases = ['myghty']
     filenames = ['*.myt', 'autodelegate']
     mimetypes = ['application/x-myghty']

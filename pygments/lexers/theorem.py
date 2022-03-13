@@ -19,12 +19,13 @@ __all__ = ['CoqLexer', 'IsabelleLexer', 'LeanLexer']
 
 class CoqLexer(RegexLexer):
     """
-    For the `Coq <http://coq.inria.fr/>`_ theorem prover.
+    For the Coq theorem prover.
 
     .. versionadded:: 1.5
     """
 
     name = 'Coq'
+    url = 'http://coq.inria.fr/'
     aliases = ['coq']
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
@@ -165,12 +166,13 @@ class CoqLexer(RegexLexer):
 
 class IsabelleLexer(RegexLexer):
     """
-    For the `Isabelle <http://isabelle.in.tum.de/>`_ proof assistant.
+    For the Isabelle proof assistant.
 
     .. versionadded:: 2.0
     """
 
     name = 'Isabelle'
+    url = 'http://isabelle.in.tum.de/'
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
@@ -381,12 +383,12 @@ class IsabelleLexer(RegexLexer):
 
 class LeanLexer(RegexLexer):
     """
-    For the `Lean <https://github.com/leanprover/lean>`_
-    theorem prover.
+    For the Lean theorem prover.
 
     .. versionadded:: 2.0
     """
     name = 'Lean'
+    url = 'https://github.com/leanprover/lean'
     aliases = ['lean']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']

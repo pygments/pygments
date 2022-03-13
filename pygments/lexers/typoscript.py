@@ -100,12 +100,11 @@ class TypoScriptLexer(RegexLexer):
     """
     Lexer for TypoScript code.
 
-    http://docs.typo3.org/typo3cms/TyposcriptReference/
-
     .. versionadded:: 2.2
     """
 
     name = 'TypoScript'
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     aliases = ['typoscript']
     filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
