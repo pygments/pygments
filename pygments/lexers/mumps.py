@@ -222,6 +222,10 @@ class MumpsLexer(ExtendedRegexLexer):
 	'intexpr': [
 		include('expr'),
 		],
+	# 7.1.4.7 - Truth-value interpretation
+	'tvexpr': [
+		include('expr'),
+		],
         # 7.1.4.8 - Extrinsic function exfunc
         # 7.1.4.9 - Extrinsic special variable exvar - Same syntax, no actuallist
         'exfunc': [
@@ -255,6 +259,7 @@ class MumpsLexer(ExtendedRegexLexer):
 		include('function_query'),
 		include('function_random'),
 		include('function_reverse'),
+		include('function_select'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -327,6 +332,15 @@ class MumpsLexer(ExtendedRegexLexer):
 		(words(('$REVERSE', '$RE'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'open_paren'))
 		],
         # 7.1.5.18 - $SELECT
+	'function_select': [
+		(words(('$SELECT', '$S'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_selectatom', 'open_paren'))
+		],
+	'l_selectatom': [
+		default(('list_comma', 'selectatom'))
+		],
+	'selectatom': [
+		default(('#pop', 'expr', 'colon', 'tvexpr'))
+		],
         # 7.1.5.19 - $STACK
         # 7.1.5.20 - $TEXT
         # 7.1.5.21 - $TRANSLATE
@@ -691,9 +705,12 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_openargument': [
             default(('list_comma', 'openargument')),
             ],
+	'colon': [
+            (':', Punctuation, '#pop')
+	    ],
         'colon_sep': [
             (':(?=:)', Punctuation, '#pop:2'),
-            (':', Punctuation, '#pop'),
+	    include('colon'),
             default('#pop:2')
             ],
         'mnemonicspec': [
