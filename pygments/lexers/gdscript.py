@@ -25,7 +25,7 @@ line_re = re.compile(".*?\n")
 
 class GDScriptLexer(RegexLexer):
     """
-    For `GDScript source code.
+    For GDScript source code.
     """
 
     name = "GDScript"

@@ -812,11 +812,10 @@ class RqlLexer(RegexLexer):
     """
     Lexer for Relation Query Language.
 
-    `RQL <http://www.logilab.org/project/rql>`_
-
     .. versionadded:: 2.0
     """
     name = 'RQL'
+    url = 'http://www.logilab.org/project/rql'
     aliases = ['rql']
     filenames = ['*.rql']
     mimetypes = ['text/x-rql']
