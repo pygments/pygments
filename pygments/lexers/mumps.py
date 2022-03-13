@@ -35,6 +35,11 @@ class MumpsLexer(ExtendedRegexLexer):
     # For example, YottaDB would have the source file for "dmex" in "dmex.m"
     flags = re.IGNORECASE
 
+    # 5 - Metalanguage description
+    # 'L': list of one or more, separated by commas
+    def L(state):
+        return [default(('list_comma', state))]
+
     # Definitions of groups that we implement as regular expressions
     name_re = '[%A-Za-z][A-Za-z0-9]*'
     # 7.1.4.1 - String literal 'strlit'
@@ -98,9 +103,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ('\\)', Punctuation, '#pop'),
             ],
         # list of 'name' continuation
-        'l_name': [
-            default(('list_comma', 'name')),
-            ],
+        'l_name': L('name'),
         # 6.2.3 Label 'label'
         'label': [
             (name_re, Name.Label, '#pop'),
@@ -124,9 +127,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'expr': [
                 default(('#pop', 'exprtail', 'expratom'))
                 ],
-        'l_expr': [
-                default(('list_comma', 'expr')),
-                ],
+        'l_expr': L('expr'),
         # 7.1 - expratom
         'expratom': [
                 include('glvn'),
@@ -339,9 +340,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'function_select': [
                 (words(('$SELECT', '$S'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_selectatom', 'open_paren'))
                 ],
-        'l_selectatom': [
-                default(('list_comma', 'selectatom'))
-                ],
+        'l_selectatom': L('selectatom'),
         'selectatom': [
                 default(('#pop', 'expr', 'colon', 'tvexpr'))
                 ],
@@ -475,9 +474,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 (r'\)', Punctuation, '#pop'),
                 default('l_actual'),
                 ],
-        'l_actual': [
-                default(('list_comma', 'actual')),
-                ],
+        'l_actual': L('actual'),
         'actual': [
                 (r'\.', Punctuation, ('#pop', 'actualname')),
                 default(('#pop', 'expr')),
@@ -544,9 +541,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('colon'),
                 (r'\)', Punctuation, '#pop:2'),
                 ],
-        'l_closearg': [
-                default(('list_comma', 'closearg'))
-                ],
+        'l_closearg': L('closearg'),
         # 8.2.3 - DO
         'command_do': [
                 (r'do?\b', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
@@ -558,9 +553,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('externref'),
                 include('lineref'),
                 ],
-        'l_doargument': [
-                default(('list_comma', 'doargument')),
-                ],
+        'l_doargument': L('doargument'),
         'opt_actuallist': [
                 include('actuallist'),
                 default('#pop'),
@@ -589,9 +582,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'gotoargument': [
                 default(('#pop', 'postcond', 'entryref')),
                 ],
-        'l_gotoargument': [
-                default(('list_comma', 'gotoargument')),
-                ],
+        'l_gotoargument': L('gotoargument'),
         # 8.2.7 - HALT
         'command_halt': [
                 (r'halt\b', Keyword, ('#pop', 'noargsp')),
@@ -611,9 +602,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'jobargument': [
                 default(('#pop', 'jobparameters', 'colon_sep', 'opt_actuallist', 'lineref_or_externref')),
                 ],
-        'l_jobargument': [
-                default(('list_comma', 'jobargument')),
-                ],
+        'l_jobargument': L('jobargument'),
         'jobparameters': [
                 default(('#pop', 'timeout', 'processparameters'))
                 ],
@@ -633,9 +622,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('@', Operator, ('#pop', 'expratom')),
                 include('glvn'),
                 ],
-        'l_killargument': [
-                default(('list_comma', 'killargument')),
-                ],
+        'l_killargument': L('killargument'),
         'exclusive_killargs': [
                 (r'\)', Punctuation, '#pop'),
                 (',', Punctuation, 'lname'),
@@ -653,16 +640,12 @@ class MumpsLexer(ExtendedRegexLexer):
                 (r'\(', Punctuation, ('#pop', 'timeout', 'close_paren', 'l_nref')),
                 default(('#pop', 'timeout', 'nref')),
                 ],
-        'l_lockargument': [
-                default(('list_comma', 'lockargument'))
-                ],
+        'l_lockargument': L('lockargument'),
         'nref': [
                 ('@', Operator, ('#pop', 'expratom')),
                 (r'\^?'+name_re, Name, ('#pop', 'opt_subscripts')),
                 ],
-        'l_nref': [
-                default(('list_comma', 'nref'))
-                ],
+        'l_nref': L('nref'),
         # 8.2.13 - MERGE
         'command_merge': [
                 (words(('merge', 'm'), suffix=r'\b'), Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
@@ -672,9 +655,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('@', Operator, ('#pop', 'mergearg_post_indirect', 'expratom')),
                 default(('#pop', 'glvn', 'equals', 'glvn'))
                 ],
-        'l_mergeargument': [
-                default(('list_comma', 'mergeargument'))
-                ],
+        'l_mergeargument': L('mergeargument'),
         'mergearg_post_indirect': [
                 # Was indirected variable name without subscripts
                 ('=', Operator, ('#pop', 'glvn')),
@@ -693,12 +674,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('$ETRAP', '$ET', '$ESTACK', '$ES'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
                 include('lname')
                 ],
-        'l_newargument': [
-                default(('list_comma', 'newargument'))
-                ],
-        'l_lname': [
-                default(('list_comma', 'lname'))
-                ],
+        'l_newargument': L('newargument'),
+        'l_lname': L('lname'),
         # 8.2.15 - OPEN
         'command_open': [
             (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
@@ -706,9 +683,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'openargument': [
             default(('#pop', 'mnemonicspec', 'colon_sep', 'timeout', 'deviceparameters', 'colon_sep', 'expr')),
             ],
-        'l_openargument': [
-            default(('list_comma', 'openargument')),
-            ],
+        'l_openargument': L('openargument'),
         'colon': [
             (':', Punctuation, '#pop')
             ],
@@ -724,9 +699,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'mnemonicspace': [
             include('expr'),
             ],
-        'l_mnemonicspace': [
-            default(('list_comma', 'mnemonicspace'))
-            ],
+        'l_mnemonicspace': L('mnemonicspace'),
         # 8.2.16 - QUIT
         'command_quit': [
             (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
@@ -745,9 +718,7 @@ class MumpsLexer(ExtendedRegexLexer):
             (r'\*', Keyword.Pseudo, ('timeout', 'glvn')),
             default(('#pop', 'timeout', 'opt_readcount', 'glvn')),
             ],
-        'l_readargument': [
-            default(('list_comma', 'readargument'))
-            ],
+        'l_readargument': L('readargument'),
         'format': [
             (r'[#!]+(?=\?)', Keyword.Pseudo),
             ('[#!]+', Keyword.Pseudo, '#pop'),
@@ -777,9 +748,7 @@ class MumpsLexer(ExtendedRegexLexer):
             # Otherwise, it's was a full setargument replacement
             default('#pop')
             ],
-        'l_setargument': [
-            default(('list_comma', 'setargument'))
-            ],
+        'l_setargument': L('setargument'),
         'setdestination': [
             (r'\(', Punctuation, ('#pop', 'close_paren', 'l_setleft')),
             default(('#pop', 'setleft'))
@@ -789,9 +758,7 @@ class MumpsLexer(ExtendedRegexLexer):
             include('leftexpr'),
             include('glvn')
             ],
-        'l_setleft': [
-            default(('list_comma', 'setleft'))
-            ],
+        'l_setleft': L('setleft'),
         'leftrestricted': [
             (words(('$DEVICE', '$D', '$KEY', '$K', '$X', '$Y'), suffix=r'\b'), Name.Variable.Magic, '#pop')
             ],
@@ -868,9 +835,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'command_write': [
             (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
             ],
-        'l_writeargument': [
-            default(('list_comma', 'writeargument'))
-            ],
+        'l_writeargument': L('writeargument'),
         'writeargument': [
             include('format'),
             (r'\*', Keyword.Pseudo, ('#pop', 'expr')),
@@ -880,9 +845,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'command_xecute': [
             (words(('xecute', 'x'), suffix=r'\b'), Keyword, ('#pop', 'l_xargument', 'argumentsp', 'postcond')),
             ],
-        'l_xargument': [
-            default(('list_comma', 'xargument'))
-            ],
+        'l_xargument': L('xargument'),
         'xargument': [
             default(('#pop', 'postcond', 'expr'))
             ],
