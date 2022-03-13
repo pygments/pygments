@@ -167,17 +167,17 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # Parsing for '( L expr )'
         'subscripts': [
-                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_expr'))
+                (r'\(', Punctuation, ('#pop', 'close_paren', 'l_expr'))
                 ],
         'opt_subscripts': [
                 include('subscripts'),
                 default('#pop')
                 ],
         'open_paren': [
-                ('\\(', Punctuation, '#pop'),
+                (r'\(', Punctuation, '#pop'),
                 ],
         'close_paren': [
-                ('\\)', Punctuation, '#pop'),
+                (r'\)', Punctuation, '#pop'),
                 ],
         # Name indirection, common syntax for rlvn and rgvn
         'namind': [
@@ -205,7 +205,7 @@ class MumpsLexer(ExtendedRegexLexer):
             include('svn'),
             include('function'),
             ( unaryop_re, Operator, ('#pop', 'expratom')),
-            ( '\\(', Punctuation, ('#pop', 'close_paren', 'expr')),
+            ( r'\(', Punctuation, ('#pop', 'close_paren', 'expr')),
             ],
         # 7.1.4.1 - String literal 'strlit'
         'strlit': [
@@ -373,7 +373,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 default('#pop')
                 ],
         'patatom_choice': [
-                ('\\(', Punctuation, ('#pop', 'alternation', 'patatom')),
+                (r'\(', Punctuation, ('#pop', 'alternation', 'patatom')),
                 include('strlit'),
                 include('patcode'),
                 ],
@@ -465,17 +465,17 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.1.7 - Parameter passing
         'actuallist': [
-                ('\\(', Punctuation, ('#pop', 'actuallist_contents'),)
+                (r'\(', Punctuation, ('#pop', 'actuallist_contents'),)
                 ],
         'actuallist_contents': [
-                ('\\)', Punctuation, '#pop'),
+                (r'\)', Punctuation, '#pop'),
                 default('l_actual'),
                 ],
         'l_actual': [
                 default(('list_comma', 'actual')),
                 ],
         'actual': [
-                ('\\.', Punctuation, ('#pop', 'actualname')),
+                (r'\.', Punctuation, ('#pop', 'actualname')),
                 default(('#pop', 'expr')),
                 ],
         'actualname': [
@@ -526,7 +526,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'deviceparameters', 'colon_sep', 'expr')),
                 ],
         'deviceparameters': [
-                ('\\(', Punctuation, ('#pop', 'deviceparams_group')),
+                (r'\(', Punctuation, ('#pop', 'deviceparams_group')),
                 include('deviceparam'),
                 ],
         'deviceparams_group': [
@@ -537,8 +537,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('expr'),
                 ],
         'colon_group': [
-                (':', Punctuation, '#pop'),
-                ('\\)', Punctuation, '#pop:2'),
+		include('colon'),
+                (r'\)', Punctuation, '#pop:2'),
                 ],
         'l_closearg': [
                 default(('list_comma', 'closearg'))
@@ -614,7 +614,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'timeout', 'processparameters'))
                 ],
         'processparameters': [
-                ('\\(', Punctuation, ('#pop', 'processparameter_group')),
+                (r'\(', Punctuation, ('#pop', 'processparameter_group')),
                 include('expr'),
                 ],
         'processparameter_group': [
@@ -625,7 +625,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('kill', 'k'), suffix=r'\b'), Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
                 ],
         'killargument': [
-                ('\\(', Punctuation, ('#pop', 'exclusive_killargs', 'lname')),
+                (r'\(', Punctuation, ('#pop', 'exclusive_killargs', 'lname')),
                 ('@', Operator, ('#pop', 'expratom')),
                 include('glvn'),
                 ],
@@ -633,7 +633,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('list_comma', 'killargument')),
                 ],
         'exclusive_killargs': [
-                ('\\)', Punctuation, '#pop'),
+                (r'\)', Punctuation, '#pop'),
                 (',', Punctuation, 'lname'),
                 ],
         'lname': [
@@ -646,7 +646,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'lockargument': [
                 ('[+-]', Operator),
-                ('\\(', Punctuation, ('#pop', 'timeout', 'close_paren', 'l_nref')),
+                (r'\(', Punctuation, ('#pop', 'timeout', 'close_paren', 'l_nref')),
                 default(('#pop', 'timeout', 'nref')),
                 ],
         'l_lockargument': [
@@ -654,7 +654,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'nref': [
                 ('@', Operator, ('#pop', 'expratom')),
-                ('\\^?'+name_re, Name, ('#pop', 'opt_subscripts')),
+                (r'\^?'+name_re, Name, ('#pop', 'opt_subscripts')),
                 ],
         'l_nref': [
                 default(('list_comma', 'nref'))
@@ -684,7 +684,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('new', 'n'), suffix=r'\b'), Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
                 ],
         'newargument': [
-                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
+                (r'\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
                 # newsvn, only exists here
                 (words(('$ETRAP', '$ET', '$ESTACK', '$ES'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
                 include('lname')
@@ -714,7 +714,7 @@ class MumpsLexer(ExtendedRegexLexer):
             default('#pop:2')
             ],
         'mnemonicspec': [
-            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_mnemonicspace')),
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'l_mnemonicspace')),
             default(('#pop', 'mnemonicspace'))
             ],
         'mnemonicspace': [
@@ -738,17 +738,17 @@ class MumpsLexer(ExtendedRegexLexer):
         'readargument': [
             include('format'),
             include('strlit'),
-            ('\\*', Keyword.Pseudo, ('timeout', 'glvn')),
+            (r'\*', Keyword.Pseudo, ('timeout', 'glvn')),
             default(('#pop', 'timeout', 'opt_readcount', 'glvn')),
             ],
         'l_readargument': [
             default(('list_comma', 'readargument'))
             ],
         'format': [
-            ('[#!]+(?=\\?)', Keyword.Pseudo),
+            (r'[#!]+(?=\?)', Keyword.Pseudo),
             ('[#!]+', Keyword.Pseudo, '#pop'),
-            ('\\?', Keyword.Pseudo, ('#pop', 'expr')),
-            ('(/[?A-Z][A-Z0-9]*)(\\()', bygroups(Keyword.Pseudo, Punctuation), ('#pop', 'close_paren', 'l_expr')),
+            (r'\?', Keyword.Pseudo, ('#pop', 'expr')),
+            (r'(/[?A-Z][A-Z0-9]*)(\()', bygroups(Keyword.Pseudo, Punctuation), ('#pop', 'close_paren', 'l_expr')),
             ('/[?A-Z][A-Z0-9]*', Keyword.Pseudo, '#pop'),
             ],
         'readcount': [
@@ -777,7 +777,7 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('list_comma', 'setargument'))
             ],
         'setdestination': [
-            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_setleft')),
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'l_setleft')),
             default(('#pop', 'setleft'))
             ],
         'setleft': [
@@ -824,29 +824,29 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         'tstartargument': [
             (':', Punctuation, ('#pop', 'transparameters')),
-            default(('#pop', 'transparameters', 'colon_sep', 'restartargument'))
+            default('restartargument')
             ],
         'transparameters': [
-            ('\\(', Punctuation, ('#pop', 'tsparam_group')),
+            (r'\(', Punctuation, ('#pop', 'tsparam_group')),
             include('tsparam')
             ],
         'tsparam_group': [
             default(('colon_group', 'tsparam'))
             ],
         'tsparam': [
-            default(('#pop', 'opt_equals_expr', 'tstartkeyword'))
+            default(('#pop', 'expr', 'opt_equals_sep', 'tstartkeyword'))
             ],
-        'opt_equals_expr': [
-            ('=', Operator, ('#pop', 'expr')),
-            default('#pop')
+        'opt_equals_sep': [
+	    include('equals'),
+            default('#pop:2')
             ],
         'tstartkeyword': [
             ('[A-Z]+', Keyword, '#pop')
             ],
         'restartargument': [
-            ('\\*', Keyword.Pseudo, '#pop'),
-            ('(\\()(\\))', bygroups(Punctuation, Punctuation), '#pop'),
-            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
+            (r'\*', Keyword.Pseudo, '#pop'),
+            (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
             include('lname')
             ],
         # 8.2.23 - USE
@@ -869,7 +869,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         'writeargument': [
             include('format'),
-            ('\\*', Keyword.Pseudo, ('#pop', 'expr')),
+            (r'\*', Keyword.Pseudo, ('#pop', 'expr')),
             include('expr'),
             ],
         # 8.2.26 - XECUTE
