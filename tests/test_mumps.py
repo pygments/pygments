@@ -2012,6 +2012,36 @@ def testFuncTIndirect(lexer):
         (Text, '\n')
         ])
 
+def testFuncTranslate(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$TRANSLATE'),
+        (Punctuation, '('),
+        (String, '"Hellow"'),
+        (Punctuation, ','),
+        (String, '"w"'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncTr(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$tr'),
+        (Punctuation, '('),
+        (String, '"Hallo"'),
+        (Punctuation, ','),
+        (String, '"a"'),
+        (Punctuation, ','),
+        (String, '"e"'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
