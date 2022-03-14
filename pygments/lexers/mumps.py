@@ -358,9 +358,12 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('$TEXT', '$T'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'textarg', 'open_paren'))
                 ],
         'textarg': [
-                ('@', Operator, ('#pop', 'expr')),
-                (r'\+', Operator, ('#pop', 'entryref', 'intexpr')),
+                (r'\+', Operator, ('#pop', 'opt_routineref', 'intexpr')),
                 include('entryref')
+                ],
+        'opt_rouref': [
+                (r'\^', Punctuation, ('#pop', 'routineref')),
+                default('#pop')
                 ],
         # 7.1.5.21 - $TRANSLATE
         # 7.1.5.22 - $VIEW
