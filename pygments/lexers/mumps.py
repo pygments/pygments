@@ -41,7 +41,10 @@ class MumpsLexer(ExtendedRegexLexer):
         return [default(('list_comma', state))]
 
     # Definitions of groups that we implement as regular expressions
+    # 6.1 - Routine head 'routinehead'
     name_re = '[%A-Za-z][A-Za-z0-9]*'
+    # 6.2.4 - Label separator 'ls'
+    ls_re = ' +'
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.10 - Intrinsic special variables 'svn'
@@ -91,8 +94,8 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         'line': [
             # 6.2.1 levelline - Label is optional
-            ('(' + name_re + ')( +)', bygroups(Name.Label, Whitespace), ('#pop', 'linebody')), 
-            (' ', Whitespace, ('#pop', 'linebody')),
+            (name_re + r'(?= )', Name.Label),
+            (ls_re, Whitespace, ('#pop', 'linebody')),
             # 6.2.2 formalline
             ( name_re + r'(?=\()', Name.Function, 'formallist'),
             ],
