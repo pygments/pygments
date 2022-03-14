@@ -1,3 +1,17 @@
+"""
+    pygments.lexers.graphql
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for GraphQL, an open-source data query and manipulation
+    language for APIs.
+
+    More information:
+    https://graphql.org/
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, words, include, bygroups
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, String, Text
 
@@ -69,7 +83,7 @@ class GraphQLLexer(RegexLexer):
             (r"\$[a-zA-Z_]\w*", Name.Variable, "#pop"),
             (r"[a-zA-Z_]\w*", Name.Constant, "#pop"),
             (r"\[", Punctuation, "list_value0"),
-            (r"{", Punctuation, "object_value0"),
+            (r"\{", Punctuation, "object_value0"),
         ],
         "value_single": [
             include("ignored_tokens"),
@@ -83,7 +97,7 @@ class GraphQLLexer(RegexLexer):
             (r"\$[a-zA-Z_]\w*", Name.Variable),
             (r"[a-zA-Z_]\w*", Name.Constant),
             (r"\[", Punctuation, "list_value"),
-            (r"{", Punctuation, "object_value"),
+            (r"\{", Punctuation, "object_value"),
         ],
         "list_value0": [
             (r"\]", Punctuation, "#pop:2"),
@@ -95,14 +109,14 @@ class GraphQLLexer(RegexLexer):
             ("]", Punctuation, "#pop"),
         ],
         "object_value0": [
-            (r"}", Punctuation, "#pop:2"),
+            (r"\}", Punctuation, "#pop:2"),
             include("object_value"),
         ],
         "object_value": [
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name),
             (r":", Punctuation, "value"),
-            ("}", Punctuation, "#pop"),
+            ("\}", Punctuation, "#pop"),
         ],
         "string": [
             include("in_string"),
@@ -120,14 +134,14 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             (words(OPERATION_TYPES, suffix=r"\b"), Keyword, "operation"),
             (words(KEYWORDS, suffix=r"\b"), Keyword),
-            ("{", Punctuation, "selection_set"),
+            ("\{", Punctuation, "selection_set"),
             (r"fragment\b", Keyword, "fragment_definition"),
         ],
         "operation": [
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name.Function),
             (r"\(", Punctuation, "variable_definition"),
-            ("{", Punctuation, "selection_set0"),
+            ("\{", Punctuation, "selection_set0"),
         ],
         # Variables definition
         "variable_definition0": [
@@ -150,7 +164,7 @@ class GraphQLLexer(RegexLexer):
         ],
         # Selection set
         "selection_set0": [
-            (r"}", Punctuation, "#pop:2"),
+            (r"\}", Punctuation, "#pop:2"),
             include("selection_set"),
         ],
         "selection_set": [
@@ -165,8 +179,8 @@ class GraphQLLexer(RegexLexer):
             (r"\.\.\.", Punctuation, "fragment_spread"),
             (r"\(", Punctuation, "arguments"),
             (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
-            (r"{", Punctuation, "selection_set"),
-            (r"}", Punctuation, "#pop"),
+            (r"\{", Punctuation, "selection_set"),
+            (r"\}", Punctuation, "#pop"),
         ],
         "directive": [
             include("ignored_tokens"),
@@ -189,7 +203,7 @@ class GraphQLLexer(RegexLexer):
             (r"on\b", Keyword, "type"),
             (r"[a-zA-Z_]\w*", Name.Function),
             (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
-            ("{", Punctuation, "selection_set0"),
+            ("\{", Punctuation, "selection_set0"),
         ],
         "fragment_spread": [
             include("ignored_tokens"),
@@ -200,6 +214,6 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name.Class),  # Type condition
             (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
-            ("{", Punctuation, "selection_set0"),
+            ("\{", Punctuation, "selection_set0"),
         ],
     }
