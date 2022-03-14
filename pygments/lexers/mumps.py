@@ -101,9 +101,11 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 6.2.2 Formal line 'formalline'
         'formallist': [
-            (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
-            (r'\(', Punctuation, 'l_name'),
-            (r'\)', Punctuation, '#pop'),
+            default(('#pop', 'close_paren', 'l_name', 'open_paren_optempty'))
+            ],
+        'open_paren_optempty': [
+            (r'\((?=\))', Punctuation, '#pop:2'),
+            include('open_paren')
             ],
         # list of 'name' continuation
         'l_name': L('name'),
