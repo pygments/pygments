@@ -1955,6 +1955,50 @@ def testFuncSt(lexer):
         (Text, '\n')
         ])
 
+def testFuncTextRouOffset(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'w'),
+        (Whitespace, ' '),
+        (Name.Function, '$TEXT'),
+        (Punctuation, '('),
+        (Operator, '+'),
+        (Number, '4'),
+        (Punctuation, '^'),
+        (Name.Namespace, 'ROUNAME'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncTEntryref(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$t'),
+        (Punctuation, '('),
+        (Name.Label, 'tag'),
+        (Operator, '+'),
+        (Number, '5'),
+        (Punctuation, '^'),
+        (Name.Namespace, 'ROU'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncTIndirect(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$t'),
+        (Punctuation, '('),
+        (Operator, '@'),
+        (Name.Variable, 'tagNRou'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
