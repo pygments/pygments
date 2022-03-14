@@ -1970,6 +1970,19 @@ def testFuncTextRouOffset(lexer):
         (Text, '\n')
         ])
 
+def testFuncTextJustOffset(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'w'),
+        (Whitespace, ' '),
+        (Name.Function, '$TEXT'),
+        (Punctuation, '('),
+        (Operator, '+'),
+        (Number, '4'),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 def testFuncTEntryref(lexer):
     assertTokenList(lexer, [
         (Whitespace, ' '),
