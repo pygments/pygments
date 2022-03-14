@@ -265,6 +265,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_reverse'),
                 include('function_select'),
                 include('function_stack'),
+                include('function_text'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -351,6 +352,14 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('$STACK', '$ST'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'intexpr', 'open_paren'))
                 ],
         # 7.1.5.20 - $TEXT
+        'function_text': [
+                (words(('$TEXT', '$T'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'textarg', 'open_paren'))
+                ],
+        'textarg': [
+                ('@', Operator, ('#pop', 'expr')),
+                (r'\+', Operator, ('#pop', 'entryref', 'intexpr')),
+                include('entryref')
+                ],
         # 7.1.5.21 - $TRANSLATE
         # 7.1.5.22 - $VIEW
         # 7.1.5.23 - $Z* functions are not in the standard
