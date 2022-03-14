@@ -269,6 +269,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_stack'),
                 include('function_text'),
                 include('function_translate'),
+                include('function_view'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
@@ -371,6 +372,10 @@ class MumpsLexer(ExtendedRegexLexer):
             (words(('$TRANSLATE', '$TR'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'comma', 'expr', 'open_paren'))
             ],
         # 7.1.5.22 - $VIEW
+        'function_view': [
+            # The parameters for VIEW are not specified, so here we allow null only
+            (words(( '$VIEW', '$V'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'open_paren'))
+            ],
         # 7.1.5.23 - $Z* functions are not in the standard
         # 7.2 - Expression tail exprtail
         'exprtail': [
