@@ -1,0 +1,99 @@
+'query'       Keyword
+' '           Text
+'HeroComparison' Name.Function
+'('           Punctuation
+'$first'      Name.Variable
+':'           Punctuation
+' '           Text
+'Int'         Name.Builtin
+' '           Text
+'='           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'leftComparison' Name.Label
+':'           Punctuation
+' '           Text
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text
+'EMPIRE'      Name.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'...'         Punctuation
+'comparisonFields' Name
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'rightComparison' Name.Label
+':'           Punctuation
+' '           Text
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text
+'JEDI'        Name.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'...'         Punctuation
+'comparisonFields' Name
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'fragment'    Keyword
+' '           Text
+'comparisonFields' Name.Function
+' '           Text
+'on'          Keyword
+' '           Text
+'Character'   Name.Class
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'name'        Name
+'\n  '        Text
+'friendsConnection' Name
+'('           Punctuation
+'first'       Name
+':'           Punctuation
+' '           Text
+'$first'      Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'totalCount'  Name
+'\n    '      Text
+'edges'       Name
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'node'        Name
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'name'        Name
+'\n      '    Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -247,6 +247,7 @@ Other markup
 * Flatline
 * Gettext catalogs
 * Gnuplot script
+* `GraphQL <https://graphql.org/>`_
 * Groff markup
 * `GSQL <https://docs.tigergraph.com/dev/gsql-ref>`_
 * Hexdumps
