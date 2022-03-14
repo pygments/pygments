@@ -2042,6 +2042,28 @@ def testFuncTr(lexer):
         (Text, '\n')
         ])
 
+def testFuncView(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'write'),
+        (Whitespace, ' '),
+        (Name.Function, '$VIEW'),
+        (Punctuation, '('),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
+def testFuncV(lexer):
+    assertTokenList(lexer, [
+        (Whitespace, ' '),
+        (Keyword, 'w'),
+        (Whitespace, ' '),
+        (Name.Function, '$v'),
+        (Punctuation, '('),
+        (Punctuation, ')'),
+        (Text, '\n')
+        ])
+
 # Command tests
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
