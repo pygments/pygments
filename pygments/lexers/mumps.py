@@ -264,20 +264,19 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('function_random'),
                 include('function_reverse'),
                 include('function_select'),
+                include('function_stack'),
                 ],
         # 7.1.5.1 - $ASCII
         'function_ascii': [
                 (words(('$ASCII', '$A'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'expr', 'open_paren')),
                 ],
-	'opt_param_comma': [
-		include('comma'),
-		default('#pop:2')
-		],
+        'opt_param_comma': [
+                include('comma'),
+                default('#pop:2')
+                ],
         # 7.1.5.2 - $CHAR
         'function_char': [
                 (words(('$CHAR', '$C'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'l_expr', 'open_paren')),
-                ],
-        'function_exract': [
                 ],
         # 7.1.5.3 - $DATA
         'function_data': [
@@ -348,6 +347,9 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'expr', 'colon', 'tvexpr'))
                 ],
         # 7.1.5.19 - $STACK
+        'function_stack': [
+                (words(('$STACK', '$ST'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'expr', 'opt_param_comma', 'intexpr', 'open_paren'))
+                ],
         # 7.1.5.20 - $TEXT
         # 7.1.5.21 - $TRANSLATE
         # 7.1.5.22 - $VIEW
