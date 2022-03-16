@@ -10,8 +10,6 @@
 
 
     :todo: Add LI / LEVELLINE line indent
-    :todo: Add more functions
-    :todo: Review exprtail
 """
 
 import re
@@ -25,7 +23,7 @@ class MumpsLexer(ExtendedRegexLexer):
     For MUMPS source code.
 
     Derived from `The Annotated M[UMPS] Standard <http://71.174.62.16/Demo/AnnoStd>`
-    Section numbers below refer to the sections on that site, most often from the latest (1995) standard.
+    Section numbers below refer to the sections from the 1995 (current) standard on that site
     """
 
     name = 'MUMPS'
@@ -130,8 +128,15 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7 - Expression 'expr'
         ###
         'expr': [
-                default(('#pop', 'exprtail', 'expratom'))
+                default(('#pop', 'exprtail_chain', 'expratom'))
                 ],
+        'exprtail_chain': [
+            default('exprtail_link')
+            ],
+        'exprtail_link': [
+            include('exprtail'),
+            default('#pop:2')
+            ],
         'l_expr': L('expr'),
         # 7.1 - expratom
         'expratom': [
@@ -377,15 +382,27 @@ class MumpsLexer(ExtendedRegexLexer):
             (words(( '$VIEW', '$V'), suffix=r'(?=\()'), Name.Function, ('#pop', 'close_paren', 'open_paren'))
             ],
         # 7.1.5.23 - $Z* functions are not in the standard
-        # 7.2 - Expression tail exprtail
+        # 7.2 - Expression tail 'exprtail'
         'exprtail': [
-                # TODO
-                ( '\'', Operator), # The "not" can happen multiple times
-                ( binaryop_re, Operator, 'expratom'),
-                ( truthop_re, Operator, 'expratom'),
-                ( r'\?', Operator, 'pattern'),
-                default('#pop')
-                ],
+            include('exprtail_binaryop'),
+            include('exprtail_truthop'),
+            include('exprtail_patternop'),
+            ("'", Operator, ('#pop', 'exprtail_nottable_ops')),
+            ],
+        # Operator clauses that may follow a 'not'
+        'exprtail_nottable_ops': [
+            include('exprtail_truthop'),
+            include('exprtail_patternop'),
+            ],
+        'exprtail_truthop': [
+            ( truthop_re, Operator, ('#pop', 'expratom'))
+            ],
+        'exprtail_binaryop': [
+            ( binaryop_re, Operator, ('#pop', 'expratom'))
+            ],
+        'exprtail_patternop': [
+            ( r'\?', Operator, ('#pop', 'pattern')),
+            ],
         # 7.2.3 - Pattern match 'pattern'
         'pattern': [
                 ( '@', Operator, ('#pop', 'expratom')),
