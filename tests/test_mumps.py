@@ -74,6 +74,8 @@ def testLevelLine(lexer):
         (Whitespace, ' '),
         (Keyword, 'i'),
         (Whitespace, ' '),
+        (Name.Variable, 'done'),
+        (Whitespace, ' '),
         (Keyword, 'q'),
         (Text, '\n')
         ]
