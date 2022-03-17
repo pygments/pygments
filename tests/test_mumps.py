@@ -63,6 +63,22 @@ def testStubSubroutine(lexer):
         ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def testLevelLine(lexer):
+    fragment = ' ..  . i done q'
+    assert list(lexer.get_tokens(fragment)) == [
+        (Whitespace, ' '),
+        (Punctuation, '.'),
+        (Punctuation, '.'),
+        (Whitespace, '  '),
+        (Punctuation, '.'),
+        (Whitespace, ' '),
+        (Keyword, 'i'),
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Text, '\n')
+        ]
+
+# 6.2.2 Formal line
 def testSimpleFunction(lexer):
     fragment = 'true() q 1'
     tokens = [
