@@ -8,8 +8,6 @@
     :copyright: Copyright 2020-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 
-
-    :todo: Add LI / LEVELLINE line indent
 """
 
 import re
@@ -91,11 +89,23 @@ class MumpsLexer(ExtendedRegexLexer):
             default('line'),           
             ],
         'line': [
-            # 6.2.1 levelline - Label is optional
-            (name_re + r'(?= )', Name.Label),
-            (ls_re, Whitespace, ('#pop', 'linebody')),
             # 6.2.2 formalline
-            ( name_re + r'(?=\()', Name.Function, 'formallist'),
+            ( name_re + r'(?=\()', Name.Function, ('#pop', 'linebody', 'ls', 'formallist')),
+            # 6.2.1 levelline - Label is optional
+            include('levelline')
+            ],
+        # 6.2.1 Level line 'levelline'
+        'levelline': [
+            default(('#pop', 'linebody', 'li_chain', 'ls', 'opt_label')),
+            ],
+        'opt_label': [
+            include('label'),
+            default('#pop')
+            ],
+        'li_chain': [
+            (r'(\.)( +)', bygroups(Punctuation, Whitespace)),
+            (r'\.', Punctuation),
+            default('#pop')
             ],
         # 6.2.2 Formal line 'formalline'
         'formallist': [
@@ -105,11 +115,14 @@ class MumpsLexer(ExtendedRegexLexer):
             (r'\((?=\))', Punctuation, '#pop:2'),
             include('open_paren')
             ],
-        # list of 'name' continuation
         'l_name': L('name'),
         # 6.2.3 Label 'label'
         'label': [
             (name_re, Name.Label, '#pop'),
+            ],
+        # 6.2.4 - Line separator 'ls'
+        'ls': [
+            ( ls_re, Whitespace, '#pop')
             ],
         # 6.2.5 - Line body 'linebody'
         'linebody': [
