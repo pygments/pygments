@@ -57,6 +57,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # Parsing states
     tokens = {
         'root': [
+            ('^' + name_re + r'(?=\n)', Name.Namespace),
             default('routinebody')
             ],
         ###
