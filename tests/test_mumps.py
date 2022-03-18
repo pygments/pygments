@@ -22,6 +22,12 @@ def assertTokenList(lexer,tokenList):
         code += token[1]
     assert list(lexer.get_tokens(code)) == tokenList
 
+def routineName(lexer):
+    assert list(lexer.get_tokens('ROUNAME')) == [
+        (Name.Namespace, 'ROUNAME'),
+        (Text, '\n')
+        ]
+
 def testQuitLine(lexer):
     assertTokenList(lexer,[
         (Whitespace, ' '),
