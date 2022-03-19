@@ -865,7 +865,7 @@ class QmlLexer(RegexLexer):
 
 
 class CirruLexer(RegexLexer):
-    """
+    r"""
     * using ``()`` for expressions, but restricted in a same line
     * using ``""`` for strings, with ``\`` for escaping chars
     * using ``$`` as folding operator
