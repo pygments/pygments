@@ -67,15 +67,15 @@ class BnfLexer(RegexLexer):
 
 class AbnfLexer(RegexLexer):
     """
-    Lexer for `IETF 7405 ABNF
-    <http://www.ietf.org/rfc/rfc7405.txt>`_
-    (Updates `5234 <http://www.ietf.org/rfc/rfc5234.txt>`_)
-    grammars.
+    Lexer for IETF 7405 ABNF.
+
+    (Updates `5234 <http://www.ietf.org/rfc/rfc5234.txt>`_) grammars.
 
     .. versionadded:: 2.1
     """
 
     name = 'ABNF'
+    url = 'http://www.ietf.org/rfc/rfc7405.txt'
     aliases = ['abnf']
     filenames = ['*.abnf']
     mimetypes = ['text/x-abnf']
@@ -134,12 +134,12 @@ class AbnfLexer(RegexLexer):
 
 class JsgfLexer(RegexLexer):
     """
-    For `JSpeech Grammar Format <https://www.w3.org/TR/jsgf/>`_
-    grammars.
+    For JSpeech Grammar Format grammars.
 
     .. versionadded:: 2.2
     """
     name = 'JSGF'
+    url = 'https://www.w3.org/TR/jsgf/'
     aliases = ['jsgf']
     filenames = ['*.jsgf']
     mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
@@ -212,8 +212,7 @@ class JsgfLexer(RegexLexer):
 
 class PegLexer(RegexLexer):
     """
-    This lexer is for `Parsing Expression Grammars
-    <https://bford.info/pub/lang/peg.pdf>`_ (PEG).
+    This lexer is for Parsing Expression Grammars (PEG).
 
     Various implementations of PEG have made different decisions
     regarding the syntax, so let's try to be accommodating:
@@ -232,6 +231,7 @@ class PegLexer(RegexLexer):
     """
 
     name = 'PEG'
+    url = 'https://bford.info/pub/lang/peg.pdf'
     aliases = ['peg']
     filenames = ['*.peg']
     mimetypes = ['text/x-peg']

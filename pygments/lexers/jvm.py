@@ -25,10 +25,11 @@ __all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
 
 class JavaLexer(RegexLexer):
     """
-    For `Java <https://www.oracle.com/technetwork/java/>`_ source code.
+    For Java source code.
     """
 
     name = 'Java'
+    url = 'https://www.oracle.com/technetwork/java/'
     aliases = ['java']
     filenames = ['*.java']
     mimetypes = ['text/x-java']
@@ -110,12 +111,13 @@ class JavaLexer(RegexLexer):
 
 class AspectJLexer(JavaLexer):
     """
-    For `AspectJ <http://www.eclipse.org/aspectj/>`_ source code.
+    For AspectJ source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'AspectJ'
+    url = 'http://www.eclipse.org/aspectj/'
     aliases = ['aspectj']
     filenames = ['*.aj']
     mimetypes = ['text/x-aspectj']
@@ -149,10 +151,11 @@ class AspectJLexer(JavaLexer):
 
 class ScalaLexer(RegexLexer):
     """
-    For `Scala <http://www.scala-lang.org>`_ source code.
+    For Scala source code.
     """
 
     name = 'Scala'
+    url = 'http://www.scala-lang.org'
     aliases = ['scala']
     filenames = ['*.scala']
     mimetypes = ['text/x-scala']
@@ -533,12 +536,13 @@ class GosuTemplateLexer(Lexer):
 
 class GroovyLexer(RegexLexer):
     """
-    For `Groovy <http://groovy.codehaus.org/>`_ source code.
+    For Groovy source code.
 
     .. versionadded:: 1.5
     """
 
     name = 'Groovy'
+    url = 'https://groovy-lang.org/'
     aliases = ['groovy']
     filenames = ['*.groovy','*.gradle']
     mimetypes = ['text/x-groovy']
@@ -610,12 +614,13 @@ class GroovyLexer(RegexLexer):
 
 class IokeLexer(RegexLexer):
     """
-    For `Ioke <http://ioke.org/>`_ (a strongly typed, dynamic,
+    For Ioke (a strongly typed, dynamic,
     prototype based programming language) source.
 
     .. versionadded:: 1.4
     """
     name = 'Ioke'
+    url = 'https://ioke.org/'
     filenames = ['*.ik']
     aliases = ['ioke', 'ik']
     mimetypes = ['text/x-iokesrc']
@@ -801,11 +806,12 @@ class IokeLexer(RegexLexer):
 
 class ClojureLexer(RegexLexer):
     """
-    Lexer for `Clojure <http://clojure.org/>`_ source code.
+    Lexer for Clojure source code.
 
     .. versionadded:: 0.11
     """
     name = 'Clojure'
+    url = 'http://clojure.org/'
     aliases = ['clojure', 'clj']
     filenames = ['*.clj', '*.cljc']
     mimetypes = ['text/x-clojure', 'application/x-clojure']
@@ -941,12 +947,12 @@ class ClojureLexer(RegexLexer):
 
 class ClojureScriptLexer(ClojureLexer):
     """
-    Lexer for `ClojureScript <http://clojure.org/clojurescript>`_
-    source code.
+    Lexer for ClojureScript source code.
 
     .. versionadded:: 2.0
     """
     name = 'ClojureScript'
+    url = 'http://clojure.org/clojurescript'
     aliases = ['clojurescript', 'cljs']
     filenames = ['*.cljs']
     mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
@@ -954,7 +960,7 @@ class ClojureScriptLexer(ClojureLexer):
 
 class TeaLangLexer(RegexLexer):
     """
-    For `Tea <http://teatrove.org/>`_ source code. Only used within a
+    For Tea source code. Only used within a
     TeaTemplateLexer.
 
     .. versionadded:: 1.5
@@ -1001,12 +1007,13 @@ class TeaLangLexer(RegexLexer):
 
 class CeylonLexer(RegexLexer):
     """
-    For `Ceylon <http://ceylon-lang.org/>`_ source code.
+    For Ceylon source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'Ceylon'
+    url = 'http://ceylon-lang.org/'
     aliases = ['ceylon']
     filenames = ['*.ceylon']
     mimetypes = ['text/x-ceylon']
@@ -1080,13 +1087,13 @@ class CeylonLexer(RegexLexer):
 
 class KotlinLexer(RegexLexer):
     """
-    For `Kotlin <http://kotlinlang.org/>`_
-    source code.
+    For Kotlin source code.
 
     .. versionadded:: 1.5
     """
 
     name = 'Kotlin'
+    url = 'http://kotlinlang.org/'
     aliases = ['kotlin']
     filenames = ['*.kt', '*.kts']
     mimetypes = ['text/x-kotlin']
@@ -1236,12 +1243,13 @@ class KotlinLexer(RegexLexer):
 
 class XtendLexer(RegexLexer):
     """
-    For `Xtend <http://xtend-lang.org/>`_ source code.
+    For Xtend source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'Xtend'
+    url = 'https://www.eclipse.org/xtend/'
     aliases = ['xtend']
     filenames = ['*.xtend']
     mimetypes = ['text/x-xtend']
@@ -1301,12 +1309,13 @@ class XtendLexer(RegexLexer):
 
 class PigLexer(RegexLexer):
     """
-    For `Pig Latin <https://pig.apache.org/>`_ source code.
+    For Pig Latin source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Pig'
+    url = 'https://pig.apache.org/'
     aliases = ['pig']
     filenames = ['*.pig']
     mimetypes = ['text/x-pig']
@@ -1368,12 +1377,13 @@ class PigLexer(RegexLexer):
 
 class GoloLexer(RegexLexer):
     """
-    For `Golo <http://golo-lang.org/>`_ source code.
+    For Golo source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Golo'
+    url = 'http://golo-lang.org/'
     filenames = ['*.golo']
     aliases = ['golo']
 
@@ -1481,12 +1491,13 @@ class GoloLexer(RegexLexer):
 
 class JasminLexer(RegexLexer):
     """
-    For `Jasmin <http://jasmin.sourceforge.net/>`_ assembly code.
+    For Jasmin assembly code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Jasmin'
+    url = 'http://jasmin.sourceforge.net/'
     aliases = ['jasmin', 'jasminxt']
     filenames = ['*.j']
 
@@ -1745,12 +1756,13 @@ class JasminLexer(RegexLexer):
 
 class SarlLexer(RegexLexer):
     """
-    For `SARL <http://www.sarl.io>`_ source code.
+    For SARL source code.
 
     .. versionadded:: 2.4
     """
 
     name = 'SARL'
+    url = 'http://www.sarl.io'
     aliases = ['sarl']
     filenames = ['*.sarl']
     mimetypes = ['text/x-sarl']

@@ -28,12 +28,13 @@ operator_suffixes = r'[²³¹ʰʲʳʷʸˡˢˣᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹ�
 
 class JuliaLexer(RegexLexer):
     """
-    For `Julia <http://julialang.org/>`_ source code.
+    For Julia source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'Julia'
+    url = 'https://julialang.org/'
     aliases = ['julia', 'jl']
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']

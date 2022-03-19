@@ -37,6 +37,7 @@ class JavascriptLexer(RegexLexer):
     """
 
     name = 'JavaScript'
+    url = 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/'
     aliases = ['javascript', 'js']
     filenames = ['*.js', '*.jsm', '*.mjs', '*.cjs']
     mimetypes = ['application/javascript', 'application/x-javascript',
@@ -174,15 +175,13 @@ class TypeScriptLexer(JavascriptLexer):
 
 class KalLexer(RegexLexer):
     """
-    For `Kal`_ source code.
-
-    .. _Kal: http://rzimmerman.github.io/kal
-
+    For Kal source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Kal'
+    url = 'http://rzimmerman.github.io/kal'
     aliases = ['kal']
     filenames = ['*.kal']
     mimetypes = ['text/kal', 'application/kal']
@@ -310,14 +309,13 @@ class KalLexer(RegexLexer):
 
 class LiveScriptLexer(RegexLexer):
     """
-    For `LiveScript`_ source code.
-
-    .. _LiveScript: https://livescript.net/
+    For LiveScript source code.
 
     .. versionadded:: 1.6
     """
 
     name = 'LiveScript'
+    url = 'https://livescript.net/'
     aliases = ['livescript', 'live-script']
     filenames = ['*.ls']
     mimetypes = ['text/livescript']
@@ -424,12 +422,13 @@ class LiveScriptLexer(RegexLexer):
 
 class DartLexer(RegexLexer):
     """
-    For `Dart <http://dart.dev/>`_ source code.
+    For Dart source code.
 
     .. versionadded:: 1.5
     """
 
     name = 'Dart'
+    url = 'http://dart.dev/'
     aliases = ['dart']
     filenames = ['*.dart']
     mimetypes = ['text/x-dart']
@@ -527,7 +526,7 @@ class DartLexer(RegexLexer):
 
 class LassoLexer(RegexLexer):
     """
-    For `Lasso <http://www.lassosoft.com/>`_ source code, covering both Lasso 9
+    For Lasso source code, covering both Lasso 9
     syntax and LassoScript for Lasso 8.6 and earlier. For Lasso embedded in
     HTML, use the `LassoHtmlLexer`.
 
@@ -1014,14 +1013,13 @@ class ObjectiveJLexer(RegexLexer):
 
 class CoffeeScriptLexer(RegexLexer):
     """
-    For `CoffeeScript`_ source code.
-
-    .. _CoffeeScript: http://coffeescript.org
+    For CoffeeScript source code.
 
     .. versionadded:: 1.3
     """
 
     name = 'CoffeeScript'
+    url = 'http://coffeescript.org'
     aliases = ['coffeescript', 'coffee-script', 'coffee']
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
@@ -1129,11 +1127,12 @@ class CoffeeScriptLexer(RegexLexer):
 
 class MaskLexer(RegexLexer):
     """
-    For `Mask <https://github.com/atmajs/MaskJS>`__ markup.
+    For Mask markup.
 
     .. versionadded:: 2.0
     """
     name = 'Mask'
+    url = 'https://github.com/atmajs/MaskJS'
     aliases = ['mask']
     filenames = ['*.mask']
     mimetypes = ['text/x-mask']
@@ -1248,9 +1247,7 @@ class MaskLexer(RegexLexer):
 
 class EarlGreyLexer(RegexLexer):
     """
-    For `Earl-Grey`_ source code.
-
-    .. _Earl-Grey: https://breuleux.github.io/earl-grey/
+    For Earl-Grey source code.
 
     .. versionadded: 2.1
     """
@@ -1464,14 +1461,13 @@ class EarlGreyLexer(RegexLexer):
 
 class JuttleLexer(RegexLexer):
     """
-    For `Juttle`_ source code.
-
-    .. _Juttle: https://github.com/juttle/juttle
+    For Juttle source code.
 
     .. versionadded:: 2.2
     """
 
     name = 'Juttle'
+    url = 'http://juttle.github.io/'
     aliases = ['juttle']
     filenames = ['*.juttle']
     mimetypes = ['application/juttle', 'application/x-juttle',
