@@ -18,7 +18,7 @@ __all__ = ['SASLexer']
 
 class SASLexer(RegexLexer):
     """
-    For `SAS <http://www.sas.com/>`_ files.
+    For SAS files.
 
     .. versionadded:: 2.2
     """

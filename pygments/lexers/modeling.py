@@ -22,11 +22,12 @@ __all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
 
 class ModelicaLexer(RegexLexer):
     """
-    For `Modelica <http://www.modelica.org/>`_ source code.
+    For Modelica source code.
 
     .. versionadded:: 1.1
     """
     name = 'Modelica'
+    url = 'http://www.modelica.org/'
     aliases = ['modelica']
     filenames = ['*.mo']
     mimetypes = ['text/x-modelica']
@@ -97,7 +98,7 @@ class ModelicaLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for `OpenBugs <http://www.openbugs.net/>`_ and WinBugs
+    Pygments Lexer for OpenBugs and WinBugs
     models.
 
     .. versionadded:: 1.6

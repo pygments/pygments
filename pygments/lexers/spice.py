@@ -19,11 +19,12 @@ __all__ = ['SpiceLexer']
 
 class SpiceLexer(RegexLexer):
     """
-    For `Spice <https://www.spicelang.com>`_ source.
+    For Spice source.
 
     .. versionadded:: 2.11
     """
     name = 'Spice'
+    url = 'https://www.spicelang.com'
     filenames = ['*.spice']
     aliases = ['spice', 'spicelang']
     mimetypes = ['text/x-spice']

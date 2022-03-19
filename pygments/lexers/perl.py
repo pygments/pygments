@@ -21,10 +21,11 @@ __all__ = ['PerlLexer', 'Perl6Lexer']
 
 class PerlLexer(RegexLexer):
     """
-    For `Perl <https://www.perl.org>`_ source code.
+    For Perl source code.
     """
 
     name = 'Perl'
+    url = 'https://www.perl.org'
     aliases = ['perl', 'pl']
     filenames = ['*.pl', '*.pm', '*.t', '*.perl']
     mimetypes = ['text/x-perl', 'application/x-perl']
@@ -223,12 +224,13 @@ class PerlLexer(RegexLexer):
 
 class Perl6Lexer(ExtendedRegexLexer):
     """
-    For `Raku <https://www.raku.org>`_ (a.k.a. Perl 6) source code.
+    For Raku (a.k.a. Perl 6) source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Perl6'
+    url = 'https://www.raku.org'
     aliases = ['perl6', 'pl6', 'raku']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',

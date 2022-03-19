@@ -34,7 +34,7 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
 
 class RagelLexer(RegexLexer):
     """
-    A pure `Ragel <http://www.complang.org/ragel/>`_ lexer.  Use this for
+    A pure Ragel lexer.  Use this for
     fragments of Ragel.  For ``.rl`` files, use RagelEmbeddedLexer instead
     (or one of the language-specific subclasses).
 
@@ -42,6 +42,7 @@ class RagelLexer(RegexLexer):
     """
 
     name = 'Ragel'
+    url = 'http://www.colm.net/open-source/ragel/'
     aliases = ['ragel']
     filenames = []
 

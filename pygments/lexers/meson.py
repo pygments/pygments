@@ -31,7 +31,7 @@ __all__ = ['MesonLexer']
 
 class MesonLexer(RegexLexer):
     """
-    `meson <https://mesonbuild.com/>`_ language lexer.
+    `meson language lexer.
     The grammar definition use to transcribe the syntax was retrieved from
     https://mesonbuild.com/Syntax.html#grammar for version 0.58
     Some of those definitions are improperly transcribed so the Meson++
@@ -44,6 +44,7 @@ class MesonLexer(RegexLexer):
     # TODO keyword_arg: value inner matches
 
     name = 'Meson'
+    url = 'https://mesonbuild.com/'
     aliases = ['meson', 'meson.build']
     filenames = ['meson.build', 'meson_options.txt']
     mimetypes = ['text/x-meson']

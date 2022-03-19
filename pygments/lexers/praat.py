@@ -17,12 +17,13 @@ __all__ = ['PraatLexer']
 
 class PraatLexer(RegexLexer):
     """
-    For `Praat <http://www.praat.org>`_ scripts.
+    For Praat scripts.
 
     .. versionadded:: 2.1
     """
 
     name = 'Praat'
+    url = 'http://www.praat.org'
     aliases = ['praat']
     filenames = ['*.praat', '*.proc', '*.psc']
 

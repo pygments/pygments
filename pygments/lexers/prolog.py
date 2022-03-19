@@ -83,12 +83,13 @@ class PrologLexer(RegexLexer):
 
 class LogtalkLexer(RegexLexer):
     """
-    For `Logtalk <http://logtalk.org/>`_ source code.
+    For Logtalk source code.
 
     .. versionadded:: 0.10
     """
 
     name = 'Logtalk'
+    url = 'http://logtalk.org/'
     aliases = ['logtalk']
     filenames = ['*.lgt', '*.logtalk']
     mimetypes = ['text/x-logtalk']

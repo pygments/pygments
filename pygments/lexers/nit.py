@@ -17,12 +17,13 @@ __all__ = ['NitLexer']
 
 class NitLexer(RegexLexer):
     """
-    For `nit <http://nitlanguage.org>`_ source.
+    For nit source.
 
     .. versionadded:: 2.0
     """
 
     name = 'Nit'
+    url = 'http://nitlanguage.org'
     aliases = ['nit']
     filenames = ['*.nit']
     tokens = {

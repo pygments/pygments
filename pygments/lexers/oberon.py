@@ -19,7 +19,7 @@ __all__ = ['ComponentPascalLexer']
 
 class ComponentPascalLexer(RegexLexer):
     """
-    For `Component Pascal <http://www.oberon.ch/pdf/CP-Lang.pdf>`_ source code.
+    For Component Pascal source code.
 
     .. versionadded:: 2.1
     """

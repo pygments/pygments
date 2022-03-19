@@ -77,11 +77,12 @@ _safeScope = [
 
 class MonteLexer(RegexLexer):
     """
-    Lexer for the `Monte <https://monte.readthedocs.io/>`_ programming language.
+    Lexer for the Monte programming language.
 
     .. versionadded:: 2.2
     """
     name = 'Monte'
+    url = 'https://monte.readthedocs.io/'
     aliases = ['monte']
     filenames = ['*.mt']
 

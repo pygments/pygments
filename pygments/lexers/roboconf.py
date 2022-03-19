@@ -16,7 +16,7 @@ __all__ = ['RoboconfGraphLexer', 'RoboconfInstancesLexer']
 
 class RoboconfGraphLexer(RegexLexer):
     """
-    Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ graph files.
+    Lexer for Roboconf graph files.
 
     .. versionadded:: 2.1
     """
@@ -51,7 +51,7 @@ class RoboconfGraphLexer(RegexLexer):
 
 class RoboconfInstancesLexer(RegexLexer):
     """
-    Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ instances files.
+    Lexer for Roboconf instances files.
 
     .. versionadded:: 2.1
     """
