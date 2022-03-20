@@ -19,14 +19,13 @@ __all__ = ['ECLLexer']
 
 class ECLLexer(RegexLexer):
     """
-    Lexer for the declarative big-data `ECL
-    <https://hpccsystems.com/training/documentation/ecl-language-reference/html>`_
-    language.
+    Lexer for the declarative big-data ECL language.
 
     .. versionadded:: 1.5
     """
 
     name = 'ECL'
+    url = 'https://hpccsystems.com/training/documentation/ecl-language-reference/html'
     aliases = ['ecl']
     filenames = ['*.ecl']
     mimetypes = ['application/x-ecl']

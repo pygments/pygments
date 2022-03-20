@@ -41,6 +41,7 @@ class TclLexer(RegexLexer):
         'subst', 'tell', 'time', 'tm', 'unknown', 'unload'), prefix=r'\b', suffix=r'\b')
 
     name = 'Tcl'
+    url = 'https://www.tcl.tk/about/language.html'
     aliases = ['tcl']
     filenames = ['*.tcl', '*.rvt']
     mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']

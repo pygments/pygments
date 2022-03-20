@@ -26,12 +26,11 @@ class ErlangLexer(RegexLexer):
     """
     For the Erlang functional programming language.
 
-    Blame Jeremy Thurgood (http://jerith.za.net/).
-
     .. versionadded:: 0.9
     """
 
     name = 'Erlang'
+    url = 'https://www.erlang.org/'
     aliases = ['erlang']
     filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
@@ -223,12 +222,13 @@ def gen_elixir_sigstr_rules(term, term_class, token, interpol=True):
 
 class ElixirLexer(RegexLexer):
     """
-    For the `Elixir language <http://elixir-lang.org>`_.
+    For the Elixir language.
 
     .. versionadded:: 1.5
     """
 
     name = 'Elixir'
+    url = 'http://elixir-lang.org'
     aliases = ['elixir', 'ex', 'exs']
     filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']

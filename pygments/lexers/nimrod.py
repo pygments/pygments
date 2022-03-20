@@ -19,12 +19,13 @@ __all__ = ['NimrodLexer']
 
 class NimrodLexer(RegexLexer):
     """
-    For `Nim <http://nim-lang.org/>`_ source code.
+    For Nim source code.
 
     .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
+    url = 'http://nim-lang.org/'
     aliases = ['nimrod', 'nim']
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']

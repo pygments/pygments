@@ -20,14 +20,14 @@ __all__ = ['CypherLexer']
 
 class CypherLexer(RegexLexer):
     """
-    For `Cypher Query Language
-    <https://neo4j.com/docs/developer-manual/3.3/cypher/>`_
+    For Cypher Query Language
 
     For the Cypher version in Neo4j 3.3
 
     .. versionadded:: 2.0
     """
     name = 'Cypher'
+    url = 'https://neo4j.com/docs/developer-manual/3.3/cypher/'
     aliases = ['cypher']
     filenames = ['*.cyp', '*.cypher']
 

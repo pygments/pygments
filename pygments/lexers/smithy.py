@@ -24,6 +24,7 @@ class SmithyLexer(RegexLexer):
     .. versionadded:: 2.10
     """
     name = 'Smithy'
+    url = 'https://awslabs.github.io/smithy/'
     filenames = ['*.smithy']
     aliases = ['smithy']
 

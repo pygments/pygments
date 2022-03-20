@@ -25,10 +25,11 @@ line_re = re.compile(".*?\n")
 
 class GDScriptLexer(RegexLexer):
     """
-    For `GDScript source code <https://www.godotengine.org>`_.
+    For GDScript source code.
     """
 
     name = "GDScript"
+    url = 'https://www.godotengine.org'
     aliases = ["gdscript", "gd"]
     filenames = ["*.gd"]
     mimetypes = ["text/x-gdscript", "application/x-gdscript"]

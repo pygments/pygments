@@ -34,6 +34,7 @@ class SchemeLexer(RegexLexer):
     .. versionadded:: 0.6
     """
     name = 'Scheme'
+    url = 'http://www.scheme-reports.org/'
     aliases = ['scheme', 'scm']
     filenames = ['*.scm', '*.ss']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
@@ -298,6 +299,7 @@ class CommonLispLexer(RegexLexer):
     .. versionadded:: 0.9
     """
     name = 'Common Lisp'
+    url = 'https://lisp-lang.org/'
     aliases = ['common-lisp', 'cl', 'lisp']
     filenames = ['*.cl', '*.lisp']
     mimetypes = ['text/x-common-lisp']
@@ -471,11 +473,12 @@ class CommonLispLexer(RegexLexer):
 
 class HyLexer(RegexLexer):
     """
-    Lexer for `Hy <http://hylang.org/>`_ source code.
+    Lexer for Hy source code.
 
     .. versionadded:: 2.0
     """
     name = 'Hy'
+    url = 'http://hylang.org/'
     aliases = ['hylang']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
@@ -585,13 +588,14 @@ class HyLexer(RegexLexer):
 
 class RacketLexer(RegexLexer):
     """
-    Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly
+    Lexer for Racket source code (formerly
     known as PLT Scheme).
 
     .. versionadded:: 1.6
     """
 
     name = 'Racket'
+    url = 'http://racket-lang.org/'
     aliases = ['racket', 'rkt']
     filenames = ['*.rkt', '*.rktd', '*.rktl']
     mimetypes = ['text/x-racket', 'application/x-racket']
@@ -1527,12 +1531,13 @@ class RacketLexer(RegexLexer):
 
 class NewLispLexer(RegexLexer):
     """
-    For `newLISP. <http://www.newlisp.org/>`_ source code (version 10.3.0).
+    For newLISP source code (version 10.3.0).
 
     .. versionadded:: 1.5
     """
 
     name = 'NewLisp'
+    url = 'http://www.newlisp.org/'
     aliases = ['newlisp']
     filenames = ['*.lsp', '*.nl', '*.kif']
     mimetypes = ['text/x-newlisp', 'application/x-newlisp']
@@ -2303,11 +2308,12 @@ class EmacsLispLexer(RegexLexer):
 
 class ShenLexer(RegexLexer):
     """
-    Lexer for `Shen <http://shenlanguage.org/>`_ source code.
+    Lexer for Shen source code.
 
     .. versionadded:: 2.1
     """
     name = 'Shen'
+    url = 'http://shenlanguage.org/'
     aliases = ['shen']
     filenames = ['*.shen']
     mimetypes = ['text/x-shen', 'application/x-shen']
@@ -2544,8 +2550,7 @@ class CPSALexer(RegexLexer):
 
 
 class XtlangLexer(RegexLexer):
-    """An xtlang lexer for the `Extempore programming environment
-    <http://extempore.moso.com.au>`_.
+    """An xtlang lexer for the Extempore programming environment.
 
     This is a mixture of Scheme and xtlang, really. Keyword lists are
     taken from the Extempore Emacs mode
@@ -2554,6 +2559,7 @@ class XtlangLexer(RegexLexer):
     .. versionadded:: 2.2
     """
     name = 'xtlang'
+    url = 'http://extempore.moso.com.au'
     aliases = ['extempore']
     filenames = ['*.xtm']
     mimetypes = []
@@ -2748,7 +2754,7 @@ class XtlangLexer(RegexLexer):
 
 
 class FennelLexer(RegexLexer):
-    """A lexer for the `Fennel programming language <https://fennel-lang.org>`_.
+    """A lexer for the Fennel programming language.
 
     Fennel compiles to Lua, so all the Lua builtins are recognized as well
     as the special forms that are particular to the Fennel compiler.
@@ -2756,6 +2762,7 @@ class FennelLexer(RegexLexer):
     .. versionadded:: 2.3
     """
     name = 'Fennel'
+    url = 'https://fennel-lang.org'
     aliases = ['fennel', 'fnl']
     filenames = ['*.fnl']
 

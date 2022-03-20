@@ -24,8 +24,7 @@ __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
 
 class CSharpLexer(RegexLexer):
     """
-    For `C# <http://msdn2.microsoft.com/en-us/vcsharp/default.aspx>`_
-    source code.
+    For C# source code.
 
     Additional options accepted:
 
@@ -47,6 +46,7 @@ class CSharpLexer(RegexLexer):
     """
 
     name = 'C#'
+    url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
     aliases = ['csharp', 'c#', 'cs']
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
@@ -140,7 +140,7 @@ class CSharpLexer(RegexLexer):
 
 class NemerleLexer(RegexLexer):
     """
-    For `Nemerle <http://nemerle.org>`_ source code.
+    For Nemerle source code.
 
     Additional options accepted:
 
@@ -162,6 +162,7 @@ class NemerleLexer(RegexLexer):
     """
 
     name = 'Nemerle'
+    url = 'http://nemerle.org'
     aliases = ['nemerle']
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
@@ -317,10 +318,11 @@ class NemerleLexer(RegexLexer):
 
 class BooLexer(RegexLexer):
     """
-    For `Boo <http://boo.codehaus.org/>`_ source code.
+    For Boo source code.
     """
 
     name = 'Boo'
+    url = 'https://github.com/boo-lang/boo'
     aliases = ['boo']
     filenames = ['*.boo']
     mimetypes = ['text/x-boo']
@@ -384,12 +386,11 @@ class BooLexer(RegexLexer):
 
 class VbNetLexer(RegexLexer):
     """
-    For
-    `Visual Basic.NET <http://msdn2.microsoft.com/en-us/vbasic/default.aspx>`_
-    source code.
+    For Visual Basic.NET source code.
     """
 
     name = 'VB.net'
+    url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
     aliases = ['vb.net', 'vbnet']
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
@@ -559,12 +560,13 @@ class VbNetAspxLexer(DelegatingLexer):
 # Very close to functional.OcamlLexer
 class FSharpLexer(RegexLexer):
     """
-    For the `F# language <https://fsharp.org/>`_ (version 3.0).
+    For the F# language (version 3.0).
 
     .. versionadded:: 1.5
     """
 
     name = 'F#'
+    url= 'https://fsharp.org/'
     aliases = ['fsharp', 'f#']
     filenames = ['*.fs', '*.fsi']
     mimetypes = ['text/x-fsharp']

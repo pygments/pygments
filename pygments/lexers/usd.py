@@ -35,6 +35,7 @@ class UsdLexer(RegexLexer):
     """
 
     name = "USD"
+    url = 'https://graphics.pixar.com/usd/release/index.html'
     aliases = ["usd", "usda"]
     filenames = ["*.usd", "*.usda"]
 

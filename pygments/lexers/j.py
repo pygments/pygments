@@ -17,12 +17,13 @@ __all__ = ['JLexer']
 
 class JLexer(RegexLexer):
     """
-    For `J <http://jsoftware.com/>`_ source code.
+    For J source code.
 
     .. versionadded:: 2.1
     """
 
     name = 'J'
+    url = 'http://jsoftware.com/'
     aliases = ['j']
     filenames = ['*.ijs']
     mimetypes = ['text/x-j']

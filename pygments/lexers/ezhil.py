@@ -18,11 +18,12 @@ __all__ = ['EzhilLexer']
 
 class EzhilLexer(RegexLexer):
     """
-    Lexer for `Ezhil, a Tamil script-based programming language <http://ezhillang.org>`_
+    Lexer for Ezhil, a Tamil script-based programming language.
 
     .. versionadded:: 2.1
     """
     name = 'Ezhil'
+    url = 'http://ezhillang.org'
     aliases = ['ezhil']
     filenames = ['*.n']
     mimetypes = ['text/x-ezhil']

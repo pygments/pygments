@@ -17,12 +17,13 @@ __all__ = ['PointlessLexer']
 
 class PointlessLexer(RegexLexer):
     """
-    For `Pointless <https://ptls.dev>`_ source code.
+    For Pointless source code.
 
     .. versionadded:: 2.7
     """
 
     name = 'Pointless'
+    url = 'https://ptls.dev'
     aliases = ['pointless']
     filenames = ['*.ptls']
 

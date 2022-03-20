@@ -76,6 +76,9 @@ class Lexer(metaclass=LexerMeta):
     #: Name of the lexer
     name = None
 
+    #: URL of the language specification/definition
+    url = None
+
     #: Shortcuts for the lexer
     aliases = []
 

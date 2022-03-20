@@ -17,12 +17,13 @@ __all__ = ['FloScriptLexer']
 
 class FloScriptLexer(RegexLexer):
     """
-    For `FloScript <https://github.com/ioflo/ioflo>`_ configuration language source code.
+    For FloScript configuration language source code.
 
     .. versionadded:: 2.4
     """
 
     name = 'FloScript'
+    url = 'https://github.com/ioflo/ioflo'
     aliases = ['floscript', 'flo']
     filenames = ['*.flo']
 

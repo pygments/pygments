@@ -17,12 +17,12 @@ __all__ = ['IoLexer']
 
 class IoLexer(RegexLexer):
     """
-    For `Io <http://iolanguage.com/>`_ (a small, prototype-based
-    programming language) source.
+    For Io (a small, prototype-based programming language) source.
 
     .. versionadded:: 0.10
     """
     name = 'Io'
+    url = 'http://iolanguage.com/'
     filenames = ['*.io']
     aliases = ['io']
     mimetypes = ['text/x-iosrc']

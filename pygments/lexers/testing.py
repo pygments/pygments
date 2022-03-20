@@ -16,7 +16,7 @@ __all__ = ['GherkinLexer', 'TAPLexer']
 
 class GherkinLexer(RegexLexer):
     """
-    For `Gherkin <https://github.com/aslakhellesoy/gherkin/>` syntax.
+    For Gherkin syntax.
 
     .. versionadded:: 1.2
     """
@@ -140,6 +140,7 @@ class TAPLexer(RegexLexer):
     .. versionadded:: 2.1
     """
     name = 'TAP'
+    url = 'https://testanything.org/'
     aliases = ['tap']
     filenames = ['*.tap']
 

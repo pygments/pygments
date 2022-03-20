@@ -19,11 +19,12 @@ __all__ = ['FactorLexer']
 
 class FactorLexer(RegexLexer):
     """
-    Lexer for the `Factor <http://factorcode.org>`_ language.
+    Lexer for the Factor language.
 
     .. versionadded:: 1.4
     """
     name = 'Factor'
+    url = 'http://factorcode.org'
     aliases = ['factor']
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']

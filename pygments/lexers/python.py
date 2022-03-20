@@ -27,7 +27,7 @@ line_re = re.compile('.*?\n')
 
 class PythonLexer(RegexLexer):
     """
-    For `Python <http://www.python.org>`_ source code (version 3.x).
+    For Python source code (version 3.x).
 
     .. versionadded:: 0.10
 
@@ -37,6 +37,7 @@ class PythonLexer(RegexLexer):
     """
 
     name = 'Python'
+    url = 'http://www.python.org'
     aliases = ['python', 'py', 'sage', 'python3', 'py3']
     filenames = [
         '*.py',
@@ -401,7 +402,7 @@ Python3Lexer = PythonLexer
 
 class Python2Lexer(RegexLexer):
     """
-    For `Python 2.x <http://www.python.org>`_ source code.
+    For Python 2.x source code.
 
     .. versionchanged:: 2.5
        This class has been renamed from ``PythonLexer``.  ``PythonLexer`` now
@@ -410,6 +411,7 @@ class Python2Lexer(RegexLexer):
     """
 
     name = 'Python 2.x'
+    url = 'http://www.python.org'
     aliases = ['python2', 'py2']
     filenames = []  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
@@ -814,12 +816,13 @@ class Python2TracebackLexer(RegexLexer):
 
 class CythonLexer(RegexLexer):
     """
-    For Pyrex and `Cython <http://cython.org>`_ source code.
+    For Pyrex and Cython source code.
 
     .. versionadded:: 1.1
     """
 
     name = 'Cython'
+    url = 'http://cython.org'
     aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
@@ -993,7 +996,7 @@ class CythonLexer(RegexLexer):
 
 class DgLexer(RegexLexer):
     """
-    Lexer for `dg <http://pyos.github.com/dg>`_,
+    Lexer for dg,
     a functional and object-oriented programming language
     running on the CPython 3 VM.
 
@@ -1098,6 +1101,7 @@ class NumPyLexer(PythonLexer):
     """
 
     name = 'NumPy'
+    url = 'https://numpy.org/'
     aliases = ['numpy']
 
     # override the mimetypes to not inherit them from python

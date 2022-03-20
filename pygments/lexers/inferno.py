@@ -19,7 +19,7 @@ __all__ = ['LimboLexer']
 
 class LimboLexer(RegexLexer):
     """
-    Lexer for `Limbo programming language <http://www.vitanuova.com/inferno/limbo.html>`_
+    Lexer for Limbo programming language
 
     TODO:
         - maybe implement better var declaration highlighting
@@ -28,6 +28,7 @@ class LimboLexer(RegexLexer):
     .. versionadded:: 2.0
     """
     name = 'Limbo'
+    url = 'http://www.vitanuova.com/inferno/limbo.html'
     aliases = ['limbo']
     filenames = ['*.b']
     mimetypes = ['text/limbo']

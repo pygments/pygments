@@ -44,6 +44,7 @@ class WebIDLLexer(RegexLexer):
     """
 
     name = 'Web IDL'
+    url = 'https://www.w3.org/wiki/Web_IDL'
     aliases = ['webidl']
     filenames = ['*.webidl']
 

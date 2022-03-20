@@ -17,12 +17,13 @@ __all__ = ['ElmLexer']
 
 class ElmLexer(RegexLexer):
     """
-    For `Elm <http://elm-lang.org/>`_ source code.
+    For Elm source code.
 
     .. versionadded:: 2.1
     """
 
     name = 'Elm'
+    url = 'http://elm-lang.org/'
     aliases = ['elm']
     filenames = ['*.elm']
     mimetypes = ['text/x-elm']

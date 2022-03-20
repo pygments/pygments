@@ -28,6 +28,7 @@ class FutharkLexer(RegexLexer):
     .. versionadded:: 2.8
     """
     name = 'Futhark'
+    url = 'https://futhark-lang.org/'
     aliases = ['futhark']
     filenames = ['*.fut']
     mimetypes = ['text/x-futhark']

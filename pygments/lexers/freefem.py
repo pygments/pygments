@@ -21,7 +21,7 @@ __all__ = ['FreeFemLexer']
 
 class FreeFemLexer(CppLexer):
     """
-    For `FreeFem++ <https://freefem.org/>`_ source.
+    For FreeFem++ source.
 
     This is an extension of the CppLexer, as the FreeFem Language is a superset
     of C++.
@@ -30,6 +30,7 @@ class FreeFemLexer(CppLexer):
     """
 
     name = 'Freefem'
+    url = 'https://freefem.org/'
     aliases = ['freefem']
     filenames = ['*.edp']
     mimetypes = ['text/x-freefem']

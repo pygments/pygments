@@ -19,11 +19,12 @@ __all__ = ['TeraTermLexer']
 
 class TeraTermLexer(RegexLexer):
     """
-    For `Tera Term <https://ttssh2.osdn.jp/>`_ macro source code.
+    For Tera Term macro source code.
 
     .. versionadded:: 2.4
     """
     name = 'Tera Term macro'
+    url = 'https://ttssh2.osdn.jp/'
     aliases = ['teratermmacro', 'teraterm', 'ttl']
     filenames = ['*.ttl']
     mimetypes = ['text/x-teratermmacro']

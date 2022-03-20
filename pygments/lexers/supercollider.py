@@ -19,12 +19,13 @@ __all__ = ['SuperColliderLexer']
 
 class SuperColliderLexer(RegexLexer):
     """
-    For `SuperCollider <http://supercollider.github.io/>`_ source code.
+    For SuperCollider source code.
 
     .. versionadded:: 2.1
     """
 
     name = 'SuperCollider'
+    url = 'http://supercollider.github.io/'
     aliases = ['supercollider', 'sc']
     filenames = ['*.sc', '*.scd']
     mimetypes = ['application/supercollider', 'text/supercollider', ]

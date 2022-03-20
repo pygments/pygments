@@ -32,6 +32,7 @@ class HtmlLexer(RegexLexer):
     """
 
     name = 'HTML'
+    url = 'https://html.spec.whatwg.org/'
     aliases = ['html']
     filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
     mimetypes = ['text/html', 'application/xhtml+xml']

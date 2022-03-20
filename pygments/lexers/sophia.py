@@ -18,7 +18,7 @@ __all__ = ['SophiaLexer']
 
 class SophiaLexer(RegexLexer):
     """
-    A `Sophia <https://buildwithsophia.com/>`_ lexer.
+    A Sophia lexer.
 
     .. versionadded:: 2.11
     """

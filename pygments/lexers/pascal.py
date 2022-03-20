@@ -25,7 +25,7 @@ __all__ = ['DelphiLexer', 'AdaLexer']
 
 class DelphiLexer(Lexer):
     """
-    For `Delphi <http://www.borland.com/delphi/>`_ (Borland Object Pascal),
+    For Delphi (Borland Object Pascal),
     Turbo Pascal and Free Pascal source code.
 
     Additional options accepted:

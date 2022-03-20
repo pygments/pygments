@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block htmltitle %}<title>Languages {{ titlesuffix }}</title>{% endblock %}
+
+{% block body %}
+
+<h1>Languages</h1>
+
+<ul>
+{% for language in languages %}
+<li>
+    {% if language.url %}
+    <a href="{{language.url}}">{{language.name}}</a>
+    {% else %}
+    {{language.name}}
+    {% endif %}
+</li>
+{% endfor %}
+</ul>
+{{ body }}
+
+<h1>... that's all?</h1>
+
+Well, why not write your own? Contributing to Pygments is easy and fun. Take a
+look at the <a href="{{ pathto('docs/lexerdevelopment') }}">docs on lexer development</a>. Pull
+requests are welcome on <a href="https://github.com/pygments/pygments">GitHub</a>.
+
+Note: the languages listed here are supported in the development version. The
+latest release may lack a few of them.
+
+{% endblock %}

@@ -123,6 +123,7 @@ class ActionScript3Lexer(RegexLexer):
     """
 
     name = 'ActionScript 3'
+    url = 'https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html'
     aliases = ['actionscript3', 'as3']
     filenames = ['*.as']
     mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',

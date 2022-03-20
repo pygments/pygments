@@ -24,6 +24,8 @@ newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
 
 class CsoundLexer(RegexLexer):
+    url = 'https://csound.com/'
+    
     tokens = {
         'whitespace': [
             (r'[ \t]+', Whitespace),

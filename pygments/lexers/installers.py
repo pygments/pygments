@@ -20,11 +20,12 @@ __all__ = ['NSISLexer', 'RPMSpecLexer', 'SourcesListLexer',
 
 class NSISLexer(RegexLexer):
     """
-    For `NSIS <http://nsis.sourceforge.net/>`_ scripts.
+    For NSIS scripts.
 
     .. versionadded:: 1.6
     """
     name = 'NSIS'
+    url = 'http://nsis.sourceforge.net/'
     aliases = ['nsis', 'nsi', 'nsh']
     filenames = ['*.nsi', '*.nsh']
     mimetypes = ['text/x-nsis']
@@ -269,12 +270,10 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
-    Specification of `control`` files is available at
-    https://www.debian.org/doc/debian-policy/ch-controlfields.html
-
     .. versionadded:: 0.9
     """
     name = 'Debian Control file'
+    url = 'https://www.debian.org/doc/debian-policy/ch-controlfields.html'
     aliases = ['debcontrol', 'control']
     filenames = ['control']
 

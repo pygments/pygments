@@ -17,11 +17,10 @@ __all__ = ['ZigLexer']
 
 class ZigLexer(RegexLexer):
     """
-    For `Zig <http://www.ziglang.org>`_ source code.
-
     grammar: https://ziglang.org/documentation/master/#Grammar
     """
     name = 'Zig'
+    url = 'http://www.ziglang.org'
     aliases = ['zig']
     filenames = ['*.zig']
     mimetypes = ['text/zig']

@@ -16,7 +16,7 @@ __all__ = ['RtsLexer']
 
 class RtsLexer(RegexLexer):
     """
-    For `Riverbed Stingray Traffic Manager <http://www.riverbed.com/stingray>`_
+    For Riverbed Stingray Traffic Manager
 
     .. versionadded:: 2.1
     """

@@ -25,6 +25,7 @@ class ForthLexer(RegexLexer):
     .. versionadded:: 2.2
     """
     name = 'Forth'
+    url = 'https://www.forth.com/forth/'
     aliases = ['forth']
     filenames = ['*.frt', '*.fs']
     mimetypes = ['application/x-forth']

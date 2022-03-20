@@ -38,6 +38,7 @@ class CddlLexer(RegexLexer):
     .. versionadded:: 2.8
     """
     name = "CDDL"
+    url = 'https://datatracker.ietf.org/doc/rfc8610/'
     aliases = ["cddl"]
     filenames = ["*.cddl"]
     mimetypes = ["text/x-cddl"]

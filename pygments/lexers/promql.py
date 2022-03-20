@@ -25,7 +25,7 @@ __all__ = ["PromQLLexer"]
 
 class PromQLLexer(RegexLexer):
     """
-    For `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_ queries.
+    For PromQL queries.
 
     For details about the grammar see:
     https://github.com/prometheus/prometheus/tree/master/promql/parser
@@ -34,6 +34,7 @@ class PromQLLexer(RegexLexer):
     """
 
     name = "PromQL"
+    url = 'https://prometheus.io/docs/prometheus/latest/querying/basics/'
     aliases = ["promql"]
     filenames = ["*.promql"]
 
