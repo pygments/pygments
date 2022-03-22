@@ -1,215 +1,215 @@
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'flash.events.MouseEvent' Name.Namespace
 ';'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'com.example.programmingas3.playlist.PlayList' Name.Namespace
 ';'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'com.example.programmingas3.playlist.Song' Name.Namespace
 ';'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'com.example.programmingas3.playlist.SortProperty' Name.Namespace
 ';'           Operator
-'\n\n\t\t\t'  Text
+'\n\n\t\t\t'  Text.Whitespace
 '// constants for the different "states" of the song form\n' Comment.Single
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ADD_SONG'    Name
 ':'           Punctuation
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SONG_DETAIL' Name
 ':'           Punctuation
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Operator
-'\n\t\t\t\n\t\t\t' Text
+'\n\t\t\t\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'playList'    Name
 ':'           Punctuation
 'PlayList'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlayList.<T>' Keyword.Type
 '('           Operator
 ');'          Operator
-'\n\n\t\t\t'  Text
+'\n\n\t\t\t'  Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'initApp'     Name.Function
 '('           Operator
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '// set the initial state of the song form, for adding a new song\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'setFormState' Name
 '('           Operator
 'ADD_SONG'    Name
 ');'          Operator
-'\n\t\t\t\t\n\t\t\t\t' Text
+'\n\t\t\t\t\n\t\t\t\t' Text.Whitespace
 '// prepopulate the list with a few songs\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'playList'    Name
 '.'           Operator
 'addSong'     Name.Attribute
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Song'        Keyword.Type
 '('           Operator
 '"Nessun Dorma"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Luciano Pavarotti"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '1990'        Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"nessundorma.mp3"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 '"90\'s"'     Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Opera"'     Literal.String.Double
 ']));'        Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'playList'    Name
 '.'           Operator
 'addSong'     Name.Attribute
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Song'        Keyword.Type
 '('           Operator
 '"Come Undone"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Duran Duran"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '1993'        Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"comeundone.mp3"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 '"90\'s"'     Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Pop"'       Literal.String.Double
 ']));'        Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'playList'    Name
 '.'           Operator
 'addSong'     Name.Attribute
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Song'        Keyword.Type
 '('           Operator
 '"Think of Me"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Sarah Brightman"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '1987'        Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"thinkofme.mp3"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 '"Showtunes"' Literal.String.Double
 ']));'        Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'playList'    Name
 '.'           Operator
 'addSong'     Name.Attribute
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Song'        Keyword.Type
 '('           Operator
 '"Unbelievable"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"EMF"'       Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '1991'        Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"unbelievable.mp3"' Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 '"90\'s"'     Literal.String.Double
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"Pop"'       Literal.String.Double
 ']));'        Operator
-'\n\n\t\t\t\t' Text
+'\n\n\t\t\t\t' Text.Whitespace
 'songList'    Name
 '.'           Operator
 'dataProvider' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'playList'    Name
 '.'           Operator
 'songList'    Name.Attribute
 ';'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'sortList'    Name.Function
 '('           Operator
@@ -219,358 +219,358 @@
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '// Make all the sort type buttons enabled.\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '// The active one will be grayed-out below\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'sortByTitle' Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'sortByArtist' Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'sortByYear'  Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Operator
-'\n\n\t\t\t\t' Text
+'\n\n\t\t\t\t' Text.Whitespace
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'sortField'   Name
 ')'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'SortProperty' Name
 '.'           Operator
 'TITLE'       Name.Attribute
 ':'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'sortByTitle' Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'break'       Keyword
 ';'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'SortProperty' Name
 '.'           Operator
 'ARTIST'      Name.Attribute
 ':'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'sortByArtist' Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'break'       Keyword
 ';'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'SortProperty' Name
 '.'           Operator
 'YEAR'        Name.Attribute
 ':'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'sortByYear'  Name
 '.'           Operator
 'selected'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'break'       Keyword
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '}'           Operator
-'\n\n\t\t\t\t' Text
+'\n\n\t\t\t\t' Text.Whitespace
 'playList'    Name
 '.'           Operator
 'sortList'    Name.Attribute
 '('           Operator
 'sortField'   Name
 ');'          Operator
-'\n\t\t\t\t\n\t\t\t\t' Text
+'\n\t\t\t\t\n\t\t\t\t' Text.Whitespace
 'refreshList' Name
 '();'         Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'refreshList' Name.Function
 '('           Operator
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '// remember which song was selected\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 ':'           Punctuation
 'Song'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Song'        Name
 '('           Operator
 'songList'    Name
 '.'           Operator
 'selectedItem' Name.Attribute
 ');'          Operator
-'\n\t\t\t\t\n\t\t\t\t' Text
+'\n\t\t\t\t\n\t\t\t\t' Text.Whitespace
 '// re-assign the song list as the dataprovider to get the newly sorted list\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '// and force the List control to refresh itself\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'songList'    Name
 '.'           Operator
 'dataProvider' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'playList'    Name
 '.'           Operator
 'songList'    Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\n\t\t\t\t' Text
+'\n\t\t\t\t\n\t\t\t\t' Text.Whitespace
 '// reset the song selection\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'selectedSong' Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'songList'    Name
 '.'           Operator
 'selectedItem' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '}'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'songSelectionChange' Name.Function
 '('           Operator
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'songList'    Name
 '.'           Operator
 'selectedIndex' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
 ')'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'setFormState' Name
 '('           Operator
 'SONG_DETAIL' Name
 ');'          Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '}'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'else'        Keyword
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'setFormState' Name
 '('           Operator
 'ADD_SONG'    Name
 ');'          Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '}'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'addNewSong'  Name.Function
 '('           Operator
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '// gather the values from the form and add the new song\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'title'       Name
 ':'           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'newSongTitle' Name
 '.'           Operator
 'text'        Name.Attribute
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'artist'      Name
 ':'           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'newSongArtist' Name
 '.'           Operator
 'text'        Name.Attribute
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'year'        Name
 ':'           Punctuation
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'newSongYear' Name
 '.'           Operator
 'value'       Name.Attribute
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'filename'    Name
 ':'           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'newSongFilename' Name
 '.'           Operator
 'text'        Name.Attribute
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'genres'      Name
 ':'           Punctuation
 'Array'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'newSongGenres' Name
 '.'           Operator
 'selectedItems' Name.Attribute
 ';'           Operator
-'\n\n\t\t\t\t' Text
+'\n\n\t\t\t\t' Text.Whitespace
 'playList'    Name
 '.'           Operator
 'addSong'     Name.Attribute
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Song'        Keyword.Type
 '('           Operator
 'title'       Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'artist'      Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'year'        Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'filename'    Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'genres'      Name
 '));'         Operator
-'\n\n\t\t\t\t' Text
+'\n\n\t\t\t\t' Text.Whitespace
 'refreshList' Name
 '();'         Operator
-'\n\t\n\t\t\t\t' Text
+'\n\t\n\t\t\t\t' Text.Whitespace
 '// clear out the "add song" form fields\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'setFormState' Name
 '('           Operator
 'ADD_SONG'    Name
 ');'          Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'songListLabel' Name.Function
 '('           Operator
@@ -580,20 +580,20 @@
 ')'           Operator
 ':'           Operator
 'String'      Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'toString'    Name.Attribute
 '();'         Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n\n\n\t\t\t' Text
+'\n\n\n\t\t\t' Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function '   Keyword.Declaration
 'setFormState' Name.Function
 '('           Operator
@@ -603,238 +603,238 @@
 ')'           Operator
 ':'           Operator
 'void'        Keyword.Type
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '// set the form title and control state\n' Comment.Single
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'state'       Name
 ')'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '{'           Operator
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'ADD_SONG'    Name
 ':'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'formTitle'   Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Add New Song"' Literal.String.Double
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 '// show the submit button\n' Comment.Single
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'submitSongData' Name
 '.'           Operator
 'visible'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'showAddControlsBtn' Name
 '.'           Operator
 'visible'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 '// clear the form fields\n' Comment.Single
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'newSongTitle' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongArtist' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongYear' Name
 '.'           Operator
 'value'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Date'        Keyword.Type
 '('           Operator
 ')).'         Operator
 'fullYear'    Name
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongFilename' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongGenres' Name
 '.'           Operator
 'selectedIndex' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 '// deselect the currently selected song (if any)\n' Comment.Single
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'songList'    Name
 '.'           Operator
 'selectedIndex' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'break'       Keyword
 ';'           Operator
-'\n\t\t\t\t\t\t\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t\n\t\t\t\t\t' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'SONG_DETAIL' Name
 ':'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'formTitle'   Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Song Details"' Literal.String.Double
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 "// populate the form with the selected item's data\n" Comment.Single
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 ':'           Punctuation
 'Song'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Song'        Name
 '('           Operator
 'songList'    Name
 '.'           Operator
 'selectedItem' Name.Attribute
 ');'          Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongTitle' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 '.'           Operator
 'title'       Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongArtist' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 '.'           Operator
 'artist'      Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongYear' Name
 '.'           Operator
 'value'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 '.'           Operator
 'year'        Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongFilename' Name
 '.'           Operator
 'text'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 '.'           Operator
 'filename'    Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'newSongGenres' Name
 '.'           Operator
 'selectedItems' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'selectedSong' Name
 '.'           Operator
 'genres'      Name.Attribute
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 '// hide the submit button\n' Comment.Single
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 'submitSongData' Name
 '.'           Operator
 'visible'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'showAddControlsBtn' Name
 '.'           Operator
 'visible'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n\t\t\t\t\t\t' Text
+'\n\t\t\t\t\t\t' Text.Whitespace
 'break'       Keyword
 ';'           Operator
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '}'           Operator
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

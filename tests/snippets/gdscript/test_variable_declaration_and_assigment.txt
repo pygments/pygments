@@ -3,10 +3,10 @@ var abc = 5.4
 
 ---tokens---
 'var'         Keyword
-' '           Text
+' '           Text.Whitespace
 'abc'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5.4'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace

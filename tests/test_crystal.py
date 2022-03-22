@@ -2,13 +2,13 @@
     Basic CrystalLexer Test
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import pytest
 
-from pygments.token import Text, String, Number, Punctuation, Error
+from pygments.token import Text, String, Number, Punctuation, Error, Whitespace
 from pygments.lexers import CrystalLexer
 
 
@@ -27,7 +27,7 @@ def test_numbers(lexer):
     ]:
         for fragment in testset.split():
             assert list(lexer.get_tokens(fragment + '\n')) == \
-                [(kind, fragment), (Text, '\n')]
+                [(kind, fragment), (Whitespace, '\n')]
 
     for fragment in '01  0b2  0x129g2  0o12358'.split():
         assert next(lexer.get_tokens(fragment + '\n'))[0] == Error
@@ -36,14 +36,14 @@ def test_numbers(lexer):
 def test_symbols(lexer):
     for fragment in [':sym_bol', ':\u3042', ':question?']:
         assert list(lexer.get_tokens(fragment + '\n')) == \
-            [(String.Symbol, fragment), (Text, '\n')]
+            [(String.Symbol, fragment), (Whitespace, '\n')]
 
     fragment = ':"sym bol"\n'
     tokens = [
         (String.Symbol, ':"'),
         (String.Symbol, 'sym bol'),
         (String.Symbol, '"'),
-        (Text, '\n'),
+        (Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -51,7 +51,7 @@ def test_symbols(lexer):
 def test_chars(lexer):
     for fragment in ["'a'", "'я'", "'\\u{1234}'", "'\n'"]:
         assert list(lexer.get_tokens(fragment + '\n')) == \
-            [(String.Char, fragment), (Text, '\n')]
+            [(String.Char, fragment), (Whitespace, '\n')]
     assert next(lexer.get_tokens("'abc'"))[0] == Error
 
 
@@ -64,7 +64,7 @@ def test_string_escapes(lexer):
             (String.Escape, body),
             (String.Double, 'z'),
             (String.Double, '"'),
-            (Text, '\n'),
+            (Whitespace, '\n'),
         ]
 
 
@@ -76,5 +76,5 @@ def test_empty_percent_strings(lexer):
             (String.Other, body[:-1]),
             (String.Other, body[-1]),
             (Punctuation, ')'),
-            (Text, '\n'),
+            (Whitespace, '\n'),
         ]

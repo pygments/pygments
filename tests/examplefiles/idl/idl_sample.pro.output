@@ -1,73 +1,111 @@
-"; docformat = 'rst'\n" Comment.Single
+"; docformat = 'rst'" Comment.Single
+'\n'          Text.Whitespace
 
-'\n; Example IDL (Interactive Data Language) source code.\n' Comment.Single
+'\n'          Text.Whitespace
 
-'\n;+\n'      Comment.Single
+'; Example IDL (Interactive Data Language) source code.' Comment.Single
+'\n'          Text.Whitespace
 
-'; Get `nIndices` random indices for an array of size `nValues` (without \n' Comment.Single
+'\n'          Text.Whitespace
 
-'; repeating an index).\n' Comment.Single
+';+'          Comment.Single
+'\n'          Text.Whitespace
 
-';\n'         Comment.Single
+'; Get `nIndices` random indices for an array of size `nValues` (without ' Comment.Single
+'\n'          Text.Whitespace
 
-'; :Examples:\n' Comment.Single
+'; repeating an index).' Comment.Single
+'\n'          Text.Whitespace
 
-';    Try::\n' Comment.Single
+';'           Comment.Single
+'\n'          Text.Whitespace
 
-';\n'         Comment.Single
+'; :Examples:' Comment.Single
+'\n'          Text.Whitespace
 
-';       IDL> r = randomu(seed, 10)\n' Comment.Single
+';    Try::'  Comment.Single
+'\n'          Text.Whitespace
 
-";       IDL> print, r, format='(4F)'\n" Comment.Single
+';'           Comment.Single
+'\n'          Text.Whitespace
 
-';             0.6297589      0.7815896      0.2508559      0.7546844\n' Comment.Single
+';       IDL> r = randomu(seed, 10)' Comment.Single
+'\n'          Text.Whitespace
 
-';             0.1353382      0.1245834      0.8733745      0.0753110\n' Comment.Single
+";       IDL> print, r, format='(4F)'" Comment.Single
+'\n'          Text.Whitespace
 
-';             0.8054136      0.9513228\n' Comment.Single
+';             0.6297589      0.7815896      0.2508559      0.7546844' Comment.Single
+'\n'          Text.Whitespace
 
-';       IDL> ind = mg_sample(10, 3, seed=seed)\n' Comment.Single
+';             0.1353382      0.1245834      0.8733745      0.0753110' Comment.Single
+'\n'          Text.Whitespace
 
-';       IDL> print, ind\n' Comment.Single
+';             0.8054136      0.9513228' Comment.Single
+'\n'          Text.Whitespace
 
-';                  2           4           7\n' Comment.Single
+';       IDL> ind = mg_sample(10, 3, seed=seed)' Comment.Single
+'\n'          Text.Whitespace
 
-';       IDL> print, r[ind]\n' Comment.Single
+';       IDL> print, ind' Comment.Single
+'\n'          Text.Whitespace
 
-';            0.250856     0.135338    0.0753110\n' Comment.Single
+';                  2           4           7' Comment.Single
+'\n'          Text.Whitespace
 
-';\n'         Comment.Single
+';       IDL> print, r[ind]' Comment.Single
+'\n'          Text.Whitespace
 
-'; :Returns: \n' Comment.Single
+';            0.250856     0.135338    0.0753110' Comment.Single
+'\n'          Text.Whitespace
 
-';    lonarr(`nIndices`)\n' Comment.Single
+';'           Comment.Single
+'\n'          Text.Whitespace
 
-';\n'         Comment.Single
+'; :Returns: ' Comment.Single
+'\n'          Text.Whitespace
 
-'; :Params:\n' Comment.Single
+';    lonarr(`nIndices`)' Comment.Single
+'\n'          Text.Whitespace
 
-';    nValues : in, required, type=long\n' Comment.Single
+';'           Comment.Single
+'\n'          Text.Whitespace
 
-';       size of array to choose indices from\n' Comment.Single
+'; :Params:'  Comment.Single
+'\n'          Text.Whitespace
 
-';    nIndices : in, required, type=long\n' Comment.Single
+';    nValues : in, required, type=long' Comment.Single
+'\n'          Text.Whitespace
 
-';       number of indices needed\n' Comment.Single
+';       size of array to choose indices from' Comment.Single
+'\n'          Text.Whitespace
 
-';\n'         Comment.Single
+';    nIndices : in, required, type=long' Comment.Single
+'\n'          Text.Whitespace
 
-'; :Keywords:\n' Comment.Single
+';       number of indices needed' Comment.Single
+'\n'          Text.Whitespace
 
-';    seed : in, out, optional, type=integer or lonarr(36)\n' Comment.Single
+';'           Comment.Single
+'\n'          Text.Whitespace
 
-';       seed to use for random number generation, leave undefined to use a \n' Comment.Single
+'; :Keywords:' Comment.Single
+'\n'          Text.Whitespace
 
-';       seed generated from the system clock; new seed will be output\n' Comment.Single
+';    seed : in, out, optional, type=integer or lonarr(36)' Comment.Single
+'\n'          Text.Whitespace
 
-';-\n'        Comment.Single
+';       seed to use for random number generation, leave undefined to use a ' Comment.Single
+'\n'          Text.Whitespace
+
+';       seed generated from the system clock; new seed will be output' Comment.Single
+'\n'          Text.Whitespace
+
+';-'          Comment.Single
+'\n'          Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'g'           Text
 '_'           Text
@@ -78,7 +116,7 @@
 'l'           Text
 'e'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'V'           Text
 'a'           Text
@@ -87,7 +125,7 @@
 'e'           Text
 's'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'I'           Text
 'n'           Text
@@ -97,7 +135,7 @@
 'e'           Text
 's'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 'e'           Text
 'e'           Text
@@ -107,12 +145,11 @@
 'e'           Text
 'e'           Text
 'd'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'compile_opt' Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Text
 't'           Text
 'r'           Text
@@ -122,23 +159,26 @@
 'a'           Text
 'r'           Text
 'r'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  ; get random nIndices by finding the indices of the smallest nIndices in a \n' Comment.Single
+'  \n  '      Text.Whitespace
+'; get random nIndices by finding the indices of the smallest nIndices in a ' Comment.Single
+'\n'          Text.Whitespace
 
-'  ; array of random values\n' Comment.Single
+'  '          Text.Whitespace
+'; array of random values' Comment.Single
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'v'           Text
 'a'           Text
 'l'           Text
 'u'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'randomu'     Name.Builtin
 '('           Text
 's'           Text
@@ -146,7 +186,7 @@
 'e'           Text
 'd'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'V'           Text
 'a'           Text
@@ -155,22 +195,25 @@
 'e'           Text
 's'           Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  ; our random values are uniformly distributed, so ideally the nIndices \n' Comment.Single
+'  \n  '      Text.Whitespace
+'; our random values are uniformly distributed, so ideally the nIndices ' Comment.Single
+'\n'          Text.Whitespace
 
-'  ; smallest values are in the first bin of the below histogram\n' Comment.Single
+'  '          Text.Whitespace
+'; smallest values are in the first bin of the below histogram' Comment.Single
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'n'           Text
 'B'           Text
 'i'           Text
 'n'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'V'           Text
 'a'           Text
@@ -178,9 +221,9 @@
 'u'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'I'           Text
 'n'           Text
@@ -189,14 +232,13 @@
 'c'           Text
 'e'           Text
 's'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'h'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'histogram'   Name.Builtin
 '('           Text
 'v'           Text
@@ -206,7 +248,7 @@
 'e'           Text
 's'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'b'           Text
 'i'           Text
@@ -219,7 +261,7 @@
 'n'           Text
 's'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'r'           Text
 'e'           Text
 'v'           Text
@@ -239,12 +281,13 @@
 'r'           Text
 'i'           Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  ; the candidates for being in the first nIndices will live in bins 0..bin\n' Comment.Single
+'\n  '        Text.Whitespace
+'; the candidates for being in the first nIndices will live in bins 0..bin' Comment.Single
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'n'           Text
 'C'           Text
 'a'           Text
@@ -256,44 +299,40 @@
 't'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0L'          Literal.Number.Integer.Long
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'i'           Text
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0L'          Literal.Number.Integer.Long
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'B'           Text
 'i'           Text
 'n'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1L'          Literal.Number.Integer.Long
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 'begin'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'    '        Text.Whitespace
 'n'           Text
 'C'           Text
 'a'           Text
@@ -305,23 +344,20 @@
 't'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'h'           Text
 '['           Text
 'b'           Text
 'i'           Text
 'n'           Text
 ']'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Text
 'n'           Text
 'C'           Text
@@ -334,9 +370,9 @@
 't'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 'ge'          Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'I'           Text
 'n'           Text
@@ -346,25 +382,22 @@
 'e'           Text
 's'           Text
 ')'           Text
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'break'       Keyword
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'endfor'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  ; get the candidates and sort them\n' Comment.Single
+'\n  '        Text.Whitespace
+'; get the candidates and sort them' Comment.Single
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'c'           Text
 'a'           Text
 'n'           Text
@@ -375,9 +408,9 @@
 't'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'r'           Text
 'i'           Text
 '['           Text
@@ -386,29 +419,28 @@
 '['           Text
 '0'           Literal.Number.Integer
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'r'           Text
 'i'           Text
 '['           Text
 'b'           Text
 'i'           Text
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1L'          Literal.Number.Integer.Long
 ']'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1L'          Literal.Number.Integer.Long
 ']'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 's'           Text
 'o'           Text
 'r'           Text
@@ -425,9 +457,9 @@
 't'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'sort'        Name.Builtin
 '('           Text
 'v'           Text
@@ -449,15 +481,16 @@
 's'           Text
 ']'           Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  ; return the first nIndices of them\n' Comment.Single
+'\n  '        Text.Whitespace
+'; return the first nIndices of them' Comment.Single
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'return'      Name.Builtin
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '('           Text
 'c'           Text
 'a'           Text
@@ -502,19 +535,22 @@
 '-'           Operator
 '1L'          Literal.Number.Integer.Long
 ']'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n; main-level example program\n' Comment.Single
+'\n\n'        Text.Whitespace
 
-'\n'          Text
+'; main-level example program' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
 
 'r'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'randomu'     Name.Builtin
 '('           Text
 's'           Text
@@ -522,35 +558,24 @@
 'e'           Text
 'd'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ')'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
+'            ' Text.Whitespace
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'r'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Text
 'n'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'g'           Text
 '_'           Text
@@ -563,10 +588,10 @@
 '('           Text
 '10'          Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ','           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 'e'           Text
 'e'           Text
@@ -577,28 +602,28 @@
 'e'           Text
 'd'           Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 'n'           Text
 'd'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'r'           Text
 '['           Text
 'i'           Text
 'n'           Text
 'd'           Text
 ']'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

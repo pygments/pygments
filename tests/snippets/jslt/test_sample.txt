@@ -1,0 +1,83 @@
+---input---
+import "transforms/yellow.jslt" as yellow
+
+// Known valid types
+let valid-types = [ "SomeType" ]
+
+def foobar(arg) $arg.foobar
+
+{
+  "foobar": foobar(.),
+  "is-valid": contains(.type, $valid-types),
+  *: .
+}
+
+---tokens---
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"transforms/yellow.jslt"' Literal.String.Symbol
+' '           Text.Whitespace
+'as'          Keyword.Namespace
+' '           Text.Whitespace
+'yellow'      Name.Namespace
+'\n\n'        Text.Whitespace
+
+'// Known valid types\n' Comment.Single
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'valid-types' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'"SomeType"'  Literal.String.Double
+' '           Text.Whitespace
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'def'         Keyword.Declaration
+' '           Text.Whitespace
+'foobar'      Name.Function
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'$arg'        Name.Variable
+'.'           Operator
+'foobar'      Name
+'\n\n'        Text.Whitespace
+
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'"foobar"'    Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'foobar'      Name
+'('           Punctuation
+'.'           Operator
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'"is-valid"'  Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'contains'    Name.Builtin
+'('           Punctuation
+'.'           Operator
+'type'        Name
+','           Punctuation
+' '           Text.Whitespace
+'$valid-types' Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'*'           Operator
+':'           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

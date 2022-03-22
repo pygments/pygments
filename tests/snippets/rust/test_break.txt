@@ -1,0 +1,39 @@
+---input---
+loop {
+    break;
+    break 'foo;
+    break'foo;
+    break_it;
+}
+
+---tokens---
+'loop'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'break'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'break'       Keyword
+' '           Text.Whitespace
+"'foo"        Name.Label
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'break'       Keyword
+"'foo"        Name.Label
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'break_it'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

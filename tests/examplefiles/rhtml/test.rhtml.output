@@ -275,21 +275,21 @@
 '='           Operator
 '"text/javascript"' Literal.String
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'// <![CDATA[\n' Comment.Single
-
-'  '          Text
-'new'         Keyword
-' '           Text
+'// <![CDATA[' Comment.Single
+'\n  '        Text.Whitespace
+'new'         Operator.Word
+' '           Text.Whitespace
 'SiteMap'     Name.Other
 '('           Punctuation
 "'site-map'"  Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'// ]]>\n'    Comment.Single
+'// ]]>'      Comment.Single
+'\n'          Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation

@@ -1,95 +1,95 @@
 'Type'        Name.Class
 '['           Punctuation
 'A'           Name.Class
-' '           Text
+' '           Text.Whitespace
 'with'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"user provided string"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'with'        Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Class
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'help'        Name.Function
 '('           Punctuation
 'id'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'UserName'    Name.Class
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'Password'    Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '???'         Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'either'      Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Password'    Name.Class
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'UserName'    Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '???'         Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'both'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '&'           Name
-' '           Text
+' '           Text.Whitespace
 'Product'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '???'         Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Operator
-' '           Text
+' '           Text.Whitespace
 '=:='         Operator
-' '           Text
+' '           Text.Whitespace
 '<:<'         Operator
-' '           Text
+' '           Text.Whitespace
 '<%<'         Operator
-' '           Text
+' '           Text.Whitespace
 '>:'          Operator
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Punctuation
 'X'           Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Class
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>>'         Operator
-' '           Text
+' '           Text.Whitespace
 'Map'         Name.Class
 '['           Punctuation
 'Y'           Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Class
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

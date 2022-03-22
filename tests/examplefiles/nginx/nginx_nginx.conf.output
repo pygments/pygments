@@ -1,10 +1,10 @@
 '#user  nobody;\n' Comment.Single
 
 'worker_processes' Keyword
-'  '          Text
+'  '          Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#error_log  logs/error.log;\n' Comment.Single
 
@@ -12,402 +12,402 @@
 
 '#error_log  logs/error.log  info;\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#pid        logs/nginx.pid;\n' Comment.Single
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'events'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'worker_connections' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 '1024'        Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 'http'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'include'     Keyword.Namespace
-'       '     Text
+'       '     Text.Whitespace
 'mime.types'  Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'default_type' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'application/octet-stream' Literal.String
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'log_format'  Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'main'        Literal.String
-'  '          Text
+'  '          Text.Whitespace
 "'"           Literal.String
 '$remote_addr' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '-'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$remote_user' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Literal.String
 '$time_local]' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$request'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '\'"'         Literal.String
 '$status"'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$body_bytes_sent' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '$http_referer"' Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '\'"'         Literal.String
 '$http_user_agent"' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '$http_x_forwarded_for"\'' Name.Variable
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '#access_log  logs/access.log  main;\n' Comment.Single
 
-'\n    '      Text
+'\n    '      Text.Whitespace
 'sendfile'    Keyword.Namespace
-'        '    Text
+'        '    Text.Whitespace
 'on'          Name.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '#tcp_nopush     on;\n' Comment.Single
 
-'\n    '      Text
+'\n    '      Text.Whitespace
 '#keepalive_timeout  0;\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 'keepalive_timeout' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 '65'          Literal.Number.Integer
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '#gzip  on;\n' Comment.Single
 
-'\n    '      Text
+'\n    '      Text.Whitespace
 'server'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'listen'      Keyword.Namespace
-'       '     Text
+'       '     Text.Whitespace
 '80'          Literal.Number.Integer
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'server_name' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'localhost'   Literal.String
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'charset'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'koi8-r'      Literal.String
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '#access_log  logs/host.access.log  main;\n' Comment.Single
 
-'\n        '  Text
+'\n        '  Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'root'        Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'html'        Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'index'       Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'index.html'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'index.htm'   Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '#error_page  404              /404.html;\n' Comment.Single
 
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# redirect server error pages to the static page /50x.html\n' Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 '#\n'         Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 'error_page'  Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 '500'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '502'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '503'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '504'         Literal.Number.Integer
-'  '          Text
+'  '          Text.Whitespace
 '/50x.html'   Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/50x.html'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'root'        Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'html'        Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# proxy the PHP scripts to Apache listening on 127.0.0.1:80\n' Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 '#\n'         Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '~'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\.php$'     Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'proxy_pass'  Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'http://127.0.0.1' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000\n' Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 '#\n'         Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '~'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\.php$'     Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'root'        Keyword.Namespace
-'           ' Text
+'           ' Text.Whitespace
 'html'        Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'fastcgi_pass' Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 '127.0.0.1'   Name
 ':'           Punctuation
 '9000'        Literal.Number.Integer
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'fastcgi_index' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'index.php'   Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'fastcgi_param' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'SCRIPT_FILENAME' Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '/scripts'    Literal.String
 '$fastcgi_script_name' Name.Variable
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'include'     Keyword.Namespace
-'        '    Text
+'        '    Text.Whitespace
 'fastcgi_params' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 "# deny access to .htaccess files, if Apache's document root\n" Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 "# concurs with nginx's one\n" Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 '#\n'         Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '~'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/\\.ht'      Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'deny'        Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'all'         Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 '# another virtual host using mix of IP-, name-, and port-based configuration\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '#\n'         Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 'server'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'listen'      Keyword.Namespace
-'       '     Text
+'       '     Text.Whitespace
 '8000'        Literal.Number.Integer
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'listen'      Keyword.Namespace
-'       '     Text
+'       '     Text.Whitespace
 'somename'    Name
 ':'           Punctuation
 '8080'        Literal.Number.Integer
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'server_name' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'somename'    Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'alias'       Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'another.alias' Literal.String
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'root'        Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'html'        Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'index'       Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'index.html'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'index.htm'   Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 '# HTTPS server\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '#\n'         Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 'server'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'listen'      Keyword.Namespace
-'       '     Text
+'       '     Text.Whitespace
 '443'         Literal.Number.Integer
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'server_name' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'localhost'   Literal.String
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ssl'         Keyword.Namespace
-'                  ' Text
+'                  ' Text.Whitespace
 'on'          Name.Constant
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ssl_certificate' Keyword.Namespace
-'      '      Text
+'      '      Text.Whitespace
 'cert.pem'    Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ssl_certificate_key' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'cert.key'    Literal.String
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ssl_session_timeout' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 '5m'          Literal.Number.Integer
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ssl_protocols' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'SSLv2'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'SSLv3'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'TLSv1'       Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ssl_ciphers' Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ssl_prefer_server_ciphers' Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'on'          Name.Constant
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'location'    Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'root'        Keyword.Namespace
-'   '         Text
+'   '         Text.Whitespace
 'html'        Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'index'       Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'index.html'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'index.htm'   Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

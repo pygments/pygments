@@ -4,7 +4,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -48,8 +48,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
 
 class ErbLexer(Lexer):
     """
-    Generic `ERB <http://ruby-doc.org/core/classes/ERB.html>`_ (Ruby Templating)
-    lexer.
+    Generic ERB (Ruby Templating) lexer.
 
     Just highlights ruby code between the preprocessor directives, other data
     is left untouched by the lexer.
@@ -58,6 +57,7 @@ class ErbLexer(Lexer):
     """
 
     name = 'ERB'
+    url = 'https://github.com/ruby/erb'
     aliases = ['erb']
     mimetypes = ['application/x-ruby-templating']
 
@@ -143,13 +143,14 @@ class ErbLexer(Lexer):
 
 class SmartyLexer(RegexLexer):
     """
-    Generic `Smarty <http://smarty.php.net/>`_ template lexer.
+    Generic Smarty template lexer.
 
     Just highlights smarty code between the preprocessor directives, other
     data is left untouched by the lexer.
     """
 
     name = 'Smarty'
+    url = 'https://www.smarty.net/'
     aliases = ['smarty']
     filenames = ['*.tpl']
     mimetypes = ['application/x-smarty']
@@ -199,13 +200,14 @@ class SmartyLexer(RegexLexer):
 
 class VelocityLexer(RegexLexer):
     """
-    Generic `Velocity <http://velocity.apache.org/>`_ template lexer.
+    Generic Velocity template lexer.
 
     Just highlights velocity directives and variable references, other
     data is left untouched by the lexer.
     """
 
     name = 'Velocity'
+    url = 'https://velocity.apache.org/'
     aliases = ['velocity']
     filenames = ['*.vm', '*.fhtml']
 
@@ -402,15 +404,14 @@ class DjangoLexer(RegexLexer):
 
 class MyghtyLexer(RegexLexer):
     """
-    Generic `myghty templates`_ lexer. Code that isn't Myghty
+    Generic myghty templates lexer. Code that isn't Myghty
     markup is yielded as `Token.Other`.
 
     .. versionadded:: 0.6
-
-    .. _myghty templates: http://www.myghty.org/
     """
 
     name = 'Myghty'
+    url = 'http://www.myghty.org/'
     aliases = ['myghty']
     filenames = ['*.myt', 'autodelegate']
     mimetypes = ['application/x-myghty']
@@ -516,14 +517,13 @@ class MyghtyCssLexer(DelegatingLexer):
 
 class MasonLexer(RegexLexer):
     """
-    Generic `mason templates`_ lexer. Stolen from Myghty lexer. Code that isn't
+    Generic mason templates lexer. Stolen from Myghty lexer. Code that isn't
     Mason markup is HTML.
-
-    .. _mason templates: http://www.masonhq.com/
 
     .. versionadded:: 1.4
     """
     name = 'Mason'
+    url = 'http://www.masonhq.com/'
     aliases = ['mason']
     filenames = ['*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler']
     mimetypes = ['application/x-mason']
@@ -572,15 +572,14 @@ class MasonLexer(RegexLexer):
 
 class MakoLexer(RegexLexer):
     """
-    Generic `mako templates`_ lexer. Code that isn't Mako
+    Generic mako templates lexer. Code that isn't Mako
     markup is yielded as `Token.Other`.
 
     .. versionadded:: 0.7
-
-    .. _mako templates: http://www.makotemplates.org/
     """
 
     name = 'Mako'
+    url = 'http://www.makotemplates.org/'
     aliases = ['mako']
     filenames = ['*.mao']
     mimetypes = ['application/x-mako']
@@ -588,12 +587,12 @@ class MakoLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(\s*)(%)(\s*end(?:\w+))(\n|\Z)',
-             bygroups(Text, Comment.Preproc, Keyword, Other)),
+             bygroups(Text.Whitespace, Comment.Preproc, Keyword, Other)),
             (r'(\s*)(%)([^\n]*)(\n|\Z)',
-             bygroups(Text, Comment.Preproc, using(PythonLexer), Other)),
+             bygroups(Text.Whitespace, Comment.Preproc, using(PythonLexer), Other)),
             (r'(\s*)(##[^\n]*)(\n|\Z)',
-             bygroups(Text, Comment.Preproc, Other)),
-            (r'(?s)<%doc>.*?</%doc>', Comment.Preproc),
+             bygroups(Text.Whitespace, Comment.Single, Text.Whitespace)),
+            (r'(?s)<%doc>.*?</%doc>', Comment.Multiline),
             (r'(<%)([\w.:]+)',
              bygroups(Comment.Preproc, Name.Builtin), 'tag'),
             (r'(</%)([\w.:]+)(>)',
@@ -721,15 +720,15 @@ class CheetahPythonLexer(Lexer):
 
 class CheetahLexer(RegexLexer):
     """
-    Generic `cheetah templates`_ lexer. Code that isn't Cheetah
+    Generic cheetah templates lexer. Code that isn't Cheetah
     markup is yielded as `Token.Other`.  This also works for
     `spitfire templates`_ which use the same syntax.
 
-    .. _cheetah templates: http://www.cheetahtemplate.org/
     .. _spitfire templates: http://code.google.com/p/spitfire/
     """
 
     name = 'Cheetah'
+    url = 'http://www.cheetahtemplate.org/'
     aliases = ['cheetah', 'spitfire']
     filenames = ['*.tmpl', '*.spt']
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
@@ -813,11 +812,11 @@ class CheetahJavascriptLexer(DelegatingLexer):
 
 class GenshiTextLexer(RegexLexer):
     """
-    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ text
-    templates.
+    A lexer that highlights genshi text templates.
     """
 
     name = 'Genshi Text'
+    url = 'http://genshi.edgewall.org/'
     aliases = ['genshitext']
     mimetypes = ['application/x-genshi-text', 'text/x-genshi']
 
@@ -1767,7 +1766,7 @@ class LassoJavascriptLexer(DelegatingLexer):
 
 class HandlebarsLexer(RegexLexer):
     """
-    Generic `handlebars <http://handlebarsjs.com/>` template lexer.
+    Generic handlebars template lexer.
 
     Highlights only the Handlebars template tags (stuff between `{{` and `}}`).
     Everything else is left for a delegating lexer.
@@ -1776,6 +1775,7 @@ class HandlebarsLexer(RegexLexer):
     """
 
     name = "Handlebars"
+    url = 'https://handlebarsjs.com/'
     aliases = ['handlebars']
 
     tokens = {
@@ -1879,12 +1879,12 @@ class YamlJinjaLexer(DelegatingLexer):
 
 class LiquidLexer(RegexLexer):
     """
-    Lexer for `Liquid templates
-    <http://www.rubydoc.info/github/Shopify/liquid>`_.
+    Lexer for Liquid templates.
 
     .. versionadded:: 2.0
     """
     name = 'liquid'
+    url = 'https://www.rubydoc.info/github/Shopify/liquid'
     aliases = ['liquid']
     filenames = ['*.liquid']
 
@@ -2085,7 +2085,7 @@ class LiquidLexer(RegexLexer):
 
 class TwigLexer(RegexLexer):
     """
-    `Twig <http://twig.sensiolabs.org/>`_ template lexer.
+    Twig template lexer.
 
     It just highlights Twig code between the preprocessor directives,
     other data is left untouched by the lexer.
@@ -2185,9 +2185,7 @@ class TwigHtmlLexer(DelegatingLexer):
 
 class Angular2Lexer(RegexLexer):
     """
-    Generic
-    `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>`_
-    template lexer.
+    Generic angular2 template lexer.
 
     Highlights only the Angular template tags (stuff between `{{` and `}}` and
     special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
@@ -2197,6 +2195,7 @@ class Angular2Lexer(RegexLexer):
     """
 
     name = "Angular2"
+    url = 'https://angular.io/guide/template-syntax'
     aliases = ['ng2']
 
     tokens = {

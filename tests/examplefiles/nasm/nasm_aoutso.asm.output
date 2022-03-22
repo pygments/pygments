@@ -1,589 +1,602 @@
 '; test source file for assembling to NetBSD/FreeBSD a.out shared library' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; build with:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    nasm -f aoutb aoutso.asm' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    ld -Bshareable -o aoutso.so aoutso.o' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; test with:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    cc -o aoutso aouttest.c aoutso.so' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    ./aoutso' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; This file should test the following:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [1] Define and export a global text-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [2] Define and export a global data-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [3] Define and export a global BSS-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [4] Define a non-global text-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [5] Define a non-global data-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [6] Define a non-global BSS-section symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [7] Define a COMMON symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [8] Define a NASM local label' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [9] Reference a NASM local label' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [10] Import an external symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [11] Make a PC-relative call to an external symbol' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [12] Reference a text-section symbol in the text section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [13] Reference a data-section symbol in the text section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [14] Reference a BSS-section symbol in the text section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [15] Reference a text-section symbol in the data section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [16] Reference a data-section symbol in the data section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; [17] Reference a BSS-section symbol in the data section' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'BITS '       Keyword
+'\t  '        Text.Whitespace
+'BITS'        Keyword
+' '           Text.Whitespace
 '32'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'EXTERN '     Keyword
+'\t  '        Text.Whitespace
+'EXTERN'      Keyword
+' '           Text.Whitespace
 '__GLOBAL_OFFSET_TABLE_' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_lrotate'    Name.Variable
 ':'           Punctuation
 'function'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '; [1]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_greet'      Name.Variable
 ':'           Punctuation
 'function'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '; [1]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_asmstr'     Name.Variable
 ':'           Punctuation
 'data'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '_asmstr.end' Name.Variable
 '-'           Operator
 '_asmstr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '; [2]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_textptr'    Name.Variable
 ':'           Punctuation
 'data'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '; [2]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_selfptr'    Name.Variable
 ':'           Punctuation
 'data'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '; [2]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'GLOBAL '     Keyword
+'\t  '        Text.Whitespace
+'GLOBAL'      Keyword
+' '           Text.Whitespace
 '_integer'    Name.Variable
 ':'           Punctuation
 'data'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '; [3]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'EXTERN '     Keyword
+'\t  '        Text.Whitespace
+'EXTERN'      Keyword
+' '           Text.Whitespace
 '_printf'     Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '; [10]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'COMMON '     Keyword
+'\t  '        Text.Whitespace
+'COMMON'      Keyword
+' '           Text.Whitespace
 '_commvar'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\t'          Text
+'\t'          Text.Whitespace
 '; [7]'       Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
-'SECTION '    Keyword
+'\t  '        Text.Whitespace
+'SECTION'     Keyword
+' '           Text.Whitespace
 '.text'       Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; prototype: long lrotate(long x, int num);' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_lrotate:'   Name.Label
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '; [1]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebp'         Name.Builtin
 ','           Punctuation
 'esp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebp'         Name.Builtin
 '+'           Operator
 '8'           Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ecx'         Name.Builtin
 ',['          Punctuation
 'ebp'         Name.Builtin
 '+'           Operator
 '12'          Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.label'      Name.Function
-'\t  '        Text
+'\t  '        Text.Whitespace
 'rol'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ','           Punctuation
 '1'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [4] [8]'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'loop'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '.label'      Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [9] [12]'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'esp'         Name.Builtin
 ','           Punctuation
 'ebp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'pop'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'ret'         Name.Function
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; prototype: void greet(void);' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_greet'      Name.Function
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ebx'         Name.Builtin
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 "; we'll use EBX for GOT, so save it" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'call'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '.getgot'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.getgot:'    Name.Label
-'  '          Text
+'  '          Text.Whitespace
 'pop'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebx'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'add'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebx'         Name.Builtin
 ','           Punctuation
 '__GLOBAL_OFFSET_TABLE_' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '$$'          Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '.getgot'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..gotpc'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 '_integer'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..got'       Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; [14]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'eax'         Name.Builtin
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'inc'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 'localint'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..gotoff'    Name.Variable
 '],'          Punctuation
 'eax'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '; [14]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 '_commvar'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..got'       Name.Variable
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'dword'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'eax'         Name.Builtin
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 'localptr'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..gotoff'    Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; [13]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'dword'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'eax'         Name.Builtin
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 '_integer'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..got'       Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; [1] [14]'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'dword'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'eax'         Name.Builtin
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'lea'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
 ',['          Punctuation
 'ebx'         Name.Builtin
 '+'           Operator
 '_printfstr'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..gotoff'    Name.Variable
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'push'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'eax'         Name.Builtin
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [13]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'call'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '_printf'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..plt'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '; [11]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'add'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'esp'         Name.Builtin
 ','           Punctuation
 '16'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'pop'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ebx'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'ret'         Name.Function
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
-'SECTION '    Keyword
+'\t  '        Text.Whitespace
+'SECTION'     Keyword
+' '           Text.Whitespace
 '.data'       Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; a string'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_asmstr'     Name.Function
-'\t  '        Text
+'\t  '        Text.Whitespace
 'db'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'hello, world'" Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\t'          Text
+'\t'          Text.Whitespace
 '; [2]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.end'        Name.Function
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; a string for Printf' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_printfstr'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'db'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"integer==%d, localint==%d, commvar=%d"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'db'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; some pointers' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'localptr'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'dd'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'localint'    Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [5] [17]'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_textptr'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'dd'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '_greet'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..sym'       Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '; [15]'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_selfptr'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'dd'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '_selfptr'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'wrt'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '..sym'       Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '; [16]'      Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
-'SECTION '    Keyword
+'\t  '        Text.Whitespace
+'SECTION'     Keyword
+' '           Text.Whitespace
 '.bss'        Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; an integer' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_integer'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'resd'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [3]'       Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; a local integer' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'localint'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'resd'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; [6]'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,0 +1,32 @@
+---input---
+print_brick_no_color:
+        inc bx
+        mov di, bx ; comment
+        jmp check_col
+
+---tokens---
+'print_brick_no_color:' Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'inc'         Name.Function
+' '           Text.Whitespace
+'bx'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Name.Function
+' '           Text.Whitespace
+'di'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'bx'          Name.Builtin
+' '           Text.Whitespace
+'; comment'   Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'jmp'         Name.Function
+' '           Text.Whitespace
+'check_col'   Name.Variable
+'\n'          Text.Whitespace

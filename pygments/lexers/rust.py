@@ -4,7 +4,7 @@
 
     Lexers for the Rust language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,6 +22,7 @@ class RustLexer(RegexLexer):
     .. versionadded:: 1.6
     """
     name = 'Rust'
+    url = 'https://www.rust-lang.org/'
     filenames = ['*.rs', '*.rs.in']
     aliases = ['rust', 'rs']
     mimetypes = ['text/rust', 'text/x-rust']
@@ -104,12 +105,12 @@ class RustLexer(RegexLexer):
             # Prelude (taken from Rust's src/libstd/prelude.rs)
             builtin_funcs_types,
             builtin_macros,
-            # Path seperators, so types don't catch them.
+            # Path separators, so types don't catch them.
             (r'::\b', Text),
             # Types in positions.
             (r'(?::|->)', Text, 'typename'),
             # Labels
-            (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?',
+            (r'(break|continue)(\b\s*)(\'[A-Za-z_]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
 
             # Character literals
@@ -213,16 +214,10 @@ class RustLexer(RegexLexer):
         'attribute_common': [
             (r'"', String, 'string'),
             (r'\[', Comment.Preproc, 'attribute['),
-            (r'\(', Comment.Preproc, 'attribute('),
         ],
         'attribute[': [
             include('attribute_common'),
-            (r'\];?', Comment.Preproc, '#pop'),
-            (r'[^"\]]+', Comment.Preproc),
-        ],
-        'attribute(': [
-            include('attribute_common'),
-            (r'\);?', Comment.Preproc, '#pop'),
-            (r'[^")]+', Comment.Preproc),
+            (r'\]', Comment.Preproc, '#pop'),
+            (r'[^"\]\[]+', Comment.Preproc),
         ],
     }

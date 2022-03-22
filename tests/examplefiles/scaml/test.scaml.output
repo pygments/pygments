@@ -1,41 +1,41 @@
-''            Text
+''            Text.Whitespace
 '-@ '         Punctuation
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'city'        Name
 ':'           Punctuation
 'String'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Tampa"'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-''            Text
+''            Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 ':'           Punctuation
 'String'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Hiram"'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-''            Text
+''            Text.Whitespace
 '%html'       Name.Tag
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '%body'       Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '%p'          Name.Tag
 ' Hello '     Text
 '#{'          Literal.String.Interpol
@@ -47,31 +47,31 @@
 '}'           Literal.String.Interpol
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '%ul'         Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'to'          Name
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '%li'         Name.Tag
 ' Item '      Text
 '#{'          Literal.String.Interpol
@@ -79,4 +79,4 @@
 '}'           Literal.String.Interpol
 '\n'          Text
 
-''            Text
+''            Text.Whitespace

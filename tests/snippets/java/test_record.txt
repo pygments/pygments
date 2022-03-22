@@ -1,0 +1,67 @@
+---input---
+public record RecordTest() {}
+public static record RecordTest() {}
+record Person(String firstName, String lastName) {}
+String[] record = csvReader.getValues();
+
+
+---tokens---
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'record'      Keyword.Declaration
+' '           Text
+'RecordTest'  Name.Class
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'static'      Keyword.Declaration
+' '           Text.Whitespace
+'record'      Keyword.Declaration
+' '           Text
+'RecordTest'  Name.Class
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'record'      Keyword.Declaration
+' '           Text
+'Person'      Name.Class
+'('           Punctuation
+'String'      Name
+' '           Text.Whitespace
+'firstName'   Name
+','           Punctuation
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'lastName'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'String'      Name
+'['           Operator
+']'           Operator
+' '           Text.Whitespace
+'record'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'csvReader'   Name
+'.'           Punctuation
+'getValues'   Name.Attribute
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

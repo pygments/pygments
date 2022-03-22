@@ -5,13 +5,13 @@
 ---tokens---
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '<foo>'       Comment.PreprocFile
 '\n'          Comment.Preproc
 
 '#'           Comment.Preproc
-'    '        Text
+'    '        Text.Whitespace
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '<foo>'       Comment.PreprocFile
 '\n'          Comment.Preproc

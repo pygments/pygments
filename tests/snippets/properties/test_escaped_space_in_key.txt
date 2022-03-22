@@ -3,8 +3,8 @@ key = value
 
 ---tokens---
 'key'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

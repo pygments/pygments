@@ -1,0 +1,344 @@
+'#!text'      Comment
+'\n'          Text.Whitespace
+
+'View'        Text
+' '           Text.Whitespace
+'Quotes'      Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'do'          Text
+' '           Text.Whitespace
+'something'   Text
+'\n'          Text.Whitespace
+
+'Meta:'       Text
+'\n'          Text.Whitespace
+
+'@verifies'   Name.Label
+' '           Text.Whitespace
+'G989'        Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Feature'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'Serve'       Text
+' '           Text.Whitespace
+'coffee'      Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Coffee'      Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'not'         Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'served'      Text
+' '           Text.Whitespace
+'until'       Text
+' '           Text.Whitespace
+'paid'        Text
+' '           Text.Whitespace
+'for'         Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Coffee'      Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'not'         Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'served'      Text
+' '           Text.Whitespace
+'until'       Text
+' '           Text.Whitespace
+'the'         Text
+' '           Text.Whitespace
+'button'      Text
+' '           Text.Whitespace
+'has'         Text
+' '           Text.Whitespace
+'been'        Text
+' '           Text.Whitespace
+'pressed'     Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'If'          Text
+' '           Text.Whitespace
+'there'       Text
+' '           Text.Whitespace
+'is'          Text
+' '           Text.Whitespace
+'no'          Text
+' '           Text.Whitespace
+'coffee'      Text
+' '           Text.Whitespace
+'left'        Text
+' '           Text.Whitespace
+'then'        Text
+' '           Text.Whitespace
+'money'       Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'refunded'    Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Background'  Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Given'       Keyword
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'global'      Text
+' '           Text.Whitespace
+'administrator' Text
+' '           Text.Whitespace
+'named'       Text
+' '           Text.Whitespace
+'"Greg"'      Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'And'         Keyword
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'blog'        Text
+' '           Text.Whitespace
+'named'       Text
+' '           Text.Whitespace
+'"Greg\'s anti-tax rants"' Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'And'         Keyword
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'customer'    Text
+' '           Text.Whitespace
+'named'       Text
+' '           Text.Whitespace
+'"Dr. Bill"'  Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'And'         Keyword
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'blog'        Text
+' '           Text.Whitespace
+'named'       Text
+' '           Text.Whitespace
+'"Expensive Therapy"' Literal.String
+' '           Text.Whitespace
+'owned'       Text
+' '           Text.Whitespace
+'by'          Text
+' '           Text.Whitespace
+'"Dr. Bill"'  Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Scenario'    Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'Buy'         Text
+' '           Text.Whitespace
+'last'        Text
+' '           Text.Whitespace
+'coffee'      Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Given'       Keyword
+' '           Text.Whitespace
+'there'       Text
+' '           Text.Whitespace
+'are'         Text
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'coffees'     Text
+' '           Text.Whitespace
+'left'        Text
+' '           Text.Whitespace
+'in'          Text
+' '           Text.Whitespace
+'the'         Text
+' '           Text.Whitespace
+'machine'     Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'And'         Keyword
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'have'        Text
+' '           Text.Whitespace
+'deposited'   Text
+' '           Text.Whitespace
+'1'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'When'        Keyword
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'press'       Text
+' '           Text.Whitespace
+'the'         Text
+' '           Text.Whitespace
+'coffee'      Text
+' '           Text.Whitespace
+'button'      Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Then'        Keyword
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'served'      Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'coffee'      Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Scenario Outline' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'eating'      Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Given'       Keyword
+' '           Text.Whitespace
+'there'       Text
+' '           Text.Whitespace
+'are'         Text
+' '           Text.Whitespace
+'<'           Punctuation
+'start'       Name.Variable
+'>'           Punctuation
+' '           Text.Whitespace
+'cucumbers'   Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'When'        Keyword
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'eat'         Text
+' '           Text.Whitespace
+'<'           Punctuation
+'eat'         Name.Variable
+'>'           Punctuation
+' '           Text.Whitespace
+'cucumbers'   Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Then'        Keyword
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'should'      Text
+' '           Text.Whitespace
+'have'        Text
+' '           Text.Whitespace
+'<'           Punctuation
+'left'        Name.Variable
+'>'           Punctuation
+' '           Text.Whitespace
+'cucumbers'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Examples'    Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'start'       Text
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'eat'         Text
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'left'        Text
+' '           Text.Whitespace
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'12'          Literal.Number
+'   '         Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'5'           Literal.Number
+'  '          Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'7'           Literal.Number
+'   '         Text.Whitespace
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'20'          Literal.Number
+'   '         Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'5'           Literal.Number
+'  '          Text.Whitespace
+'|'           Punctuation
+'  '          Text.Whitespace
+'15'          Literal.Number
+'  '          Text.Whitespace
+'|'           Punctuation
+'\n'          Text.Whitespace

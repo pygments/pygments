@@ -1,200 +1,200 @@
 '; This examples from WikiPedia <https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_Form>.' Comment.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'postal-address' Name.Class
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'name-part'   Name.Class
-' '           Text
+' '           Text.Whitespace
 'street'      Name.Class
-' '           Text
+' '           Text.Whitespace
 'zip-part'    Name.Class
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'name-part'   Name.Class
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 '('           Punctuation
 'personal-part' Name.Class
-' '           Text
+' '           Text.Whitespace
 'SP'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'last-name'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'SP'          Keyword
-' '           Text
+' '           Text.Whitespace
 'suffix'      Name.Class
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'CRLF'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'name-part'   Name.Class
-'        '    Text
+'        '    Text.Whitespace
 '=/'          Operator
-' '           Text
+' '           Text.Whitespace
 'personal-part' Name.Class
-' '           Text
+' '           Text.Whitespace
 'CRLF'        Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'personal-part' Name.Class
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'first-name'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'initial'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '"."'         Literal
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'first-name'  Name.Class
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'ALPHA'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'initial'     Name.Class
-'          '  Text
+'          '  Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ALPHA'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'last-name'   Name.Class
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'ALPHA'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'suffix'      Name.Class
-'           ' Text
+'           ' Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"Jr."'       Literal
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '"Sr."'       Literal
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '1*'          Operator
 '('           Punctuation
 '"I"'         Literal
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '"V"'         Literal
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '"X"'         Literal
 ')'           Punctuation
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'street'      Name.Class
-'           ' Text
+'           ' Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'apt'         Name.Class
-' '           Text
+' '           Text.Whitespace
 'SP'          Keyword
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'house-num'   Name.Class
-' '           Text
+' '           Text.Whitespace
 'SP'          Keyword
-' '           Text
+' '           Text.Whitespace
 'street-name' Name.Class
-' '           Text
+' '           Text.Whitespace
 'CRLF'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'apt'         Name.Class
-'              ' Text
+'              ' Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1*4'         Operator
 'DIGIT'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'house-num'   Name.Class
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1*8'         Operator
 '('           Punctuation
 'DIGIT'       Keyword
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'ALPHA'       Keyword
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'street-name' Name.Class
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1*'          Operator
 'VCHAR'       Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'zip-part'    Name.Class
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'town-name'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '","'         Literal
-' '           Text
+' '           Text.Whitespace
 'SP'          Keyword
-' '           Text
+' '           Text.Whitespace
 'state'       Name.Class
-' '           Text
+' '           Text.Whitespace
 '1*2'         Operator
 'SP'          Keyword
-' '           Text
+' '           Text.Whitespace
 'zip-code'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'CRLF'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'town-name'   Name.Class
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1*'          Operator
 '('           Punctuation
 'ALPHA'       Keyword
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'SP'          Keyword
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'state'       Name.Class
-'            ' Text
+'            ' Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Operator
 'ALPHA'       Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'zip-code'    Name.Class
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Operator
 'DIGIT'       Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"-"'         Literal
-' '           Text
+' '           Text.Whitespace
 '4'           Operator
 'DIGIT'       Keyword
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

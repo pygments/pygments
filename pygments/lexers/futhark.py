@@ -4,15 +4,15 @@
 
     Lexer for the Futhark language
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 from pygments import unistring as uni
 
 __all__ = ['FutharkLexer']
@@ -28,11 +28,10 @@ class FutharkLexer(RegexLexer):
     .. versionadded:: 2.8
     """
     name = 'Futhark'
+    url = 'https://futhark-lang.org/'
     aliases = ['futhark']
     filenames = ['*.fut']
     mimetypes = ['text/x-futhark']
-
-    flags = re.MULTILINE | re.UNICODE
 
     num_types = ('i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64')
 
@@ -55,8 +54,8 @@ class FutharkLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'--(.*?)\n', Comment.Single),
-            (r'\s+', Text.Whitespace),
+            (r'--(.*?)$', Comment.Single),
+            (r'\s+', Whitespace),
             (r'\(\)', Punctuation),
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'\b(%s)(?!\')\b' % '|'.join(num_types + other_types), Keyword.Type),
@@ -106,6 +105,6 @@ class FutharkLexer(RegexLexer):
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
-            (r'\s+\\', String.Escape, '#pop'),
+            (r'(\s+)(\\)', bygroups(Whitespace, String.Escape), '#pop'),
         ],
     }

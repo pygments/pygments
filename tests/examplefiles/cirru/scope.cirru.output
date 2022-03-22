@@ -38,14 +38,7 @@
 'print'       Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'n'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'m'           Literal.String
-'o'           Literal.String
+'not demo'    Literal.String
 '"'           Literal.String
 '\n'          Text
 
@@ -285,17 +278,7 @@
 ':placeholder' Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'S'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'r'           Literal.String
-'c'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'C'           Literal.String
-'o'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
+'Source Code' Literal.String
 '"'           Literal.String
 '\n'          Text
 
@@ -307,19 +290,7 @@
 ':placeholder' Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'C'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'p'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
-'d'           Literal.String
-' '           Literal.String
-'D'           Literal.String
-'a'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
+'Compiled Data' Literal.String
 '"'           Literal.String
 '\n'          Text
 
@@ -437,44 +408,28 @@
 '\n'          Text.Whitespace
 
 '"'           Literal.String
-'a'           Literal.String
-' '           Literal.String
-'b'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-' '           Literal.String
-'d'           Literal.String
+'a b c d'     Literal.String
 '"'           Literal.String
 '\n'          Text
 
 '\n'          Text.Whitespace
 
 '"'           Literal.String
-'a'           Literal.String
-' '           Literal.String
-'b'           Literal.String
-' '           Literal.String
+'a b '        Literal.String
 '\\'          Literal.String.Escape
 '"'           Literal.String.Escape
-' '           Literal.String
-'c'           Literal.String
-' '           Literal.String
-'d'           Literal.String
+' c d'        Literal.String
 '"'           Literal.String
 '\n'          Text
 
 '\n'          Text.Whitespace
 
 '"'           Literal.String
-'a'           Literal.String
-' '           Literal.String
-'b'           Literal.String
+'a b'         Literal.String
 '"'           Literal.String
 ' '           Text.Whitespace
 '"'           Literal.String
-'c'           Literal.String
-' '           Literal.String
-'d'           Literal.String
+'c d'         Literal.String
 '"'           Literal.String
 '\n'          Text
 
@@ -887,22 +842,7 @@
 '='           Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'T'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'s'           Literal.String
-' '           Literal.String
-'i'           Literal.String
-'s'           Literal.String
-' '           Literal.String
-'a'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
+'This is a string' Literal.String
 '"'           Literal.String
 ')'           Operator
 '\n'          Text
@@ -948,8 +888,7 @@
 '^'           Literal.String
 '\\'          Literal.String.Escape
 '\\'          Literal.String.Escape
-'s'           Literal.String
-'-'           Literal.String
+'s-'          Literal.String
 '\\'          Literal.String.Escape
 '"'           Literal.String.Escape
 '$'           Literal.String
@@ -1370,11 +1309,7 @@
 '='           Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'r'           Literal.String
-'g'           Literal.String
-'e'           Literal.String
+'large'       Literal.String
 '"'           Literal.String
 ')'           Operator
 '\n'          Text
@@ -1399,16 +1334,7 @@
 '='           Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
-'l'           Literal.String
-' '           Literal.String
-'g'           Literal.String
-'o'           Literal.String
-'o'           Literal.String
-'d'           Literal.String
+'still good'  Literal.String
 '"'           Literal.String
 ')'           Operator
 '\n'          Text
@@ -1425,11 +1351,7 @@
 '='           Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'s'           Literal.String
-'o'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'o'           Literal.String
+'so so'       Literal.String
 '"'           Literal.String
 ')'           Operator
 '\n'          Text
@@ -1500,20 +1422,7 @@
 '='           Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'s'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-' '           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
+'something else' Literal.String
 '"'           Literal.String
 ')'           Operator
 ')'           Operator
@@ -1609,32 +1518,7 @@
 '--'          Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-':'           Literal.String
-'('           Literal.String
-'c'           Literal.String
-')'           Literal.String
-' '           Literal.String
-'2'           Literal.String
-'0'           Literal.String
-'1'           Literal.String
-'5'           Literal.String
-' '           Literal.String
-'A'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'a'           Literal.String
-'s'           Literal.String
-' '           Literal.String
-'R'           Literal.String
-'o'           Literal.String
-'s'           Literal.String
-'s'           Literal.String
-'b'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
-'g'           Literal.String
+':(c) 2015 Andreas Rossberg' Literal.String
 '"'           Literal.String
 '\n'          Text
 
@@ -1655,9 +1539,7 @@
 'export'      Name.Function
 ' '           Text.Whitespace
 '"'           Literal.String
-'o'           Literal.String
-'d'           Literal.String
-'d'           Literal.String
+'odd'         Literal.String
 '"'           Literal.String
 ' '           Text.Whitespace
 '$odd'        Name.Variable

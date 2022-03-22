@@ -1,0 +1,464 @@
+'/*'          Comment.Multiline
+'\nMixture of two Gaussians. A biased coin is thrown, if it lands heads X in mix(X)\nis sampled from a Gaussian with mean 0 and variance 1. if it lands tails X is\nsampled from a Gaussian with mean 5 and variance 2.\nThe example illustrates the use of continuous random variables and\nthe use of sampling, including\nrejection sampling and Metropolis' Comment.Multiline
+'/'           Comment.Multiline
+'Hastings. Moreover the example\nillustrates the use of the predicate histogram' Comment.Multiline
+'/'           Comment.Multiline
+'3 for graphing the\nprobability density function of continuous random variables.\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_module'  Name.Function
+'('           Punctuation
+'library'     Name.Function
+'('           Punctuation
+'mcintyre'    Literal.String.Atom
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'if'          Name.Function
+'('           Punctuation
+'current_predicate' Name.Function
+'('           Punctuation
+'use_rendering' Literal.String.Atom
+'/'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'c3'          Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'endif'       Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'mc'          Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'begin_lpad'  Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'heads'       Literal.String.Atom
+':'           Punctuation
+'0.6'         Literal.Number.Float
+';'           Punctuation
+'tails'       Literal.String.Atom
+':'           Punctuation
+'0.4'         Literal.Number.Float
+'.'           Punctuation
+' \n'         Text
+
+'% a coin is thrown. The coin is biased: with probability 0.6 it lands heads,' Comment.Single
+'\n'          Text
+
+'% with probability 0.4 it lands tails' Comment.Single
+'\n\n'        Text
+
+'g'           Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+':'           Operator
+' '           Text
+'gaussian'    Name.Builtin
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% X in g(X)  follows a Gaussian distribution with mean 0 and variance 1' Comment.Single
+'\n'          Text
+
+'h'           Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+':'           Operator
+' '           Text
+'gaussian'    Name.Builtin
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% X in h(X)  follows a Gaussian distribution with mean 5 and variance 2' Comment.Single
+'\n\n'        Text
+
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+' '           Text
+':-'          Operator
+' '           Text
+'heads'       Literal.String.Atom
+','           Punctuation
+' '           Text
+'g'           Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% if the coin lands heads, X in mix(X) is given by g(X)' Comment.Single
+'\n'          Text
+
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+' '           Text
+':-'          Operator
+' '           Text
+'tails'       Literal.String.Atom
+','           Punctuation
+' '           Text
+'h'           Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% if the coin lands tails, X in mix(X) is given by h(X)' Comment.Single
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'end_lpad'    Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'hist_uncond' Name.Function
+'('           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'NBins'       Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+')'           Punctuation
+':-'          Operator
+'\n  '        Text
+'mc_sample_arg' Name.Function
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'L0'          Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'histogram'   Name.Function
+'('           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+','           Punctuation
+'['           Punctuation
+'nbins'       Name.Function
+'('           Punctuation
+'NBins'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% take SAmples samples of X in mix(X) and draw a histogram with NBins bins representing ' Comment.Single
+'\n'          Text
+
+'% the probability density of X ' Comment.Single
+'\n\n'        Text
+
+'hist_rej_heads' Name.Function
+'('           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'NBins'       Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+')'           Punctuation
+':-'          Operator
+'\n  '        Text
+'mc_rejection_sample_arg' Name.Function
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'heads'       Literal.String.Atom
+','           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'L0'          Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'histogram'   Name.Function
+'('           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+','           Punctuation
+'['           Punctuation
+'nbins'       Name.Function
+'('           Punctuation
+'NBins'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% take Samples samples of X in mix(X) given that heads was true using ' Comment.Single
+'\n'          Text
+
+'% rejection sampling and draw an' Comment.Single
+'\n'          Text
+
+'% histogram with NBins bins representing the probability density of X' Comment.Single
+'\n\n'        Text
+
+'hist_mh_heads' Name.Function
+'('           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'Lag'         Name.Variable
+','           Punctuation
+'NBins'       Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+')'           Punctuation
+':-'          Operator
+'\n  '        Text
+'mc_mh_sample_arg' Name.Function
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'heads'       Literal.String.Atom
+','           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'['           Punctuation
+'lag'         Name.Function
+'('           Punctuation
+'Lag'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'histogram'   Name.Function
+'('           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+','           Punctuation
+'['           Punctuation
+'nbins'       Name.Function
+'('           Punctuation
+'NBins'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% take Samples samples of X in mix(X) given that heads was true using ' Comment.Single
+'\n'          Text
+
+'% Metropolis-Hastings and draw an' Comment.Single
+'\n'          Text
+
+'% histogram with NBins bins representing the probability density of X' Comment.Single
+'\n\n'        Text
+
+'hist_rej_dis' Name.Function
+'('           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'NBins'       Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+')'           Punctuation
+':-'          Operator
+'\n  '        Text
+'mc_rejection_sample_arg' Name.Function
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'Y'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'Y'           Name.Variable
+'>'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'L0'          Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'histogram'   Name.Function
+'('           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+','           Punctuation
+'['           Punctuation
+'nbins'       Name.Function
+'('           Punctuation
+'NBins'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% take Samples samples of X in mix(X) given that X>2 was true using ' Comment.Single
+'\n'          Text
+
+'% rejection sampling and draw an' Comment.Single
+'\n'          Text
+
+'% histogram with NBins bins representing the probability density of X' Comment.Single
+'\n\n'        Text
+
+'hist_mh_dis' Name.Function
+'('           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'Lag'         Name.Variable
+','           Punctuation
+'NBins'       Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+')'           Punctuation
+':-'          Operator
+'\n  '        Text
+'mc_mh_sample_arg' Name.Function
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'mix'         Name.Function
+'('           Punctuation
+'Y'           Name.Variable
+')'           Punctuation
+','           Punctuation
+'Y'           Name.Variable
+'>'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'Samples'     Name.Variable
+','           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'['           Punctuation
+'lag'         Name.Function
+'('           Punctuation
+'Lag'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'histogram'   Name.Function
+'('           Punctuation
+'L0'          Name.Variable
+','           Punctuation
+'Chart'       Name.Variable
+','           Punctuation
+'['           Punctuation
+'nbins'       Name.Function
+'('           Punctuation
+'NBins'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% take Samples samples of X in mix(X) given that X>2 was true using ' Comment.Single
+'\n'          Text
+
+'% Metropolis-Hastings and draw an' Comment.Single
+'\n'          Text
+
+'% histogram with NBins bins representing the probability density of X' Comment.Single
+'\n\n\n'      Text
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+' <examples>\n?- hist_uncond(1000,40,G).\n% take 1000 samples of X in mix(X) and draw a histogram with 40 bins representing \n% the probability density of X \n?- mc_sample_arg(mix(X),1000,X,L),histogram(L,Chart,[nbins(40)]).\n% take 1000 samples of X in mix(X) and draw a histogram with 40 bins representing \n% the probability density of X\n?- mc_expectation(mix(X),1000,X,E).\n% E=2.017964749114414\n?- hist_rej_heads(1000,40,G).\n% take 1000 samples of X in mix(X) given that heads was true using \n% rejection sampling and draw an\n% histogram with 40 bins representing the probability density of X\n?- hist_mh_heads(1000,2,40,G).\n% take 1000 samples of X in mix(X) given that heads was true using \n% Metropolis-Hastings and draw an\n% histogram with 40 bins representing the probability density of X\n?- mc_mh_expectation(mix(X),heads,1000,X,E,[lag(2)]).\n% E=-0.018433307290594284\n?- hist_rej_dis(1000,40,G).\n% take 1000 samples of X in mix(X) given that X>2 was true using \n% rejection sampling and draw an\n% histogram with 40 bins representing the probability density of X\n?- hist_mh_dis(1000,2,40,G).\n% take 1000 samples of X in mix(X) given that X>2 was true using \n% Metropolis-Hastings and draw an\n% histogram with 40 bins representing the probability density of X\n?- mc_mh_expectation(mix(X),(mix(Y),Y>2),1000,X,E,[lag(2)]).\n\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n \n'       Text

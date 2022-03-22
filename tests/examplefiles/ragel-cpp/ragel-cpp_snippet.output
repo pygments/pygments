@@ -1,4 +1,4 @@
-'\t'          Text
+'\t'          Text.Whitespace
 '%%'          Punctuation
 ' '           Text.Whitespace
 'write'       Keyword
@@ -7,6 +7,6 @@
 ';'           Punctuation
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '/* Read in a block. */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace

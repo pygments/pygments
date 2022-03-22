@@ -1,13 +1,13 @@
 '/*\n * comment\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// comment'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'instr'       Keyword.Declaration
 '/**/'        Comment.Multiline
@@ -21,18 +21,18 @@
 'Name'        Name.Function
 '/**/'        Comment.Multiline
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'i'           Keyword.Type
 'Duration'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'p3'          Name.Variable.Instance
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'outc'        Name.Builtin
 ':'           Punctuation
 'a'           Keyword.Type
@@ -40,12 +40,12 @@
 'a'           Keyword.Type
 'Signal'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endin'       Keyword.Declaration
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'opcode'      Keyword.Declaration
 '/**/'        Comment.Multiline
@@ -57,55 +57,55 @@
 '/**/'        Comment.Multiline
 'aik'         Keyword.Type
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'aUDO'        Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endop'       Keyword.Declaration
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '123'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0123456789'  Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0x'          Keyword.Type
 'abcdef0123456789' Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0X'          Keyword.Type
 'ABCDEF'      Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1e2'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '3e+4'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '5e-6'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '7E8'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '9E+0'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1E-2'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '3.'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '4.56'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.789'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'characters'  Literal.String
 '$MACRO.'     Comment.Preproc
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 '\\\\'        Literal.String.Escape
@@ -119,15 +119,15 @@
 '\\67'        Literal.String.Escape
 '\\"'         Literal.String.Escape
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{'          Literal.String
 '\ncharacters$MACRO.\n' Literal.String
 
 '}}'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{'          Literal.String
 '\\\\'        Literal.String.Escape
@@ -141,180 +141,180 @@
 '\\345'       Literal.String.Escape
 '\\67'        Literal.String.Escape
 '}}'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '¬'           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Operator
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
-' '           Text
+' '           Text.Whitespace
 '>>'          Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '<='          Operator
-' '           Text
+' '           Text.Whitespace
 '>='          Operator
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '-='          Operator
-' '           Text
+' '           Text.Whitespace
 '*='          Operator
-' '           Text
+' '           Text.Whitespace
 '/='          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0dbfs'       Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'A4'          Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'kr'          Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'ksmps'       Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'nchnls'      Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'nchnls_i'    Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'sr'          Name.Variable.Global
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'elseif'      Keyword
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
-' '           Text
+' '           Text.Whitespace
 'enduntil'    Keyword
-' '           Text
+' '           Text.Whitespace
 'fi'          Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'ithen'       Keyword
-' '           Text
+' '           Text.Whitespace
 'kthen'       Keyword
-' '           Text
+' '           Text.Whitespace
 'od'          Keyword
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'until'       Keyword
-' '           Text
+' '           Text.Whitespace
 'while'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'rireturn'    Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'aLabel'      Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'label2'      Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'goto'        Keyword
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'reinit'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'cggoto'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '=='          Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'timout'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'loop_ge'     Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'prints'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '%!'          Literal.String.Escape
 ' '           Literal.String
@@ -344,35 +344,35 @@
 '\\\\t'       Literal.String.Escape
 '\\\\T'       Literal.String.Escape
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'prints'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'S'           Keyword.Type
 'output'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'readscore'   Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{{'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}}'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pyrun'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{{'          Literal.String
 '\n'          Text
 
@@ -380,10 +380,10 @@
 '\n'          Text
 
 '}}'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'lua_exec'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{{'          Literal.String
 '\n'          Text
 
@@ -391,19 +391,19 @@
 '\n'          Text
 
 '}}'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
 '/**/'        Comment.Multiline
 '"file.udo"'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
 '/**/'        Comment.Multiline
 '|file.udo|'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#includestr' Comment.Preproc
 '/**/'        Comment.Multiline
@@ -411,75 +411,75 @@
 '$MACRO.'     Comment.Preproc
 '.udo'        Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#ifdef'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#else'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#ifndef'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#endif'      Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#undef'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#   define'  Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
 '#'           Punctuation
 'macro_body'  Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#define'     Comment.Preproc
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACRO'       Comment.Preproc
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Punctuation
 '\\#'         Comment.Preproc
 'macro\nbody' Comment.Preproc
 '\\#'         Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#define'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
 '('           Punctuation
 'ARG1'        Comment.Preproc
 '#'           Punctuation
 'ARG2'        Comment.Preproc
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 'macro_body'  Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#define'     Comment.Preproc
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACRO'       Comment.Preproc
 '('           Punctuation
@@ -490,30 +490,30 @@
 'ARG3'        Comment.Preproc
 ')'           Punctuation
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Punctuation
 '\\#'         Comment.Preproc
 'macro\nbody' Comment.Preproc
 '\\#'         Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$MACRO'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '$MACRO.'     Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$MACRO'      Comment.Preproc
 '('           Punctuation
 'x'           Comment.Preproc
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@0'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@@ 1'        Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace

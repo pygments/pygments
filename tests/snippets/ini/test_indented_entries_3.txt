@@ -5,16 +5,16 @@
 
 ---tokens---
 '[section]'   Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'key 1'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value1'      Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'key 2'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value2'      Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

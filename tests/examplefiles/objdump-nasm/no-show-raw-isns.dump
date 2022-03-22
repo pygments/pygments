@@ -1,0 +1,16 @@
+foo.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <foo>:
+   0:	endbr64 
+   4:	push   rbp
+   5:	mov    rbp,rsp
+   8:	sub    rsp,0x10
+   c:	mov    DWORD PTR [rbp-0x4],edi
+   f:	lea    rdi,[rip+0x0]        # 16 <foo+0x16>
+  16:	call   1b <foo+0x1b>
+  1b:	mov    eax,0x0
+  20:	leave  
+  21:	ret   

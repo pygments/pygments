@@ -62,6 +62,9 @@ explicit const string contains(const char* str) {}
 explicit const string contains(const char * str);
 explicit const string contains(const char * str) {}
 
+unsigned int contains() {}
+unsigned int contains();
+
 // Names with namespaces
 
 string Type::contains(char c) const noexcept;

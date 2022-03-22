@@ -1,0 +1,35 @@
+---input---
+namespace foo.bar {
+  baz :- std.do! [].
+}
+shorten foo. { bar }.
+
+---tokens---
+'namespace'   Keyword.Declaration
+' '           Text.Whitespace
+'foo.bar'     Text
+' '           Text.Whitespace
+'{\n'         Text
+
+'  '          Text.Whitespace
+'baz'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'std.do!'     Text
+' '           Text.Whitespace
+'[]'          Keyword.Declaration
+'.'           Operator
+'\n'          Text.Whitespace
+
+'}\n'         Text
+
+'shorten'     Keyword.Declaration
+' '           Text.Whitespace
+'foo.'        Text
+' '           Text.Whitespace
+'{ '          Text
+'bar'         Text
+' '           Text.Whitespace
+'}.'          Text
+'\n'          Text.Whitespace

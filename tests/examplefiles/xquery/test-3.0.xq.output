@@ -1,22 +1,22 @@
 'xquery'      Keyword.Pseudo
 ' '           Text
 'version'     Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"3.0"'       Literal.String.Double
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'namespace'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'other'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"http://other"' Literal.String.Double
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -24,12 +24,12 @@
 ' '           Text
 '$'           Name.Variable
 'local:straight-var1' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 "'one'"       Literal.String.Single
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -40,12 +40,12 @@
 ' '           Text
 '$'           Name.Variable
 'local:private-var' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 "'secret'"    Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -56,12 +56,12 @@
 ' '           Text
 '$'           Name.Variable
 'local:public-var' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 "'not-secret'" Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -78,12 +78,12 @@
 ' '           Text
 '$'           Name.Variable
 'local:some-var' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 "'anything'"  Literal.String.Single
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -91,57 +91,29 @@
 ' '           Text
 '$'           Name.Variable
 'local:straight-var2' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 "'two'"       Literal.String.Single
 ';'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'S'           Comment
-'i'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
-'M'           Comment
-'a'           Comment
-'p'           Comment
-' '           Comment
-'O'           Comment
-'p'           Comment
-'e'           Comment
-'r'           Comment
-'a'           Comment
-'t'           Comment
-'o'           Comment
-'r'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
+' Simple Map Operator example ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:word-count' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'elms'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
@@ -150,75 +122,75 @@
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:integer'  Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sum'         Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'elms'        Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'count'       Name.Function
 '('           Punctuation
 'tokenize'    Name.Function
 '('           Punctuation
 '.'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'\\s+'"      Literal.String.Single
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:add'   Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:dispatch' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'node'        Name.Tag
 ''            Text
 '('           Punctuation
@@ -226,322 +198,251 @@
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Keyword
 '('           Punctuation
 ')'           Punctuation
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'typeswitch'  Keyword
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'text'        Name.Tag
 ''            Text
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'node'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'comment'     Name.Tag
 ''            Text
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'node'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 'bill'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:bill'  Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 'btitle'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:btitle' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 'section-id'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:section-id' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 'bill-text'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:bill-text' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 'strike'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:strike' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'default'     Keyword
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'local:passthru' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'node'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'`'           Comment
-'s'           Comment
-'w'           Comment
-'i'           Comment
-'t'           Comment
-'c'           Comment
-'h'           Comment
-'`'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'p'           Comment
-'r'           Comment
-'e'           Comment
-'s'           Comment
-'s'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
+' `switch` expression example ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:noise' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'animal'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'duck'        Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"Duck"'      Literal.String.Double
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'quack'       Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"Quack"'     Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'switch'      Keyword
 ' '           Text
 '('           Punctuation
 '$'           Name.Variable
 'animal'      Name
 ')'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text
 '"Cow"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"Moo"'       Literal.String.Double
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text
 "'Cat'"       Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 "'Meow'"      Literal.String.Single
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'duck'        Name
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'quack'       Name
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'default'     Keyword
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"What\'s that odd noise?"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'`'           Comment
-'g'           Comment
-'r'           Comment
-'o'           Comment
-'u'           Comment
-'p'           Comment
-' '           Comment
-'b'           Comment
-'y'           Comment
-'`'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'p'           Comment
-'r'           Comment
-'e'           Comment
-'s'           Comment
-'s'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'w'           Comment
-'i'           Comment
-'t'           Comment
-'h'           Comment
-' '           Comment
-'b'           Comment
-'i'           Comment
-'n'           Comment
-'d'           Comment
-'i'           Comment
-'n'           Comment
-'g'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
+' `group by` expression with binding example ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:a-to-z' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'data'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name.Tag
 ''            Text
 '('           Punctuation
 ')'           Punctuation
 '*'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
@@ -555,7 +456,7 @@
 'item'        Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
@@ -570,7 +471,7 @@
 'item'        Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
@@ -586,7 +487,7 @@
 'item'        Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
@@ -599,7 +500,7 @@
 'item'        Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
@@ -614,33 +515,33 @@
 '</'          Name.Tag
 'item'        Name.Tag
 '>'           Name.Tag
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'GroupedItems' Name.Tag
 '>'           Name.Tag
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'for'         Keyword
 ' '           Text
 '$'           Name.Variable
 'item'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'data'        Name
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'group by'    Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'upper-case'  Name.Function
 '('           Punctuation
 'substring'   Name.Function
@@ -648,24 +549,24 @@
 '$'           Name.Variable
 'item'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'order by'    Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'key'         Name
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'return'      Keyword
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '<'           Name.Tag
 'Group'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Tag
 '='           Operator
 '"'           Punctuation
@@ -682,75 +583,45 @@
 '</'          Name.Tag
 'Group'       Name.Tag
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
 '</'          Name.Tag
 'GroupedItems' Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'`'           Comment
-'g'           Comment
-'r'           Comment
-'o'           Comment
-'u'           Comment
-'p'           Comment
-' '           Comment
-'b'           Comment
-'y'           Comment
-'`'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'p'           Comment
-'r'           Comment
-'e'           Comment
-'s'           Comment
-'s'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
+' `group by` expression example ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:plays-by-character' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'plays'       Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'document'    Keyword
 ' '           Text
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<'           Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
@@ -963,14 +834,14 @@
 '</'          Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'document'    Keyword
 ' '           Text
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<'           Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
@@ -1157,61 +1028,61 @@
 '</'          Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-'\n\n\t\t'    Text
+'\n\n\t\t'    Text.Whitespace
 'for'         Keyword
 ' '           Text
 '$'           Name.Variable
 'play'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'plays'       Name
 '/'           Punctuation
 'play'        Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'title'       Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'play'        Name
 '/'           Punctuation
 'title'       Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword
 ' '           Text
 '$'           Name.Variable
 'character'   Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'play'        Name
 '/'           Punctuation
 'characters'  Name.Tag
 '/'           Punctuation
 'character'   Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'group by'    Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'character'   Name
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<'           Name.Tag
 'character'   Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Tag
 '='           Operator
 '"'           Punctuation
@@ -1227,24 +1098,24 @@
 '\t'          Literal
 '\t'          Literal
 '{'           Punctuation
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 '$'           Name.Variable
 'title'       Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '</'          Name.Tag
 'play'        Name.Tag
 '>'           Name.Tag
-'\n     \t\t' Text
+'\n     \t\t' Text.Whitespace
 '}'           Punctuation
 '\n'          Literal
 
@@ -1254,11 +1125,11 @@
 '</'          Name.Tag
 'character'   Name.Tag
 '>'           Name.Tag
-'\t\n'        Text
+'\t\n'        Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 '\n\t'        Text
@@ -1295,27 +1166,27 @@
 'local:very-annotated' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'thing'       Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"thing"'     Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$'           Name.Variable
 'thing'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
@@ -1327,46 +1198,46 @@
 'local:slightly-annotated' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'nothing'     Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$'           Name.Variable
 'nothing'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:ordered' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'for'         Keyword
 ' '           Text
 '$'           Name.Variable
 'hit'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'doc'         Name.Function
 '('           Punctuation
 '"/db/doc-with-indexes.xml"' Literal.String.Double
@@ -1378,40 +1249,40 @@
 '('           Punctuation
 '.'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'search-expression' Name
 ')'           Punctuation
 ']'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'score'       Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:float'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'other:score' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'hit'         Name
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'order by'    Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'score'       Name
-' '           Text
+' '           Text.Whitespace
 'descending'  Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<'           Name.Tag
 'p'           Name.Tag
 '>'           Name.Tag
@@ -1431,16 +1302,16 @@
 'p'           Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'other:summarize' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'hit'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Tag
 'config'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'width'       Name.Tag
 '='           Operator
 '"'           Punctuation
@@ -1449,585 +1320,457 @@
 '"'           Punctuation
 '/>'          Name.Tag
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:concat-expr' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'postfix'     Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'concatenated' Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'other:uri'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 '"/"'         Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'postfix'     Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$'           Name.Variable
 'concatenated' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:human-units' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'bytes'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'unit'        Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 '$'           Name.Variable
 'bytes'       Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'math:pow'    Name.Function
 '('           Punctuation
 '1024'        Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '('           Punctuation
 'math:pow'    Name.Function
 '('           Punctuation
 '1024'        Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"GB"'        Literal.String.Double
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 '$'           Name.Variable
 'bytes'       Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'math:pow'    Name.Function
 '('           Punctuation
 '1024'        Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '('           Punctuation
 'math:pow'    Name.Function
 '('           Punctuation
 '1024'        Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"MB"'        Literal.String.Double
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'else'        Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '('           Punctuation
 '1024'        Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"KB"'        Literal.String.Double
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'format-number' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'bytes'       Name
-' '           Text
+' '           Text.Whitespace
 'div'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'unit'        Name
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '".00"'       Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 '" "'         Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'unit'        Name
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:merge-simple' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
 ')'           Punctuation
-'\t\n'        Text
+'\t\n'        Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'h'           Comment
-'i'           Comment
-'g'           Comment
-'h'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'o'           Comment
-'r'           Comment
-'d'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'f'           Comment
-'u'           Comment
-'n'           Comment
-'c'           Comment
-'t'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
-'1'           Comment
-' '           Comment
+' higher order function example 1 ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:apply' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'func'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'value'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'func'        Name
 '('           Punctuation
 '$'           Name.Variable
 'value'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'h'           Comment
-'i'           Comment
-'g'           Comment
-'h'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'o'           Comment
-'r'           Comment
-'d'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'f'           Comment
-'u'           Comment
-'n'           Comment
-'c'           Comment
-'t'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
-'2'           Comment
-' '           Comment
+' higher order function example 2 ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:apply-all' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'func'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'list'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'list'        Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'func'        Name
 '('           Punctuation
 '.'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'h'           Comment
-'i'           Comment
-'g'           Comment
-'h'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'o'           Comment
-'r'           Comment
-'d'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'f'           Comment
-'u'           Comment
-'n'           Comment
-'c'           Comment
-'t'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
-'3'           Comment
-' '           Comment
+' higher order function example 3 ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:apply-all-long' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'func'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Type
 '('           Punctuation
 'xs:string'   Keyword.Type
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'list'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'list'        Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'func'        Name
 '('           Punctuation
 '.'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '(:'          Comment
-' '           Comment
-'h'           Comment
-'i'           Comment
-'g'           Comment
-'h'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'o'           Comment
-'r'           Comment
-'d'           Comment
-'e'           Comment
-'r'           Comment
-' '           Comment
-'f'           Comment
-'u'           Comment
-'n'           Comment
-'c'           Comment
-'t'           Comment
-'i'           Comment
-'o'           Comment
-'n'           Comment
-' '           Comment
-'e'           Comment
-'x'           Comment
-'a'           Comment
-'m'           Comment
-'p'           Comment
-'l'           Comment
-'e'           Comment
-' '           Comment
-'4'           Comment
-' '           Comment
+' higher order function example 4 ' Comment
 ':)'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'declare'     Keyword.Declaration
 ' '           Text
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'local:merge' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'func'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Type
 '('           Punctuation
 'xs:string'   Keyword.Type
 '+'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Name.Tag
 '+'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'func'        Name
 '('           Punctuation
 '$'           Name.Variable
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'b'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'to-upper'    Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'upper-case'  Name.Function
 '#'           Keyword.Type
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'let'         Keyword
 ' '           Text
 '$'           Name.Variable
 'to-upper-long' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Type
 '('           Punctuation
 'xs:string'   Keyword.Type
 ')'           Punctuation
 ' '           Text
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xs:string'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'upper-case'  Name.Function
 '#'           Keyword.Type
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<'           Name.Tag
 'case'        Name.Tag
 '>'           Name.Tag
@@ -2038,23 +1781,23 @@
 ' '           Literal
 ' '           Literal
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local:apply-all' Name.Function
 '('           Punctuation
 '$'           Name.Variable
 'to-upper'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"Hello"'     Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"world!"'    Literal.String.Double
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Tag
 'upper'       Name.Tag
 '>'           Name.Tag
@@ -2065,24 +1808,24 @@
 'upper'       Name.Tag
 '>'           Name.Tag
 ','           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local:apply-all-long' Name.Function
 '('           Punctuation
 'lower-case'  Name.Function
 '#'           Keyword.Type
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"Hello"'     Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"world!"'    Literal.String.Double
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Tag
 'lower'       Name.Tag
 '>'           Name.Tag
@@ -2092,7 +1835,7 @@
 '</'          Name.Tag
 'lower'       Name.Tag
 '>'           Name.Tag
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 '\n'          Literal
 
@@ -2103,4 +1846,4 @@
 '</'          Name.Tag
 'case'        Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace

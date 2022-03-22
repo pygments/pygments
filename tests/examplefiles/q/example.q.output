@@ -1,0 +1,998 @@
+'/ shebang'   Comment.Single
+'\n'          Text.Whitespace
+
+'#!/bin/q'    Comment.Hashbang
+'\n\n'        Text.Whitespace
+
+'/ preprocessor' Comment.Single
+'\n'          Text.Whitespace
+
+'\\d .namespace' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'/ keywords such as flip and prd should not be highlighted in comments' Comment.Single
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'keywords such as flip and prd should not be highlighted in strings' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'/ keep syntax highlighting for timing code' Comment.Single
+'\n'          Text.Whitespace
+
+'\\t'         Comment.Preproc
+' '           Text.Whitespace
+'1'           Literal.Number.Integer.Long
+'+'           Operator
+'1'           Literal.Number.Integer.Long
+'\n'          Text.Whitespace
+
+'\\ts'        Comment.Preproc
+' '           Text.Whitespace
+'1'           Literal.Number.Integer.Long
+'+'           Operator
+'1'           Literal.Number.Integer.Long
+'\n\n'        Text.Whitespace
+
+'/ highlight until comment but not next line' Comment.Single
+'\n'          Text.Whitespace
+
+'\\c 20 40 '  Comment.Preproc
+'/ comment'   Comment.Single
+'\n'          Text.Whitespace
+
+'a'           Name.Variable
+':'           Operator
+'1'           Literal.Number.Integer.Long
+' '           Text.Whitespace
+'/ this is no longer part of the system command' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/ 2-digit system commands run til end of line' Comment.Single
+'\n'          Text.Whitespace
+
+'\\cd /foo/bar' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'/ prompt'    Comment.Single
+'\n'          Text.Whitespace
+
+'q)'          Generic.Prompt
+'1'           Literal.Number.Integer.Long
+'+'           Operator
+'2'           Literal.Number.Integer.Long
+'\n\n'        Text.Whitespace
+
+'/\n'         Comment.Multiline
+
+'this is a\nmulti-line comment\n' Comment.Multiline
+
+'\\'          Comment.Multiline
+'\n\n '       Text.Whitespace
+'/'           Comment.Single
+'\n'          Text.Whitespace
+
+'this'        Name
+' '           Text.Whitespace
+'is'          Name
+' '           Text.Whitespace
+'not'         Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'multi'       Name
+'-'           Operator
+'line'        Name
+' '           Text.Whitespace
+'comment'     Name
+'\n'          Text.Whitespace
+
+'\\'          Operator
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String.Double
+'string with escapted quote ' Literal.String.Double
+'\\"'         Literal.String.Escape
+' and random escape ' Literal.String.Double
+'\\\\'        Literal.String.Escape
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'`'           Literal.String.Symbol
+'`foo'        Literal.String.Symbol
+'`bar'        Literal.String.Symbol
+'                       ' Text.Whitespace
+'/ symbols'   Comment.Single
+'\n'          Text.Whitespace
+
+'`'           Literal.String.Symbol
+'/'           Operator
+'not'         Name.Builtin
+'/'           Operator
+'a'           Name
+'/'           Operator
+'symbol'      Name
+'                  ' Text.Whitespace
+'/ not a symbol' Comment.Single
+'\n'          Text.Whitespace
+
+'`:'          Literal.String.Symbol
+'`:/path/to/file' Literal.String.Symbol
+'               ' Text.Whitespace
+'/ file symbols' Comment.Single
+'\n'          Text.Whitespace
+
+"'`length"    Name.Exception
+'                        ' Text.Whitespace
+'/ exception' Comment.Single
+'\n\n'        Text.Whitespace
+
+'2000.01m'    Literal.Date
+'                        ' Text.Whitespace
+'/ month'     Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01'  Literal.Date
+'                      ' Text.Whitespace
+'/ date'      Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D' Literal.Date
+'                     ' Text.Whitespace
+'/ timestamp' Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D00' Literal.Date
+'                   ' Text.Whitespace
+'/ timestamp' Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D00:00' Literal.Date
+'                ' Text.Whitespace
+'/ timestamp' Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D00:00:00' Literal.Date
+'             ' Text.Whitespace
+'/ timestamp' Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D00:00:00.000' Literal.Date
+'         '   Text.Whitespace
+'/ timestamp' Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01D00:00:00.000000' Literal.Date
+'      '      Text.Whitespace
+'/ timestamp' Comment.Single
+'\n\n'        Text.Whitespace
+
+'2000.01.01T' Literal.Date
+'                     ' Text.Whitespace
+'/ datetime'  Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01T' Literal.Date
+'00'          Literal.Number.Integer.Long
+'                   ' Text.Whitespace
+'/ datetime'  Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01T00:00' Literal.Date
+'                ' Text.Whitespace
+'/ datetime'  Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01T00:00:00' Literal.Date
+'             ' Text.Whitespace
+'/ datetime'  Comment.Single
+'\n'          Text.Whitespace
+
+'2000.01.01T00:00:00.000' Literal.Date
+'         '   Text.Whitespace
+'/ datetime'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'00:00'       Literal.Date
+'                           ' Text.Whitespace
+'/ time'      Comment.Single
+'\n'          Text.Whitespace
+
+'00:00:00'    Literal.Date
+'                        ' Text.Whitespace
+'/ time '     Comment.Single
+'\n'          Text.Whitespace
+
+'00:00:00.000' Literal.Date
+'                    ' Text.Whitespace
+'/ time'      Comment.Single
+'\n\n'        Text.Whitespace
+
+'8c6b8b64-6815-6084-0a3e-178401251b68' Literal.Number.Hex
+' '           Text.Whitespace
+'/ guid'      Comment.Single
+'\n\n'        Text.Whitespace
+
+'101010b'     Literal.Number.Bin
+'                         ' Text.Whitespace
+'/ booleans'  Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'0w'          Literal.Number
+';'           Punctuation
+'0N'          Literal.Number
+';'           Punctuation
+'0n'          Literal.Number
+';'           Punctuation
+'0Wp'         Literal.Number
+')'           Punctuation
+'                  ' Text.Whitespace
+'/ null/infinities' Comment.Single
+'\n'          Text.Whitespace
+
+'0x01fe'      Literal.Number.Hex
+'                          ' Text.Whitespace
+'/ octal'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'('           Punctuation
+'1'           Literal.Number.Integer.Long
+';'           Punctuation
+'1j'          Literal.Number.Integer.Long
+';'           Punctuation
+'1n'          Literal.Number.Integer.Long
+';'           Punctuation
+'1p'          Literal.Number.Integer.Long
+')'           Punctuation
+'                    ' Text.Whitespace
+'/ long integers' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'1c'          Literal.Number
+';'           Punctuation
+'1h'          Literal.Number.Integer
+';'           Punctuation
+'1i'          Literal.Number.Integer
+';'           Punctuation
+'1t'          Literal.Number.Integer
+';'           Punctuation
+'1u'          Literal.Number.Integer
+';'           Punctuation
+'1v'          Literal.Number.Integer
+')'           Punctuation
+'             ' Text.Whitespace
+'/ integers'  Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'1e'          Literal.Number.Float
+';'           Punctuation
+'1f'          Literal.Number.Float
+';'           Punctuation
+'1.'          Literal.Number.Float
+';'           Punctuation
+'.1'          Literal.Number.Float
+';'           Punctuation
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'1.0f'        Literal.Number.Float
+')'           Punctuation
+'          '  Text.Whitespace
+'/ floats'    Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'.1e8'        Literal.Number.Float
+';'           Punctuation
+'1.e8'        Literal.Number.Float
+';'           Punctuation
+'1e-8f'       Literal.Number.Float
+';'           Punctuation
+'1E-8'        Literal.Number.Float
+')'           Punctuation
+'          '  Text.Whitespace
+'/ floats'    Comment.Single
+'\n\n'        Text.Whitespace
+
+'/ ascii operators' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'-'           Operator
+';'           Punctuation
+'='           Operator
+';'           Punctuation
+'+'           Operator
+';'           Punctuation
+'*'           Operator
+';'           Punctuation
+'#'           Operator
+';'           Punctuation
+'$'           Operator
+';'           Punctuation
+'%'           Operator
+';'           Punctuation
+'@'           Operator
+';'           Punctuation
+'!'           Operator
+';'           Punctuation
+'~'           Operator
+';'           Punctuation
+'^'           Operator
+';'           Punctuation
+'&'           Operator
+';'           Punctuation
+':'           Operator
+';'           Punctuation
+'.'           Operator
+';'           Punctuation
+','           Operator
+';'           Punctuation
+'<'           Operator
+';'           Punctuation
+'>'           Operator
+';'           Punctuation
+"'"           Operator
+';'           Punctuation
+'\\'          Operator
+';'           Punctuation
+'|'           Operator
+';'           Punctuation
+'/'           Operator
+';'           Punctuation
+'?'           Operator
+';'           Punctuation
+'_'           Operator
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/ k keywords' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'abs'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'acos'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'asin'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'atan'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'avg'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'bin'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'binr'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'by'          Operator.Word
+' '           Text.Whitespace
+'cor'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'cos'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'cov'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'dev'         Operator.Word
+';'           Punctuation
+'\n '         Text.Whitespace
+'delete'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'div'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'do'          Operator.Word
+' '           Text.Whitespace
+'enlist'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'exec'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'exit'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'exp'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'from'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'getenv'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'hopen'       Operator.Word
+' '           Text.Whitespace
+'if'          Operator.Word
+';'           Punctuation
+'\n '         Text.Whitespace
+'in'          Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'insert'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'last'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'like'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'log'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'max'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'min'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'prd'         Operator.Word
+' '           Text.Whitespace
+'select'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'setenv'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'sin'         Operator.Word
+';'           Punctuation
+'\n '         Text.Whitespace
+'sqrt'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'ss'          Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'sum'         Operator.Word
+' '           Text.Whitespace
+'tan'         Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'update'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'var'         Operator.Word
+' '           Text.Whitespace
+'wavg'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'while'       Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'within'      Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'wsum'        Operator.Word
+';'           Punctuation
+' '           Text.Whitespace
+'xexp'        Operator.Word
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/ q operators' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'aj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'aj0'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ajf'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ajf0'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'all'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'and'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'any'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'asc'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'asof'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'attr'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'avgs'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ceiling'     Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'cols'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'count'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'cross'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'csv'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'cut'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'deltas'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'desc'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'differ'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'distinct'    Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'dsave'       Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'each'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ej'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ema'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'eval'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'except'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'fby'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'fills'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'first'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'fkeys'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'flip'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'floor'       Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'get'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'group'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'gtime'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'hclose'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'hcount'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'hdel'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'hsym'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'iasc'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'idesc'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ij'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ijf'         Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'inter'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'inv'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'key'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'keys'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'lj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ljf'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'load'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'lower'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'lsq'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ltime'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ltrim'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mavg'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'maxs'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mcount'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'md5'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mdev'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'med'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'meta'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mins'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mmax'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mmin'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mmu'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'mod'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'msum'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'neg'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'next'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'not'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'null'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'or'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'over'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'parse'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'peach'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'pj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'prds'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'prior'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'prev'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'rand'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'rank'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ratios'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'raze'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'read0'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'read1'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'reciprocal'  Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'reval'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'reverse'     Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'rload'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'rotate'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'rsave'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'rtrim'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'save'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'scan'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'scov'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'sdev'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'set'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'show'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'signum'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ssr'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'string'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'sublist'     Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'sums'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'sv'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'svar'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'system'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'tables'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'til'         Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'trim'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'txf'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'type'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'uj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ujf'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ungroup'     Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'union'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'upper'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'upsert'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'view'        Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'views'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'vs'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'where'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'wj'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'wj1'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'ww'          Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xasc'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xbar'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xcol'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xcols'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xdesc'       Name.Builtin
+';'           Punctuation
+'\n '         Text.Whitespace
+'xgroup'      Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xkey'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xlog'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xprev'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'xrank'       Name.Builtin
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'.foo.bar'    Name.Function
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'['           Punctuation
+'x'           Name
+';'           Punctuation
+'y'           Name
+']'           Punctuation
+'x'           Name
+'+'           Operator
+'y'           Name
+'}'           Punctuation
+'           ' Text.Whitespace
+'/ function declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'.foo.bar'    Name.Function
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'x'           Name
+'+'           Operator
+'y'           Name
+'}'           Punctuation
+'                ' Text.Whitespace
+'/ function declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'foo.bar'     Name.Variable
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'string'      Literal.String.Double
+'"'           Literal.String.Double
+'              ' Text.Whitespace
+'/ variable declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'foo.bar'     Name.Variable
+' '           Text.Whitespace
+',:'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'amend'       Literal.String.Double
+'"'           Literal.String.Double
+'              ' Text.Whitespace
+'/ variable amend' Comment.Single
+'\n\n\n'      Text.Whitespace
+
+'{'           Punctuation
+'x'           Name
+'+'           Operator
+'y'           Name
+'}'           Punctuation
+'/'           Operator
+'['           Punctuation
+'1'           Literal.Number.Integer.Long
+' '           Text.Whitespace
+'2'           Literal.Number.Integer.Long
+']'           Punctuation
+'                     ' Text.Whitespace
+'/ anonymous function' Comment.Single
+'\n\n'        Text.Whitespace
+
+'f'           Name.Function
+':'           Operator
+'{'           Punctuation
+'['           Punctuation
+'x'           Name
+';'           Punctuation
+'y'           Name
+']'           Punctuation
+'                        ' Text.Whitespace
+'/ multiline function' Comment.Single
+'\n '         Text.Whitespace
+'x'           Name.Variable
+':'           Operator
+'`foo'        Literal.String.Symbol
+';'           Punctuation
+'\n '         Text.Whitespace
+'y'           Name.Variable
+':'           Operator
+'`bar'        Literal.String.Symbol
+';'           Punctuation
+'\n '         Text.Whitespace
+'z'           Name.Variable
+':'           Operator
+'x'           Name
+','           Operator
+'y'           Name
+';'           Punctuation
+'\n '         Text.Whitespace
+'z'           Name
+'}'           Punctuation
+'\n'          Text.Whitespace

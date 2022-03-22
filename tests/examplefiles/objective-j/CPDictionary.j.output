@@ -1,63 +1,53 @@
 '/*\n * CPDictionary.j\n * Foundation\n *\n * Created by Francisco Tolmasky.\n * Copyright 2008, 280 North, Inc.\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2.1 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public\n * License along with this library; if not, write to the Free Software\n * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA\n */' Comment.Multiline
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '//@import "CPRange.j"\n' Comment.Single
 
 '@import'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"CPObject.j"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@import'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"CPEnumerator.j"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@import'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"CPException.j"' Literal.String.Double
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/* @ignore */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 '_CPDictionaryValueEnumerator' Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CPEnumerator' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'CPEnumerator' Name
-'    '        Text
+'    '        Text.Whitespace
 '_keyEnumerator' Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'CPDictionary' Name
-'    '        Text
+'    '        Text.Whitespace
 '_dictionary' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -66,228 +56,190 @@
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'aDictionary' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'super'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'self'        Name.Builtin
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '_keyEnumerator' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'aDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'keyEnumerator' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '_dictionary' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'aDictionary' Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
 'nextObject'  Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '_keyEnumerator' Name
-' '           Text
+' '           Text.Whitespace
 'nextObject'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
 'key'         Name
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Constant
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '_dictionary' Name
-' '           Text
+' '           Text.Whitespace
 'objectForKey' Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '@end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/*! \n    @class CPDictionary\n    @ingroup foundation\n    @brief A mutable key-value pair collection.\n\n    A dictionary is the standard way of passing around key-value pairs in\n    the Cappuccino framework. It is similar to the\n    <a href="http://java.sun.com/javase/6/docs/api/index.html">Java map interface</a>,\n    except all keys are CPStrings and values can be any\n    Cappuccino or JavaScript object.\n\n    If you are familiar with dictionaries in Cocoa, you\'ll notice that\n    there is no CPMutableDictionary class. The regular CPDictionary\n    has \\c -setObject:forKey: and \\c -removeObjectForKey: methods.\n    In Cappuccino there is no distinction between immutable and mutable classes.\n    They are all mutable.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 'CPDictionary' Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CPObject'    Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*\n    @ignore\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
 'alloc'       Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'objj_dictionary' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns a new empty CPDictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
 'dictionary'  Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns a new dictionary, initialized with the contents of \\c aDictionary.\n    @param aDictionary the dictionary to copy key-value pairs from\n    @return the new CPDictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -296,38 +248,34 @@
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'aDictionary' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initWithDictionary' Name
 ':'           Operator
 'aDictionary' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates a new dictionary with single key-value pair.\n    @param anObject the object for the paring\n    @param aKey the key for the pairing\n    @return the new CPDictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -336,33 +284,31 @@
 'id'          Keyword.Type
 ')'           Punctuation
 'anObject'    Text
-' '           Text
+' '           Text.Whitespace
 'forKey:'     Name.Function
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
 'aKey'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initWithObjects' Name
 ':'           Operator
 '['           Punctuation
 'anObject'    Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forKeys'     Name
 ':'           Operator
 '['           Punctuation
@@ -370,18 +316,16 @@
 ']'           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates a dictionary with multiple key-value pairs.\n    @param objects the objects to place in the dictionary\n    @param keys the keys for each of the objects\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -390,48 +334,44 @@
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'objects'     Text
-' '           Text
+' '           Text.Whitespace
 'forKeys:'    Name.Function
 '('           Punctuation
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'keys'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initWithObjects' Name
 ':'           Operator
 'objects'     Name
-' '           Text
+' '           Text.Whitespace
 'forKeys'     Name
 ':'           Operator
 'keys'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates a dictionary with multiple key-value pairs.\n    @param JavaScript object\n    @return the new CPDictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -440,38 +380,34 @@
 'JSObject'    Keyword.Type
 ')'           Punctuation
 'object'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'dictionaryWithJSObject' Name
 ':'           Operator
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 'recursively' Name
 ':'           Operator
 'NO'          Keyword.Constant
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates a dictionary with multiple key-value pairs, recursively.\n    @param JavaScript object\n    @return the new CPDictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -480,141 +416,121 @@
 'JSObject'    Keyword.Type
 ')'           Punctuation
 'object'      Text
-' '           Text
+' '           Text.Whitespace
 'recursively:' Name.Function
 '('           Punctuation
 'BOOL'        Keyword.Type
 ')'           Punctuation
 'recursively' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        \n    ' Text
+'\n        \n    ' Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'object'      Name
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'object'      Name
 '['           Punctuation
 'key'         Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n        ' Text
+'\n    \n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'recursively' Name
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 '.'           Punctuation
 'constructor' Name
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Builtin
 ')'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'CPDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'dictionaryWithJSObject' Name
 ':'           Operator
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'recursively' Name
 ':'           Operator
 'YES'         Keyword.Constant
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n        ' Text
+'\n    \n        ' Text.Whitespace
 '['           Punctuation
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 'setObject'   Name
 ':'           Operator
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'dictionary'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates and returns a dictionary constructed by a given pairs of keys and values.\n    @param firstObject first object value\n    @param ... key for the first object and ongoing value-key pairs for more objects.\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n    \n    Assuming that there\'s no object retaining in Cappuccino, you can create\n    dictionaries same way as with alloc and initWithObjectsAndKeys:\n    var dict = [CPDictionary dictionaryWithObjectsAndKeys:\n    @"value1", @"key1",\n    @"value2", @"key2"];\n    \n    Note, that there\'s no final nil like in Objective-C/Cocoa.\n    \n    @see [CPDictionary initWithObjectsAndKeys:]\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -624,72 +540,64 @@
 ')'           Punctuation
 'firstObject' Text
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 '.'           Punctuation
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'arguments'   Name
 '['           Punctuation
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'arguments'   Name
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@selector'   Keyword
 '('           Punctuation
 'initWithObjectsAndKeys' Name
 ':'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'objj_msgSend' Name
 '.'           Punctuation
 'apply'       Name.Function
 '('           Punctuation
 'this'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'arguments'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Initializes the dictionary with the contents of another dictionary.\n    @param aDictionary the dictionary to copy key-value pairs from\n    @return the initialized dictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -698,92 +606,80 @@
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'aDictionary' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'CPDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'aDictionary' Name
 '.'           Punctuation
 '_buckets'    Name
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '['           Punctuation
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 'setObject'   Name
 ':'           Operator
 '['           Punctuation
 'aDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'objectForKey' Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        \n    ' Text
+'\n        \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'dictionary'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Initializes the dictionary from the arrays of keys and objects.\n    @param objects the objects to put in the dictionary\n    @param keyArray the keys for the objects to put in the dictionary\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the initialized dictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -792,60 +688,52 @@
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'objects'     Text
-' '           Text
+' '           Text.Whitespace
 'forKeys:'    Name.Function
 '('           Punctuation
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'keyArray'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'super'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '['           Punctuation
 'objects'     Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'keyArray'    Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '['           Punctuation
 'CPException' Name
-' '           Text
+' '           Text.Whitespace
 'raise'       Name
 ':'           Operator
 'CPInvalidArgumentException' Name
-' '           Text
+' '           Text.Whitespace
 'reason'      Name
 ':'           Operator
 '"'           Literal.String
@@ -854,7 +742,7 @@
 '+'           Operator
 '['           Punctuation
 'objects'     Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 '+'           Operator
@@ -864,7 +752,7 @@
 '+'           Operator
 '['           Punctuation
 'keyArray'    Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 '+'           Operator
@@ -873,57 +761,45 @@
 '"'           Literal.String
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'self'        Name.Builtin
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'keyArray'    Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        \n        ' Text
+'\n        \n        ' Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'setObject'   Name
 ':'           Operator
 'objects'     Name
 '['           Punctuation
 'i'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 'keyArray'    Name
@@ -932,29 +808,23 @@
 ']'           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Creates and returns a dictionary constructed by a given pairs of keys and values.\n    @param firstObject first object value\n    @param ... key for the first object and ongoing value-key pairs for more objects.\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n    \n    You can create dictionaries this way:\n    var dict = [[CPDictionary alloc] initWithObjectsAndKeys:\n    @"value1", @"key1",\n    @"value2", @"key2"];\n    \n    Note, that there\'s no final nil like in Objective-C/Cocoa.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -964,346 +834,284 @@
 ')'           Punctuation
 'firstObject' Text
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 '.'           Punctuation
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'argCount'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'arguments'   Name
 '.'           Punctuation
 'length'      Name
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'argCount'    Name
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '!=='         Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '['           Punctuation
 'CPException' Name
-' '           Text
+' '           Text.Whitespace
 'raise'       Name
 ':'           Operator
 'CPInvalidArgumentException' Name
-' '           Text
+' '           Text.Whitespace
 'reason'      Name
 ':'           Operator
 '"'           Literal.String
 'Key-value count is mismatched. (' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'argCount'    Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' arguments passed)' Literal.String
 '"'           Literal.String
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'super'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'init'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'self'        Name.Builtin
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '// The arguments array contains self and _cmd, so the first object is at position 2.\n' Comment.Single
 
-'        '    Text
+'        '    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'        \n        ' Text
+'\n        \n        ' Text.Whitespace
 'for'         Keyword
 '('           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'argCount'    Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'arguments'   Name
 '['           Punctuation
 'index'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'            ' Text
+'\n\n            ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Constant
 ')'           Punctuation
-'\n'          Text
-
-'                ' Text
+'\n                ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'            ' Text
+'\n\n            ' Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'setObject'   Name
 ':'           Operator
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 'arguments'   Name
 '['           Punctuation
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    return a copy of the receiver (does not deep copy the objects contained in the dictionary).\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'copy'        Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'CPDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'dictionaryWithDictionary' Name
 ':'           Operator
 'self'        Name.Builtin
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns the number of entries in the dictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
 ')'           Punctuation
 'count'       Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns an array of keys for all the entries in the dictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'allKeys'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_keys'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns an array of values for all the entries in the dictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'allValues'   Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_keys'       Name
 '.'           Punctuation
 'length'      Name
 ','           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'values'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        \n    ' Text
+'\n        \n    ' Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'index'       Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'values'      Name
 '.'           Punctuation
 'push'        Name.Function
@@ -1312,7 +1120,7 @@
 '('           Punctuation
 'self'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '_keys'       Name
 '['           Punctuation
@@ -1322,93 +1130,79 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'values'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "/*!\n    Returns an enumerator that enumerates over all the dictionary's keys.\n*/" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPEnumerator' Keyword.Type
 ')'           Punctuation
 'keyEnumerator' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '_keys'       Name
-' '           Text
+' '           Text.Whitespace
 'objectEnumerator' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "/*!\n    Returns an enumerator that enumerates over all the dictionary's values.\n*/" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPEnumerator' Keyword.Type
 ')'           Punctuation
 'objectEnumerator' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 '_CPDictionaryValueEnumerator' Name
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'initWithDictionary' Name
 ':'           Operator
 'self'        Name.Builtin
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Compare the receiver to this dictionary, and return whether or not they are equal. \n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'BOOL'        Keyword.Type
 ')'           Punctuation
@@ -1417,91 +1211,73 @@
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'aDictionary' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '!=='         Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'aDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'NO'          Keyword.Constant
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'index'       Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'currentKey'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_keys'       Name
 '['           Punctuation
 'index'       Name
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'lhsObject'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_buckets'    Name
 '['           Punctuation
 'currentKey'  Name
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'rhsObject'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'aDictionary' Name
 '.'           Punctuation
 '_buckets'    Name
@@ -1509,46 +1285,38 @@
 'currentKey'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'        '    Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lhsObject'   Name
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'rhsObject'   Name
 ')'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'continue'    Keyword
 ';'           Punctuation
-'\n'          Text
-
-'            \n        ' Text
+'\n            \n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lhsObject'   Name
 '.'           Punctuation
 'isa'         Name
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'rhsObject'   Name
 '.'           Punctuation
 'isa'         Name
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'lhsObject'   Name
-' '           Text
+' '           Text.Whitespace
 'respondsToSelector' Name
 ':'           Operator
 '@selector'   Keyword
@@ -1557,57 +1325,45 @@
 ':'           Operator
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'lhsObject'   Name
-' '           Text
+' '           Text.Whitespace
 'isEqual'     Name
 ':'           Operator
 'rhsObject'   Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'continue'    Keyword
 ';'           Punctuation
-'\n'          Text
-
-'        \n        ' Text
+'\n        \n        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'NO'          Keyword.Constant
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'YES'         Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*\n    Instance.isEqualToDictionary(aDictionary)\n    {\n        if(this.count()!=aDictionary.count()) return NO;\n        \n        var i= this._keys.count();\n        while(i--) if(this.objectForKey(this._keys[i])!=aDictionary.objectForKey(this._keys[i])) return NO;\n        \n        return YES;\n    }\n    \n    Instance.allKeys()\n    {\n        return this._keys;\n    }\n    \n    Instance.allKeysForObject(anObject)\n    {\n        var i= 0,\n            keys= CPArray.array(),\n            count= this.count();\n        \n        while((i= this._objects.indexOfObjectInRage(0, count-i))!=CPNotFound) keys.addObject(this._keys[i]);\n        \n        return keys;\n    }\n    \n    Instance.allValues()\n    {\n        return this._objects;\n    }\n    \n    Instance.keyEnumerator()\n    {\n        return this._keys.objectEnumerator();\n    }\n    \n    Instance.keysSortedByValueUsingSelector(aSelector)\n    {\n        var dictionary= this,\n            objectSelector= function(rhs)\n            {\n                return aSelector.apply(dictionary.objectForKey(this), [dictionary.objectForKey(rhs)]);\n            };\n        \n        return this._keys.sortedArrayUsingSelector(objectSelector);\n    }\n    \n    Instance.objectEnumerator()\n    {\n        return this._objects.objectEnumerator();\n    }\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 "/*!\n    Returns the object for the entry with key \\c aKey.\n    @param aKey the key for the object's entry\n    @return the object for the entry\n*/" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -1616,105 +1372,93 @@
 'CPString'    Keyword.Type
 ')'           Punctuation
 'aKey'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_buckets'    Name
 '['           Punctuation
 'aKey'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'undefined'   Keyword.Constant
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'object'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*\n    Instance.objectsForKeys(keys, aNotFoundMarker)\n    {\n        var i= keys.length,\n            objects= CPArray.array();\n        \n        while(i--)\n        {\n            var object= this.objectForKey(keys[i]);\n            objects.addObject(object==nil?aNotFoundMarker:object);\n        }\n        \n        return objects;\n    }\n    \n    Instance.valueForKey(aKey)\n    {\n        if(aKey.length && aKey[0]=="@") return this.objectForKey(aKey.substr(1));\n        \n        return base.valueForKey(aKey);\n    }\n    \n    //\n    \n    Instance.addEntriesFromDictionary(aDictionary)\n    {\n        var key,\n            keyEnumerator= aDictionary.keyEnumerator();\n\n        while(key= keyEnumerator.nextObject()) this.setObjectForKey(aDictionary.objectForKey(key), key);\n    }\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*!\n    Removes all the entries from the dictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
 'removeAllObjects' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '_keys'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '_buckets'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Removes the entry for the specified key.\n    @param aKey the key of the entry to be removed\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1723,32 +1467,28 @@
 'id'          Keyword.Type
 ')'           Punctuation
 'aKey'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'dictionary_removeValue' Name.Function
 '('           Punctuation
 'self'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aKey'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Removes each entry in allKeys from the receiver.\n    @param allKeys an array of keys that will be removed from the dictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1757,62 +1497,52 @@
 'CPArray'     Keyword.Type
 ')'           Punctuation
 'allKeys'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'allKeys'     Name
 '.'           Punctuation
 'length'      Name
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'index'       Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'dictionary_removeValue' Name.Function
 '('           Punctuation
 'self'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'allKeys'     Name
 '['           Punctuation
 'index'       Name
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*\n    Instance.removeObjectForKey(aKey)\n    {\n        var entry= this._dictionary[aKey];\n        \n        if(entry)\n        {\n            var range= CPMakeRange(entry.index, 1);\n            \n            this._keys.removeObjectsInRange(range);\n            this._objects.removeObjectsInRange(range);\n        \n            delete this._dictionary[aKey];\n        }\n    }\n    \n    Instance.setDictionary(aDictionary)\n    {\n        this._keys= CPArray.arrayWithArray(aDictionary.allKeys());\n        this._objects= CPArray.arrayWithArray(aDictionary.allValues());\n        \n        this._dictionary= { };\n        \n        var i= this._keys.count();\n        while(i--) this._dictionary[this._keys[i]]= { object: this._objects[i], index: i };\n    }\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 "/*!\n    Adds an entry into the dictionary.\n    @param anObject the object for the entry\n    @param aKey the entry's key\n*/" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1821,44 +1551,40 @@
 'id'          Keyword.Type
 ')'           Punctuation
 'anObject'    Text
-' '           Text
+' '           Text.Whitespace
 'forKey:'     Name.Function
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
 'aKey'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'dictionary_setValue' Name.Function
 '('           Punctuation
 'self'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aKey'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*\n    Instance.setValueForKey(aValue, aKey)\n    {\n        if(!aValue) this.removeObjectForKey(aKey);\n        else this.setObjectForKey(aValue, aKey);\n    }\n    \n    Instance.copy()\n    {\n        return CPDictionary.alloc().dictionaryWithDictionary(this);\n    }\n*/' Comment.Multiline
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Take all the key/value pairs in aDictionary and apply them to this dictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1867,193 +1593,157 @@
 'CPDictionary' Keyword.Type
 ')'           Punctuation
 'aDictionary' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
 'aDictionary' Name
 ')'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
-
-'        \n    ' Text
+'\n        \n    ' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'keys'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'aDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'allKeys'     Name
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'keys'        Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'index'       Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'keys'        Name
 '['           Punctuation
 'index'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'        '    Text
+'\n\n        ' Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'setObject'   Name
 ':'           Operator
 '['           Punctuation
 'aDictionary' Name
-' '           Text
+' '           Text.Whitespace
 'objectForKey' Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 'key'         Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Returns a human readable description of the dictionary.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPString'    Keyword.Type
 ')'           Punctuation
 'description' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'CPDictionary {' Literal.String
 '\\n'         Literal.String.Escape
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_keys'       Name
 '.'           Punctuation
 'length'      Name
 ';'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
+'\n    \n    ' Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name
 '--'          Operator
 ')'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '_keys'       Name
 '['           Punctuation
 'i'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ':'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'        '    Text
+'\n\n        ' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '_buckets'    Name
 '['           Punctuation
 '_keys'       Name
@@ -2062,113 +1752,85 @@
 ']'           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'        '    Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'object'      Name
 '.'           Punctuation
 'isa'         Name
 ')'           Punctuation
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'object'      Name
-' '           Text
+' '           Text.Whitespace
 'description' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 'else'        Keyword
-'\n'          Text
-
-'            ' Text
+'\n            ' Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'object'      Name
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'        '    Text
+'\n\n        ' Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\n'         Literal.String.Escape
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '}'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'description' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '@end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 'CPDictionary' Name.Class
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CPCoding'    Name.Label
 ')'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*\n    Initializes the dictionary by unarchiving the data from a coder.\n    @param aCoder the coder from which the data will be unarchived.\n    @return the initialized dictionary\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -2177,17 +1839,15 @@
 'CPCoder'     Keyword.Type
 ')'           Punctuation
 'aCoder'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'aCoder'      Name
-' '           Text
+' '           Text.Whitespace
 '_decodeDictionaryOfObjectsForKey' Name
 ':'           Operator
 '@"'          Literal.String
@@ -2195,18 +1855,16 @@
 '"'           Literal.String
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    Archives the dictionary to a provided coder.\n    @param aCoder the coder to which the dictionary data will be archived.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -2215,19 +1873,17 @@
 'CPCoder'     Keyword.Type
 ')'           Punctuation
 'aCoder'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 'aCoder'      Name
-' '           Text
+' '           Text.Whitespace
 '_encodeDictionaryOfObjects' Name
 ':'           Operator
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'forKey'      Name
 ':'           Operator
 '@"'          Literal.String
@@ -2235,41 +1891,37 @@
 '"'           Literal.String
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '@end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/*!\n    @class CPMutableDictionary\n    @ingroup compatability\n\n    This class is just an empty subclass of CPDictionary.\n    CPDictionary already implements mutable methods and\n    this class only exists for source compatability.\n*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 'CPMutableDictionary' Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CPDictionary' Name.Class
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '@end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'objj_dictionary' Name
 '.'           Punctuation
 'prototype'   Keyword
 '.'           Punctuation
 'isa'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CPDictionary' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,176 +1,176 @@
 '/*\n * Created on 13-Mar-2004\n * Created by James Yeh\n * Copyright (C) 2004, 2005, 2006 Aelitis, All Rights Reserved.\n *\n * This program is free software; you can redistribute it and/or\n * modify it under the terms of the GNU General Public License\n * as published by the Free Software Foundation; either version 2\n * of the License, or (at your option) any later version.\n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU General Public License for more details.\n * You should have received a copy of the GNU General Public License\n * along with this program; if not, write to the Free Software\n * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.\n * \n * AELITIS, SAS au capital de 46,603.30 euros\n * 8 Allee Lenotre, La Grille Royale, 78600 Le Mesnil le Roi, France.\n *\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'package'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.platform.macosx' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.core3.logging.*' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.core3.util.AEMonitor' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.core3.util.Debug' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.core3.util.SystemProperties' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.platform.PlatformManager' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.platform.PlatformManagerCapabilities' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.platform.PlatformManagerListener' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.platform.macosx.access.jnilib.OSXAccess' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'org.gudy.azureus2.plugins.platform.PlatformManagerException' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.io.BufferedReader' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.io.File' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.io.IOException' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.io.InputStreamReader' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.text.MessageFormat' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'java.util.HashSet' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/**\n * Performs platform-specific operations with Mac OS X\n *\n * @author James Yeh\n * @version 1.0 Initial Version\n * @see PlatformManager\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
 ' '           Text
 'PlatformManagerImpl' Name.Class
-' '           Text
+' '           Text.Whitespace
 'implements'  Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManager' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'final'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'LogIDs'      Name
-' '           Text
+' '           Text.Whitespace
 'LOGID'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'LogIDs'      Name
 '.'           Punctuation
 'CORE'        Name.Attribute
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerImpl' Name
-' '           Text
+' '           Text.Whitespace
 'singleton'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'AEMonitor'   Name
-' '           Text
+' '           Text.Whitespace
 'class_mon'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'AEMonitor'   Name
 '('           Punctuation
 '"'           Literal.String
@@ -178,25 +178,25 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'final'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'USERDATA_PATH' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
 'System'      Name
@@ -207,9 +207,9 @@
 'user.home'   Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '/Library/Application Support/' Literal.String
 '"'           Literal.String
@@ -219,239 +219,240 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'//T: PlatformManagerCapabilities\n' Comment.Single
+'    '        Text.Whitespace
+'//T: PlatformManagerCapabilities' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'final'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'HashSet'     Name
-' '           Text
+' '           Text.Whitespace
 'capabilitySet' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'HashSet'     Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Gets the platform manager singleton, which was already initialized\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerImpl' Name
-' '           Text
+' '           Text.Whitespace
 'getSingleton' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'singleton'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Tries to enable cocoa-java access and instantiates the singleton\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'static'      Keyword.Declaration
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'initializeSingleton' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Instantiates the singleton\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'initializeSingleton' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'class_mon'   Name
 '.'           Punctuation
 'enter'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'singleton'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerImpl' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Throwable'   Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t'  Text
+'        \t'  Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Failed to initialize platform manager' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' for Mac OS X' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'finally'     Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'class_mon'   Name
 '.'           Punctuation
 'exit'        Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Creates a new PlatformManager and initializes its capabilities\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerImpl' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -461,9 +462,9 @@
 'RecoverableFileDelete' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -473,9 +474,9 @@
 'ShowFileInBrowser' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -485,9 +486,9 @@
 'ShowPathInCommandLine' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -497,9 +498,9 @@
 'CreateCommandLineProcess' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -509,9 +510,9 @@
 'GetUserDataDirectory' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -521,9 +522,9 @@
 'UseNativeScripting' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -533,14 +534,14 @@
 'PlaySystemAlert' Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
-'\n'          Text
+'        '    Text.Whitespace
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'OSXAccess'   Name
 '.'           Punctuation
@@ -548,11 +549,11 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t        '  Text
+'\t        '  Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'add'         Name.Attribute
@@ -562,74 +563,74 @@
 'GetVersion'  Name.Attribute
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'getPlatformType' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'PT_MACOSX'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'getVersion'  Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    \t'      Text
+'    \t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
 'OSXAccess'   Name
@@ -638,15 +639,15 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -654,228 +655,228 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    \t'      Text
+'    \t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    \t'      Text
-'\n'          Text
+'    \t'      Text.Whitespace
+'\n'          Text.Whitespace
 
-'    \t'      Text
+'    \t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'OSXAccess'   Name
 '.'           Punctuation
 'getVersion'  Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     * @see org.gudy.azureus2.core3.util.SystemProperties#getUserPath()\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'getUserDataDirectory' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'USERDATA_PATH' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'File'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'getLocation' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'long'        Keyword.Type
-'\t'          Text
+'\t'          Text.Whitespace
 'location_id' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location_id' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'LOC_USER_DATA' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'\n'          Text
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'return'      Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'USERDATA_PATH' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
-'\n'          Text
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'return'      Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Not implemented; returns True\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'isApplicationRegistered' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'getApplicationCommandLine' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'try'         Keyword
 '{'           Punctuation
-'\t    '      Text
-'\n'          Text
+'\t    '      Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'String'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 'bundle_path' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'getProperty' Name.Attribute
@@ -884,81 +885,81 @@
 'user.dir'    Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 'SystemProperties' Name
 '.'           Punctuation
 'SEP'         Name.Attribute
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'SystemProperties' Name
 '.'           Punctuation
 'getApplicationName' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '.app'        Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'osx_app_bundle' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bundle_path' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '.'           Punctuation
 'getAbsoluteFile' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'\n'          Text
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'osx_app_bundle' Name
 '.'           Punctuation
 'exists'      Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'OSX app bundle not found: [' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 'osx_app_bundle' Name
 '.'           Punctuation
@@ -966,30 +967,30 @@
 '('           Punctuation
 ')'           Punctuation
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ']'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'out'         Name.Attribute
 '.'           Punctuation
 'println'     Name.Attribute
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Logger'      Name
 '.'           Punctuation
@@ -997,56 +998,56 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\t\t'        Text
-'\n'          Text
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'\n'          Text
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'open -a '    Literal.String
 '\\"'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 'osx_app_bundle' Name
 '.'           Punctuation
@@ -1054,112 +1055,115 @@
 '('           Punctuation
 ')'           Punctuation
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\"'         Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'//return osx_app_bundle.toString() +"/Contents/MacOS/JavaApplicationStub";\n' Comment.Single
+'\t\t\t'      Text.Whitespace
+'//return osx_app_bundle.toString() +"/Contents/MacOS/JavaApplicationStub";' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'\n'          Text
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'catch'       Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Throwable'   Name
-' '           Text
+' '           Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '{'           Punctuation
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 't'           Name
 '.'           Punctuation
 'printStackTrace' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'isAdditionalFileTypeRegistered' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'name'        Name
 ','           Punctuation
-'\t\t\t\t'    Text
-'// e.g. "BitTorrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. "BitTorrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'type'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\t\t\t\t'    Text
-'// e.g. ".torrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. ".torrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -1167,61 +1171,63 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'unregisterAdditionalFileType' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'name'        Name
 ','           Punctuation
-'\t\t\t\t'    Text
-'// e.g. "BitTorrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. "BitTorrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'type'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\t\t\t\t'    Text
-'// e.g. ".torrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. ".torrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
-'\n'          Text
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -1229,77 +1235,81 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'registerAdditionalFileType' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'name'        Name
 ','           Punctuation
-'\t\t\t\t'    Text
-'// e.g. "BitTorrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. "BitTorrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'description' Name
 ','           Punctuation
-'\t\t'        Text
-'// e.g. "BitTorrent File"\n' Comment.Single
+'\t\t'        Text.Whitespace
+'// e.g. "BitTorrent File"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'type'        Name
 ','           Punctuation
-'\t\t\t\t'    Text
-'// e.g. ".torrent"\n' Comment.Single
+'\t\t\t\t'    Text.Whitespace
+'// e.g. ".torrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'content_type' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\t\t'        Text
-'// e.g. "application/x-bittorrent"\n' Comment.Single
+'\t\t'        Text.Whitespace
+'// e.g. "application/x-bittorrent"' Comment.Single
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t   '       Text
+'\t   '       Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -1307,85 +1317,86 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Not implemented; does nothing\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'registerApplication' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
-'// handled by LaunchServices and/0r user interaction\n' Comment.Single
+'        '    Text.Whitespace
+'// handled by LaunchServices and/0r user interaction' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'createProcess' Name.Function
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'cmd'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'inheritsHandles' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'performRuntimeExec' Name
 '('           Punctuation
 'cmd'         Name
@@ -1398,95 +1409,95 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Throwable'   Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
 'Failed to create process' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'performRecoverableFileDelete' Name.Function
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'file'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
 'path'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
@@ -1496,15 +1507,15 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t        \t' Text
+'\t        \t' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Logger'      Name
 '.'           Punctuation
@@ -1512,33 +1523,33 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '.'           Punctuation
 'LT_WARNING'  Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Cannot find ' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t\t\t\t' Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'file'        Name
 '.'           Punctuation
 'getName'     Name.Attribute
@@ -1547,26 +1558,26 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'useOSA'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'NativeInvocationBridge' Name
 '.'           Punctuation
@@ -1577,10 +1588,10 @@
 'isEnabled'   Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'NativeInvocationBridge' Name
 '.'           Punctuation
@@ -1593,45 +1604,45 @@
 'file'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'useOSA'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'StringBuffer' Name
-' '           Text
+' '           Text.Whitespace
 'sb'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'StringBuffer' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -1642,9 +1653,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -1654,9 +1665,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -1668,9 +1679,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -1678,9 +1689,9 @@
 'path'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -1691,91 +1702,91 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'performOSAScript' Name
 '('           Punctuation
 'sb'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Throwable'   Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
 'Failed to move file' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'hasCapability' Name.Function
 '('           Punctuation
 'PlatformManagerCapabilities' Name
-' '           Text
+' '           Text.Whitespace
 'capability'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'capabilitySet' Name
 '.'           Punctuation
 'contains'    Name.Attribute
@@ -1783,33 +1794,33 @@
 'capability'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'dispose'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'NativeInvocationBridge' Name
 '.'           Punctuation
 'sharedInstance' Name.Attribute
@@ -1820,44 +1831,44 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'setTCPTOSEnabled' Name.Function
 '('           Punctuation
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'enabled'     Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -1865,58 +1876,58 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'copyFilePermissions' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 'from_file_name' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 'to_file_name' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -1924,58 +1935,58 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\t\t'        Text
-'\n'          Text
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * {@inheritDoc}\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'showFile'    Name.Function
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'file'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
 'path'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
@@ -1985,15 +1996,15 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t'  Text
+'        \t'  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Logger'      Name
 '.'           Punctuation
@@ -2001,33 +2012,33 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t\t' Text
+'        \t\t' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '.'           Punctuation
 'LT_WARNING'  Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Cannot find ' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t\t\t\t' Text
+'        \t\t\t\t' Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'file'        Name
 '.'           Punctuation
 'getName'     Name.Attribute
@@ -2036,13 +2047,13 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -2050,64 +2061,65 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'showInFinder' Name
 '('           Punctuation
 'file'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'// Public utility methods not shared across the interface\n' Comment.Single
+'    '        Text.Whitespace
+'// Public utility methods not shared across the interface' Comment.Single
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Plays the system alert (the jingle is specified by the user in System Preferences)\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'playSystemAlert' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'performRuntimeExec' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '['           Operator
 ']'           Operator
@@ -2118,29 +2130,29 @@
 '}'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t'  Text
+'        \t'  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Logger'      Name
 '.'           Punctuation
@@ -2148,95 +2160,95 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t\t' Text
+'        \t\t' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '.'           Punctuation
 'LT_WARNING'  Name.Attribute
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '"'           Literal.String
 'Cannot play system alert' Literal.String
 '"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t'  Text
+'        \t'  Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * <p>Shows the given file or directory in Finder</p>\n     * @param path Absolute path to the file or directory\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'showInFinder' Name.Function
 '('           Punctuation
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'useOSA'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'NativeInvocationBridge' Name
 '.'           Punctuation
@@ -2247,10 +2259,10 @@
 'isEnabled'   Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'NativeInvocationBridge' Name
 '.'           Punctuation
@@ -2263,37 +2275,37 @@
 'path'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'useOSA'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'StringBuffer' Name
-' '           Text
+' '           Text.Whitespace
 'sb'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'StringBuffer' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2304,9 +2316,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2316,9 +2328,9 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2330,9 +2342,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2340,9 +2352,9 @@
 'path'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2353,67 +2365,67 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'performOSAScript' Name
 '('           Punctuation
 'sb'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogAlert'    Name
 '('           Punctuation
 'LogAlert'    Name
 '.'           Punctuation
 'UNREPEATABLE' Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogAlert'    Name
 '.'           Punctuation
 'AT_ERROR'    Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '.'           Punctuation
 'getMessage'  Name.Attribute
 '('           Punctuation
@@ -2421,86 +2433,86 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * <p>Shows the given file or directory in Terminal by executing cd /absolute/path/to</p>\n     * @param path Absolute path to the file or directory\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'showInTerminal' Name.Function
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'showInTerminal' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'File'        Name
 '('           Punctuation
 'path'        Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * <p>Shows the given file or directory in Terminal by executing cd /absolute/path/to</p>\n     * @param path Absolute path to the file or directory\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'showInTerminal' Name.Function
 '('           Punctuation
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'path'        Name
 '.'           Punctuation
@@ -2508,73 +2520,73 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'path'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 '.'           Punctuation
 'getParentFile' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'path'        Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 '.'           Punctuation
 'isDirectory' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'StringBuffer' Name
-' '           Text
+' '           Text.Whitespace
 'sb'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'StringBuffer' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2585,9 +2597,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2597,9 +2609,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2612,9 +2624,9 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2631,7 +2643,7 @@
 ' '           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\\\'        Literal.String
 ' '           Literal.String
@@ -2639,9 +2651,9 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'append'      Name.Attribute
@@ -2651,67 +2663,67 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'performOSAScript' Name
 '('           Punctuation
 'sb'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogAlert'    Name
 '('           Punctuation
 'LogAlert'    Name
 '.'           Punctuation
 'UNREPEATABLE' Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogAlert'    Name
 '.'           Punctuation
 'AT_ERROR'    Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t' Text
+'\t\t\t\t\t\t' Text.Whitespace
 '.'           Punctuation
 'getMessage'  Name.Attribute
 '('           Punctuation
@@ -2719,27 +2731,27 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t'  Text
+'        \t'  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Logger'      Name
 '.'           Punctuation
@@ -2747,33 +2759,33 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t\t' Text
+'        \t\t' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '.'           Punctuation
 'LT_WARNING'  Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Cannot find ' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        \t\t\t\t' Text
+'        \t\t\t\t' Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'path'        Name
 '.'           Punctuation
 'getName'     Name.Attribute
@@ -2782,57 +2794,58 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'// Internal utility methods\n' Comment.Single
+'    '        Text.Whitespace
+'// Internal utility methods' Comment.Single
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Compiles a new AppleScript instance and runs it\n     * @param cmd AppleScript command to execute; do not surround command with extra quotation marks\n     * @return Output of the script\n     * @throws IOException If the script failed to execute\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'performOSAScript' Name.Function
 '('           Punctuation
 'CharSequence' Name
-' '           Text
+' '           Text.Whitespace
 'cmd'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'performOSAScript' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'CharSequence' Name
 '['           Operator
 ']'           Operator
@@ -2841,59 +2854,59 @@
 '}'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Compiles a new AppleScript instance and runs it\n     * @param cmds AppleScript Sequence of commands to execute; do not surround command with extra quotation marks\n     * @return Output of the script\n     * @throws IOException If the script failed to execute\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'performOSAScript' Name.Function
 '('           Punctuation
 'CharSequence' Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'long'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'start'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -2903,41 +2916,41 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '+'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -2946,135 +2959,135 @@
 '\\'          Literal.String
 't'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '['           Operator
 'i'           Name
 ']'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmdargs'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '['           Operator
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ']'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 '0'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'osascript'   Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '+'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '-e'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
 'valueOf'     Name.Attribute
@@ -3085,41 +3098,41 @@
 ']'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Process'     Name
-' '           Text
+' '           Text.Whitespace
 'osaProcess'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'performRuntimeExec' Name
 '('           Punctuation
 'cmdargs'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'BufferedReader' Name
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'BufferedReader' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'InputStreamReader' Name
 '('           Punctuation
 'osaProcess'  Name
@@ -3130,33 +3143,33 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'line'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'readLine'    Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'close'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3164,27 +3177,27 @@
 '"'           Literal.String
 'OSAScript Output: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'BufferedReader' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'InputStreamReader' Name
 '('           Punctuation
 'osaProcess'  Name
@@ -3195,35 +3208,35 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'readLine'    Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'close'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3231,17 +3244,17 @@
 '"'           Literal.String
 'OSAScript Error (if any): ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3254,9 +3267,9 @@
 'OSAScript execution ended ({0}ms)' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
 '['           Operator
 ']'           Operator
@@ -3270,110 +3283,110 @@
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 ')'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
 '('           Punctuation
 'errorMsg'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Compiles a new AppleScript instance and runs it\n     * @param script AppleScript file (.scpt) to execute\n     * @return Output of the script\n     * @throws IOException If the script failed to execute\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'performOSAScript' Name.Function
 '('           Punctuation
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'script'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'long'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'start'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3381,9 +3394,9 @@
 '"'           Literal.String
 'Executing OSAScript from file: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'script'      Name
 '.'           Punctuation
 'getPath'     Name.Attribute
@@ -3391,21 +3404,21 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Process'     Name
-' '           Text
+' '           Text.Whitespace
 'osaProcess'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'performRuntimeExec' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '['           Operator
 ']'           Operator
@@ -3414,7 +3427,7 @@
 'osascript'   Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'script'      Name
 '.'           Punctuation
 'getPath'     Name.Attribute
@@ -3423,21 +3436,21 @@
 '}'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'BufferedReader' Name
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'BufferedReader' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'InputStreamReader' Name
 '('           Punctuation
 'osaProcess'  Name
@@ -3448,33 +3461,33 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'line'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'readLine'    Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'close'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3482,27 +3495,27 @@
 '"'           Literal.String
 'OSAScript Output: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'BufferedReader' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'InputStreamReader' Name
 '('           Punctuation
 'osaProcess'  Name
@@ -3513,35 +3526,35 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'readLine'    Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'close'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3549,17 +3562,17 @@
 '"'           Literal.String
 'OSAScript Error (if any): ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3572,9 +3585,9 @@
 'OSAScript execution ended ({0}ms)' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
 '['           Operator
 ']'           Operator
@@ -3588,102 +3601,102 @@
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 ')'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
 '('           Punctuation
 'errorMsg'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Compiles a new AppleScript instance to the specified location\n     * @param cmd         Command to compile; do not surround command with extra quotation marks\n     * @param destination Destination location of the AppleScript file\n     * @return True if compiled successfully\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'compileOSAScript' Name.Function
 '('           Punctuation
 'CharSequence' Name
-' '           Text
+' '           Text.Whitespace
 'cmd'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'destination' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'compileOSAScript' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'CharSequence' Name
 '['           Operator
 ']'           Operator
@@ -3691,64 +3704,64 @@
 'cmd'         Name
 '}'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'destination' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * Compiles a new AppleScript instance to the specified location\n     * @param cmds Sequence of commands to compile; do not surround command with extra quotation marks\n     * @param destination Destination location of the AppleScript file\n     * @return True if compiled successfully\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'compileOSAScript' Name.Function
 '('           Punctuation
 'CharSequence' Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'File'        Name
-' '           Text
+' '           Text.Whitespace
 'destination' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'long'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'start'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 '.'           Punctuation
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3756,9 +3769,9 @@
 '"'           Literal.String
 'Compiling OSAScript: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'destination' Name
 '.'           Punctuation
 'getPath'     Name.Attribute
@@ -3766,41 +3779,41 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '+'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -3809,135 +3822,135 @@
 '\\'          Literal.String
 't'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '['           Operator
 'i'           Name
 ']'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmdargs'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '['           Operator
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ']'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 '0'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'osacompile'  Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmds'        Name
 '.'           Punctuation
 'length'      Name.Attribute
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '+'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '-e'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
 'valueOf'     Name.Attribute
@@ -3948,102 +3961,102 @@
 ']'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'cmdargs'     Name
 '.'           Punctuation
 'length'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '-o'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'cmdargs'     Name
 '['           Operator
 'cmdargs'     Name
 '.'           Punctuation
 'length'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'destination' Name
 '.'           Punctuation
 'getPath'     Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Process'     Name
-' '           Text
+' '           Text.Whitespace
 'osaProcess'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'performRuntimeExec' Name
 '('           Punctuation
 'cmdargs'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'BufferedReader' Name
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'BufferedReader' Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'InputStreamReader' Name
 '('           Punctuation
 'osaProcess'  Name
@@ -4054,49 +4067,49 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'readLine'    Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'reader'      Name
 '.'           Punctuation
 'close'       Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -4104,9 +4117,9 @@
 '"'           Literal.String
 'OSACompile Execution Failed: ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'getMessage'  Name.Attribute
@@ -4114,9 +4127,9 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'printStackTrace' Name.Attribute
@@ -4124,22 +4137,22 @@
 'e'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -4147,17 +4160,17 @@
 '"'           Literal.String
 'OSACompile Error (if any): ' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'errorMsg'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -4170,9 +4183,9 @@
 'OSACompile execution ended ({0}ms)' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
 '['           Operator
 ']'           Operator
@@ -4186,79 +4199,79 @@
 'currentTimeMillis' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 ')'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'errorMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * @see Runtime#exec(String[])\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'protected'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Process'     Name
-' '           Text
+' '           Text.Whitespace
 'performRuntimeExec' Name.Function
 '('           Punctuation
 'String'      Name
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'cmdargs'     Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'IOException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Runtime'     Name
 '.'           Punctuation
 'getRuntime'  Name.Attribute
@@ -4270,104 +4283,105 @@
 'cmdargs'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogAlert'    Name
 '('           Punctuation
 'LogAlert'    Name
 '.'           Punctuation
 'UNREPEATABLE' Name.Attribute
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'getMessage'  Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/**\n     * <p>Gets the preferred file browser name</p>\n     * <p>Currently supported browsers are Path Finder and Finder. If Path Finder is currently running\n     * (not just installed), then "Path Finder is returned; else, "Finder" is returned.</p>\n     * @return "Path Finder" if it is currently running; else "Finder"\n     */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'getFileBrowserName' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'try'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
-'// slowwwwwwww\n' Comment.Single
+'            ' Text.Whitespace
+'// slowwwwwwww' Comment.Single
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"'           Literal.String
 'true'        Literal.String
@@ -4390,13 +4404,13 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'outNoStack'  Name.Attribute
@@ -4406,63 +4420,63 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Path Finder' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Finder'      Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IOException' Name
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'printStackTrace' Name.Attribute
@@ -4470,92 +4484,92 @@
 'e'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Logger'      Name
 '.'           Punctuation
 'log'         Name.Attribute
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LogEvent'    Name
 '('           Punctuation
 'LOGID'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 '.'           Punctuation
 'getMessage'  Name.Attribute
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Finder'      Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolean'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'testNativeAvailability' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'String'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
-'\n'          Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'throws'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PlatformManagerException' Name
 '('           Punctuation
 '"'           Literal.String
@@ -4563,72 +4577,72 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\t\t'        Text
-'\n'          Text
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'addListener' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    \t'      Text
+'    \t'      Text.Whitespace
 'PlatformManagerListener' Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'listener'    Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'removeListener' Name.Function
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    \t'      Text
+'    \t'      Text.Whitespace
 'PlatformManagerListener' Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'listener'    Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

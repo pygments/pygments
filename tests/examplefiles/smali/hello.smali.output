@@ -14,66 +14,70 @@
 
 '# cat out/hello.smali\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.class'      Keyword
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'hello'       Name.Class
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.super'      Keyword
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Text
 'Object'      Name.Class
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.source'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"hello.java"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# direct methods\n' Comment
 
 '.method'     Keyword
-' '           Text
+' '           Text.Whitespace
 'constructor' Keyword
-' '           Text
+' '           Text.Whitespace
 '<init>'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .registers' Keyword
-' '           Text
+'    '        Text.Whitespace
+'.registers'  Keyword
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .prologue' Keyword
-'\n'          Text
+'    '        Text.Whitespace
+'.prologue'   Keyword
+'\n'          Text.Whitespace
 
-'    .line'   Keyword
-' '           Text
+'    '        Text.Whitespace
+'.line'       Keyword
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'invoke-direct ' Text
+'    '        Text.Whitespace
+'invoke-direct' Text
+' '           Text.Whitespace
 '{'           Punctuation
 'p0'          Name.Builtin
 '}'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Text
 'Object'      Name.Class
@@ -83,24 +87,27 @@
 '('           Punctuation
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'return-void\n' Text
+'    '        Text.Whitespace
+'return-void' Text
+'\n'          Text.Whitespace
 
-'.end method' Keyword
-'\n'          Text
+'.end'        Keyword
+' '           Text.Whitespace
+'method'      Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.method'     Keyword
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Function
 '('           Punctuation
 '['           Keyword.Type
@@ -110,31 +117,36 @@
 ';'           Text
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .registers' Keyword
-' '           Text
+'    '        Text.Whitespace
+'.registers'  Keyword
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .parameter' Keyword
-'\n'          Text
+'    '        Text.Whitespace
+'.parameter'  Keyword
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .prologue' Keyword
-'\n'          Text
+'    '        Text.Whitespace
+'.prologue'   Keyword
+'\n'          Text.Whitespace
 
-'    .line'   Keyword
-' '           Text
+'    '        Text.Whitespace
+'.line'       Keyword
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'sget-object ' Text
+'    '        Text.Whitespace
+'sget-object' Text
+' '           Text.Whitespace
 'v0'          Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/lang/'  Text
 'System'      Name.Class
@@ -146,30 +158,32 @@
 'java/io/'    Text
 'PrintStream' Name.Class
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'const-string ' Text
+'    '        Text.Whitespace
+'const-string' Text
+' '           Text.Whitespace
 'v1'          Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"hi"'        Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'invoke-virtual ' Text
+'    '        Text.Whitespace
+'invoke-virtual' Text
+' '           Text.Whitespace
 '{'           Punctuation
 'v0'          Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v1'          Name.Builtin
 '}'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'L'           Keyword.Type
 'java/io/'    Text
 'PrintStream' Name.Class
@@ -183,17 +197,21 @@
 ';'           Text
 ')'           Punctuation
 'V'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    .line'   Keyword
-' '           Text
+'    '        Text.Whitespace
+'.line'       Keyword
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-'return-void\n' Text
+'    '        Text.Whitespace
+'return-void' Text
+'\n'          Text.Whitespace
 
-'.end method' Keyword
-'\n'          Text
+'.end'        Keyword
+' '           Text.Whitespace
+'method'      Keyword
+'\n'          Text.Whitespace

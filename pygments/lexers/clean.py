@@ -4,7 +4,7 @@
 
     Lexer for the Clean language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,11 +18,12 @@ __all__ = ['CleanLexer']
 class CleanLexer(ExtendedRegexLexer):
     """
     Lexer for the general purpose, state-of-the-art, pure and lazy functional
-    programming language Clean (http://clean.cs.ru.nl/Clean).
+    programming language Clean.
 
     .. versionadded: 2.2
     """
     name = 'Clean'
+    url = 'http://clean.cs.ru.nl/Clean'
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
 
@@ -59,15 +60,15 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'comments': [
             (r'//.*\n', Comment.Single),
-            (r'/\*', Comment.Multi, 'comments.in'),
+            (r'/\*', Comment.Multiline, 'comments.in'),
             (r'/\*\*', Comment.Special, 'comments.in'),
         ],
         'comments.in': [
-            (r'\*\/', Comment.Multi, '#pop'),
-            (r'/\*', Comment.Multi, '#push'),
-            (r'[^*/]+', Comment.Multi),
-            (r'\*(?!/)', Comment.Multi),
-            (r'/', Comment.Multi),
+            (r'\*\/', Comment.Multiline, '#pop'),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*(?!/)', Comment.Multiline),
+            (r'/', Comment.Multiline),
         ],
         'keywords': [
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),

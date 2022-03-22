@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, pypy3]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
       max-parallel: 4
 
     steps:
@@ -26,8 +26,33 @@ jobs:
       run: make test TEST=-v
       if: runner.os == 'Linux'
     - name: Test package
-      run: py.test
-      if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
+      run: pytest
+      if: runner.os != 'Linux'
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Run make check
+      run: make check
+    - name: Fail if the basic checks failed
+      run: make check
+      if: runner.os == 'Linux'
+
+  check-mapfiles:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Regenerate mapfiles
+      run: make mapfiles
+    - name: Fail if mapfiles changed
+      run: |
+        if git ls-files -m | grep mapping; then
+          echo 'Please run "make mapfiles" and add the changes to a commit.'
+          exit 1
+        fi
 
   lint:
     runs-on: ubuntu-latest

@@ -91,172 +91,172 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  Compute   Y <-  beta*Y + alpha*K^-1 X\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  where K is a multilevel  preconditioner stored in baseprecv\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  cfr.: Smith, Biorstad & Gropp\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!        Domain Decomposition\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!        Cambridge Univ. Press\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  To each level I there corresponds a matrix A(I) and a preconditioner K(I)\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  A notational difference: in the DD reference above the preconditioner for\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  a given level K(I) is written out as a sum over the subdomains\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  SUM_k(R_k^T A_k R_k)\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  whereas in this code the sum is implicit in the parallelization,\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  i.e. each process takes care of one subdomain, and for each level we have\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  as many subdomains as there are processes (except for the coarsest level where\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  we might have a replicated index space). Thus the sum apparently disappears\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  from our code, but only apparently, because it is implicit in the call\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  to psb_baseprc_aply.\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!  A bit of description of the baseprecv(:) data structure:\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   1. Number of levels = NLEV = size(baseprecv(:))\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2. baseprecv(ilev)%av(:)    sparse matrices needed for the current level.\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!      Includes:\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.1.:  baseprecv(ilev)%av(l_pr_)    L factor of ILU preconditioners\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.2.:  baseprecv(ilev)%av(u_pr_)    U factor of ILU preconditioners\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.3.:  baseprecv(ilev)%av(ap_nd_)   Off-diagonal part of A for Jacobi sweeps\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.4.:  baseprecv(ilev)%av(ac_)      Aggregated matrix of level ILEV\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.5.:  baseprecv(ilev)%av(sm_pr_t_) Smoother prolongator transpose; maps vectors\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                          (ilev-1) --->  (ilev)\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   2.6.:  baseprecv(ilev)%av(sm_pr_)   Smoother prolongator; maps vectors\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                          (ilev)   --->  (ilev-1)\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 "!   Shouldn't we keep just one of them and handle transpose in the sparse BLAS? maybe\n" Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   3.    baseprecv(ilev)%desc_data     comm descriptor for level ILEV\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   4.    baseprecv(ilev)%base_a        Pointer (really a pointer!) to the base matrix\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       of the current level, i.e.: if ILEV=1 then  A\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       else the aggregated matrix av(ac_); so we have\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       a unified treatment of residuals. Need this to\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       avoid passing explicitly matrix A to the\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       outer prec. routine\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   5.    baseprecv(ilev)%mlia          The aggregation map from (ilev-1)-->(ilev)\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!                                       if no smoother, it is used instead of sm_pr_\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!   6.    baseprecv(ilev)%nlaggr        Number of aggregates on the various procs.\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 '!\n'         Comment
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_serial_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_descriptor_type' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_prec_type' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_psblas_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_penv_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_const_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_error_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'use '        Keyword
 'psb_penv_mod' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'implicit '   Keyword
 'none\n\n  '  Keyword
 'type'        Keyword
@@ -268,29 +268,29 @@
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'desc_data'   Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'type'        Keyword
 '('           Punctuation
 'psb_zbaseprc_type' Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'intent'      Keyword
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -303,13 +303,13 @@
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'alpha'       Name
 ','           Punctuation
 'beta'        Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -322,26 +322,26 @@
 '('           Punctuation
 'inout'       Name
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'character'   Keyword.Type
-'                           ' Text
+'                           ' Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'trans'       Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -351,37 +351,37 @@
 ')'           Punctuation
 ','           Punctuation
 'target'      Keyword
-'          '  Text
+'          '  Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'work'        Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'integer'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'intent'      Keyword
 '('           Punctuation
 'out'         Name
 ')'           Punctuation
-'                ' Text
+'                ' Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'info'        Name
-'\n\n\n  '    Text
+'\n\n\n  '    Text.Whitespace
 '! Local variables\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'n_row'       Name
 ','           Punctuation
 'n_col'       Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -390,11 +390,11 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'allocatable' Keyword
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'tx'          Name
 '('           Punctuation
 ':'           Punctuation
@@ -416,9 +416,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'x2l'         Name
 '('           Punctuation
 ':'           Punctuation
@@ -438,19 +438,19 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'character'   Keyword.Type
-'     '       Text
+'     '       Text.Whitespace
 '::'          Keyword.Declaration
 'diagl'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'diagu'       Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ictxt'       Name
 ','           Punctuation
 'np'          Name
@@ -459,25 +459,25 @@
 ','           Punctuation
 'i'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isz'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nrg'         Name
 ','           Punctuation
 'nr2l'        Name
 ','           Punctuation
 'err_act'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'iptype'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int_err'     Name
 '('           Punctuation
 '5'           Literal.Number.Integer
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'real'        Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -485,11 +485,11 @@
 '1.d0'        Literal.Number.Float
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'omega'       Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'real'        Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -497,84 +497,84 @@
 '1.d0'        Literal.Number.Float
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 't1'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't2'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't3'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't4'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't5'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't6'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't7'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mpi_wtime'   Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'logical'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parameter'   Keyword
-'          '  Text
+'          '  Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'debug'       Name
 '='           Operator
 '.'           Punctuation
 'false'       Name
 '.'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'debugprt'    Name
 '='           Operator
 '.'           Punctuation
 'false'       Name
 '.'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'integer'     Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ismth'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ilev'        Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'external '   Keyword
 'mpi_wtime'   Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'character'   Keyword.Type
 '('           Punctuation
 'len'         Name.Builtin
 '='           Operator
 '20'          Literal.Number.Integer
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ch_err'      Name
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'type '       Keyword
 'psb_mlprec_wrk_type' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -583,11 +583,11 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pointer'     Keyword
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'tx'          Name
 '('           Punctuation
 ':'           Punctuation
@@ -609,9 +609,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x2l'         Name
 '('           Punctuation
 ':'           Punctuation
@@ -633,9 +633,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b2l'         Name
 '('           Punctuation
 ':'           Punctuation
@@ -655,29 +655,29 @@
 'null'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end '        Keyword
 'type '       Keyword
 'psb_mlprec_wrk_type' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'type'        Keyword
 '('           Punctuation
 'psb_mlprec_wrk_type' Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pointer'     Keyword
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'interface '  Keyword
 'psb_baseprc_aply' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'subroutine ' Keyword
 'psb_zbaseprc_aply' Name
 '('           Punctuation
@@ -699,13 +699,13 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'use '        Keyword
 'psb_descriptor_type' Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'use '        Keyword
 'psb_prec_type' Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'type'        Keyword
 '('           Punctuation
 'psb_desc_type' Name
@@ -715,26 +715,26 @@
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'desc_data'   Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'type'        Keyword
 '('           Punctuation
 'psb_zbaseprc_type' Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'intent'      Keyword
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'prec'        Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -747,20 +747,20 @@
 '('           Punctuation
 'inout'       Name
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -773,24 +773,24 @@
 '('           Punctuation
 'in'          Name
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'alpha'       Name
 ','           Punctuation
 'beta'        Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'character'   Keyword.Type
 '('           Punctuation
 'len'         Name.Builtin
 '='           Operator
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'                    ' Text
+'                    ' Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'trans'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'complex'     Keyword.Type
 '('           Punctuation
 'kind'        Name.Builtin
@@ -800,48 +800,48 @@
 ')'           Punctuation
 ','           Punctuation
 'target'      Keyword
-'          '  Text
+'          '  Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'work'        Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'integer'     Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'intent'      Keyword
 '('           Punctuation
 'out'         Name
 ')'           Punctuation
-'                ' Text
+'                ' Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'info'        Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end '        Keyword
 'subroutine ' Keyword
 'psb_zbaseprc_aply' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end '        Keyword
 'interface\n\n  ' Keyword
 'name'        Name
 '='           Operator
 "'psb_mlprc_aply'" Literal.String.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 'call '       Keyword
 'psb_erractionsave' Name
 '('           Punctuation
 'err_act'     Name
 ')'           Punctuation
-'\n\n\n  '    Text
+'\n\n\n  '    Text.Whitespace
 'ictxt'       Name
 '='           Operator
 'desc_data'   Name
@@ -850,28 +850,28 @@
 '('           Punctuation
 'psb_ctxt_'   Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'call '       Keyword
 'psb_info'    Name
 '('           Punctuation
 'ictxt'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'me'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'np'          Name
 ')'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'nlev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'size'        Name
 '('           Punctuation
 'baseprecv'   Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -883,18 +883,18 @@
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n    '  Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -907,10 +907,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n    '      Text
-'goto '       Keyword
+'\n    '      Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end '        Keyword
 'if\n\n\n  '  Keyword
 'select '     Keyword
@@ -926,15 +928,15 @@
 'ml_type_'    Name
 ')'           Punctuation
 ')'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'no_ml_'      Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '! Should not really get here.\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 'call '       Keyword
 'psb_errpush' Name
 '('           Punctuation
@@ -946,51 +948,53 @@
 '='           Operator
 "'no_ml_ in mlprc_aply?'" Literal.String.Single
 ')'           Punctuation
-'\n    '      Text
-'goto '       Keyword
+'\n    '      Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n  '    Text
+'\n\n\n  '    Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'add_ml_prec_' Name
 ')'           Punctuation
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 '!\n'         Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    Additive is very simple.\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    1.  X(1) = Xext\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    2.  DO ILEV=2,NLEV\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!           X(ILEV) = AV(PR_SM_T_)*X(ILEV-1)\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    3.  Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    4.  DO  ILEV=NLEV-1,1,-1\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!           Y(ILEV) = AV(PR_SM_)*Y(ILEV+1)\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    5.  Yext    = beta*Yext + Y(1)\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!\n'         Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!         1..NLEV <=>  (j) <-> 0\n' Comment
 
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -1008,9 +1012,9 @@
 'y'           Name
 ','           Punctuation
 '&'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -1024,19 +1028,21 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n    '      Text
+'\n    '      Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -1065,7 +1071,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -1075,28 +1081,28 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 'do '         Keyword
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1110,11 +1116,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1128,11 +1134,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1144,11 +1150,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nrg'         Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1160,7 +1166,7 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -1184,9 +1190,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1203,9 +1209,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1221,23 +1227,23 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n        ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -1250,10 +1256,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
-'goto '       Keyword
+'\n        '  Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n      '    Text
+'\n      '    Text.Whitespace
 'end '        Keyword
 'if\n\n      ' Keyword
 'mlprec_wrk'  Name
@@ -1265,11 +1273,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1279,11 +1287,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1295,9 +1303,9 @@
 ':'           Punctuation
 'n_row'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1311,7 +1319,7 @@
 ':'           Punctuation
 'n_row'       Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1330,11 +1338,11 @@
 'n_col'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1344,11 +1352,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'ismth'       Name
 '='           Operator
 'baseprecv'   Name
@@ -1360,31 +1368,31 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '!\n'         Comment
 
-'        '    Text
+'        '    Text.Whitespace
 '! Smoothed aggregation\n' Comment
 
-'        '    Text
+'        '    Text.Whitespace
 '!\n'         Comment
 
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -1395,11 +1403,11 @@
 '('           Punctuation
 'glb_smth_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_halo'    Name
@@ -1423,28 +1431,30 @@
 'base_desc'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'info'        Name
 ','           Punctuation
 'work'        Name
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else\n          ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -1466,11 +1476,11 @@
 'n_col'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'end '        Keyword
 'if\n\n        ' Keyword
 'call '       Keyword
@@ -1498,9 +1508,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -1512,37 +1522,39 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'else'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '!\n'         Comment
 
-'        '    Text
+'        '    Text.Whitespace
 '! Raw  aggregation, may take shortcut\n' Comment
 
-'        '    Text
+'        '    Text.Whitespace
 '!\n'         Comment
 
-'        '    Text
+'        '    Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'n_row'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1560,13 +1572,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1584,13 +1596,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1602,13 +1614,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'end '        Keyword
 'do\n\n      ' Keyword
 'end '        Keyword
 'if\n\n      ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -1622,7 +1634,7 @@
 '=='          Operator
 'mat_repl_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then\n        ' Keyword
 'call '       Keyword
 'psb_sum'     Name
@@ -1641,10 +1653,10 @@
 'nrg'         Name
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'else '       Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -1655,13 +1667,13 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mat_distr_'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then\n        ' Keyword
 'write'       Keyword
 '('           Punctuation
@@ -1669,13 +1681,13 @@
 ','           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1685,7 +1697,7 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'endif\n\n      ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
@@ -1698,9 +1710,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1718,9 +1730,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1728,18 +1740,18 @@
 '%'           Punctuation
 'desc_data'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'N'"         Literal.String.Single
 ','           Punctuation
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'enddo\n\n    ' Keyword
 'do '         Keyword
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 'nlev'        Name
 ','           Punctuation
@@ -1747,7 +1759,7 @@
 ','           Punctuation
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'ismth'       Name
 '='           Operator
 'baseprecv'   Name
@@ -1759,11 +1771,11 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1777,11 +1789,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1795,11 +1807,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1811,11 +1823,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nrg'         Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -1827,18 +1839,18 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n\n        ' Keyword
 'call '       Keyword
 'psb_csmm'    Name
@@ -1863,9 +1875,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -1879,28 +1891,30 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'else\n\n        ' Keyword
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n_row'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1912,9 +1926,9 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1926,13 +1940,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -1950,7 +1964,7 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'enddo\n\n      ' Keyword
 'end '        Keyword
 'if\n    '    Keyword
@@ -1981,36 +1995,38 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n  '    Text
+'\n\n\n  '    Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'mult_ml_prec_' Name
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '!\n'         Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!  Multiplicative multilevel\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!  Pre/post smoothing versions.\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '!\n'         Comment
 
-'\n    '      Text
+'\n    '      Text.Whitespace
 'select '     Keyword
 'case'        Keyword
 '('           Punctuation
@@ -2024,78 +2040,78 @@
 'smth_pos_'   Name
 ')'           Punctuation
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'post_smooth_' Name
 ')'           Punctuation
-'\n\n\n      ' Text
+'\n\n\n      ' Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Post smoothing.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    1.   X(1) = Xext\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    2.   DO ILEV=2, NLEV :: X(ILEV) = AV(PR_SM_T_,ILEV)*X(ILEV-1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    3.   Y(NLEV) = (K(NLEV)**(-1))*X(NLEV)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    4.   DO  ILEV=NLEV-1,1,-1\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = Y(ILEV) + (K(ILEV)**(-1))*(X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    5.  Yext    = beta*Yext + Y(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!         1..NLEV <=>  (j) <-> 0\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Also: post smoothing is not spelled out in detail in DD.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'desc_data'   Name
 '%'           Punctuation
 'matrix_data' Name
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2107,7 +2123,7 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -2130,11 +2146,11 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2145,12 +2161,12 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2160,11 +2176,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2174,11 +2190,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2188,11 +2204,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -2210,9 +2226,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2222,7 +2238,7 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -2240,9 +2256,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -2252,19 +2268,19 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'do '         Keyword
 'ilev'        Name
 '='           Operator
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2278,11 +2294,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2296,11 +2312,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2312,11 +2328,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nrg'         Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2328,11 +2344,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2342,7 +2358,7 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -2366,9 +2382,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2379,23 +2395,23 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -2408,10 +2424,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n          ' Text
-'goto '       Keyword
+'\n          ' Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'end '        Keyword
 'if\n\n        ' Keyword
 'mlprec_wrk'  Name
@@ -2423,11 +2441,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2437,11 +2455,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2451,35 +2469,35 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '! Smoothed aggregation\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -2490,11 +2508,11 @@
 '('           Punctuation
 'glb_smth_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n            ' Keyword
 'call '       Keyword
 'psb_halo'    Name
@@ -2509,9 +2527,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2527,19 +2545,21 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n          ' Text
+'\n          ' Text.Whitespace
 'else\n            ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -2561,11 +2581,11 @@
 'n_col'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'if\n\n          ' Keyword
 'call '       Keyword
@@ -2592,11 +2612,11 @@
 '%'           Punctuation
 'x2l'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -2608,37 +2628,39 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '! Raw  aggregation, may take shortcut\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2656,13 +2678,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2680,13 +2702,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -2698,13 +2720,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'do\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -2718,7 +2740,7 @@
 '=='          Operator
 'mat_repl_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then\n          ' Keyword
 'call '       Keyword
 'psb_sum'     Name
@@ -2737,10 +2759,10 @@
 'nrg'         Name
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else '       Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -2751,13 +2773,13 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mat_distr_'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then\n          ' Keyword
 'write'       Keyword
 '('           Punctuation
@@ -2765,13 +2787,13 @@
 ','           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2781,7 +2803,7 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'endif\n        ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
@@ -2805,9 +2827,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2817,19 +2839,21 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'enddo\n\n\n      ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
@@ -2848,14 +2872,14 @@
 '%'           Punctuation
 'x2l'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'nlev'        Name
@@ -2876,19 +2900,21 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n      ' Text
+'\n\n\n      ' Text.Whitespace
 'do '         Keyword
 'ilev'        Name
 '='           Operator
@@ -2896,17 +2922,17 @@
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -2918,33 +2944,33 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'smth_omg_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'call '       Keyword
 'psb_halo'    Name
 '('           Punctuation
@@ -2967,16 +2993,16 @@
 'desc_data'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'info'        Name
 ','           Punctuation
 'work'        Name
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'call '       Keyword
 'psb_csmm'    Name
 '('           Punctuation
@@ -3004,9 +3030,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -3018,24 +3044,26 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else\n          ' Keyword
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3047,7 +3075,7 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3057,19 +3085,19 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3079,9 +3107,9 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3091,13 +3119,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3119,7 +3147,7 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
@@ -3144,9 +3172,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -3169,19 +3197,21 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -3200,9 +3230,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -3219,27 +3249,29 @@
 '%'           Punctuation
 'base_desc'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'trans'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'enddo\n\n      ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
@@ -3266,90 +3298,92 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'pre_smooth_' Name
 ')'           Punctuation
-'\n\n\n      ' Text
+'\n\n\n      ' Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Pre smoothing.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    1.   X(1)  = Xext\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    2.   Y(1)  = (K(1)**(-1))*X(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    3.   TX(1) = X(1) - A(1)*Y(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    4.   DO ILEV=2, NLEV\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          X(ILEV) = AV(PR_SM_T_,ILEV)*TX(ILEV-1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          TX(ILEV) = (X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    5.   DO  ILEV=NLEV-1,1,-1\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = Y(ILEV) + AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    6.  Yext    = beta*Yext + Y(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!         1..NLEV <=>  (j) <-> 0\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'desc_data'   Name
 '%'           Punctuation
 'matrix_data' Name
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -3361,7 +3395,7 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -3384,11 +3418,11 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -3399,23 +3433,23 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n        ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -3428,10 +3462,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
-'goto '       Keyword
+'\n        '  Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n      '    Text
+'\n      '    Text.Whitespace
 'end '        Keyword
 'if\n\n      ' Keyword
 'mlprec_wrk'  Name
@@ -3443,11 +3479,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n\n      ' Text
+'\n\n\n      ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -3457,11 +3493,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -3480,9 +3516,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -3493,9 +3529,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -3504,44 +3540,46 @@
 'base_desc'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'trans'       Name
 ','           Punctuation
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '%'           Punctuation
 'tx'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_spmm'    Name
 '('           Punctuation
@@ -3563,9 +3601,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -3588,33 +3626,35 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'do '         Keyword
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3628,11 +3668,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3646,11 +3686,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3662,11 +3702,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nrg'         Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3678,11 +3718,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -3692,7 +3732,7 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -3716,9 +3756,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3729,23 +3769,23 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n\n\n        ' Text
+'\n\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -3758,10 +3798,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n          ' Text
-'goto '       Keyword
+'\n          ' Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'end '        Keyword
 'if\n\n        ' Keyword
 'mlprec_wrk'  Name
@@ -3773,11 +3815,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3787,11 +3829,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3801,35 +3843,35 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n\n        ' Text
+'\n\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!Smoothed Aggregation\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -3840,11 +3882,11 @@
 '('           Punctuation
 'glb_smth_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n\n            ' Keyword
 'call '       Keyword
 'psb_halo'    Name
@@ -3868,28 +3910,30 @@
 'base_desc'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'info'        Name
 ','           Punctuation
 'work'        Name
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n          ' Text
+'\n          ' Text.Whitespace
 'else\n            ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -3911,11 +3955,11 @@
 'n_col'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'if\n\n          ' Keyword
 'call '       Keyword
@@ -3945,9 +3989,9 @@
 'zzero'       Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -3957,48 +4001,50 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '! Raw  aggregation, may take shortcuts\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4016,13 +4062,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4040,13 +4086,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4058,13 +4104,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'do\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -4078,7 +4124,7 @@
 '=='          Operator
 'mat_repl_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_sum'     Name
@@ -4097,10 +4143,10 @@
 'nrg'         Name
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else '       Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -4111,13 +4157,13 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mat_distr_'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'write'       Keyword
 '('           Punctuation
@@ -4125,13 +4171,13 @@
 ','           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -4141,7 +4187,7 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'endif\n\n\n        ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
@@ -4161,9 +4207,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -4180,35 +4226,37 @@
 '%'           Punctuation
 'desc_data'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'N'"         Literal.String.Single
 ','           Punctuation
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -4216,16 +4264,16 @@
 ')'           Punctuation
 '%'           Punctuation
 'tx'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'call '       Keyword
 'psb_spmm'    Name
 '('           Punctuation
@@ -4247,9 +4295,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -4272,37 +4320,39 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'endif\n\n      ' Keyword
 'enddo\n\n      ' Keyword
 'do '         Keyword
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ismth'       Name
 '='           Operator
 'baseprecv'   Name
@@ -4316,33 +4366,33 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n\n          ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'smth_omg_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'call '       Keyword
 'psb_halo'    Name
 '('           Punctuation
@@ -4356,9 +4406,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -4374,7 +4424,7 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'call '       Keyword
 'psb_csmm'    Name
 '('           Punctuation
@@ -4402,9 +4452,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -4416,24 +4466,26 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else\n\n          ' Keyword
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -4447,15 +4499,15 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4465,9 +4517,9 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4477,13 +4529,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -4505,7 +4557,7 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n      ' Keyword
@@ -4527,9 +4579,9 @@
 'y'           Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4539,93 +4591,95 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n\n    ' Text
+'\n\n\n\n    ' Text.Whitespace
 'case'        Keyword
 '('           Punctuation
 'smooth_both_' Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Symmetrized  smoothing.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    1.   X(1)  = Xext\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    2.   Y(1)  = (K(1)**(-1))*X(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    3.   TX(1) = X(1) - A(1)*Y(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    4.   DO ILEV=2, NLEV\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          X(ILEV) = AV(PR_SM_T_,ILEV)*TX(ILEV-1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          TX(ILEV) = (X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    5.   DO  ILEV=NLEV-1,1,-1\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = Y(ILEV) + AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!          Y(ILEV) = Y(ILEV) + (K(ILEV)**(-1))*(X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    6.  Yext    = beta*Yext + Y(1)\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!         1..NLEV <=>  (j) <-> 0\n' Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 '!\n'         Comment
 
-'      '      Text
+'      '      Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'desc_data'   Name
 '%'           Punctuation
 'matrix_data' Name
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4637,7 +4691,7 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -4660,11 +4714,11 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4675,7 +4729,7 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4686,12 +4740,12 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4701,11 +4755,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4715,11 +4769,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4729,11 +4783,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4743,22 +4797,22 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n\n      ' Text
+'\n\n\n      ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n        ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -4771,10 +4825,12 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
-'goto '       Keyword
+'\n        '  Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n      '    Text
+'\n      '    Text.Whitespace
 'end '        Keyword
 'if\n\n      ' Keyword
 'call '       Keyword
@@ -4794,9 +4850,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4806,7 +4862,7 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -4824,9 +4880,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4836,7 +4892,7 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -4855,9 +4911,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -4868,9 +4924,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -4879,44 +4935,46 @@
 'base_desc'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'trans'       Name
 ','           Punctuation
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '%'           Punctuation
 'ty'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_spmm'    Name
 '('           Punctuation
@@ -4938,9 +4996,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -4963,33 +5021,35 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'do '         Keyword
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5003,11 +5063,11 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n_col'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5021,11 +5081,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nr2l'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5037,11 +5097,11 @@
 '('           Punctuation
 'psb_n_col_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'nrg'         Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5053,7 +5113,7 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ismth'       Name
 '='           Operator
 'baseprecv'   Name
@@ -5065,7 +5125,7 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'allocate'    Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
@@ -5089,9 +5149,9 @@
 ')'           Punctuation
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5102,12 +5162,12 @@
 'nr2l'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '='           Operator
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5117,11 +5177,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5131,11 +5191,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5145,11 +5205,11 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5159,22 +5219,22 @@
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n\n\n        ' Text
+'\n\n\n        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -5187,36 +5247,38 @@
 '='           Operator
 "'Allocate'"  Literal.String.Single
 ')'           Punctuation
-'\n          ' Text
-'goto '       Keyword
+'\n          ' Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'end '        Keyword
 'if\n\n\n        ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!Smoothed Aggregation\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -5227,11 +5289,11 @@
 '('           Punctuation
 'glb_smth_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n\n            ' Keyword
 'call '       Keyword
 'psb_halo'    Name
@@ -5255,28 +5317,30 @@
 'base_desc'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'info'        Name
 ','           Punctuation
 'work'        Name
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n          ' Text
+'\n          ' Text.Whitespace
 'else\n            ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -5298,11 +5362,11 @@
 'n_col'       Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'if\n\n          ' Keyword
 'call '       Keyword
@@ -5332,9 +5396,9 @@
 'zzero'       Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5344,48 +5408,50 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else'        Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '! Raw  aggregation, may take shortcuts\n' Comment
 
-'          '  Text
+'          '  Text.Whitespace
 '!\n'         Comment
 
-'          '  Text
+'          '  Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5403,13 +5469,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5427,13 +5493,13 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5445,13 +5511,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end '        Keyword
 'do\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -5465,7 +5531,7 @@
 '=='          Operator
 'mat_repl_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'call '       Keyword
 'psb_sum'     Name
@@ -5484,10 +5550,10 @@
 'nrg'         Name
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else '       Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'baseprecv'   Name
 '('           Punctuation
@@ -5498,13 +5564,13 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mat_distr_'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'write'       Keyword
 '('           Punctuation
@@ -5512,13 +5578,13 @@
 ','           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5528,7 +5594,7 @@
 '('           Punctuation
 'coarse_mat_' Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'endif\n\n        ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
@@ -5552,9 +5618,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5564,19 +5630,21 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -5595,9 +5663,9 @@
 'x2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zzero'       Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -5614,35 +5682,37 @@
 '%'           Punctuation
 'desc_data'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'N'"         Literal.String.Single
 ','           Punctuation
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'ilev'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'nlev'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'mlprec_wrk'  Name
 '('           Punctuation
@@ -5650,16 +5720,16 @@
 ')'           Punctuation
 '%'           Punctuation
 'ty'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
 ')'           Punctuation
 '%'           Punctuation
 'x2l'         Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'call '       Keyword
 'psb_spmm'    Name
 '('           Punctuation
@@ -5681,9 +5751,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -5706,19 +5776,21 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n        '  Text
+'\n        '  Text.Whitespace
 'endif\n\n      ' Keyword
 'enddo\n\n\n      ' Keyword
 'do '         Keyword
@@ -5728,13 +5800,13 @@
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ismth'       Name
 '='           Operator
 'baseprecv'   Name
@@ -5748,33 +5820,33 @@
 '('           Punctuation
 'smth_kind_'  Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-'  '          Text
+'  '          Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no_smth_'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n          ' Keyword
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ismth'       Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'smth_omg_'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'call '       Keyword
 'psb_halo'    Name
 '('           Punctuation
@@ -5797,16 +5869,16 @@
 'desc_data'   Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'info'        Name
 ','           Punctuation
 'work'        Name
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'call '       Keyword
 'psb_csmm'    Name
 '('           Punctuation
@@ -5834,9 +5906,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -5848,24 +5920,26 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'else\n          ' Keyword
 'n_row'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 'ilev'        Name
@@ -5877,15 +5951,15 @@
 '('           Punctuation
 'psb_n_row_'  Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n_row'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5895,9 +5969,9 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5907,13 +5981,13 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '&'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mlprec_wrk'  Name
 '('           Punctuation
 'ilev'        Name
@@ -5935,7 +6009,7 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
@@ -5960,9 +6034,9 @@
 'y2l'         Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -5985,19 +6059,21 @@
 '='           Operator
 'work'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -6016,9 +6092,9 @@
 'tx'          Name
 ','           Punctuation
 '&'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '&'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'zone'        Name
 ','           Punctuation
 'mlprec_wrk'  Name
@@ -6035,27 +6111,29 @@
 '%'           Punctuation
 'base_desc'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'trans'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'work'        Name
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'enddo\n\n      ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
@@ -6074,9 +6152,9 @@
 'y'           Name
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 'baseprecv'   Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -6086,22 +6164,24 @@
 ','           Punctuation
 'info'        Name
 ')'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'info'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
-'goto '       Keyword
+' '           Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n\n    '  Text
+'\n\n\n    '  Text.Whitespace
 'case '       Keyword
 'default'     Name
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 'call '       Keyword
 'psb_errpush' Name
 '('           Punctuation
@@ -6114,9 +6194,9 @@
 "'wrong smooth_pos'" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'i_Err'       Name
 '='           Operator
 '('           Punctuation
@@ -6141,15 +6221,17 @@
 '/'           Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
-'goto '       Keyword
+'\n      '    Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'end '        Keyword
 'select\n\n  ' Keyword
 'case '       Keyword
 'default'     Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'call '       Keyword
 'psb_errpush' Name
 '('           Punctuation
@@ -6162,9 +6244,9 @@
 "'wrong mltype'" Literal.String.Single
 ','           Punctuation
 '&'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '&'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'i_Err'       Name
 '='           Operator
 '('           Punctuation
@@ -6189,10 +6271,12 @@
 '/'           Operator
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
-'goto '       Keyword
+'\n    '      Text.Whitespace
+'go'          Keyword
+'to'          Keyword
+' '           Text.Whitespace
 '9999'        Literal.Number.Integer
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'end '        Keyword
 'select\n\n\n  ' Keyword
 'call '       Keyword
@@ -6200,22 +6284,22 @@
 '('           Punctuation
 'mlprec_wrk'  Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'mlprec_wrk'  Name
 ')'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'call '       Keyword
 'psb_erractionrestore' Name
 '('           Punctuation
 'err_act'     Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'return\n\n'  Keyword
 
 '9999'        Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'continue\n  ' Keyword
 'call '       Keyword
 'psb_errpush' Name
@@ -6224,15 +6308,15 @@
 ','           Punctuation
 'name'        Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'call '       Keyword
 'psb_erractionrestore' Name
 '('           Punctuation
 'err_act'     Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'err_act'     Name
 '.'           Punctuation
@@ -6240,13 +6324,13 @@
 '.'           Punctuation
 'act_abort'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then\n    '  Keyword
 'call '       Keyword
 'psb_error'   Name
 '('           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return\n  '  Keyword
 'end '        Keyword
 'if\n  '      Keyword
@@ -6258,47 +6342,47 @@
 '('           Punctuation
 'wrk'         Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'type'        Keyword
 '('           Punctuation
 'psb_mlprec_wrk_type' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '::'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'wrk'         Name
 '('           Punctuation
 ':'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '! This will not be needed when we have allocatables, as\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '! it is sufficient to deallocate the container, and\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '! the compiler is supposed to recursively deallocate the\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 '! various components.\n' Comment
 
-'    '        Text
+'    '        Text.Whitespace
 'integer '    Keyword.Type
 'i'           Name
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'do '         Keyword
 'i'           Name
 '='           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'size'        Name
 '('           Punctuation
 'wrk'         Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6310,7 +6394,7 @@
 'tx'          Name
 ')'           Punctuation
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6320,9 +6404,9 @@
 '%'           Punctuation
 'tx'          Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6334,7 +6418,7 @@
 'ty'          Name
 ')'           Punctuation
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6344,9 +6428,9 @@
 '%'           Punctuation
 'ty'          Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6358,7 +6442,7 @@
 'x2l'         Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6368,9 +6452,9 @@
 '%'           Punctuation
 'x2l'         Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6382,7 +6466,7 @@
 'y2l'         Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6392,9 +6476,9 @@
 '%'           Punctuation
 'y2l'         Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6406,7 +6490,7 @@
 'b2l'         Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6416,9 +6500,9 @@
 '%'           Punctuation
 'b2l'         Name
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'associated'  Name.Builtin
 '('           Punctuation
@@ -6430,7 +6514,7 @@
 'tty'         Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'deallocate'  Keyword
 '('           Punctuation
 'wrk'         Name
@@ -6440,15 +6524,15 @@
 '%'           Punctuation
 'tty'         Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end '        Keyword
 'do\n  '      Keyword
 'end '        Keyword
 'subroutine ' Keyword
 'mlprec_wrk_free' Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'end '        Keyword
 'subroutine ' Keyword
 'psb_zmlprc_aply' Name
-'\n'          Text
+'\n'          Text.Whitespace

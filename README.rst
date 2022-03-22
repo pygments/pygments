@@ -30,6 +30,10 @@ Continuous testing runs on GitHub workflows:
 .. image:: https://github.com/pygments/pygments/workflows/Pygments/badge.svg
    :target: https://github.com/pygments/pygments/actions?query=workflow%3APygments
 
+Contribution guidelines are found in Contributing.md_.
+
+.. _Contributing.md: https://github.com/pygments/pygments/blob/master/Contributing.md
+
 The authors
 -----------
 
@@ -37,7 +41,7 @@ Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python
 and **Matthäus Chajdas**.
 
 Many lexers and fixes have been contributed by **Armin Ronacher**, the rest of
-the `Pocoo <https://dev.pocoo.org/>`_ team and **Tim Hatch**.
+the `Pocoo <https://www.pocoo.org/>`_ team and **Tim Hatch**.
 
 The code is distributed under the BSD 2-clause license.  Contributors making pull
 requests must agree that they are able and willing to put their contributions
