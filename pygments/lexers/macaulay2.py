@@ -1656,6 +1656,7 @@ M2CONSTANTS = (
 
 class Macaulay2Lexer(RegexLexer):
     name = 'Macaulay2'
+    url = 'https://faculty.math.illinois.edu/Macaulay2/'
     aliases = ['macaulay2']
     filenames = ['*.m2']
 
