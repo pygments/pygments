@@ -766,14 +766,12 @@ class PovrayLexer(RegexLexer):
                 'quadric', 'quartic', 'smooth_triangle', 'sor', 'sphere', 'superellipsoid',
                 'text', 'torus', 'triangle', 'union'), suffix=r'\b'),
              Name.Builtin),
-            # TODO: <=, etc
-            (r'[\[\](){}<>;,]', Punctuation),
-            (r'[-+*/=.]', Operator),
             (r'\b(x|y|z|u|v)\b', Name.Builtin.Pseudo),
             (r'[a-zA-Z_]\w*', Name),
-            (r'[0-9]+\.[0-9]*', Number.Float),
-            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]*\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (r'[-+*/=.|&]|<=|>=|!=', Operator),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r'\s+', Whitespace),
         ]
