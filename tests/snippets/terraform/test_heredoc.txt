@@ -13,7 +13,7 @@ resource "local_file" "heredoc" {
 '"heredoc"'   Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'content'     Name.Attribute
