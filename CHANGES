@@ -15,6 +15,7 @@ Version 2.12.0
 - Updated lexers:
 
   * Agda: Update keyword list (#2017)
+  * C family: Fix identifiers after ``case`` statements (#2084)
   * Clojure: Highlight ratios (#2042)
   * Csound: Update to 6.17 (#2064)
   * Elpi:
@@ -25,10 +26,14 @@ Version 2.12.0
   * Gherkin: Add ``But`` (#2046)
   * Inform6: Update to 6.36 (#2050)
   * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
+  * LilyPond: Fix incorrect lexing of names containing a built-in (#2071)
   * PHP: Update builtin function and keyword list (#2054, #2056)
   * Scheme: Various improvements (#2060)
   * Spice: Update the keyword list, add new types (#2063, #2067)
-  * Terraform: Support non-idiomatic comments (#2065, #2066)
+  * Terraform:
+  
+    - Support non-idiomatic comments (#2065, #2066)
+    - Fix class name lexing (#2097)
 
 - Add ``plugins`` argument to ``get_all_lexers()``.
 - Bump minimal Python version to 3.6 (#2059)
