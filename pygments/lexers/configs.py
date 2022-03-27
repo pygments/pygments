@@ -720,19 +720,14 @@ class TerraformLexer(ExtendedRegexLexer):
 
             # e.g. resource "aws_security_group" "allow_tls" {
             # e.g. backend "consul" {
-            (classes_re + r'(\s+)', bygroups(Keyword.Reserved, Whitespace), 'blockname'),
+            (classes_re + r'(\s+)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")(\s+)(\{)',
+             bygroups(Keyword.Reserved, Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
 
             # here-doc style delimited strings
             (
                 r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)',
                 heredoc_callback,
             )
-        ],
-        'blockname': [
-            # e.g. resource "aws_security_group" "allow_tls" {
-            # e.g. backend "consul" {
-            (r'(\s*)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")(\s+)(\{)',
-             bygroups(Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
         ],
         'identifier': [
             (r'\b(var\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
