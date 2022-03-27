@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.mumps
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for MUMPS
 
-    :copyright: Copyright 2020-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
-
 """
 
 import re
@@ -25,7 +23,7 @@ class MumpsLexer(ExtendedRegexLexer):
     """
 
     name = 'MUMPS'
-    aliases = ['Mumps', 'mumps', 'M']
+    aliases = ['mumps', 'm']
     filenames = ['*.m', '*.mumps', '*.epc', '*.int']
     # Filenames aren't meaningful in M, but some implementations allow file export/import of routines
     # For example, YottaDB would have the source file for "dmex" in "dmex.m"
@@ -53,6 +51,12 @@ class MumpsLexer(ExtendedRegexLexer):
     relation_re = r'\]\]|[<>=\[\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
+
+    def analyse_text(text):
+        if re.search(r'^[%A-Za-z][A-Za-z0-9]* ;', text):
+            return 0.3
+        if re.search(r'^[%A-Za-z][A-Za-z0-9]*\n', text):
+            return 0.1
 
     # Parsing states
     tokens = {
