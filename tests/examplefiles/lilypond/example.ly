@@ -68,6 +68,7 @@ piuPiano = \markup \italic "più piano"
 <<
   \new Staff = myStaff \with {
     \consists Duration_line_engraver
+    \override VerticalAxisGroup.staff-staff-spacing.basic-distance = 20
   }
   \relative c' {
     \clef alto
