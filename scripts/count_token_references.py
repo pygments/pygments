@@ -32,8 +32,8 @@ be used to find typos in token names, as those tokens are only used by one lexer
 
 .. option:: -s, --subtokens
     When ``--subtoken`` is given each token is also counted for each of its
-    parent tokens. I.e. if we have 10 occurences of the token
-    ``Token.Literal.Number.Integer`` and 10 occurences of the token
+    parent tokens. I.e. if we have 10 occurrences of the token
+    ``Token.Literal.Number.Integer`` and 10 occurrences of the token
     ``Token.Literal.Number.Hex`` but none for ``Token.Literal.Number``, with
     ``--subtoken`` ``Token.Literal.Number`` would be counted as having
     20 references.

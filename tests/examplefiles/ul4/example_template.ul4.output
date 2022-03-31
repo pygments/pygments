@@ -1,0 +1,51 @@
+'<?'          Comment.Preproc
+'ul4'         Keyword
+' '           Text.Whitespace
+'templatename' Name.Function
+'('           Operator
+')'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'whitespace'  Keyword
+' '           Text.Whitespace
+'smart'       Comment.Preproc
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?doc UL4 example for template level information?>' Literal.String.Doc
+'\n'          Other
+
+'<?note A comment?>' Comment
+'\n'          Other
+
+'<?ignore?>'  Comment
+'\n\tIgnore ' Comment
+'<'           Comment
+'?this?>\n\t' Comment
+'<?ignore?>'  Comment
+'\n\t\t... and ' Comment
+'<'           Comment
+'?this?>\n\t' Comment
+'<?end ignore?>' Comment
+'\n\t... and ' Comment
+'<'           Comment
+'?this?>\n... and even ' Comment
+'<'           Comment
+'?this?>'     Comment
+'<?end ignore?>' Comment
+'\n'          Other
+
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text.Whitespace
+'hint'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'ignored no longer' Literal.String
+'"'           Literal.String
+'?>'          Comment.Preproc
+'\n'          Other

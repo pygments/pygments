@@ -33,229 +33,229 @@
 
 ---tokens---
 '# floats'    Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '1e1'         Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1e+1'        Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1e-1'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.1e1'       Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1e+1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1e-1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1e1'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1_1e1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1_1.1e1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_1e1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_11e1'    Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.1E1'       Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1E+1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1E-1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1E1'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1_1E1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1_1.1E1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_1E1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_11E1'    Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.1f1'       Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1f+1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1f-1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1f1'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.1_1f1'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1_1.1f1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_1f1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1.1_11f1'    Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1E1'         Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1E+1'        Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1E-1'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1f1'         Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1f+1'        Literal.Number.Float
-'   '         Text
+'   '         Text.Whitespace
 '1f-1'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.1'          Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '1.'          Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '1.1'         Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '1.1_1'       Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '1.1_11'      Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '.1_1'        Literal.Number.Float
-'  '          Text
+'  '          Text.Whitespace
 '.1_11'       Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1_1.1_1'     Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# hex floats' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0x1p1'       Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0xa_bp10'    Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0x01_ap11'   Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0x01_abp1'   Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0x1.1p1'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0xA.Bp10'    Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0x0.1_Ap9'   Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0x0_1.Ap1'   Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '0x0_1.A_Bp9' Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# integers'  Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '01'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '10_1'        Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '10_11'       Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# non-decimal' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0xf'         Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0xf_0'       Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0xfff_000'   Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0o7'         Literal.Number.Oct
-' '           Text
+' '           Text.Whitespace
 '0o7_0'       Literal.Number.Oct
-' '           Text
+' '           Text.Whitespace
 '0o777_000'   Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0b1'         Literal.Number.Bin
-' '           Text
+' '           Text.Whitespace
 '0b1_0'       Literal.Number.Bin
-' '           Text
+' '           Text.Whitespace
 '0b111_000'   Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# invalid in Julia - out of range values' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0'           Literal.Number.Integer
 'xg'          Name
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 'o8'          Name
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 'b2'          Name
-' '           Text
+' '           Text.Whitespace
 '0x1'         Literal.Number.Hex
 'pA'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# invalid in Julia - no trailing underscores' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '1.1'         Literal.Number.Float
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '0xf'         Literal.Number.Hex
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '0o7'         Literal.Number.Oct
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '0b1'         Literal.Number.Bin
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '0xF'         Literal.Number.Hex
 '_p1'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# parsed as juxtaposed numeral + variable in Julia (no underscores in exponents)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1e1'         Literal.Number.Float
 '_1'          Name
-' '           Text
+' '           Text.Whitespace
 '1E1'         Literal.Number.Float
 '_1'          Name
-' '           Text
+' '           Text.Whitespace
 '1f1'         Literal.Number.Float
 '_1'          Name
-' '           Text
+' '           Text.Whitespace
 '0xfp1'       Literal.Number.Float
 '_1'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# not floats -- range-like expression parts' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
 '..'          Operator
 '1'           Literal.Number.Integer
-'  '          Text
+'  '          Text.Whitespace
 '..'          Operator
 '1'           Literal.Number.Integer
-'  '          Text
+'  '          Text.Whitespace
 '1'           Literal.Number.Integer
 '..'          Operator
-'\n'          Text
+'\n'          Text.Whitespace

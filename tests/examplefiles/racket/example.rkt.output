@@ -1,37 +1,37 @@
 ''            Text
 '#lang '      Keyword.Namespace
 'racket'      Name.Namespace
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'require'     Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'only-in'     Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'srfi/13'     Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'string-contains' Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; Single-line comment style.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; Single-line comment style.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#|'          Comment.Multiline
 ' Multi-line comment style ... on one line ' Comment.Multiline
 '|#'          Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#|'          Comment.Multiline
 '\nMulti-line comment style ...\n' Comment.Multiline
@@ -52,87 +52,87 @@
 '\n... on multiple lines\n' Comment.Multiline
 
 '|#'          Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#;'          Comment
 '('           Punctuation
 ''            Text
 's-expression' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'comment'     Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'one'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'line'        Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#;'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 ''            Text
 's-expression' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'comment'     Name
 ''            Text
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'multiple'    Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lines'       Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#! shebang comment' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#!/shebang comment' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#! shebang \\\ncomment' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#!/shebang \\\ncomment' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; Uncommented numbers after single-line comments' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; NEL'      Comment.Single
-'\x85'        Text
+'\x85'        Text.Whitespace
 '133'         Literal.Number.Integer
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; LS'       Comment.Single
-'\u2028'      Text
+'\u2028'      Text.Whitespace
 '8232'        Literal.Number.Integer
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; PS'       Comment.Single
-'\u2029'      Text
+'\u2029'      Text.Whitespace
 '8233'        Literal.Number.Integer
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket'      Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 ''            Text
@@ -142,91 +142,91 @@
 ''            Text
 'a-function'  Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#:keyword'   Keyword.Declaration
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ''            Text
 'y'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'foo0'        Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'symbol'      Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '; ()'        Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'foo1'        Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'symbol'      Literal.String.Symbol
 ']'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '; []'        Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'foo2'        Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'symbol'      Literal.String.Symbol
 '}'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '; {}'        Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '100-Continue' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'symbol'      Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'and'         Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'append'      Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'car'         Name.Builtin
@@ -236,155 +236,155 @@
 ''            Text
 '1'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'regexp-match?' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#rx"foobar"' Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foobar'      Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'regexp-match?' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#px"\\"foo\\\\(bar\\\\)?\\""' Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foobar'      Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'regexp-match?' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#rx#"foobar"' Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foobar'      Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'regexp-match?' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#px#"foobar"' Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'foobar'      Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#cs'         Operator
 'a'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#Ci'         Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'let'         Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 '#%A|||b #true C\n\\|ｄ' Name
 ''            Text
-'\u2002'      Text
+'\u2002'      Text.Whitespace
 '"'           Literal.String.Double
 'foo'         Literal.String.Double
 '"'           Literal.String.Double
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 ''            Text
 'displayln'   Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#cS'         Operator
-' '           Text
+' '           Text.Whitespace
 '#%\\ab\\ #true\\ C\\\n\\\\ｄ||' Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'for/list'    Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'x'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'in-list'     Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'list'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'list'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
@@ -392,1532 +392,1532 @@
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'cond'        Keyword
 ''            Text
-'\n      '    Text
+'\n      '    Text.Whitespace
 '['           Punctuation
 ''            Text
 '('           Punctuation
 ''            Text
 'pair?'       Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'car'         Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ')'           Punctuation
 ']'           Punctuation
 ''            Text
-'\n      '    Text
+'\n      '    Text.Whitespace
 '['           Punctuation
 ''            Text
 'else'        Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; Literals' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'values'      Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #b'       Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1'         Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1'        Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1'        Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1'        Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1.'        Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1'       Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1e11'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1e11'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1e11'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1e11'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1.e11'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1e11'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1e11'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1e11'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10e11'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10e11'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10e11'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+i'        Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1+i'       Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1+i'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1+i'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1+i'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1.+i'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1+i'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1+i'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1+i'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10+i'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1e11+i'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1e11+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1e11+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1.e11+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1e11+i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1e11+i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1e11+i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1e11+i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10e11+i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10e11+i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10e11+i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1i'       Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1+1i'      Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1+1i'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1+1i'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1.+1i'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1+1i'     Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1+1i'    Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1+1i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1+1i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10+1i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10+1i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10+1i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1e11+1i'   Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1e11+1i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1e11+1i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1e11+1i'  Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10e11+1i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b.1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b0.1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+0.1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-0.1e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b1/10e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b+1/10e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#b-1/10e11+1/10e11i' Literal.Number.Bin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #d'       Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1'         Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1'        Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1'        Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2'       Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1e3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2e3'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2e3'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2e3'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2e3'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2e3'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+i'        Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1+i'       Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1+i'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1+i'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1+i'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.+i'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2+i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2+i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1e3+i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1e3+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1e3+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.e3+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1e3+i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2e3+i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2e3+i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2e3+i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2e3+i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2e3+i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2e3+i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1i'       Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1+1i'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1+1i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1+1i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.+1i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1+1i'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2+1i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2+1i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1e3+1i'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1e3+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1e3+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1e3+1i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2e3+1i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2e3+1i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2e3+1i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2e3+1i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2e3+1i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2e3+1i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2e3i'   Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1+1/2e3i'  Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d.1e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1.2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1.2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1.2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d1/2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d+1/2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d-1/2e3+1/2e3i' Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Extflonums' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '+nan.t'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1t3'         Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1t3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '-1t3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.1t3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.t3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2t3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1.2t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '-1.2t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2t3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1/2t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '-1/2t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#t0'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#t0'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#t0'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#t0'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2t0'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#t0'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#t0'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#t3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#t3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#t3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#t3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#t3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; No # reader prefix -- same as #d' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '-1.23'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.123'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1e3'         Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1e-22'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2'         Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '-1/2'        Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '-1'          Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #e'       Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#e-1.23'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e1.123'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e1e3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e1e-22'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e1'         Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e-1'        Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e1/2'       Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e-1/2'      Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #d#e'     Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e-1.23'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e1.123'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e1e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e1e-22'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e1'       Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e-1'      Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e1/2'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#d#e-1/2'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #e#d'     Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d-1.23'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d1.123'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d1e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d1e-22'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d1'       Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d-1'      Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d1/2'     Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#d-1/2'    Literal.Number
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #i always float' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#i-1.23'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i1.123'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i1e3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i1e-22'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i1/2'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i-1/2'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i1'         Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i-1'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Implicitly inexact numbers' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '+nan.0'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#'          Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#'         Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#'         Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#e3'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#e3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#e3'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+nan.0+i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#+i'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#+i'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#+i'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#+i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2+i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#+i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#+i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#e3+i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#e3+i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#e3+i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#e3+i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2e3+i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#e3+i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+i'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+nan.0i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#i'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1.#i'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+.2#i'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1.2#i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#/2i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1/2#i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#/2#i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#e3i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1.#e3i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+.2#e3i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1.2#e3i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#/2e3i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1/2#e3i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+1#/2#e3i'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+nan.0i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#i'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1.#i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+.2#i'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1.2#i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#/2i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1/2#i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#/2#i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#e3i'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1.#e3i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+.2#e3i'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1.2#e3i'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#/2e3i'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1/2#e3i'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '0+1#/2#e3i'  Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+nan.0i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1.#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+.2#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1.2#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#/2i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1/2#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#/2#i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1.#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+.2#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1.2#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#/2e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1/2#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3+1#/2#e3i' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '+nan.0@1'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#@1'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#@1'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#@1'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#@1'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2@1'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#@1'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#@1'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#e3@1'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.#e3@1'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '.2#e3@1'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1.2#e3@1'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2e3@1'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1/2#e3@1'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@+nan.0'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#'        Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1.#'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@.2#'       Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1.2#'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#/2'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1/2#'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#/2#'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#e3'      Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1.#e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@.2#e3'     Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1.2#e3'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#/2e3'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1/2#e3'    Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1@1#/2#e3'   Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#'  Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1.#' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@.2#' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1.2#' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#/2' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1/2#' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#/2#' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1.#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@.2#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1.2#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#/2e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1/2#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '1#/2#e3@1#/2#e3' Literal.Number.Float
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #o'       Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#o777.777'   Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o-777.777'  Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o777e777'   Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o777e-777'  Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o3/7'       Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o-3/7'      Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o777'       Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#o-777'      Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o777.777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o-777.777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o777e777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o777e-777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o3/7'     Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o-3/7'    Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o777'     Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#o-777'    Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o777.777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o-777.777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o777e777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o777e-777' Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o3/7'     Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o-3/7'    Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o777'     Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#o-777'    Literal.Number.Oct
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; #x'       Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#x-f.f'      Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#xf.f'       Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#xfsf'       Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#xfs-f'      Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#x7/f'       Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#x-7/f'      Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#x-f'        Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#xf'         Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#x-f.f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#xf.f'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#xfsf'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#xfs-f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#x7/f'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#x-7/f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#x-f'      Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#e#xf'       Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#x-f.f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#xf.f'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#xfsf'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#xfs-f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#x7/f'     Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#x-7/f'    Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#x-f'      Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#i#xf'       Literal.Number.Hex
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Not numbers' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '-1.23x'      Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1.123x'      Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1e3x'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1e-22x'      Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1/2x'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '-1/2x'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1x'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '-1x'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '/'           Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1/'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '/2'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1//2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1e3.'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1e'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 'e3'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '.i'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1.2.3'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1..2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '.1.'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '@'           Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1@'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '@2'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1@@2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1@2@3'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1@2i'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1+-2i'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1i+2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1i+2i'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1+2i+3i'     Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '-'           Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '--1'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '+'           Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '++1'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1/2.3'       Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1#2'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1#.2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '1.#2'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '.#2'         Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '+nan.t+nan.ti' Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '+nan.t@nan.t' Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Booleans' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#t'          Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#T'          Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#true'       Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#f'          Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#F'          Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#false'      Name.Constant
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Characters, strings, and byte strings' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\\n'       Literal.String.Char
 
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#\\Null'     Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\n'        Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\9'        Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\000'      Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\u3BB'     Literal.String.Char
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\u03BB'    Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\U3BB'     Literal.String.Char
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\U000003BB' Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#\\λ'        Literal.String.Char
 ''            Text
 '9'           Literal.Number.Integer
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '"'           Literal.String.Double
 'string'      Literal.String.Double
 '\\\n'        Literal.String.Escape
@@ -1959,7 +1959,7 @@
 '3'           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '"'           Literal.String.Double
 '\\u9'        Literal.String.Escape
 '.'           Literal.String.Double
@@ -1975,7 +1975,7 @@
 '0'           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#"'          Literal.String.Double
 'byte-string' Literal.String.Double
 '\\7'         Literal.String.Escape
@@ -1983,52 +1983,52 @@
 '\\t'         Literal.String.Escape
 '"'           Literal.String.Double
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#<<HERE STRING\nlorem ipsum\ndolor sit amet\nconsectetur HERE STRING\nHERE STRING adipisicing elit\nHERE STRING' Literal.String.Heredoc
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#|'          Comment.Multiline
 '\nHERE STRING\n' Comment.Multiline
 
 '|#'          Comment.Multiline
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Other literals' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '#'           Operator
 '('           Punctuation
 ''            Text
 'vector'      Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#20'         Operator
 '('           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#s'          Operator
 '['           Punctuation
 ''            Text
 'prefab-structure' Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ']'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#&'          Operator
 '{'           Punctuation
 ''            Text
 'box'         Literal.String.Symbol
 '}'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#hash'       Operator
 '('           Punctuation
 ''            Text
@@ -2038,14 +2038,14 @@
 'a'           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#hasheq'     Operator
 '('           Punctuation
 ''            Text
@@ -2053,25 +2053,25 @@
 ''            Text
 'a'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'b'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#hasheqv'    Operator
 '('           Punctuation
 ''            Text
@@ -2079,149 +2079,149 @@
 ''            Text
 'a'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'b'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "#'"          Operator
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#`'          Operator
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#,'          Operator
 'pi'          Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; quote, quasiquote, and unquote' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 "'"           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 ','           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 ','           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 "'"           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '`'           Operator
 'pi'          Literal.String.Symbol
 ''            Text
-'\n '         Text
-'`'           Operator
-','           Operator
-'pi'          Name.Builtin
-''            Text
-'\n '         Text
-'`'           Operator
-' '           Text
-','           Operator
-' '           Text
-'pi'          Name.Builtin
-''            Text
-'\n '         Text
-'`'           Operator
-','           Operator
-"'"           Operator
-'pi'          Literal.String.Symbol
-''            Text
-'\n '         Text
-'`'           Operator
-','           Operator
-'`'           Operator
-'pi'          Literal.String.Symbol
-''            Text
-'\n '         Text
-'`'           Operator
-','           Operator
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
+'`'           Operator
+' '           Text.Whitespace
+','           Operator
+' '           Text.Whitespace
+'pi'          Name.Builtin
+''            Text
+'\n '         Text.Whitespace
+'`'           Operator
+','           Operator
+"'"           Operator
+'pi'          Literal.String.Symbol
+''            Text
+'\n '         Text.Whitespace
+'`'           Operator
+','           Operator
+'`'           Operator
+'pi'          Literal.String.Symbol
+''            Text
+'\n '         Text.Whitespace
+'`'           Operator
+','           Operator
+'`'           Operator
+','           Operator
+'pi'          Name.Builtin
+''            Text
+'\n '         Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 "'"           Operator
 '('           Punctuation
@@ -2229,7 +2229,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 '('           Punctuation
@@ -2237,7 +2237,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 ','           Operator
 '('           Punctuation
@@ -2245,22 +2245,22 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 "'"           Operator
 '('           Punctuation
@@ -2268,7 +2268,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '`'           Operator
 '('           Punctuation
@@ -2276,7 +2276,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 '('           Punctuation
@@ -2284,17 +2284,17 @@
 '+'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
-' '           Text
+' '           Text.Whitespace
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 "'"           Operator
@@ -2303,7 +2303,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 '`'           Operator
@@ -2312,7 +2312,7 @@
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 '`'           Operator
@@ -2322,55 +2322,55 @@
 '+'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 "'"           Operator
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 '`'           Operator
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 '`'           Operator
 ','           Operator
 'pi.f'        Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 ','           Operator
 'pi.f'        Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 "'"           Operator
@@ -2378,7 +2378,7 @@
 ','           Operator
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
@@ -2386,7 +2386,7 @@
 ','           Operator
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 '#reader'     Keyword.Namespace
@@ -2394,16 +2394,16 @@
 ','           Operator
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 ','           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 "'"           Operator
@@ -2412,7 +2412,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
@@ -2421,7 +2421,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 '`'           Operator
@@ -2430,7 +2430,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
@@ -2439,7 +2439,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 '`'           Operator
@@ -2449,7 +2449,7 @@
 '*'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
@@ -2459,7 +2459,7 @@
 '*'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '`'           Operator
 ','           Operator
 '#reader'     Keyword.Namespace
@@ -2469,7 +2469,7 @@
 '*'           Name.Builtin
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
 "'"           Operator
@@ -2480,7 +2480,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '#reader'     Keyword.Namespace
 'racket/base' Literal.String.Symbol
@@ -2491,7 +2491,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 '#reader'     Keyword.Namespace
@@ -2502,7 +2502,7 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
 '`'           Operator
 ','           Operator
@@ -2513,205 +2513,205 @@
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2719,16 +2719,16 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2736,16 +2736,16 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2753,27 +2753,27 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2781,16 +2781,16 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2798,15 +2798,15 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Name.Builtin
@@ -2814,19 +2814,19 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2835,19 +2835,19 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Literal.String.Symbol
@@ -2856,23 +2856,23 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '+'           Name.Builtin
@@ -2882,274 +2882,274 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pi.f'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Name.Builtin
@@ -3157,19 +3157,19 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Name.Builtin
@@ -3177,19 +3177,19 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Name.Builtin
@@ -3197,25 +3197,25 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
@@ -3224,25 +3224,25 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
@@ -3251,25 +3251,25 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
@@ -3278,25 +3278,25 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 ''            Text
 'quote'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'quasiquote'  Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'unquote'     Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#reader'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'racket/base' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '*'           Literal.String.Symbol
@@ -3305,482 +3305,482 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ';; Make sure non-identifiers work with quotes' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#t'          Name.Constant
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
 '('           Punctuation
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#s'          Operator
 '('           Punctuation
 ''            Text
 's'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#\\u3BB'     Literal.String.Char
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#\\U000003BB' Literal.String.Char
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#\\space'    Literal.String.Char
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#\\.'        Literal.String.Char
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#"'          Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#:kw'        Keyword.Declaration
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#&'          Operator
 'b'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 "#'"          Operator
 '('           Punctuation
 ''            Text
 'define'      Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#`'          Operator
 '('           Punctuation
 ''            Text
 'define'      Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String.Symbol
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '#,'          Operator
 'pi'          Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#I0'         Literal.Number.Float
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#E0'         Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#X0'         Literal.Number.Hex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#O0'         Literal.Number.Oct
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#D0'         Literal.Number.Integer
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#B0'         Literal.Number.Bin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#<<EOF\nEOF' Literal.String.Heredoc
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#rx""'       Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#rx#""'      Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#px""'       Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#px#""'      Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#hash'       Operator
 '('           Punctuation
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#hasheq'     Operator
 '['           Punctuation
 ']'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#hasheqv'    Operator
 '{'           Punctuation
 '}'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '#1'          Operator
 '('           Punctuation
 ''            Text
 'v'           Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'pi'          Name.Builtin
 ''            Text
-'\n '         Text
+'\n '         Text.Whitespace
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; Use the following to generate lists of built-ins and keywords.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; Run'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   (displayln (wrap-lines KEYWORDS))' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   (displayln (wrap-lines BUILTINS))' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; and copy the results into RacketLexer._keywords and RacketLexer._builtins.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; (-> (listof string?) string?)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; Appends all the strings together, quoting them as appropriate for Python,' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; with commas and spaces between them, wrapping at 80 characters, with an' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; indentation of 8 spaces.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'wrap-lines'  Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'INDENTATION' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '"'           Literal.String.Double
 '        '    Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'WIDTH'       Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '80'          Literal.Number.Integer
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'wrap-lines*' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'done-lines'  Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'current-line' Name
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'if'          Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'null?'       Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ')'           Punctuation
 ''            Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'foldr'       Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'done-lines'  Name
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'current-line' Name
 ')'           Punctuation
 ''            Text
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 ''            Text
 'let*'        Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'str'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'first'       Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ')'           Punctuation
 ']'           Punctuation
 ''            Text
-'\n               ' Text
+'\n               ' Text.Whitespace
 '['           Punctuation
 ''            Text
 'wrapped-str' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'if'          Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'regexp-match-exact?' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '#px"[[:ascii:]]+"' Literal.String.Regex
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'str'         Name
 ')'           Punctuation
 ''            Text
-'\n                                ' Text
+'\n                                ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 "'"           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'str'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 "',"          Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
 ''            Text
-'\n                                ' Text
+'\n                                ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 "u'"          Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'str'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 "',"          Literal.String.Double
 '"'           Literal.String.Double
@@ -3788,80 +3788,80 @@
 ')'           Punctuation
 ']'           Punctuation
 ''            Text
-'\n               ' Text
+'\n               ' Text.Whitespace
 '['           Punctuation
 ''            Text
 'new-line'    Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'current-line' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 ' '           Literal.String.Double
 '"'           Literal.String.Double
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'wrapped-str' Name
 ')'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'if'          Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '('           Punctuation
 ''            Text
 'string-length' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'new-line'    Name
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 '>='          Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
-' '           Text
+' '           Text.Whitespace
 'WIDTH'       Name
 ')'           Punctuation
 ''            Text
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'wrap-lines*' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'rest'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ')'           Punctuation
 ''            Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'append'      Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'done-lines'  Name
 ''            Text
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '`'           Operator
 '('           Punctuation
 ''            Text
@@ -3870,10 +3870,10 @@
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'current-line' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '\\n'         Literal.String.Escape
 '"'           Literal.String.Double
@@ -3881,37 +3881,37 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'string-append' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'INDENTATION' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'wrapped-str' Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 ''            Text
 'wrap-lines*' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'rest'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ')'           Punctuation
 ''            Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 'done-lines'  Name
 ''            Text
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 'new-line'    Name
 ')'           Punctuation
 ')'           Punctuation
@@ -3919,84 +3919,84 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'wrap-lines*' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'lst'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'INDENTATION' Name
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; (-> string? boolean?)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; Returns #t if str represents a syntax identifier in the current namespace,' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; otherwise #f.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'syntax-identifier?' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'str'         Name
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'with-handlers' Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'exn?'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'exn?'        Name.Builtin
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 ''            Text
 'not'         Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'eval'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'call-with-input-string' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'str'         Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'read'        Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
@@ -4004,28 +4004,28 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'RACKET-NAMESPACE' Name
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'parameterize' Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'current-namespace' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'make-base-namespace' Name.Builtin
@@ -4033,17 +4033,17 @@
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'namespace-require' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'racket'      Literal.String.Symbol
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'current-namespace' Name.Builtin
@@ -4051,102 +4051,102 @@
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'define'      Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'BOUND-IDENTIFIERS' Name
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'parameterize' Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'current-namespace' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'RACKET-NAMESPACE' Name
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'sort'        Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'map'         Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'symbol->string' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'namespace-mapped-symbols' Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n          ' Text
+'\n          ' Text.Whitespace
 'string<=?'   Name.Builtin
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 ''            Text
 'define-values' Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 'KEYWORDS'    Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'BUILTINS'    Name
 ')'           Punctuation
 ''            Text
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ''            Text
 'parameterize' Keyword
 ''            Text
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ''            Text
 '['           Punctuation
 ''            Text
 'current-namespace' Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'RACKET-NAMESPACE' Name
 ']'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 ''            Text
 'partition'   Name.Builtin
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'syntax-identifier?' Name
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'BOUND-IDENTIFIERS' Name
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ''            Text
-'\n'          Text
+'\n'          Text.Whitespace

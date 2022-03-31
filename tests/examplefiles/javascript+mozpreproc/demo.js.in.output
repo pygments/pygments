@@ -1,9 +1,9 @@
 'window'      Name.Builtin
 '.'           Punctuation
 'foo'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
@@ -16,10 +16,10 @@
 ')'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 "'key'"       Literal.String.Single
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 "'value'"     Literal.String.Single
 '\n'          Text
 

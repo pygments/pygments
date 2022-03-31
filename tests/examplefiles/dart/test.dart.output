@@ -1,41 +1,43 @@
-'// Greeter example from\n' Comment.Single
+'// Greeter example from' Comment.Single
+'\n'          Text.Whitespace
 
-'// <http://www.dartlang.org/docs/getting-started/interface.html>\n' Comment.Single
+'// <http://www.dartlang.org/docs/getting-started/interface.html>' Comment.Single
+'\n'          Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Greeter'     Name.Class
-' '           Text
+' '           Text.Whitespace
 'implements'  Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Comparable'  Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'prefix'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Hello,'      Literal.String.Single
 "'"           Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'Greeter'     Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'Greeter'     Name
 '.'           Punctuation
 'withPrefix'  Name
@@ -45,19 +47,19 @@
 'prefix'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'greet'       Name
 '('           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'print'       Name
 '('           Punctuation
 "'"           Literal.String.Single
@@ -69,23 +71,23 @@
 "'"           Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'compareTo'   Name
 '('           Punctuation
 'Greeter'     Name
-' '           Text
+' '           Text.Whitespace
 'other'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'prefix'      Name
 '.'           Punctuation
 'compareTo'   Name
@@ -95,46 +97,46 @@
 'prefix'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'main'        Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'Greeter'     Name
-' '           Text
+' '           Text.Whitespace
 'greeter'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Greeter'     Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'Greeter'     Name
-' '           Text
+' '           Text.Whitespace
 'greeter2'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Greeter'     Name
 '.'           Punctuation
 'withPrefix'  Name
@@ -144,17 +146,17 @@
 "'"           Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'num'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'greeter2'    Name
 '.'           Punctuation
 'compareTo'   Name
@@ -162,24 +164,24 @@
 'greeter'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'result'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'greeter2'    Name
 '.'           Punctuation
 'greet'       Name
@@ -189,17 +191,17 @@
 "'"           Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'greeter2'    Name
 '.'           Punctuation
 'greet'       Name
@@ -209,11 +211,11 @@
 "'"           Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

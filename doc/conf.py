@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Pygments'
-copyright = '2006-2021, Georg Brandl and Pygments contributors'
+copyright = '2006-2022, Georg Brandl and Pygments contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -132,7 +132,10 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {'styles': 'styles.html'}
+html_additional_pages = {
+    'styles': 'styles.html',
+    'languages': 'languages.html'
+    }
 
 if os.environ.get('WEBSITE_BUILD'):
     html_additional_pages['demo'] = 'demo.html'
@@ -231,6 +234,14 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
 
     if pagename == 'demo':
         ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(), key=lambda x: x[0].lower())
+
+    if pagename == 'languages':
+        lexer_name_url = []
+
+        for entry in sorted(pygments.lexers.LEXERS.values(), key=lambda x: x[1].lower()):
+            lexer_cls = pygments.lexers.find_lexer_class(entry[1])
+            lexer_name_url.append({'name': entry[1], 'url': lexer_cls.url})
+        ctx['languages'] = lexer_name_url
 
     if pagename in ('styles', 'demo'):
         with open('examples/example.py') as f:

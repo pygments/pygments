@@ -4,7 +4,7 @@
 
     Lexer for the Futhark language
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -28,11 +28,10 @@ class FutharkLexer(RegexLexer):
     .. versionadded:: 2.8
     """
     name = 'Futhark'
+    url = 'https://futhark-lang.org/'
     aliases = ['futhark']
     filenames = ['*.fut']
     mimetypes = ['text/x-futhark']
-
-    flags = re.MULTILINE | re.UNICODE
 
     num_types = ('i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64')
 

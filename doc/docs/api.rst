@@ -335,7 +335,7 @@ converted to the expected type if possible.
     Intuitively, this is `options.get(optname, default)`, but restricted to
     Boolean value. The Booleans can be represented as string, in order to accept
     Boolean value from the command line arguments. If the key `optname` is
-    present in the dictionnary `options` and is not associated with a Boolean,
+    present in the dictionary `options` and is not associated with a Boolean,
     raise an `OptionError`. If it is absent, `default` is returned instead.
 
     The valid string values for ``True`` are ``1``, ``yes``, ``true`` and

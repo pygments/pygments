@@ -2,7 +2,7 @@
 
 % This is a test file for Pygments' LilyPond support. To compile
 % it with Guile 1 (as in official releases as of this writing),
-% remove the "commented form" below.
+% remove the "commented forms" below.
 
 %{
   All supported constructs are covered in
@@ -31,7 +31,9 @@ Escape \" sequences \n are recognized."
 }
 
 myFunc =
-# #;(This is a commented form. After it, we are still in Scheme mode.)
+# #;(This is a commented form. There is another just after.)
+  #;+inf.0
+  ;; After these comments, we are still in Scheme mode.
 (define-music-function (music n) (ly:music? index?)
    (let* ((repeated (make-list n music))
           (copied (map ly:music-deep-copy repeated)))
@@ -64,8 +66,9 @@ piuPiano = \markup \italic "più piano"
 #(symbol->string 'some-symbol)
 
 <<
-  \new Staff \with {
+  \new Staff = myStaff \with {
     \consists Duration_line_engraver
+    \override VerticalAxisGroup.staff-staff-spacing.basic-distance = 20
   }
   \relative c' {
     \clef alto

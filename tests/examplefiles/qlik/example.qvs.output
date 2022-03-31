@@ -1,0 +1,354 @@
+'/*'          Comment.Multiline
+' ---------------------------------\nThis is an example file containing qlik script\n--------------------------------- ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'LET'         Keyword.Declaration
+' '           Text.Whitespace
+'vFilePath'   Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'/home'       Literal.String
+"'"           Literal.String
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'FOR'         Keyword
+' '           Text.Whitespace
+'EACH'        Keyword
+' '           Text.Whitespace
+'vFolder'     Text
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+"'"           Literal.String
+'folder_1'    Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'folder_2'    Literal.String
+"'"           Literal.String
+'\n\n    '    Text.Whitespace
+'// Check the file exists\n' Comment.Single
+
+'    '        Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'FILESIZE'    Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Literal.String
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\n        ' Text.Whitespace
+'TABLE_NAME:' Keyword.Declaration
+'\n        '  Text.Whitespace
+'NoConcatenate' Keyword
+'\n        '  Text.Whitespace
+'LOAD'        Keyword
+'\n            ' Text.Whitespace
+'['           Literal.String.Symbol
+'Field 1'     Literal.String.Symbol
+']'           Literal.String.Symbol
+'   '         Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'"'           Literal.String.Symbol
+'Field 2'     Literal.String.Symbol
+'"'           Literal.String.Symbol
+'   '         Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'FIELD_2'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'FIELD_3'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'FileName'    Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'      '      Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'SOURCE_FILE_' Text
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Literal.String
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String
+"'"           Literal.String
+'  '          Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'['           Literal.String.Symbol
+'Expand_Brackets' Literal.String.Symbol
+']'           Literal.String.Symbol
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'(This is a string)' Literal.String
+"'"           Literal.String
+'            ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'brackets_in_string' Text
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'This costs ' Literal.String
+'$'           Literal.String
+'10'          Literal.String
+"'"           Literal.String
+'                ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'dollar_in_string' Text
+'\n        '  Text.Whitespace
+'FROM'        Keyword
+'\n            ' Text.Whitespace
+'['           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file.qvd'   Literal.String.Symbol
+']'           Literal.String.Symbol
+' '           Text.Whitespace
+'('           Punctuation
+'qvd'         Text
+')'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'MAP_FIELD_1:' Keyword.Declaration
+'\n        '  Text.Whitespace
+'MAPPING'     Keyword
+' '           Text.Whitespace
+'LOAD'        Keyword
+'\n            ' Text.Whitespace
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'SUM'         Name.Builtin
+'('           Punctuation
+'FIELD_2'     Text
+')'           Punctuation
+'\n        '  Text.Whitespace
+'RESIDENT'    Keyword
+'\n            ' Text.Whitespace
+'TABLE_NAME'  Text
+'\n        '  Text.Whitespace
+'GROUP BY'    Keyword
+'\n            ' Text.Whitespace
+'FIELD_1'     Text
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'LEFT'        Keyword
+' '           Text.Whitespace
+'JOIN'        Keyword
+'('           Punctuation
+'TABLE_NAME'  Text
+')'           Punctuation
+'\n        '  Text.Whitespace
+'load'        Keyword
+' '           Text.Whitespace
+'distinct'    Keyword
+'\n            ' Text.Whitespace
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'FIELD_2'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'FIELD_3'     Text
+','           Punctuation
+'\n            ' Text.Whitespace
+'applymap'    Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+'MAP_FIELD_1' Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'FIELD_1'     Text
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+'     '       Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'FIELD_2_SUM' Text
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'String'      Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+' '           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'Concatenation' Literal.String
+"'"           Literal.String
+'        '    Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'single_quote_test' Text
+','           Punctuation
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'Token String ' Literal.String
+"'"           Literal.String
+"'"           Literal.String
+'Name'        Literal.String
+"'"           Literal.String
+"'"           Literal.String
+"'"           Literal.String
+'                 ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'['           Literal.String.Symbol
+'String Field ' Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+']'           Literal.String.Symbol
+','           Punctuation
+'\n            ' Text.Whitespace
+'3.14159'     Literal.Number.Float
+'                                 ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Symbol
+'Number Field ' Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'"'           Literal.String.Symbol
+','           Punctuation
+'\n            ' Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'                      ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'OPERATION_FIELD' Text
+'\n        '  Text.Whitespace
+'Resident'    Keyword
+'\n            ' Text.Whitespace
+'TABLE_NAME'  Text
+'\n        '  Text.Whitespace
+'ORDER BY'    Keyword
+'\n            ' Text.Whitespace
+'FIELD_3'     Text
+' '           Text.Whitespace
+'DESC'        Keyword
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'STORE'       Keyword
+' '           Text.Whitespace
+'TABLE_NAME'  Text
+' '           Text.Whitespace
+'INTO'        Text
+' '           Text.Whitespace
+'['           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Literal.String.Symbol
+'$('          Literal.String.Interpol
+'vFolder'     Name.Variable
+')'           Literal.String.Interpol
+'/file_output.qvd' Literal.String.Symbol
+']'           Literal.String.Symbol
+' '           Text.Whitespace
+'('           Punctuation
+'qvd'         Text
+')'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'DROP TABLE'  Keyword
+' '           Text.Whitespace
+'TABLE_NAME'  Text
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'ELSE'        Keyword
+'\n\n        ' Text.Whitespace
+'TRACE'       Keyword
+' '           Text.Whitespace
+'No'          Text
+' '           Text.Whitespace
+'file'        Text
+' '           Text.Whitespace
+'found'       Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'$('          Literal.String.Interpol
+'vFilePath'   Name.Variable
+')'           Literal.String.Interpol
+'/'           Operator
+'file'        Text
+'.'           Punctuation
+'qvd'         Text
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'END'         Keyword
+' '           Text.Whitespace
+'IF'          Keyword
+'\n\n'        Text.Whitespace
+
+'NEXT'        Keyword
+' '           Text.Whitespace
+'vFolder'     Text
+'\n'          Text.Whitespace

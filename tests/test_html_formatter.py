@@ -2,7 +2,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -91,6 +91,14 @@ def test_all_options():
                         anchorlinenos=anchorlinenos,
                     )
                     check(optdict)
+
+
+def test_linespans():
+    outfile = StringIO()
+    fmt = HtmlFormatter(linespans='L', anchorlinenos=True, linenos="inline")
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert re.search(r"""<span id="L-1">\s*<a href="#L-1"><span\s*class="linenos">\s*1</span></a>""", html)
 
 
 def test_lineanchors():
