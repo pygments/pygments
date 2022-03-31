@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexer import default, inherit, words
+from pygments.lexer import bygroups, default, inherit, words
 from pygments.lexers.lisp import SchemeLexer
 from pygments.lexers._lilypond_builtins import (
     keywords, pitch_language_names, clefs, scales, repeat_types, units,
@@ -191,9 +191,9 @@ class LilyPondLexer(SchemeLexer):
         # everything that looks like a-known-property.foo.bar-baz as
         # one single property name.
         "maybe-subproperties": [
-            (r"\.", Token.Punctuation),
             (r"\s+", Token.Whitespace),
-            (r"([^\W\d])+" + NAME_END_RE, Token.Name.Builtin.GrobProperty),
+            (r"(\.)((?:[^\W\d]|-)+?)" + NAME_END_RE,
+             bygroups(Token.Punctuation, Token.Name.Builtin.GrobProperty)),
             default("#pop"),
         ]
     }
