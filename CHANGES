@@ -27,7 +27,11 @@ Version 2.12.0
   * Gherkin: Add ``But`` (#2046)
   * Inform6: Update to 6.36 (#2050)
   * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
-  * LilyPond: Fix incorrect lexing of names containing a built-in (#2071)
+  * LilyPond:
+  
+    - Fix incorrect lexing of names containing a built-in (#2071)
+    - Fix properties containing dashes (#2099)
+
   * PHP: Update builtin function and keyword list (#2054, #2056)
   * Scheme: Various improvements (#2060)
   * Spice: Update the keyword list, add new types (#2063, #2067)
