@@ -726,7 +726,7 @@ class TerraformLexer(ExtendedRegexLexer):
         'blockname': [
             # e.g. resource "aws_security_group" "allow_tls" {
             # e.g. backend "consul" {
-            (r'(\s*)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")(\s+)(\{\}|\{)',
+            (r'(\s*)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")',
              bygroups(Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
              default('#pop'),
         ],
