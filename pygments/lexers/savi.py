@@ -138,6 +138,7 @@ class SaviLexer(RegexLexer):
 
     # Double-Quote String (nested rules)
     "string.double": [
+      (r'\\\(', String.Interpol, "string.interpolation"),
       (r'\\u[0-9a-fA-F]{4}', String.Escape),
       (r'\\x[0-9a-fA-F]{2}', String.Escape),
       (r'\\[bfnrt\\\']', String.Escape),
@@ -157,4 +158,10 @@ class SaviLexer(RegexLexer):
       (r"[^\\']+", String.Char),
       (r'.', Error),
     ],
+
+    # Interpolation inside String (nested rules)
+    "string.interpolation": [
+      (r"\)", String.Interpol, "#pop"),
+      include("root"),
+    ]
   }

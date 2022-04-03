@@ -24,3 +24,6 @@
     assert error: add_overflow!(U64.max_value, 1)
     assert no_error: add_overflow!(U64.max_value, 0)
     assert no_error: add_overflow!(integers[0]!, 1)
+
+    // Print a bit of extra information using string interpolation.
+    @env.out.print("The first integer is \(integers[0]!)")
