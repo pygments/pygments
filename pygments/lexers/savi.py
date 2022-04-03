@@ -59,7 +59,7 @@ class SaviLexer(RegexLexer):
       (r"'", String.Char, "string.char"),
 
       # Class (or other type)
-      (r'([_A-Z]\w*)', Name.Class),
+      (r'(_?[A-Z]\w*)', Name.Class),
 
       # Declare
       (r'^([ \t]*)(:\w+)',

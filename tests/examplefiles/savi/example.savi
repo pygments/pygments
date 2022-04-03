@@ -9,10 +9,10 @@
   :const describes: "Addition"
 
   :: Return the number 2 (written in hex, just for fun).
-  :const two U64'val: 0x02
+  :const _two U64'val: 0x02
 
   :it "adds two twos"
-    assert: @two + '\x02' == 4
+    assert: @_two + '\x02' == 4
 
   :: Raise an error if the argument is positive.
   :fun non add_overflow!(a U64'val, b U64'val): a +! b
