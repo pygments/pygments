@@ -227,4 +227,29 @@
 ' '           Text.Whitespace
 '1'           Literal.Number
 ')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'    '        Text.Whitespace
+'// Print a bit of extra information using string interpolation.' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@'           Punctuation
+'env'         Name.Function
+'.'           Punctuation
+'out'         Name.Function
+'.'           Punctuation
+'print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'The first integer is ' Literal.String.Double
+'\\('         Literal.String.Interpol
+'integers'    Name
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'!'           Generic.Deleted
+')'           Literal.String.Interpol
+'"'           Literal.String.Double
+')'           Punctuation
 '\n'          Text.Whitespace
