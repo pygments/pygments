@@ -1,12 +1,3 @@
-':import'     Name.Tag
-' '           Text.Whitespace
-'"'           Literal.String.Double
-'spec'        Literal.String.Double
-'"'           Literal.String.Double
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
 ':actor'      Name.Tag
 ' '           Text.Whitespace
 'Main'        Name.Class
@@ -21,7 +12,9 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'Specs'       Name.Class
+'Spec'        Name.Class
+'.'           Punctuation
+'Process'     Name.Function
 '.'           Punctuation
 'run'         Name.Function
 '('           Punctuation
@@ -32,7 +25,9 @@
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-'SpecRun'     Name.Class
+'Spec'        Name.Class
+'.'           Punctuation
+'Run'         Name.Function
 '('           Punctuation
 'AdditionSpec' Name.Class
 ')'           Punctuation
@@ -96,10 +91,8 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'@'           Punctuation
-'assert'      Name.Function
-' '           Text.Whitespace
-'='           Operator
+'assert'      Name
+':'           Punctuation
 ' '           Text.Whitespace
 '@'           Punctuation
 'two'         Name.Function
@@ -184,14 +177,11 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'@'           Punctuation
-'assert'      Name.Function
+'assert'      Name
 ' '           Text.Whitespace
-'='           Operator
+'error'       Name
+':'           Punctuation
 ' '           Text.Whitespace
-'try'         Name
-' '           Text.Whitespace
-'('           Punctuation
 'add_overflow!' Generic.Deleted
 '('           Punctuation
 'U64'         Name.Class
@@ -201,25 +191,14 @@
 ' '           Text.Whitespace
 '1'           Literal.Number
 ')'           Punctuation
-','           Punctuation
-' '           Text.Whitespace
-'False'       Name.Class
-' '           Text.Whitespace
-'|'           Operator
-' '           Text.Whitespace
-'True'        Name.Class
-')'           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'@'           Punctuation
-'assert'      Name.Function
+'assert'      Name
 ' '           Text.Whitespace
-'='           Operator
+'no_error'    Name
+':'           Punctuation
 ' '           Text.Whitespace
-'try'         Name
-' '           Text.Whitespace
-'('           Punctuation
 'add_overflow!' Generic.Deleted
 '('           Punctuation
 'U64'         Name.Class
@@ -229,25 +208,14 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
-','           Punctuation
-' '           Text.Whitespace
-'True'        Name.Class
-' '           Text.Whitespace
-'|'           Operator
-' '           Text.Whitespace
-'False'       Name.Class
-')'           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'@'           Punctuation
-'assert'      Name.Function
+'assert'      Name
 ' '           Text.Whitespace
-'='           Operator
+'no_error'    Name
+':'           Punctuation
 ' '           Text.Whitespace
-'try'         Name
-' '           Text.Whitespace
-'('           Punctuation
 'add_overflow!' Generic.Deleted
 '('           Punctuation
 'integers'    Name
@@ -258,13 +226,5 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number
-')'           Punctuation
-','           Punctuation
-' '           Text.Whitespace
-'True'        Name.Class
-' '           Text.Whitespace
-'|'           Operator
-' '           Text.Whitespace
-'False'       Name.Class
 ')'           Punctuation
 '\n'          Text.Whitespace
