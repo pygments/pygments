@@ -1252,7 +1252,7 @@ class HtmlDjangoLexer(DelegatingLexer):
     name = 'HTML+Django/Jinja'
     aliases = ['html+django', 'html+jinja', 'htmldjango']
     filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
-    alias_filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+django', 'text/html+jinja']
 
     def __init__(self, **options):
