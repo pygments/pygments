@@ -258,7 +258,8 @@ class PythonLexer(RegexLexer):
                 'InterruptedError', 'IsADirectoryError', 'NotADirectoryError',
                 'PermissionError', 'ProcessLookupError', 'TimeoutError',
                 # others new in Python 3
-                'StopAsyncIteration', 'ModuleNotFoundError', 'RecursionError'),
+                'StopAsyncIteration', 'ModuleNotFoundError', 'RecursionError',
+                'EncodingWarning'),
                 prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Exception),
         ],
