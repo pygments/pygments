@@ -21,14 +21,14 @@ class SNBTLexer(RegexLexer):
     """Lexer for stringified NBT, a data format used in Minecraft
 
 
-    .. versionadded:: ?
+    .. versionadded:: 2.12.0
     """
 
     name = "SNBT"
-    url = ""
+    url = "https://minecraft.fandom.com/wiki/NBT_format"
     aliases = ["snbt"]
     filenames = ["*.snbt"]
-    mimetype = ["text/snbt"]
+    mimetypes = ["text/snbt"]
 
     tokens = {
         "root": [
@@ -98,14 +98,14 @@ class MCFunctionLexer(RegexLexer):
     Modelled somewhat after the Github mcfunction grammar:
     - "https://github.com/Arcensoth/language-mcfunction
 
-    .. versionadded:: ?
+    .. versionadded:: 2.12.0
     """
 
     name = "MCFunction"
     url = "https://minecraft.fandom.com/wiki/Commands"
     aliases = ["mcfunction", "mcf"]
     filenames = ["*.mcfunction"]
-    mimetype = ["text/mcfunction"]
+    mimetypes = ["text/mcfunction"]
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
     _block_comment_prefix = "[>!*$]"
@@ -127,7 +127,7 @@ class MCFunctionLexer(RegexLexer):
             #  We don't encode a list of keywords since mods, plugins, or even pre-processors
             #  may add new commands, so we have a 'close-enough' regex which catches them.
             (r"(?=^\s*)([a-z]+)", Name.Builtin),
-            (r"(?<=run\s)([a-z]+)", Name.Builtin),
+            (r"(?<=run)\s+([a-z]+)", Name.Builtin),
             # UUID
             (
                 r"\b([0-9a-fA-F]+(?:(-)[0-9a-fA-F]+){4})\b",
