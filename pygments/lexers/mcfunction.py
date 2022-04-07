@@ -95,9 +95,7 @@ class SNBTLexer(RegexLexer):
 class MCFunctionLexer(RegexLexer):
     """Lexer for the mcfunction scripting language used in Minecraft
 
-    Modelled somewhat after the Github mcfunction grammar:
-    - "https://github.com/Arcensoth/language-mcfunction
-
+    Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
     .. versionadded:: ?
     """
 
@@ -130,7 +128,7 @@ class MCFunctionLexer(RegexLexer):
             (r"(?<=run\s)([a-z]+)", Name.Builtin),
             # UUID
             (
-                r"\b([0-9a-fA-F]+(?:(-)[0-9a-fA-F]+){4})\b",
+                r"\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b",
                 Name.Variable,
             ),
             include("resource-name"),
