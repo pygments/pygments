@@ -34,7 +34,8 @@ class SNBTLexer(RegexLexer):
         "root": [
             # We only look for the open bracket here since square bracket
             #  is only valid in NBT pathing (which is a mcfunction idea).
-            (r"(?=\{)", Punctuation, "compound"),
+            (r"[^\{]+", Text),
+            (r"\{", Punctuation, "compound"),
         ],
 
         "whitespace": [
@@ -85,7 +86,7 @@ class SNBTLexer(RegexLexer):
             include("literals"),
             include("operators"),
             include("whitespace"),
-            (r"\{", Punctuation, "#push"),
+            (r"\[", Punctuation, "#push"),
             (r"\{", Punctuation, "compound"),
             (r"\]", Punctuation, "#pop"),
         ],
@@ -94,10 +95,9 @@ class SNBTLexer(RegexLexer):
 
 class MCFunctionLexer(RegexLexer):
     """Lexer for the mcfunction scripting language used in Minecraft
+    
 
-    Modelled somewhat after the Github mcfunction grammar:
-    - "https://github.com/Arcensoth/language-mcfunction
-
+    Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
     .. versionadded:: 2.12.0
     """
 
@@ -126,11 +126,11 @@ class MCFunctionLexer(RegexLexer):
             # The start of a command (either beginning of line OR after the run keyword)
             #  We don't encode a list of keywords since mods, plugins, or even pre-processors
             #  may add new commands, so we have a 'close-enough' regex which catches them.
-            (r"(?=^\s*)([a-z]+)", Name.Builtin),
-            (r"(?<=run)\s+([a-z]+)", Name.Builtin),
+            (r"(?=^\s*)([a-z_]+)", Name.Builtin),
+            (r"(?<=run)\s+([a-z_]+)", Name.Builtin),
             # UUID
             (
-                r"\b([0-9a-fA-F]+(?:(-)[0-9a-fA-F]+){4})\b",
+                r"\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b",
                 Name.Variable,
             ),
             include("resource-name"),
