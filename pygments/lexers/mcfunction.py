@@ -206,13 +206,11 @@ class MCFunctionLexer(RegexLexer):
             (r"\\.", String.Escape),
             (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, "#pop"),
-            (r"[$\n]", Error, "#pop"),
         ],
         "literals.string-single": [
             (r"\\.", String.Escape),
             (r"[^\\'\n]+", String.Single),
             (r"'", String.Single, "#pop"),
-            (r"[$\n]", Error, "#pop"),
         ],
 
         "selectors": [
