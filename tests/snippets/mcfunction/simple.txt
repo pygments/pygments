@@ -1,0 +1,101 @@
+---input---
+#> This command looks for a player with 10 hp and prints a message
+# @param - @s = player
+
+execute as @a[name="rx", nbt={Health: 10.0f}] run tellraw @a {"text": "this is my cool command"}  # epic
+
+---tokens---
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'This'        Literal.String.Doc
+' '           Text.Whitespace
+'command'     Literal.String.Doc
+' '           Text.Whitespace
+'looks'       Literal.String.Doc
+' '           Text.Whitespace
+'for'         Literal.String.Doc
+' '           Text.Whitespace
+'a'           Literal.String.Doc
+' '           Text.Whitespace
+'player'      Literal.String.Doc
+' '           Text.Whitespace
+'with'        Literal.String.Doc
+' '           Text.Whitespace
+'10'          Literal.String.Doc
+' '           Text.Whitespace
+'hp'          Literal.String.Doc
+' '           Text.Whitespace
+'and'         Literal.String.Doc
+' '           Text.Whitespace
+'prints'      Literal.String.Doc
+' '           Text.Whitespace
+'a'           Literal.String.Doc
+' '           Text.Whitespace
+'message'     Literal.String.Doc
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'@param'      Name.Decorator
+' '           Text.Whitespace
+'-'           Comment.Multiline
+' '           Text.Whitespace
+'@s'          Name.Decorator
+' '           Text.Whitespace
+'='           Comment.Multiline
+' '           Text.Whitespace
+'p'           Comment.Multiline
+'l'           Comment.Multiline
+'a'           Comment.Multiline
+'y'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'\n'          Text
+
+''            Text
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'name'        Name.Tag
+'='           Operator
+'"'           Literal.String.Double
+'rx'          Literal.String.Double
+'"'           Literal.String.Double
+''            
+','           Punctuation
+' '           Text.Whitespace
+'nbt'         Name.Tag
+'='           Operator
+'{'           Punctuation
+'Health'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'10.0f'       Literal.Number.Float
+'}'           Punctuation
+''            
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+' '           Text.Whitespace
+'tellraw'     Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'this is my cool command' Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'  '          Text.Whitespace
+'# epic'      Comment.Single
+'\n'          Text.Whitespace

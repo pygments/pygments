@@ -1,0 +1,74 @@
+---input---
+execute
+    as @a[
+        advancements={
+            minecraft:story/form_obsidian={
+                foo=true,
+                bar=false
+            },
+            minecraft:story/follow_ender_eye={
+                foo=false, bar=true
+            }
+        }
+    ] run
+        say this command is nuts
+
+---tokens---
+'execute'     Name.Builtin
+'\n    '      Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'\n        '  Text.Whitespace
+'advancements' Name.Tag
+'='           Operator
+'{'           
+'\n            ' Text.Whitespace
+'minecraft:story/form_obsidian' Name.Function
+'='           Operator
+'{'           
+'\n                ' Text.Whitespace
+'foo'         Name.Variable.Class
+'='           Operator
+'true'        Keyword.Pseudo
+','           Operator
+'\n                ' Text.Whitespace
+'bar'         Name.Variable.Class
+'='           Operator
+'false'       Keyword.Pseudo
+'\n            ' Text.Whitespace
+'}'           
+','           Operator
+'\n            ' Text.Whitespace
+'minecraft:story/follow_ender_eye' Name.Function
+'='           Operator
+'{'           
+'\n                ' Text.Whitespace
+'foo'         Name.Variable.Class
+'='           Operator
+'false'       Keyword.Pseudo
+','           Operator
+' '           Text.Whitespace
+'bar'         Name.Variable.Class
+'='           Operator
+'true'        Keyword.Pseudo
+'\n            ' Text.Whitespace
+'}'           
+'\n        '  Text.Whitespace
+'}'           
+'\n    '      Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n        '  Text.Whitespace
+'say'         Keyword.Constant
+' '           Text.Whitespace
+'this'        Keyword.Constant
+' '           Text.Whitespace
+'command'     Keyword.Constant
+' '           Text.Whitespace
+'is'          Keyword.Constant
+' '           Text.Whitespace
+'nuts'        Keyword.Constant
+'\n'          Text.Whitespace
