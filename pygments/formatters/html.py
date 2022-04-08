@@ -385,7 +385,7 @@ class HtmlFormatter(Formatter):
 
         class CodeHtmlFormatter(HtmlFormatter):
 
-            def wrap(self, source, outfile):
+            def wrap(self, source, *, include_div):
                 return self._wrap_code(source)
 
             def _wrap_code(self, source):
