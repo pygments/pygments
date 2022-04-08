@@ -54,6 +54,10 @@ Version 2.12.0
 - Various improvements to the CI (#2036)
 - ``linenos=table`` results in the ``<table>`` being wrapped inside the ``<div class="highlight">`` now instead of placing the ``<div>`` inside the ``<td class="code">`` cell (#632)
 
+.. note::
+
+  If you have subclassed ``HtmlFormatter.wrap``, you must adjust the function signature.
+
 
 Version 2.11.2
 --------------
