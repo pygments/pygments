@@ -1251,6 +1251,7 @@ class HtmlDjangoLexer(DelegatingLexer):
 
     name = 'HTML+Django/Jinja'
     aliases = ['html+django', 'html+jinja', 'htmldjango']
+    filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+django', 'text/html+jinja']
 
@@ -1272,6 +1273,7 @@ class XmlDjangoLexer(DelegatingLexer):
 
     name = 'XML+Django/Jinja'
     aliases = ['xml+django', 'xml+jinja']
+    filenames = ['*.xml.j2', '*.xml.jinja2']
     alias_filenames = ['*.xml']
     mimetypes = ['application/xml+django', 'application/xml+jinja']
 
@@ -1293,6 +1295,7 @@ class CssDjangoLexer(DelegatingLexer):
 
     name = 'CSS+Django/Jinja'
     aliases = ['css+django', 'css+jinja']
+    filenames = ['*.css.j2', '*.css.jinja2']
     alias_filenames = ['*.css']
     mimetypes = ['text/css+django', 'text/css+jinja']
 
@@ -1312,6 +1315,7 @@ class JavascriptDjangoLexer(DelegatingLexer):
     name = 'JavaScript+Django/Jinja'
     aliases = ['javascript+django', 'js+django',
                'javascript+jinja', 'js+jinja']
+    filenames = ['*.js.j2', '*.js.jinja2']
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+django',
                  'application/x-javascript+jinja',
@@ -1870,7 +1874,7 @@ class YamlJinjaLexer(DelegatingLexer):
 
     name = 'YAML+Jinja'
     aliases = ['yaml+jinja', 'salt', 'sls']
-    filenames = ['*.sls']
+    filenames = ['*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2']
     mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
 
     def __init__(self, **options):
