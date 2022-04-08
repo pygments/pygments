@@ -53,11 +53,12 @@ execute
 '\n    '      Text.Whitespace
 'positioned'  Keyword.Constant
 ' '           Text.Whitespace
-'^'           Keyword.Constant
+'^'           Operator
 ' '           Text.Whitespace
-'^'           Keyword.Constant
+'^'           Operator
 ' '           Text.Whitespace
-'^1'          Keyword.Constant
+'^'           Operator
+'1'           Literal.Number.Float
 '                   ' Text.Whitespace
 '# and move one block forward.' Comment.Single
 '\n    '      Text.Whitespace
@@ -73,11 +74,11 @@ execute
 '\n    '      Text.Whitespace
 'positioned'  Keyword.Constant
 ' '           Text.Whitespace
-'^'           Keyword.Constant
+'^'           Operator
 ' '           Text.Whitespace
-'^'           Keyword.Constant
+'^'           Operator
 ' '           Text.Whitespace
-'^'           Keyword.Constant
+'^'           Operator
 '-1'          Literal.Number.Float
 '                  ' Text.Whitespace
 '# and move one block back.' Comment.Single
@@ -92,7 +93,6 @@ execute
 '='           Operator
 '..'          Literal
 '0.6'         Literal.Number.Float
-''            
 ']'           Punctuation
 '        '    Text.Whitespace
 "# Check if we're close to the" Comment.Single
@@ -100,8 +100,7 @@ execute
 "# player's feet." Comment.Single
 '\n    '      Text.Whitespace
 'run'         Keyword.Constant
-' \n        ' Text.Whitespace
-'say'         Keyword.Constant
+' \n        say' Name.Builtin
 ' '           Text.Whitespace
 '"'           Literal.String.Double
 "I'm facing the target!" Literal.String.Double

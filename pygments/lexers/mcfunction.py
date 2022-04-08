@@ -34,8 +34,8 @@ class SNBTLexer(RegexLexer):
         "root": [
             # We only look for the open bracket here since square bracket
             #  is only valid in NBT pathing (which is a mcfunction idea).
-            (r"[^\{]+", Text),
-            (r"\{", Punctuation, "compound"),
+            (r"\{", Punctuation.SNBT.Start, "compound"),
+            (r"[^\{]+", Text.TEST),
         ],
 
         "whitespace": [
@@ -48,9 +48,9 @@ class SNBTLexer(RegexLexer):
 
         "literals": [
             (r"(true|false)", Keyword.Constant),
-            (r"(-?\d*\.\d+[fFdD]?)", Number.Float),
-            (r"(-?\d+[bBsSlLfFdD]?)", Number.Integer),
-            (r"(-?\d+[eE]-?\d+)", Number.Float),
+            (r"-?\d*\.\d+[fFdD]?", Number.Float),
+            (r"-?\d+[bBsSlLfFdD]?", Number.Integer),
+            (r"-?\d+[eE]-?\d+", Number.Float),
             # Seperate states for both types of strings so they don't entangle
             (r'"', String.Double, "literals.string_double"),
             (r"'", String.Single, "literals.string_single"),
@@ -59,36 +59,34 @@ class SNBTLexer(RegexLexer):
             (r"\\.", String.Escape),
             (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, "#pop"),
-            (r"[$\n]", Error, "#pop"),
         ],
         "literals.string_single": [
             (r"\\.", String.Escape),
             (r"[^\\'\n]+", String.Single),
             (r"'", String.Single, "#pop"),
-            (r"[$\n]", Error, "#pop"),
         ],
 
         "compound": [
             # this handles the unquoted snbt keys
             #  note: stringified keys still work
-            (r"[A-z_]+", Name.Attribute),
+            (r"[A-Z_a-z]+", Name.Attribute),
             include("operators"),
             include("whitespace"),
             include("literals"),
-            (r"\{", Punctuation, "#push"),
-            (r"\[", Punctuation, "list"),
-            (r"\}", Punctuation, "#pop"),
+            (r"\{", Punctuation.Compound.Push, "#push"),
+            (r"\[", Punctuation.List.New, "list"),
+            (r"\}", Punctuation.Compound.Pop, "#pop"),
         ],
 
         "list": [
-            (r"(?<=\[)[BIL](?:\;)", Keyword.Type),
-            (r"[A-z_]+", Name.Attribute),
+            #(r"[BIL](?:\;)", Keyword.Type),
+            (r"[A-Z_a-z]+", Name.Attribute),
             include("literals"),
             include("operators"),
             include("whitespace"),
-            (r"\[", Punctuation, "#push"),
-            (r"\{", Punctuation, "compound"),
-            (r"\]", Punctuation, "#pop"),
+            (r"\[", Punctuation.List.Push, "#push"),
+            (r"\{", Punctuation.Compound.New, "compound"),
+            (r"\]", Punctuation.List.Pop, "#pop"),
         ],
     }
 
@@ -113,10 +111,10 @@ class MCFunctionLexer(RegexLexer):
     tokens = {
         "root": [
             include("names"),
-            include("nbt"),
             include("comments"),
             include("literals"),
             include("whitespace"),
+            include("nbt"),
             include("operators"),
             include("delimiters"),
             include("selectors"),
@@ -126,8 +124,8 @@ class MCFunctionLexer(RegexLexer):
             # The start of a command (either beginning of line OR after the run keyword)
             #  We don't encode a list of keywords since mods, plugins, or even pre-processors
             #  may add new commands, so we have a 'close-enough' regex which catches them.
-            (r"(?=^\s*)([a-z_]+)", Name.Builtin),
-            (r"(?<=run)\s+([a-z_]+)", Name.Builtin),
+            (r"(?=^\s*)[a-z_]+", Name.Builtin),
+            (r"(?<=run)\s+[a-z_]+", Name.Builtin),
             # UUID
             (
                 r"\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b",
@@ -136,10 +134,10 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
             # normal command names and scoreboards
             #  there's no way to know the differences unfortuntely
-            (r"([A-z_][A-z0-9_]*)", Keyword.Constant, "names.maybe-nbt"),
-            (r"[#%$][A-z0-9_]+", Name.Variable.Magic, "names.fakeplayer"),
+            (r"[A-Z_a-z][A-Z_a-z0-9]*", Keyword.Constant, "names.maybe-nbt"),
+            (r"[#%$][A-Z_a-z0-9]+", Name.Variable.Magic, "names.fakeplayer"),
         ],
-        "names.fakeplayer": [(r"[\.A-z0-9_]+", Name.Variable.Magic), default("#pop")],
+        "names.fakeplayer": [(r"[\.A-Z_a-z0-9]+", Name.Variable.Magic), default("#pop")],
         "names.maybe-nbt": [
             (r"\[", Punctuation, "nbt.list"),
             default("#pop"),
@@ -147,7 +145,8 @@ class MCFunctionLexer(RegexLexer):
 
         "resource-name": [
             (
-                r"(#?)([a-z_][a-z_\.\-]*)(\:)([a-z0-9_\.\-\/]+)",
+                # resource names have to be lowercase
+                r"#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-\/]+",
                 Name.Function,
             )
         ],
@@ -170,7 +169,7 @@ class MCFunctionLexer(RegexLexer):
         "comments.block": [
             (rf"^\s*#\s*{_block_comment_prefix}", Comment.Multiline, "comments.block.emphasized"),
             (r"^\s*#", Comment.Multiline, "comments.block.normal"),
-            (r"(?!\n\s+#)", Text, "#pop")
+            default("#pop"),
         ],
         "comments.block.normal": [
             include("comments.block.param"),
@@ -189,7 +188,7 @@ class MCFunctionLexer(RegexLexer):
         ],
 
         "operators": [
-            (r"[-~%^?!+*<>\\/|&=.]+", Operator),
+            (r"[-~%^?!+*<>\\/|&=.]", Operator),
         ],
 
         "literals": [
@@ -234,7 +233,7 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
             include("whitespace"),
             include("literals"),
-            (r"", Token, "#pop"),
+            default("#pop"),
         ],
         "selectors-inside-tag-no-nbt": [
             (r"[!=,]", Operator),
@@ -252,16 +251,18 @@ class MCFunctionLexer(RegexLexer):
         #  to the SNBTLexer.
         "nbt": [
             (r"\{", Punctuation, "nbt.compound"),
-        ],
-        "nbt.list": [
-            (r"\[", Punctuation, "#push"),
-            (r"\]", Punctuation, "#pop"),
-            (r"[^\[\]]+", using(SNBTLexer, state="list")),
+            (r"\[", Punctuation, "nbt.list"),
         ],
         "nbt.compound": [
-            (r"\{", Punctuation, "#push"),
-            (r"\}", Punctuation, "#pop"),
-            (r"[^\{\}]+", using(SNBTLexer, state="compound")),
+            #(r"\{", Punctuation.C.MCF, "#push"),
+            (r".+", using(SNBTLexer, state=("compound",))),
+            default("#pop"),
+        ],
+        "nbt.list": [
+            #(r"\[", Punctuation.L.MCF, "#push"),
+            #(r"\]", Punctuation.L.MCF, "#pop"),
+            (r".+", using(SNBTLexer, state=("list",))),
+            default("#pop"),
         ],
 
         "delimiters": [

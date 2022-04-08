@@ -52,7 +52,6 @@ execute as @a[name="rx", nbt={Health: 10.0f}] run tellraw @a {"text": "this is m
 'r'           Comment.Multiline
 '\n'          Text
 
-''            Text
 '\n'          Text.Whitespace
 
 'execute'     Name.Builtin
@@ -66,7 +65,6 @@ execute as @a[name="rx", nbt={Health: 10.0f}] run tellraw @a {"text": "this is m
 '"'           Literal.String.Double
 'rx'          Literal.String.Double
 '"'           Literal.String.Double
-''            
 ','           Punctuation
 ' '           Text.Whitespace
 'nbt'         Name.Tag
@@ -76,17 +74,17 @@ execute as @a[name="rx", nbt={Health: 10.0f}] run tellraw @a {"text": "this is m
 ':'           Punctuation
 ' '           Text.Whitespace
 '10.0f'       Literal.Number.Float
-'}'           Punctuation
-''            
-']'           Punctuation
+'}'           Punctuation.Compound.Pop
+']'           Error
 ' '           Text.Whitespace
-'run'         Keyword.Constant
+'run'         Name.Attribute
 ' '           Text.Whitespace
-'tellraw'     Name.Builtin
+'tellraw'     Name.Attribute
 ' '           Text.Whitespace
-'@a'          Name.Variable
+'@'           Error
+'a'           Name.Attribute
 ' '           Text.Whitespace
-'{'           Punctuation
+'{'           Punctuation.Compound.Push
 '"'           Literal.String.Double
 'text'        Literal.String.Double
 '"'           Literal.String.Double
@@ -95,7 +93,9 @@ execute as @a[name="rx", nbt={Health: 10.0f}] run tellraw @a {"text": "this is m
 '"'           Literal.String.Double
 'this is my cool command' Literal.String.Double
 '"'           Literal.String.Double
-'}'           Punctuation
+'}'           Punctuation.Compound.Pop
 '  '          Text.Whitespace
-'# epic'      Comment.Single
+'#'           Error
+' '           Text.Whitespace
+'epic'        Name.Attribute
 '\n'          Text.Whitespace

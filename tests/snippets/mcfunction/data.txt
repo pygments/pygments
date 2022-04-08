@@ -34,7 +34,7 @@ tellraw @a {
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'key'         Name.Attribute
+'key'         Keyword.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 '"'           Literal.String.Double
@@ -42,27 +42,28 @@ tellraw @a {
 '"'           Literal.String.Double
 ','           Punctuation
 '\n    '      Text.Whitespace
-'Count'       Name.Attribute
+'Count'       Keyword.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
-'10b'         Literal.Number.Integer
+'1'           Error
+'0b'          Literal.Number.Byte
 ','           Punctuation
 '\n    '      Text.Whitespace
-'tags'        Name.Attribute
+'tags'        Keyword.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Name.Attribute
+'['           Punctuation
 '\n        '  Text.Whitespace
-'0'           Literal.Number.Integer
+'0'           Literal.Number.Float
 ','           Punctuation
 '\n        '  Text.Whitespace
-'1'           Literal.Number.Integer
+'1'           Literal.Number.Float
 ','           Punctuation
 '\n    '      Text.Whitespace
-']'           Name.Attribute
+']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
-'UUID'        Name.Attribute
+'UUID'        Keyword.Constant
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -99,13 +100,13 @@ tellraw @a {
 '"'           Literal.String.Double
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Name.Attribute
+'['           Punctuation
 '\n        '  Text.Whitespace
 '"'           Literal.String.Double
 'this is json o_O' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text.Whitespace
-']'           Name.Attribute
+']'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation

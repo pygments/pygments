@@ -1,0 +1,41 @@
+---input---
+{int: 1, byte: 0b, short: 1s, long: 10000L, float: 10.0f, double: 20.0}
+
+---tokens---
+'{'           Punctuation
+'int'         Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Custom.Whitespace
+'byte'        Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'0b'          Literal.Number.Integer
+','           Punctuation
+' '           Custom.Whitespace
+'short'       Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'1s'          Literal.Number.Integer
+','           Punctuation
+' '           Custom.Whitespace
+'long'        Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'10000L'      Literal.Number.Integer
+','           Punctuation
+' '           Custom.Whitespace
+'float'       Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'10.0f'       Literal.Number.Float
+','           Punctuation
+' '           Custom.Whitespace
+'double'      Name.Attribute
+':'           Punctuation
+' '           Custom.Whitespace
+'20.0'        Literal.Number.Float
+'}'           Punctuation
+'\n'          Text
