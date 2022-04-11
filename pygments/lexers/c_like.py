@@ -663,3 +663,6 @@ class OmgIdlLexer(CLexer):
             include('annotation_appl'),
         ],
     }
+class TestLexer(CLexer):
+    name = 'OMG Interface Definition Language'
+
