@@ -20,7 +20,7 @@ from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer']
+           'OmgIdlLexer', 'FlexLexer']
 
 
 class PikeLexer(CppLexer):
@@ -663,3 +663,20 @@ class OmgIdlLexer(CLexer):
             include('annotation_appl'),
         ],
     }
+
+
+class FlexLexer(CLexer):
+    """
+    For Flex.
+
+    .. versionadded:: 2.5
+    """
+    name = 'Flex'
+    aliases = ['flex']
+    filenames = ['*']
+    mimetypes = ['']
+
+    tokens = {
+
+    }
+
