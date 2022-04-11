@@ -52,7 +52,7 @@ class SNBTLexer(RegexLexer):
             (r"-?\d*\.\d+[fFdD]?", Number.Float),
             (r"-?\d+[bBsSlLfFdD]?", Number.Integer),
             (r"-?\d+[eE]-?\d+", Number.Float),
-            # Seperate states for both types of strings so they don't entangle
+            # Separate states for both types of strings so they don't entangle
             (r'"', String.Double, "literals.string_double"),
             (r"'", String.Single, "literals.string_single"),
         ],
