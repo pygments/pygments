@@ -74,9 +74,9 @@ class SNBTLexer(RegexLexer):
             include("operators"),
             include("whitespace"),
             include("literals"),
-            (r"\{", Punctuation.Compound.Push, "#push"),
-            (r"\[", Punctuation.List.New, "list"),
-            (r"\}", Punctuation.Compound.Pop, "#pop"),
+            (r"\{", Punctuation, "#push"),
+            (r"\[", Punctuation, "list"),
+            (r"\}", Punctuation, "#pop"),
         ],
 
         "list": [
@@ -85,18 +85,18 @@ class SNBTLexer(RegexLexer):
             include("literals"),
             include("operators"),
             include("whitespace"),
-            (r"\[", Punctuation.List.Push, "#push"),
-            (r"\{", Punctuation.Compound.New, "compound"),
-            (r"\]", Punctuation.List.Pop, "#pop"),
+            (r"\[", Punctuation, "#push"),
+            (r"\{", Punctuation, "compound"),
+            (r"\]", Punctuation, "#pop"),
         ],
     }
 
 
 class MCFunctionLexer(RegexLexer):
     """Lexer for the mcfunction scripting language used in Minecraft
-    
-
     Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
+
+
     .. versionadded:: 2.12.0
     """
 
@@ -175,7 +175,7 @@ class MCFunctionLexer(RegexLexer):
         ],
         "comments.block.normal": [
             include("comments.block.special"),
-            (r"\S+?", Comment.Multiline),
+            (r"\S+", Comment.Multiline),
             (r"\n", Text, "#pop"),
             include("whitespace"),
         ],
