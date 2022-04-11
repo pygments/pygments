@@ -667,7 +667,8 @@ class OmgIdlLexer(CLexer):
 
 class FlexLexer(CLexer):
     """
-    For Flex.
+    Lexer for Flex <http://dinosaur.compilertools.net/flex/index.html>, 
+    A fast scanner generator.
 
     .. versionadded:: 2.5
     """
