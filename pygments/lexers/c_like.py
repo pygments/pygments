@@ -666,7 +666,6 @@ class OmgIdlLexer(CLexer):
 class FlexLexer(CLexer):
     """
     For Flex.
-
     .. versionadded:: 2.5
     """
     name = 'Flex'
