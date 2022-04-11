@@ -3,7 +3,7 @@
 'display'     Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'{'           Punctuation.Compound.Push
+'{'           Punctuation
 '\n        '  Text.Whitespace
 'Name'        Name.Attribute
 ':'           Punctuation
@@ -14,13 +14,13 @@
 '\n        '  Text.Whitespace
 'Lore'        Name.Attribute
 ':'           Punctuation
-'['           Punctuation.List.New
+'['           Punctuation
 "'"           Literal.String.Single
 '{"text":"Yep"}' Literal.String.Single
 "'"           Literal.String.Single
-']'           Punctuation.List.Pop
+']'           Punctuation
 '\n    '      Text.Whitespace
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 'Unbreakable' Name.Attribute
@@ -38,9 +38,9 @@
 'Enchantments' Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 '\n        '  Text.Whitespace
-'{'           Punctuation.Compound.New
+'{'           Punctuation
 'id'          Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -52,10 +52,10 @@
 'lvl'         Name.Attribute
 ':'           Punctuation
 '1s'          Literal.Number.Integer
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
-'{'           Punctuation.Compound.New
+'{'           Punctuation
 'id'          Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -67,20 +67,20 @@
 'lvl'         Name.Attribute
 ':'           Punctuation
 '20s'         Literal.Number.Integer
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 '\n    '      Text.Whitespace
-']'           Punctuation.List.Pop
+']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 'custom'      Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'{'           Punctuation.Compound.Push
+'{'           Punctuation
 '\n        '  Text.Whitespace
 'UUID'        Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 'I'           Name.Attribute
 ';'           Punctuation
 '459130179'   Literal.Number.Integer
@@ -90,13 +90,13 @@
 '-1425663264' Literal.Number.Integer
 ','           Punctuation
 '-175461800'  Literal.Number.Integer
-']'           Punctuation.List.Pop
+']'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
 'LongArray'   Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 'L'           Name.Attribute
 ';'           Punctuation
 ' '           Text.Whitespace
@@ -104,13 +104,13 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '445566L'     Literal.Number.Integer
-']'           Punctuation.List.Pop
+']'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
 'ByteArray'   Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 'B'           Name.Attribute
 ';'           Punctuation
 ' '           Text.Whitespace
@@ -121,7 +121,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '3b'          Literal.Number.Integer
-']'           Punctuation.List.Pop
+']'           Punctuation
 '\n        '  Text.Whitespace
 'Health'      Name.Attribute
 ':'           Punctuation
@@ -132,7 +132,7 @@
 'Pos'         Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 '\n            ' Text.Whitespace
 '1.2d'        Literal.Number.Float
 ','           Punctuation
@@ -142,10 +142,10 @@
 '\n            ' Text.Whitespace
 '5.6d'        Literal.Number.Float
 '\n        '  Text.Whitespace
-']'           Punctuation.List.Pop
+']'           Punctuation
 '\n    '      Text.Whitespace
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 '\n'          Text.Whitespace
 
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 '\n'          Text

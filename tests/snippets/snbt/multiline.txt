@@ -23,7 +23,7 @@
 'UUID'        Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 'I'           Name.Attribute
 ';'           Punctuation
 '459130179'   Literal.Number.Integer
@@ -33,13 +33,13 @@
 '-1425663264' Literal.Number.Integer
 ','           Punctuation
 '-175461800'  Literal.Number.Integer
-']'           Punctuation.List.Pop
+']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 'list'        Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 '\n        '  Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
@@ -49,8 +49,8 @@
 '\n        '  Text.Whitespace
 '3'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-']'           Punctuation.List.Pop
+']'           Punctuation
 '\n'          Text.Whitespace
 
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 '\n'          Text

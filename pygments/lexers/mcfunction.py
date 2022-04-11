@@ -8,11 +8,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, default, include, using, this, bygroups
+from pygments.lexer import RegexLexer, default, include, bygroups
 from pygments.token import (Comment, Keyword, Literal, Name, Number,
                             Operator, Punctuation, String, Text, Token,
                             Whitespace)
-import re
 
 
 __all__ = ['SNBTLexer', 'MCFunctionLexer']
@@ -48,9 +47,10 @@ class SNBTLexer(RegexLexer):
 
         "literals": [
             (r"(true|false)", Keyword.Constant),
+            (r"-?\d+[eE]-?\d+", Number.Float),
             (r"-?\d*\.\d+[fFdD]?", Number.Float),
             (r"-?\d+[bBsSlLfFdD]?", Number.Integer),
-            (r"-?\d+[eE]-?\d+", Number.Float),
+
             # Separate states for both types of strings so they don't entangle
             (r'"', String.Double, "literals.string_double"),
             (r"'", String.Single, "literals.string_single"),
@@ -79,7 +79,6 @@ class SNBTLexer(RegexLexer):
         ],
 
         "list": [
-            #(r"[BIL](?:\;)", Keyword.Type),
             (r"[A-Z_a-z]+", Name.Attribute),
             include("literals"),
             include("operators"),
@@ -105,7 +104,7 @@ class MCFunctionLexer(RegexLexer):
     mimetypes = ["text/mcfunction"]
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
-    _block_comment_prefix = "[>!*]"
+    _block_comment_prefix = "[>!]"
 
     tokens = {
         "root": [
@@ -173,13 +172,13 @@ class MCFunctionLexer(RegexLexer):
         ],
         "comments.block.normal": [
             include("comments.block.special"),
-            (r"\S+", Comment.Multiline),
+            (r".+", Comment.Multiline),
             (r"\n", Text, "#pop"),
             include("whitespace"),
         ],
         "comments.block.emphasized": [
             include("comments.block.special"),
-            (r"\S+", String.Doc),
+            (r".+", String.Doc),
             (r"\n", Text, "#pop"),
             include("whitespace"),
         ],
@@ -307,6 +306,7 @@ class MCFunctionLexer(RegexLexer):
             
             (r"[:=]!?", Punctuation, "property.value"),
             (r",", Punctuation),
+
             default("#pop"),
         ],
         "property.value": [

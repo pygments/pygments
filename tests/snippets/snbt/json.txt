@@ -25,7 +25,7 @@
 '"'           Literal.String.Double
 ':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
+'['           Punctuation
 '\n        '  Text.Whitespace
 '"'           Literal.String.Double
 'however'     Literal.String.Double
@@ -36,8 +36,8 @@
 "it's also technically valid SNBT.." Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text.Whitespace
-']'           Punctuation.List.Pop
+']'           Punctuation
 '\n'          Text.Whitespace
 
-'}'           Punctuation.Compound.Pop
+'}'           Punctuation
 '\n'          Text
