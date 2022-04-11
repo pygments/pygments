@@ -21,7 +21,6 @@ __all__ = ['SNBTLexer', 'MCFunctionLexer']
 class SNBTLexer(RegexLexer):
     """Lexer for stringified NBT, a data format used in Minecraft
 
-
     .. versionadded:: 2.12.0
     """
 
@@ -95,7 +94,6 @@ class SNBTLexer(RegexLexer):
 class MCFunctionLexer(RegexLexer):
     """Lexer for the mcfunction scripting language used in Minecraft
     Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
-
 
     .. versionadded:: 2.12.0
     """
