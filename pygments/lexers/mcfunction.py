@@ -172,13 +172,13 @@ class MCFunctionLexer(RegexLexer):
         ],
         "comments.block.normal": [
             include("comments.block.special"),
-            (r".+", Comment.Multiline),
+            (r"\S+", Comment.Multiline),
             (r"\n", Text, "#pop"),
             include("whitespace"),
         ],
         "comments.block.emphasized": [
             include("comments.block.special"),
-            (r".+", String.Doc),
+            (r"\S+", String.Doc),
             (r"\n", Text, "#pop"),
             include("whitespace"),
         ],
