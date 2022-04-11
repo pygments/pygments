@@ -663,9 +663,6 @@ class OmgIdlLexer(CLexer):
             include('annotation_appl'),
         ],
     }
-<<<<<<< HEAD
-
-
 class FlexLexer(CLexer):
     """
     For Flex.
@@ -674,14 +671,11 @@ class FlexLexer(CLexer):
     """
     name = 'Flex'
     aliases = ['flex']
-    filenames = ['*']
-    mimetypes = ['']
+    filenames = ['*.lex,', '*.l']
+    mimetypes = ['text/x-lex']
 
     tokens = {
 
     }
-=======
-class TestLexer(CLexer):
-    name = 'OMG Interface Definition Language'
->>>>>>> ba5e107941b30fa7606f18a8ea129ac0a205d8cb
+
 
