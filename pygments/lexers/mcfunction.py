@@ -142,7 +142,7 @@ class MCFunctionLexer(RegexLexer):
         "resource-name": [
             (
                 # resource names have to be lowercase
-                r"#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-\/]+",
+                r"#?[a-z_][a-z_.-]*:[a-z0-9_./-]+",
                 Name.Function,
             ),
             (
