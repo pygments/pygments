@@ -1,60 +1,203 @@
 ---input---
-#> Block Comment
-# @param $math input
-
-#! hello world
-#* hello world
-#$ glel
+#> Get: #rx.playerdb:api/v2/get
+#>
+#> @input
+#>  $in.uid rx.io
+#>
+#> @output
+#>  rx.playerdb:io player
+#
+# Selects data inside the database and copies to rx.playerdb:io player
+# See #api/v2/select for more info..
+# 
+#* Note: something, something, this is important..
 
 # Normal Comment
 
 # This **shouldn't** be a comment..
 scoreboard players operation @s obj = #fakeplayer obj
 
+#> single line block comment
 tellraw @a "This string # has # hashtags o_O"
 
 ---tokens---
 '#>'          Comment.Multiline
 ' '           Text.Whitespace
-'Block'       Literal.String.Doc
+'Get:'        Literal.String.Doc
 ' '           Text.Whitespace
-'Comment'     Literal.String.Doc
+'#rx.playerdb:api/v2/get' Name.Function
+'\n'          Text
+
+'#>'          Comment.Multiline
+'\n'          Text
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'@input'      Name.Decorator
+'\n'          Text
+
+'#>'          Comment.Multiline
+'  '          Text.Whitespace
+'$in.uid'     Name.Variable.Magic
+' '           Text.Whitespace
+'rx.io'       Literal.String.Doc
+'\n'          Text
+
+'#>'          Comment.Multiline
+'\n'          Text
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'@output'     Name.Decorator
+'\n'          Text
+
+'#>'          Comment.Multiline
+'  '          Text.Whitespace
+'rx.playerdb:io' Name.Function
+' '           Text.Whitespace
+'player'      Literal.String.Doc
+'\n'          Text
+
+'#'           Comment.Multiline
 '\n'          Text
 
 '#'           Comment.Multiline
 ' '           Text.Whitespace
-'@param'      Name.Decorator
+'S'           Comment.Multiline
+'e'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'c'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
 ' '           Text.Whitespace
-'$'           Comment.Multiline
-'m'           Comment.Multiline
+'d'           Comment.Multiline
 'a'           Comment.Multiline
 't'           Comment.Multiline
-'h'           Comment.Multiline
+'a'           Comment.Multiline
 ' '           Text.Whitespace
 'i'           Comment.Multiline
 'n'           Comment.Multiline
-'p'           Comment.Multiline
-'u'           Comment.Multiline
+'s'           Comment.Multiline
+'i'           Comment.Multiline
+'d'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Text.Whitespace
 't'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Text.Whitespace
+'d'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'b'           Comment.Multiline
+'a'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+'n'           Comment.Multiline
+'d'           Comment.Multiline
+' '           Text.Whitespace
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'p'           Comment.Multiline
+'i'           Comment.Multiline
+'e'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Text.Whitespace
+'t'           Comment.Multiline
+'o'           Comment.Multiline
+' '           Text.Whitespace
+'rx.playerdb:io' Name.Function
+' '           Text.Whitespace
+'p'           Comment.Multiline
+'l'           Comment.Multiline
+'a'           Comment.Multiline
+'y'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
 '\n'          Text
 
-'\n#!'        Comment.Multiline
+'#'           Comment.Multiline
 ' '           Text.Whitespace
-'hello'       Literal.String.Doc
+'S'           Comment.Multiline
+'e'           Comment.Multiline
+'e'           Comment.Multiline
 ' '           Text.Whitespace
-'world'       Literal.String.Doc
+'#api/v2/select' Name.Function
+' '           Text.Whitespace
+'f'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+' '           Text.Whitespace
+'m'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Text.Whitespace
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'f'           Comment.Multiline
+'o'           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
 '\n'          Text
 
-'#*'          Comment.Multiline
-' '           Text.Whitespace
-'hello'       Literal.String.Doc
-' '           Text.Whitespace
-'world'       Literal.String.Doc
-'\n'          Text
+'#'           Comment.Multiline
+' \n'         Text.Whitespace
 
-'#$'          Comment.Multiline
+'#'           Comment.Multiline
+'*'           Comment.Multiline
 ' '           Text.Whitespace
-'glel'        Literal.String.Doc
+'N'           Comment.Multiline
+'o'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+':'           Comment.Multiline
+' '           Text.Whitespace
+'s'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+','           Comment.Multiline
+' '           Text.Whitespace
+'s'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+','           Comment.Multiline
+' '           Text.Whitespace
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Text.Whitespace
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Text.Whitespace
+'i'           Comment.Multiline
+'m'           Comment.Multiline
+'p'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
 '\n'          Text
 
 '\n#'         Comment.Multiline
@@ -128,6 +271,17 @@ tellraw @a "This string # has # hashtags o_O"
 ' '           Text.Whitespace
 'obj'         Keyword.Constant
 '\n\n'        Text.Whitespace
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'single'      Literal.String.Doc
+' '           Text.Whitespace
+'line'        Literal.String.Doc
+' '           Text.Whitespace
+'block'       Literal.String.Doc
+' '           Text.Whitespace
+'comment'     Literal.String.Doc
+'\n'          Text
 
 'tellraw'     Name.Builtin
 ' '           Text.Whitespace

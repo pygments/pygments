@@ -34,7 +34,7 @@ tellraw @a {
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'key'         Keyword.Constant
+'key'         Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
 '"'           Literal.String.Double
@@ -42,28 +42,28 @@ tellraw @a {
 '"'           Literal.String.Double
 ','           Punctuation
 '\n    '      Text.Whitespace
-'Count'       Keyword.Constant
+'Count'       Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Error
-'0b'          Literal.Number.Byte
+'10'          Literal.Number.Integer
+'b'           Name.Attribute
 ','           Punctuation
 '\n    '      Text.Whitespace
-'tags'        Keyword.Constant
+'tags'        Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
 '\n        '  Text.Whitespace
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 ','           Punctuation
 '\n        '  Text.Whitespace
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ','           Punctuation
 '\n    '      Text.Whitespace
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
-'UUID'        Keyword.Constant
+'UUID'        Name.Attribute
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -75,9 +75,9 @@ tellraw @a {
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'"'           Literal.String.Double
-'text'        Literal.String.Double
-'"'           Literal.String.Double
+'"'           Name.Attribute
+'text'        Name.Attribute
+'"'           Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
 '"'           Literal.String.Double
@@ -85,9 +85,9 @@ tellraw @a {
 '"'           Literal.String.Double
 ','           Punctuation
 '\n    '      Text.Whitespace
-'"'           Literal.String.Double
-'color'       Literal.String.Double
-'"'           Literal.String.Double
+'"'           Name.Attribute
+'color'       Name.Attribute
+'"'           Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
 '"'           Literal.String.Double
@@ -95,16 +95,23 @@ tellraw @a {
 '"'           Literal.String.Double
 ','           Punctuation
 '\n    '      Text.Whitespace
-'"'           Literal.String.Double
-'extra'       Literal.String.Double
-'"'           Literal.String.Double
+'"'           Name.Attribute
+'extra'       Name.Attribute
+'"'           Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
 '\n        '  Text.Whitespace
-'"'           Literal.String.Double
-'this is json o_O' Literal.String.Double
-'"'           Literal.String.Double
+'"'           Name.Attribute
+'this'        Name.Attribute
+' '           Text.Whitespace
+'is'          Name.Attribute
+' '           Text.Whitespace
+'json'        Name.Attribute
+' '           Text.Whitespace
+'o_'          Name.Attribute
+'O'           Name.Attribute
+'"'           Name.Attribute
 '\n    '      Text.Whitespace
 ']'           Punctuation
 '\n'          Text.Whitespace

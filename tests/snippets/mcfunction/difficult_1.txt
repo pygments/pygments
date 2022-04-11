@@ -1,78 +1,56 @@
 ---input---
-execute as @e[nbt={ Item: {id: "minecraft:diamond", Count: 64 } }] run
-setblock ~ ~ ~ minecraft:dispenser[facing=up]{Items: [{id: "minecraft:diamond", Count: 1}]}
+# execute as @e[nbt={ Item: {id: "minecraft:diamond", Count: 64 } }] run
+# setblock ~ ~ ~ minecraft:dispenser[facing=up]{Items: [{id: "minecraft:diamond", Count: 1}]}
+# tellraw @a [{"text": "hello", "color": "blue"}, {"text": "world", "color": "blue"}]
+
+execute as @a[advancements={minecraft:story/form_obsidian={foo=true, bar=false},minecraft:story/follow_ender_eye={foo=false, bar=true}}] run
 
 ---tokens---
+'# execute as @e[nbt={ Item: {id: "minecraft:diamond", Count: 64 } }] run' Comment.Single
+'\n'          Text.Whitespace
+
+'# setblock ~ ~ ~ minecraft:dispenser[facing=up]{Items: [{id: "minecraft:diamond", Count: 1}]}' Comment.Single
+'\n'          Text.Whitespace
+
+'# tellraw @a [{"text": "hello", "color": "blue"}, {"text": "world", "color": "blue"}]' Comment.Single
+'\n\n'        Text.Whitespace
+
 'execute'     Name.Builtin
 ' '           Text.Whitespace
 'as'          Keyword.Constant
 ' '           Text.Whitespace
-'@e'          Name.Variable
+'@a'          Name.Variable
 '['           Punctuation
-'nbt'         Name.Tag
-'='           Operator
+'advancements' Name.Attribute
+'='           Punctuation
 '{'           Punctuation
-' '           Text.Whitespace
-'Item'        Name.Attribute
-':'           Punctuation
-' '           Text.Whitespace
-'{'           Punctuation.Compound.Push
-'id'          Name.Attribute
-':'           Punctuation
-' '           Text.Whitespace
-'"'           Literal.String.Double
-'minecraft:diamond' Literal.String.Double
-'"'           Literal.String.Double
+'minecraft:story/form_obsidian' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
 ','           Punctuation
 ' '           Text.Whitespace
-'Count'       Name.Attribute
-':'           Punctuation
+'bar'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+'}'           Punctuation
+','           Punctuation
+'minecraft:story/follow_ender_eye' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+','           Punctuation
 ' '           Text.Whitespace
-'64'          Literal.Number.Integer
-' '           Text.Whitespace
-'}'           Punctuation.Compound.Pop
-' '           Text.Whitespace
-'}'           Punctuation.Compound.Pop
-']'           Error
-' '           Text.Whitespace
-'run'         Name.Attribute
-'\n'          Text.Whitespace
-
-'setblock'    Name.Variable.Class
-' '           Text.Whitespace
-'~'           Error
-' '           Text.Whitespace
-'~'           Error
-' '           Text.Whitespace
-'~'           Error
-' '           Text.Whitespace
-'minecraft'   Name.Variable.Class
-':'           Error
-'dispenser'   Name.Variable.Class
-'['           Punctuation
-'facing'      Name.Tag
-'='           Operator
-'up'          Name.Variable.Class
+'bar'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+'}'           Punctuation
+'}'           Punctuation
 ']'           Punctuation
-'{'           Punctuation
-'Items'       Name.Attribute
-':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation.List.New
-'{'           Punctuation.Compound.New
-'id'          Name.Attribute
-':'           Punctuation
-' '           Text.Whitespace
-'"'           Literal.String.Double
-'minecraft:diamond' Literal.String.Double
-'"'           Literal.String.Double
-','           Punctuation
-' '           Text.Whitespace
-'Count'       Name.Attribute
-':'           Punctuation
-' '           Text.Whitespace
-'1'           Literal.Number.Integer
-'}'           Punctuation.Compound.Pop
-']'           Punctuation.List.Pop
-'}'           Punctuation.Compound.Pop
+'run'         Keyword.Constant
 '\n'          Text.Whitespace

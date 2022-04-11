@@ -21,42 +21,42 @@ execute
 '@a'          Name.Variable
 '['           Punctuation
 '\n        '  Text.Whitespace
-'advancements' Name.Tag
-'='           Operator
-'{'           
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
 '\n            ' Text.Whitespace
-'minecraft:story/form_obsidian' Name.Function
-'='           Operator
-'{'           
+'minecraft:story/form_obsidian' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
 '\n                ' Text.Whitespace
-'foo'         Name.Variable.Class
-'='           Operator
-'true'        Keyword.Pseudo
-','           Operator
+'foo'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+','           Punctuation
 '\n                ' Text.Whitespace
-'bar'         Name.Variable.Class
-'='           Operator
-'false'       Keyword.Pseudo
+'bar'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
 '\n            ' Text.Whitespace
-'}'           
-','           Operator
+'}'           Punctuation
+','           Punctuation
 '\n            ' Text.Whitespace
-'minecraft:story/follow_ender_eye' Name.Function
-'='           Operator
-'{'           
+'minecraft:story/follow_ender_eye' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
 '\n                ' Text.Whitespace
-'foo'         Name.Variable.Class
-'='           Operator
-'false'       Keyword.Pseudo
-','           Operator
+'foo'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+','           Punctuation
 ' '           Text.Whitespace
-'bar'         Name.Variable.Class
-'='           Operator
-'true'        Keyword.Pseudo
+'bar'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
 '\n            ' Text.Whitespace
-'}'           
+'}'           Punctuation
 '\n        '  Text.Whitespace
-'}'           
+'}'           Punctuation
 '\n    '      Text.Whitespace
 ']'           Punctuation
 ' '           Text.Whitespace
