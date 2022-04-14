@@ -675,8 +675,20 @@ class FlexLexer(CLexer):
     filenames = ['*.lex,', '*.l']
     mimetypes = ['text/x-lex']
 
-    tokens = {
+    builtin = {
+        'alnum', 'alpha','blank', 'cntrl','digit','graph','lower','print','punct','space','upper', 'xdigit'
+    }
 
+    tokens = {
+        'keywords' : [
+            (words((
+                'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy','yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
+            )), Name.Functions),
+            inherit,
+        ],
+        'statements':[
+            (r'[:'+builtin+r':]',Name.Builtin)
+        ]
     }
 
 
