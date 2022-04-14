@@ -1142,18 +1142,18 @@ class PasswdLexer(RegexLexer):
         'root': [
             (r'^#.*', Comment.Single),
             (r'^([^:\n]+)'  # name
-              '(:)'
-              '([^:\n]+)'  # password
-              '(:)'
-              '([0-9]*)'  # id
-              '(:)'
-              '([0-9]*)'  # id
-              '(:)'
-              '([^:\n]*)'  # comment
-              '(:)'
-              '([^:\n]*)'  # path
-              '(:)'
-              '([^:\n]*)$',  # path
+             r'(:)'
+             r'([^:\n]+)'  # password
+             r'(:)'
+             r'([0-9]*)'  # id
+             r'(:)'
+             r'([0-9]*)'  # id
+             r'(:)'
+             r'([^:\n]*)'  # comment
+             r'(:)'
+             r'([^:\n]*)'  # path
+             r'(:)'
+             r'([^:\n]*)$',  # path
               bygroups(
                   Text,
                   Punctuation,
@@ -1187,21 +1187,21 @@ class ShadowLexer(RegexLexer):
         'root': [
             (r'^#.*', Comment.Single),
             (r'^([^:\n]+)'  # name
-              '(:)'
-              '([^:\n]+)'  # password
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)'
-              '([0-9]*)'  # days
-              '(:)$',
+             r'(:)'
+             r'([^:\n]+)'  # password
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)'
+             r'([0-9]*)'  # days
+             r'(:)$',
               bygroups(
                   Text,
                   Punctuation,
