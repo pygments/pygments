@@ -22,7 +22,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer']
+           'NestedTextLexer', 'SingularityLexer', 'PasswdLexer', 'ShadowLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1127,3 +1127,99 @@ class SingularityLexer(RegexLexer):
             result += 0.49
 
         return result
+
+
+class PasswdLexer(RegexLexer):
+    """
+    Lexer for /etc/passwd files.
+    """
+
+    name = 'PasswdLexer'
+    aliases = ['passwd']
+    filenames = ['passwd']
+
+    tokens = {
+        'root': [
+            (r'^#.*', Comment.Single),
+            (r'^([^:\n]+)'  # name
+              '(:)'
+              '([^:\n]+)'  # password
+              '(:)'
+              '([0-9]*)'  # id
+              '(:)'
+              '([0-9]*)'  # id
+              '(:)'
+              '([^:\n]*)'  # comment
+              '(:)'
+              '([^:\n]*)'  # path
+              '(:)'
+              '([^:\n]*)$',  # path
+              bygroups(
+                  Text,
+                  Punctuation,
+                  String,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Text,
+                  Punctuation,
+                  String,
+                  Punctuation,
+                  String,
+                ),
+            ),
+        ],
+    }
+
+
+class ShadowLexer(RegexLexer):
+    """
+    Lexer for /etc/shadow files.
+    """
+
+    name = 'ShadowLexer'
+    aliases = ['shadow']
+    filenames = ['shadow']
+
+    tokens = {
+        'root': [
+            (r'^#.*', Comment.Single),
+            (r'^([^:\n]+)'  # name
+              '(:)'
+              '([^:\n]+)'  # password
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)'
+              '([0-9]*)'  # days
+              '(:)$',
+              bygroups(
+                  Text,
+                  Punctuation,
+                  String,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                  Number,
+                  Punctuation,
+                ),
+            ),
+        ],
+    }
