@@ -1136,9 +1136,9 @@ class PasswdLexer(RegexLexer):
     .. versionadded:: 2.12
     """
 
-    name = 'PasswdLexer'
+    name = '/etc/passwd'
     aliases = ['passwd']
-    filenames = ['passwd']
+    filenames = []
 
     tokens = {
         'root': [
@@ -1165,7 +1165,7 @@ class PasswdLexer(RegexLexer):
                   Punctuation,
                   Number,
                   Punctuation,
-                  Text,
+                  Comment.Single,
                   Punctuation,
                   String,
                   Punctuation,
@@ -1178,12 +1178,14 @@ class PasswdLexer(RegexLexer):
 
 class ShadowLexer(RegexLexer):
     """
-    Lexer for /etc/shadow files.
+    Lexer for ``/etc/shadow`` files.
+
+    .. versionadded:: 2.12
     """
 
-    name = 'ShadowLexer'
+    name = '/etc/shadow'
     aliases = ['shadow']
-    filenames = ['shadow']
+    filenames = []
 
     tokens = {
         'root': [
