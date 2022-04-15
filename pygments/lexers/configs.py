@@ -1131,7 +1131,9 @@ class SingularityLexer(RegexLexer):
 
 class PasswdLexer(RegexLexer):
     """
-    Lexer for /etc/passwd files.
+    Lexer for ``/etc/passwd`` files.
+    
+    .. versionadded:: 2.12
     """
 
     name = 'PasswdLexer'
