@@ -1132,9 +1132,10 @@ class SingularityLexer(RegexLexer):
 class UnixConfigLexer(RegexLexer):
     """
     Lexer for Unix/Linux config files using colon-separated values, e.g.
-        * ``/etc/group``
-        * ``/etc/passwd``
-        * ``/etc/shadow``
+
+    * ``/etc/group``
+    * ``/etc/passwd``
+    * ``/etc/shadow``
     
     .. versionadded:: 2.12
     """
