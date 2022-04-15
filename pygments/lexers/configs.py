@@ -1147,6 +1147,7 @@ class UnixConfigLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^#.*', Comment),
+            (r'\n', Whitespace),
             (r':', Punctuation),
             (r'[0-9]+', Number),
             (r'[a-zA-Z0-9\_\-\s\(\),]{2,}', Text),
