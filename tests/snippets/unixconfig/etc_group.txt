@@ -21,7 +21,10 @@ user:x:1000
 ':'           Punctuation
 '1'           Literal.Number
 ':'           Punctuation
-'syslog,user\nsyslog' Text
+'syslog,user' Text
+'\n'          Text.Whitespace
+
+'syslog'      Text
 ':'           Punctuation
 'x'           Literal.String
 ':'           Punctuation
