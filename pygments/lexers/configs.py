@@ -22,7 +22,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'PasswdLexer', 'ShadowLexer']
+           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1129,101 +1129,26 @@ class SingularityLexer(RegexLexer):
         return result
 
 
-class PasswdLexer(RegexLexer):
+class UnixConfigLexer(RegexLexer):
     """
-    Lexer for ``/etc/passwd`` files.
+    Lexer for Unix/Linux config files using colon-separated values, e.g.
+        * ``/etc/group``
+        * ``/etc/passwd``
+        * ``/etc/shadow``
     
     .. versionadded:: 2.12
     """
 
-    name = '/etc/passwd'
-    aliases = ['passwd']
+    name = 'Unix/Linux config files'
+    aliases = ['unixconfig', 'linuxconfig']
     filenames = []
 
     tokens = {
         'root': [
-            (r'^#.*', Comment.Single),
-            (r'^([^:\n]+)'  # name
-             r'(:)'
-             r'([^:\n]+)'  # password
-             r'(:)'
-             r'([0-9]*)'  # id
-             r'(:)'
-             r'([0-9]*)'  # id
-             r'(:)'
-             r'([^:\n]*)'  # comment
-             r'(:)'
-             r'([^:\n]*)'  # path
-             r'(:)'
-             r'([^:\n]*)$',  # path
-              bygroups(
-                  Text,
-                  Punctuation,
-                  String,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Comment.Single,
-                  Punctuation,
-                  String,
-                  Punctuation,
-                  String,
-                ),
-            ),
-        ],
-    }
-
-
-class ShadowLexer(RegexLexer):
-    """
-    Lexer for ``/etc/shadow`` files.
-
-    .. versionadded:: 2.12
-    """
-
-    name = '/etc/shadow'
-    aliases = ['shadow']
-    filenames = []
-
-    tokens = {
-        'root': [
-            (r'^#.*', Comment.Single),
-            (r'^([^:\n]+)'  # name
-             r'(:)'
-             r'([^:\n]+)'  # password
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)'
-             r'([0-9]*)'  # days
-             r'(:)$',
-              bygroups(
-                  Text,
-                  Punctuation,
-                  String,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                  Number,
-                  Punctuation,
-                ),
-            ),
+            (r'^#.*', Comment),
+            (r':', Punctuation),
+            (r'[0-9]+', Number),
+            (r'[a-zA-Z0-9\_\-\s\(\),]{2,}', Text),
+            (r'[^:\n]+', String),
         ],
     }
