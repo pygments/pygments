@@ -3,7 +3,7 @@
 '\n'          Text
 
 'package'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'tutorial'    Name.Namespace
 ';'           Punctuation
 '\n'          Text
@@ -11,21 +11,21 @@
 '\n'          Text
 
 'option'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java_package' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"com.example.tutorial"' Literal.String
 ';'           Punctuation
 '\n'          Text
 
 'option'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java_outer_classname' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"AddressBookProtos"' Literal.String
 ';'           Punctuation
 '\n'          Text
@@ -33,152 +33,152 @@
 '\n'          Text
 
 'message'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Person'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'required'    Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'required'    Keyword
-' '           Text
+' '           Text.Whitespace
 'int32'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '// Unique ID number for this person.\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'optional'    Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'email'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'enum'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PhoneType'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'MOBILE'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'HOME'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'WORK'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'message'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'PhoneNumber' Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'required'    Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'number'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'optional'    Keyword
-' '           Text
+' '           Text.Whitespace
 'PhoneType'   Name
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'default'     Keyword
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'HOME'        Name
 ']'           Punctuation
 ';'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'repeated'    Keyword
-' '           Text
+' '           Text.Whitespace
 'PhoneNumber' Name
-' '           Text
+' '           Text.Whitespace
 'phone'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text
@@ -191,21 +191,21 @@
 '// Our address book file is just one of these.\n' Comment.Single
 
 'message'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'AddressBook' Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'repeated'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Person'      Name
-' '           Text
+' '           Text.Whitespace
 'person'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text

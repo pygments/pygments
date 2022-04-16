@@ -1,13 +1,13 @@
 '// Scilab ( http://www.scilab.org/ )' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Copyright (C) INRIA - Serge STEER' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// '         Comment.Single
-'\n'          Text
+'\n\n'        Text.Whitespace
 
-'\nfunction'  Keyword
+'function'    Keyword
 ' '           Text.Whitespace
 'I'           Text
 '='           Punctuation
@@ -18,43 +18,30 @@
 '\n'          Text.Whitespace
 
 '//sub2ind is used to determine the equivalent single index' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//corresponding to a given set of subscript values.' Comment.Single
-'\n'          Text
-
-' '           Text
-'\n'          Text
+'\n \n'       Text.Whitespace
 
 '//I = sub2ind(dims,i1,i2,..) returns the linear index equivalent to the' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//row,  column, ... subscripts in the arrays i1,i2,..  for an matrix of' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//size dims.' Comment.Single
-'\n'          Text
-
-' '           Text
-'\n'          Text
+'\n \n'       Text.Whitespace
 
 '//I = sub2ind(dims,Mi) returns the linear index' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//equivalent to the n subscripts in the columns of the matrix Mi for a matrix' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//of size dims.' Comment.Single
-'\n'          Text
-
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n \n  '     Text.Whitespace
 'd'           Name
-'='           Punctuation
-'['           Punctuation
+'=['          Punctuation
 '1'           Literal.Number.Integer
 ';'           Punctuation
 'cumprod'     Name.Builtin
@@ -68,21 +55,15 @@
 '$'           Text
 '-'           Operator
 '1'           Literal.Number.Integer
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 '1'           Literal.Number.Integer
-')'           Punctuation
-')'           Punctuation
-']'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
+'))]'         Punctuation
+'\n  '        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '='           Punctuation
 '1'           Literal.Number.Integer
@@ -91,64 +72,38 @@
 '('           Punctuation
 'varargin'    Name
 ')'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'varargin'    Name
 '('           Punctuation
 'i'           Name
-')'           Punctuation
-'=='          Operator
-'['           Punctuation
-']'           Punctuation
-' '           Text
+')==[]'       Punctuation
+' '           Text.Whitespace
 'then'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-'='           Punctuation
-'['           Punctuation
-']'           Punctuation
-','           Punctuation
+'=[],'        Punctuation
 'return'      Keyword
 ','           Punctuation
 'end'         Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'size'        Name.Builtin
 '('           Punctuation
 'varargin'    Name
-')'           Punctuation
-'=='          Operator
+')=='         Punctuation
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '//subindices are the columns of the argument' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'I'           Name
-'='           Punctuation
-'('           Punctuation
+'=('          Punctuation
 'varargin'    Name
 '('           Punctuation
 '1'           Literal.Number.Integer
@@ -160,30 +115,17 @@
 'd'           Name
 '+'           Operator
 '1'           Literal.Number.Integer
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '//subindices are given as separated arguments' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'I'           Name
 '='           Punctuation
 '1'           Literal.Number.Integer
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '='           Punctuation
 '1'           Literal.Number.Integer
@@ -192,14 +134,7 @@
 '('           Punctuation
 'varargin'    Name
 ')'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n      '    Text.Whitespace
 'I'           Name
 '='           Punctuation
 'I'           Name
@@ -217,19 +152,11 @@
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endfunction' Keyword
-'\n'          Text
+'\n'          Text.Whitespace

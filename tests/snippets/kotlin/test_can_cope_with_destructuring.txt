@@ -3,14 +3,14 @@ val (a, b) =
 
 ---tokens---
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace

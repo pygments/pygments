@@ -1,5 +1,5 @@
 '1>'          Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'io'          Name.Namespace
 ':'           Punctuation
 'format'      Name.Function
@@ -10,57 +10,57 @@
 '"'           Literal.String
 ')'           Punctuation
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Hello\n'     Generic.Output
 
 'ok\n'        Generic.Output
 
 '2>'          Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'fun'         Keyword
 '('           Punctuation
 'X'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#Fun<erl_eval.6.13229925>\n' Generic.Output
 
 '3>'          Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '234'         Literal.Number.Integer
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '357\n'       Generic.Output
 
 '4>'          Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 "* 1: variable 'Y' is unbound\n" Generic.Traceback
 
 '5>'          Generic.Prompt
-' \n'         Text
+' \n'         Text.Whitespace

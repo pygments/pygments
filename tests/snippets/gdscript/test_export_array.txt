@@ -3,15 +3,15 @@ export (Array, AudioStream) var streams
 
 ---tokens---
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Array'       Name.Builtin.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AudioStream' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword
-' '           Text
+' '           Text.Whitespace
 'streams'     Name
-'\n'          Text
+'\n'          Text.Whitespace

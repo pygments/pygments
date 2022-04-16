@@ -1,218 +1,218 @@
 '/* Stemmer for Esperanto in UTF-8 */' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'strings'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'integers'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'booleans'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'routines'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'apostrophe'  Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'canonical_form' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'correlative' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'interjection' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'short_word'  Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'standard_suffix' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'unuj'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'externals'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'stem'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'groupings'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vowel'       Name
-' '           Text
+' '           Text.Whitespace
 'aiou'        Name
-' '           Text
+' '           Text.Whitespace
 'ao'          Name
-' '           Text
+' '           Text.Whitespace
 'ou'          Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "a'"          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'decimal'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '225'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "e'"          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'E9'          Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "i'"          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'ED'          Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "o'"          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ' f3'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "u'"          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'fa '         Literal.String.Single
 "'"           Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'cx'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '0109'        Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'gx'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '011D'        Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'hx'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '0125'        Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'jx'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '0135'        Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'sx'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '015D'        Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringdef'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'ux'          Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 'hex'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '016D'        Literal.String.Single
 "'"           Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'canonical_form' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'repeat'      Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Operator
 'substring'   Operator.Word
 ']'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'among'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringescapes' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Escape
 '/'           Literal.String.Escape
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '/'           Literal.String.Escape
@@ -220,19 +220,19 @@
 '/'           Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'a'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'set'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '/'           Literal.String.Escape
@@ -240,19 +240,19 @@
 '/'           Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'set'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '/'           Literal.String.Escape
@@ -260,19 +260,19 @@
 '/'           Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'i'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'set'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '/'           Literal.String.Escape
@@ -280,19 +280,19 @@
 '/'           Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'o'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'set'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '/'           Literal.String.Escape
@@ -300,32 +300,32 @@
 '/'           Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'u'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'set'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringescapes' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '`'           Literal.String.Escape
 "'"           Literal.String.Escape
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'cx'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -333,14 +333,14 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'gx'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -348,14 +348,14 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'hx'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -363,14 +363,14 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'jx'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -378,14 +378,14 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'sx'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -393,14 +393,14 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 'ux'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '`'           Literal.String.Escape
@@ -408,39 +408,39 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'next'        Operator.Word
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'backwardmode' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'stringescapes' Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 '}'           Literal.String.Escape
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'apostrophe'  Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '['           Operator
 "'"           Literal.String.Single
@@ -451,18 +451,18 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'atlimit'     Operator.Word
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'unu'         Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '['           Operator
 "'"           Literal.String.Single
@@ -473,18 +473,18 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'atlimit'     Operator.Word
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'la'          Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '['           Operator
 "'"           Literal.String.Single
@@ -495,94 +495,94 @@
 ''            Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'o'           Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'vowel'       Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'aeiou'       Literal.String.Single
 "'"           Literal.String.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'aiou'        Name
-' '           Text
+' '           Text.Whitespace
 'vowel'       Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'ao'          Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'ao'          Literal.String.Single
 "'"           Literal.String.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'ou'          Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'ou'          Literal.String.Single
 "'"           Literal.String.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'short_word'  Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loop'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'maxint'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'gopast'      Operator.Word
-' '           Text
+' '           Text.Whitespace
 'vowel'       Name
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'interjection' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'among'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 "'"           Literal.String.Single
 'adia'        Literal.String.Single
@@ -590,298 +590,298 @@
 'ux}'         Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'aha'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'amen'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'hola'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'hura'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'mia'         Literal.String.Single
 '{'           Literal.String.Escape
 'ux}'         Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'muu'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'oho'         Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'atlimit'     Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'correlative' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Operator
 ']'           Operator
-'\n        '  Text
+'\n        '  Text.Whitespace
 "// Ignore -al, -am, etc. since they can't be confused with suffixes." Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'test'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 "'"           Literal.String.Single
 'a'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'n'           Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'n'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'j'           Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'ou'          Name
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 "'"           Literal.String.Single
 'i'           Literal.String.Single
 "'"           Literal.String.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 "'"           Literal.String.Single
 'k'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 't'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 ''            Literal.String.Single
 '{'           Literal.String.Escape
 'cx}'         Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'nen'         Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atlimit'     Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'delete'      Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'unuj'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Operator
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'n'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'j'           Literal.String.Single
 "'"           Literal.String.Single
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'unu'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'atlimit'     Operator.Word
-' '           Text
+' '           Text.Whitespace
 'delete'      Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'standard_suffix' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Operator
-'\n        '  Text
+'\n        '  Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'n'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'j'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'ao'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 's'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'aiou'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'n'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'e'           Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '-'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'try'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'a'           Literal.String.Single
 '{'           Literal.String.Escape
 'ux}'         Literal.String.Escape
 ''            Literal.String.Single
 "'"           Literal.String.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'delete'      Operator.Word
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'stem'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'do'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'canonical_form' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'foreign'     Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'backwards'   Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'do'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'apostrophe'  Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'short_word'  Name
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interjection' Name
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-'\n        '  Text
+'\n        '  Text.Whitespace
 'correlative' Name
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'unuj'        Name
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'do'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'standard_suffix' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

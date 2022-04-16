@@ -1,166 +1,189 @@
-"' Copyright (c) 2008 Silken Web - Free BSD License\n" Comment
+"' Copyright (c) 2008 Silken Web - Free BSD License" Comment
+'\n'          Text.Whitespace
 
-"' All rights reserved.\n" Comment
+"' All rights reserved." Comment
+'\n'          Text.Whitespace
 
-"'\n"         Comment
+"'"           Comment
+'\n'          Text.Whitespace
 
-"' Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n" Comment
+"' Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:" Comment
+'\n'          Text.Whitespace
 
-"' * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer\n" Comment
+"' * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer" Comment
+'\n'          Text.Whitespace
 
-"' * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n" Comment
+"' * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution." Comment
+'\n'          Text.Whitespace
 
-"' * Neither the name of Silken Web nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n" Comment
+"' * Neither the name of Silken Web nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission." Comment
+'\n'          Text.Whitespace
 
-"'\n"         Comment
+"'"           Comment
+'\n'          Text.Whitespace
 
-'\' THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,\n' Comment
+'\' THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,' Comment
+'\n'          Text.Whitespace
 
-"' THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS\n" Comment
+"' THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS" Comment
+'\n'          Text.Whitespace
 
-"' BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE\n" Comment
+"' BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE" Comment
+'\n'          Text.Whitespace
 
-"' GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n" Comment
+"' GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT" Comment
+'\n'          Text.Whitespace
 
-"' LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH\n" Comment
+"' LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH" Comment
+'\n'          Text.Whitespace
 
-"' DAMAGE.\n" Comment
+"' DAMAGE."   Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name.Namespace
 '.'           Name.Namespace
 'Net'         Name.Namespace
 '.'           Name.Namespace
 'Mail'        Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'SilkenWeb'   Name.Namespace
 '.'           Name.Namespace
 'Entities'    Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name.Namespace
 '.'           Name.Namespace
 'Text'        Name.Namespace
 '.'           Name.Namespace
 'RegularExpressions' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name.Namespace
 '.'           Name.Namespace
 'Reflection'  Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'SilkenWeb'   Name.Namespace
 '.'           Name.Namespace
 'Validation'  Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name.Namespace
 '.'           Name.Namespace
 'Globalization' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Imports'     Keyword
-' '           Text
+' '           Text.Whitespace
 'SilkenWeb'   Name.Namespace
 '.'           Name.Namespace
 'Reflection'  Name.Namespace
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'SilkenWeb'   Name.Namespace
-'\n\n    '    Text
-"''' <summary>\n" Comment
+'\n\n    '    Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' Represents an Email and what you can do with it.\n" Comment
+'    '        Text.Whitespace
+"''' Represents an Email and what you can do with it." Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' </summary>\n" Comment
+'    '        Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' <remarks>\n" Comment
+'    '        Text.Whitespace
+"''' <remarks>" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' Keith Jackson\n" Comment
+'    '        Text.Whitespace
+"''' Keith Jackson" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' 11/04/2008\n" Comment
+'    '        Text.Whitespace
+"''' 11/04/2008" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"'''\n"       Comment
+'    '        Text.Whitespace
+"'''"         Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' This class is intended to be inherrited for providing all manner of system generated emails, each represented by it's own class.\n" Comment
+'    '        Text.Whitespace
+"''' This class is intended to be inherrited for providing all manner of system generated emails, each represented by it's own class." Comment
+'\n'          Text.Whitespace
 
-'    '        Text
-"''' </remarks>\n" Comment
+'    '        Text.Whitespace
+"''' </remarks>" Comment
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MustInherit' Keyword
-' '           Text
+' '           Text.Whitespace
 'Class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'EmailBase'   Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Implements'  Keyword
-' '           Text
+' '           Text.Whitespace
 'IValidatable' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IDisposable' Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " Constants "\n' Comment.Preproc
 
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'LenientRegexPattern' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*' Literal.String
 '"'           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'StrictRegexPattern' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '^(([^<>()[\\]\\\\.,;:\\s@\\' Literal.String
 '""'          Literal.String
@@ -172,211 +195,218 @@
 '""'          Literal.String
 '))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$' Literal.String
 '"'           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'InvalidEmailAddressError' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'The Email address provided was invalid' Literal.String
 '"'           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'InvalidEmailAddressErrorWithAddress' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'The Email address, {0}, provided was invalid' Literal.String
 '"'           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'NullEmailAddressError' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'The Email address was not provided' Literal.String
 '"'           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " Fields "\n' Comment.Preproc
 
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'disposedValue' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'MailMessage' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailMessage' Name
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_mailClient' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'SmtpClient'  Name
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_useStrictValidation' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " Construction "\n' Comment.Preproc
 
-'\n        '  Text
-"''' <summary>\n" Comment
+'\n        '  Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Instantiates a new Email of the derived type.\n" Comment
+'        '    Text.Whitespace
+"''' Instantiates a new Email of the derived type." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="sender">The email address of the sender of the message.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="sender">The email address of the sender of the message.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="recipients">The email addresses of the recipients of the message.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="recipients">The email addresses of the recipients of the message.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="subject">The subject of the message.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="subject">The subject of the message.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="body">The body of the message.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="body">The body of the message.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'New'         Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'subject'     Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'body'        Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ParamArray'  Keyword
-' '           Text
+' '           Text.Whitespace
 'recipients'  Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 'sender'      Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'For'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'To'          Keyword
-' '           Text
+' '           Text.Whitespace
 'recipients'  Name
 '.'           Punctuation
 'Length'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'To'          Name
@@ -388,104 +418,110 @@
 'i'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Next'        Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Subject'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'subject'     Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Body'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'body'        Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " Properties "\n' Comment.Preproc
 
-'\n        '  Text
-"''' <summary>\n" Comment
+'\n        '  Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Gets the Attachments for the message.\n" Comment
+'        '    Text.Whitespace
+"''' Gets the Attachments for the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'ReadOnly'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Attachments' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'AttachmentCollection' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Attachments' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The email addresses of the BCC recipients of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The email addresses of the BCC recipients of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'BccRecipients' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Bcc'         Name
@@ -493,24 +529,24 @@
 'ToAddressStringArray' Name
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Bcc'         Name
@@ -518,7 +554,7 @@
 'Clear'       Name
 '('           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Bcc'         Name
@@ -531,104 +567,110 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The body of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The body of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Body'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Body'        Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Body'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The email addresses of the CC recipients of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The email addresses of the CC recipients of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'CCRecipients' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'CC'          Name
@@ -636,24 +678,24 @@
 'ToAddressStringArray' Name
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'CC'          Name
@@ -661,7 +703,7 @@
 'Clear'       Name
 '('           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'CC'          Name
@@ -674,199 +716,211 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Gets or Sets a flag to indicate if the body of the message is HTML.\n" Comment
+'        '    Text.Whitespace
+"''' Gets or Sets a flag to indicate if the body of the message is HTML." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'IsBodyHtml'  Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'IsBodyHtml'  Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'IsBodyHtml'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Gets the Mail message wrapped by the EmailBase class.\n" Comment
+'        '    Text.Whitespace
+"''' Gets the Mail message wrapped by the EmailBase class." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'ReadOnly'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Message'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'MailMessage' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Gets or Sets the Priority of the message.\n" Comment
+'        '    Text.Whitespace
+"''' Gets or Sets the Priority of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Priority'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'MailPriority' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Priority'    Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'MailPriority' Name
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Priority'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The email addresses of the recipients of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The email addresses of the recipients of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Recipients'  Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'To'          Name
@@ -874,24 +928,24 @@
 'ToAddressStringArray' Name
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'To'          Name
@@ -899,7 +953,7 @@
 'Clear'       Name
 '('           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'To'          Name
@@ -912,234 +966,240 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The reply email address of the sender of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The reply email address of the sender of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'ReplyTo'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '.'           Punctuation
 'Empty'       Name
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Else'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
 '.'           Punctuation
 'Address'     Name
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 'value'       Name
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Else'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 'value'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
 '.'           Punctuation
 'DisplayName' Name
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The reply display name of the sender of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The reply display name of the sender of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'ReplyToDisplayName' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '.'           Punctuation
 'Empty'       Name
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Else'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
 '.'           Punctuation
 'DisplayName' Name
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 '_message'    Name
@@ -1148,20 +1208,20 @@
 '.'           Punctuation
 'Address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Else'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'ReplyTo'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 '_message'    Name
@@ -1170,158 +1230,164 @@
 '.'           Punctuation
 'Address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The email address of the sender of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The email address of the sender of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Sender'      Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
 '.'           Punctuation
 'Address'     Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 'value'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
 '.'           Punctuation
 'DisplayName' Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The display name of the sender of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The display name of the sender of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'SenderDisplayName' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
 '.'           Punctuation
 'DisplayName' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'From'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MailAddress' Name
 '('           Punctuation
 '_message'    Name
@@ -1330,587 +1396,622 @@
 '.'           Punctuation
 'Address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' The subject of the message.\n" Comment
+'        '    Text.Whitespace
+"''' The subject of the message." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Subject'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Subject'     Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Subject'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " Methods "\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#Region " Send Methods "\n' Comment.Preproc
 
-'\n        '  Text
-"''' <summary>\n" Comment
+'\n        '  Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Sends this email\n" Comment
+'        '    Text.Whitespace
+"''' Sends this email" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Send'        Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailServer'  Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_mailClient' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SmtpClient'  Name
 '('           Punctuation
 'mailServer'  Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_mailClient' Name
 '.'           Punctuation
 'Send'        Name
 '('           Punctuation
 '_message'    Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Sends this email asynchronously.\n" Comment
+'        '    Text.Whitespace
+"''' Sends this email asynchronously." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="userToken">A user defined token passed to the recieving method on completion of the asynchronous task.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="userToken">A user defined token passed to the recieving method on completion of the asynchronous task.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SendAsync'   Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailServer'  Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'userToken'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Object'      Keyword.Type
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_mailClient' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SmtpClient'  Name
 '('           Punctuation
 'mailServer'  Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_mailClient' Name
 '.'           Punctuation
 'SendAsync'   Name
 '('           Punctuation
 '_message'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'userToken'   Name
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Cancels an attempt to send this email asynchronously.\n" Comment
+'        '    Text.Whitespace
+"''' Cancels an attempt to send this email asynchronously." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'SendAsyncCancel' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '_mailClient' Name
 '.'           Punctuation
 'SendAsyncCancel' Name
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " IValidatable Implementation "\n' Comment.Preproc
 
-'\n        '  Text
-"''' <summary>\n" Comment
+'\n        '  Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' gets and Sets a flag to indicate whether to use strict validation.\n" Comment
+'        '    Text.Whitespace
+"''' gets and Sets a flag to indicate whether to use strict validation." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-' '           Text
+' '           Text.Whitespace
 'UseStrictValidation' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Get'         Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_useStrictValidation' Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Get'         Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Set'         Keyword
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_useStrictValidation' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Property'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Validates this email.\n" Comment
+'        '    Text.Whitespace
+"''' Validates this email." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' <returns>A ValidationResponse, containing a flag to indicate if validation was passed and a collection of Property Names and validation errors.</returns>\n" Comment
+'        '    Text.Whitespace
+"''' <returns>A ValidationResponse, containing a flag to indicate if validation was passed and a collection of Property Names and validation errors.</returns>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Validate'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
-' '           Text
+' '           Text.Whitespace
 'Implements'  Keyword
-' '           Text
+' '           Text.Whitespace
 'IValidatable' Name
 '.'           Punctuation
 'Validate'    Name
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'Dim'         Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
 '('           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Dim'         Keyword
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
 '('           Punctuation
 '_useStrictValidation' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'StrictRegexPattern' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LenientRegexPattern' Name
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'ValidateAddress' Name
 '('           Punctuation
 '"'           Literal.String
 'Sender'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddresses' Name
 '('           Punctuation
 '"'           Literal.String
 'Recipients'  Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddresses' Name
 '('           Punctuation
 '"'           Literal.String
 'CcRecipients' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddresses' Name
 '('           Punctuation
 '"'           Literal.String
 'BccRecipients' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddress' Name
 '('           Punctuation
 '"'           Literal.String
 'ReplyTo'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'Return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Function'    Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Validates a single Email Address property.\n" Comment
+'        '    Text.Whitespace
+"''' Validates a single Email Address property." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="retVal">The validation response object.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Overloads'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ValidateAddress' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByRef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddress' Name
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'False'       Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Validates a single Email Address property.\n" Comment
+'        '    Text.Whitespace
+"''' Validates a single Email Address property." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="retVal">The validation response object.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Overloads'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ValidateAddress' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByRef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'required'    Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'Dim'         Keyword
-' '           Text
+' '           Text.Whitespace
 'emailAddress' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ReflectionHelper' Name
 '.'           Punctuation
 'Properties'  Name
@@ -1918,268 +2019,281 @@
 'GetProperty' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
 '('           Punctuation
 'Me'          Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'emailAddress' Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'OrElse'      Operator.Word
-' '           Text
+' '           Text.Whitespace
 'emailAddress' Name
 '.'           Punctuation
 'Length'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'required'    Name
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 '.'           Punctuation
 'Add'         Name
 '('           Punctuation
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'KeyValuePair' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NullEmailAddressError' Name
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Else'        Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Regex'       Name
 '.'           Punctuation
 'IsMatch'     Name
 '('           Punctuation
 'emailAddress' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'retVal'      Name
 '.'           Punctuation
 'Add'         Name
 '('           Punctuation
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'KeyValuePair' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'InvalidEmailAddressError' Name
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Validates a string array of Email Address property.\n" Comment
+'        '    Text.Whitespace
+"''' Validates a string array of Email Address property." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="retVal">The validation response object.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Overloads'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ValidateAddresses' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByRef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ValidateAddresses' Name
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'False'       Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
-"''' <summary>\n" Comment
+'\n\n        ' Text.Whitespace
+"''' <summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' Validates a string array of Email Address property.\n" Comment
+'        '    Text.Whitespace
+"''' Validates a string array of Email Address property." Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-"''' </summary>\n" Comment
+'        '    Text.Whitespace
+"''' </summary>" Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="retVal">The validation response object.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
-'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>\n' Comment
+'        '    Text.Whitespace
+'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>' Comment
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'Private'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Overloads'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ValidateAddresses' Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByRef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ValidationResponse' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'required'    Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'Dim'         Keyword
-' '           Text
+' '           Text.Whitespace
 'emailAddresses' Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ReflectionHelper' Name
 '.'           Punctuation
 'Properties'  Name
@@ -2187,7 +2301,7 @@
 'GetProperty' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
@@ -2195,55 +2309,55 @@
 '('           Punctuation
 'Me'          Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'propertyName' Name
 ')'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'emailAddresses' Name
-' '           Text
+' '           Text.Whitespace
 'Is'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-' '           Text
+' '           Text.Whitespace
 'OrElse'      Operator.Word
-' '           Text
+' '           Text.Whitespace
 'emailAddresses' Name
 '.'           Punctuation
 'Length'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'required'    Name
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'retVal'      Name
 '.'           Punctuation
 'Add'         Name
 '('           Punctuation
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'KeyValuePair' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '.'           Punctuation
 'Format'      Name
@@ -2252,41 +2366,41 @@
 '.'           Punctuation
 'CurrentCulture' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NullEmailAddressError' Name
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Else'        Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'For'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Integer'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'To'          Keyword
-' '           Text
+' '           Text.Whitespace
 'emailAddresses' Name
 '.'           Punctuation
 'Length'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Regex'       Name
 '.'           Punctuation
 'IsMatch'     Name
@@ -2296,32 +2410,32 @@
 'i'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mailRegEx'   Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'retVal'      Name
 '.'           Punctuation
 'Add'         Name
 '('           Punctuation
 'New'         Keyword
-' '           Text
+' '           Text.Whitespace
 'KeyValuePair' Name
 '('           Punctuation
 'Of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
 '('           Punctuation
 'propertyName' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 '.'           Punctuation
 'Format'      Name
@@ -2330,10 +2444,10 @@
 '.'           Punctuation
 'CurrentCulture' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'InvalidEmailAddressErrorWithAddress' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'emailAddresses' Name
 '('           Punctuation
 'i'           Name
@@ -2341,141 +2455,142 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'Next'        Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#Region " IDisposable Implementation "\n' Comment.Preproc
 
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Overridable' Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Dispose'     Name.Function
 '('           Punctuation
 'ByVal'       Keyword
-' '           Text
+' '           Text.Whitespace
 'disposing'   Name
-' '           Text
+' '           Text.Whitespace
 'As'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Keyword.Type
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Me'          Keyword
 '.'           Punctuation
 'disposedValue' Name
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 'If'          Keyword
-' '           Text
+' '           Text.Whitespace
 'disposing'   Name
-' '           Text
+' '           Text.Whitespace
 'Then'        Keyword
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '_message'    Name
 '.'           Punctuation
 'Dispose'     Name
 '('           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_mailClient' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-'\n                ' Text
+'\n                ' Text.Whitespace
 '_message'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Nothing'     Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Me'          Keyword
 '.'           Punctuation
 'disposedValue' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'Public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Dispose'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Implements'  Keyword
-' '           Text
+' '           Text.Whitespace
 'IDisposable' Name
 '.'           Punctuation
 'Dispose'     Name
-'\n            ' Text
-"' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.\n" Comment
+'\n            ' Text.Whitespace
+"' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above." Comment
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'Dispose'     Name
 '('           Punctuation
 'True'        Keyword
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'GC'          Name
 '.'           Punctuation
 'SuppressFinalize' Name
 '('           Punctuation
 'Me'          Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Sub'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#End Region' Comment.Preproc
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Class'       Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'End'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Namespace'   Keyword
-'\n'          Text
+'\n'          Text.Whitespace

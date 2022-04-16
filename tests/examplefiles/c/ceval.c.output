@@ -5563,7 +5563,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'NOP'         Name.Label
+'NOP'         Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5579,7 +5579,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_FAST'   Name.Label
+'LOAD_FAST'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5674,7 +5674,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_CONST'  Name.Label
+'LOAD_CONST'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5729,7 +5729,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_FAST'  Name.Label
+'STORE_FAST'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5775,7 +5775,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'POP_TOP'     Name.Label
+'POP_TOP'     Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5810,7 +5810,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'ROT_TWO'     Name.Label
+'ROT_TWO'     Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5864,7 +5864,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'ROT_THREE'   Name.Label
+'ROT_THREE'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5937,7 +5937,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'ROT_FOUR'    Name.Label
+'ROT_FOUR'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6029,7 +6029,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DUP_TOP'     Name.Label
+'DUP_TOP'     Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6072,7 +6072,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DUP_TOPX'    Name.Label
+'DUP_TOPX'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6305,7 +6305,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNARY_POSITIVE' Name.Label
+'UNARY_POSITIVE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6374,7 +6374,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNARY_NEGATIVE' Name.Label
+'UNARY_NEGATIVE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6443,7 +6443,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNARY_NOT'   Name.Label
+'UNARY_NOT'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6586,7 +6586,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNARY_CONVERT' Name.Label
+'UNARY_CONVERT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6655,7 +6655,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNARY_INVERT' Name.Label
+'UNARY_INVERT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6724,7 +6724,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_POWER' Name.Label
+'BINARY_POWER' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6818,7 +6818,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_MULTIPLY' Name.Label
+'BINARY_MULTIPLY' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6909,7 +6909,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_DIVIDE' Name.Label
+'BINARY_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7017,7 +7017,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_TRUE_DIVIDE' Name.Label
+'BINARY_TRUE_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7108,7 +7108,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_FLOOR_DIVIDE' Name.Label
+'BINARY_FLOOR_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7199,7 +7199,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_MODULO' Name.Label
+'BINARY_MODULO' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7290,7 +7290,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_ADD'  Name.Label
+'BINARY_ADD'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7591,7 +7591,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_SUBTRACT' Name.Label
+'BINARY_SUBTRACT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7827,7 +7827,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_SUBSCR' Name.Label
+'BINARY_SUBSCR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8060,7 +8060,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_LSHIFT' Name.Label
+'BINARY_LSHIFT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8151,7 +8151,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_RSHIFT' Name.Label
+'BINARY_RSHIFT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8242,7 +8242,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_AND'  Name.Label
+'BINARY_AND'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8333,7 +8333,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_XOR'  Name.Label
+'BINARY_XOR'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8424,7 +8424,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BINARY_OR'   Name.Label
+'BINARY_OR'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8515,7 +8515,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LIST_APPEND' Name.Label
+'LIST_APPEND' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8614,7 +8614,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_POWER' Name.Label
+'INPLACE_POWER' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8708,7 +8708,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_MULTIPLY' Name.Label
+'INPLACE_MULTIPLY' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8799,7 +8799,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_DIVIDE' Name.Label
+'INPLACE_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8907,7 +8907,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_TRUE_DIVIDE' Name.Label
+'INPLACE_TRUE_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8998,7 +8998,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_FLOOR_DIVIDE' Name.Label
+'INPLACE_FLOOR_DIVIDE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9089,7 +9089,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_MODULO' Name.Label
+'INPLACE_MODULO' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9180,7 +9180,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_ADD' Name.Label
+'INPLACE_ADD' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9481,7 +9481,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_SUBTRACT' Name.Label
+'INPLACE_SUBTRACT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9717,7 +9717,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_LSHIFT' Name.Label
+'INPLACE_LSHIFT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9808,7 +9808,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_RSHIFT' Name.Label
+'INPLACE_RSHIFT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9899,7 +9899,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_AND' Name.Label
+'INPLACE_AND' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9990,7 +9990,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_XOR' Name.Label
+'INPLACE_XOR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -10081,7 +10081,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'INPLACE_OR'  Name.Label
+'INPLACE_OR'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -10172,37 +10172,37 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SLICE'       Name
+'SLICE'       Name.Constant
 '+'           Operator
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SLICE'       Name
+'SLICE'       Name.Constant
 '+'           Operator
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SLICE'       Name
+'SLICE'       Name.Constant
 '+'           Operator
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SLICE'       Name
+'SLICE'       Name.Constant
 '+'           Operator
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t'      Text.Whitespace
@@ -10372,37 +10372,37 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_SLICE' Name
+'STORE_SLICE' Name.Constant
 '+'           Operator
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_SLICE' Name
+'STORE_SLICE' Name.Constant
 '+'           Operator
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_SLICE' Name
+'STORE_SLICE' Name.Constant
 '+'           Operator
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_SLICE' Name
+'STORE_SLICE' Name.Constant
 '+'           Operator
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t'      Text.Whitespace
@@ -10588,37 +10588,37 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_SLICE' Name
+'DELETE_SLICE' Name.Constant
 '+'           Operator
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_SLICE' Name
+'DELETE_SLICE' Name.Constant
 '+'           Operator
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_SLICE' Name
+'DELETE_SLICE' Name.Constant
 '+'           Operator
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_SLICE' Name
+'DELETE_SLICE' Name.Constant
 '+'           Operator
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t'      Text.Whitespace
@@ -10792,7 +10792,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_SUBSCR' Name.Label
+'STORE_SUBSCR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -10909,7 +10909,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_SUBSCR' Name.Label
+'DELETE_SUBSCR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11004,7 +11004,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PRINT_EXPR'  Name.Label
+'PRINT_EXPR'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11231,7 +11231,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PRINT_ITEM_TO' Name.Label
+'PRINT_ITEM_TO' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11259,7 +11259,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PRINT_ITEM'  Name.Label
+'PRINT_ITEM'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11762,7 +11762,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PRINT_NEWLINE_TO' Name.Label
+'PRINT_NEWLINE_TO' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11790,7 +11790,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PRINT_NEWLINE' Name.Label
+'PRINT_NEWLINE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11975,7 +11975,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'RAISE_VARARGS' Name.Label
+'RAISE_VARARGS' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12010,7 +12010,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
@@ -12034,7 +12034,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
@@ -12058,7 +12058,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
@@ -12078,7 +12078,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '/* Fallthrough */' Comment.Multiline
 '\n'          Text.Whitespace
@@ -12154,7 +12154,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_LOCALS' Name.Label
+'LOAD_LOCALS' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12230,7 +12230,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'RETURN_VALUE' Name.Label
+'RETURN_VALUE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12266,7 +12266,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'YIELD_VALUE' Name.Label
+'YIELD_VALUE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12314,7 +12314,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'EXEC_STMT'   Name.Label
+'EXEC_STMT'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12430,7 +12430,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'POP_BLOCK'   Name.Label
+'POP_BLOCK'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12509,7 +12509,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'END_FINALLY' Name.Label
+'END_FINALLY' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12748,7 +12748,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BUILD_CLASS' Name.Label
+'BUILD_CLASS' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12853,7 +12853,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_NAME'  Name.Label
+'STORE_NAME'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13024,7 +13024,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_NAME' Name.Label
+'DELETE_NAME' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13158,7 +13158,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'UNPACK_SEQUENCE' Name.Label
+'UNPACK_SEQUENCE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13476,7 +13476,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_ATTR'  Name.Label
+'STORE_ATTR'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13587,7 +13587,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_ATTR' Name.Label
+'DELETE_ATTR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13662,7 +13662,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_GLOBAL' Name.Label
+'STORE_GLOBAL' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13747,7 +13747,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_GLOBAL' Name.Label
+'DELETE_GLOBAL' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -13821,7 +13821,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_NAME'   Name.Label
+'LOAD_NAME'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14154,7 +14154,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_GLOBAL' Name.Label
+'LOAD_GLOBAL' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14640,7 +14640,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'DELETE_FAST' Name.Label
+'DELETE_FAST' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14734,7 +14734,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_CLOSURE' Name.Label
+'LOAD_CLOSURE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -14792,7 +14792,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_DEREF'  Name.Label
+'LOAD_DEREF'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15017,7 +15017,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'STORE_DEREF' Name.Label
+'STORE_DEREF' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15073,7 +15073,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BUILD_TUPLE' Name.Label
+'BUILD_TUPLE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15180,7 +15180,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BUILD_LIST'  Name.Label
+'BUILD_LIST'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15287,7 +15287,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BUILD_MAP'   Name.Label
+'BUILD_MAP'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15336,7 +15336,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'LOAD_ATTR'   Name.Label
+'LOAD_ATTR'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15423,7 +15423,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'COMPARE_OP'  Name.Label
+'COMPARE_OP'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15532,7 +15532,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_LT'    Name.Label
+'PyCmp_LT'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15553,7 +15553,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_LE'    Name.Label
+'PyCmp_LE'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15575,7 +15575,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_EQ'    Name.Label
+'PyCmp_EQ'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15597,7 +15597,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_NE'    Name.Label
+'PyCmp_NE'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15619,7 +15619,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_GT'    Name.Label
+'PyCmp_GT'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15640,7 +15640,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_GE'    Name.Label
+'PyCmp_GE'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15662,7 +15662,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_IS'    Name.Label
+'PyCmp_IS'    Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15684,7 +15684,7 @@
 '\t\t\t\t'    Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'PyCmp_IS_NOT' Name.Label
+'PyCmp_IS_NOT' Name.Constant
 ':'           Punctuation
 ' '           Text.Whitespace
 'res'         Name
@@ -15726,9 +15726,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'Py_True'     Name.Label
+'Py_True'     Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'Py_False'    Name
 ';'           Punctuation
@@ -15845,7 +15845,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'IMPORT_NAME' Name.Label
+'IMPORT_NAME' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16222,7 +16222,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'IMPORT_STAR' Name.Label
+'IMPORT_STAR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16369,7 +16369,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'IMPORT_FROM' Name.Label
+'IMPORT_FROM' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16464,7 +16464,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'JUMP_FORWARD' Name.Label
+'JUMP_FORWARD' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16496,7 +16496,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'JUMP_IF_FALSE' Name.Label
+'JUMP_IF_FALSE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16662,7 +16662,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'JUMP_IF_TRUE' Name.Label
+'JUMP_IF_TRUE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16838,7 +16838,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'JUMP_ABSOLUTE' Name.Label
+'JUMP_ABSOLUTE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16860,7 +16860,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'GET_ITER'    Name.Label
+'GET_ITER'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16965,7 +16965,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'FOR_ITER'    Name.Label
+'FOR_ITER'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17138,7 +17138,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BREAK_LOOP'  Name.Label
+'BREAK_LOOP'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17163,7 +17163,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'CONTINUE_LOOP' Name.Label
+'CONTINUE_LOOP' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17229,21 +17229,21 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SETUP_LOOP'  Name.Label
+'SETUP_LOOP'  Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SETUP_EXCEPT' Name.Label
+'SETUP_EXCEPT' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'SETUP_FINALLY' Name.Label
+'SETUP_FINALLY' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17290,7 +17290,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'WITH_CLEANUP' Name.Label
+'WITH_CLEANUP' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17611,7 +17611,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'CALL_FUNCTION' Name.Label
+'CALL_FUNCTION' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17746,21 +17746,21 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'CALL_FUNCTION_VAR' Name.Label
+'CALL_FUNCTION_VAR' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'CALL_FUNCTION_KW' Name.Label
+'CALL_FUNCTION_KW' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'CALL_FUNCTION_VAR_KW' Name.Label
+'CALL_FUNCTION_VAR_KW' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -18200,7 +18200,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'MAKE_FUNCTION' Name.Label
+'MAKE_FUNCTION' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -18415,7 +18415,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'MAKE_CLOSURE' Name.Label
+'MAKE_CLOSURE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -18687,7 +18687,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'BUILD_SLICE' Name.Label
+'BUILD_SLICE' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -18826,7 +18826,7 @@
 '\t\t'        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'EXTENDED_ARG' Name.Label
+'EXTENDED_ARG' Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 

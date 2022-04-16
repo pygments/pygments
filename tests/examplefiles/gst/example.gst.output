@@ -6,39 +6,39 @@
 '<%@ '        Operator
 'params'      Name.Decorator
 '('           Operator
-' '           Text
+' '           Text.Whitespace
 'users'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Collection'  Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 'User'        Name
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '%>'          Operator
 '\n'          Literal.String
 
 '\n'          Literal.String
 
 '<%'          Operator
-'  '          Text
+'  '          Text.Whitespace
 'for'         Keyword
 '('           Operator
-' '           Text
+' '           Text.Whitespace
 'user'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'users'       Name
-' '           Text
+' '           Text.Whitespace
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-' '           Text
+' '           Text.Whitespace
 '%>'          Operator
 '\n'          Literal.String
 
@@ -66,8 +66,8 @@
 ' '           Literal.String
 ' '           Literal.String
 '<%'          Operator
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '%>'          Operator
 '\n'          Literal.String

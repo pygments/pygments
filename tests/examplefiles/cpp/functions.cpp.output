@@ -1091,6 +1091,30 @@
 
 '\n'          Text.Whitespace
 
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
 '// Names with namespaces\n' Comment.Single
 
 '\n'          Text.Whitespace

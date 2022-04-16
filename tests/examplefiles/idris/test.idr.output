@@ -1,1586 +1,1586 @@
 'module'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Main'        Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '|'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'TyBool'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '|'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'interpTy'    Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Type'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'TyBool'      Keyword.Type
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Bool'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'using'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Vect'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Vect'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Type'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Nil'         Name.Function
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Nil'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(::)'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Fin'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Vect'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Type'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'stop'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'fZ'          Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'pop'         Name.Function
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'k'           Text
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'fS'          Text
-' '           Text
+' '           Text.Whitespace
 'k'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'u'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'lookup'      Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'lookup'      Text
-' '           Text
+' '           Text.Whitespace
 'stop'        Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'xs'          Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'lookup'      Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'pop'         Text
-' '           Text
+' '           Text.Whitespace
 'k'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'xs'          Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'lookup'      Text
-' '           Text
+' '           Text.Whitespace
 'k'           Text
-' '           Text
+' '           Text.Whitespace
 'xs'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Vect'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Ty'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Type'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Var'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'HasType'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Val'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Lam'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'App'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Op'          Name.Function
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'c'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'If'          Name.Function
-'  '          Text
+'  '          Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyBool'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Bind'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'dsl'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'lambda'      Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Lam'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'variable'    Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Var'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'index_first' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'stop'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'index_next'  Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'pop'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(<$>)'       Operator.Word
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '|('          Operator.Word
 'f'           Text
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 '))'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(<$>)'       Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator.Word
 'f'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'f'           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pure'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'pure'        Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'id'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'syntax'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'IF'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Operator.Word
 'x'           Text
 ']'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Operator.Word
 't'           Text
 ']'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ELSE'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Operator.Word
 'e'           Text
 ']'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'If'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(==)'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyBool'      Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(==)'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(==)'        Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(<)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyBool'      Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(<)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(<)'         Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'instance'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Num'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(+)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(+)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(-)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(-)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '(*)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(*)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'abs'         Text
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IF'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '<'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(-'          Operator.Word
 'x'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ELSE'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'fromInteger' Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Val'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '.'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'fromInteger' Text
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '||| Evaluates an expression in the given context.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'interp'      Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Env'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '{'           Operator.Word
 'static'      Keyword.Reserved
 '}'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '->'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interpTy'    Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 ')'           Operator.Word
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'lookup'      Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Val'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Lam'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'sc'          Text
 ')'           Operator.Word
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '::'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'env'         Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'sc'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'f'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Operator.Word
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'f'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'op'          Text
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'op'          Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'If'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 ')'           Operator.Word
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Bind'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'v'           Text
-' '           Text
+' '           Text.Whitespace
 'f'           Text
 ')'           Operator.Word
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'f'           Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 'env'         Text
-' '           Text
+' '           Text.Whitespace
 'v'           Text
 '))'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'eId'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'eId'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-' '           Text
+' '           Text.Whitespace
 '(\\'         Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'eTEST'       Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 '))'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'eTEST'       Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-' '           Text
+' '           Text.Whitespace
 '(\\'         Operator.Word
 'x'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'y'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'eAdd'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 '))'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'eAdd'        Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-' '           Text
+' '           Text.Whitespace
 '(\\'         Operator.Word
 'x'           Text
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Op'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '(+)'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 'y'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'eDouble'     Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'eDouble'     Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-' '           Text
+' '           Text.Whitespace
 '(\\'         Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'App'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'eAdd'        Text
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'Var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'stop'        Text
 '))'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 'eFac'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Expr'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'G'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'TyFun'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'TyInt'       Keyword.Type
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'eFac'        Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'expr'        Text
-' '           Text
+' '           Text.Whitespace
 '(\\'         Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IF'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ELSE'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '[|'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'eFac'        Text
-' '           Text
+' '           Text.Whitespace
 '('           Operator.Word
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '|]'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '*'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Text
 ')'           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'testFac'     Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Int'         Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'testFac'     Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'interp'      Text
-' '           Text
+' '           Text.Whitespace
 '[]'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'eFac'        Text
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '--testFacTooBig : Int' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--testFacTooBig = interp [] eFac 100000' Comment.Single
-'\n\n '       Text
+'\n\n '       Text.Whitespace
 '{-'          Comment.Multiline
 'testFacTooBig2 : Int\ntestFacTooBig2 = interp [] eFac 1000\n' Comment.Multiline
 
 '-}'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main'        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IO'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '()'          Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main'        Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'print'       Text
-' '           Text
+' '           Text.Whitespace
 'testFac'     Text
-'\n'          Text
+'\n'          Text.Whitespace

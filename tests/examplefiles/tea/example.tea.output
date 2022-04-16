@@ -1,91 +1,91 @@
 '<%'          Keyword
-' '           Text
+' '           Text.Whitespace
 'template'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'example'     Name.Function
 '('           Operator
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '...'         Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"test"'      Literal.String.Double
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4.5'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'call'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'other'       Name
 '('           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'other2'      Name
 '('           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'define'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'g'           Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'j'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Keyword
 '\n'          Text
@@ -119,84 +119,85 @@
 '\n'          Text
 
 '<%'          Keyword
-' '           Text
-'// Second block\n' Comment.Single
+' '           Text.Whitespace
+'// Second block' Comment.Single
+'\n'          Text.Whitespace
 
 'if'          Keyword
 '('           Operator
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"test"'      Literal.String.Double
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 "'yes'"       Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 "'no'"        Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foreach'     Keyword
 '('           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 '..'          Operator
 '10'          Literal.Number.Integer
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 '","'         Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foreach'     Keyword
 '('           Operator
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
 '('           Operator
 '1'           Literal.Number.Integer
@@ -205,24 +206,24 @@
 ','           Operator
 '3'           Literal.Number.Integer
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 'reverse'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 '";"'         Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Keyword
 '\n'          Text

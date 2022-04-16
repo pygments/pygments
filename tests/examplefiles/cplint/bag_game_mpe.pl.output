@@ -1,0 +1,150 @@
+':-'          Operator
+' '           Text
+'use_module'  Name.Function
+'('           Punctuation
+'library'     Name.Function
+'('           Punctuation
+'pita'        Literal.String.Atom
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'if'          Name.Function
+'('           Punctuation
+'current_predicate' Name.Function
+'('           Punctuation
+'use_rendering' Literal.String.Atom
+'/'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'c3'          Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'graphviz'    Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'table'       Literal.String.Atom
+','           Punctuation
+'['           Punctuation
+'header'      Name.Function
+'('           Punctuation
+'['           Punctuation
+"'Multivalued variable index'" Literal.String.Atom
+','           Punctuation
+"'Rule index'" Literal.String.Atom
+','           Punctuation
+"'Grounding substitution'" Literal.String.Atom
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'endif'       Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'pita'        Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'begin_lpad'  Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'win'         Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'red'         Literal.String.Atom
+','           Punctuation
+' '           Text
+'green'       Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'win'         Name.Function
+' '           Text
+':-'          Operator
+' '           Text
+'blue'        Literal.String.Atom
+','           Punctuation
+' '           Text
+'yellow'      Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'map_query'   Keyword
+' '           Text
+'0.4'         Literal.Number.Float
+'::'          Operator
+'red'         Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'map_query'   Keyword
+' '           Text
+'0.9'         Literal.Number.Float
+'::'          Operator
+'green'       Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'map_query'   Keyword
+' '           Text
+'0.5'         Literal.Number.Float
+'::'          Operator
+'blue'        Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'map_query'   Keyword
+' '           Text
+'0.6'         Literal.Number.Float
+'::'          Operator
+'yellow'      Literal.String.Atom
+'.'           Punctuation
+'\n\n\n'      Text
+
+':-'          Operator
+' '           Text
+'end_lpad'    Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+" <examples>\n?- map(win,P,Exp).\nExp = [\n  rule(0, '', [red:0.4, '' : 0.6], true), \n  rule(1, green, [green:0.9, '' : 0.09999999999999998], true), \n  rule(2, blue, [blue:0.5, '' : 0.5], true), \n  rule(3, yellow, [yellow:0.6, '' : 0.4], true)],\nP = 0.162,\n\n\n" Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text

@@ -22,151 +22,151 @@ suffixed +¹²³ operator
 
 ---tokens---
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '.'           Operator
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '.÷='         Operator
-' '           Text
+' '           Text.Whitespace
 '.~'          Operator
 'b'           Name
 '.'           Operator
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '⋆'           Operator
-' '           Text
+' '           Text.Whitespace
 'c!'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 '⊕'           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '√'           Operator
 '('           Punctuation
 '5'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name
 '...'         Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.+'          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
 '..'          Operator
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '<:'          Operator
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '>:'          Operator
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
 '::'          Operator
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Punctuation
 'adjoint'     Name
 ']'           Punctuation
 "'"           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'identity'    Name
 ')'           Punctuation
 "''"          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'adjoint'     Name
 "'''"         Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'transpose'   Name
 "'ᵀ"          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'suffixed'    Name
-' '           Text
+' '           Text.Whitespace
 '+¹'          Operator
-' '           Text
+' '           Text.Whitespace
 'operator'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'suffixed'    Name
-' '           Text
+' '           Text.Whitespace
 '+¹²³'        Operator
-' '           Text
+' '           Text.Whitespace
 'operator'    Name
-'\n'          Text
+'\n'          Text.Whitespace

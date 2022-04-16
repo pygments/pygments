@@ -1,308 +1,311 @@
-'#ifdef ARCH_ARM\n' Comment.Preproc
+'#ifdef ARCH_ARM' Comment.Preproc
+'\n'          Text.Whitespace
 
 'arch'        Keyword
-' '           Text
+' '           Text.Whitespace
 'arm11'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'#else\n'     Comment.Preproc
+'#else'       Comment.Preproc
+'\n'          Text.Whitespace
 
 'arch'        Keyword
-' '           Text
+' '           Text.Whitespace
 'ia32'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'#endif\n'    Comment.Preproc
+'#endif'      Comment.Preproc
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'objects'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'my_ep'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ep'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '/* A synchronous endpoint */' Comment
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/* Two thread control blocks */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'tcb1'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tcb'         Keyword.Type
-'\n  '        Text
+'\n  '        Text.Whitespace
 'tcb2'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tcb'         Keyword.Type
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/* Four frames of physical memory */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'frame1'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4k'          Literal.Number
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'frame2'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4k'          Literal.Number
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'frame3'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4k'          Literal.Number
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'frame4'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4k'          Literal.Number
 ')'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/* Two page tables */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pt1'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pt'          Keyword.Type
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pt2'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pt'          Keyword.Type
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/* Two page directories */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pd1'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pd'          Keyword.Type
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pd2'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pd'          Keyword.Type
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/* Two capability nodes */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'cnode1'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cnode'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'bits'        Literal.Number
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'cnode2'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cnode'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '3'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'bits'        Literal.Number
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'caps'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'cnode1'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x1'         Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame1'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'RW'          Keyword.Reserved
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/* read/write */' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x2'         Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'my_ep'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'R'           Keyword.Reserved
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '/* read-only */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'cnode2'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x1'         Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'my_ep'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'W'           Keyword.Reserved
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '/* write-only */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'tcb1'        Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'vspace'      Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pd1'         Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ipc_buffer_slot' Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame1'      Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'cspace'      Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cnode1'      Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pd1'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x10'        Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pt1'         Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pt1'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x8'         Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame1'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'RW'          Keyword.Reserved
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x9'         Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame2'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'R'           Keyword.Reserved
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'tcb2'        Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'vspace'      Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pd2'         Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ipc_buffer_slot' Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame3'      Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'cspace'      Literal.Number
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cnode2'      Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pd2'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x10'        Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pt2'         Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pt2'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x10'        Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame3'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'RW'          Keyword.Reserved
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '0x12'        Literal.Number.Hex
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'frame4'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'R'           Keyword.Reserved
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

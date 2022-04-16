@@ -4,17 +4,17 @@ class InnerClass:
 
 ---tokens---
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'InnerClass'  Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'var'         Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace

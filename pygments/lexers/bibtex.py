@@ -4,7 +4,7 @@
 
     Lexers for BibTeX bibliography data and styles
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -55,7 +55,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     tokens = {
         'root': [
             include('whitespace'),
-            ('@comment', Comment),
+            (r'@comment(?!ary)', Comment),
             ('@preamble', Name.Class, ('closing-brace', 'value', 'opening-brace')),
             ('@string', Name.Class, ('closing-brace', 'field', 'opening-brace')),
             ('@' + IDENTIFIER, Name.Class,

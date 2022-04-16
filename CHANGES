@@ -1,21 +1,161 @@
 Pygments changelog
 ==================
 
-Since 2.5.0, issue numbers refer to the tracker at
-<https://github.com/pygments/pygments/issues>,
-pull request numbers to the requests at
-<https://github.com/pygments/pygments/pulls>.
+Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
-
-Version 2.11.0
+Version 2.12.0
 --------------
 (not released yet)
 
 - Added lexers:
 
-  * Maxima (#1885)
+  * Cplint (#2045)
+  * Macaulay2 (#1791)
+  * Qlik (#1925)
 
+- Updated lexers:
+
+  * Agda: Update keyword list (#2017)
+  * C family: Fix identifiers after ``case`` statements (#2084)
+  * Clojure: Highlight ratios (#2042)
+  * Csound: Update to 6.17 (#2064)
+  * Elpi:
+  
+    - Fix catastropic backtracking (#2053, #2061)
+    - Fix handling of ``->`` (#2028)
+
+  * Gherkin: Add ``But`` (#2046)
+  * Inform6: Update to 6.36 (#2050)
+  * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
+  * LilyPond:
+  
+    - Fix incorrect lexing of names containing a built-in (#2071)
+    - Fix properties containing dashes (#2099)
+
+  * PHP: Update builtin function and keyword list (#2054, #2056)
+  * Scheme: Various improvements (#2060)
+  * Spice: Update the keyword list, add new types (#2063, #2067)
+  * Terraform:
+  
+    - Support non-idiomatic comments (#2065, #2066)
+    - Fix class name lexing (#2097)
+
+- Add ``plugins`` argument to ``get_all_lexers()``.
+- Bump minimal Python version to 3.6 (#2059)
+- Fix multiple lexers marking whitespace as ``Text`` (#2025)
+- Remove various redundant uses of ``re.UNICODE`` (#2058)
+- Associate ``.resource`` with the Robot framework (#2047)
+- Associate ``.cljc`` with Clojure (#2043)
+- Associate ``.tpp`` with C++ (#2031)
+- Remove traces of Python 2 from the documentation (#2039)
+- The ``native`` style was updated to meet the WCAG AAA contrast guidelines (#2038)
+- Fix various typos (#2030)
+- Fix ``Groff`` formatter not inheriting token styles correctly (#2024)
+- Various improvements to the CI (#2036)
+
+
+Version 2.11.2
+--------------
+(released January 6th, 2022)
+
+- Updated lexers:
+
+  * C-family: Fix incorrect handling of labels (#2022, #1996, #1182)
+  * Java: Fixed an issue with ``record`` keywords result in ``Error`` tokens in some cases (#2016, #2018)
+
+- Fix links to line numbers not working correctly (#2014)
+- Remove ``underline`` from ``Whitespace`` style in the ``Tango`` theme (#2020)
+- Fix ``IRC`` and ``Terminal256`` formatters not backtracking correctly for custom token types, resulting in some unstyled tokens (#1986)
+
+
+Version 2.11.1
+--------------
+(released December 31st, 2021)
+
+- Updated lexers:
+
+  * C-family: Handle return types with multiple tokens (e.g. ``unsigned int``) (#2008)
+  * JSON: Fix a regression which caused whitespace before ``:`` to result in ``Error`` tokens (#2010)
+  * SPICE: Various improvements (#2009)
+
+
+Version 2.11.0
+--------------
+(released December 30th, 2021)
+
+- Added lexers:
+
+  * BDD (#1803)
+  * Elpi (#1894)
+  * LilyPond (#1845, #1968, #1971, #2001). This comes with a custom style as well.
+  * Maxima (#1885)
+  * Rita (#1541, #2003)
+  * Savi (#1863)
+  * Sed (#1935)
+  * Sophia contracts (#1974)
+  * Spice (#1980)
+  * ``.SRCINFO`` (#1951)
+
+- Updated lexers:
+
+  * ABNF: Allow one-character rules (#1804)
+  * Assembly: Fix incorrect token endings (#1895, #1961)
+  * Bibtex: Distinguish between ``comment`` and ``commentary`` (#1899, #1806)
+  * C family: Support unicode identifiers (#1848)
+  * CDDL: Fix slow lexing speed (#1959)
+  * Debian control: Add missing fields (#1946)
+  * Devicetree: Recognize hexadecimal addresses for nodes (#1949)
+  * GDScript: Add ``void`` data type (#1948)
+  * GSQL
+
+    - Fix comment handling (#2002)
+    - Fix catastrophic backtracking (#2006)
+
+  * HTML, XML: Improve comment handling (#1896)
+  * Java: Add ``yield`` (#1941) and sealed classes/record (#1902)
+  * Makefiles (#1860, #1898)
+  * objdump-nasm: Improve handling of ``--no-show-raw-insn`` dumps (#1981)
+  * Prolog: Support escaped ``\`` inside quoted strings (#1479)
+  * Python:
+
+    - Support ``~`` in tracebacks (#2004)
+    - Support the pattern matching keywords (#1797, #1994)
+
+  * RobotFramework: Improve empty brace handling (#1921, #1922)
+  * Terraform
+
+    - Add the 'set' type (#1909)
+    - Support heredocs (#1909)
+
+- Added styles:
+
+  * Dracula (#1796)
+  * Friendly Grayscale (#1040, #1273)
+  * LilyPond (#1845) -- to be used for the ``LilyPond`` language.
+  * One-Dark (#1924, #1979)
+
+.. note::
+
+  All of the new styles unfortunately do not conform to WCAG recommendations.
+
+- There is new infrastructure in place to improve style accessibility. The default style has been updated to conform to WCAG recommendations. All styles are now checked for sufficient contrast by default to prevent regressions. (#1919, #1937, #1938, #1940)
 - Clean up unused imports (#1887)
+- Fix multiple lexers producing repeated single-character tokens
+- Fix multiple lexers marking whitespace as ``Text`` (#1237, #1905, #1908, #1914, #1911, #1923, #1939, #1957, #1978)
+- Remove duplicated assignments in the Paraiso style (#1934)
+- ``pygmentize`` supports JSON output for the various list functions now, making it easier to consume them from scripts. (#1437, #1890)
+- Use the ``shell`` lexer for ``kshrc`` files (#1947)
+- Use the ``ruby`` lexer for ``Vagrantfile`` files (#1936)
+- Use the C lexer for ``.xbm`` and ``.xpm`` files (#1802)
+- Add a ``groff`` formatter (#1873)
+- Update documentation (#1928)
+- Line anchors now link to themselves (#1973)
+- Add official support for Python 3.10 (#1917)
+- Fix several missing colors in dark styles: Gruvbox dark, Monokai, Rrt, Sas, Strata dark (#1955)
+- Associate more file types with ``man`` pages
+- The ``HtmlFormatter`` can now emit tooltips for each token to ease debugging of lexers (#1822)
+- Add ``f90`` as an alias for ``fortran`` (#2000)
+
 
 Version 2.10.0
 --------------
@@ -37,14 +177,16 @@ Version 2.10.0
   * Fennel (#1862)
   * JavaScript (#1741, #1814)
   * LLVM (#1824)
+  * Python (#1852)
   * Rust
-  
+
     - Fix lexing of "break" and "continue" (#1843)
     - Improve attribute handling (#1813)
 
   * Scala: Add support for the ``\`` operator (#1857)
   * Swift (#1767, #1842)
   * Tcl: Allow ``,`` and ``@`` in strings (#1834, #1742)
+  * TOML (#1870, #1872)
 
 - Fix assert statements in TNT lexer.
 - Token types across all lexers have been unified (using the most common token
@@ -80,6 +222,7 @@ Version 2.9.0
   * Chapel (#1743)
   * Coq (#1721)
   * Cython (#853)
+  * DeviceTree (#1755)
   * Groovy (#1765)
   * Julia (#1715)
   * Octave: Allow multiline and block-percent comments (#1726)
@@ -99,6 +242,7 @@ Version 2.9.0
 - Improve line number colors (#1779, #1778)
 - Fix CTag related issue (#1724)
 - Recognize ``.leex`` as Elixir templates
+- Fix incorrect variable being accessed (#1748)
 
 - Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
 
@@ -119,6 +263,7 @@ Version 2.9.0
 - Added styles:
 
   * Gruvbox light+dark (#1763)
+
 
 Version 2.8.0
 -------------
@@ -149,6 +294,7 @@ Version 2.8.0
     - Update builtin functions (#1705)
     - Various cleanups (#1673)
 
+  * OpenEdge (#1696)
   * Python: Improve handling of raw f-strings (#1681, #1683)
   * Ruby: Better method name handling (#1531)
   * Stata: Updated keywords (#1470)
@@ -201,6 +347,7 @@ Version 2.8.0
 - Improve ``analyze_text`` logic for ``CBM Basic V2`` (#1607)
 - Improve LaTeX formatter (#1708, #1709)
 
+
 Version 2.7.4
 -------------
 (released January 12, 2021)
@@ -236,6 +383,7 @@ Version 2.7.4
 - Fix incorrect MATLAB example (#1582)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
+
 
 Version 2.7.3
 -------------
@@ -692,7 +840,7 @@ Version 2.1.2
 
 Version 2.1.1
 -------------
-(relased Feb 14, 2016)
+(released Feb 14, 2016)
 
 - Fixed Jython compatibility (#1205)
 - Fixed HTML formatter output with leading empty lines (#1111)

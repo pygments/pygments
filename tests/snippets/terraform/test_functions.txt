@@ -13,7 +13,7 @@ provider "aws" {
 '"aws"'       Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'value'       Name.Attribute
@@ -36,7 +36,7 @@ provider "aws" {
 '"aws"'       Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'value'       Name.Attribute

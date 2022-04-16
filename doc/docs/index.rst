@@ -28,6 +28,7 @@ Pygments documentation
    unicode
    tokens
    api
+   terminal-sessions
 
 **Hacking for Pygments**
 

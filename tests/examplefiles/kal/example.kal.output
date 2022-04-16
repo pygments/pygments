@@ -1,133 +1,161 @@
-'#!/usr/bin/env kal\n' Comment.Single
+'#!/usr/bin/env kal' Comment.Single
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'# This demo executes GET requests in parallel and in series\n' Comment.Single
+'# This demo executes GET requests in parallel and in series' Comment.Single
+'\n'          Text.Whitespace
 
-'# using `for` loops and `wait for` statements.\n' Comment.Single
+'# using `for` loops and `wait for` statements.' Comment.Single
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'# Notice how the serial GET requests always return in order\n' Comment.Single
+'# Notice how the serial GET requests always return in order' Comment.Single
+'\n'          Text.Whitespace
 
-'# and take longer in total. Parallel requests come back in\n' Comment.Single
+'# and take longer in total. Parallel requests come back in' Comment.Single
+'\n'          Text.Whitespace
 
-'# order of receipt.\n' Comment.Single
+'# order of receipt.' Comment.Single
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'require'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 'http'        Literal.String
 "'"           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'urls'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'"           Literal.String
 'http://www.google.com' Literal.String
 "'"           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String
 'http://www.apple.com' Literal.String
 "'"           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String
 'http://www.microsoft.com' Literal.String
 "'"           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String
 'http://www.nodejs.org' Literal.String
 "'"           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Literal.String
 'http://www.yahoo.com' Literal.String
 "'"           Literal.String
 ']'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'# This function does a GET request for each URL in series\n' Comment.Single
+'# This function does a GET request for each URL in series' Comment.Single
+'\n'          Text.Whitespace
 
-'# It will wait for a response from each request before moving on\n' Comment.Single
+'# It will wait for a response from each request before moving on' Comment.Single
+'\n'          Text.Whitespace
 
-'# to the next request. Notice the output will be in the same order as the\n' Comment.Single
+'# to the next request. Notice the output will be in the same order as the' Comment.Single
+'\n'          Text.Whitespace
 
-'# urls variable every time regardless of response time.\n' Comment.Single
+'# urls variable every time regardless of response time.' Comment.Single
+'\n'          Text.Whitespace
 
-'# It is a task rather than a function because it is called asynchronously\n' Comment.Single
+'# It is a task rather than a function because it is called asynchronously' Comment.Single
+'\n'          Text.Whitespace
 
-'# This allows us to use `return` to implicitly call back\n' Comment.Single
+'# This allows us to use `return` to implicitly call back' Comment.Single
+'\n'          Text.Whitespace
 
 'task'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'series_demo' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
-'# The `series` keyword is optional here (for loops are serial by default)\n' Comment.Single
+'\n  '        Text.Whitespace
+'# The `series` keyword is optional here (for loops are serial by default)' Comment.Single
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'total_time'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n\n  '      Text
-'for series'  Keyword
-' '           Text
-'url '        Name.Variable
+'\n\n  '      Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'series'      Keyword
+' '           Text.Whitespace
+'url'         Name.Variable
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
-'urls\n    '  Name.Variable
+' '           Text.Whitespace
+'urls'        Name.Variable
+'\n    '      Text.Whitespace
 'timer'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Date'        Name.Builtin
-'\n\n    '    Text
-'# we use the `safe` keyword because get is a "nonstandard" task\n' Comment.Single
+'\n\n    '    Text.Whitespace
+'# we use the `safe` keyword because get is a "nonstandard" task' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
-'# that does not call back with an error argument\n' Comment.Single
+'    '        Text.Whitespace
+'# that does not call back with an error argument' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
-'safe wait for' Keyword
-' '           Text
-'response '   Name.Variable
+'    '        Text.Whitespace
+'safe'        Keyword
+' '           Text.Whitespace
+'wait'        Keyword
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'response'    Name.Variable
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
-'http.get '   Name.Variable
-'url\n\n    ' Name.Variable
+' '           Text.Whitespace
+'http.get'    Name.Variable
+' '           Text.Whitespace
+'url'         Name.Variable
+'\n\n    '    Text.Whitespace
 'delay'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Date'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
-'timer\n    ' Name.Variable
+' '           Text.Whitespace
+'timer'       Name.Variable
+'\n    '      Text.Whitespace
 'total_time'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
-'delay\n\n    ' Name.Variable
+' '           Text.Whitespace
+'delay'       Name.Variable
+'\n\n    '    Text.Whitespace
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'GET '        Literal.String
 '#{'          Literal.String.Interpol
@@ -147,90 +175,112 @@
 '}'           Literal.String.Interpol
 ' ms'         Literal.String
 '"'           Literal.String
-'\n'          Punctuation
+'\n'          Text.Whitespace
 
-'\n  '        Text
-'# because we are in a task rather than a function, this actually exectutes a callback\n' Comment.Single
+'\n  '        Text.Whitespace
+'# because we are in a task rather than a function, this actually exectutes a callback' Comment.Single
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'total_time'  Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'# This function does a GET request for each URL in parallel\n' Comment.Single
+'# This function does a GET request for each URL in parallel' Comment.Single
+'\n'          Text.Whitespace
 
-'# It will NOT wait for a response from each request before moving on\n' Comment.Single
+'# It will NOT wait for a response from each request before moving on' Comment.Single
+'\n'          Text.Whitespace
 
-'# to the next request. Notice the output will be determined by the order in which\n' Comment.Single
+'# to the next request. Notice the output will be determined by the order in which' Comment.Single
+'\n'          Text.Whitespace
 
-'# the requests complete!\n' Comment.Single
+'# the requests complete!' Comment.Single
+'\n'          Text.Whitespace
 
 'task'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'parallel_demo' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'total_time'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n\n  '      Text
-'# The `parallel` keyword is only meaningful here because the loop contains\n' Comment.Single
+'\n\n  '      Text.Whitespace
+'# The `parallel` keyword is only meaningful here because the loop contains' Comment.Single
+'\n'          Text.Whitespace
 
-'  '          Text
-'# a `wait for` statement (meaning callbacks are used)\n' Comment.Single
+'  '          Text.Whitespace
+'# a `wait for` statement (meaning callbacks are used)' Comment.Single
+'\n'          Text.Whitespace
 
-'  '          Text
-'for parallel' Keyword
-' '           Text
-'url '        Name.Variable
+'  '          Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'parallel'    Keyword
+' '           Text.Whitespace
+'url'         Name.Variable
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
-'urls\n    '  Name.Variable
+' '           Text.Whitespace
+'urls'        Name.Variable
+'\n    '      Text.Whitespace
 'timer'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Date'        Name.Builtin
-'\n\n    '    Text
-'# we use the `safe` keyword because get is a "nonstandard" task\n' Comment.Single
+'\n\n    '    Text.Whitespace
+'# we use the `safe` keyword because get is a "nonstandard" task' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
-'# that does not call back with an error argument\n' Comment.Single
+'    '        Text.Whitespace
+'# that does not call back with an error argument' Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
-'safe wait for' Keyword
-' '           Text
-'response '   Name.Variable
+'    '        Text.Whitespace
+'safe'        Keyword
+' '           Text.Whitespace
+'wait'        Keyword
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'response'    Name.Variable
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
-'http.get '   Name.Variable
-'url\n\n    ' Name.Variable
+' '           Text.Whitespace
+'http.get'    Name.Variable
+' '           Text.Whitespace
+'url'         Name.Variable
+'\n\n    '    Text.Whitespace
 'delay'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Date'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
-'timer\n    ' Name.Variable
+' '           Text.Whitespace
+'timer'       Name.Variable
+'\n    '      Text.Whitespace
 'total_time'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
-'delay\n\n    ' Name.Variable
+' '           Text.Whitespace
+'delay'       Name.Variable
+'\n\n    '    Text.Whitespace
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'GET '        Literal.String
 '#{'          Literal.String.Interpol
@@ -250,35 +300,40 @@
 '}'           Literal.String.Interpol
 'ms'          Literal.String
 '"'           Literal.String
-'\n'          Punctuation
+'\n'          Text.Whitespace
 
-'\n  '        Text
-'# because we are in a task rather than a function, this actually exectutes a callback\n' Comment.Single
+'\n  '        Text.Whitespace
+'# because we are in a task rather than a function, this actually exectutes a callback' Comment.Single
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Keyword
-' '           Text
-'total_time\n\n' Name.Variable
+' '           Text.Whitespace
+'total_time'  Name.Variable
+'\n\n'        Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 'Series Requests...' Literal.String
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'wait for'    Keyword
-' '           Text
-'time1 '      Name.Variable
+'wait'        Keyword
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'time1'       Name.Variable
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'series_demo' Name.Variable
 '('           Punctuation
 ')'           Punctuation
-'\n'          Punctuation
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Total duration ' Literal.String
 '#{'          Literal.String.Interpol
@@ -286,33 +341,36 @@
 '}'           Literal.String.Interpol
 'ms'          Literal.String
 '"'           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 "'"           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String
 'Parallel Requests...' Literal.String
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'wait for'    Keyword
-' '           Text
-'time2 '      Name.Variable
+'wait'        Keyword
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'time2'       Name.Variable
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'parallel_demo' Name.Variable
 '('           Punctuation
 ')'           Punctuation
-'\n'          Punctuation
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Total duration ' Literal.String
 '#{'          Literal.String.Interpol
@@ -320,4 +378,4 @@
 '}'           Literal.String.Interpol
 'ms'          Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

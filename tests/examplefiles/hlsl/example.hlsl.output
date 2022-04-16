@@ -1,239 +1,239 @@
 '// A few random snippets of HLSL shader code I gathered...' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '['           Punctuation
 'numthreads'  Name.Decorator
 '('           Punctuation
 '256'         Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'cs_main'     Name
 '('           Punctuation
 'uint3'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'threadId'    Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_DispatchThreadID' Name.Decorator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// Seed the PRNG using the thread ID' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rng_state'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'threadId'    Name
 '.'           Punctuation
 'x'           Name
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// Generate a few numbers...' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'r0'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rand_xorshift' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'r1'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rand_xorshift' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// Do some stuff with them...' Comment.Single
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// Generate a random float in [0, 1)...' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'f0'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
 '('           Punctuation
 'rand_xorshift' Name
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '1.0'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '4294967296.0' Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// ...etc.'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Constant buffer of parameters' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'cbuffer'     Keyword
-' '           Text
+' '           Text.Whitespace
 'IntegratorParams' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'register'    Keyword
 '('           Punctuation
 'b0'          Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float2'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'specPow'     Name
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '// Spec powers in XY directions (equal for isotropic BRDFs)' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'L'           Name
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '// Unit vector toward light ' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'int2'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'cThread'     Name
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '// Total threads launched in XY dimensions' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'int2'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'xyOutput'    Name
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '// Where in the output buffer to store the result' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'pi'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3.141592654' Literal.Number.Float
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'AshikhminShirleyNDF' Name
 '('           Punctuation
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'normFactor'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'sqrt'        Name.Builtin
 '('           Punctuation
 '('           Punctuation
 'specPow'     Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2.0f'        Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'specPow'     Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2.0'         Literal.Number.Float
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0.5f'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'pi'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'NdotH'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 '.'           Punctuation
 'z'           Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float2'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Hxy'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'normalize'   Name.Builtin
 '('           Punctuation
 'H'           Name
@@ -241,535 +241,535 @@
 'xy'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'normFactor'  Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'pow'         Name.Builtin
 '('           Punctuation
 'NdotH'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'dot'         Name.Builtin
 '('           Punctuation
 'specPow'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hxy'         Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'Hxy'         Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'BeckmannNDF' Name
 '('           Punctuation
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'glossFactor' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'specPow'     Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.5f'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.0f'        Literal.Number.Float
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '// This is 1/m^2 in the usual Beckmann formula' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'normFactor'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'glossFactor' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '1.0f'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'pi'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'NdotHSq'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 '.'           Punctuation
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 '.'           Punctuation
 'z'           Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'normFactor'  Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'NdotHSq'     Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'NdotHSq'     Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'exp'         Name.Builtin
 '('           Punctuation
 'glossFactor' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '1.0f'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.0f'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'NdotHSq'     Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Output buffer for compute shader (actually float, but must be declared as uint' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// for atomic operations to work)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'globallycoherent' Keyword
-' '           Text
+' '           Text.Whitespace
 'RWTexture2D' Keyword.Type
 '<'           Operator
 'uint'        Keyword.Type
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'o_data'      Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'register'    Keyword
 '('           Punctuation
 'u0'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Sum up the outputs of all threads and store to the output location' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'threadGroupSize2D' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'threadGroupSize1D' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'threadGroupSize2D' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'threadGroupSize2D' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'groupshared' Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'g_partialSums' Name
 '['           Punctuation
 'threadGroupSize1D' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'SumAcrossThreadsAndStore' Name
 '('           Punctuation
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'iThreadInGroup' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// First reduce within the threadgroup: partial sums of 2, 4, 8... elements' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// are calculated by 1/2, 1/4, 1/8... of the threads, always keeping the' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// active threads at the front of the group to minimize divergence.' Comment.Single
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// NOTE: there are faster ways of doing this...but this is simple to code' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// and good enough.' Comment.Single
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'g_partialSums' Name
 '['           Punctuation
 'iThreadInGroup' Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'GroupMemoryBarrierWithGroupSync' Name.Builtin
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '['           Punctuation
 'unroll'      Name.Decorator
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'threadGroupSize1D' Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Oct
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'iThreadInGroup' Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'g_partialSums' Name
 '['           Punctuation
 'iThreadInGroup' Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'g_partialSums' Name
 '['           Punctuation
 'iThreadInGroup' Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'GroupMemoryBarrierWithGroupSync' Name.Builtin
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// Then reduce across threadgroups: one thread from each group adds the group' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// total to the final output location, using a software transactional memory' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 "// style since D3D11 doesn't support atomic add on floats." Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '// (Assumes the output value has been cleared to zero beforehand.)' Comment.Single
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'iThreadInGroup' Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Oct
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'threadGroupSum' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'g_partialSums' Name
 '['           Punctuation
 '0'           Literal.Number.Oct
 ']'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'outputValueRead' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'o_data'      Name
 '['           Punctuation
 'xyOutput'    Name
 ']'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'true'        Keyword.Constant
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'newOutputValue' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'asuint'      Name.Builtin
 '('           Punctuation
 'asfloat'     Name.Builtin
 '('           Punctuation
 'outputValueRead' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'threadGroupSum' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'uint'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'previousOutputValue' Name
 ';'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'InterlockedCompareExchange' Name.Builtin
 '('           Punctuation
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'o_data'      Name
 '['           Punctuation
 'xyOutput'    Name
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'outputValueRead' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'newOutputValue' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'previousOutputValue' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'previousOutputValue' Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'outputValueRead' Name
 ')'           Punctuation
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'outputValueRead' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'previousOutputValue' Name
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'main'        Name
 '('           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Name
-' '           Text
+' '           Text.Whitespace
 'i_vtx'       Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Name
-' '           Text
+' '           Text.Whitespace
 'o_vtx'       Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o_vecCamera' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CAMERA'      Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'float4'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o_uvzwShadow' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'UVZW_SHADOW' Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'float4'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o_posClip'   Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_Position' Name.Decorator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'o_vtx'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'i_vtx'       Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'o_vecCamera' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'g_posCamera' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'i_vtx'       Name
 '.'           Punctuation
 'm_pos'       Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'o_uvzwShadow' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mul'         Name.Builtin
 '('           Punctuation
 'float4'      Keyword.Type
@@ -778,19 +778,19 @@
 '.'           Punctuation
 'm_pos'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.0'         Literal.Number.Float
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'g_matWorldToUvzwShadow' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'o_posClip'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'mul'         Name.Builtin
 '('           Punctuation
 'float4'      Keyword.Type
@@ -799,213 +799,213 @@
 '.'           Punctuation
 'm_pos'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.0'         Literal.Number.Float
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'g_matWorldToClip' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#pragma pack_matrix(row_major)' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'm_pos'       Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'POSITION'    Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'm_normal'    Name
-'\t'          Text
+'\t'          Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'NORMAL'      Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float2'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'm_uv'        Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'UV'          Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'cbuffer'     Keyword
-' '           Text
+' '           Text.Whitespace
 'CBFrame'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CB_FRAME'    Name
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '// matches struct CBFrame in test.cpp' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float4x4'    Keyword.Type
-'\t'          Text
+'\t'          Text.Whitespace
 'g_matWorldToClip' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float4x4'    Keyword.Type
-'\t'          Text
+'\t'          Text.Whitespace
 'g_matWorldToUvzwShadow' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3x3'    Keyword.Type
-'\t'          Text
+'\t'          Text.Whitespace
 'g_matWorldToUvzShadowNormal' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_posCamera' Name
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'float3'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_vecDirectionalLight' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_rgbDirectionalLight' Name
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'float2'      Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_dimsShadowMap' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_normalOffsetShadow' Name
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_shadowSharpening' Name
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'float'       Keyword.Type
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g_exposure'  Name
 ';'           Punctuation
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '// Exposure multiplier' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Texture2D'   Keyword.Type
 '<'           Operator
 'float3'      Keyword.Type
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'g_texDiffuse' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'register'    Keyword
 '('           Punctuation
 't0'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SamplerState' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'g_ss'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'register'    Keyword
 '('           Punctuation
 's0'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'main'        Name
 '('           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Name
-' '           Text
+' '           Text.Whitespace
 'i_vtx'       Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i_vecCamera' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'CAMERA'      Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'float4'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i_uvzwShadow' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'UVZW_SHADOW' Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o_rgb'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_Target'   Name.Decorator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'normal'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'normalize'   Name.Builtin
 '('           Punctuation
 'i_vtx'       Name
@@ -1013,98 +1013,98 @@
 'm_normal'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// Sample shadow map' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'shadow'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'EvaluateShadow' Name
 '('           Punctuation
 'i_uvzwShadow' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'normal'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '// Evaluate diffuse lighting' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'diffuseColor' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'g_texDiffuse' Name
 '.'           Punctuation
 'Sample'      Name
 '('           Punctuation
 'g_ss'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i_vtx'       Name
 '.'           Punctuation
 'm_uv'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'float3'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'diffuseLight' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'g_rgbDirectionalLight' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'shadow'      Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'saturate'    Name.Builtin
 '('           Punctuation
 'dot'         Name.Builtin
 '('           Punctuation
 'normal'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'g_vecDirectionalLight' Name
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'diffuseLight' Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'SimpleAmbient' Name
 '('           Punctuation
 'normal'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'o_rgb'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'diffuseColor' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'diffuseLight' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '['           Punctuation
 'domain'      Name.Decorator
@@ -1114,83 +1114,83 @@
 '"'           Literal.String
 ')'           Punctuation
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ds'          Name
 '('           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'edgeFactors' Name
 '['           Punctuation
 '4'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_TessFactor' Name.Decorator
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'insideFactors' Name
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_InsideTessFactor' Name.Decorator
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'OutputPatch' Keyword.Type
 '<'           Operator
 'VData'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'inp'         Name
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'float2'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'uv'          Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_DomainLocation' Name.Decorator
 ','           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'out'         Keyword
-' '           Text
+' '           Text.Whitespace
 'float4'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o_pos'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'SV_Position' Name.Decorator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'o_pos'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'lerp'        Name.Builtin
 '('           Punctuation
 'lerp'        Name.Builtin
@@ -1202,7 +1202,7 @@
 '.'           Punctuation
 'pos'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'inp'         Name
 '['           Punctuation
 '1'           Literal.Number.Integer
@@ -1210,13 +1210,13 @@
 '.'           Punctuation
 'pos'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uv'          Name
 '.'           Punctuation
 'x'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lerp'        Name.Builtin
 '('           Punctuation
 'inp'         Name
@@ -1226,7 +1226,7 @@
 '.'           Punctuation
 'pos'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'inp'         Name
 '['           Punctuation
 '3'           Literal.Number.Integer
@@ -1234,19 +1234,19 @@
 '.'           Punctuation
 'pos'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uv'          Name
 '.'           Punctuation
 'x'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uv'          Name
 '.'           Punctuation
 'y'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
