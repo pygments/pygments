@@ -1,6 +1,6 @@
 """
     pygments.lexers.pseudocode
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Pygments lexers for the imperative language Pseudocode.
 
