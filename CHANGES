@@ -52,11 +52,11 @@ Version 2.12.0
 - Fix various typos (#2030)
 - Fix ``Groff`` formatter not inheriting token styles correctly (#2024)
 - Various improvements to the CI (#2036)
-- ``linenos=table`` results in the ``<table>`` being wrapped inside the ``<div class="highlight">`` now instead of placing the ``<div>`` inside the ``<td class="code">`` cell (#632)
+- When ``linenos=table`` is used, the ``<table>`` itself is now wrapped with a ``<div class="highlight">`` tag instead of placing it inside the ``<td class="code">`` cell (#632.) With this change, the output matches the documented behavior.
 
 .. note::
 
-  If you have subclassed ``HtmlFormatter.wrap``, you must adjust the function signature.
+  If you have subclassed ``HtmlFormatter.wrap``, you may have to adjust the logic.
 
 
 Version 2.11.2

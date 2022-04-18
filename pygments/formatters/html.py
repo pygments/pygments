@@ -714,13 +714,14 @@ class HtmlFormatter(Formatter):
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
-        yield 0, (
-            '<div class="highlight"><table class="%stable">' % self.cssclass + filename_tr +
+        yield 0, (f'<table class="{self.cssclass}table">' + filename_tr +
             '<tr><td class="linenos"><div class="linenodiv"><pre>' +
-            ls + '</pre></div></td><td class="code">'
-        )
+            ls + '</pre></div></td><td class="code">')
+        yield 0, '<div>'
         yield 0, dummyoutfile.getvalue()
-        yield 0, '</td></tr></table></div>'
+        yield 0, '</div>'
+        yield 0, '</td></tr></table>'
+        
 
     def _wrap_inlinelinenos(self, inner):
         # need a list of lines since we need the width of a single number :(
@@ -933,14 +934,11 @@ class HtmlFormatter(Formatter):
             else:
                 yield 1, value
 
-    def wrap(self, source, *, include_div):
+    def wrap(self, source):
         """
         Wrap the ``source``, which is a generator yielding
         individual lines, in custom generators. See docstring
         for `format`. Can be overridden.
-
-        If ``include_div`` is ``False``, the final ``div`` wrapping will not
-        occur.
         """
 
         output = source
@@ -948,10 +946,7 @@ class HtmlFormatter(Formatter):
             output = self._wrap_code(output)
         
         output = self._wrap_pre(output)
-
-        if include_div:
-            return self._wrap_div(output)
-        
+    
         return output
 
     def format_unencoded(self, tokensource, outfile):
@@ -983,9 +978,10 @@ class HtmlFormatter(Formatter):
                 source = self._wrap_lineanchors(source)
             if self.linespans:
                 source = self._wrap_linespans(source)
-            source = self.wrap(source, include_div = self.linenos != 1)
+            source = self.wrap(source)
             if self.linenos == 1:
                 source = self._wrap_tablelinenos(source)
+            source = self._wrap_div(source)
             if self.full:
                 source = self._wrap_full(source, outfile)
 
