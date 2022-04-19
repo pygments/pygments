@@ -504,6 +504,7 @@ LEXERS = {
     'UL4Lexer': ('pygments.lexers.ul4', 'UL4', ('ul4',), ('*.ul4',), ()),
     'UcodeLexer': ('pygments.lexers.unicon', 'ucode', ('ucode',), ('*.u', '*.u1', '*.u2'), ()),
     'UniconLexer': ('pygments.lexers.unicon', 'Unicon', ('unicon',), ('*.icn',), ('text/unicon',)),
+    'UnixConfigLexer': ('pygments.lexers.configs', 'Unix/Linux config files', ('unixconfig', 'linuxconfig'), (), ()),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
     'UsdLexer': ('pygments.lexers.usd', 'USD', ('usd', 'usda'), ('*.usd', '*.usda'), ()),
     'VBScriptLexer': ('pygments.lexers.basic', 'VBScript', ('vbscript',), ('*.vbs', '*.VBS'), ()),

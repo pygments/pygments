@@ -1,0 +1,86 @@
+---input---
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+#irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+
+---tokens---
+'root'        Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'0'           Literal.Number
+':'           Punctuation
+'0'           Literal.Number
+':'           Punctuation
+'root'        Text
+':'           Punctuation
+'/root'       Literal.String
+':'           Punctuation
+'/bin/bash'   Literal.String
+'\n'          Text.Whitespace
+
+'daemon'      Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'daemon'      Text
+':'           Punctuation
+'/usr/sbin'   Literal.String
+':'           Punctuation
+'/usr/sbin/nologin' Literal.String
+'\n'          Text.Whitespace
+
+'#irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin' Comment
+'\n'          Text.Whitespace
+
+'gnats'       Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'41'          Literal.Number
+':'           Punctuation
+'41'          Literal.Number
+':'           Punctuation
+'Gnats Bug-Reporting System (admin)' Text
+':'           Punctuation
+'/var/lib/gnats' Literal.String
+':'           Punctuation
+'/usr/sbin/nologin' Literal.String
+'\n'          Text.Whitespace
+
+'nobody'      Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'65534'       Literal.Number
+':'           Punctuation
+'65534'       Literal.Number
+':'           Punctuation
+'nobody'      Text
+':'           Punctuation
+'/nonexistent' Literal.String
+':'           Punctuation
+'/usr/sbin/nologin' Literal.String
+'\n'          Text.Whitespace
+
+'systemd-network' Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'100'         Literal.Number
+':'           Punctuation
+'102'         Literal.Number
+':'           Punctuation
+'systemd Network Management,,,' Text
+':'           Punctuation
+'/run/systemd' Literal.String
+':'           Punctuation
+'/usr/sbin/nologin' Literal.String
+'\n'          Text.Whitespace

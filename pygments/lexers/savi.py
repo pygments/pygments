@@ -58,8 +58,11 @@ class SaviLexer(RegexLexer):
       # Single-Char String
       (r"'", String.Char, "string.char"),
 
-      # Class (or other type)
+      # Type Name
       (r'(_?[A-Z]\w*)', Name.Class),
+
+      # Nested Type Name
+      (r'(\.)(\s*)(_?[A-Z]\w*)', bygroups(Punctuation, Whitespace, Name.Class)),
 
       # Declare
       (r'^([ \t]*)(:\w+)',

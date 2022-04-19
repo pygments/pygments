@@ -22,7 +22,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer']
+           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1127,3 +1127,30 @@ class SingularityLexer(RegexLexer):
             result += 0.49
 
         return result
+
+
+class UnixConfigLexer(RegexLexer):
+    """
+    Lexer for Unix/Linux config files using colon-separated values, e.g.
+
+    * ``/etc/group``
+    * ``/etc/passwd``
+    * ``/etc/shadow``
+    
+    .. versionadded:: 2.12
+    """
+
+    name = 'Unix/Linux config files'
+    aliases = ['unixconfig', 'linuxconfig']
+    filenames = []
+
+    tokens = {
+        'root': [
+            (r'^#.*', Comment),
+            (r'\n', Whitespace),
+            (r':', Punctuation),
+            (r'[0-9]+', Number),
+            (r'((?!\n)[a-zA-Z0-9\_\-\s\(\),]){2,}', Text),
+            (r'[^:\n]+', String),
+        ],
+    }
