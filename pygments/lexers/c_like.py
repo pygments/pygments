@@ -665,7 +665,6 @@ class OmgIdlLexer(CLexer):
     }
 class FlexLexer(CLexer):
     """
-
     Lexer for Flex <http://dinosaur.compilertools.net/flex/index.html>, 
     A fast scanner generator.
     .. versionadded:: 2.5
@@ -676,19 +675,19 @@ class FlexLexer(CLexer):
     mimetypes = ['text/x-lex']
 
     builtin = {
-        'alnum', 'alpha','blank', 'cntrl','digit','graph','lower','print','punct','space','upper', 'xdigit'
+        'alnum', 'alpha', 'blank', 'cntrl', 'digit', 'graph', 'lower', 'print', 'punct', 'space', 'upper', 'xdigit'
     }
 
     tokens = {
-        'keywords' : [
+        'keywords': [
             (words((
-                'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy','yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
+                'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
             )), Name.Functions),
             inherit,
         ],
-        'statements':[
-            (r'[:'+builtin+r':]',Name.Builtin)
-        ]
+        # The bellow 3 lines of code causes error when run:
+            # Error: error when loading custom lexer: can only concatenate str (not "set") to str
+        # 'statements': [
+        #     (r'[:'+builtin+r':]',Name.Builtin)
+        # ],
     }
-
-
