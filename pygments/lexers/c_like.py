@@ -679,13 +679,26 @@ class FlexLexer(CLexer):
     }
 
     tokens = {
+        # root will be for definitions section and user code (through inherit mainly)
+        'root': [
+            (r'%%', Comment, 'rules'),
+            inherit
+        ],
+        # rules for rules section
+        'rules': [
+            include('whitespace'),
+            (r'%%', Comment, '#pop'),
+            (r'\\[abfnrtv]', String.Char),
+            inherit
+        ],
+
         'keywords': [
             (words((
                 'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
             )), Name.Functions),
             inherit,
         ],
-        # The bellow 3 lines of code causes error when run:
+        # The below 3 lines of code causes error when run:
             # Error: error when loading custom lexer: can only concatenate str (not "set") to str
         # 'statements': [
         #     (r'[:'+builtin+r':]',Name.Builtin)
