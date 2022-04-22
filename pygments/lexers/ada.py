@@ -16,6 +16,7 @@ from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 from pygments.scanner import Scanner
+from pygments.lexers._ada_builtins import KEYWORD_LIST, BUILTIN_LIST
 
 # compatibility import
 from pygments.lexers.modula2 import Modula2Lexer
@@ -51,15 +52,8 @@ class AdaLexer(RegexLexer):
             (r'(pragma)(\s+)(\w+)', bygroups(Keyword.Reserved, Text,
                                              Comment.Preproc)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (words((
-                'Address', 'Byte', 'Boolean', 'Character', 'Controlled', 'Count',
-                'Cursor', 'Duration', 'File_Mode', 'File_Type', 'Float', 'Generator',
-                'Integer', 'Long_Float', 'Long_Integer', 'Long_Long_Float',
-                'Long_Long_Integer', 'Natural', 'Positive', 'Reference_Type',
-                'Short_Float', 'Short_Integer', 'Short_Short_Float',
-                'Short_Short_Integer', 'String', 'Wide_Character', 'Wide_String'),
-                   suffix=r'\b'),
-             Keyword.Type),
+            # builtin types
+            (words(BUILTIN_LIST, suffix=r'\b'), Keyword.Type),
             (r'(and(\s+then)?|in|mod|not|or(\s+else)|rem)\b', Operator.Word),
             (r'generic|private', Keyword.Declaration),
             (r'package', Keyword.Declaration, 'package'),
@@ -71,16 +65,8 @@ class AdaLexer(RegexLexer):
             (r'<<\w+>>', Name.Label),
             (r'(\w+)(\s*)(:)(\s*)(declare|begin|loop|for|while)',
              bygroups(Name.Label, Text, Punctuation, Text, Keyword.Reserved)),
-            (words((
-                'abort', 'abs', 'abstract', 'accept', 'access', 'aliased', 'all',
-                'array', 'at', 'begin', 'body', 'case', 'constant', 'declare',
-                'delay', 'delta', 'digits', 'do', 'else', 'elsif', 'end', 'entry',
-                'exception', 'exit', 'interface', 'for', 'goto', 'if', 'is', 'limited',
-                'loop', 'new', 'null', 'of', 'or', 'others', 'out', 'overriding',
-                'pragma', 'protected', 'raise', 'range', 'record', 'renames', 'requeue',
-                'return', 'reverse', 'select', 'separate', 'some', 'subtype',
-                'synchronized', 'task', 'tagged', 'terminate', 'then', 'type', 'until',
-                'when', 'while', 'xor'), prefix=r'\b', suffix=r'\b'),
+            # keywords
+            (words(KEYWORD_LIST, prefix=r'\b', suffix=r'\b'),
              Keyword.Reserved),
             (r'"[^"]*"', String),
             include('attribute'),
