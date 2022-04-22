@@ -1,6 +1,6 @@
 """
     pygments.lexers.ada
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for Ada family languages.
 
