@@ -676,7 +676,7 @@ class FlexLexer(CLexer):
 
     builtin = {
         'alnum', 'alpha', 'blank', 'cntrl', 'digit', 'graph', 'lower', 'print', 'punct', 'space', 'upper', 'xdigit'
-    }
+    } 
 
     tokens = {
         # root will be for definitions section and user code (through inherit mainly)
@@ -698,9 +698,8 @@ class FlexLexer(CLexer):
             )), Name.Functions),
             inherit,
         ],
-        # The below 3 lines of code causes error when run:
-            # Error: error when loading custom lexer: can only concatenate str (not "set") to str
-        # 'statements': [
-        #     (r'[:'+builtin+r':]',Name.Builtin)
-        # ],
+        'statement':[
+            (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
+            inherit
+        ]
     }
