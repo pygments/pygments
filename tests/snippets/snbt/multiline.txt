@@ -1,0 +1,56 @@
+---input---
+{
+    key: "cool compound",
+    UUID: [I;459130179,987513928,-1425663264,-175461800],
+    list: [
+        0,
+        1,
+        3
+    ]
+}
+
+---tokens---
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'key'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'cool compound' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'UUID'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'I'           Name.Attribute
+';'           Punctuation
+'459130179'   Literal.Number.Integer
+','           Punctuation
+'987513928'   Literal.Number.Integer
+','           Punctuation
+'-1425663264' Literal.Number.Integer
+','           Punctuation
+'-175461800'  Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'list'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'3'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text
