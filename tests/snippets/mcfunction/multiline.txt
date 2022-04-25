@@ -1,0 +1,108 @@
+---input---
+execute
+    as @a                               # For each "player",
+    at @s                               # start at their feet.
+    anchored eyes                       # Looking through their eyes,
+    facing 0 0 0                        # face perfectly at the target
+    anchored feet                       # (go back to the feet)
+    positioned ^ ^ ^1                   # and move one block forward.
+    rotated as @s                       # Face the direction the player
+                                           # is actually facing,
+    positioned ^ ^ ^-1                  # and move one block back.
+    if entity @s[distance=..0.6]        # Check if we're close to the
+                                           # player's feet.
+    run 
+        say "I'm facing the target!"
+
+---tokens---
+'execute'     Name.Builtin
+'\n    '      Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'                               ' Text.Whitespace
+'# For each "player",' Comment.Single
+'\n    '      Text.Whitespace
+'at'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'                               ' Text.Whitespace
+'# start at their feet.' Comment.Single
+'\n    '      Text.Whitespace
+'anchored'    Keyword.Constant
+' '           Text.Whitespace
+'eyes'        Keyword.Constant
+'                       ' Text.Whitespace
+'# Looking through their eyes,' Comment.Single
+'\n    '      Text.Whitespace
+'facing'      Keyword.Constant
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+'                        ' Text.Whitespace
+'# face perfectly at the target' Comment.Single
+'\n    '      Text.Whitespace
+'anchored'    Keyword.Constant
+' '           Text.Whitespace
+'feet'        Keyword.Constant
+'                       ' Text.Whitespace
+'# (go back to the feet)' Comment.Single
+'\n    '      Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'1'           Literal.Number.Float
+'                   ' Text.Whitespace
+'# and move one block forward.' Comment.Single
+'\n    '      Text.Whitespace
+'rotated'     Keyword.Constant
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'                       ' Text.Whitespace
+'# Face the direction the player' Comment.Single
+'\n                                           ' Text.Whitespace
+'# is actually facing,' Comment.Single
+'\n    '      Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'-1'          Literal.Number.Float
+'                  ' Text.Whitespace
+'# and move one block back.' Comment.Single
+'\n    '      Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'..'          Literal
+'0.6'         Literal.Number.Float
+']'           Punctuation
+'        '    Text.Whitespace
+"# Check if we're close to the" Comment.Single
+'\n                                           ' Text.Whitespace
+"# player's feet." Comment.Single
+'\n    '      Text.Whitespace
+'run'         Keyword.Constant
+' \n        say' Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+"I'm facing the target!" Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

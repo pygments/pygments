@@ -1,0 +1,120 @@
+---input---
+data modify storage my:storage root set value {
+    key: "This NBT Compound is multiple lines",
+    Count: 10b,
+    tags: [
+        0,
+        1,
+    ],
+    UUID
+}
+
+tellraw @a {
+    "text": "how ever",
+    "color": "blue",
+    "extra": [
+        "this is json o_O"
+    ]
+}
+
+---tokens---
+'data'        Name.Builtin
+' '           Text.Whitespace
+'modify'      Keyword.Constant
+' '           Text.Whitespace
+'storage'     Keyword.Constant
+' '           Text.Whitespace
+'my:storage'  Name.Function
+' '           Text.Whitespace
+'root'        Keyword.Constant
+' '           Text.Whitespace
+'set'         Keyword.Constant
+' '           Text.Whitespace
+'value'       Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'key'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'This NBT Compound is multiple lines' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'Count'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'b'           Name.Attribute
+','           Punctuation
+'\n    '      Text.Whitespace
+'tags'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'UUID'        Name.Attribute
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tellraw'     Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'"'           Name.Attribute
+'text'        Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'how ever'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'"'           Name.Attribute
+'color'       Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'blue'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'"'           Name.Attribute
+'extra'       Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'"'           Name.Attribute
+'this'        Name.Attribute
+' '           Text.Whitespace
+'is'          Name.Attribute
+' '           Text.Whitespace
+'json'        Name.Attribute
+' '           Text.Whitespace
+'o_'          Name.Attribute
+'O'           Name.Attribute
+'"'           Name.Attribute
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
