@@ -671,7 +671,7 @@ class FlexLexer(CLexer):
     """
     name = 'Flex'
     aliases = ['flex']
-    filenames = ['*.lex,', '*.l']
+    filenames = ['*.lex', '*.l']
     mimetypes = ['text/x-lex']
 
     builtin = {

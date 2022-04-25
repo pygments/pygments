@@ -10,6 +10,31 @@ ID       [a-z][a-z0-9]*
 
 %%
 
+"/*"        {
+            register int c;
+
+            for ( ; ; )
+                {
+                while ( (c = input()) != '*' &&
+                        c != EOF )
+                    ;    /* eat up text of comment */
+
+                if ( c == '*' )
+                    {
+                    while ( (c = input()) == '*' )
+                        ;
+                    if ( c == '/' )
+                        break;    /* found the end */
+                    }
+
+                if ( c == EOF )
+                    {
+                    error( "EOF in comment" );
+                    break;
+                    }
+                }
+            }
+
 {DIGIT}+    {
             printf( "An integer: %s (%d)\n", yytext,
                     atoi( yytext ) );
@@ -33,7 +58,6 @@ if|then|begin|end|procedure|function        {
 "{"[^}\n]*"}"     /* eat up one-line comments */
 
 [ \t\n]+          /* eat up whitespace */
-
 
 .           printf( "Unrecognized character: %s\n", yytext );
 
