@@ -674,22 +674,18 @@ class FlexLexer(CLexer):
     filenames = ['*.lex', '*.l']
     mimetypes = ['text/x-lex']
 
-    builtin = {
-        'alnum', 'alpha', 'blank', 'cntrl', 'digit', 'graph', 'lower', 'print', 'punct', 'space', 'upper', 'xdigit'
-    } 
-
     tokens = {
         # root will be for definitions section and user code (through inherit mainly)
         'root': [
-            (r'%%', Comment, 'rules'),
+            (r'%%', String.Delimiter, 'rules'),
             inherit
         ],
         # rules for rules section
         'rules': [
             include('whitespace'),
-            (r'%%', Comment, '#pop'),
+            (r'%%', String.Delimiter, '#pop'),
             (r'\\[abfnrtv]', String.Char),
-            inherit
+            include('root')
         ],
 
         'keywords': [
