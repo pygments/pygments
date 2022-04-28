@@ -687,7 +687,6 @@ class FlexLexer(CLexer):
             (r'\\[abfnrtv]', String.Char),
             include('root')
         ],
-
         'keywords': [
             (words((
                 'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
@@ -696,6 +695,7 @@ class FlexLexer(CLexer):
         ],
         'statement':[
             (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
+            (r'\n', Whitespace, '#pop'),
             inherit
         ]
     }
