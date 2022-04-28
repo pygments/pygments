@@ -677,7 +677,9 @@ class FlexLexer(CLexer):
     tokens = {
         # root will be for definitions section and user code (through inherit mainly)
         'root': [
+            include('whitespace'),
             (r'%%', String.Delimiter, 'rules'),
+            (r'%[{}]', Comment.Preproc),
             inherit
         ],
         # rules for rules section
@@ -696,6 +698,7 @@ class FlexLexer(CLexer):
         'statement':[
             (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
             (r'\n', Whitespace, '#pop'),
+            (r'[a-zA-Z]\-[a-zA-Z]', String),
             inherit
         ]
     }
