@@ -73,7 +73,7 @@ class AdaLexer(RegexLexer):
             include('numbers'),
             (r"'[^']'", String.Character),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"(<>|=>|:=|[()|:;,.'])", Punctuation),
+            (r"(<>|=>|:=|@|[()|:;,.'])", Punctuation),
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
         ],
