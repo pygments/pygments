@@ -73,7 +73,7 @@ class AdaLexer(RegexLexer):
             include('numbers'),
             (r"'[^']'", String.Character),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"(<>|=>|:=|@|[()|:;,.'])", Punctuation),
+            (r"(<>|=>|:=|@|[\[\]]|[()|:;,.'])", Punctuation),
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
         ],
@@ -101,6 +101,7 @@ class AdaLexer(RegexLexer):
         'type_def': [
             (r';', Punctuation, '#pop'),
             (r'\(', Punctuation, 'formal_part'),
+            (r'\[', Punctuation, 'formal_part'),
             (r'with|and|use', Keyword.Reserved),
             (r'array\b', Keyword.Reserved, ('#pop', 'array_def')),
             (r'record\b', Keyword.Reserved, ('record_def')),
@@ -122,6 +123,7 @@ class AdaLexer(RegexLexer):
         ],
         'formal_part': [
             (r'\)', Punctuation, '#pop'),
+            (r'\]', Punctuation, '#pop'),
             (r'\w+', Name.Variable),
             (r',|:[^=]', Punctuation),
             (r'(in|not|null|out|access)\b', Keyword.Reserved),
