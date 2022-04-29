@@ -1655,6 +1655,8 @@ M2CONSTANTS = (
     )
 
 class Macaulay2Lexer(RegexLexer):
+    """Lexer for Macaulay2, a software system for research in algebraic geometry."""
+
     name = 'Macaulay2'
     url = 'https://faculty.math.illinois.edu/Macaulay2/'
     aliases = ['macaulay2']
