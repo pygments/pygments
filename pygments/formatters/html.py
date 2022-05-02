@@ -967,7 +967,7 @@ class HtmlFormatter(Formatter):
 
         # As a special case, we wrap line numbers before line highlighting
         # so the line numbers get wrapped in the highlighting tag.
-        if not self.nowrap and self.linenos == 2:
+        if self.linenos == 2:
             source = self._wrap_inlinelinenos(source)
 
         if self.hl_lines:
