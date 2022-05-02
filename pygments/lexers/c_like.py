@@ -691,7 +691,10 @@ class FlexLexer(CLexer):
         ],
         'keywords': [
             (words((
-                'yytext', 'yylex', 'yymore', 'yylmax', 'yy_flush_buffer', 'yyterminate', 'yy_input', 'yyless', 'yyleng', 'yycopy', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap', 'yyrestart', 'yyin'
+                'yytext','yylmax','yyleng','yyin','yylineno','yy_current_buffer', 'yy_break','yy_buffer_state','yy_flex_debug','yy_end_of_buffer_char','yy_user_action','yy_user_init','yy_act','yy_interactive','yy_start','yy_decl','yy_flex_major_version', 'yy_flex_minor_version',
+            )), Name.Builtin),
+            (words((
+                'yylex', 'yymore', 'yyterminate', 'yy_input', 'yyless', 'yycopy', 'yyrestart', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap',  'yy_set_interactive','yy_set_bol','yy_at_bol','yy_create_buffer','yy_delete_buffer','yy_flush_buffer', 'yy_flex_debug','yy_init_buffer','yy_flush_buffer','yy_load_buffer_state','yy_switch_to_buffer','yy_pop_state','yy_push_state','yy_top_state','yyFlexLexer'
             )), Name.Functions),
             inherit,
         ],
