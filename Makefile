@@ -66,4 +66,4 @@ RLMODULES = pygments.lexers
 
 regexlint:
 	@if [ -z "$(REGEXLINT)" ]; then echo "Please set REGEXLINT=checkout path"; exit 1; fi
-	PYTHONPATH=`pwd`:$(REGEXLINT) $(REGEXLINT)/regexlint/cmdline.py $(RLMODULES)
+	PYTHONPATH=`pwd`:$(REGEXLINT) $(PYTHON) $(REGEXLINT)/regexlint/cmdline.py $(RLMODULES)
