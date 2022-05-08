@@ -46,7 +46,8 @@ ID       [a-z][a-z0-9]*
                     atof( yytext ) );
             }
 
-if|then|begin|end|procedure|function        {
+/* only if is highlighted correctly */
+if|then|begin|end|procedure|function        { 
             printf( "A keyword: %s\n", yytext );
             }
 
