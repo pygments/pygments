@@ -703,5 +703,15 @@ class FlexLexer(CLexer):
             (r'\n', Whitespace, '#pop'),
             (r'[a-zA-Z]\-[a-zA-Z]', String),
             inherit
+        ],
+        'statements': [
+            (words((
+                'if','then','begin','end','procedure','function'), suffix=r'\b'),
+             Keyword),
+            (words(('nx_struct', 'nx_union', 'nx_int8_t', 'nx_int16_t', 'nx_int32_t',
+                    'nx_int64_t', 'nx_uint8_t', 'nx_uint16_t', 'nx_uint32_t',
+                    'nx_uint64_t'), suffix=r'\b'),
+             Keyword.Type),
+            inherit,
         ]
     }
