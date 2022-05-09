@@ -1,9 +1,7 @@
 """
     pygments.lexers.c_like
     ~~~~~~~~~~~~~~~~~~~~~~
-
     Lexers for other C-like languages.
-
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
@@ -26,7 +24,6 @@ __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
-
     .. versionadded:: 2.0
     """
     name = 'Pike'
@@ -67,7 +64,6 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
-
     .. versionadded:: 2.0
     """
     name = 'nesC'
@@ -95,7 +91,6 @@ class NesCLexer(CLexer):
 class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
-
     .. versionadded:: 2.0
     """
     name = 'Clay'
@@ -146,7 +141,6 @@ class ClayLexer(RegexLexer):
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
-
     .. versionadded:: 1.5
     """
     name = 'eC'
@@ -179,7 +173,6 @@ class ECLexer(CLexer):
 class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
-
     .. versionadded:: 1.1
     """
     name = 'Vala'
@@ -278,7 +271,6 @@ class CudaLexer(CLexer):
     """
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
-
     .. versionadded:: 1.6
     """
     name = 'CUDA'
@@ -325,7 +317,6 @@ class CudaLexer(CLexer):
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
-
     .. versionadded:: 2.0
     """
     name = 'SWIG'
@@ -392,7 +383,6 @@ class MqlLexer(CppLexer):
     """
     For `MQL4 <http://docs.mql4.com/>`_ and
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
-
     .. versionadded:: 2.0
     """
     name = 'MQL'
@@ -416,10 +406,8 @@ class MqlLexer(CppLexer):
 class ArduinoLexer(CppLexer):
     """
     For `Arduino(tm) <https://arduino.cc/>`_ source.
-
     This is an extension of the CppLexer, as the Arduino® Language is a superset
     of C++
-
     .. versionadded:: 2.1
     """
 
@@ -544,7 +532,6 @@ class ArduinoLexer(CppLexer):
 class CharmciLexer(CppLexer):
     """
     For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
-
     .. versionadded:: 2.4
     """
 
@@ -574,7 +561,6 @@ class CharmciLexer(CppLexer):
 class OmgIdlLexer(CLexer):
     """
     Lexer for Object Management Group Interface Definition Language.
-
     .. versionadded:: 2.9
     """
 
@@ -702,6 +688,9 @@ class FlexLexer(CLexer):
             (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
             (r'\n', Whitespace, '#pop'),
             (r'[a-zA-Z]\-[a-zA-Z]', String),
+            (r'\\n',Whitespace),
+            (r'\\t',Whitespace),
+            (r'\\r',Whitespace),
             inherit
         ],
         'statements': [
