@@ -153,7 +153,10 @@
 'case'        Keyword
 ' '           Text.Whitespace
 'name'        Name
-'\nof '       Keyword
+'\n'          Text
+
+'of'          Keyword
+' '           Text
 '"":\n  '     Name.Label
 'echo'        Name.Label
 '("'          Name.Label
@@ -246,7 +249,10 @@
 'case'        Keyword
 ' '           Text.Whitespace
 'n'           Name
-'\nof '       Keyword
+'\n'          Text
+
+'of'          Keyword
+' '           Text
 '0'           Name.Label
 '..'          Name.Label
 '2'           Name.Label
@@ -263,7 +269,10 @@
 'The number is in the set: {0, 1, 2, 4, 5, 6, 7}' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\nof '       Keyword
+'\n'          Text
+
+'of'          Keyword
+' '           Text
 '3'           Name.Label
 ','           Text
 ' '           Text.Whitespace
@@ -352,7 +361,9 @@
 '('           Punctuation
 'stdin'       Name
 ')'           Punctuation
-'\n    of '   Keyword
+'\n    '      Text
+'of'          Keyword
+' '           Text
 '"'           Name.Label
 'y'           Name.Label
 '", "'        Name.Label
