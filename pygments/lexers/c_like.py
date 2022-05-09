@@ -688,9 +688,7 @@ class FlexLexer(CLexer):
             (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
             (r'\n', Whitespace, '#pop'),
             (r'[a-zA-Z]\-[a-zA-Z]', String),
-            (r'\\n',Whitespace),
-            (r'\\t',Whitespace),
-            (r'\\r',Whitespace),
+            (r'\\[ntr]',String.Escape),
             inherit
         ],
         'statements': [
