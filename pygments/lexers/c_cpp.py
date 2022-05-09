@@ -19,6 +19,17 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 __all__ = ['CLexer', 'CppLexer']
 
 
+class CFamilyComments(RegexLexer):
+    
+    tokens = {
+        'root': [
+            (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
+            (r'\s+', Whitespace),
+        ]
+    }
+
+
 class CFamilyLexer(RegexLexer):
     """
     For C family source code.  This is used as a base class to avoid repetitious
@@ -118,19 +129,25 @@ class CFamilyLexer(RegexLexer):
             include('keywords'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'                          # signature
-             r'([^;{]*)(\{)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation),
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'(\([^;]*?\))'                          # signature
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'([^;{/]*)(\{)',
+             bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
+                      using(this), using(CFamilyComments), Punctuation),
              'function'),
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
              r'(' + _namespaced_ident + r')'             # method name
-             r'(\s*\([^;]*?\))'                          # signature
-             r'([^;]*)(;)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation)),
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'(\([^;]*?\))'                          # signature
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'([^;/]*)(;)',
+             bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
+                      using(this), using(CFamilyComments), Punctuation)),
             include('types'),
             default('statement'),
         ],
