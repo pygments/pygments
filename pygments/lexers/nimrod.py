@@ -83,7 +83,7 @@ class NimrodLexer(RegexLexer):
              Punctuation),
             
             # Case statement branch
-            (r'\n(\s*)of\s', Keyword, 'casebranch'),
+            (r'(\n\s*)(of)(\s)', bygroups(Text, Keyword, Text), 'casebranch'),
             
             # Strings
             (r'(?:[\w]+)"', String, 'rdqs'),
