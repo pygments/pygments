@@ -1,0 +1,185 @@
+---input---
+public class Quine {
+	public static void main(String[] args) {
+		String textBlockQuotes = new String(new char[]{'"', '"', '"'});
+		char newLine = 10;
+		String teststring = "test123\n";
+	    String source = """
+public class Quine {
+	public static void main(String[] args) {
+		String textBlockQuotes = new String(new char[]{'"', '"', '"'});
+		char newLine = 10;
+		String teststringinside = "hello my name is...\n\r";
+		String source = %s;
+		System.out.println(source.formatted(textBlockQuotes + newLine + source + textBlockQuotes));
+	}
+}
+""";
+        System.out.println(source.formatted(textBlockQuotes + newLine + source + textBlockQuotes));
+	String teststring2 = "Hello\n";
+	}
+}
+
+---tokens---
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text
+'Quine'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'static'      Keyword.Declaration
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+'String'      Name
+'['           Operator
+']'           Operator
+' '           Text.Whitespace
+'args'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'textBlockQuotes' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'String'      Name
+'('           Punctuation
+'new'         Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'['           Operator
+']'           Operator
+'{'           Punctuation
+'\'"\''       Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'\'"\''       Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'\'"\''       Literal.String.Char
+'}'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'newLine'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'teststring'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'test123'     Literal.String
+'\\'          Literal.String
+'n'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t    '      Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'source'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\n'       Literal.String
+
+"public class Quine {\n\tpublic static void main(String[] args) {\n\t\tString textBlockQuotes = new String(new char[]{'" Literal.String
+'"'           Literal.String
+"', '"        Literal.String
+'"'           Literal.String
+"', '"        Literal.String
+'"'           Literal.String
+"'});\n\t\tchar newLine = 10;\n\t\tString teststringinside = " Literal.String
+'"'           Literal.String
+'hello my name is...' Literal.String
+'\\'          Literal.String
+'n'           Literal.String
+'\\'          Literal.String
+'r'           Literal.String
+'"'           Literal.String
+';\n\t\tString source = %s;\n\t\tSystem.out.println(source.formatted(textBlockQuotes + newLine + source + textBlockQuotes));\n\t}\n}\n' Literal.String
+
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'System'      Name
+'.'           Punctuation
+'out'         Name.Attribute
+'.'           Punctuation
+'println'     Name.Attribute
+'('           Punctuation
+'source'      Name
+'.'           Punctuation
+'formatted'   Name.Attribute
+'('           Punctuation
+'textBlockQuotes' Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'newLine'     Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'source'      Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'textBlockQuotes' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'teststring2' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'Hello'       Literal.String
+'\\'          Literal.String
+'n'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
