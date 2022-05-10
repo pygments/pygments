@@ -684,14 +684,11 @@ class FlexLexer(CLexer):
             )), Name.Functions),
             inherit,
         ],
-        'statement':[
+        'statements': [
             (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
             (r'\n', Whitespace, '#pop'),
             (r'[a-zA-Z]\-[a-zA-Z]', String),
             (r'\\[ntr]',String.Escape),
-            inherit
-        ],
-        'statements': [
             (words((
                 'if','then','begin','end','procedure','function'), suffix=r'\b'),
              Keyword),
