@@ -87,10 +87,10 @@ class NimrodLexer(RegexLexer):
             (r'(%s)\b' % underscorize(opWords), Operator.Word),
             (r'(p_?r_?o_?c_?\s)(?![(\[\]])', Keyword, 'funcname'),
             (r'(%s)\b' % underscorize(keywords), Keyword),
-            (r'(%s)\b' % underscorize(['from', 'import', 'include']),
+            (r'(%s)\b' % underscorize(['from', 'import', 'include', 'export']),
              Keyword.Namespace),
             (r'(v_?a_?r)\b', Keyword.Declaration),
-            (r'(%s)\b' % underscorize(types), Keyword.Type),
+            (r'(%s)\b' % underscorize(types), Name),
             (r'(%s)\b' % underscorize(keywordsPseudo), Keyword.Pseudo),
             # Identifiers
             (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),

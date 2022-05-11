@@ -108,9 +108,9 @@
 'lastSession' Name
 ':'           Punctuation
 ' '           Text
-'seq'         Keyword.Type
+'seq'         Name
 '['           Operator
-'string'      Keyword.Type
+'string'      Name
 ']'           Operator
 ' '           Text
 '='           Operator
@@ -203,7 +203,7 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name
 ' '           Text
 '='           Operator
 ' \n  '       Text
@@ -251,13 +251,13 @@
 'tabNr'       Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name
 ','           Punctuation
 ' '           Text
 'startpath'   Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ' '           Text
 '='           Operator
@@ -732,7 +732,7 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Keyword.Type
+'bool'        Name
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -1359,7 +1359,7 @@
 'name'        Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ','           Punctuation
 ' '           Text
 't_child'     Name
@@ -1989,7 +1989,7 @@
 'filename'    Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ' '           Text
 '='           Operator
@@ -2174,7 +2174,7 @@
 'file'        Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ' '           Text
 '='           Operator
 ' '           Text
@@ -3444,7 +3444,7 @@
 'text'        Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ','           Punctuation
 ' '           Text
 'colorTag'    Name
@@ -3571,7 +3571,7 @@
 'color'       Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
@@ -3661,11 +3661,11 @@
 'exe'         Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ' '           Text
 '='           Operator
 ' \n    '     Text
@@ -3766,11 +3766,11 @@
 'filename'    Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ' '           Text
 '='           Operator
 ' \n  '       Text
@@ -4001,13 +4001,13 @@
 'currentTab'  Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name
 ','           Punctuation
 ' '           Text
 'shouldRun'   Name
 ':'           Punctuation
 ' '           Text
-'bool'        Keyword.Type
+'bool'        Name
 ')'           Punctuation
 ' '           Text
 '='           Operator
@@ -4510,7 +4510,7 @@
 'cmd'         Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ')'           Punctuation
 ' '           Text
 '='           Operator
@@ -5675,7 +5675,7 @@
 'label'       Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name
 ','           Punctuation
 ' '           Text
 'acc'         Name
@@ -8586,7 +8586,7 @@
 'langpaths'   Name
 ':'           Punctuation
 ' '           Text
-'array'       Keyword.Type
+'array'       Name
 '['           Operator
 '0'           Literal.Number.Float
 '..'          Punctuation
@@ -8670,7 +8670,7 @@
 'schemepaths' Name
 ':'           Punctuation
 ' '           Text
-'array'       Keyword.Type
+'array'       Name
 '['           Operator
 '0'           Literal.Number.Float
 '..'          Punctuation
