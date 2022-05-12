@@ -230,7 +230,7 @@ class RagelRubyLexer(DelegatingLexer):
 
 class RagelCLexer(DelegatingLexer):
     """
-    A lexer forRagel in a C host file.
+    A lexer for Ragel in a C host file.
 
     .. versionadded:: 1.1
     """
@@ -266,7 +266,7 @@ class RagelDLexer(DelegatingLexer):
 
 class RagelCppLexer(DelegatingLexer):
     """
-    A lexer forRagel in a C++ host file.
+    A lexer for Ragel in a C++ host file.
 
     .. versionadded:: 1.1
     """
