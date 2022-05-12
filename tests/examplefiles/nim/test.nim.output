@@ -70,7 +70,7 @@
 'name'        Name
 ':'           Punctuation
 ' '           Text
-'string'      Name
+'string'      Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
@@ -321,11 +321,11 @@
 'question'    Name
 ':'           Punctuation
 ' '           Text
-'string'      Name
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Name
+'bool'        Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -420,11 +420,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Name
+'bool'        Name.Builtin
 '\n\n'        Text
 
 'proc '       Keyword
@@ -433,11 +433,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Name
+'bool'        Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -478,11 +478,11 @@
 'b'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -530,14 +530,14 @@
 '*'           Operator
 ':'           Punctuation
 ' '           Text
-'string'      Name
+'string'      Name.Builtin
 '  '          Text
 '# the * means that `name` is accessible from other modules' Comment
 '\n    '      Text
 'age'         Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 '       '     Text
 '# no * means that the field is hidden from other modules' Comment
 '\n\n  '      Text
@@ -556,7 +556,7 @@
 'id'          Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 '                    ' Text
 '# with an id field' Comment
 '\n\n'        Text
@@ -750,7 +750,7 @@
 'aaa'         Name
 ':'           Punctuation
 ' '           Text
-'string'      Name
+'string'      Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
@@ -761,7 +761,7 @@
 'bbb'         Name
 ':'           Punctuation
 ' '           Text
-'int'         Name
+'int'         Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
@@ -770,9 +770,9 @@
 'ccc'         Name
 ':'           Punctuation
 ' '           Text
-'seq'         Name
+'seq'         Name.Builtin
 '['           Operator
-'char'        Name
+'char'        Name.Builtin
 ']'           Operator
 ' '           Text
 '='           Operator
@@ -792,7 +792,7 @@
 'ddd'         Name
 ':'           Punctuation
 ' '           Text
-'float32'     Name
+'float32'     Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
@@ -802,7 +802,7 @@
 'eee'         Name
 ':'           Punctuation
 ' '           Text
-'bool'        Name
+'bool'        Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
