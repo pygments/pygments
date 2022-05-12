@@ -667,15 +667,15 @@ class OmgIdlLexer(CLexer):
 
 class FlexLexer(CLexer):
     """
-    Lexer for Flex <http://dinosaur.compilertools.net/flex/index.html>, 
-    A fast scanner generator.
+    Lexer for `Flex <http://github.com/westes/flex>`_,
     
-    .. versionadded:: 2.5
+    .. versionadded:: 2.13
     """
     name = 'Flex'
     aliases = ['flex']
     filenames = ['*.lex', '*.l']
     mimetypes = ['text/x-lex']
+    url = 'http://github.com/westes/flex'
 
     tokens = {
         # root will be for definitions section and user code (through inherit mainly)
@@ -698,7 +698,7 @@ class FlexLexer(CLexer):
             )), Name.Builtin),
             (words((
                 'yylex', 'yymore', 'yyterminate', 'yy_input', 'yyless', 'yycopy', 'yyrestart', 'yy_scan_string', 'yy_scan_bytes', 'yy_scan_buffer', 'yywrap',  'yy_set_interactive','yy_set_bol','yy_at_bol','yy_create_buffer','yy_delete_buffer','yy_flush_buffer', 'yy_flex_debug','yy_init_buffer','yy_flush_buffer','yy_load_buffer_state','yy_switch_to_buffer','yy_pop_state','yy_push_state','yy_top_state','yyFlexLexer'
-            )), Name.Functions),
+            )), Name.Function),
             inherit,
         ],
         'statements': [
