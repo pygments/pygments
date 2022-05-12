@@ -26,9 +26,10 @@ __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
-    
+
     .. versionadded:: 2.0
     """
+
     name = 'Pike'
     aliases = ['pike']
     filenames = ['*.pike', '*.pmod']
@@ -67,9 +68,10 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
-    
+
     .. versionadded:: 2.0
     """
+
     name = 'nesC'
     aliases = ['nesc']
     filenames = ['*.nc']
@@ -95,9 +97,10 @@ class NesCLexer(CLexer):
 class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
-    
+
     .. versionadded:: 2.0
     """
+
     name = 'Clay'
     filenames = ['*.clay']
     aliases = ['clay']
@@ -146,9 +149,10 @@ class ClayLexer(RegexLexer):
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
-    
+
     .. versionadded:: 1.5
     """
+
     name = 'eC'
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
@@ -179,9 +183,10 @@ class ECLexer(CLexer):
 class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
-    
+
     .. versionadded:: 1.1
     """
+
     name = 'Vala'
     aliases = ['vala', 'vapi']
     filenames = ['*.vala', '*.vapi']
@@ -278,9 +283,10 @@ class CudaLexer(CLexer):
     """
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
-    
+
     .. versionadded:: 1.6
     """
+
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
@@ -325,9 +331,10 @@ class CudaLexer(CLexer):
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
-    
+
     .. versionadded:: 2.0
     """
+
     name = 'SWIG'
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
@@ -392,9 +399,10 @@ class MqlLexer(CppLexer):
     """
     For `MQL4 <http://docs.mql4.com/>`_ and
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
-    
+
     .. versionadded:: 2.0
     """
+
     name = 'MQL'
     aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
     filenames = ['*.mq4', '*.mq5', '*.mqh']
@@ -416,10 +424,10 @@ class MqlLexer(CppLexer):
 class ArduinoLexer(CppLexer):
     """
     For `Arduino(tm) <https://arduino.cc/>`_ source.
-    
+
     This is an extension of the CppLexer, as the Arduino® Language is a superset
     of C++
-    
+
     .. versionadded:: 2.1
     """
 
@@ -544,7 +552,7 @@ class ArduinoLexer(CppLexer):
 class CharmciLexer(CppLexer):
     """
     For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
-    
+
     .. versionadded:: 2.4
     """
 
@@ -574,7 +582,7 @@ class CharmciLexer(CppLexer):
 class OmgIdlLexer(CLexer):
     """
     Lexer for Object Management Group Interface Definition Language.
-    
+
     .. versionadded:: 2.9
     """
 
@@ -668,9 +676,10 @@ class OmgIdlLexer(CLexer):
 class FlexLexer(CLexer):
     """
     Lexer for `Flex <http://github.com/westes/flex>`_,
-    
+
     .. versionadded:: 2.13
     """
+
     name = 'Flex'
     aliases = ['flex']
     filenames = ['*.lex', '*.l']
