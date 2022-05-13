@@ -20,7 +20,10 @@ __all__ = ['CLexer', 'CppLexer']
 
 
 class CFamilyComments(RegexLexer):
-    
+    """
+    For C family source code, this lexer sparates single and multiline comments
+    from an input which contains a mix.
+    """
     tokens = {
         'root': [
             (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
