@@ -139,18 +139,18 @@ class CFamilyLexer(RegexLexer):
              r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
              r'([^;{/]*)(\{)',
              bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
-                      using(this), using(CFamilyComments), Punctuation),
+                      using(this), using(CFamilyComments), using(this), Punctuation),
              'function'),
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
              r'(' + _namespaced_ident + r')'             # method name
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
              r'(\([^;]*?\))'                          # signature
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
              r'([^;/]*)(;)',
              bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
-                      using(this), using(CFamilyComments), Punctuation)),
+                      using(this), using(CFamilyComments), using(this), Punctuation)),
             include('types'),
             default('statement'),
         ],
