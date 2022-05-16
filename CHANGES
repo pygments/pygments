@@ -3,15 +3,21 @@ Pygments changelog
 
 Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
-Version 2.12.0
+Version 2.13.0
 --------------
 (not released yet)
+
+Version 2.12.0
+--------------
+(released April 24th, 2022)
 
 - Added lexers:
 
   * Cplint (#2045)
   * Macaulay2 (#1791)
+  * Minecraft (#2107)
   * Qlik (#1925)
+  * ``UnixConfigLexer`` for "colon-separated" config files, like ``/etc/passwd`` (#2112)
 
 - Updated lexers:
 
@@ -19,11 +25,13 @@ Version 2.12.0
   * C family: Fix identifiers after ``case`` statements (#2084)
   * Clojure: Highlight ratios (#2042)
   * Csound: Update to 6.17 (#2064)
+  * CSS: Update the list of properties (#2113)
   * Elpi:
   
-    - Fix catastropic backtracking (#2053, #2061)
+    - Fix catastrophic backtracking (#2053, #2061)
     - Fix handling of ``->`` (#2028)
 
+  * Futhark: Add missing tokens (#2118)
   * Gherkin: Add ``But`` (#2046)
   * Inform6: Update to 6.36 (#2050)
   * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
@@ -52,6 +60,12 @@ Version 2.12.0
 - Fix various typos (#2030)
 - Fix ``Groff`` formatter not inheriting token styles correctly (#2024)
 - Various improvements to the CI (#2036)
+- The Ada lexer has been moved to a separate file (#2117)
+- When ``linenos=table`` is used, the ``<table>`` itself is now wrapped with a ``<div class="highlight">`` tag instead of placing it inside the ``<td class="code">`` cell (#632.) With this change, the output matches the documented behavior.
+
+.. note::
+
+  If you have subclassed ``HtmlFormatter.wrap``, you may have to adjust the logic.
 
 
 Version 2.11.2

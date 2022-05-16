@@ -37,7 +37,8 @@ class FutharkLexer(RegexLexer):
 
     other_types = ('bool', )
 
-    reserved = ('if', 'then', 'else', 'let', 'loop', 'in', 'with', 'type',
+    reserved = ('if', 'then', 'else', 'def', 'let', 'loop', 'in', 'with',
+                'type', 'type~', 'type^',
                 'val', 'entry', 'for', 'while', 'do', 'case', 'match',
                 'include', 'import', 'module', 'open', 'local', 'assert', '_')
 
@@ -62,11 +63,11 @@ class FutharkLexer(RegexLexer):
 
             # Identifiers
             (r'#\[([a-zA-Z_\(\) ]*)\]', Comment.Preproc),
-            (r'!?(%s\.)*%s' % (identifier_re, identifier_re), Name),
+            (r'[#!]?(%s\.)*%s' % (identifier_re, identifier_re), Name),
 
             (r'\\', Operator),
             (r'[-+/%=!><|&*^][-+/%=!><|&*^.]*', Operator),
-            (r'[][(),:;`{}]', Punctuation),
+            (r'[][(),:;`{}?.\'~^]', Punctuation),
 
             #  Numbers
             (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*_*[pP][+-]?\d(_*\d)*' + num_postfix,

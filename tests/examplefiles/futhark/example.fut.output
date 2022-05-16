@@ -1,30 +1,3 @@
-'module'      Keyword.Reserved
-' '           Text.Whitespace
-'matmul'      Name
-' '           Text.Whitespace
-'('           Punctuation
-'F'           Name
-':'           Punctuation
-' '           Text.Whitespace
-'numeric'     Name
-')'           Punctuation
-' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'{'           Punctuation
-'\n  '        Text.Whitespace
-'type'        Keyword.Reserved
-' '           Text.Whitespace
-'t'           Name
-' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'F.t'         Name
-'\n  '        Text.Whitespace
-'open'        Keyword.Reserved
-' '           Text.Whitespace
-'F'           Name
-'\n\n  '      Text.Whitespace
 'local'       Keyword.Reserved
 ' '           Text.Whitespace
 'let'         Keyword.Reserved
@@ -35,6 +8,46 @@
 'n'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
+"'"           Punctuation
+'t'           Name
+'\n                  ' Text.Whitespace
+'('           Punctuation
+'mul'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'t'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'add'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'t'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'zero'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'t'           Name
+')'           Punctuation
+'\n                  ' Text.Whitespace
 '('           Punctuation
 'a'           Name
 ':'           Punctuation
@@ -62,9 +75,7 @@
 '\n  '        Text.Whitespace
 'map2'        Name
 ' '           Text.Whitespace
-'('           Punctuation
-'*'           Operator
-')'           Punctuation
+'mul'         Name
 ' '           Text.Whitespace
 'a'           Name
 ' '           Text.Whitespace
@@ -74,16 +85,38 @@
 ' '           Text.Whitespace
 'reduce'      Name
 ' '           Text.Whitespace
-'('           Punctuation
-'+'           Operator
-')'           Punctuation
+'add'         Name
+' '           Text.Whitespace
+'zero'        Name
+'\n\n'        Text.Whitespace
+
+'module'      Keyword.Reserved
+' '           Text.Whitespace
+'matmul'      Name
 ' '           Text.Whitespace
 '('           Punctuation
-'i32'         Keyword.Type
+'F'           Name
+':'           Punctuation
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
+'numeric'     Name
 ')'           Punctuation
-'\n\n\n  '    Text.Whitespace
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'F.t'         Name
+'\n  '        Text.Whitespace
+'open'        Keyword.Reserved
+' '           Text.Whitespace
+'F'           Name
+'\n\n  '      Text.Whitespace
 'let'         Keyword.Reserved
 ' '           Text.Whitespace
 'matmul'      Name
@@ -125,6 +158,7 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
+'*'           Operator
 '['           Punctuation
 'n1'          Name
 ']'           Punctuation
@@ -152,6 +186,20 @@
 '->'          Operator
 ' '           Text.Whitespace
 'dotprod'     Name
+' '           Text.Whitespace
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'+'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
 ' '           Text.Whitespace
 'xs'          Name
 ' '           Text.Whitespace
@@ -220,12 +268,19 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'*'           Operator
+'?'           Punctuation
 '['           Punctuation
-'n'           Name
+'a'           Name
 ']'           Punctuation
 '['           Punctuation
-'n'           Name
+'b'           Name
+']'           Punctuation
+'.'           Punctuation
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'['           Punctuation
+'b'           Name
 ']'           Punctuation
 'f32'         Keyword.Type
 ' '           Text.Whitespace
