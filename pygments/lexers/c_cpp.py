@@ -28,6 +28,7 @@ class CFamilyComments(RegexLexer):
         'root': [
             (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
+            (r'\n', Whitespace),    # parser below separates newline tokens
             (r'\s+', Whitespace),
         ]
     }
