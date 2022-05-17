@@ -10,9 +10,9 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, inherit, words, \
+from pygments.lexer import RegexLexer,using, include, bygroups, inherit, words, \
     default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.token import Token, Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 from pygments.lexers.c_cpp import CLexer, CppLexer
@@ -673,7 +673,7 @@ class OmgIdlLexer(CLexer):
     }
 
 
-class FlexLexer(CLexer):
+class FlexLexer(RegexLexer):
     """
     Lexer for `Flex <http://github.com/westes/flex>`_,
 
@@ -689,23 +689,40 @@ class FlexLexer(CLexer):
     tokens = {
         # Handle the definitions section
         'root': [
-        
+            include('whitespace'),
+            (r'%%', String.Delimiter, 'rules'),            
+            (r"\b(\_|\d|\w|\-)*", Name, 'regex'),
+            
         ],
         # Handle the rules section
         'rules': [
-        
+            (r'%%', String.Delimiter, 'usercode'),
         ],
         # Handle the user code section
         'usercode': [
-        
+            (r'(.+?)', bygroups(using(CLexer)), '#pop')
         ],
         # Handle whitespace
         'whitespace': [
-
+            (r'%[{}]', Comment.Preproc),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+            (r'(/\*)(.)+(\*/)', Comment.Single),
         ],
         # Handle regular expressions
         'regex': [
-
+            (r'\n', Whitespace, '#pop'),
+            (r'\w+', Name),
+            (r'\d+', Number),
+            (r'[\s\,\:\-\"\']+', Text),
+            (r'[\$\^]', Token),
+            (r'[\+\*\.\?]', Operator),
+            (r'(\()([\?\<\>\!\=\:]{2,3}.+?)(\))', bygroups(Keyword.Namespace, Name.Function, Keyword.Namespace)),
+            (r'(\()(\?\#.+?)(\))', bygroups(Comment, Comment, Comment)),
+            (r'[\(\)]', Keyword.Namespace),
+            (r'[\[\]]', Name.Class),
+            (r'\\\w', Keyword),
+            (r'[\{\}]', Operator),
         ]
     }
 
