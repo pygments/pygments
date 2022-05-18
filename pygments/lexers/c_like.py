@@ -689,9 +689,16 @@ class FlexLexer(RegexLexer):
     tokens = {
         # Handle the definitions section
         'root': [
+            (r'%{',String.Delimiter,'header'),
+            (r'%%', String.Delimiter, 'rules'),
+            (r'(%\w)(\s)(\w+)', bygroups(Keyword, Whitespace,Name)),
+            (r'(\b[\_|\d|\w|\-]+)(\s+)', bygroups(Name,Whitespace),'regex'),
             include('whitespace'),
-            (r'%%', String.Delimiter, 'rules'),            
-            (r"\b(\_|\d|\w|\-)*", Name, 'regex'),
+        ],
+        'header': [
+            (r'(#include)(\s)(<\w*\.\w*>)', bygroups(Keyword, Whitespace,Name)),
+            (r'%}',String.Delimiter,'#pop'),
+            include('whitespace')
         ],
         # Handle the rules section
         'rules': [
@@ -700,8 +707,8 @@ class FlexLexer(RegexLexer):
         ],
         # Handle the user code section
         'usercode': [
+            (r'.+', using(CLexer)),
             include('whitespace'),
-            (r'(.+?)', using(CLexer))
         ],
         # Handle whitespace
         'whitespace': [
