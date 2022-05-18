@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import RegexLexer,using, include, bygroups, inherit, words, \
-    default
+    default, using
 from pygments.token import Token, Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
@@ -692,56 +692,48 @@ class FlexLexer(RegexLexer):
             include('whitespace'),
             (r'%%', String.Delimiter, 'rules'),            
             (r"\b(\_|\d|\w|\-)*", Name, 'regex'),
-            
         ],
         # Handle the rules section
         'rules': [
-            (r'%%', String.Delimiter, 'usercode'),
+            include('whitespace'),
+            (r'%%', String.Delimiter, ('usercode', '#pop')),
         ],
         # Handle the user code section
         'usercode': [
-            (r'(.+?)', bygroups(using(CLexer)), '#pop')
+            include('whitespace'),
+            (r'(.+?)', using(CLexer))
         ],
         # Handle whitespace
         'whitespace': [
             (r'%[{}]', Comment.Preproc),
-            (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'(/\*)(.)+(\*/)', Comment.Single),
         ],
         # Handle regular expressions
         'regex': [
             (r'\n', Whitespace, '#pop'),
-            (r'\w+', Name),
+            (r'"', String, 'string'),
+            (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
+            (r'\{[\w_]+\}', Name.Variable),
             (r'\d+', Number),
-            (r'[\s\,\:\-\"\']+', Text),
-            (r'[\$\^]', Token),
-            (r'[\+\*\.\?]', Operator),
-            (r'(\()([\?\<\>\!\=\:]{2,3}.+?)(\))', bygroups(Keyword.Namespace, Name.Function, Keyword.Namespace)),
-            (r'(\()(\?\#.+?)(\))', bygroups(Comment, Comment, Comment)),
-            (r'[\(\)]', Keyword.Namespace),
-            (r'[\[\]]', Name.Class),
-            (r'\\\w', Keyword),
-            (r'[\{\}]', Operator),
-        ]
+            (r'\w', Name),
+            (r'[|/*+?^$.-]', Operator),
+            (r'\\[abfnrtv]', String.Esacpe),
+            (r'\\[AbBdDsSwWZ]', String.Regex),
+            (r'\\.', String.Literal),
+            (r'[\[\]{},\(\)]', Punctuation),
+        ],
+        # Handle strings
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\[abfnrtv]', String.Esacpe),
+            (r'\\.', String.Literal),
+            (r'.', String),
+        ],
     }
 
 
     # tokens = {
-    #     # root will be for definitions section and user code (through inherit mainly)
-    #     'root': [
-    #         include('whitespace'),
-    #         (r'%%', String.Delimiter, 'rules'),
-    #         (r'%[{}]', Comment.Preproc),
-    #         inherit
-    #     ],
-    #     # rules for rules section
-    #     'rules': [
-    #         include('whitespace'),
-    #         (r'%%', String.Delimiter, '#pop'),
-    #         (r'\\[abfnrtv]', String.Esacpe),
-    #         include('root')
-    #     ],
     #     'keywords': [
     #         (words((
     #             'yytext','yylmax','yyleng','yyin','yylineno','yy_current_buffer', 'yy_break','yy_buffer_state','yy_flex_debug','yy_end_of_buffer_char','yy_user_action','yy_user_init','yy_act','yy_interactive','yy_start','yy_decl','yy_flex_major_version', 'yy_flex_minor_version',
@@ -752,10 +744,6 @@ class FlexLexer(RegexLexer):
     #         inherit,
     #     ],
     #     'statements': [
-    #         (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
-    #         (r'\n', Whitespace, '#pop'),
-    #         (r'[a-zA-Z]\-[a-zA-Z]', String),
-    #         (r'\\[abfnrtv]', String.Esacpe),
     #         (words((
     #             'if','then','begin','end','procedure','function'), suffix=r'\b'),
     #          Keyword),
