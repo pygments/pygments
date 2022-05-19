@@ -29,7 +29,7 @@ if (qvars.formatter !== undefined) {
 }
 
 styleSelect.addEventListener('change', () => {
-    style.textContent = styles[styleSelect.value];
+    style.textContent = styles.get(styleSelect.value);
     updateCopyLink();
     updateContrastWarning();
 });
@@ -89,7 +89,7 @@ highlightWorker.onmessage = (msg) => {
         outputDiv.innerHTML = msg.data.html;
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
-        style.textContent = styles[styleSelect.value];
+        style.textContent = styles.get(styleSelect.value);
     } else if (msg.data.tokens) {
         const table = document.createElement('table');
         table.className = 'tokens';
