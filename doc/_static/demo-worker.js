@@ -13,6 +13,8 @@ async function loadPyodideAndPygments() {
 let pyodideReadyPromise = loadPyodideAndPygments();
 
 self.onmessage = async (event) => {
+    // Make sure loading is done.
+    await pyodideReadyPromise;
     if (event.data.highlight) {
         self.pyodide.globals.set('code', event.data.highlight.code);
         self.pyodide.globals.set('lexer_name', event.data.highlight.lexer);
