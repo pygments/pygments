@@ -717,7 +717,7 @@ class FlexLexer(RegexLexer):
         ],
         # Handle the user code section
         'usercode': [
-            (r'.*', using(CLexer)),
+            (r'(.+?)', using(CLexer)),
             include('whitespace'),
         ],
         # Handle whitespace
