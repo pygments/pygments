@@ -691,9 +691,19 @@ class FlexLexer(RegexLexer):
         'root': [
             (r'%{',String.Delimiter,'header'),
             (r'%%', String.Delimiter, 'rules'),
-            (r'(%\w)(\s)(\w+)', bygroups(Keyword, Whitespace,Name)),
-            (r'(\b[\_|\d|\w|\-]+)(\s+)', bygroups(Name,Whitespace),'regex'),
-            include('whitespace'),
+            (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
+                'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+            (r'\\\n', Text),  # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'[|/*+?^$.-=]', Operator),
+            (r'(%[sx])(\s)(\w+)', bygroups(Keyword, Whitespace, Name)),
+            (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s+)(=)', bygroups(Name.Variable, Whitespace, Operator)),
+            (r'(\b[_a-zA-Z0-9][\w\-]+)(\s+)', bygroups(Name, Whitespace),'regex'),
+            # include('whitespace'),
+
         ],
         'header': [
             (r'(#include)(\s)(<\w*\.\w*>)', bygroups(Keyword, Whitespace,Name)),
@@ -707,7 +717,7 @@ class FlexLexer(RegexLexer):
         ],
         # Handle the user code section
         'usercode': [
-            (r'.+', using(CLexer)),
+            (r'.*', using(CLexer)),
             include('whitespace'),
         ],
         # Handle whitespace
