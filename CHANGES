@@ -7,6 +7,18 @@ Version 2.13.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Java: support multiline strings aka. text blocks (#2132).
+  * Kotlin: add ``value`` modifier (#2142).
+
+- The ``HtmlFormatter`` now uses the ``linespans`` attribute for
+  ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
+- The ``highlight``, ``lex`` and ``format`` functions no longer
+  wrongly report "argument must be a lexer/formatter instance, not a
+  class" in some cases where this is not the actual problem (#2123).
+
+
 Version 2.12.0
 --------------
 (released April 24th, 2022)
@@ -27,7 +39,7 @@ Version 2.12.0
   * Csound: Update to 6.17 (#2064)
   * CSS: Update the list of properties (#2113)
   * Elpi:
-  
+
     - Fix catastrophic backtracking (#2053, #2061)
     - Fix handling of ``->`` (#2028)
 
@@ -36,7 +48,7 @@ Version 2.12.0
   * Inform6: Update to 6.36 (#2050)
   * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
   * LilyPond:
-  
+
     - Fix incorrect lexing of names containing a built-in (#2071)
     - Fix properties containing dashes (#2099)
 
@@ -44,7 +56,7 @@ Version 2.12.0
   * Scheme: Various improvements (#2060)
   * Spice: Update the keyword list, add new types (#2063, #2067)
   * Terraform:
-  
+
     - Support non-idiomatic comments (#2065, #2066)
     - Fix class name lexing (#2097)
 
