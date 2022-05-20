@@ -29,6 +29,9 @@ if (qvars.formatter !== undefined) {
 }
 
 styleSelect.addEventListener('change', () => {
+    if (!styles)
+        // Worker has not loaded yet.
+        return;
     style.textContent = styles.get(styleSelect.value);
     updateCopyLink();
     updateContrastWarning();
