@@ -18,12 +18,11 @@ jobs:
     - name: Install Sphinx & WCAG contrast ratio
       run: pip install Sphinx wcag-contrast-ratio
     - name: Create Pyodide WASM package
-      uses: ./.github/actions/pyodide-package
+      run: cd doc && make pyodide
     - name: Sphinx build
       run: |
         cd doc
         WEBSITE_BUILD=1 make dirhtml
-        cp -a ../pyodide _build/dirhtml/_static
         touch _build/dirhtml/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
