@@ -1120,7 +1120,7 @@ class KotlinLexer(RegexLexer):
     modifiers = (r'actual|abstract|annotation|companion|const|crossinline|'
                 r'data|enum|expect|external|final|infix|inline|inner|'
                 r'internal|lateinit|noinline|open|operator|override|private|'
-                r'protected|public|sealed|suspend|tailrec')
+                r'protected|public|sealed|suspend|tailrec|value')
 
     tokens = {
         'root': [
