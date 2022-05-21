@@ -1,7 +1,16 @@
-.git*
 doc
 tests
-*.md
+Pygments.egg-info
+TAGS
+build
+dist
+htmlcov
+venv
+**/__pycache__
+.*
 *.rst
+*.egg
+*.pyo
+.*.sw[op]
 
 !/doc/_pyodide/meta.yaml
