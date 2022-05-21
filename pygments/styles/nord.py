@@ -22,6 +22,11 @@ class NordStyle(Style):
     background_color = '#2e3440'
     default = '#d8dee9'
 
+    background_color = "#242933"
+    highlight_color = "#3B4252"
+    default = "#d8dee9"
+
+    # fmt: off
     styles = {
         Whitespace:                 '#d8dee9',
         Punctuation:                '#eceff4',
