@@ -5,7 +5,7 @@ FROM ghcr.io/pyodide/pyodide:0.20.0 AS build-stage
 WORKDIR pyodide
 
 # Copy new meta with path to local Pygments instead of pypi url.
-COPY doc/_pyodide/meta.yaml packages/Pygments/
+COPY doc/pyodide/meta.yaml packages/Pygments/
 
 COPY . /pygments
 

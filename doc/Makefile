@@ -14,7 +14,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+.PHONY: help clean pyodide html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -45,7 +45,7 @@ clean:
 pyodide:
 	$(if $(test ! -f docker), $(error "Could not find Docker. Please install that before continuing."))
 	# Enable the BuildKit backend to use the --output option.
-	DOCKER_BUILDKIT=1 docker build --file _pyodide/Dockerfile --output $(BUILDDIR)/pyodide/pyodide ..
+	DOCKER_BUILDKIT=1 docker build --file pyodide/Dockerfile --output $(BUILDDIR)/pyodide/pyodide ..
 	@echo
 	@echo "Pyodide build finished. The Pyodide artifacts are in $(BUILDDIR)/pyodide."
 
