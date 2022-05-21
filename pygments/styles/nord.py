@@ -19,8 +19,11 @@ class NordStyle(Style):
     Pygments version of the "nord" theme by Arctic Ice Studio
     """
 
-    background_color = '#2e3440'
-    default = '#d8dee9'
+    linenos = "#FF0000"
+    line_number_color = "#D8DEE9"
+    line_number_background_color = "#242933"
+    line_number_special_color = "#242933"
+    line_number_special_background_color = "#D8DEE9"
 
     background_color = "#242933"
     highlight_color = "#3B4252"
