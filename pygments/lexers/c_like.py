@@ -689,27 +689,22 @@ class FlexLexer(RegexLexer):
     tokens = {
         # Handle the definitions section
         'root': [
-            (r'%{',String.Delimiter,'header'),
+            (r'(%{|%})',String.Delimiter),
             (r'%%', String.Delimiter, 'rules'),
+            (r'(#include)(\s)(<\w*\.*\w*>)', bygroups(Keyword, Whitespace,Name)),
+            (r'(#define)(\s)(\w*\.*\w*)', bygroups(Keyword, Whitespace,Name)),
             (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
                 'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type),
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            include('whitespace'),
             (r'[|/*+?^$.-=]', Operator),
             (r'(%[sx])(\s)(\w+)', bygroups(Keyword, Whitespace, Name)),
             (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s+)(=)', bygroups(Name.Variable, Whitespace, Operator)),
             (r'(\b[_a-zA-Z0-9][\w\-]+)(\s+)', bygroups(Name, Whitespace),'regex'),
-            # include('whitespace'),
+        ],
 
-        ],
-        'header': [
-            (r'(#include)(\s)(<\w*\.\w*>)', bygroups(Keyword, Whitespace,Name)),
-            (r'%}',String.Delimiter,'#pop'),
-            include('whitespace')
-        ],
         # Handle the rules section
         'rules': [
             include('whitespace'),
