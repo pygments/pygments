@@ -742,7 +742,7 @@ class FlexLexer(RegexLexer):
             (r'\\[AbBdDsSwWZ]', String.Regex),
             (r'\\.', String.Literal),
             (r'[\[\]{},\(\)]', Punctuation),
-            (r'\s+', Whitespace),
+            (r' ', Whitespace),
         ],
         # Handle strings
         'string': [
