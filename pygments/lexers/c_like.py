@@ -10,8 +10,8 @@
 
 import re
 
-from pygments.lexer import RegexLexer,using, include, bygroups, inherit, words, \
-    default, using
+from pygments.lexer import RegexLexer, using, include, bygroups, inherit, words, \
+    default, using, this
 from pygments.token import Token, Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
@@ -689,7 +689,7 @@ class FlexLexer(RegexLexer):
     tokens = {
         # Handle the definitions section
         'root': [
-            (r'(%{|%})', String.Delimiter),
+            (r'(%[{}])', String.Delimiter),
             (r'%%', String.Delimiter, 'rules'),
             (r'(#include)(\s)(<\w*\.*\w*>)', bygroups(Keyword, Whitespace, Name)),
             (r'(#define)(\s)(\w*\.*\w*)', bygroups(Keyword, Whitespace, Name)),
@@ -704,20 +704,20 @@ class FlexLexer(RegexLexer):
             (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s+)(=)', bygroups(Name.Variable, Whitespace, Operator)),
             (r'(\b[_a-zA-Z0-9][\w\-]+)(\s+)', bygroups(Name, Whitespace), 'regex'),
         ],
-
         # Handle the rules section
         'rules': [
-            include('whitespace'),
             (r'%%', String.Delimiter, ('usercode', '#pop')),
+            (r'\n', Whitespace),
+            (r'(/\*)(.)+(\*/)', Comment.Single),
+            (r'(.+?)(\s+)(.+)(\n)', bygroups(using(this, state='regex'), Whitespace, using(CLexer), Whitespace)),
         ],
         # Handle the user code section
         'usercode': [
-            (r'(.+?)', using(CLexer)),
+            (r'(.+?)', using(CLexer, state='root')),
             include('whitespace'),
         ],
         # Handle whitespace
         'whitespace': [
-            (r'%[{}]', Comment.Preproc),
             (r'\s+', Whitespace),
             (r'(/\*)(.)+(\*/)', Comment.Single),
         ],
@@ -734,6 +734,7 @@ class FlexLexer(RegexLexer):
             (r'\\[AbBdDsSwWZ]', String.Regex),
             (r'\\.', String.Literal),
             (r'[\[\]{},\(\)]', Punctuation),
+            (r'\s+', Whitespace),
         ],
         # Handle strings
         'string': [
