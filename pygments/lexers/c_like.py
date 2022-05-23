@@ -707,8 +707,8 @@ class FlexLexer(RegexLexer):
         ],
         # Handle the thing assigned to a variable
         'assign': [
-            (r'\'.*\'', String.Char, '#pop'),
-            (r'".*"', String, '#pop'),
+            (r'\'.{0,2}\'', String.Char, '#pop'),
+            (r'"', String, ('string', '#pop')),
             (r'\d+', Number.Integer, '#pop'),
             (r'\d*\.\d+', Number.Float, '#pop'),
         ],
