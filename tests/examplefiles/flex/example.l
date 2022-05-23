@@ -59,7 +59,7 @@ if|then|begin|end|procedure|function        {
 
 "{"[^}\n]*"}"     /* eat up one-line comments */
 
-[ \t\n]+          /* eat up whitespace */
+[\t\n]+          /* eat up whitespace */
 
 .           printf( "Unrecognized character: %s\n", yytext );
 
