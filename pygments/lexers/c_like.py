@@ -700,9 +700,17 @@ class FlexLexer(RegexLexer):
             (r'\\\n', Text),  # line continuation
             include('whitespace'),
             (r'[|/*+?^$.\-=]', Operator),
+            (r'[,;]', Punctuation),
             (r'(%[sx])(\s)(\w+)', bygroups(Keyword, Whitespace, Name)),
-            (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s+)(=)', bygroups(Name.Variable, Whitespace, Operator)),
+            (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s*)(=)(\s*)([^,;\s])', bygroups(Name.Variable, Whitespace, Operator, Whitespace, using(this, state='assign'))),
             (r'(\b[_a-zA-Z0-9][\w\-]+)(\s+)', bygroups(Name, Whitespace), 'regex'),
+        ],
+        # Handle the thing assigned to a variable
+        'assign': [
+            (r'\'.*\'', String.Char, '#pop'),
+            (r'".*"', String, '#pop'),
+            (r'\d+', Number.Integer, '#pop'),
+            (r'\d*\.\d+', Number.Float, '#pop'),
         ],
         # Handle the rules section
         'rules': [
@@ -713,7 +721,7 @@ class FlexLexer(RegexLexer):
         ],
         # Handle the user code section
         'usercode': [
-            (r'(.+?)', using(CLexer, state='root')),
+            (r'(.+?)', using(CLexer)),
             include('whitespace'),
         ],
         # Handle whitespace
