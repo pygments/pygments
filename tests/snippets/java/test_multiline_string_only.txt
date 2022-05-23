@@ -1,0 +1,46 @@
+---input---
+	    String source = """
+public class Quine {
+	public static void main(String[] args) {
+		String textBlockQuotes = new String(new char[]{'"', '"', '"'});
+		char newLine = 10;
+		String teststringinside = "hello my name is...\n\r";
+		String source = %s;
+		System.out.println(source.formatted(textBlockQuotes + newLine + source + textBlockQuotes));
+	}
+}
+""";
+        
+
+---tokens---
+'\t    '      Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'source'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\n'       Literal.String
+
+"public class Quine {\n\tpublic static void main(String[] args) {\n\t\tString textBlockQuotes = new String(new char[]{'" Literal.String
+'"'           Literal.String
+"', '"        Literal.String
+'"'           Literal.String
+"', '"        Literal.String
+'"'           Literal.String
+"'});\n\t\tchar newLine = 10;\n\t\tString teststringinside = " Literal.String
+'"'           Literal.String
+'hello my name is...' Literal.String
+'\\'          Literal.String
+'n'           Literal.String
+'\\'          Literal.String
+'r'           Literal.String
+'"'           Literal.String
+';\n\t\tString source = %s;\n\t\tSystem.out.println(source.formatted(textBlockQuotes + newLine + source + textBlockQuotes));\n\t}\n}\n' Literal.String
+
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'\n'          Text.Whitespace

@@ -1,21 +1,23 @@
-self.languagePluginUrl = '/_static/pyodide/';
 importScripts('/_static/pyodide/pyodide.js');
 
-(async function() {
-    await languagePluginLoader;
+async function loadPyodideAndPygments() {
+    self.pyodide = await loadPyodide();
     await self.pyodide.loadPackage(["Pygments"]);
     const styles = self.pyodide.runPython(`
         from pygments.formatters.html import HtmlFormatter
         from pygments.styles import STYLE_MAP
         {s: HtmlFormatter(style=s).get_style_defs('.demo-highlight') for s in STYLE_MAP}
-    `);
+    `).toJs();
     self.postMessage({loaded: {styles}})
-})();
+}
+let pyodideReadyPromise = loadPyodideAndPygments();
 
 self.onmessage = async (event) => {
+    // Make sure loading is done.
+    await pyodideReadyPromise;
     if (event.data.highlight) {
-        self.pyodide.globals['code'] = event.data.highlight.code;
-        self.pyodide.globals['lexer_name'] = event.data.highlight.lexer;
+        self.pyodide.globals.set('code', event.data.highlight.code);
+        self.pyodide.globals.set('lexer_name', event.data.highlight.lexer);
 
         self.pyodide.runPython(`
             import pygments.lexers
@@ -40,14 +42,14 @@ self.onmessage = async (event) => {
             `);
             self.postMessage({html});
         } else if (formatter == 'tokens') {
-            const tokens = self.pyodide.runPython('list(tokens)');
+            const tokens = self.pyodide.runPython('list(tokens)').toJs();
             self.postMessage({tokens});
         } else {
             console.warn('unknown formatter:', formatter);
         }
     } else if (event.data.guess_lexer) {
-        self.pyodide.globals['code'] = event.data.guess_lexer.code;
-        self.pyodide.globals['filename'] = event.data.guess_lexer.filename;
+        self.pyodide.globals.set('code', event.data.guess_lexer.code);
+        self.pyodide.globals.set('filename', event.data.guess_lexer.filename);
         const lexer = self.pyodide.runPython(`
             import sys
             sys.setrecursionlimit(1000)

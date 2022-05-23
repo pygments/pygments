@@ -7,17 +7,36 @@ Version 2.13.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Ada: support Ada 2022 (#2121)
+  * Java: support multiline strings aka. text blocks (#2132)
+  * Kotlin: add ``value`` modifier (#2142)
+  * Macaulay2: update builtins (#2139)
+  * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
+
+- The ``HtmlFormatter`` now uses the ``linespans`` attribute for
+  ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
+- The ``highlight``, ``lex`` and ``format`` functions no longer
+  wrongly report "argument must be a lexer/formatter instance, not a
+  class" in some cases where this is not the actual problem (#2123).
+- Fixed warnings in doc build (#2124).
+
 Version 2.12.0
 --------------
 (released April 24th, 2022)
 
 - Added lexers:
 
+  * Berry (#2070)
   * Cplint (#2045)
   * Macaulay2 (#1791)
+  * MCFunction (#2107)
   * Minecraft (#2107)
   * Qlik (#1925)
   * ``UnixConfigLexer`` for "colon-separated" config files, like ``/etc/passwd`` (#2112)
+  * Uxntal (#2086)
+  * K and Q (#2073)
 
 - Updated lexers:
 
@@ -27,24 +46,30 @@ Version 2.12.0
   * Csound: Update to 6.17 (#2064)
   * CSS: Update the list of properties (#2113)
   * Elpi:
-  
+
     - Fix catastrophic backtracking (#2053, #2061)
     - Fix handling of ``->`` (#2028)
 
   * Futhark: Add missing tokens (#2118)
   * Gherkin: Add ``But`` (#2046)
   * Inform6: Update to 6.36 (#2050)
+  * Jinja2: add ``.xxx.j2`` and ``.xxx.jinja2`` to relevant lexers
+    (for ``xxx`` = ``html``, ``xml``, etc.) (#2103)
   * JSON: Support C comments in JSON (#2049). Note: This doesn't mean the JSON parser now supports JSONC or JSON5 proper, just that it doesn't error out when seeing a ``/* */`` or ``//`` style comment. If you need proper comment handling, consider using the ``JavaScript`` lexer.
   * LilyPond:
-  
+
     - Fix incorrect lexing of names containing a built-in (#2071)
     - Fix properties containing dashes (#2099)
 
   * PHP: Update builtin function and keyword list (#2054, #2056)
+  * Python: highlight ``EncodingWarning`` (#2106)
+  * Savi: fix highlighting for underscore/private identifiers,
+    add string interpolation (#2102); fix nested type name highlighting
+    (#2110)
   * Scheme: Various improvements (#2060)
   * Spice: Update the keyword list, add new types (#2063, #2067)
   * Terraform:
-  
+
     - Support non-idiomatic comments (#2065, #2066)
     - Fix class name lexing (#2097)
 

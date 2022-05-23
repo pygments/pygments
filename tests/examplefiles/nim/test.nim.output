@@ -55,7 +55,7 @@
 ']'           Operator
 '\n\n'        Text
 
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'What'        Literal.String
@@ -70,7 +70,7 @@
 'name'        Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name.Builtin
 ' '           Text
 '='           Operator
 ' '           Text
@@ -122,7 +122,7 @@
 'else'        Keyword
 ':'           Punctuation
 '\n  '        Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'Hi, '        Literal.String
@@ -187,7 +187,7 @@
 'else'        Keyword
 ':'           Punctuation
 '\n  '        Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'Hi, '        Literal.String
@@ -212,7 +212,7 @@
 'parseInt'    Name
 '\n\n'        Text
 
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'A number please: ' Literal.String
@@ -252,7 +252,7 @@
 '7'           Literal.Number.Integer
 ':'           Punctuation
 ' '           Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'The number is in the set: {0, 1, 2, 4, 5, 6, 7}' Literal.String
@@ -268,7 +268,7 @@
 '8'           Literal.Number.Integer
 ':'           Punctuation
 ' '           Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'The number is 3 or 8' Literal.String
@@ -276,7 +276,7 @@
 ')'           Punctuation
 '\n\n'        Text
 
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'Counting to 10: ' Literal.String
@@ -303,7 +303,7 @@
 '10'          Literal.Number.Integer
 ':'           Punctuation
 '\n  '        Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '$'           Operator
 'i'           Name
@@ -321,15 +321,15 @@
 'question'    Name
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 'question'    Name
 ','           Punctuation
@@ -406,7 +406,7 @@
 'else'        Keyword
 ':'           Punctuation
 ' '           Text
-'Echo'        Name
+'echo'        Name
 '('           Punctuation
 '"'           Literal.String
 'Please be clear: yes or no' Literal.String
@@ -420,11 +420,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 '\n\n'        Text
 
 'proc '       Keyword
@@ -433,11 +433,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -478,11 +478,11 @@
 'b'           Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 ' '           Text
 '='           Operator
 '\n  '        Text
@@ -530,14 +530,14 @@
 '*'           Operator
 ':'           Punctuation
 ' '           Text
-'string'      Keyword.Type
+'string'      Name.Builtin
 '  '          Text
 '# the * means that `name` is accessible from other modules' Comment
 '\n    '      Text
 'age'         Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 '       '     Text
 '# no * means that the field is hidden from other modules' Comment
 '\n\n  '      Text
@@ -556,7 +556,7 @@
 'id'          Name
 ':'           Punctuation
 ' '           Text
-'int'         Keyword.Type
+'int'         Name.Builtin
 '                    ' Text
 '# with an id field' Comment
 '\n\n'        Text
@@ -743,4 +743,68 @@
 '('           Punctuation
 'f'           Name
 ')'           Punctuation
+'\n\n\n'      Text
+
+'let'         Keyword
+'\n  '        Text
+'aaa'         Name
+':'           Punctuation
+' '           Text
+'string'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'aaa'         Literal.String
+'"'           Literal.String
+'\n  '        Text
+'bbb'         Name
+':'           Punctuation
+' '           Text
+'int'         Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n  '        Text
+'ccc'         Name
+':'           Punctuation
+' '           Text
+'seq'         Name.Builtin
+'['           Operator
+'char'        Name.Builtin
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'@'           Operator
+'['           Operator
+"'"           Literal.String.Char
+'a'           Literal.String.Char
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text
+"'"           Literal.String.Char
+'b'           Literal.String.Char
+"'"           Literal.String.Char
+']'           Operator
+'\n  '        Text
+'ddd'         Name
+':'           Punctuation
+' '           Text
+'float32'     Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'43'          Literal.Number.Float
+'.21'         Literal.Number.Float
+'\n  '        Text
+'eee'         Name
+':'           Punctuation
+' '           Text
+'bool'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Pseudo
 '\n'          Text
