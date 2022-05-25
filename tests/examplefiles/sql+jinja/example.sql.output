@@ -1,113 +1,112 @@
-'SELECT'      Keyword
-'\n    '      Text.Whitespace
-'widget_id'   Name
+'{%'          Comment.Preproc
+'- '          Text
+'set'         Keyword
+' '           Text
+'payment_methods' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+'"bank_transfer"' Literal.String.Double
+','           Operator
+' '           Text
+'"credit_card"' Literal.String.Double
+','           Operator
+' '           Text
+'"gift_card"' Literal.String.Double
+']'           Operator
+' '           Text
+'-'           Text
+'%}'          Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'select'      Keyword
+'\n  '        Text.Whitespace
+'order_id'    Name
 ','           Punctuation
-'\n    '      Text.Whitespace
-'widget_name' Name
-','           Punctuation
-'\n    '      Text.Whitespace
-'widget_desc' Name
-','           Punctuation
-'\n    '      Text.Whitespace
-'updated_date' Name
-','           Punctuation
-'\n    '      Text.Whitespace
-'ROW_NUMBER'  Name
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+'- '          Text
+'for'         Keyword
+' '           Text
+'payment_method' Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'payment_methods' Name.Variable
+' '           Text
+'%}'          Comment.Preproc
+'\n  '        Text.Whitespace
+'sum'         Keyword
 '('           Punctuation
+'case'        Keyword
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'payment_method' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'{{'          Comment.Preproc
+'payment_method' Name.Variable
+'}}'          Comment.Preproc
+"'"           Literal.String.Single
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'amount'      Name
+' '           Text.Whitespace
+'end'         Keyword
 ')'           Punctuation
 ' '           Text.Whitespace
-'OVER'        Name
+'as'          Keyword
 ' '           Text.Whitespace
-'('           Punctuation
-'\n        '  Text.Whitespace
-'PARTITION'   Name
-' '           Text.Whitespace
-'BY'          Keyword
-' '           Text.Whitespace
-'widget_id'   Name
+'{{'          Comment.Preproc
+'payment_method' Name.Variable
+'}}'          Comment.Preproc
+'_amount'     Name
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+'- '          Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'loop'        Name.Builtin
+'.last'       Name.Variable
+' '           Text
+'%}'          Comment.Preproc
 ','           Punctuation
-' '           Text.Whitespace
-'widget_name' Name
-','           Punctuation
-' '           Text.Whitespace
-'widget_desc' Name
-'\n        '  Text.Whitespace
-'ORDER'       Keyword
-' '           Text.Whitespace
-'BY'          Keyword
-' '           Text.Whitespace
-'updated_date' Name
-' '           Text.Whitespace
-'DESC'        Keyword
-'\n    '      Text.Whitespace
-')'           Punctuation
-' '           Text.Whitespace
-'AS'          Keyword
-' '           Text.Whitespace
-'recency_rank' Name
-','           Punctuation
-' '           Text.Whitespace
-'/*'          Comment.Multiline
-' filter `recency_rank = 1` to get only latest records ' Comment.Multiline
-'*/'          Comment.Multiline
-'\n    '      Text.Whitespace
-'ROW_NUMBER'  Name
-'('           Punctuation
-')'           Punctuation
-' '           Text.Whitespace
-'OVER'        Name
-' '           Text.Whitespace
-'('           Punctuation
-'\n        '  Text.Whitespace
-'PARTITION'   Name
-' '           Text.Whitespace
-'BY'          Keyword
-' '           Text.Whitespace
-'widget_id'   Name
-','           Punctuation
-' '           Text.Whitespace
-'widget_name' Name
-','           Punctuation
-' '           Text.Whitespace
-'widget_desc' Name
-','           Punctuation
-' '           Text.Whitespace
-'updated_date' Name
-'\n        '  Text.Whitespace
-'ORDER'       Keyword
-' '           Text.Whitespace
-'BY'          Keyword
-' '           Text.Whitespace
-'updated_date' Name
-' '           Text.Whitespace
-'DESC'        Keyword
-'\n    '      Text.Whitespace
-')'           Punctuation
-' '           Text.Whitespace
-'AS'          Keyword
-' '           Text.Whitespace
-'dedupe_rank' Name
-' '           Text.Whitespace
-'/*'          Comment.Multiline
-' filter `dedupe_rank = 1` to get only unique records ' Comment.Multiline
-'*/'          Comment.Multiline
+'{%'          Comment.Preproc
+' '           Text
+'endif'       Keyword
+' '           Text
+'-'           Text
+'%}'          Comment.Preproc
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+' '           Text
+'endfor'      Keyword
+' '           Text
+'%}'          Comment.Preproc
 '\n'          Text.Whitespace
 
-'FROM'        Keyword
+'from'        Keyword
 ' '           Text.Whitespace
 '{{'          Comment.Preproc
 ' '           Text
-'source'      Name.Variable
+'ref'         Name.Variable
 '('           Operator
-"'tap_widgets'" Literal.String.Single
-','           Operator
-' '           Text
-"'widgets'"   Literal.String.Single
+"'raw_payments'" Literal.String.Single
 ')'           Operator
 ' '           Text
 '}}'          Comment.Preproc
+'\n'          Text.Whitespace
+
+'group'       Keyword
 ' '           Text.Whitespace
-'AS'          Keyword
+'by'          Keyword
 ' '           Text.Whitespace
-'raw'         Name
+'1'           Literal.Number.Integer
 '\n'          Text.Whitespace
