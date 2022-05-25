@@ -18,6 +18,7 @@ from pygments.lexers.python import PythonLexer
 from pygments.lexers.perl import PerlLexer
 from pygments.lexers.jvm import JavaLexer, TeaLangLexer
 from pygments.lexers.data import YamlLexer
+from pygments.lexers.sql import SqlLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
     include, using, this, default, combined
 from pygments.token import Error, Punctuation, Whitespace, \
@@ -43,7 +44,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
-           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer']
+           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer',
+           'SqlJinjaLexer']
 
 
 class ErbLexer(Lexer):
@@ -2264,3 +2266,18 @@ class Angular2HtmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, Angular2Lexer, **options)
+
+
+class SqlJinjaLexer(DelegatingLexer):
+    """
+    Templated SQL lexer.
+
+    .. versionadded:: 2.13
+    """
+
+    name = 'SQL+Jinja'
+    aliases = ['sql+jinja']
+    filenames = ['*.sql']
+
+    def __init__(self, **options):
+        super().__init__(SqlLexer, DjangoLexer, **options)

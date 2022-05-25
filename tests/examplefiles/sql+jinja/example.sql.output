@@ -1,0 +1,113 @@
+'SELECT'      Keyword
+'\n    '      Text.Whitespace
+'widget_id'   Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'widget_name' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'widget_desc' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'updated_date' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'ROW_NUMBER'  Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'OVER'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'PARTITION'   Name
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'widget_id'   Name
+','           Punctuation
+' '           Text.Whitespace
+'widget_name' Name
+','           Punctuation
+' '           Text.Whitespace
+'widget_desc' Name
+'\n        '  Text.Whitespace
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'updated_date' Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n    '      Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'recency_rank' Name
+','           Punctuation
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+' filter `recency_rank = 1` to get only latest records ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n    '      Text.Whitespace
+'ROW_NUMBER'  Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'OVER'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'PARTITION'   Name
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'widget_id'   Name
+','           Punctuation
+' '           Text.Whitespace
+'widget_name' Name
+','           Punctuation
+' '           Text.Whitespace
+'widget_desc' Name
+','           Punctuation
+' '           Text.Whitespace
+'updated_date' Name
+'\n        '  Text.Whitespace
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'updated_date' Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n    '      Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'dedupe_rank' Name
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+' filter `dedupe_rank = 1` to get only unique records ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'FROM'        Keyword
+' '           Text.Whitespace
+'{{'          Comment.Preproc
+' '           Text
+'source'      Name.Variable
+'('           Operator
+"'tap_widgets'" Literal.String.Single
+','           Operator
+' '           Text
+"'widgets'"   Literal.String.Single
+')'           Operator
+' '           Text
+'}}'          Comment.Preproc
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'raw'         Name
+'\n'          Text.Whitespace
