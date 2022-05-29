@@ -2,9 +2,11 @@
     pygments.plugin
     ~~~~~~~~~~~~~~~
 
-    Pygments setuptools plugin interface. The methods defined
-    here also work if setuptools isn't installed but they just
-    return nothing.
+    Pygments plugin interface. By default, this tries to use
+    ``importlib.metadata``, which is in the Python standard
+    library since Python 3.8. It falls back on ``pkg_resources``
+    if not found. Finally, if ``pkg_resources`` is not found
+    either, no plugins are loaded at all.
 
     lexer plugins::
 
@@ -42,11 +44,21 @@ FILTER_ENTRY_POINT = 'pygments.filters'
 
 def iter_entry_points(group_name):
     try:
-        import pkg_resources
-    except (ImportError, OSError):
-        return []
-
-    return pkg_resources.iter_entry_points(group_name)
+        from importlib.metadata import entry_points
+    except ImportError:
+        try:
+            from importlib_metadata import entry_points
+        except ImportError:
+            try:
+                from pkg_resources import iter_entry_points
+            except (ImportError, OSError):
+                return []
+            else:
+                return iter_entry_points(group_name)
+        else:
+            return entry_points(group=group_name)
+    else:
+        return entry_points(group=group_name)
 
 
 def find_plugin_lexers():
