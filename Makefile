@@ -39,8 +39,7 @@ docs:
 	make -C doc html
 
 mapfiles:
-	(cd pygments/formatters; $(PYTHON) _mapping.py)
-	(cd pygments/lexers; $(PYTHON) _mapping.py)
+	$(PYTHON) scripts/gen_mapfiles.py
 
 pylint:
 	@pylint --rcfile scripts/pylintrc pygments
