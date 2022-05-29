@@ -56,9 +56,9 @@ def iter_entry_points(group_name):
             else:
                 return iter_entry_points(group_name)
         else:
-            return entry_points(group=group_name)
+            return entry_points().get(group_name, [])
     else:
-        return entry_points(group=group_name)
+        return entry_points().get(group_name, [])
 
 
 def find_plugin_lexers():
