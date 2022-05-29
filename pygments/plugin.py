@@ -36,6 +36,9 @@
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from warnings import filterwarnings
+
 LEXER_ENTRY_POINT = 'pygments.lexers'
 FORMATTER_ENTRY_POINT = 'pygments.formatters'
 STYLE_ENTRY_POINT = 'pygments.styles'
@@ -43,6 +46,8 @@ FILTER_ENTRY_POINT = 'pygments.filters'
 
 
 def iter_entry_points(group_name):
+    # We can use .select() when we no longer support Python 3.9.
+    filterwarnings('ignore', 'SelectableGroups dict interface is deprecated. Use select.', DeprecationWarning)
     try:
         from importlib.metadata import entry_points
     except ImportError:
