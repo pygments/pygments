@@ -242,7 +242,7 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         lexer_name_url = []
         for entry in all_lexers:
             lexer_cls = pygments.lexers.find_lexer_class(entry[0])
-            lexer_name_url.append({'name': entry[1], 'url': lexer_cls.url})
+            lexer_name_url.append({'name': entry[0], 'url': lexer_cls.url})
         ctx['languages'] = lexer_name_url
 
     if pagename in ('styles', 'demo'):
@@ -252,6 +252,7 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         min_contrasts = test_contrasts.min_contrasts()
         ctx['styles_aa'] = []
         ctx['styles_sub_aa'] = []
+        # Use STYLE_MAP directly so we don't get plugins as with get_all_styles().
         for style in pygments.styles.STYLE_MAP:
             if not pygments.styles.get_style_by_name(style).web_style_gallery_exclude:
                 aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
