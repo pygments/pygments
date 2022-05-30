@@ -51,7 +51,7 @@ class CFamilyLexer(RegexLexer):
     _comment_multiline = r'/(?:\\\n)?[*](?:[^*]|[*](?!(?:\\\n)?/))*[*](?:\\\n)?/'
 
     # Regex to match optional comments
-    _possible_comments = r'(?:(?:' + _comment_single + r')|(?:' + _comment_multiline + r')|\s+)*'
+    _possible_comments = rf'\s*(?:(?:(?:{_comment_single})|(?:{_comment_multiline}))\s*)*'
 
     tokens = {
         'whitespace': [
