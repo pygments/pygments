@@ -76,11 +76,6 @@ class CFamilyLexer(RegexLexer):
             # Open until EOF, so no ending delimiter
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
-        'comments': [
-            (_comment_single, Comment.Single),
-            (_comment_multiline, Comment.Multiline),
-            (r'\s+', Whitespace),
-        ],
         'statements': [
             include('keywords'),
             include('types'),
@@ -140,8 +135,8 @@ class CFamilyLexer(RegexLexer):
              r'(\([^;]*?\))'                          # signature
              r'(' + _possible_comments + r')'    # possible comments
              r'([^;{/]*)(\{)',
-             bygroups(using(this), using(this, state='comments'), Name.Function, using(this, state='comments'), 
-                      using(this), using(this, state='comments'), using(this), Punctuation),
+             bygroups(using(this), using(this, state='whitespace'), Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'), using(this), Punctuation),
              'function'),
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
@@ -151,8 +146,8 @@ class CFamilyLexer(RegexLexer):
              r'(\([^;]*?\))'                          # signature
              r'(' + _possible_comments + r')'    # possible comments
              r'([^;/]*)(;)',
-             bygroups(using(this), using(this, state='comments'), Name.Function, using(this, state='comments'), 
-                      using(this), using(this, state='comments'), using(this), Punctuation)),
+             bygroups(using(this), using(this, state='whitespace'), Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'), using(this), Punctuation)),
             include('types'),
             default('statement'),
         ],

@@ -2213,7 +2213,9 @@
 ' '           Text.Whitespace
 'size'        Name
 ')'           Punctuation
-'\n    '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'register'    Keyword
 ' '           Text.Whitespace
 'VALUE'       Name
@@ -2758,7 +2760,9 @@
 '('           Punctuation
 'klass'       Name
 ')'           Punctuation
-'\n    '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
 'klass'       Name
@@ -4441,7 +4445,9 @@
 ' '           Text.Whitespace
 'ary'         Name
 ')'           Punctuation
-'\n    '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
 'argc'        Name
@@ -11292,7 +11298,9 @@
 ' '           Text.Whitespace
 'recur'       Name
 ')'           Punctuation
-'\n    '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
 'ary'         Name
@@ -12859,7 +12867,9 @@
 '('           Punctuation
 'data'        Name
 ')'           Punctuation
-'\n    '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 'struct'      Keyword
 ' '           Text.Whitespace
 'ary_sort_data' Name.Class
