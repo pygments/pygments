@@ -241,9 +241,9 @@ class CFamilyLexer(RegexLexer):
         self.platformhighlighting = get_bool_opt(options, 'platformhighlighting', True)
         RegexLexer.__init__(self, **options)
 
-    def get_tokens_unprocessed(self, text):
+    def get_tokens_unprocessed(self, text, stack=('root',)):
         for index, token, value in \
-                RegexLexer.get_tokens_unprocessed(self, text):
+                RegexLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name:
                 if self.stdlibhighlighting and value in self.stdlib_types:
                     token = Keyword.Type
