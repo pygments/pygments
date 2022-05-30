@@ -46,8 +46,6 @@ FILTER_ENTRY_POINT = 'pygments.filters'
 
 
 def iter_entry_points(group_name):
-    # We can use .select() when we no longer support Python 3.9.
-    filterwarnings('ignore', 'SelectableGroups dict interface is deprecated. Use select.', DeprecationWarning)
     try:
         from importlib.metadata import entry_points
     except ImportError:
@@ -60,10 +58,15 @@ def iter_entry_points(group_name):
                 return []
             else:
                 return iter_entry_points(group_name)
-        else:
-            return entry_points().get(group_name, [])
+    groups = entry_points()
+    if hasattr(groups, 'select'):
+        # New interface in Python 3.10 and newer versions of the
+        # importlib_metadata backport.
+        return groups.select(group=group_name)
     else:
-        return entry_points().get(group_name, [])
+        # Older interface, deprecated in Python 3.10 and recent
+        # importlib_metadata, but we need it in Python 3.8 and 3.9.
+        return groups.get(group_name, [])
 
 
 def find_plugin_lexers():
