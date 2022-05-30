@@ -19,21 +19,6 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 __all__ = ['CLexer', 'CppLexer']
 
 
-class CFamilyComments(RegexLexer):
-    """
-    For C family source code, this lexer sparates single and multiline comments
-    from an input which contains a mix.
-    """
-    tokens = {
-        'root': [
-            (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
-            (r'\n', Whitespace),    # parser below separates newline tokens
-            (r'\s+', Whitespace),
-        ]
-    }
-
-
 class CFamilyLexer(RegexLexer):
     """
     For C family source code.  This is used as a base class to avoid repetitious
@@ -56,7 +41,14 @@ class CFamilyLexer(RegexLexer):
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
     _ident = r'(?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+'
     _namespaced_ident = r'(?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)+'
-
+    
+    # Single and multiline comment regexes
+    _comment_single = r'//(?:\n|[\w\W]*?[^\\]\n)'
+    _comment_multiline = r'/(?:\\\n)?[*][\w\W]*?[*](?:\\\n)?/'
+    
+    # Regex to match optional comments
+    _possible_comments = r'(?:(?:' + _comment_single + r')|(?:' + _comment_multiline + r')|\s+)*'
+    
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
@@ -75,10 +67,16 @@ class CFamilyLexer(RegexLexer):
             (r'\n', Whitespace),
             (r'[^\S\n]+', Whitespace),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
+            (_comment_single, Comment.Single),
+            (_comment_multiline, Comment.Multiline),
             # Open until EOF, so no ending delimiter
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
+        ],
+        'comments': [
+            (_comment_single, Comment.Single),
+            (_comment_multiline, Comment.Multiline),
+            (r'\n', Whitespace),    # lexer separates newline tokens
+            (r'\s+', Whitespace),
         ],
         'statements': [
             include('keywords'),
@@ -133,25 +131,25 @@ class CFamilyLexer(RegexLexer):
             include('keywords'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'(' + _namespaced_ident + r')'             # method name
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'(\([^;]*?\))'                          # signature
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s*?)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'([^;{/]*)(\{)',
-             bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
-                      using(this), using(CFamilyComments), using(this), Punctuation),
+             bygroups(using(this), using(this, state='comments'), Name.Function, using(this, state='comments'), 
+                      using(this), using(this, state='comments'), using(this), Punctuation),
              'function'),
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'(' + _namespaced_ident + r')'             # method name
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'(\([^;]*?\))'                          # signature
-             r'((?:(?://.*?\n)|(?:/[*][\w\W]*?[*]/)|\s+)*)'    # possible comments
+             r'(' + _possible_comments + r')'    # possible comments
              r'([^;/]*)(;)',
-             bygroups(using(this), using(CFamilyComments), Name.Function, using(CFamilyComments), 
-                      using(this), using(CFamilyComments), using(this), Punctuation)),
+             bygroups(using(this), using(this, state='comments'), Name.Function, using(this, state='comments'), 
+                      using(this), using(this, state='comments'), using(this), Punctuation)),
             include('types'),
             default('statement'),
         ],
