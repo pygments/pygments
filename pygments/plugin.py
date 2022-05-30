@@ -4,9 +4,10 @@
 
     Pygments plugin interface. By default, this tries to use
     ``importlib.metadata``, which is in the Python standard
-    library since Python 3.8. It falls back on ``pkg_resources``
-    if not found. Finally, if ``pkg_resources`` is not found
-    either, no plugins are loaded at all.
+    library since Python 3.8, or its ``importlib_metadata``
+    backport for earlier versions of Python. It falls back on
+    ``pkg_resources`` if not found. Finally, if ``pkg_resources``
+    is not found either, no plugins are loaded at all.
 
     lexer plugins::
 
