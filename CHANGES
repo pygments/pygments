@@ -10,6 +10,9 @@ Version 2.13.0
 - Updated lexers:
 
   * Ada: support Ada 2022 (#2121)
+  * C family (C, C++ and many others): allow comments between
+    elements of function headers, e.g. between the arguments and
+    the opening brace for the body (#1891)
   * Java: support multiline strings aka. text blocks (#2132)
   * Kotlin: add ``value`` modifier (#2142)
   * Macaulay2: update builtins (#2139)
