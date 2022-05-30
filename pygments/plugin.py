@@ -38,8 +38,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from warnings import filterwarnings
-
 LEXER_ENTRY_POINT = 'pygments.lexers'
 FORMATTER_ENTRY_POINT = 'pygments.formatters'
 STYLE_ENTRY_POINT = 'pygments.styles'
