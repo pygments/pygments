@@ -139,6 +139,7 @@ html_additional_pages = {
 
 if os.environ.get('WEBSITE_BUILD'):
     html_additional_pages['demo'] = 'demo.html'
+    html_static_path.append('_build/pyodide')
 
 # If false, no module index is generated.
 #html_domain_indices = True

@@ -38,7 +38,7 @@ def lex(code, lexer):
     """
     try:
         return lexer.get_tokens(code)
-    except TypeError as err:
+    except TypeError:
         # Heuristic to catch a common mistake.
         from pygments.lexer import RegexLexer
         if isinstance(lexer, type) and issubclass(lexer, RegexLexer):
@@ -62,7 +62,7 @@ def format(tokens, formatter, outfile=None):  # pylint: disable=redefined-builti
             return realoutfile.getvalue()
         else:
             formatter.format(tokens, outfile)
-    except TypeError as err:
+    except TypeError:
         # Heuristic to catch a common mistake.
         from pygments.formatter import Formatter
         if isinstance(formatter, type) and issubclass(formatter, Formatter):
