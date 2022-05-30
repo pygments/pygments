@@ -79,7 +79,6 @@ class CFamilyLexer(RegexLexer):
         'comments': [
             (_comment_single, Comment.Single),
             (_comment_multiline, Comment.Multiline),
-            (r'\n', Whitespace),    # lexer separates newline tokens
             (r'\s+', Whitespace),
         ],
         'statements': [
