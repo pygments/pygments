@@ -10,8 +10,7 @@
 """
 
 from pygments.style import Style
-from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Whitespace, Punctuation
+from pygments.token import Keyword, Name, Comment, String, Error, Number, Operator, Generic, Whitespace, Punctuation, Text
 
 
 class NordStyle(Style):
@@ -78,5 +77,6 @@ class NordStyle(Style):
         Generic.Output:             '#d8dee9',
         Generic.Traceback:          '#bf616a',
 
-        Error:                      '#bf616a'
+        Error:                      '#bf616a',
+        Text:                       '#d8dee9',
     }
