@@ -41,14 +41,18 @@ class CFamilyLexer(RegexLexer):
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
     _ident = r'(?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+'
     _namespaced_ident = r'(?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)+'
-    
+
     # Single and multiline comment regexes
-    _comment_single = r'//(?:\n|[\w\W]*?[^\\]\n)'
-    _comment_multiline = r'/(?:\\\n)?[*][\w\W]*?[*](?:\\\n)?/'
-    
+    # Beware not to use *? for the inner content! When these regexes
+    # are embedded in larger regexes, that can cause the stuff*? to
+    # match more than it would have if the regex had been used in
+    # a standalone way ...
+    _comment_single = r'//(?:.|(?<=\\)\n)*\n'
+    _comment_multiline = r'/(?:\\\n)?[*](?:[^*]|[*](?!(?:\\\n)?/))*[*](?:\\\n)?/'
+
     # Regex to match optional comments
     _possible_comments = r'(?:(?:' + _comment_single + r')|(?:' + _comment_multiline + r')|\s+)*'
-    
+
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
