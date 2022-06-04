@@ -17,6 +17,7 @@ Version 2.13.0
   * Kotlin: add ``value`` modifier (#2142)
   * Macaulay2: update builtins (#2139)
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
+  * Tcl: support ``${name}`` variables (#2145)
 
 - The ``HtmlFormatter`` now uses the ``linespans`` attribute for
   ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
