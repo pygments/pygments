@@ -2277,7 +2277,24 @@ class SqlJinjaLexer(DelegatingLexer):
 
     name = 'SQL+Jinja'
     aliases = ['sql+jinja']
-    filenames = ['*.sql']
+    filenames = ['*.sql', '*.sql.j2', '*.sql.jinja2']
 
     def __init__(self, **options):
         super().__init__(SqlLexer, DjangoLexer, **options)
+
+    def analyse_text(text):
+        rv = 0.0
+        # dbt's ref function
+        if re.search(r'\{\{\s*ref\(.*\)\s*\}\}', text):
+            rv += 0.4
+        # dbt's source function
+        if re.search(r'\{\{\s*source\(.*\)\s*\}\}', text):
+            rv += 0.25
+        # Jinja macro
+        if re.search(
+            r'\{%-?\s*macro \w+\(.*\)\s*-?%\}\s+.*\s+\{%-?\s*endmacro\s*-?%\}',
+            text,
+            re.S,
+        ):
+            rv += 0.15
+        return rv
