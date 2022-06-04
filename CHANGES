@@ -7,6 +7,10 @@ Version 2.13.0
 --------------
 (not released yet)
 
+- Added lexers:
+
+  * Sql+Jinja (#2148)
+
 - Updated lexers:
 
   * Ada: support Ada 2022 (#2121)
@@ -19,12 +23,33 @@ Version 2.13.0
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
   * Tcl: support ``${name}`` variables (#2145)
 
+- Pygments now tries to use the ``importlib.metadata`` module to
+  discover plugins instead of the slower ``pkg_resources``.  In
+  particular, this largely speeds up the ``pygmentize`` script when
+  the lexer is not specified.
+
+  ``importlib.metadata`` is only available in the Python standard
+  library since Python 3.8. For older versions, there exists an
+  ``importlib_metadata`` backport on PyPI. For this reason, Pygments
+  now defines a packaging extra ``plugins``, which adds a requirement
+  on ``importlib_metadata`` if the Python version is older than
+  3.8. Thus, in order to install Pygments with optimal plugin
+  support even for old Python versions, you should do::
+
+     pip install pygments[plugins]
+
+  Pygments still falls back on ``pkg_resources`` if neither
+  ``importlib.metadata`` nor ``importlib_metadata`` is found, but it
+  will be slower.
+
 - The ``HtmlFormatter`` now uses the ``linespans`` attribute for
   ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
 - The ``highlight``, ``lex`` and ``format`` functions no longer
   wrongly report "argument must be a lexer/formatter instance, not a
   class" in some cases where this is not the actual problem (#2123).
 - Fixed warnings in doc build (#2124).
+- The ``codetagify`` filter now recognizes ``FIXME`` tags by default (#2150).
+
 
 Version 2.12.0
 --------------
