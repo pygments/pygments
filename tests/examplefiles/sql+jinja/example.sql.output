@@ -1,0 +1,112 @@
+'{%'          Comment.Preproc
+'- '          Text
+'set'         Keyword
+' '           Text
+'payment_methods' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+'"bank_transfer"' Literal.String.Double
+','           Operator
+' '           Text
+'"credit_card"' Literal.String.Double
+','           Operator
+' '           Text
+'"gift_card"' Literal.String.Double
+']'           Operator
+' '           Text
+'-'           Text
+'%}'          Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'select'      Keyword
+'\n  '        Text.Whitespace
+'order_id'    Name
+','           Punctuation
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+'- '          Text
+'for'         Keyword
+' '           Text
+'payment_method' Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'payment_methods' Name.Variable
+' '           Text
+'%}'          Comment.Preproc
+'\n  '        Text.Whitespace
+'sum'         Keyword
+'('           Punctuation
+'case'        Keyword
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'payment_method' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'{{'          Comment.Preproc
+'payment_method' Name.Variable
+'}}'          Comment.Preproc
+"'"           Literal.String.Single
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'amount'      Name
+' '           Text.Whitespace
+'end'         Keyword
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'{{'          Comment.Preproc
+'payment_method' Name.Variable
+'}}'          Comment.Preproc
+'_amount'     Name
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+'- '          Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'loop'        Name.Builtin
+'.last'       Name.Variable
+' '           Text
+'%}'          Comment.Preproc
+','           Punctuation
+'{%'          Comment.Preproc
+' '           Text
+'endif'       Keyword
+' '           Text
+'-'           Text
+'%}'          Comment.Preproc
+'\n  '        Text.Whitespace
+'{%'          Comment.Preproc
+' '           Text
+'endfor'      Keyword
+' '           Text
+'%}'          Comment.Preproc
+'\n'          Text.Whitespace
+
+'from'        Keyword
+' '           Text.Whitespace
+'{{'          Comment.Preproc
+' '           Text
+'ref'         Name.Variable
+'('           Operator
+"'raw_payments'" Literal.String.Single
+')'           Operator
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text.Whitespace
+
+'group'       Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace

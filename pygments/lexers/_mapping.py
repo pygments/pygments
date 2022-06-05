@@ -451,6 +451,7 @@ LEXERS = {
     'SourcesListLexer': ('pygments.lexers.installers', 'Debian Sourcelist', ('debsources', 'sourceslist', 'sources.list'), ('sources.list',), ()),
     'SparqlLexer': ('pygments.lexers.rdf', 'SPARQL', ('sparql',), ('*.rq', '*.sparql'), ('application/sparql-query',)),
     'SpiceLexer': ('pygments.lexers.spice', 'Spice', ('spice', 'spicelang'), ('*.spice',), ('text/x-spice',)),
+    'SqlJinjaLexer': ('pygments.lexers.templates', 'SQL+Jinja', ('sql+jinja',), ('*.sql', '*.sql.j2', '*.sql.jinja2'), ()),
     'SqlLexer': ('pygments.lexers.sql', 'SQL', ('sql',), ('*.sql',), ('text/x-sql',)),
     'SqliteConsoleLexer': ('pygments.lexers.sql', 'sqlite3con', ('sqlite3',), ('*.sqlite3-console',), ('text/x-sqlite3-console',)),
     'SquidConfLexer': ('pygments.lexers.configs', 'SquidConf', ('squidconf', 'squid.conf', 'squid'), ('squid.conf',), ('text/x-squidconf',)),
