@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Whitespace
 
 __all__ = ['CoqLexer', 'IsabelleLexer', 'LeanLexer']
 
@@ -305,9 +305,9 @@ class IsabelleLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\(\*', Comment, 'comment'),
-            (r'\{\*', Comment, 'text'),
+            (r'\{\*|‹', Text, 'text'),
 
             (words(operators), Operator),
             (words(proof_operators), Operator.Word),
@@ -340,17 +340,15 @@ class IsabelleLexer(RegexLexer):
 
             (r'\\<\w*>', Text.Symbol),
 
-            (r"[^\W\d][.\w']*", Name),
-            (r"\?[^\W\d][.\w']*", Name),
             (r"'[^\W\d][.\w']*", Name.Type),
 
-            (r'\d[\d_]*', Name),  # display numbers as name
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
             (r'0[bB][01][01_]*', Number.Bin),
 
             (r'"', String, 'string'),
             (r'`', String.Other, 'fact'),
+            (r'[^\s:|\[\]\-()=,+!?{}._][^\s:|\[\]\-()=,+!?{}]*', Name),
         ],
         'comment': [
             (r'[^(*)]+', Comment),
@@ -359,10 +357,10 @@ class IsabelleLexer(RegexLexer):
             (r'[(*)]', Comment),
         ],
         'text': [
-            (r'[^*}]+', Comment),
-            (r'\*\}', Comment, '#pop'),
-            (r'\*', Comment),
-            (r'\}', Comment),
+            (r'[^{*}‹›]+', Text),
+            (r'\{\*|‹', Text, '#push'),
+            (r'\*\}|›', Text, '#pop'),
+            (r'[{*}]', Text),
         ],
         'string': [
             (r'[^"\\]+', String),
