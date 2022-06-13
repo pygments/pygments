@@ -17,6 +17,8 @@ Version 2.13.0
   * C family (C, C++ and many others): allow comments between
     elements of function headers, e.g. between the arguments and
     the opening brace for the body (#1891)
+  * Coq: add some common keywords, improve recognition of ``Set``
+    and qualified identifiers (#2158)
   * Java: support multiline strings aka. text blocks (#2132)
   * Kotlin: add ``value`` modifier (#2142)
   * Macaulay2: update builtins (#2139)
@@ -49,7 +51,10 @@ Version 2.13.0
   class" in some cases where this is not the actual problem (#2123).
 - Fixed warnings in doc build (#2124).
 - The ``codetagify`` filter now recognizes ``FIXME`` tags by default (#2150).
-
+- The ``pygmentize`` command now recognizes if the ``COLORTERM``
+  environment variable is set to a value indicating that true-color
+  support is available.  In that case, it uses the ``TerminalTrueColorFormatter``
+  by default (#2160)
 
 Version 2.12.0
 --------------
