@@ -13,7 +13,8 @@ Version 2.13.0
 
 - Updated lexers:
 
-  * Ada: support Ada 2022 (#2121)
+  * Ada: support Ada 2022 (#2121); disable recognition of namespaces
+    because it disturbs lexing of aspects (#2125)
   * C family (C, C++ and many others): allow comments between
     elements of function headers, e.g. between the arguments and
     the opening brace for the body (#1891)

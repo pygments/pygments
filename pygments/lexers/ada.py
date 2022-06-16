@@ -118,6 +118,8 @@ class AdaLexer(RegexLexer):
             include('root'),
         ],
         'import': [
+            # TODO: use Name.Namespace if appropriate.  This needs
+            # work to disinguish imports from aspects.
             (r'[\w.]+', Name, '#pop'),
             default('#pop'),
         ],
