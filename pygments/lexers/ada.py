@@ -118,7 +118,7 @@ class AdaLexer(RegexLexer):
             include('root'),
         ],
         'import': [
-            (r'[\w.]+', Name.Namespace, '#pop'),
+            (r'[\w.]+', Name, '#pop'),
             default('#pop'),
         ],
         'formal_part': [
