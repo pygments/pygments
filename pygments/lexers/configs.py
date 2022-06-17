@@ -650,7 +650,7 @@ class TerraformLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
 
         hdname = match.group(2)
-        tolerant = match.group(1)[-1] == "-"
+        tolerant = True  # leading whitespace is always accepted
 
         lines = []
         line_re = re.compile('.*?\n')

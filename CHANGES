@@ -26,6 +26,8 @@ Version 2.13.0
   * Macaulay2: update builtins (#2139)
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
   * Tcl: support ``${name}`` variables (#2145)
+  * Terraform: accept leading whitespace for `<<` heredoc
+    delimiters (#2162)
 
 - Pygments now tries to use the ``importlib.metadata`` module to
   discover plugins instead of the slower ``pkg_resources``.  In
