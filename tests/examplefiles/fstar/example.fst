@@ -59,7 +59,7 @@ open NMST
 
 let symmetry #a (equals: a -> a -> prop) =
   forall x y. {:pattern (x `equals` y)}
-    x `equals` y ==> y `equals` x
+    x `equals` y ==> y `equals` x  // Test
 
 let transitive #a (equals:a -> a -> prop) =
   forall x y z. x `equals` y /\ y `equals` z ==> x `equals` z
