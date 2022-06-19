@@ -30,7 +30,7 @@ Version 2.13.0
     delimiters (#2162)
 
 - Pygments now tries to use the ``importlib.metadata`` module to
-  discover plugins instead of the slower ``pkg_resources``.  In
+  discover plugins instead of the slower ``pkg_resources`` (#2155).  In
   particular, this largely speeds up the ``pygmentize`` script when
   the lexer is not specified.
 
@@ -53,12 +53,13 @@ Version 2.13.0
 - The ``highlight``, ``lex`` and ``format`` functions no longer
   wrongly report "argument must be a lexer/formatter instance, not a
   class" in some cases where this is not the actual problem (#2123).
-- Fixed warnings in doc build (#2124).
+- Fix warnings in doc build (#2124).
 - The ``codetagify`` filter now recognizes ``FIXME`` tags by default (#2150).
 - The ``pygmentize`` command now recognizes if the ``COLORTERM``
   environment variable is set to a value indicating that true-color
   support is available.  In that case, it uses the ``TerminalTrueColorFormatter``
   by default (#2160)
+- Remove redundant caches for filename patterns (#2153)
 
 Version 2.12.0
 --------------
