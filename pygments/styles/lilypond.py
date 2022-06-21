@@ -25,7 +25,6 @@ class LilyPondStyle(Style):
     default_style = "#0000ff"
 
     styles = {
-        Token.Whitespace: "",
         Token.Text: "",
         Token.Keyword: "bold",
         Token.Comment: "italic #A3AAB2",
