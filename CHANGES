@@ -25,6 +25,8 @@ Version 2.13.0
   * Java: support multiline strings aka. text blocks (#2132)
   * Kotlin: add ``value`` modifier (#2142)
   * Macaulay2: update builtins (#2139)
+  * Matlab session: fix traceback when a line continuation ellipsis
+    appears in the output (#2166)
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
   * Tcl: support ``${name}`` variables (#2145)
   * Terraform: accept leading whitespace for `<<` heredoc
