@@ -17,13 +17,15 @@
 """
 
 import pytest
+from pathlib import Path
 
 from tests.conftest import LexerInlineTestItem
 
 
 def pytest_collect_file(parent, path):
     if path.ext == '.txt':
-        return LexerTestFile.from_parent(parent, fspath=path)
+        p = Path(path)
+        return LexerTestFile.from_parent(parent, path=p)
 
 
 class LexerTestFile(pytest.File):
