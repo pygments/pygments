@@ -18,7 +18,6 @@
 
 import pathlib
 import pytest
-from pathlib import Path
 
 from tests.conftest import LexerInlineTestItem
 
