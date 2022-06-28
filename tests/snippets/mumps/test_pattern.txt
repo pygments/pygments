@@ -1,0 +1,77 @@
+---input---
+ q:var?3N1"-"2N"-"4N "SSN"
+ q:var?1(1"%",1A).AN "NAME"
+ q:var?1YpizzaY "Programmer Pizza"
+ q:var?1ZbagelZ "Implementation Bagel"
+ q:var?@parVar "Indirected"
+
+---tokens---
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'var'         Name.Variable
+'?'           Operator
+'3'           Literal.Number
+'N'           Name.Entity
+'1'           Literal.Number
+'"-"'         Literal.String
+'2'           Literal.Number
+'N'           Name.Entity
+'"-"'         Literal.String
+'4'           Literal.Number
+'N'           Name.Entity
+' '           Error
+'"SSN"'       Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'var'         Name.Variable
+'?'           Operator
+'1'           Literal.Number
+'('           Punctuation
+'1'           Literal.Number
+'"%"'         Literal.String
+','           Punctuation
+'1'           Literal.Number
+'A'           Name.Entity
+')'           Punctuation
+'.'           Punctuation
+'AN'          Name.Entity
+' '           Error
+'"NAME"'      Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'var'         Name.Variable
+'?'           Operator
+'1'           Literal.Number
+'YpizzaY'     Name.Entity
+' '           Error
+'"Programmer Pizza"' Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'var'         Name.Variable
+'?'           Operator
+'1'           Literal.Number
+'ZbagelZ'     Name.Entity
+' '           Error
+'"Implementation Bagel"' Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'var'         Name.Variable
+'?'           Operator
+'@'           Operator
+'parVar'      Name.Variable
+' '           Text.Whitespace
+'"Indirected"' Literal.String
+'\n'          Text

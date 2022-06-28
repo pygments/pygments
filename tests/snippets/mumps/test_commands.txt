@@ -1,0 +1,930 @@
+---input---
+commands ; Test command syntax parsing
+ break:debug  b:dbg
+ close device c @closeargs
+ close dev1,dev2 c device:(param1:key2=value2)
+ do label d ^ROUTINE,tag^routine(arg,.@arg2) do tag^|"GLD.m"|^GLDROUTINE(1,5,.array)
+ d:condition tag:cond2 do @doargs d tag+offset^BANANA,@tagName+offset^@ROUNAME(X,3):maybe
+ i ready do &PKG.LABEL,&LABEL(arg),&PACKAGE.tag^ROUTINE(1,"abc")
+ else  do something e  q
+ for  do  quit 
+ f row=1:1 q:x>100 w ! f col=1:1:row s x=x+1 w $j(x,5)
+ goto:done abort:fail,wrapup+1^DONE
+ g @gotoargs
+ if  halt else  h
+ e  hang:wait 2,extratime h 1
+ job tag+4^ROUTINE:foo:5
+ j:bar tag^ROU(1,"abc"):(startup="/opt/foo/script":err="job-err.txt"):3,@jobargs
+ kill:done a,b,c(d) k  k (save,these,@variables) k @killargs
+ lock these,three,things l +^GLOBALS("foo",1),-(FISH("red","blue"),COWS):3,@lockargs,@glos:2 l:done
+ merge target(a,b)=^source(c) m a=b,c=@d,@e=f,@g=@h,@mergearg,@i(j)=@k@(l)
+ new a,b,c,d n (everything,but,these) new $ET,$ES,@newargs n:all
+ open devicefile:foo="bar":5:mnemspace o:ready @openargs,device,dev:foo:1,dev2:::spec,dev3::3,dev4:::(space1,space2,"steve")
+ read #!!?5,"Hello! What is your name? ",name r:readargs,'="" @readargs r var:timeout,!,var2#length,@varname#len:tmo
+ r !,"Press any key.",*key:15
+ set a=b s c(d,e)=^f,(g,^h(i))=@k@(l,m) s @("result="_expr),$p(foo,",",3)="abc",$extract(bar,1,4)="4567"
+ s $ECODE=",U01,",$ET="do handle^ERRORS" s $DEVICE="1,Connection reset",$d=0 s $KEY="",$K=$c(10),$x=20,$y=4
+ tstart  tcommit:ready  trestart:'ready  trollback:abort
+ ts foo:serial  tc:ready  tre:'ready  tro:abort
+ ts @tsarg ts @foo:t="b" TStart (a,b,c):(serial:t=5,zebra="yes") ts:everything * ts ():t="label"
+ use newio u:open @useargs use dev:foo="bar":mnemspec u dev::mnemspec
+ write #!?5,"Hello, world!" w:writeargs'="" @writeargs,!  w *10 write /bold(1),"Bold text",/plain
+ xecute:function'="" "s %=$$"_function_"(a,b,c)" x finish:done,@xargs
+
+---tokens---
+'commands'    Name.Label
+' '           Text.Whitespace
+'; Test command syntax parsing' Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'break'       Keyword
+':'           Punctuation
+'debug'       Name.Variable
+'  '          Text.Whitespace
+'b'           Keyword
+':'           Punctuation
+'dbg'         Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'close'       Keyword
+' '           Text.Whitespace
+'device'      Name.Variable
+' '           Text.Whitespace
+'c'           Keyword
+' '           Text.Whitespace
+'@'           Operator
+'closeargs'   Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'close'       Keyword
+' '           Text.Whitespace
+'dev1'        Name.Variable
+','           Punctuation
+'dev2'        Name.Variable
+' '           Text.Whitespace
+'c'           Keyword
+' '           Text.Whitespace
+'device'      Name.Variable
+':'           Punctuation
+'('           Punctuation
+'param1'      Name.Variable
+':'           Punctuation
+'key2'        Name.Variable
+'='           Operator
+'value2'      Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'label'       Name.Label
+' '           Text.Whitespace
+'d'           Keyword
+' '           Text.Whitespace
+'^'           Punctuation
+'ROUTINE'     Name.Namespace
+','           Punctuation
+'tag'         Name.Label
+'^'           Punctuation
+'routine'     Name.Namespace
+'('           Punctuation
+'arg'         Name.Variable
+','           Punctuation
+'.'           Punctuation
+'@'           Operator
+'arg2'        Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'tag'         Name.Label
+'^'           Punctuation
+'|'           Punctuation
+'"GLD.m"'     Literal.String
+'|'           Punctuation
+'^'           Error
+'GLDROUTINE'  Name.Namespace
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'5'           Literal.Number
+','           Punctuation
+'.'           Punctuation
+'array'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'d'           Keyword
+':'           Punctuation
+'condition'   Name.Variable
+' '           Text.Whitespace
+'tag'         Name.Label
+':'           Punctuation
+'cond2'       Name.Variable
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'@'           Operator
+'doargs'      Name.Variable
+' '           Text.Whitespace
+'d'           Keyword
+' '           Text.Whitespace
+'tag'         Name.Label
+'+'           Operator
+'offset'      Name.Variable
+'^'           Punctuation
+'BANANA'      Name.Namespace
+','           Punctuation
+'@'           Operator
+'tagName'     Name.Variable
+'+'           Operator
+'offset'      Name.Variable
+'^'           Punctuation
+'@'           Operator
+'ROUNAME'     Name.Variable
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+'3'           Literal.Number
+')'           Punctuation
+':'           Punctuation
+'maybe'       Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'i'           Keyword
+' '           Text.Whitespace
+'ready'       Name.Variable
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'&'           Punctuation
+'PKG'         Name.Namespace
+'.'           Punctuation
+'LABEL'       Name.Label
+','           Punctuation
+'&'           Punctuation
+'LABEL'       Name.Label
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'PACKAGE'     Name.Namespace
+'.'           Punctuation
+'tag'         Name.Label
+'^'           Punctuation
+'ROUTINE'     Name.Namespace
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'"abc"'       Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'else'        Keyword
+'  '          Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'something'   Name.Label
+' '           Text.Whitespace
+'e'           Keyword
+'  '          Text.Whitespace
+'q'           Keyword
+'\n'          Text
+
+' '           Text.Whitespace
+'for'         Keyword
+'  '          Text.Whitespace
+'do'          Keyword
+'  '          Text.Whitespace
+'quit'        Keyword
+' '           Text.Whitespace
+'\n'          Text
+
+' '           Text.Whitespace
+'f'           Keyword
+' '           Text.Whitespace
+'row'         Name.Variable
+'='           Operator
+'1'           Literal.Number
+':'           Punctuation
+'1'           Literal.Number
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'x'           Name.Variable
+'>'           Operator
+'100'         Literal.Number
+' '           Text.Whitespace
+'w'           Name.Variable
+' '           Text.Whitespace
+'!'           Error
+' '           Error
+'f'           Keyword
+' '           Text.Whitespace
+'col'         Name.Variable
+'='           Operator
+'1'           Literal.Number
+':'           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'row'         Name.Variable
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'x'           Name.Variable
+'='           Operator
+'x'           Name.Variable
+'+'           Operator
+'1'           Literal.Number
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'$j'          Name.Function
+'('           Punctuation
+'x'           Name.Variable
+','           Punctuation
+'5'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'goto'        Keyword
+':'           Punctuation
+'done'        Name.Variable
+' '           Text.Whitespace
+'abort'       Name.Label
+':'           Punctuation
+'fail'        Name.Variable
+','           Punctuation
+'wrapup'      Name.Label
+'+'           Operator
+'1'           Literal.Number
+'^'           Punctuation
+'DONE'        Name.Namespace
+'\n'          Text
+
+' '           Text.Whitespace
+'g'           Keyword
+' '           Text.Whitespace
+'@'           Operator
+'gotoargs'    Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'if'          Keyword
+'  '          Text.Whitespace
+'halt'        Keyword
+' '           Error
+'e'           Error
+'l'           Error
+'s'           Error
+'e'           Error
+'  '          Text.Whitespace
+'h'           Keyword
+'\n'          Text
+
+' '           Text.Whitespace
+'e'           Keyword
+'  '          Text.Whitespace
+'hang'        Keyword
+':'           Punctuation
+'wait'        Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+'extratime'   Name.Variable
+' '           Text.Whitespace
+'h'           Keyword
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text
+
+' '           Text.Whitespace
+'job'         Keyword
+' '           Text.Whitespace
+'tag'         Name.Label
+'+'           Operator
+'4'           Literal.Number
+'^'           Punctuation
+'ROUTINE'     Name.Namespace
+':'           Punctuation
+'foo'         Name.Variable
+':'           Punctuation
+'5'           Literal.Number
+'\n'          Text
+
+' '           Text.Whitespace
+'j'           Keyword
+':'           Punctuation
+'bar'         Name.Variable
+' '           Text.Whitespace
+'tag'         Name.Label
+'^'           Punctuation
+'ROU'         Name.Namespace
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'"abc"'       Literal.String
+')'           Punctuation
+':'           Punctuation
+'('           Punctuation
+'startup'     Name.Variable
+'='           Operator
+'"/opt/foo/script"' Literal.String
+':'           Punctuation
+'err'         Name.Variable
+'='           Operator
+'"job-err.txt"' Literal.String
+')'           Punctuation
+':'           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'@'           Operator
+'jobargs'     Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'kill'        Keyword
+':'           Punctuation
+'done'        Name.Variable
+' '           Text.Whitespace
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+'('           Punctuation
+'d'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'k'           Keyword
+'  '          Text.Whitespace
+'k'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'save'        Name.Variable
+','           Punctuation
+'these'       Name.Variable
+','           Punctuation
+'@'           Operator
+'variables'   Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'k'           Keyword
+' '           Text.Whitespace
+'@'           Operator
+'killargs'    Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'lock'        Keyword
+' '           Text.Whitespace
+'these'       Name
+','           Punctuation
+'three'       Name
+','           Punctuation
+'things'      Name
+' '           Text.Whitespace
+'l'           Keyword
+' '           Text.Whitespace
+'+'           Operator
+'^GLOBALS'    Name
+'('           Punctuation
+'"foo"'       Literal.String
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'-'           Operator
+'('           Punctuation
+'FISH'        Name
+'('           Punctuation
+'"red"'       Literal.String
+','           Punctuation
+'"blue"'      Literal.String
+')'           Punctuation
+','           Punctuation
+'COWS'        Name
+')'           Punctuation
+':'           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'@'           Operator
+'lockargs'    Name.Variable
+','           Punctuation
+'@'           Operator
+'glos'        Name.Variable
+':'           Punctuation
+'2'           Literal.Number
+' '           Text.Whitespace
+'l'           Keyword
+':'           Punctuation
+'done'        Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'merge'       Keyword
+' '           Text.Whitespace
+'target'      Name.Variable
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+')'           Punctuation
+'='           Operator
+'^source'     Name.Variable.Global
+'('           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'m'           Keyword
+' '           Text.Whitespace
+'a'           Name.Variable
+'='           Operator
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+'='           Operator
+'@'           Operator
+'d'           Name.Variable
+','           Punctuation
+'@'           Operator
+'e'           Name.Variable
+'='           Operator
+'f'           Name.Variable
+','           Punctuation
+'@'           Operator
+'g'           Name.Variable
+'='           Operator
+'@'           Operator
+'h'           Name.Variable
+','           Punctuation
+'@'           Operator
+'mergearg'    Name.Variable
+','           Punctuation
+'@'           Operator
+'i'           Name.Variable
+'('           Punctuation
+'j'           Name.Variable
+')'           Punctuation
+'='           Operator
+'@'           Operator
+'k'           Name.Variable
+'@'           Operator
+'('           Punctuation
+'l'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+','           Punctuation
+'d'           Name.Variable
+' '           Text.Whitespace
+'n'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'everything'  Name.Variable
+','           Punctuation
+'but'         Name.Variable
+','           Punctuation
+'these'       Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'$ET'         Name.Variable.Magic
+','           Punctuation
+'$ES'         Name.Variable.Magic
+','           Punctuation
+'@'           Operator
+'newargs'     Name.Variable
+' '           Text.Whitespace
+'n'           Keyword
+':'           Punctuation
+'all'         Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'open'        Keyword
+' '           Text.Whitespace
+'devicefile'  Name.Variable
+':'           Punctuation
+'foo'         Name.Variable
+'='           Operator
+'"bar"'       Literal.String
+':'           Punctuation
+'5'           Literal.Number
+':'           Punctuation
+'mnemspace'   Name.Variable
+' '           Text.Whitespace
+'o'           Keyword
+':'           Punctuation
+'ready'       Name.Variable
+' '           Text.Whitespace
+'@'           Operator
+'openargs'    Name.Variable
+','           Punctuation
+'device'      Name.Variable
+','           Punctuation
+'dev'         Name.Variable
+':'           Punctuation
+'foo'         Name.Variable
+':'           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'dev2'        Name.Variable
+':'           Punctuation
+':'           Punctuation
+':'           Punctuation
+'spec'        Name.Variable
+','           Punctuation
+'dev3'        Name.Variable
+':'           Punctuation
+':'           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'dev4'        Name.Variable
+':'           Punctuation
+':'           Punctuation
+':'           Punctuation
+'('           Punctuation
+'space1'      Name.Variable
+','           Punctuation
+'space2'      Name.Variable
+','           Punctuation
+'"steve"'     Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'#!!'         Keyword.Pseudo
+'?'           Keyword.Pseudo
+'5'           Literal.Number
+','           Punctuation
+'"Hello! What is your name? "' Literal.String
+','           Punctuation
+'name'        Name.Variable
+' '           Text.Whitespace
+'r'           Keyword
+':'           Punctuation
+'readargs'    Name.Variable
+','           Error
+"'"           Error
+'='           Error
+'"'           Error
+'"'           Error
+' '           Text.Whitespace
+'@'           Operator
+'readargs'    Name.Variable
+' '           Text.Whitespace
+'r'           Keyword
+' '           Text.Whitespace
+'var'         Name.Variable
+':'           Punctuation
+'timeout'     Name.Variable
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'var2'        Name.Variable
+'#'           Punctuation
+'length'      Name.Variable
+','           Punctuation
+'@'           Operator
+'varname'     Name.Variable
+'#'           Punctuation
+'len'         Name.Variable
+':'           Punctuation
+'tmo'         Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'r'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Press any key."' Literal.String
+','           Punctuation
+'*'           Keyword.Pseudo
+'key'         Name.Variable
+':'           Punctuation
+'15'          Literal.Number
+'\n'          Text
+
+' '           Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'a'           Name.Variable
+'='           Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'c'           Name.Variable
+'('           Punctuation
+'d'           Name.Variable
+','           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'='           Operator
+'^f'          Name.Variable.Global
+','           Punctuation
+'('           Punctuation
+'g'           Name.Variable
+','           Punctuation
+'^h'          Name.Variable.Global
+'('           Punctuation
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'='           Operator
+'@'           Operator
+'k'           Name.Variable
+'@'           Operator
+'('           Punctuation
+'l'           Name.Variable
+','           Punctuation
+'m'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'@'           Operator
+'('           Punctuation
+'"result="'   Literal.String
+'_'           Operator
+'expr'        Name.Variable
+')'           Punctuation
+','           Punctuation
+'$p'          Name.Function.Magic
+'('           Punctuation
+'foo'         Name.Variable
+','           Punctuation
+'","'         Literal.String
+','           Punctuation
+'3'           Literal.Number
+')'           Punctuation
+'='           Operator
+'"abc"'       Literal.String
+','           Punctuation
+'$extract'    Name.Function.Magic
+'('           Punctuation
+'bar'         Name.Variable
+','           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+'='           Operator
+'"4567"'      Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'$ECODE'      Name.Variable.Magic
+'='           Operator
+'",U01,"'     Literal.String
+','           Punctuation
+'$ET'         Name.Variable.Magic
+'='           Operator
+'"do handle^ERRORS"' Literal.String
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'$DEVICE'     Name.Variable.Magic
+'='           Operator
+'"1,Connection reset"' Literal.String
+','           Punctuation
+'$d'          Name.Variable.Magic
+'='           Operator
+'0'           Literal.Number
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'$KEY'        Name.Variable.Magic
+'='           Operator
+'""'          Literal.String
+','           Punctuation
+'$K'          Name.Variable.Magic
+'='           Operator
+'$c'          Name.Function
+'('           Punctuation
+'10'          Literal.Number
+')'           Punctuation
+','           Punctuation
+'$x'          Name.Variable.Magic
+'='           Operator
+'20'          Literal.Number
+','           Punctuation
+'$y'          Name.Variable.Magic
+'='           Operator
+'4'           Literal.Number
+'\n'          Text
+
+' '           Text.Whitespace
+'tstart'      Keyword
+'  '          Text.Whitespace
+'tcommit'     Keyword
+':'           Punctuation
+'ready'       Name.Variable
+'  '          Text.Whitespace
+'trestart'    Keyword
+':'           Punctuation
+"'"           Operator
+'ready'       Name.Variable
+'  '          Text.Whitespace
+'trollback'   Keyword
+':'           Punctuation
+'abort'       Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'ts'          Keyword
+' '           Text.Whitespace
+'foo'         Name.Variable
+':'           Punctuation
+'serial'      Keyword
+'  '          Text.Whitespace
+'tc'          Keyword
+':'           Punctuation
+'ready'       Name.Variable
+'  '          Text.Whitespace
+'tre'         Keyword
+':'           Punctuation
+"'"           Operator
+'ready'       Name.Variable
+'  '          Text.Whitespace
+'tro'         Keyword
+':'           Punctuation
+'abort'       Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'ts'          Keyword
+' '           Text.Whitespace
+'@'           Operator
+'tsarg'       Name.Variable
+' '           Error
+'ts'          Name.Variable
+' '           Error
+'@'           Operator
+'foo'         Name.Variable
+':'           Punctuation
+'t'           Keyword
+'='           Operator
+'"b"'         Literal.String
+' '           Text.Whitespace
+'TStart'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+':'           Punctuation
+'('           Punctuation
+'serial'      Keyword
+':'           Punctuation
+'t'           Keyword
+'='           Operator
+'5'           Literal.Number
+','           Error
+'z'           Error
+'e'           Error
+'b'           Error
+'r'           Error
+'a'           Error
+'='           Error
+'"'           Error
+'y'           Error
+'e'           Error
+'s'           Error
+'"'           Error
+')'           Punctuation
+' '           Text.Whitespace
+'ts'          Keyword
+':'           Punctuation
+'everything'  Name.Variable
+' '           Text.Whitespace
+'*'           Keyword.Pseudo
+' '           Error
+'ts'          Name.Variable
+' '           Error
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'t'           Keyword
+'='           Operator
+'"label"'     Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'use'         Keyword
+' '           Text.Whitespace
+'newio'       Name.Variable
+' '           Text.Whitespace
+'u'           Keyword
+':'           Punctuation
+'open'        Name.Variable
+' '           Text.Whitespace
+'@'           Operator
+'useargs'     Name.Variable
+' '           Text.Whitespace
+'use'         Keyword
+' '           Text.Whitespace
+'dev'         Name.Variable
+':'           Punctuation
+'foo'         Name.Variable
+'='           Operator
+'"bar"'       Literal.String
+':'           Punctuation
+'mnemspec'    Name.Variable
+' '           Text.Whitespace
+'u'           Keyword
+' '           Text.Whitespace
+'dev'         Name.Variable
+':'           Punctuation
+':'           Punctuation
+'mnemspec'    Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'#!'          Keyword.Pseudo
+'?'           Keyword.Pseudo
+'5'           Literal.Number
+','           Punctuation
+'"Hello, world!"' Literal.String
+' '           Text.Whitespace
+'w'           Keyword
+':'           Punctuation
+'writeargs'   Name.Variable
+"'"           Operator
+'='           Operator
+'""'          Literal.String
+' '           Text.Whitespace
+'@'           Operator
+'writeargs'   Name.Variable
+','           Punctuation
+'!'           Keyword.Pseudo
+'  '          Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'*'           Keyword.Pseudo
+'10'          Literal.Number
+' '           Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'/bold'       Keyword.Pseudo
+'('           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'"Bold text"' Literal.String
+','           Punctuation
+'/plain'      Keyword.Pseudo
+'\n'          Text
+
+' '           Text.Whitespace
+'xecute'      Keyword
+':'           Punctuation
+'function'    Name.Variable
+"'"           Operator
+'='           Operator
+'""'          Literal.String
+' '           Text.Whitespace
+'"s %=$$"'    Literal.String
+'_'           Operator
+'function'    Name.Variable
+'_'           Operator
+'"(a,b,c)"'   Literal.String
+' '           Text.Whitespace
+'x'           Keyword
+' '           Text.Whitespace
+'finish'      Name.Variable
+':'           Punctuation
+'done'        Name.Variable
+','           Punctuation
+'@'           Operator
+'xargs'       Name.Variable
+'\n'          Text

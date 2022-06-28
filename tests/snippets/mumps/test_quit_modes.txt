@@ -1,0 +1,14 @@
+---input---
+nothing q:$QUIT "" q
+
+---tokens---
+'nothing'     Name.Label
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'$QUIT'       Name.Variable.Magic
+' '           Text.Whitespace
+'""'          Literal.String
+' '           Text.Whitespace
+'q'           Keyword
+'\n'          Text

@@ -1,0 +1,46 @@
+---input---
+ w ^GLO(A,"a") ; Direct
+ w ^|"M.GLD"|glob("B",2) ; Environment
+ w ^("C") ; Naked
+
+---tokens---
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^GLO'        Name.Variable.Global
+'('           Punctuation
+'A'           Name.Variable
+','           Punctuation
+'"a"'         Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'; Direct'    Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^'           Name.Variable.Global
+'|'           Punctuation
+'"M.GLD"'     Literal.String
+'|'           Punctuation
+'glob'        Name.Variable.Global
+'('           Punctuation
+'"B"'         Literal.String
+','           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'; Environment' Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^'           Name.Variable.Global
+'('           Punctuation
+'"C"'         Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'; Naked'     Comment
+'\n'          Text

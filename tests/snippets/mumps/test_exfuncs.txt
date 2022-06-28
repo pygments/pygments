@@ -1,0 +1,94 @@
+---input---
+manyFunctions(a,b,c)
+ w !,$$one()
+ w !,$$TWO^Routine(a,b)
+ w !,$$three^|"ABC.M"|Rou(a,b,c)
+ w !,$&Package.Func(a,b,c)
+ w !,$$var
+
+---tokens---
+'manyFunctions' Name.Function
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$$'          Punctuation
+'one'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$$'          Punctuation
+'TWO'         Name.Function
+'^'           Punctuation
+'Routine'     Name.Namespace
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$$'          Punctuation
+'three'       Name.Function
+'^'           Punctuation
+'|'           Punctuation
+'"ABC.M"'     Literal.String
+'|'           Punctuation
+'Rou'         Name.Namespace
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$'           Punctuation
+'&'           Punctuation
+'Package'     Name.Namespace
+'.'           Punctuation
+'Func'        Name.Function
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$$'          Punctuation
+'var'         Name.Function
+'\n'          Text
