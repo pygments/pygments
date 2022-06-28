@@ -1,430 +1,446 @@
-'import '     Keyword.Namespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
 'Math.Vector3' Name.Class
-' '           Text
+' '           Text.Whitespace
 '(..)'        Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
-'import '     Keyword.Namespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
 'Math.Matrix4' Name.Class
-' '           Text
+' '           Text.Whitespace
 '(..)'        Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
-'import '     Keyword.Namespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
 'Graphics.WebGL' Name.Class
-' '           Text
+' '           Text.Whitespace
 '(..)'        Name.Function
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Create a mesh with two triangles' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'position'    Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'mesh'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Triangle'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Keyword.Type
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mesh'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'  '          Text
+'  '          Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'  '          Text
+'  '          Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Vertex'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Name.Function
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 ']'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Create the scene' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'main '       Keyword.Reserved
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'Signal'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Element'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main '       Keyword.Reserved
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 'scene'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<~'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'foldp'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '(+)'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fps'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '30'          Literal.Number.Integer
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'scene'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'Float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'Element'     Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'scene'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 'webgl'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '400'         Literal.Number.Integer
 ','           Punctuation
 '400'         Literal.Number.Integer
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 'entity'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'vertexShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'fragmentShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mesh'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'view'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 'view'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '/'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ']'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'view'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'Float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '->'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'Mat4'        Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'view'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 'mul'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'makePerspective' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '45'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0.'          Literal.Number.Float
 '01'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'makeLookAt'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'cos'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'sin'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vec3'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-- Shaders'  Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'vertexShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'Shader'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'attr'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'position'    Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'color'       Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unif'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'view'        Name.Variable
 ':'           Name.Function
 'Mat4'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vcolor'      Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'vertexShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 '[glsl|'      Name.Entity
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'attribute vec3 position;\n' Name.Entity
+'attribute vec3 position;' Name.Entity
+'\n'          Text.Whitespace
 
-'attribute vec3 color;\n' Name.Entity
+'attribute vec3 color;' Name.Entity
+'\n'          Text.Whitespace
 
-'uniform mat4 view;\n' Name.Entity
+'uniform mat4 view;' Name.Entity
+'\n'          Text.Whitespace
 
-'varying vec3 vcolor;\n' Name.Entity
+'varying vec3 vcolor;' Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'void main () {\n' Name.Entity
+'void main () {' Name.Entity
+'\n'          Text.Whitespace
 
-'    gl_Position = view * vec4(position, 1.0);\n' Name.Entity
+'    gl_Position = view * vec4(position, 1.0);' Name.Entity
+'\n'          Text.Whitespace
 
-'    vcolor = color;\n' Name.Entity
+'    vcolor = color;' Name.Entity
+'\n'          Text.Whitespace
 
-'}\n'         Name.Entity
+'}'           Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
 '|]'          Name.Entity
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'fragmentShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'Shader'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'u'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vcolor'      Name.Variable
 ':'           Name.Function
 'Vec3'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fragmentShader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 '[glsl|'      Name.Entity
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'precision mediump float;\n' Name.Entity
+'precision mediump float;' Name.Entity
+'\n'          Text.Whitespace
 
-'varying vec3 vcolor;\n' Name.Entity
+'varying vec3 vcolor;' Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
-'void main () {\n' Name.Entity
+'void main () {' Name.Entity
+'\n'          Text.Whitespace
 
-'    gl_FragColor = vec4(vcolor, 1.0);\n' Name.Entity
+'    gl_FragColor = vec4(vcolor, 1.0);' Name.Entity
+'\n'          Text.Whitespace
 
-'}\n'         Name.Entity
+'}'           Name.Entity
+'\n'          Text.Whitespace
 
-'\n'          Name.Entity
+'\n'          Text.Whitespace
 
 '|]'          Name.Entity
-'\n'          Text
+'\n'          Text.Whitespace

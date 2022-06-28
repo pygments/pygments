@@ -1,86 +1,86 @@
 'package'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Map'         Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Collection'  Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Set'         Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Option'      Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Debug'       Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'Throwable'   Name.Namespace
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'using'       Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name.Namespace
 '.'           Punctuation
 'StringFormat' Name.Namespace
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/**\n * An ordered map of (key,value) pairs. The key ordering is defined by\n * a comparison function specified at construction. Duplicate keys\n * are not allowed.\n *\n * Worst Case Time and Space Complexities:\n * [operation]   [time]      [space]\n * insert        O(lg(n))    O(lg(n))\n * find          O(lg(n))    O(1)\n * delete        O(lg(n))    O(lg(n))\n * range-query   O(lg(n))*   O(lg(n))\n * iteration     O(n)**      O(lg(n))\n *   *range-query returns an iterator over elements in the range\n *   **total cost of iterating over the entire map\n *\n * The map is backed by a Left-Leaning Red-Black 2-3 Tree\n * adapted from Robert Sedgewick (2008) (http://www.cs.princeton.edu/~rs/)\n *\n * Implementation choices (let size of tree be n)\n * - Parent Pointers\n *   - This implementation omits parent pointers.\n *   - Omitting parent pointers saves n words of persistent memory\n *     at the expense of lg(n) stack space per operation.\n *   - Without parent pointers, most operations in the tree must\n *     either use recursion, or simulate recursion by saving a history\n *     of nodes via a stack. For example, each iterator will require\n *     lg(n) extra space to track progress through the tree. Insertions\n *     and deletions into the tree will also invalidate any existing\n *     iterators.\n * - Node Size Information\n *   - This implementation omits the size of each node.\n *   - Omitting size information saves n words of long-term memory at\n *     the expense of not providing a find-kth operation.\n *   - This seems like a reasonable trade-off as range queries are\n *     generally more common than find-kth operations. The implementation\n *     used below could easily be modified to provide a version with\n *     size information should find-kth be of specific interest.\n * - Recursive vs. Iterative\n *   - This implementation uses recursive algorithms.\n *   - The recursive implementations allow the code to remain compact and\n *     understandable. Since the height of LLRB 2-3 Trees is gaurenteed\n *     to be at most 2lg(n), stack overflow is typically not a concern.\n *     Unlike the standard single-rotation red-black algorithm, LLRB\n *     operations are not tail-recursive, so even an iterative\n *     version will require lg(n) extra memory.\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'OrderedMap'  Name
 '<'           Punctuation
 'K'           Name
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'root'        Text
-'  '          Text
+'  '          Text.Whitespace
 ':'           Punctuation
 'Null'        Name
 '<'           Punctuation
@@ -92,139 +92,139 @@
 '>'           Punctuation
 '>'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'nodeCount'   Text
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Int'         Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'comp'        Text
-'  '          Text
+'  '          Text.Whitespace
 ':'           Punctuation
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name
 ';'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'new'         Name.Function
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'keyComp'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'comp'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'keyComp'     Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'nodeCount'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'assertInvariants' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/**\n   * @returns Some(v) if (\\key,v) is in the map, None otherwise.\n   */' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'get'         Name.Function
 '('           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Option'      Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '//normal BST search' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'root'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'while'       Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'cmp'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'comp'        Name
 '('           Punctuation
 'key'         Name
@@ -234,64 +234,64 @@
 'key'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'else'        Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Some'        Name
 '('           Punctuation
 'n'           Name
@@ -299,54 +299,54 @@
 'val'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'None'        Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/**\n   * Puts (\\key,\\val) into the map or replaces the current value of \\key\n   * with \\val.\n   *\n   * @return None if \\key currently is not in the map, or Some(v) if (\\key,v)\n   *   was in the map before the put operation.\n   */' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'set'         Name.Function
 '('           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'V'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Option'      Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ret'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 '<'           Punctuation
 'V'           Name
@@ -355,11 +355,11 @@
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'insertNode'  Name
 '('           Punctuation
 'root'        Name
@@ -371,45 +371,45 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'root'        Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'assertInvariants' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ret'         Name
 '.'           Punctuation
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'None'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Some'        Name
 '('           Punctuation
 'ret'         Name
@@ -417,17 +417,17 @@
 'r'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'insertNode'  Name.Function
 '('           Punctuation
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -436,53 +436,53 @@
 'V'           Name
 '>'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'V'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ret'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Ref'         Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '//do the insertion at the leaf level' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '++'          Operator
 'nodeCount'   Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Node'        Name
 '<'           Punctuation
 'K'           Name
@@ -495,17 +495,17 @@
 'val'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '//normal BST search' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'cmp'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'comp'        Name
 '('           Punctuation
 'key'         Name
@@ -515,26 +515,26 @@
 'key'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'insertNode'  Name
 '('           Punctuation
 'n'           Name
@@ -548,30 +548,30 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'cmp'         Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'insertNode'  Name
 '('           Punctuation
 'n'           Name
@@ -585,77 +585,77 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '//the key is already in the map, update the value' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 'ret'         Name
 '.'           Punctuation
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'val'         Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'val'         Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'fixInvariants' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 "/**\n   * Removes (\\key,v) from the map if it exists.\n   *\n   * @return None if (\\key,v) wasn't in the map, Some(v) otherwise.\n   */" Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'remove'      Name.Function
 '('           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Option'      Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ret'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 '<'           Punctuation
 'V'           Name
@@ -664,24 +664,24 @@
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'deleteNode'  Name
 '('           Punctuation
 'root'        Name
@@ -691,62 +691,62 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'root'        Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'black'       Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'assertInvariants' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ret'         Name
 '.'           Punctuation
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'None'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Some'        Name
 '('           Punctuation
 'ret'         Name
@@ -754,18 +754,18 @@
 'r'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'deleteNode'  Name.Function
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -774,28 +774,28 @@
 'V'           Name
 '>'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ret'         Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Ref'         Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'comp'        Name
 '('           Punctuation
 'key'         Name
@@ -804,27 +804,27 @@
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
@@ -833,31 +833,31 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '//ensure we move into a 3-node' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'moveRedLeft' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'deleteNode'  Name
 '('           Punctuation
 'n'           Name
@@ -869,44 +869,44 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '//ensure we move into a 3-node' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateRight' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'comp'        Name
 '('           Punctuation
 'key'         Name
@@ -915,61 +915,61 @@
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '//delete the node' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ret'         Name
 '.'           Punctuation
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'val'         Name
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '--'          Operator
 'nodeCount'   Name
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
@@ -978,28 +978,28 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '//ensure we move into a 3-node' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'moveRedRight' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'comp'        Name
 '('           Punctuation
 'key'         Name
@@ -1008,15 +1008,15 @@
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
@@ -1024,32 +1024,32 @@
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'ret'         Name
 '.'           Punctuation
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'val'         Name
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '//ensure we are deleting a node with at most one child' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'min'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'minNode'     Name
 '('           Punctuation
 'n'           Name
@@ -1057,35 +1057,35 @@
 'right'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'min'         Name
 '.'           Punctuation
 'val'         Name
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'min'         Name
 '.'           Punctuation
 'key'         Name
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'deleteMinNode' Name
 '('           Punctuation
 'n'           Name
@@ -1093,19 +1093,19 @@
 'right'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'else'        Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'deleteNode'  Name
 '('           Punctuation
 'n'           Name
@@ -1117,83 +1117,83 @@
 'ret'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'fixInvariants' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/** returns a view of the set of keys in this TreeMap **/' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'keys'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'SetView'     Name
 '<'           Punctuation
 'K'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '_this'       Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'size'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_this'       Name
 '.'           Punctuation
 'size'        Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'iterator'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'IterTools'   Name
 '.'           Punctuation
 'mapIter'     Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'NodeIterator' Name
 '('           Punctuation
 '_this'       Name
@@ -1205,27 +1205,27 @@
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'exists'      Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'switch'      Keyword
 '('           Punctuation
 '_this'       Name
@@ -1235,103 +1235,103 @@
 'x'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'None'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'false'       Keyword.Constant
 ';'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Some'        Name
 '('           Punctuation
 '_'           Name
 ')'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'true'        Keyword.Constant
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/** returns a view of the collection of values in this TreeMap **/' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'values'      Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'CollectionView' Name
 '<'           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '_this'       Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'size'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_this'       Name
 '.'           Punctuation
 'size'        Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'iterator'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'IterTools'   Name
 '.'           Punctuation
 'mapIter'     Name
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'NodeIterator' Name
 '('           Punctuation
 '_this'       Name
@@ -1343,30 +1343,30 @@
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'val'         Name
 ')'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/** returns a view of the (key,value) pairs in this TreeMap **/' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'entries'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'CollectionView' Name
 '<'           Punctuation
@@ -1377,58 +1377,58 @@
 'V'           Name
 '>'           Punctuation
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '_this'       Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'size'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '_this'       Name
 '.'           Punctuation
 'size'        Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'iterator'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'cast'        Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'NodeIterator' Name
 '('           Punctuation
 '_this'       Name
@@ -1436,63 +1436,63 @@
 'root'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/** returns the number of (key,value) pairs in the map **/' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'size'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Int'         Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'nodeCount'   Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'toString'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'String'      Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'sb'          Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'StringBuf'   Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'add'         Name
@@ -1502,24 +1502,24 @@
 '"'           Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'for'         Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'entry'       Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'entries'     Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'add'         Name
@@ -1551,9 +1551,9 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'add'         Name
@@ -1563,24 +1563,24 @@
 '"'           Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'sb'          Name
 '.'           Punctuation
 'toString'    Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name.Function
 '<'           Punctuation
 'K'           Name
@@ -1588,9 +1588,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -1598,69 +1598,69 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'switch'      Keyword
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'color'       Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'true'        Keyword.Constant
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'black'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'false'       Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'inline'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name.Function
 '<'           Punctuation
 'K'           Name
@@ -1668,9 +1668,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -1678,28 +1678,28 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'colorFlip'   Name.Function
 '<'           Punctuation
 'K'           Name
@@ -1707,9 +1707,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -1717,17 +1717,17 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'oppositeColor' Name
 '('           Punctuation
 'n'           Name
@@ -1735,15 +1735,15 @@
 'color'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'oppositeColor' Name
 '('           Punctuation
 'n'           Name
@@ -1753,15 +1753,15 @@
 'color'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'oppositeColor' Name
 '('           Punctuation
 'n'           Name
@@ -1771,67 +1771,67 @@
 'color'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'inline'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'oppositeColor' Name.Function
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Color'       Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'switch'      Keyword
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'black'       Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'black'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 'red'         Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'rotateLeft'  Name.Function
 '<'           Punctuation
 'K'           Name
@@ -1839,9 +1839,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -1849,23 +1849,23 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
@@ -1873,79 +1873,79 @@
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '/*\n           n            x\n          / \\          / \\\n         a   x   =>   n   c\n            / \\      / \\\n           b   c    a   b\n    */' Comment.Multiline
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'left'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'left'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'color'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'rotateRight' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -1953,9 +1953,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -1963,107 +1963,107 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '/*\n           n          x\n          / \\        / \\\n         x   c  =>  a   n\n        / \\            / \\\n       a   b          b   c\n    */' Comment.Multiline
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'right'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'x'           Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'color'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'moveRedLeft' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2071,9 +2071,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2081,22 +2081,22 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '//borrow extra node from right child (which is a 3-node)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'colorFlip'   Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
@@ -2105,17 +2105,17 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateRight' Name
 '('           Punctuation
 'n'           Name
@@ -2123,38 +2123,38 @@
 'right'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateLeft'  Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'colorFlip'   Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'moveRedRight' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2162,9 +2162,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2172,22 +2172,22 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '//borrow extra node from left child (which is a 3-node)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'colorFlip'   Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
@@ -2196,42 +2196,42 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateRight' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'colorFlip'   Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'fixInvariants' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2239,9 +2239,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2249,60 +2249,60 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '//ensure left-leaning property' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateLeft'  Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
@@ -2311,69 +2311,69 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '//balance 4-node' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rotateRight' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isRed'       Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '//split 4-node' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 'colorFlip'   Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'deleteMinNode' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2381,9 +2381,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2391,51 +2391,51 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '//delete'    Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 '--'          Operator
 'nodeCount'   Name
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'n'           Name
@@ -2444,29 +2444,29 @@
 '.'           Punctuation
 'left'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'moveRedLeft' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'deleteMinNode' Name
 '('           Punctuation
 'n'           Name
@@ -2474,23 +2474,23 @@
 'left'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'fixInvariants' Name
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'minNode'     Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2498,9 +2498,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2508,62 +2508,62 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'while'       Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'maxNode'     Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2571,9 +2571,9 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -2581,85 +2581,85 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'while'       Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '/** Used to verify that the invariants of the tree hold **/' Comment.Multiline
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'inline'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'assertInvariants' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#if'         Comment.Preproc
-' '           Comment.Preproc
+' '           Text.Whitespace
 'DEBUG'       Comment.Preproc
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'isBlack'     Name
 '('           Punctuation
 'root'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'r'           Literal.String.Double
 'o'           Literal.String.Double
@@ -2677,20 +2677,20 @@
 ':'           Literal.String.Double
 ' '           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'assertIsTree' Name
 '('           Punctuation
 'root'        Name
 ','           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'List'        Name
 '<'           Punctuation
 'Node'        Name
@@ -2704,13 +2704,13 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'assertBlackNodeCount' Name
 '('           Punctuation
 'root'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'assertBSTOrdering' Name
 '('           Punctuation
 'root'        Name
@@ -2718,17 +2718,17 @@
 'comp'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#end'        Comment.Preproc
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'assertIsTree' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2736,10 +2736,10 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Node'        Name
 '<'           Punctuation
 'K'           Name
@@ -2747,9 +2747,9 @@
 'V'           Name
 '>'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'visited'     Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'List'        Name
 '<'           Punctuation
@@ -2760,58 +2760,58 @@
 'V'           Name
 '>'           Punctuation
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'for'         Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'visited'     Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'r'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'visited'     Name
 '.'           Punctuation
 'push'        Name
@@ -2819,7 +2819,7 @@
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'assertIsTree' Name
 '('           Punctuation
 'n'           Name
@@ -2829,7 +2829,7 @@
 'visited'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'assertIsTree' Name
 '('           Punctuation
 'n'           Name
@@ -2839,15 +2839,15 @@
 'visited'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'assertBlackNodeCount' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -2855,50 +2855,50 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Node'        Name
 '<'           Punctuation
 'K'           Name
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Int'         Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'leftCount'   Text
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'assertBlackNodeCount' Name
 '('           Punctuation
 'n'           Name
@@ -2906,13 +2906,13 @@
 'left'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'rightCount'  Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'assertBlackNodeCount' Name
 '('           Punctuation
 'n'           Name
@@ -2920,19 +2920,19 @@
 'right'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'leftCount'   Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'rightCount'  Name
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String.Double
 'n'           Literal.String.Double
 'u'           Literal.String.Double
@@ -3001,57 +3001,57 @@
 'a'           Literal.String.Double
 'l'           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'leftCount'   Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'switch'      Keyword
 '('           Punctuation
 'n'           Name
 '.'           Punctuation
 'color'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'black'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Keyword
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'static'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'assertBSTOrdering' Name.Function
 '<'           Punctuation
 'K'           Name
@@ -3059,10 +3059,10 @@
 'V'           Name
 '>'           Punctuation
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Node'        Name
 '<'           Punctuation
 'K'           Name
@@ -3070,77 +3070,77 @@
 'V'           Name
 '>'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'compK'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Void'        Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 '.'           Punctuation
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'compK'       Name
 '('           Punctuation
 'n'           Name
@@ -3153,12 +3153,12 @@
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'l'           Literal.String.Double
 'e'           Literal.String.Double
@@ -3196,14 +3196,14 @@
 'n'           Literal.String.Double
 't'           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'assertBSTOrdering' Name
 '('           Punctuation
 'n'           Name
@@ -3213,41 +3213,41 @@
 'compK'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'right'       Name
 '.'           Punctuation
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'Debug'       Name
 '.'           Punctuation
 'assert'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'compK'       Name
 '('           Punctuation
 'n'           Name
@@ -3260,12 +3260,12 @@
 '.'           Punctuation
 'key'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'p'           Literal.String.Double
 'a'           Literal.String.Double
@@ -3304,14 +3304,14 @@
 'l'           Literal.String.Double
 'd'           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'assertBSTOrdering' Name
 '('           Punctuation
 'n'           Name
@@ -3321,56 +3321,56 @@
 'compK'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'enum'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Color'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'red'         Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'black'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Node'        Name
 '<'           Punctuation
 'K'           Name
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/*implements Entry<K,V>*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'left'        Text
-'   '         Text
+'   '         Text.Whitespace
 ':'           Punctuation
 'Null'        Name
 '<'           Punctuation
@@ -3382,13 +3382,13 @@
 '>'           Punctuation
 '>'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'right'       Text
-'  '          Text
+'  '          Text.Whitespace
 ':'           Punctuation
 'Null'        Name
 '<'           Punctuation
@@ -3400,104 +3400,104 @@
 '>'           Punctuation
 '>'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'color'       Text
-'  '          Text
+'  '          Text.Whitespace
 ':'           Punctuation
 'Color'       Name
 ';'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'key'         Text
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'val'         Text
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'V'           Name
 ';'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'new'         Name.Function
 '('           Punctuation
 'k'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'K'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'V'           Name
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'k'           Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'color'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'red'         Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'NodeIterator' Name
 '<'           Punctuation
 'K'           Name
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'curr'        Text
-'   '         Text
+'   '         Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -3506,13 +3506,13 @@
 'V'           Name
 '>'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'fringe'      Text
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Array'       Name
 '<'           Punctuation
@@ -3524,16 +3524,16 @@
 '>'           Punctuation
 '>'           Punctuation
 ';'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'new'         Name.Function
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'root'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -3541,17 +3541,17 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'fringe'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Array'       Name
 '<'           Punctuation
 'Node'        Name
@@ -3564,60 +3564,60 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'traverseToMin' Name
 '('           Punctuation
 'root'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'curr'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'fringe'      Name
 '.'           Punctuation
 'pop'         Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'inline'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'hasNext'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Bool'        Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'curr'        Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'public'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'next'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -3625,67 +3625,67 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'hasNext'     Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'NoSuchElement' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ret'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'curr'        Name
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'fringe'      Name
 '.'           Punctuation
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'curr'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'fringe'      Name
 '.'           Punctuation
 'pop'         Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'traverseToMin' Name
 '('           Punctuation
 'curr'        Name
@@ -3693,38 +3693,38 @@
 'right'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'curr'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ret'         Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'private'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'traverseToMin' Name.Function
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 'Node'        Name
 '<'           Punctuation
@@ -3732,24 +3732,24 @@
 ','           Punctuation
 'V'           Name
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'while'       Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'fringe'      Name
 '.'           Punctuation
 'push'        Name
@@ -3757,20 +3757,20 @@
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '.'           Punctuation
 'left'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

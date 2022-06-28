@@ -30,66 +30,66 @@
 '\n'          Text
 
 'module'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'example'     Name
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'open'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Fin'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'open'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Data.Nat'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'data'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Color'       Text
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Set'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'where'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'RGB'         Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Fin'         Text
-' '           Text
+' '           Text.Whitespace
 '256'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '→'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Fin'         Text
-' '           Text
+' '           Text.Whitespace
 '256'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '→'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Fin'         Text
-' '           Text
+' '           Text.Whitespace
 '256'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '→'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Color'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\end'       Keyword
 '{'           Name.Builtin

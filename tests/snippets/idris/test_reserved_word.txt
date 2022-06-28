@@ -5,25 +5,25 @@ namespace Foobar
 
 ---tokens---
 'namespace'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Foobar'      Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'links'       Name.Function
-' '           Text
+' '           Text.Whitespace
 ':'           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-' '           Text
+' '           Text.Whitespace
+' '           Text.Whitespace
 'links'       Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'abc'         Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

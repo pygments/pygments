@@ -17,54 +17,54 @@ UInt(1):UInt(2)
 
 ---tokens---
 ':abc_123'    Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':abc_def'    Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':α'          Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Val'         Keyword.Type
 '{'           Punctuation
 ':mysymbol'   Literal.String.Symbol
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# non-symbols' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
 ':'           Operator
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Literal.Number.Integer
 ':'           Operator
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.'          Literal.Number.Float
 ':'           Operator
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name
 '::'          Operator
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Keyword.Type
 '<:'          Operator
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Keyword.Type
 '>:'          Operator
 'T'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace
 
 'UInt'        Keyword.Type
 '('           Punctuation
@@ -75,4 +75,4 @@ UInt(1):UInt(2)
 '('           Punctuation
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

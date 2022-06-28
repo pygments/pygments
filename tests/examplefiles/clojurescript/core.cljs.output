@@ -1,355 +1,355 @@
 '('           Punctuation
 'ns '         Keyword.Declaration
 'bounder.core' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ':require'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'bounder.html' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':as'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Variable
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'domina'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':refer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'value'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'set-value!'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'single-node' Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'domina.css'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':refer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'sel'         Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'lowline.functions' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':refer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'debounce'    Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'enfocus.core' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':refer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'at'          Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'cljs.reader' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':as'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'reader'      Name.Variable
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Punctuation
 'clojure.string' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':as'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 ':require-macros' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'enfocus.macros' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':as'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'em'          Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'def '        Keyword
 'filter-input' Name.Variable
-' \n  '       Text
+' \n  '       Text.Whitespace
 '('           Punctuation
 'single-node' Name.Function
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'sel'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '".search input"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'project-matches' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'query'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'project'     Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'words'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'cons '       Name.Builtin
 '('           Punctuation
 ':name'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'project'     Name.Variable
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 'map '        Name.Builtin
 'name '       Name.Builtin
 '('           Punctuation
 ':categories' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'project'     Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'to-match'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '->>'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'words'       Name.Variable
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 '('           Punctuation
 's/join'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
 ')'           Punctuation
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 '('           Punctuation
 's/lower-case' Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 '<= '         Name.Builtin
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.indexOf'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'to-match'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 's/lower-case' Name.Function
-' '           Text
+' '           Text.Whitespace
 'query'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'apply-filter-for' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'projects'    Name.Variable
 ']'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'query'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'value'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'filter-input' Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'html/render-projects' Name.Function
-' \n     '    Text
+' \n     '    Text.Whitespace
 '('           Punctuation
 'filter '     Name.Builtin
 '('           Punctuation
 'partial '    Name.Builtin
 'project-matches' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'query'       Name.Variable
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'filter-category' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'projects'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'evt'         Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'target'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.-currentTarget' Name.Function
-' '           Text
+' '           Text.Whitespace
 'evt'         Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set-value!'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'filter-input' Name.Variable
-' \n                ' Text
+' \n                ' Text.Whitespace
 '('           Punctuation
 '.-innerHTML' Name.Function
-' '           Text
+' '           Text.Whitespace
 'target'      Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'apply-filter-for' Name.Function
-' '           Text
+' '           Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'init-listeners' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'projects'    Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'at'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'js/document' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 '"input"'     Literal.String
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'em/listen'   Name.Function
-'\n                ' Text
+'\n                ' Text.Whitespace
 ':keyup'      Literal.String.Symbol
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'debounce'    Name.Function
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '('           Punctuation
 'partial '    Name.Builtin
 'apply-filter-for' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '500'         Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '['           Punctuation
 '".category-links li"' Literal.String
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'em/listen'   Name.Function
-'\n                             ' Text
+'\n                             ' Text.Whitespace
 ':click'      Literal.String.Symbol
-'\n                             ' Text
+'\n                             ' Text.Whitespace
 '('           Punctuation
 'partial '    Name.Builtin
 'filter-category' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'init'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'projects-edn' Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'projects'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'reader/read-string' Name.Function
-' '           Text
+' '           Text.Whitespace
 'projects-edn' Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'init-listeners' Name.Function
-' '           Text
+' '           Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'html/render-projects' Name.Function
-' '           Text
+' '           Text.Whitespace
 'projects'    Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'html/loaded' Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

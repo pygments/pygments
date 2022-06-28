@@ -16,6 +16,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import pathlib
 import pytest
 from pathlib import Path
 
@@ -24,8 +25,7 @@ from tests.conftest import LexerSeparateTestItem
 
 def pytest_collect_file(parent, path):
     if path.ext != '.output' and path.basename != 'conftest.py':
-        p = Path(path)
-        return LexerTestFile.from_parent(parent, path=p)
+        return LexerTestFile.from_parent(parent, path=pathlib.Path(path))
 
 
 class LexerTestFile(pytest.File):

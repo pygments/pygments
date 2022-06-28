@@ -1,0 +1,45 @@
+---input---
+root:x:0:
+sudo:x:1:syslog,user
+syslog:x:2:
+#adm:x:3:
+
+user:x:1000
+
+---tokens---
+'root'        Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'0'           Literal.Number
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'sudo'        Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'syslog,user' Text
+'\n'          Text.Whitespace
+
+'syslog'      Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'2'           Literal.Number
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'#adm:x:3:'   Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'user'        Text
+':'           Punctuation
+'x'           Literal.String
+':'           Punctuation
+'1000'        Literal.Number
+'\n'          Text.Whitespace

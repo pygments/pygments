@@ -319,8 +319,11 @@ A formatter is derived from this class:
 Option processing
 =================
 
-The :mod:`pygments.util` module has some utility functions usable for option
-processing:
+The :mod:`pygments.util` module has some utility functions usable for processing
+command line options. All of the following functions get values from a
+dictionary of options. If the value is already in the type expected by the
+option, it is returned as-is. Otherwise, if the value is a string, it is first
+converted to the expected type if possible.
 
 .. exception:: OptionError
 
@@ -329,8 +332,11 @@ processing:
 
 .. function:: get_bool_opt(options, optname, default=None)
 
-    Interpret the key `optname` from the dictionary `options` as a boolean and
-    return it. Return `default` if `optname` is not in `options`.
+    Intuitively, this is `options.get(optname, default)`, but restricted to
+    Boolean value. The Booleans can be represented as string, in order to accept
+    Boolean value from the command line arguments. If the key `optname` is
+    present in the dictionary `options` and is not associated with a Boolean,
+    raise an `OptionError`. If it is absent, `default` is returned instead.
 
     The valid string values for ``True`` are ``1``, ``yes``, ``true`` and
     ``on``, the ones for ``False`` are ``0``, ``no``, ``false`` and ``off``

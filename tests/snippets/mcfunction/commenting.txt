@@ -1,0 +1,173 @@
+---input---
+#> Get: #rx.playerdb:api/v2/get
+#>
+#> @input
+#>  $in.uid rx.io
+#>
+#> @output
+#>  rx.playerdb:io player
+#
+# Selects data inside the database and copies to rx.playerdb:io player
+# See #api/v2/select for more info..
+# 
+#* Note: something, something, this is important..
+
+# Normal Comment
+
+# This **shouldn't** be a comment..
+scoreboard players operation @s obj = #fakeplayer obj
+
+#> single line block comment
+tellraw @a "This string # has # hashtags o_O"
+
+---tokens---
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'Get:'        Literal.String.Doc
+' '           Text.Whitespace
+'#rx.playerdb:api/v2/get' Name.Function
+'\n'          Text
+
+'#>'          Comment.Multiline
+'\n'          Text
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'@input'      Name.Decorator
+'\n'          Text
+
+'#>'          Comment.Multiline
+'  '          Text.Whitespace
+'$in.uid'     Name.Variable.Magic
+' '           Text.Whitespace
+'rx.io'       Literal.String.Doc
+'\n'          Text
+
+'#>'          Comment.Multiline
+'\n'          Text
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'@output'     Name.Decorator
+'\n'          Text
+
+'#>'          Comment.Multiline
+'  '          Text.Whitespace
+'rx.playerdb:io' Name.Function
+' '           Text.Whitespace
+'player'      Literal.String.Doc
+'\n'          Text
+
+'#'           Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'Selects'     Comment.Multiline
+' '           Text.Whitespace
+'data'        Comment.Multiline
+' '           Text.Whitespace
+'inside'      Comment.Multiline
+' '           Text.Whitespace
+'the'         Comment.Multiline
+' '           Text.Whitespace
+'database'    Comment.Multiline
+' '           Text.Whitespace
+'and'         Comment.Multiline
+' '           Text.Whitespace
+'copies'      Comment.Multiline
+' '           Text.Whitespace
+'to'          Comment.Multiline
+' '           Text.Whitespace
+'rx.playerdb:io' Name.Function
+' '           Text.Whitespace
+'player'      Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'See'         Comment.Multiline
+' '           Text.Whitespace
+'#api/v2/select' Name.Function
+' '           Text.Whitespace
+'for'         Comment.Multiline
+' '           Text.Whitespace
+'more'        Comment.Multiline
+' '           Text.Whitespace
+'info..'      Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' \n'         Text.Whitespace
+
+'#*'          Comment.Multiline
+' '           Text.Whitespace
+'Note:'       Comment.Multiline
+' '           Text.Whitespace
+'something,'  Comment.Multiline
+' '           Text.Whitespace
+'something,'  Comment.Multiline
+' '           Text.Whitespace
+'this'        Comment.Multiline
+' '           Text.Whitespace
+'is'          Comment.Multiline
+' '           Text.Whitespace
+'important..' Comment.Multiline
+'\n'          Text
+
+'\n#'         Comment.Multiline
+' '           Text.Whitespace
+'Normal'      Comment.Multiline
+' '           Text.Whitespace
+'Comment'     Comment.Multiline
+'\n'          Text
+
+'\n#'         Comment.Multiline
+' '           Text.Whitespace
+'This'        Comment.Multiline
+' '           Text.Whitespace
+"**shouldn't**" Comment.Multiline
+' '           Text.Whitespace
+'be'          Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+' '           Text.Whitespace
+'comment..'   Comment.Multiline
+'\n'          Text
+
+'scoreboard'  Name.Builtin
+' '           Text.Whitespace
+'players'     Keyword.Constant
+' '           Text.Whitespace
+'operation'   Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'obj'         Keyword.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'#fakeplayer' Name.Variable.Magic
+' '           Text.Whitespace
+'obj'         Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'single'      Literal.String.Doc
+' '           Text.Whitespace
+'line'        Literal.String.Doc
+' '           Text.Whitespace
+'block'       Literal.String.Doc
+' '           Text.Whitespace
+'comment'     Literal.String.Doc
+'\n'          Text
+
+'tellraw'     Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'This string # has # hashtags o_O' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

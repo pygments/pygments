@@ -4,7 +4,7 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,34 +19,36 @@ __all__ = ['CoqLexer', 'IsabelleLexer', 'LeanLexer']
 
 class CoqLexer(RegexLexer):
     """
-    For the `Coq <http://coq.inria.fr/>`_ theorem prover.
+    For the Coq theorem prover.
 
     .. versionadded:: 1.5
     """
 
     name = 'Coq'
+    url = 'http://coq.inria.fr/'
     aliases = ['coq']
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
 
-    flags = re.UNICODE
+    flags = 0 # no re.MULTILINE
 
     keywords1 = (
         # Vernacular commands
         'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
-        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Hypothesis',
+        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Axioms', 'Hypothesis',
         'Hypotheses', 'Notation', 'Local', 'Tactic', 'Reserved', 'Scope',
-        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Let', 'Ltac',
-        'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
-        'Arguments', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
+        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Example', 'Let',
+        'Ltac', 'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
+        'Arguments', 'Types', 'Unset', 'Contextual', 'Strict', 'Prenex',
         'Implicits', 'Inductive', 'CoInductive', 'Record', 'Structure',
-        'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
-        'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
-        'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
-        'Abort', 'Admitted',
+        'Variant', 'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Fact',
+        'Remark', 'Corollary', 'Proposition', 'Property', 'Goal',
+        'Proof', 'Restart', 'Save', 'Qed', 'Defined', 'Abort', 'Admitted',
+        'Hint', 'Resolve', 'Rewrite', 'View', 'Search', 'Compute', 'Eval',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
         'outside', 'Check', 'Global', 'Instance', 'Class', 'Existing',
-        'Universe', 'Polymorphic', 'Monomorphic', 'Context'
+        'Universe', 'Polymorphic', 'Monomorphic', 'Context', 'Scheme', 'From',
+        'Undo', 'Fail', 'Function',
     )
     keywords2 = (
         # Gallina
@@ -56,7 +58,7 @@ class CoqLexer(RegexLexer):
     )
     keywords3 = (
         # Sorts
-        'Type', 'Prop', 'SProp',
+        'Type', 'Prop', 'SProp', 'Set',
     )
     keywords4 = (
         # Tactics
@@ -74,9 +76,10 @@ class CoqLexer(RegexLexer):
     )
     keywords5 = (
         # Terminators
-        'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
+        'by', 'now', 'done', 'exact', 'reflexivity',
+        'tauto', 'romega', 'omega', 'lia', 'nia', 'lra', 'nra', 'psatz',
         'assumption', 'solve', 'contradiction', 'discriminate',
-        'congruence',
+        'congruence', 'admit'
     )
     keywords6 = (
         # Control
@@ -107,6 +110,10 @@ class CoqLexer(RegexLexer):
             (r'\s+', Text),
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'\(\*', Comment, 'comment'),
+            (r'\b(?:[^\W\d][\w\']*\.)+[^\W\d][\w\']*\b', Name),
+            (r'\bEquations\b\??', Keyword.Namespace),
+            # Very weak heuristic to distinguish the Set vernacular from the Set sort
+            (r'\bSet(?=[ \t]+[A-Z][a-z][^\n]*?\.)', Keyword.Namespace),
             (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
             (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
@@ -164,12 +171,13 @@ class CoqLexer(RegexLexer):
 
 class IsabelleLexer(RegexLexer):
     """
-    For the `Isabelle <http://isabelle.in.tum.de/>`_ proof assistant.
+    For the Isabelle proof assistant.
 
     .. versionadded:: 2.0
     """
 
     name = 'Isabelle'
+    url = 'http://isabelle.in.tum.de/'
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
@@ -380,17 +388,15 @@ class IsabelleLexer(RegexLexer):
 
 class LeanLexer(RegexLexer):
     """
-    For the `Lean <https://github.com/leanprover/lean>`_
-    theorem prover.
+    For the Lean theorem prover.
 
     .. versionadded:: 2.0
     """
     name = 'Lean'
+    url = 'https://github.com/leanprover/lean'
     aliases = ['lean']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
-
-    flags = re.MULTILINE | re.UNICODE
 
     tokens = {
         'root': [

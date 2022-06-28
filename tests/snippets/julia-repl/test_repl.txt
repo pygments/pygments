@@ -11,14 +11,14 @@ julia> @. f(1:2)
 
 ---tokens---
 'julia>'      Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'sin'         Name
 '('           Punctuation
 'π'           Name.Builtin
@@ -26,23 +26,23 @@ julia> @. f(1:2)
 '2'           Literal.Number.Integer
 'x'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'f (generic function with 1 method)\n' Generic.Output
 
 '\n'          Generic.Output
 
 'julia>'      Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 '@.'          Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ':'           Operator
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2-element Vector{Float64}:\n' Generic.Output
 

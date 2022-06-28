@@ -1,0 +1,43 @@
+---input---
+(define* (foo #:key (bar123? 'baz))
+  (display bar123?)
+  (newline))
+
+(foo #:bar123? 'xyz)
+
+---tokens---
+'('           Punctuation
+'define*'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'foo'         Name.Function
+' '           Text.Whitespace
+'#:key'       Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'bar123?'     Name.Function
+' '           Text.Whitespace
+"'baz"        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'display'     Name.Builtin
+' '           Text.Whitespace
+'bar123?'     Name.Variable
+')'           Punctuation
+'\n  '        Text.Whitespace
+'('           Punctuation
+'newline'     Name.Builtin
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'('           Punctuation
+'foo'         Name.Function
+' '           Text.Whitespace
+'#:bar123?'   Keyword.Declaration
+' '           Text.Whitespace
+"'xyz"        Literal.String.Symbol
+')'           Punctuation
+'\n'          Text.Whitespace

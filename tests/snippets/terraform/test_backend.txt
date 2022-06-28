@@ -18,7 +18,7 @@ terraform {
 '"consul"'    Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'address'     Name.Attribute

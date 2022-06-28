@@ -1,59 +1,59 @@
 'package'     Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '"fmt"'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '世界'          Name.Other
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"Hello, world!"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'さようなら'       Name.Other
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"Goodbye, world!"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fmt'         Name.Other
 '.'           Punctuation
 'Println'     Name.Other
 '('           Punctuation
 '世界'          Name.Other
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'fmt'         Name.Other
 '.'           Punctuation
 'Println'     Name.Other
 '('           Punctuation
 'さようなら'       Name.Other
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

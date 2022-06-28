@@ -2,7 +2,7 @@
     Data Tests
     ~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -11,8 +11,8 @@ import time
 import pytest
 
 from pygments.lexers.data import JsonLexer, JsonBareObjectLexer, JsonLdLexer
-from pygments.token import Token, Punctuation, Text, Number, String, Keyword, \
-        Name, Whitespace
+from pygments.token import Comment, Error, Token, Punctuation, Number, String, \
+        Keyword, Name, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -68,12 +68,6 @@ def lexer_json_ld():
         ('false', (Keyword.Constant, )),
         ('null', (Keyword.Constant, )),
 
-        # Whitespace
-        ('\u0020', (Whitespace,)),  # space
-        ('\u000a', (Whitespace,)),  # newline
-        ('\u000d', (Whitespace,)),  # carriage return
-        ('\u0009', (Whitespace,)),  # tab
-
         # Arrays
         ('[]', (Punctuation,)),
         ('["a", "b"]', (Punctuation, String.Double, Punctuation,
@@ -85,14 +79,35 @@ def lexer_json_ld():
                         Whitespace, String.Double, Punctuation)),
     )
 )
-def test_json_literals_positive_match(lexer_json, text, expected_token_types):
+@pytest.mark.parametrize('end', ('', '\n'))
+def test_json_literals_positive_match(lexer_json, text, expected_token_types, end):
     """Validate that syntactically-correct JSON literals are parsed correctly."""
 
-    tokens = list(lexer_json.get_tokens_unprocessed(text))
-    assert len(tokens) == len(expected_token_types)
+    tokens = list(lexer_json.get_tokens_unprocessed(text + end))
+    assert len(tokens) == len(expected_token_types) + bool(end)
     assert all(token[1] is expected_token
                for token, expected_token in zip(tokens, expected_token_types))
-    assert ''.join(token[2] for token in tokens) == text
+    assert ''.join(token[2] for token in tokens) == text + end
+
+
+@pytest.mark.parametrize(
+    'text, expected',
+    (
+        ('\u0020', Whitespace),  # space
+        ('\u000a', Whitespace),  # newline
+        ('\u000d', Whitespace),  # carriage return
+        ('\u0009', Whitespace),  # tab
+    )
+)
+def test_json_whitespace_positive_match(lexer_json, text, expected):
+    """Validate that whitespace is parsed correctly."""
+
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert tokens == [(0, expected, text)]
+
+    # Expand the whitespace and verify parsing again.
+    tokens = list(lexer_json.get_tokens_unprocessed(text * 2 + ' '))
+    assert tokens == [(0, expected, text * 2 + ' ')]
 
 
 @pytest.mark.parametrize(
@@ -109,6 +124,15 @@ def test_json_object_key_escapes_positive_match(lexer_json, text):
     assert len(tokens) == 6
     assert tokens[1][1] is Name.Tag
     assert tokens[1][2] == '"\\%s"' % text
+
+
+@pytest.mark.parametrize('text', ('uz', 'u1z', 'u12z', 'u123z'))
+def test_json_string_unicode_escapes_negative_match(lexer_json, text):
+    """Validate that if unicode escape sequences end abruptly there's no problem."""
+
+    tokens = list(lexer_json.get_tokens_unprocessed('"\\%s"' % text))
+    assert len(tokens) == 1
+    assert tokens[0] == (0, String.Double, '"\\%s"' % text)
 
 
 @pytest.mark.parametrize(
@@ -128,12 +152,70 @@ def test_json_string_escapes_positive_match(lexer_json, text):
     assert tokens[0][2] == text
 
 
-@pytest.mark.parametrize('text', ('+\n', '0\n', '""0\n', 'a\nb\n',))
+@pytest.mark.parametrize('text', ('+\n', '0\n', '""0\n', 'a\nb\n', '""/-'))
 def test_json_round_trip_errors(lexer_json, text):
     """Validate that past round-trip errors never crop up again."""
 
     tokens = list(lexer_json.get_tokens_unprocessed(text))
     assert ''.join(t[2] for t in tokens) == text
+
+
+def test_json_comments_single_line_positive_matches(lexer_json):
+    """Verify that single-line comments are tokenized correctly."""
+
+    text = '{"a//b"//C1\n:123/////C2\n}\n// // C3'
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert tokens[2] == (7, Comment.Single, "//C1")
+    assert tokens[6] == (16, Comment.Single, "/////C2")
+    assert tokens[10] == (26, Comment.Single, "// // C3")
+
+    comment_count = sum(1 for token in tokens if token[1] == Comment or token[1].parent == Comment)
+    assert comment_count == 3
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
+
+
+def test_json_comments_multiline_positive_matches(lexer_json):
+    """Verify that multiline comments are tokenized correctly."""
+
+    text = '/** / **/{"a /**/ b"/* \n */:123}'
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert tokens[0] == (0, Comment.Multiline, "/** / **/")
+    assert tokens[3] == (20, Comment.Multiline, "/* \n */")
+
+    comment_count = sum(1 for token in tokens if token[1] == Comment or token[1].parent == Comment)
+    assert comment_count == 2
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    (
+        # Unfinished comment openers
+        ('/', (0, Error, '/')),
+        ('1/', (1, Error, '/')),
+        ('/1', (0, Error, '/')),
+        ('""/', (2, Error, '/')),
+        # Unclosed multiline comments
+        ('/*', (0, Error, '/*')),
+        ('/**', (0, Error, '/**')),
+        ('/*/', (0, Error, '/*/')),
+        ('1/*', (1, Error, '/*')),
+        ('""/*', (2, Error, '/*')),
+        ('""/**', (2, Error, '/**')),
+    )
+)
+def test_json_comments_negative_matches(lexer_json, text, expected):
+    """Verify that the unfinished or unclosed comments are parsed as errors."""
+
+    tokens = list(lexer_json.get_tokens_unprocessed(text))
+    assert expected in tokens
+
+    parsed_text = ''.join(token[2] for token in tokens)
+    assert parsed_text == text, 'Input and output texts must match!'
 
 
 def test_json_escape_backtracking(lexer_json):

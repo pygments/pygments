@@ -1,564 +1,594 @@
 '\\version'   Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '"'           Literal.String
-'2.23.3'      Literal.String
+'2.23.6'      Literal.String
 '"'           Literal.String
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 "% This is a test file for Pygments' LilyPond support. To compile" Comment.Single
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 '% it with Guile 1 (as in official releases as of this writing),' Comment.Single
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
-'% remove the "commented form" below.' Comment.Single
-'\n\n'        Whitespace
+'% remove the "commented forms" below.' Comment.Single
+'\n\n'        Text.Whitespace
 
 '%{\n  All supported constructs are covered in\n  this file.  For example, multi-line comments.\n\n  These are non-nested. The following will\n  end the whole comment:\n  %{ %}' Comment.Multiline
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 '\\include'   Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '"'           Literal.String
-'lilypond-book-preamble.ly' Literal.String
+'arabic.ly'   Literal.String
 '"'           Literal.String
-'\n\n'        Whitespace
+'\n'          Text.Whitespace
+
+'\\language'  Keyword
+' '           Text.Whitespace
+'nederlands'  Name.PitchLanguage
+'\n\n'        Text.Whitespace
 
 '\\header'    Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 'title'       Name.Builtin.HeaderVariable
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
+'\\markup'    Name.Builtin.MarkupCommand
+' '           Text.Whitespace
+'\\smallCaps' Name.Builtin.MarkupCommand
+' '           Text.Whitespace
 '"'           Literal.String
-'This is an assignment to a string. Escape ' Literal.String
+'Some markup' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'% The following is just a comment.' Comment.Single
+'\n'          Text.Whitespace
+
+'%}'          Comment.Single
+'\n\n'        Text.Whitespace
+
+'\\paper'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'oddHeaderMarkup' Name.Lvalue
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'This is an assignment to a string.\nEscape ' Literal.String
 '\\"'         Literal.String.Escape
 ' sequences ' Literal.String
 '\\n'         Literal.String.Escape
-' are\nrecognized.\n' Literal.String
-
+' are recognized.' Literal.String
 '"'           Literal.String
-'\n  '        Whitespace
-'composer'    Name.Builtin.HeaderVariable
-' '           Whitespace
+'\n  '        Text.Whitespace
+'evenHeaderMarkup' Name.Lvalue
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
-'\\markup'    Name.Builtin.MarkupCommand
-' '           Whitespace
-'\\smallCaps' Name.Builtin.MarkupCommand
-' '           Whitespace
-'"'           Literal.String
-'And this is a markup' Literal.String
-'"'           Literal.String
-'\n'          Whitespace
-
-'}'           Punctuation
-'\n'          Whitespace
-
-'% The following is just a comment.' Comment.Single
-'\n'          Whitespace
-
-'%}'          Comment.Single
-'\n\n'        Whitespace
-
-'\\paper'     Keyword
-' '           Whitespace
-'{'           Punctuation
-'\n  '        Whitespace
+' '           Text.Whitespace
+'\\oddHeaderMarkup' Name.BackslashReference
+'\n  '        Text.Whitespace
 'indent'      Name.Builtin.PaperVariable
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '30'          Literal.Number
 '\\staff-space' Literal.Number
-'\n  '        Whitespace
-'page-count'  Name.Builtin.PaperVariable
-' '           Whitespace
+'\n  '        Text.Whitespace
+'system-system-spacing' Name.Builtin.PaperVariable
+'.'           Punctuation
+'basic-distance' Name.Builtin.PaperVariable
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
-'1'           Literal.Number
-'\n'          Whitespace
+' '           Text.Whitespace
+'20'          Literal.Number
+'\n  '        Text.Whitespace
+'ragged-bottom' Name.Builtin.PaperVariable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'#'           Punctuation
+'#t'          Name.Constant
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 'myFunc'      Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#;('         Comment
-'This is a commented form. After it, we are still in Scheme mode.' Comment
+'This is a commented form. There is another just after.' Comment
 ')'           Comment
-'\n'          Text
+'\n  '        Text.Whitespace
+'#;'          Comment
+'+inf.0'      Comment
+'\n  '        Text.Whitespace
+';; After these comments, we are still in Scheme mode.' Comment.Single
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'define-music-function' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'music'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ly:music?'   Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'index?'      Name.Builtin.SchemeFunction
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
-'let* '       Keyword
+'let*'        Keyword
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'repeated'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'make-list'   Name.Function
-' '           Text
+'make-list'   Name.Builtin.SchemeBuiltin
+' '           Text.Whitespace
 'n'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'music'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'copied'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'map '        Name.Builtin.SchemeBuiltin
+'map'         Name.Builtin.SchemeBuiltin
+' '           Text.Whitespace
 'ly:music-deep-copy' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'repeated'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '; This is a Scheme comment.' Comment.Single
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'make-sequential-music' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'copied'      Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 'mySecondFunc' Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 '#'           Punctuation
 '('           Punctuation
 'define-music-function' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'music'       Name.Function
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ly:music?'   Name.Builtin.SchemeFunction
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '#{'          Punctuation
-'\n     '     Whitespace
+'\n     '     Text.Whitespace
 '% LilyPond syntax here.' Comment.Single
-'\n     '     Whitespace
+'\n     '     Text.Whitespace
 '\\compressMMRests' Name.Builtin.MusicFunction
-'\n       '   Whitespace
+'\n       '   Text.Whitespace
 '\\shiftDurations' Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '-2'          Literal.Number
-' '           Whitespace
+' '           Text.Whitespace
 '1'           Literal.Number
-'\n        '  Whitespace
+'\n        '  Text.Whitespace
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; Scheme syntax again.' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'ly:music-deep-copy' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'music'       Name.Variable
 ')'           Punctuation
-'\n   '       Whitespace
+'\n   '       Text.Whitespace
 '#}'          Punctuation
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 '#'           Punctuation
 '('           Punctuation
 'define-markup-command' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'small-italic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'layout'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'props'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'arg'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'markup?'     Name.Builtin.SchemeFunction
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'interpret-markup' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'layout'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'props'       Name.Variable
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'make-small-markup' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'make-italic-markup' Name.Builtin.SchemeFunction
-' '           Text
+' '           Text.Whitespace
 'arg'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 'myPitch'     Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '#'           Punctuation
 '#{'          Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 'c'           Pitch
-' '           Whitespace
+' '           Text.Whitespace
 '#}'          Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 '% Here we should be back to LilyPond mode. This' Comment.Single
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 '% is a LilyPond comment.' Comment.Single
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 'myVariable'  Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 'c'           Pitch
 '4'           Literal.Number
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 'myAlist'     Name.Lvalue
 '.'           Punctuation
 'keyI'        Name.Lvalue
 '.'           Punctuation
 'keyII'       Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '55'          Literal.Number
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 'piuPiano'    Name.Lvalue
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '\\markup'    Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text.Whitespace
 '\\italic'    Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text.Whitespace
 '"'           Literal.String
 'più piano'   Literal.String
 '"'           Literal.String
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 '#'           Punctuation
 '('           Punctuation
-'symbol->string' Name.Variable
-' '           Text
+'symbol->string' Name.Builtin.SchemeBuiltin
+' '           Text.Whitespace
 "'some-symbol" Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text.Whitespace
 
 '<'           Punctuation
 '<'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\new'       Keyword
-' '           Whitespace
+' '           Text.Whitespace
 'Staff'       Name.Builtin.Context
-' '           Whitespace
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'myStaff'     Text
+' '           Text.Whitespace
 '\\with'      Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\consists'  Keyword
-' '           Whitespace
+' '           Text.Whitespace
 'Duration_line_engraver' Name.Builtin.Translator
-'\n  '        Whitespace
+'\n    '      Text.Whitespace
+'\\override'  Name.Builtin.MusicFunction
+' '           Text.Whitespace
+'VerticalAxisGroup' Name.Builtin.Grob
+'.'           Punctuation
+'staff-staff-spacing' Name.Builtin.GrobProperty
+'.'           Punctuation
+'basic-distance' Name.Builtin.GrobProperty
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'20'          Literal.Number
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\relative'  Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 "c'"          Pitch
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\clef'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'alto'        Name.Builtin.Clef
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\time'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '6/8'         Literal.Number.Fraction
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\key'       Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'd'           Pitch
-' '           Whitespace
+' '           Text.Whitespace
 '\\major'     Name.Builtin.Scale
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\cadenzaOn' Name.Builtin.MusicCommand
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 "deses'!"     Pitch
 '4.'          Literal.Number
 '~'           Name.Builtin.Articulation
 '('           Name.Builtin.Articulation
 '\\tweak'     Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'thickness'   Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text.Whitespace
 '4'           Literal.Number
 '\\('         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text.Whitespace
 'deses'       Pitch
 '^\\p'        Name.Builtin.Dynamic
 '-\\signumcongruentiae' Name.Builtin.Articulation
 '_1'          Name.Builtin.Articulation
 '\\4'         Name.Builtin.Articulation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 'deses'       Pitch
 '\\longa'     Literal.Number
 ')'           Name.Builtin.Articulation
-' '           Whitespace
+' '           Text.Whitespace
 '\\myFunc'    Name.BackslashReference
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 'r'           Pitch
-' '           Whitespace
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '4'           Literal.Number
-' '           Whitespace
+' '           Text.Whitespace
 'des'         Pitch
 '8'           Literal.Number
-' '           Whitespace
+' '           Text.Whitespace
 '8'           Literal.Number
 '['           Name.Builtin.Articulation
-' '           Whitespace
+' '           Text.Whitespace
 '<'           Punctuation
 'des'         Pitch
-' '           Whitespace
+' '           Text.Whitespace
 'ges'         Pitch
 '>'           Punctuation
 '8'           Literal.Number
 ']'           Name.Builtin.Articulation
 '\\)'         Name.Builtin.Articulation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\bar'       Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '"'           Literal.String
 '||'          Literal.String
 '"'           Literal.String
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\cadenzaOff' Name.Builtin.MusicCommand
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
+'\\pageBreak' Name.Builtin.MusicFunction
+'\n    '      Text.Whitespace
 '\\once'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '\\hide'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'NoteHead'    Name.Builtin.Grob
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\once'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '\\override'  Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'NoteHead'    Name.Builtin.Grob
 '.'           Punctuation
 'no-ledgers'  Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '#'           Punctuation
 '#t'          Name.Constant
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\once'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '\\omit'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'Dots'        Name.Builtin.Grob
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\once'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 '\\override'  Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'Staff'       Name.Builtin.Context
 '.'           Punctuation
 'DurationLine' Name.Builtin.Grob
 '.'           Punctuation
 'thickness'   Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '#'           Punctuation
-'5'           Literal.Number.Integer
-'\n    '      Whitespace
+'7'           Literal.Number.Integer
+'\n    '      Text.Whitespace
 "c''?"        Pitch
 '2.'          Literal.Number
 ':'           Punctuation
 '16'          Literal.Number
+'\\tweak'     Name.Builtin.MusicFunction
+' '           Text.Whitespace
+'bound-details' Name.Builtin.GrobProperty
+' '           Text.Whitespace
+'.'           Punctuation
+'left'        Name.Builtin.GrobProperty
+'.'           Punctuation
+'padding'     Name.Builtin.GrobProperty
+'-5'          Literal.Number
 '\\-'         Name.Builtin.Articulation
 '^"'          Literal.String
 'Some music'  Literal.String
 '"'           Literal.String
-' '           Whitespace
+' '           Text.Whitespace
 '|'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\mySecondFunc' Name.BackslashReference
-'\n      '    Whitespace
+'\n      '    Text.Whitespace
 'R'           Pitch
 '1'           Literal.Number
 '*'           Literal.Number
 '1/2'         Literal.Number.Fraction
 '^\\markup'   Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text.Whitespace
 '\\center-column' Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n               ' Whitespace
-'S'           Text
-'o'           Text
-'m'           Text
-'e'           Pitch
-'\n               ' Whitespace
-'T'           Text
-'e'           Text
-'x'           Text
-'t'           Text
-'\n               ' Whitespace
-'I'           Text
-'n'           Text
-'\n               ' Whitespace
+'\n               ' Text.Whitespace
+'Some'        Text
+'\n               ' Text.Whitespace
+'Text'        Text
+'\n               ' Text.Whitespace
+'In'          Text
+'\n               ' Text.Whitespace
 'A'           Text
-'\n               ' Whitespace
+'\n               ' Text.Whitespace
 '\\bold'      Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text.Whitespace
 '\\italic'    Name.Builtin.MarkupCommand
-' '           Whitespace
-'C'           Text
-'o'           Text
-'l'           Text
-'u'           Text
-'m'           Text
-'n'           Text
+' '           Text.Whitespace
+'Column'      Text
 '!'           Text
-'\n               ' Whitespace
+'\n               ' Text.Whitespace
 '\\small-italic' Name.BackslashReference
-' '           Whitespace
-'s'           Text
-'u'           Text
-'p'           Text
-'e'           Text
-'r'           Pitch
-'\n             ' Whitespace
+' '           Text.Whitespace
+'super'       Text
+'\n             ' Text.Whitespace
 '}'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
+'\\break'     Name.Builtin.MusicCommand
+'\n    '      Text.Whitespace
 '\\repeat'    Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'unfold'      Name.Builtin.RepeatType
-' '           Whitespace
+' '           Text.Whitespace
 '4'           Literal.Number
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 'c'           Pitch
 '8'           Literal.Number
 '\\<'         Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text.Whitespace
 'c'           Pitch
 '^\\>'        Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text.Whitespace
 'c'           Pitch
 '\\p'         Name.Builtin.Dynamic
 '\\!'         Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 'c'           Pitch
 '_\\piuPiano' Name.BackslashReference
 '^\\markup'   Name.Builtin.MarkupCommand
-' '           Whitespace
-'d'           Text
-'o'           Text
-'l'           Text
-'c'           Text
-'e'           Pitch
-'\n  '        Whitespace
+' '           Text.Whitespace
+'dolce'       Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\addlyrics' Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 '\\set'       Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text.Whitespace
 'Score'       Name.Builtin.Context
 '.'           Punctuation
 'melismaBusyProperties' Name.Builtin.ContextProperty
-' '           Whitespace
+' '           Text.Whitespace
 '='           Punctuation
-' '           Whitespace
+' '           Text.Whitespace
 '#'           Punctuation
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
-'\n    '      Whitespace
-'M'           Text
-'y'           Text
-' '           Whitespace
-'L'           Text
-'i'           Text
-'l'           Text
-'y'           Text
-' '           Whitespace
+'\n    '      Text.Whitespace
+'My'          Text
+' '           Text.Whitespace
+'Lily'        Text
+' '           Text.Whitespace
 '--'          Punctuation
-' '           Whitespace
-'S'           Text
-'o'           Text
-'n'           Text
-'g'           Pitch
-'\n  '        Whitespace
+' '           Text.Whitespace
+'Song'        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\chordmode' Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 'c'           Pitch
-' '           Whitespace
+' '           Text.Whitespace
 'cis'         Pitch
 ':'           Punctuation
+'dim'         ChordModifier
 '3'           Literal.Number
 '+'           Text
-' '           Whitespace
+'\\dim'       Name.Builtin.Dynamic
+' '           Text.Whitespace
 'des'         Pitch
 ':'           Punctuation
 'maj'         ChordModifier
@@ -566,44 +596,45 @@
 '/'           Text
 '+'           Text
 'e'           Pitch
-'\n  '        Whitespace
+'\\!'         Name.Builtin.Dynamic
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\new'       Keyword
-' '           Whitespace
+' '           Text.Whitespace
 'TabVoice'    Name.Builtin.Context
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 "f'"          Pitch
 '4'           Literal.Number
 '\\^'         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text.Whitespace
 "g'"          Pitch
 '4'           Literal.Number
 '\\^'         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text.Whitespace
 "f'"          Pitch
 '2'           Literal.Number
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '\\drums'     Keyword
-' '           Whitespace
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text.Whitespace
 'hihat'       Pitch
 '4'           Literal.Number
-' '           Whitespace
+' '           Text.Whitespace
 'hh'          Pitch
-' '           Whitespace
+' '           Text.Whitespace
 'bassdrum'    Pitch
-' '           Whitespace
+' '           Text.Whitespace
 'bd'          Pitch
-'\n  '        Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Whitespace
+'\n'          Text.Whitespace
 
 '>'           Punctuation
 '>'           Punctuation
-'\n'          Whitespace
+'\n'          Text.Whitespace

@@ -1,6 +1,6 @@
 -- An Agda example file
 
-module test where
+module test' where
 
 open import Coinduction
 open import Data.Bool

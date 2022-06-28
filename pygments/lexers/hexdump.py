@@ -4,7 +4,7 @@
 
     Lexers for hexadecimal dumps.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -56,8 +56,8 @@ class HexdumpLexer(RegexLexer):
              bygroups(Whitespace, Punctuation, String, Punctuation)),
             (r'(\s{2,3})(\|)(.{1,15})(\|)$',
              bygroups(Whitespace, Punctuation, String, Punctuation)),
-            (r'(\s{2,3})(.{1,15})$', bygroups(Text, String)),
-            (r'(\s{2,3})(.{16}|.{20})$', bygroups(Text, String), 'nonpiped-strings'),
+            (r'(\s{2,3})(.{1,15})$', bygroups(Whitespace, String)),
+            (r'(\s{2,3})(.{16}|.{20})$', bygroups(Whitespace, String), 'nonpiped-strings'),
             (r'\s', Whitespace),
             (r'^\*', Punctuation),
         ],

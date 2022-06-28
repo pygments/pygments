@@ -1,0 +1,18 @@
+---input---
+>> foo()
+bar
+...
+baz
+
+---tokens---
+'>> '         Generic.Prompt
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'bar\n'       Generic.Output
+
+'...\n'       Generic.Output
+
+'baz\n'       Generic.Output

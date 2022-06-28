@@ -1,18 +1,9 @@
 <section>
 <h3>Download</h3>
-{% if version.endswith('(hg)') %}
-<p>This documentation is for version <b>{{ version }}</b>, which is
-  not released yet.</p>
-<p>You can use it from the
-  <a href="https://github.com/pygments/pygments/">Git repo</a> or look for
-  released versions in the <a href="https://pypi.python.org/pypi/Pygments">Python
-    Package Index</a>.</p>
-{% else %}
-<p>Current version: <b>{{ version }}</b></p>
+<p>Current version: <b>{{ version }}</b><br><a href="{{ pathto('docs/changelog') }}">Changelog</a></p>
 <p>Get Pygments from the <a href="https://pypi.python.org/pypi/Pygments">Python Package
     Index</a>, or install it with:</p>
 <pre>pip install Pygments</pre>
-{% endif %}
 </section>
 <section>
 <h3>Questions? Suggestions?</h3>

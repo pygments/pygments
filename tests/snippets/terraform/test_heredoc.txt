@@ -5,6 +5,12 @@ resource "local_file" "heredoc" {
     DOC
 }
 
+resource "local_file" "heredoc" {
+  content = <<DOC
+    heredoc content
+    DOC
+}
+
 ---tokens---
 'resource'    Keyword.Reserved
 ' '           Text.Whitespace
@@ -13,7 +19,7 @@ resource "local_file" "heredoc" {
 '"heredoc"'   Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'content'     Name.Attribute
@@ -21,6 +27,33 @@ resource "local_file" "heredoc" {
 '='           Operator
 ' '           Text.Whitespace
 '<<-'         Operator
+'DOC'         Literal.String.Delimiter
+'\n'          Literal.String.Heredoc
+
+'    heredoc content\n' Literal.String.Heredoc
+
+'    DOC\n'   Literal.String.Delimiter
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'resource'    Keyword.Reserved
+' '           Text.Whitespace
+'"local_file"' Name.Class
+' '           Text.Whitespace
+'"heredoc"'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'content'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<<'          Operator
 'DOC'         Literal.String.Delimiter
 '\n'          Literal.String.Heredoc
 
