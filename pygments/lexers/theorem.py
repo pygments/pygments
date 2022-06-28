@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Whitespace
 
 __all__ = ['CoqLexer', 'IsabelleLexer', 'LeanLexer']
 
@@ -177,7 +177,7 @@ class IsabelleLexer(RegexLexer):
     """
 
     name = 'Isabelle'
-    url = 'http://isabelle.in.tum.de/'
+    url = 'https://isabelle.in.tum.de/'
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
@@ -310,9 +310,10 @@ class IsabelleLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\(\*', Comment, 'comment'),
-            (r'\{\*', Comment, 'text'),
+            (r'\\<open>', String.Symbol, 'cartouche'),
+            (r'\{\*|‹', String, 'cartouche'),
 
             (words(operators), Operator),
             (words(proof_operators), Operator.Word),
@@ -343,19 +344,17 @@ class IsabelleLexer(RegexLexer):
 
             (words(keyword_proof_script, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 
-            (r'\\<\w*>', Text.Symbol),
+            (r'\\<(\w|\^)*>', Text.Symbol),
 
-            (r"[^\W\d][.\w']*", Name),
-            (r"\?[^\W\d][.\w']*", Name),
             (r"'[^\W\d][.\w']*", Name.Type),
 
-            (r'\d[\d_]*', Name),  # display numbers as name
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
             (r'0[bB][01][01_]*', Number.Bin),
 
             (r'"', String, 'string'),
             (r'`', String.Other, 'fact'),
+            (r'[^\s:|\[\]\-()=,+!?{}._][^\s:|\[\]\-()=,+!?{}]*', Name),
         ],
         'comment': [
             (r'[^(*)]+', Comment),
@@ -363,22 +362,25 @@ class IsabelleLexer(RegexLexer):
             (r'\*\)', Comment, '#pop'),
             (r'[(*)]', Comment),
         ],
-        'text': [
-            (r'[^*}]+', Comment),
-            (r'\*\}', Comment, '#pop'),
-            (r'\*', Comment),
-            (r'\}', Comment),
+        'cartouche': [
+            (r'[^{*}\\‹›]+', String),
+            (r'\\<open>', String.Symbol, '#push'),
+            (r'\{\*|‹', String, '#push'),
+            (r'\\<close>', String.Symbol, '#pop'),
+            (r'\*\}|›', String, '#pop'),
+            (r'\\<(\w|\^)*>', String.Symbol),
+            (r'[{*}\\]', String),
         ],
         'string': [
             (r'[^"\\]+', String),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\"', String),
             (r'\\', String),
             (r'"', String, '#pop'),
         ],
         'fact': [
             (r'[^`\\]+', String.Other),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\`', String.Other),
             (r'\\', String.Other),
             (r'`', String.Other, '#pop'),
