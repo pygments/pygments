@@ -172,7 +172,7 @@ class IsabelleLexer(RegexLexer):
     """
 
     name = 'Isabelle'
-    url = 'http://isabelle.in.tum.de/'
+    url = 'https://isabelle.in.tum.de/'
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
@@ -307,7 +307,8 @@ class IsabelleLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'\(\*', Comment, 'comment'),
-            (r'\{\*|‹', Text, 'text'),
+            (r'\\<open>', String.Symbol, 'cartouche'),
+            (r'\{\*|‹', String, 'cartouche'),
 
             (words(operators), Operator),
             (words(proof_operators), Operator.Word),
@@ -338,7 +339,7 @@ class IsabelleLexer(RegexLexer):
 
             (words(keyword_proof_script, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 
-            (r'\\<\w*>', Text.Symbol),
+            (r'\\<(\w|\^)*>', Text.Symbol),
 
             (r"'[^\W\d][.\w']*", Name.Type),
 
@@ -356,22 +357,25 @@ class IsabelleLexer(RegexLexer):
             (r'\*\)', Comment, '#pop'),
             (r'[(*)]', Comment),
         ],
-        'text': [
-            (r'[^{*}‹›]+', Text),
-            (r'\{\*|‹', Text, '#push'),
-            (r'\*\}|›', Text, '#pop'),
-            (r'[{*}]', Text),
+        'cartouche': [
+            (r'[^{*}\\‹›]+', String),
+            (r'\\<open>', String.Symbol, '#push'),
+            (r'\{\*|‹', String, '#push'),
+            (r'\\<close>', String.Symbol, '#pop'),
+            (r'\*\}|›', String, '#pop'),
+            (r'\\<(\w|\^)*>', String.Symbol),
+            (r'[{*}\\]', String),
         ],
         'string': [
             (r'[^"\\]+', String),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\"', String),
             (r'\\', String),
             (r'"', String, '#pop'),
         ],
         'fact': [
             (r'[^`\\]+', String.Other),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\`', String.Other),
             (r'\\', String.Other),
             (r'`', String.Other, '#pop'),
