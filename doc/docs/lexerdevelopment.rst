@@ -170,7 +170,8 @@ the ``pygments.lexers`` package specify ``__all__``. For example,
 Add the name of your lexer class to this list (or create the list if your lexer
 is the only class in the module).
 
-Finally the lexer can be made publicly known by rebuilding the lexer mapping:
+Finally the lexer can be made publicly known by rebuilding the lexer mapping.
+In the root directory of the source (where the ``Makefile`` is located), run::
 
 .. code-block:: console
 
