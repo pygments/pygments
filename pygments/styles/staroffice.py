@@ -10,7 +10,8 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator
+
 
 class StarofficeStyle(Style):
     """
