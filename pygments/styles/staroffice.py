@@ -2,7 +2,7 @@
     pygments.styles.staroffice
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Style similar to StarOffice style, also OpenOffice and LibreOffice.
+    Style similar to StarOffice style, also in OpenOffice and LibreOffice.
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -14,7 +14,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 class StarofficeStyle(Style):
     """
-    Style similar to StarOffice style, also OpenOffice and LibreOffice.
+    Style similar to StarOffice style, also in OpenOffice and LibreOffice.
     """
     default_style = ""
     styles = {
