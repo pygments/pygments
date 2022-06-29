@@ -18,7 +18,7 @@ class StarofficeStyle(Style):
     """
     default_style = ""
     styles = {
-        Comment:                '#808080',   # Gray
+        Comment:                '#666666',   # Gray
         Error:                  '#800000',   # Red
         Keyword:                '#000080',   # Blue
         Name:                   '#008000',   # Green
