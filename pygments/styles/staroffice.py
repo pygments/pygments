@@ -2,7 +2,7 @@
     pygments.styles.staroffice
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    pygments version of my "StarOffice" theme.
+    Style similar to StarOffice style, also OpenOffice and LibreOffice.
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -13,6 +13,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic
 
 class StarofficeStyle(Style):
+    """
+    Style similar to StarOffice style, also OpenOffice and LibreOffice.
+    """
     default_style = ""
     styles = {
         Comment:                '#808080',   # Gray
