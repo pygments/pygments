@@ -3,7 +3,7 @@
 '||'          Operator
 ' '           Text.Whitespace
 '[?'          Punctuation
-'@'           Name.Namespace
+'@'           Name.Variable.Global
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -101,7 +101,7 @@
 '|'           Punctuation
 ' '           Text.Whitespace
 '[?'          Punctuation
-'@'           Name.Namespace
+'@'           Name.Variable.Global
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -117,7 +117,7 @@
 '|'           Punctuation
 ' '           Text.Whitespace
 '[?'          Punctuation
-'@'           Name.Namespace
+'@'           Name.Variable.Global
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -134,7 +134,7 @@
 ' '           Text.Whitespace
 'sort'        Name.Function
 '('           Punctuation
-'@'           Name.Namespace
+'@'           Name.Variable.Global
 ')'           Punctuation
 ' '           Text.Whitespace
 '|'           Punctuation
@@ -148,7 +148,33 @@
 "', '"        Literal.String
 ','           Punctuation
 ' '           Text.Whitespace
-'@'           Name.Namespace
+'@'           Name.Variable.Global
 ')'           Punctuation
 '}'           Punctuation
+' '           Text.Whitespace
+'|'           Punctuation
+'['           Punctuation
+']'           Punctuation
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'0'           Literal.Number
+':'           Punctuation
+'2'           Literal.Number
+':'           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+'|'           Punctuation
+'['           Punctuation
+'name'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'state'       Name.Variable
+'.'           Punctuation
+'name'        Name.Variable
+']'           Punctuation
 '\n'          Text.Whitespace
