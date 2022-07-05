@@ -1,5 +1,6 @@
 "'@|&&||`'"   Literal.String
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '||'          Operator
 ' '           Text.Whitespace
 '[?'          Punctuation
@@ -19,7 +20,8 @@
 ']'           Punctuation
 '`'           Literal
 ']'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 '`'           Literal
@@ -34,7 +36,8 @@
 ']'           Punctuation
 '`'           Literal
 ','           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 'hello'       Name.Function
 '('           Punctuation
 "'hom\\''"    Literal.String
@@ -56,7 +59,8 @@
 "'6\\`.7'"    Literal.String
 '`'           Literal
 ')'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '>'           Operator
 ' '           Text.Whitespace
 'locations'   Name.Variable
@@ -97,7 +101,8 @@
 '.'           Punctuation
 'bar'         Name.Variable
 '"'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 '[?'          Punctuation
@@ -113,7 +118,8 @@
 'b'           Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 '[?'          Punctuation
@@ -129,14 +135,16 @@
 '"'           Punctuation
 '`'           Literal
 ']'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 'sort'        Name.Function
 '('           Punctuation
 '@'           Name.Variable.Global
 ')'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -151,7 +159,8 @@
 '@'           Name.Variable.Global
 ')'           Punctuation
 '}'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 '['           Punctuation
 ']'           Punctuation
@@ -177,7 +186,8 @@
 '.'           Punctuation
 'name'        Name.Variable
 ']'           Punctuation
-' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 '|'           Punctuation
 ' '           Text.Whitespace
 '!'           Operator
