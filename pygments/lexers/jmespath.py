@@ -38,9 +38,9 @@ class JMESPathLexer(RegexLexer):
         ],
         'root': [
             include('ws'),
-            (r'(==|!=|<=|>=|<|>|&&|\|\|)', Operator),
-            include('punctuation'),
             include('string'),
+            (r'(==|!=|<=|>=|<|>|&&|\|\||!)', Operator),
+            include('punctuation'),
             (r'@', Name.Variable.Global),
             (r'(&?[A-Za-z][A-Za-z0-9_]*)(\()', bygroups(Name.Function, Punctuation)),
             include('identifier'),
