@@ -54,7 +54,7 @@ class JMESPathLexer(RegexLexer):
             (r'(false|true|null)[A-Za-z0-9_]+', Name.Variable),
             (r'(false|true|null)', Keyword.Constant),
             include('identifier'),
-            (r'-?\d+\.?\d*([eE][-+]\d)?', Number),
+            (r'-?\d+\.?\d*([eE][-+]\d+)?', Number),
             (r'\\`', Literal),
             (r'`', Literal, '#pop'),
         ]
