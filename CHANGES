@@ -9,6 +9,7 @@ Version 2.13.0
 
 - Added lexers:
 
+  * JMESPath (#2175)
   * Sql+Jinja (#2148)
 
 - Updated lexers:
@@ -32,6 +33,7 @@ Version 2.13.0
   * .NET: add aliases for LibreOffice Basic, OpenOfficeBasic and
     StarOffice Basic (#2170)
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
+  * PHP: fix `\"$var\"` inside strings (#2105)
   * Tcl: support ``${name}`` variables (#2145)
   * Terraform: accept leading whitespace for `<<` heredoc
     delimiters (#2162)
