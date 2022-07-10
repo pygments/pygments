@@ -33,8 +33,12 @@ class JMESPathLexer(RegexLexer):
         'ws': [
             (r" |\t|\n|\r", Whitespace)
         ],
+        "dq-identifier": [
+            (r'([^\\])(")', bygroups(Name.Variable, Punctuation), '#pop'),
+            (r'.', Name.Variable),
+        ],
         'identifier': [
-            (r'(&)?(")([^\\].*)(")', bygroups(Name.Variable, Punctuation, Name.Variable, Punctuation)),
+            (r'(&)?(")', bygroups(Name.Variable, Punctuation), 'dq-identifier'),
             (r'(")?(&?[A-Za-z][A-Za-z0-9_-]*)(")?', bygroups(Punctuation, Name.Variable, Punctuation)),
         ],
         'root': [
