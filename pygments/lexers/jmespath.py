@@ -34,7 +34,8 @@ class JMESPathLexer(RegexLexer):
             (r" |\t|\n|\r", Whitespace)
         ],
         'identifier': [
-            (r'(")?([A-Za-z][A-Za-z0-9_]*)(")?', bygroups(Punctuation, Name.Variable, Punctuation)),
+            (r'(&)?(")([^\\].*)(")', bygroups(Name.Variable, Punctuation, Name.Variable, Punctuation)),
+            (r'(")?(&?[A-Za-z][A-Za-z0-9_-]*)(")?', bygroups(Punctuation, Name.Variable, Punctuation)),
         ],
         'root': [
             include('ws'),
@@ -43,6 +44,7 @@ class JMESPathLexer(RegexLexer):
             include('punctuation'),
             (r'@', Name.Variable.Global),
             (r'(&?[A-Za-z][A-Za-z0-9_]*)(\()', bygroups(Name.Function, Punctuation)),
+            (r'(&)(\()', bygroups(Name.Variable, Punctuation)),
             include('identifier'),
             (r'-?\d+', Number),
             (r'`', Literal, 'literal'),
