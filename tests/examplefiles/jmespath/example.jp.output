@@ -97,13 +97,7 @@
 'name'        Name.Variable
 '.'           Punctuation
 '"'           Punctuation
-'f'           Name.Variable
-'o'           Name.Variable
-'o'           Name.Variable
-'.'           Name.Variable
-'b'           Name.Variable
-'a'           Name.Variable
-'r'           Name.Variable
+'foo.bar'     Name.Variable
 '"'           Punctuation
 '\n'          Text.Whitespace
 
@@ -133,13 +127,7 @@
 ' '           Text.Whitespace
 '`'           Literal
 '"'           Punctuation
-'f'           Name.Variable
-'o'           Name.Variable
-'o'           Name.Variable
-'.'           Name.Variable
-'b'           Name.Variable
-'a'           Name.Variable
-'r'           Name.Variable
+'foo.bar'     Name.Variable
 '"'           Punctuation
 '`'           Literal
 ']'           Punctuation
@@ -243,15 +231,7 @@
 ' '           Text.Whitespace
 '&'           Name.Variable
 '"'           Punctuation
-'o'           Name.Variable
-'t'           Name.Variable
-'h'           Name.Variable
-'e'           Name.Variable
-'r'           Name.Variable
-'-'           Name.Variable
-'a'           Name.Variable
-'g'           Name.Variable
-'e'           Name.Variable
+'other-age'   Name.Variable
 '"'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -265,35 +245,14 @@
 ' '           Text.Whitespace
 '&'           Name.Variable
 '"'           Punctuation
-'-'           Name.Variable
-'f'           Name.Variable
-'o'           Name.Variable
-'o'           Name.Variable
-'-'           Name.Variable
-'b'           Name.Variable
-' '           Name.Variable
-'\\'          Name.Variable
-'"'           Name.Variable
+'-foo-b '     Name.Variable
+'\\"'         Name.Variable
 'a'           Name.Variable
-'\\'          Name.Variable
-'\\'          Name.Variable
-'\\'          Name.Variable
-'"'           Name.Variable
+'\\\\\\"'     Name.Variable
 'r'           Name.Variable
 '"'           Punctuation
 ' '           Text.Whitespace
 '"'           Punctuation
-'o'           Name.Variable
-'t'           Name.Variable
-'h'           Name.Variable
-'e'           Name.Variable
-'r'           Name.Variable
-'-'           Name.Variable
-'s'           Name.Variable
-'t'           Name.Variable
-'r'           Name.Variable
-'i'           Name.Variable
-'n'           Name.Variable
-'g'           Name.Variable
+'other-string' Name.Variable
 '"'           Punctuation
 '\n'          Text.Whitespace
