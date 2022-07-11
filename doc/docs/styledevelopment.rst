@@ -11,17 +11,19 @@ define some styles:
 .. sourcecode:: python
 
     from pygments.style import Style
-    from pygments.token import Keyword, Name, Comment, String, Error, \
-         Number, Operator, Generic
+    from pygments.token import Token, Comment, Keyword, Name, String, \
+         Error, Generic, Number, Operator
+
 
     class YourStyle(Style):
-        default_style = ""
+
         styles = {
+            Token:                  '',
             Comment:                'italic #888',
             Keyword:                'bold #005',
             Name:                   '#f00',
-            Name.Function:          '#0f0',
             Name.Class:             'bold #0f0',
+            Name.Function:          '#0f0',
             String:                 'bg:#eee #111'
         }
 
@@ -32,7 +34,7 @@ defined ``'bold'`` and you don't want boldface for a subtoken use ``'nobold'``.
 (Philosophy: the styles aren't written in CSS syntax since this way
 they can be used for a variety of formatters.)
 
-`default_style` is the style inherited by all token types.
+``Token`` is the default style inherited by all token types.
 
 To make the style usable for Pygments, you must
 
