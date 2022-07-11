@@ -9,14 +9,16 @@
 """
 
 from pygments.style import Style
-from pygments.token import Comment, Error, Literal, Name
+from pygments.token import Comment, Error, Literal, Name, Token
+
 
 class StarofficeStyle(Style):
     """
     Style similar to StarOffice style, also in OpenOffice and LibreOffice.
     """
-    default_style =             '#000080'    # Blue
+
     styles = {
+        Token:                  '#000080',   # Blue
         Comment:                '#696969',   # DimGray
         Error:                  '#800000',   # Maroon
         Literal:                '#EE0000',   # Red
