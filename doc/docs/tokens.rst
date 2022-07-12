@@ -325,7 +325,7 @@ Comments
     Token type for preprocessor comments (also ``<?php``/``<%`` constructs).
 
 `Comment.PreprocFile`
-    Token type for filenames in preprocessor comments.
+    Token type for filenames in preprocessor comments, such as include files in C/C++.
 
 `Comment.Single`
     Token type for comments that end at the end of a line (e.g. ``# foo``).
