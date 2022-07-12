@@ -47,10 +47,8 @@ To make the style usable for Pygments, you must
   .. sourcecode:: python
   
       STYLE_MAP = {
-          'default':  'default::DefaultStyle',
           ...
           'your':  'your::YourStyle',
-          ...
 
 
 Style Rules
