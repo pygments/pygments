@@ -180,6 +180,9 @@ Name Tokens
 `Name.Other`
     Other names. Normally unused.
 
+`Name.Property`
+    Additional token type occasionally used for class attributes.
+
 `Name.Tag`
     Tag names (in HTML/XML markup or configuration files).
 
