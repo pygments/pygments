@@ -57,7 +57,8 @@ class Comal80Lexer(RegexLexer):
             (_identifier + r"[$#]?", Name),
             (r'%[01]+', Number.Bin),
             (r'\$[0-9a-f]+', Number.Hex),
-            (r'\d+|[-+]?\d*\.\d*(e[-+]?\d+)?', Number.Float),
+            (r'\d*\.\d*(e[-+]?\d+)?', Number.Float),
+            (r'\d+', Number.Integer),
             (r'[(),:;]', Punctuation),
         ],
         'string': [
