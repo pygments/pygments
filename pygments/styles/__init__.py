@@ -56,6 +56,7 @@ STYLE_MAP = {
     'gruvbox-dark': 'gruvbox::GruvboxDarkStyle',
     'gruvbox-light': 'gruvbox::GruvboxLightStyle',
     'nord': 'nord::NordStyle',
+    'nord-darker': 'nord::NordDarkerStyle',
 }
 
 
