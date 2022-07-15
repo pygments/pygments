@@ -1,12 +1,12 @@
 """
     pygments.styles.nord
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     pygments version of the "nord" theme by Arctic Ice Studio
     https://www.nordtheme.com/
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
-    :license: BSD-3 Clause License. See LICENSE for details
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
