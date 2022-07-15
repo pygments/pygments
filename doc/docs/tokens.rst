@@ -180,6 +180,9 @@ Name Tokens
 `Name.Other`
     Other names. Normally unused.
 
+`Name.Property`
+    Additional token type occasionally used for class attributes.
+
 `Name.Tag`
     Tag names (in HTML/XML markup or configuration files).
 
@@ -320,6 +323,9 @@ Comments
 
 `Comment.Preproc`
     Token type for preprocessor comments (also ``<?php``/``<%`` constructs).
+
+`Comment.PreprocFile`
+    Token type for filenames in preprocessor comments, such as include files in C/C++.
 
 `Comment.Single`
     Token type for comments that end at the end of a line (e.g. ``# foo``).
