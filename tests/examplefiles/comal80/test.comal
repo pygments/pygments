@@ -1,0 +1,66 @@
+0010 // This is a line comment.
+0020 
+0030 a_name'with←very[strange]characters\in£it
+0040 // Are keywords and word operators at start of names safe?
+0050 do'something
+0060 and←then'something'different
+0070 case[closed
+0080 closed]it'is
+0090 eod\really
+0100 true£or'false
+0110 false_and'true
+0120 IF a AND then←some THEN NULL
+0130 
+0140 text$:="some text"; a:=42; b:=TRUE; c:=FALSE; full'circle:=2*PI
+0150 address#:=$d020; mask#:=%00001111 // Hex & bin numbers.
+0160 DIM field(-1:1,-1:1) // 3x3 array with 0,0 at the center.
+0170 DIM buffer$ OF 1024,lines$(100) OF 80,xs(low:high)
+0180 
+0190 PRINT "She said ""Hello!"" to the world."
+0200 PRINT "Embedding "18"byte values"146" into a string."
+0210 PRINT "42";"";"Hallo";""0""
+0220 
+0230 // Short circuit operators OR ELSE and AND THEN contain keywords.
+0240 IF a OR ELSE b AND THEN c THEN do'something
+0250 
+0260 // Optional keywords.
+0270 EXEC some'procedure
+0280 LET answer:=42
+0290 
+0300 FOR i:=0 TO 10
+0310   PRINT "fib(",i,") =";fib(i)
+0320 ENDFOR i
+0330 
+0340 RESTORE this'is'a'label
+0350 WHILE NOT EOD
+0360   READ language$,version
+0370   PRINT language$;"version";version
+0380 ENDWHILE
+0390 
+0400 t$=""
+0410 REPEAT
+0420   max'length:=LEN(t$)
+0430   t$:+"x"
+0440 UNTIL LEN(t$)=max'length
+0450 PRINT "UnDIMed strings have a max length of";max'length
+0460 
+0470 PROC swap(REF a, REF b) CLOSED
+0480   tmp:=a; a:=b; b:=tmp
+0490 ENDPROC swap
+0500 
+0510 PROC shuffle(n, REF values()) CLOSED
+0520   IMPORT swap
+0530   FOR i:=n TO 1 STEP -1 DO swap(values(i), values(RND(1,i)))
+0540 ENDPROC shuffle
+0550 
+0560 FUNC fib(n) CLOSED
+0570   IF n<2 THEN
+0580     RETURN n
+0590   ELSE
+0600     RETURN fib(n-1)+fib(n-2)
+0610   ENDIF
+0620 ENDFUNC fib
+0630 
+0640 this'is'a'label:
+0650 and'a'label: // with comment.
+0660 DATA "CBM BASIC",2,"Comal",80,"Python",3.7
