@@ -22,6 +22,7 @@ from pygments.token import (
     Whitespace,
     Punctuation,
     Text,
+    Token,
 )
 
 
@@ -30,7 +31,6 @@ class NordStyle(Style):
     Pygments version of the "nord" theme by Arctic Ice Studio
     """
 
-    linenos = "#FF0000"
     line_number_color = "#D8DEE9"
     line_number_background_color = "#242933"
     line_number_special_color = "#242933"
@@ -38,9 +38,10 @@ class NordStyle(Style):
 
     background_color = "#2E3440"
     highlight_color = "#3B4252"
-    default = "#d8dee9"
 
     styles = {
+        Token:                      "#d8dee9",
+
         Whitespace:                 '#d8dee9',
         Punctuation:                '#eceff4',
 
@@ -97,7 +98,6 @@ class NordDarkerStyle(Style):
     Pygments version of a darker "nord" theme by Arctic Ice Studio
     """
 
-    linenos = "#FF0000"
     line_number_color = "#D8DEE9"
     line_number_background_color = "#242933"
     line_number_special_color = "#242933"
@@ -105,9 +105,10 @@ class NordDarkerStyle(Style):
 
     background_color = "#242933"
     highlight_color = "#3B4252"
-    default = "#d8dee9"
 
     styles = {
+        Token:                      "#d8dee9",
+
         Whitespace:                 '#d8dee9',
         Punctuation:                '#eceff4',
 
