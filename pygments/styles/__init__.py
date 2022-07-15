@@ -59,6 +59,8 @@ STYLE_MAP = {
     'dracula': 'dracula::DraculaStyle',
     'one-dark': 'onedark::OneDarkStyle',
     'lilypond' : 'lilypond::LilyPondStyle',
+    'nord': 'nord::NordStyle',
+    'nord-darker': 'nord::NordDarkerStyle',
 }
 
 
