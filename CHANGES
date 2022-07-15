@@ -38,6 +38,10 @@ Version 2.13.0
   * Terraform: accept leading whitespace for `<<` heredoc
     delimiters (#2162)
 
+- Added styles:
+
+  * StarOffice (#2168)
+
 - Pygments now tries to use the ``importlib.metadata`` module to
   discover plugins instead of the slower ``pkg_resources`` (#2155).  In
   particular, this largely speeds up the ``pygmentize`` script when
