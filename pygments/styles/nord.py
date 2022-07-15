@@ -85,7 +85,7 @@ class NordStyle(Style):
         Generic.Error:              '#bf616a',
         Generic.Emph:               'italic',
         Generic.Strong:             'bold',
-        Generic.Prompt:             'bold #4c566a',
+        Generic.Prompt:             'bold #616e88',
         Generic.Output:             '#d8dee9',
         Generic.Traceback:          '#bf616a',
 
@@ -152,7 +152,7 @@ class NordDarkerStyle(Style):
         Generic.Error:              '#bf616a',
         Generic.Emph:               'italic',
         Generic.Strong:             'bold',
-        Generic.Prompt:             'bold #4c566a',
+        Generic.Prompt:             'bold #616e88',
         Generic.Output:             '#d8dee9',
         Generic.Traceback:          '#bf616a',
 
