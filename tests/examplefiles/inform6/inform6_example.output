@@ -17,7 +17,6 @@
 ' '           Text
 'Story'       Name.Constant
 ' '           Text
-''            Text
 '"'           Literal.String.Double
 'Informal Testing' Literal.String.Double
 '"'           Literal.String.Double
@@ -29,7 +28,6 @@
 ' '           Text
 'Headline'    Name.Constant
 ' '           Text
-''            Text
 '"'           Literal.String.Double
 '^'           Literal.String.Escape
 'Not a game.' Literal.String.Double
@@ -94,7 +92,6 @@
 ' '           Text
 'WORDSIZE'    Name.Constant
 ' '           Text
-''            Text
 '2'           Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
@@ -448,7 +445,6 @@
 ' '           Text
 'to'          Name.Constant
 ' '           Text
-''            Text
 'reversed'    Name
 ''            Punctuation
 ';'           Punctuation
@@ -671,7 +667,6 @@
 ' '           Text
 'Constant2'   Name.Constant
 ' '           Text
-''            Text
 'Constant1'   Name
 ''            Punctuation
 ';'           Punctuation
@@ -681,10 +676,30 @@
 ' '           Text
 'Constant3'   Name.Constant
 ' '           Text
-'='           Operator
+'='           Punctuation
 ' '           Text
-''            Text
 'Constant2'   Name
+''            Punctuation
+';'           Punctuation
+'\n'          Text
+
+'Constant'    Keyword
+' '           Text
+'Constant4'   Name.Constant
+' '           Text
+'='           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'Constant5'   Name.Constant
+','           Punctuation
+' '           Text
+'Constant6'   Name.Constant
+' '           Text
+'='           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n'          Text
@@ -778,6 +793,16 @@
 '69105'       Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
+'\n'          Text
+
+'Global'      Keyword
+' '           Text
+'global3'     Name.Variable.Global
+' '           Text
+''            Text
+'69105'       Literal.Number.Integer
+''            Punctuation
+';'           Punctuation
 '\n\n'        Text
 
 'Lowstring'   Keyword
@@ -788,6 +813,17 @@
 '"'           Literal.String.Double
 'low string'  Literal.String.Double
 '"'           Literal.String.Double
+''            Punctuation
+';'           Punctuation
+'\n'          Text
+
+'Constant'    Keyword
+' '           Text
+'LOW_STRING_N' Name.Constant
+' '           Text
+'='           Punctuation
+' '           Text
+'25'          Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n\n'        Text
@@ -2333,6 +2369,14 @@
 ' by Unicode value: ' Literal.String.Double
 '@{DC}'       Literal.String.Escape
 '@{002b}'     Literal.String.Escape
+'^'           Literal.String.Escape
+'"'           Literal.String.Double
+','           Punctuation
+'\n            ' Text
+''            Text
+'"'           Literal.String.Double
+' by string variable via constant: ' Literal.String.Double
+'@(LOW_STRING_N)' Literal.String.Escape
 '^'           Literal.String.Escape
 '"'           Literal.String.Double
 ','           Punctuation
