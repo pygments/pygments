@@ -34,9 +34,9 @@ class JMESPathLexer(RegexLexer):
             (r" |\t|\n|\r", Whitespace)
         ],
         "dq-identifier": [
-            (r'([^\\])?(")', bygroups(Name.Variable, Punctuation), '#pop'),
             (r'[^\\"]+', Name.Variable),
-            (r'\\+"', Name.Variable),
+            (r'\\"', Name.Variable),
+            (r'.', Punctuation, '#pop'),
         ],
         'identifier': [
             (r'(&)?(")', bygroups(Name.Variable, Punctuation), 'dq-identifier'),
