@@ -50,6 +50,13 @@ To make the style usable for Pygments, you must
           ...
           'your':  'your::YourStyle',
 
+.. note::
+
+    You should *only* add it to the ``pygments.styles`` subdirectory if you are
+    working on a contribution to Pygments. You should not use that
+    method to extend an already existing copy of Pygments, use the plugins
+    mechanism for that.
+
 
 Style Rules
 ===========
