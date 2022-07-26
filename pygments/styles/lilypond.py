@@ -22,8 +22,6 @@ class LilyPondStyle(Style):
     # input only and doesn't show good output on Python code.
     web_style_gallery_exclude = True
 
-    default_style = "#0000ff"
-
     styles = {
         Token.Text: "",
         Token.Keyword: "bold",

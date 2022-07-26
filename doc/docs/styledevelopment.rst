@@ -11,38 +11,44 @@ define some styles:
 .. sourcecode:: python
 
     from pygments.style import Style
-    from pygments.token import Keyword, Name, Comment, String, Error, \
-         Number, Operator, Generic
+    from pygments.token import Token, Comment, Keyword, Name, String, \
+         Error, Generic, Number, Operator
+
 
     class YourStyle(Style):
-        default_style = ""
+
         styles = {
+            Token:                  '',
             Comment:                'italic #888',
             Keyword:                'bold #005',
             Name:                   '#f00',
-            Name.Function:          '#0f0',
             Name.Class:             'bold #0f0',
+            Name.Function:          '#0f0',
             String:                 'bg:#eee #111'
         }
 
-That's it. There are just a few rules. When you define a style for `Name`
+That's it, save it as ``your.py``. There are just a few rules. When you define a style for `Name`
 the style automatically also affects `Name.Function` and so on. If you
 defined ``'bold'`` and you don't want boldface for a subtoken use ``'nobold'``.
 
 (Philosophy: the styles aren't written in CSS syntax since this way
 they can be used for a variety of formatters.)
 
-`default_style` is the style inherited by all token types.
+``Token`` is the default style inherited by all token types.
 
 To make the style usable for Pygments, you must
 
 * either register it as a plugin (see :doc:`the plugin docs <plugins>`)
-* or drop it into the `styles` subpackage of your Pygments distribution one style
-  class per style, where the file name is the style name and the class name is
-  `StylenameClass`. For example, if your style should be called
-  ``"mondrian"``, name the class `MondrianStyle`, put it into the file
-  ``mondrian.py`` and this file into the ``pygments.styles`` subpackage
-  directory.
+* or update the ``pygments.styles`` subpackage directory. For example:
+
+  * add ``your.py`` file
+  * register the new style by adding a line to the ``__init__.py`` file:
+  
+  .. sourcecode:: python
+  
+      STYLE_MAP = {
+          ...
+          'your':  'your::YourStyle',
 
 
 Style Rules
