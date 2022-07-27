@@ -1,6 +1,6 @@
 """
     pygments.styles.gh_dark
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Github's Dark-Colorscheme based theme for Pygments
     Colors extracted from https://github.com/primer/primitives
