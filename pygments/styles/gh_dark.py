@@ -1,5 +1,5 @@
 """
-    pygments.styles.gh-dark
+    pygments.styles.gh_dark
     ~~~~~~~~~~~~~~~~~~~~
 
     Github's Dark-Colorscheme based theme for Pygments

@@ -61,7 +61,7 @@ STYLE_MAP = {
     'lilypond' : 'lilypond::LilyPondStyle',
     'nord': 'nord::NordStyle',
     'nord-darker': 'nord::NordDarkerStyle',
-    'github-dark': 'gh-dark::GhDarkStyle'
+    'github-dark': 'gh_dark::GhDarkStyle'
 }
 
 
