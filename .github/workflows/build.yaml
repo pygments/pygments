@@ -23,11 +23,7 @@ jobs:
         pip install -r requirements.txt
         pip install .
     - name: Test package
-      run: make test TEST=-v
-      if: runner.os == 'Linux'
-    - name: Test package
-      run: pytest
-      if: runner.os != 'Linux'
+      run: pytest -W error
 
   check:
     runs-on: ubuntu-latest
