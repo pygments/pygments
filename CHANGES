@@ -76,6 +76,9 @@ Version 2.13.0
   support is available.  In that case, it uses the ``TerminalTrueColorFormatter``
   by default (#2160)
 - Remove redundant caches for filename patterns (#2153)
+- Use new non-deprecated Pillow API for text bounding box in ``ImageFormatter``
+  (#2198)
+
 
 Version 2.12.0
 --------------
