@@ -638,6 +638,9 @@ def main(args=sys.argv):
 
     try:
         return main_inner(parser, argns)
+    except BrokenPipeError:
+        # someone closed our stdout, e.g. by quitting a pager.
+        return 0
     except Exception:
         if argns.v:
             print(file=sys.stderr)

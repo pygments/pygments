@@ -64,6 +64,8 @@ Version 2.13.0
   ``importlib.metadata`` nor ``importlib_metadata`` is found, but it
   will be slower.
 
+- Silently ignore ``BrokenPipeError`` in the command-line interface
+  (#2193).
 - The ``HtmlFormatter`` now uses the ``linespans`` attribute for
   ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
 - The ``highlight``, ``lex`` and ``format`` functions no longer
