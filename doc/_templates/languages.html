@@ -10,9 +10,9 @@
 {% for language in languages %}
 <li>
     {% if language.url %}
-    <a href="{{language.url}}">{{language.name}}</a>
+    <a href="{{language.url}}">{{language.name}}</a> - {{ ', '.join(language.aliases) }}
     {% else %}
-    {{language.name}}
+    {{language.name}} - {{ ', '.join(language.aliases) }}
     {% endif %}
 </li>
 {% endfor %}
