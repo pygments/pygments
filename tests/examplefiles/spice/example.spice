@@ -14,11 +14,11 @@ inline f<int> fac(int input) {
     result = input * fac(input - 1);
 }
 
-/*
+/**
 * Entry point of the program
 */
 f<int> main() {
-    short number = 10s;
+    short number = 0d10s;
     printf("Fibonacci of %d: %d\n", number, fib((int) number));
     long base = (long) number;
     base += 1;
