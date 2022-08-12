@@ -70,7 +70,7 @@
 
 '// Function to compute factorial numbers recursively\n' Comment.Single
 
-'inline'      Keyword
+'inline'      Keyword.Pseudo
 ' '           Text.Whitespace
 'f'           Keyword.Declaration
 '<'           Punctuation
@@ -135,7 +135,7 @@
 
 '\n'          Text.Whitespace
 
-'/*\n* Entry point of the program\n*/' Comment.Multiline
+'/**\n* Entry point of the program\n*/' Literal.String.Doc
 '\n'          Text.Whitespace
 
 'f'           Keyword.Declaration
@@ -157,7 +157,7 @@
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'10s'         Literal.Number.Integer
+'0d10s'       Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
