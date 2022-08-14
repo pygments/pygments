@@ -10,7 +10,7 @@ Version 2.13.0
 - Added lexers:
 
   * COMAL-80 (#2180)
-  * JMESPath (#2175, #2182)
+  * JMESPath (#2174, #2175, #2179, #2182)
   * Sql+Jinja (#2148)
 
 - Updated lexers:
@@ -39,13 +39,15 @@ Version 2.13.0
   * Tcl: support ``${name}`` variables (#2145)
   * Terraform: accept leading whitespace for `<<` heredoc
     delimiters (#2162)
+  * Teraterm: Various improvements (#2165)
   * Spice: add support for the recently added features including more
     builtin functions and bin, oct, hex number formats (#2206)
 
 - Added styles:
 
+  * GitHub dark (#2192)
   * StarOffice (#2168)
-  * Nord (`nord` and `nord-darker`; #2189)
+  * Nord (`nord` and `nord-darker`; #2189, #1799, #1678)
 
 - Pygments now tries to use the ``importlib.metadata`` module to
   discover plugins instead of the slower ``pkg_resources`` (#2155).  In
@@ -80,6 +82,8 @@ Version 2.13.0
   support is available.  In that case, it uses the ``TerminalTrueColorFormatter``
   by default (#2160)
 - Remove redundant caches for filename patterns (#2153)
+- Remove ``default_style`` (#930, #2183)
+- Stop treating ``DeprecationWarnings`` as errors in the unit tests (#2196)
 
 Version 2.12.0
 --------------
