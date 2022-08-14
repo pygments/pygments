@@ -37,6 +37,9 @@ Version 2.13.0
     StarOffice Basic (#2170)
   * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
   * PHP: fix `\"$var\"` inside strings (#2105)
+  * Python: only recognize ``\N``, ``\u`` and ``\U`` escape sequences
+    in string literals, but not in bytes literals where they are
+    not supported (#2204)
   * Tcl: support ``${name}`` variables (#2145)
   * Terraform: accept leading whitespace for `<<` heredoc
     delimiters (#2162)
