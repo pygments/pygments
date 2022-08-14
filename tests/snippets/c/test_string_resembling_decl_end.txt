@@ -1,0 +1,41 @@
+---input---
+// This should not be recognized as a function declaration followed by
+// garbage.
+string xyz(");");
+
+// This should not be recognized as a function definition.
+
+string xyz("){ }");
+
+---tokens---
+'// This should not be recognized as a function declaration followed by\n' Comment.Single
+
+'// garbage.\n' Comment.Single
+
+'string'      Name
+' '           Text.Whitespace
+'xyz'         Name
+'('           Punctuation
+'"'           Literal.String
+');'          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// This should not be recognized as a function definition.\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'string'      Name
+' '           Text.Whitespace
+'xyz'         Name
+'('           Punctuation
+'"'           Literal.String
+'){ }'        Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
