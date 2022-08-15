@@ -11,7 +11,8 @@
 import re
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import *
+from pygments.token import Comment, Whitespace, Operator, Keyword, String, \
+    Number, Name, Punctuation
 
 __all__ = ["Comal80Lexer"]
 
