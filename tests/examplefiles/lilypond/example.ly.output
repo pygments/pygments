@@ -59,7 +59,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text.Whitespace
-'oddHeaderMarkup' Name.Lvalue
+'oddHeaderMarkup' Name.Builtin.PaperVariable
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
@@ -71,11 +71,11 @@
 ' are recognized.' Literal.String
 '"'           Literal.String
 '\n  '        Text.Whitespace
-'evenHeaderMarkup' Name.Lvalue
+'evenHeaderMarkup' Name.Builtin.PaperVariable
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'\\oddHeaderMarkup' Name.BackslashReference
+'\\oddHeaderMarkup' Name.Builtin.PaperVariable
 '\n  '        Text.Whitespace
 'indent'      Name.Builtin.PaperVariable
 ' '           Text.Whitespace
