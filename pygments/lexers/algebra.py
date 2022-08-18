@@ -106,7 +106,7 @@ class GAPConsoleLexer(Lexer):
         output = False
         error = False
 
-        for line in text.splitlines(True):
+        for line in text.splitlines(keepends=True):
             if line.startswith('gap> ') or line.startswith('brk> '):
                 insertions.append((len(curcode), [(0, Generic.Prompt, line[:5])]))
                 curcode += line[5:]
