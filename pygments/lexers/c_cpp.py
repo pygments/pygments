@@ -129,22 +129,22 @@ class CFamilyLexer(RegexLexer):
             include('keywords'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'(' + _possible_comments + r')'    # possible comments
+             r'(' + _possible_comments + r')'
              r'(' + _namespaced_ident + r')'             # method name
-             r'(' + _possible_comments + r')'    # possible comments
-             r'(\([^;"\']*?\))'                          # signature
-             r'(' + _possible_comments + r')'    # possible comments
+             r'(' + _possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + _possible_comments + r')'
              r'([^;{/"\']*)(\{)',
              bygroups(using(this), using(this, state='whitespace'), Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'), using(this), Punctuation),
              'function'),
             # function declarations
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'(' + _possible_comments + r')'    # possible comments
+             r'(' + _possible_comments + r')'
              r'(' + _namespaced_ident + r')'             # method name
-             r'(' + _possible_comments + r')'    # possible comments
-             r'(\([^;"\']*?\))'                          # signature
-             r'(' + _possible_comments + r')'    # possible comments
+             r'(' + _possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + _possible_comments + r')'
              r'([^;/"\']*)(;)',
              bygroups(using(this), using(this, state='whitespace'), Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'), using(this), Punctuation)),
