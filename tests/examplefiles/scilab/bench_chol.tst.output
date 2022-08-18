@@ -1,0 +1,95 @@
+'// =============================================================================' Comment.Single
+'\n'          Text.Whitespace
+
+'// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab' Comment.Single
+'\n'          Text.Whitespace
+
+'// Copyright (C) 2007-2008 - INRIA' Comment.Single
+'\n'          Text.Whitespace
+
+'//'          Comment.Single
+'\n'          Text.Whitespace
+
+'//  This file is distributed under the same license as the Scilab package.' Comment.Single
+'\n'          Text.Whitespace
+
+'// =============================================================================' Comment.Single
+'\n\n'        Text.Whitespace
+
+'//==============================================================================' Comment.Single
+'\n'          Text.Whitespace
+
+'// Benchmark for chol function' Comment.Single
+'\n'          Text.Whitespace
+
+'//==============================================================================' Comment.Single
+'\n\n'        Text.Whitespace
+
+'// <-- BENCH NB RUN : 10 -->' Comment.Single
+'\n\n'        Text.Whitespace
+
+'stacksize'   Name.Builtin
+'('           Punctuation
+'30000000'    Literal.Number.Integer
+');'          Punctuation
+'\n\n'        Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'b'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'rand'        Name.Builtin
+'('           Punctuation
+'900'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'900'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"n'"          Literal.String
+');'          Punctuation
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'a'           Name
+"'"           Operator
+'*'           Operator
+'a'           Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// <-- BENCH START -->' Comment.Single
+'\n'          Text.Whitespace
+
+'b'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'chol'        Name.Builtin
+'('           Punctuation
+'a'           Name
+');'          Punctuation
+'\n'          Text.Whitespace
+
+'// <-- BENCH END -->' Comment.Single
+'\n'          Text.Whitespace
