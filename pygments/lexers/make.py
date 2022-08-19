@@ -44,7 +44,7 @@ class MakefileLexer(Lexer):
 
     def get_tokens_unprocessed(self, text):
         ins = []
-        lines = text.splitlines(True)
+        lines = text.splitlines(keepends=True)
         done = ''
         lex = BaseMakefileLexer(**self.options)
         backslashflag = False
