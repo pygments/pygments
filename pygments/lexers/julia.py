@@ -252,7 +252,7 @@ class JuliaConsoleLexer(Lexer):
         output = False
         error = False
 
-        for line in text.splitlines(True):
+        for line in text.splitlines(keepends=True):
             if line.startswith('julia>'):
                 insertions.append((len(curcode), [(0, Generic.Prompt, line[:6])]))
                 curcode += line[6:]

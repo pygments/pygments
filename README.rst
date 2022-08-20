@@ -51,7 +51,7 @@ Contribution guidelines are found in Contributing.md_.
 Security considerations
 -----------------------
 
-Pygments provides no guarantees on the execution time, which needs to be taken
+Pygments provides no guarantees on execution time, which needs to be taken
 into consideration when using Pygments to process arbitrary user inputs. For
 example, if you have a web service which uses Pygments for highlighting, there
 may be inputs which will cause the Pygments process to run "forever" and/or use
@@ -60,11 +60,12 @@ remote denial-of-service attack on the server if the processes are not
 terminated quickly.
 
 Unfortunately, it's practically impossible to harden Pygments itself against 
-those effects: Some regular expressions can result in "catastrophic 
+those issues: Some regular expressions can result in "catastrophic 
 backtracking", but other bugs like incorrect matchers can also
-cause similar issues, and there is no way to find them in an automated fashion
-(short of solving the halting problem.) Pygments has extensive unit tests, automated randomized testing, and is also tested by `OSS-Fuzz <https://github.com/google/oss-fuzz/tree/master/projects/pygments>`_, but we will never be
-able to eliminate all bugs in this area.
+cause similar problems, and there is no way to find them in an automated fashion
+(short of solving the halting problem.) Pygments has extensive unit tests, 
+automated randomized testing, and is also tested by `OSS-Fuzz <https://github.com/google/oss-fuzz/tree/master/projects/pygments>`_, 
+but we will never be able to eliminate all bugs in this area.
 
 Our recommendations are:
 
