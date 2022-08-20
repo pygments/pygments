@@ -68,17 +68,7 @@ class XQueryLexer(ExtendedRegexLexer):
 
     xquery_parse_state = []
 
-    _ncnamestartchar = (
-       r"[A-Z]|_|[a-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|"
-       r"[\u0370-\u037D]|[\u037F-\u1FFF]|[\u200C-\u200D]|[\u2070-\u218F]|"
-       r"[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|"
-       r"[\U00010000-\U000EFFFF]"
-    )
-    ncnamestartchar = '(?:%s)' % _ncnamestartchar
-    _ncnamechar = _ncnamestartchar + (r"|-|\.|[0-9]|\u00B7|[\u0300-\u036F]|"
-                                     r"[\u203F-\u2040]")
-    ncnamechar = f"(?:{_ncnamechar})"
-    ncname = f"(?:{ncnamestartchar}{ncnamechar}*)"
+    ncname = r"(?:[^\W\d](?:\w|-|[.])*)"
     pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
     pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
     pitarget = f"{pitarget_namestartchar}+{pitarget_namechar}*"
