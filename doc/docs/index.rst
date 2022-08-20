@@ -58,6 +58,7 @@ Pygments documentation
 
    changelog
    authors
+   security
 
 If you find bugs or have suggestions for the documentation, please submit them
 on `GitHub <https://github.com/pygments/pygments>`_.

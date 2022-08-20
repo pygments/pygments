@@ -69,10 +69,10 @@ but we will never be able to eliminate all bugs in this area.
 
 Our recommendations are:
 
-* Ensure that the Pygments process is _terminated_ after a reasonably short
+* Ensure that the Pygments process is *terminated* after a reasonably short
   timeout. In general Pygments should take seconds at most for reasonably-sized
   input.
-* _Limit_ the number of concurrent Pygments processes to avoid oversubscription
+* *Limit* the number of concurrent Pygments processes to avoid oversubscription
   of resources.
 
 The Pygments authors will treat any bug resulting in long processing times with
