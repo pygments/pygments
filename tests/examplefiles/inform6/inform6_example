@@ -73,7 +73,7 @@ Property long
     ! to the semicolon
     ;
 Property additive;
-Property individual;
+Property individual 1;
 Iffalse true;
 Property long individual;
 Property long individual individual;
@@ -334,6 +334,8 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
         a = '''; ! character
         a = $09afAF;
         a = $$01;
+        a = $+1.0;
+        a = $<-1E-3;
         a = ##Eat; a = #a$Eat;
         a = #g$self;
         a = #n$!word;
