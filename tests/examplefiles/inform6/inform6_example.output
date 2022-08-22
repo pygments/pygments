@@ -525,6 +525,9 @@
 'Property'    Keyword
 ' '           Text
 'individual'  Name.Constant
+' '           Text
+''            Text
+'1'           Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n'          Text
@@ -3469,6 +3472,26 @@
 ' '           Text
 ''            Text
 '$$01'        Literal.Number.Bin
+''            Punctuation
+';'           Punctuation
+'\n        '  Text
+''            Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+''            Text
+'$+1.0'       Literal.Number.Float
+''            Punctuation
+';'           Punctuation
+'\n        '  Text
+''            Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+''            Text
+'$<-1E-3'     Literal.Number.Float
 ''            Punctuation
 ';'           Punctuation
 '\n        '  Text
