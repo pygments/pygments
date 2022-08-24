@@ -730,8 +730,9 @@ class NasmLexer(RegexLexer):
     declkw = r'(?:res|d)[bwdqt]|times'
     register = (r'(r[0-9][0-5]?[bwd]?|'
                 r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
-                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7])\b')
-    wordop = r'seg|wrt|strict'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]|k[0-7]|'
+                r'[xyz]mm(?:[12][0-9]?|3[01]?|[04-9]))\b')
+    wordop = r'seg|wrt|strict|rel|abs'
     type = r'byte|[dq]?word'
     # Directives must be followed by whitespace, otherwise CPU will match
     # cpuid for instance.
@@ -778,7 +779,7 @@ class NasmLexer(RegexLexer):
             (r'#.*', Comment.Single)
         ],
         'punctuation': [
-            (r'[,():\[\]]+', Punctuation),
+            (r'[,{}():\[\]]+', Punctuation),
             (r'[&|^<>+*/%~-]+', Operator),
             (r'[$]+', Keyword.Constant),
             (wordop, Operator.Word),

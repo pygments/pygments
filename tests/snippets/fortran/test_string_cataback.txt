@@ -1,0 +1,112 @@
+---input---
+! Bad string, there isn't an even number of backslashes.
+! This should not cause catastrophic backtracking.
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+
+---tokens---
+"! Bad string, there isn't an even number of backslashes.\n" Comment
+
+'! This should not cause catastrophic backtracking.\n' Comment
+
+"'"           Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+"'"           Error
+'\n'          Text.Whitespace

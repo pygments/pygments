@@ -9,7 +9,8 @@
 """
 
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import *
+from pygments.token import String, Punctuation, Whitespace, Name, Operator, \
+    Number, Literal, Keyword
 
 __all__ = ['JMESPathLexer']
 

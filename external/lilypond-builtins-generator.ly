@@ -347,11 +347,19 @@
      print-all-headers
      system-separator-markup
      footnote-separator-markup
-     ; Let's view these four as \paper variables.
+     ;; Let's view these four as \paper variables.
      basic-distance
      minimum-distance
      padding
-     stretchability))
+     stretchability
+     ;; These were forgotten in the documentation.
+     evenHeaderMarkup
+     oddHeaderMarkup
+     evenFooterMarkup
+     oddFooterMarkup
+     bookTitleMarkup
+     scoreTitleMarkup
+   ))
 
 #(dump-py-list 'paper_variables all-paper-variables)
 

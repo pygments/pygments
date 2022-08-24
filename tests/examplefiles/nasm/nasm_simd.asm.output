@@ -1,0 +1,102 @@
+'; test source for SIMD operations' Comment.Single
+'\n'          Text.Whitespace
+
+'; not intended to be executable' Comment.Single
+'\n'          Text.Whitespace
+
+'bits'        Keyword
+' '           Text.Whitespace
+'64'          Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+'kmovq'       Name.Function
+' '           Text.Whitespace
+'k1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'rel'         Operator.Word
+' '           Text.Whitespace
+'mask'        Name.Variable
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'vpxor'       Name.Function
+' '           Text.Whitespace
+'xmm0'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'xmm0'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'xmm0'        Name.Builtin
+'\n'          Text.Whitespace
+
+'vmovdqa32'   Name.Function
+' '           Text.Whitespace
+'zmm30'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'abs'         Operator.Word
+' '           Text.Whitespace
+'data'        Name.Variable
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'vpaddd'      Name.Function
+' '           Text.Whitespace
+'zmm0'        Name.Builtin
+'{'           Punctuation
+'k1'          Name.Builtin
+'},'          Punctuation
+' '           Text.Whitespace
+'zmm0'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'zmm30'       Name.Builtin
+'\n'          Text.Whitespace
+
+'vpxor'       Name.Function
+' '           Text.Whitespace
+'xmm1'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'xmm1'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'rel'         Operator.Word
+' '           Text.Whitespace
+'xmm01'       Name.Variable
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'mask'        Name.Function
+' '           Text.Whitespace
+'dq'          Name.Variable
+' '           Text.Whitespace
+'0xAAAAAAAA55555555' Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'data:'       Name.Label
+' '           Text.Whitespace
+'times'       Keyword.Declaration
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+' '           Text.Whitespace
+'dd'          Name.Variable
+' '           Text.Whitespace
+'0x12345678'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'xmm01:'      Name.Label
+' '           Text.Whitespace
+'times'       Keyword.Declaration
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'dd'          Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
