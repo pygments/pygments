@@ -46,10 +46,15 @@ class IniLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
-            (r'(.*?)([ \t]*)(=)([ \t]*)([^\t\n]*)',
+            (r'(.*?)([  \t]*)(=)([  \t]*)([^;#\n]*[  \t]\\\n)',
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String), "value"),
+            (r'(.*?)([  \t]*)(=)([  \t]*)([^;#\n]*)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
-            # standalone option, supported by some INI parsers
+            # # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
+        ],
+        'value': [     # line continuation
+            (r'[^;#=]+(?<!\\)\n', String, "#pop"),
         ],
     }
 
