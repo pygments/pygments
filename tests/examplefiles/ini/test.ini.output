@@ -5,14 +5,16 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'bar'         Literal.String
+'bar '        Literal.String
+'; inline comment' Comment.Single
 '\n'          Text.Whitespace
 
 'continued'   Name.Attribute
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'foo'         Literal.String
+'foo '        Literal.String
+'# inline comment' Comment.Single
 '\n  '        Text.Whitespace
 'baz'         Name.Attribute
 '\n'          Text.Whitespace
