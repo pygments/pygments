@@ -1,4 +1,4 @@
-'[section]'   Keyword
+'[section1]'  Keyword
 '\n\n'        Text.Whitespace
 
 'foo'         Name.Attribute
@@ -14,7 +14,9 @@
 '='           Operator
 ' '           Text.Whitespace
 'foo '        Literal.String
-'# inline comment' Comment.Single
+'# inline comment with \\' Comment.Single
+'\n                ' Text.Whitespace
+'# line continuation' Comment.Single
 '\n  '        Text.Whitespace
 'baz'         Name.Attribute
 '\n'          Text.Whitespace
@@ -30,4 +32,22 @@
 '\n'          Text.Whitespace
 
 '# comment'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'[section2]'  Keyword
+'\n\n'        Text.Whitespace
+
+'my_array'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"Asia, Africa, 'North America', South America, \\\n" Literal.String
+
+'           Antarctica, Europe, Australia\n' Literal.String
+
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bar'         Literal.String
 '\n'          Text.Whitespace
