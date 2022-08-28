@@ -54,7 +54,8 @@ class IniLexer(RegexLexer):
             (r'(.+?)$', Name.Attribute),
         ],
         'value': [     # line continuation
-            (r'[^;#=]+(?<!\\)\n', String, "#pop"),
+            (r'.*\\[ \t]*\n', String),
+            (r'.*$', String, "#pop"),
         ],
     }
 

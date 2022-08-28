@@ -43,7 +43,11 @@
 ' '           Text.Whitespace
 "Asia, Africa, 'North America', South America, \\\n" Literal.String
 
-'           Antarctica, Europe, Australia\n' Literal.String
+'           Antarctica, Europe, Australia' Literal.String
+'\n\n'        Text.Whitespace
+
+'implicit_boolean' Name.Attribute
+'\n'          Text.Whitespace
 
 'foo'         Name.Attribute
 ' '           Text.Whitespace
