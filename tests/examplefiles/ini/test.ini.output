@@ -5,7 +5,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'bar '        Literal.String
+'bar'         Literal.String
+' '           Text.Whitespace
 '; inline comment' Comment.Single
 '\n'          Text.Whitespace
 
@@ -13,7 +14,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'foo '        Literal.String
+'foo'         Literal.String
+' '           Text.Whitespace
 '# inline comment with \\' Comment.Single
 '\n                ' Text.Whitespace
 '# line continuation' Comment.Single
@@ -41,9 +43,10 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"Asia, Africa, 'North America', South America, \\\n" Literal.String
-
-'           Antarctica, Europe, Australia' Literal.String
+"Asia, Africa, 'North America', South America, " Literal.String
+'\\'          Text
+'\n           ' Text.Whitespace
+'Antarctica, Europe, Australia' Literal.String
 '\n\n'        Text.Whitespace
 
 'implicit_boolean' Name.Attribute
