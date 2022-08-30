@@ -45,11 +45,11 @@ class IniLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
-            (r'\[.*?\]$', Keyword),
-            (r'(.*?)([  \t]*)(=)([  \t]*)([^;#\n]*)(\\)(\s+)',
+            (r'(\[.*?\])([ \t]*)$', bygroups(Keyword, Whitespace)),
+            (r'(.*?)([  \t]*)([=:])([  \t]*)([^;#\n]*)(\\)(\s+)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Text, Whitespace),
              "value"),
-            (r'(.*?)([  \t]*)(=)([  \t]*)([^ ;#\n]*(?: [^ ;#\n]+)*)',
+            (r'(.*?)([  \t]*)([=:])([  \t]*)([^ ;#\n]*(?: +[^ ;#\n]+)*)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
             # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
