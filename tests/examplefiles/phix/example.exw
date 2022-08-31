@@ -14,7 +14,7 @@
     **  /*
     **      Block
     *//*    /*
-    **          Comments, of which Phix has quite a few varieties...
+    **          Comments, of which Phix has quite a few [ok, four] varieties...
     **      */
     *****/
     **/
@@ -22,21 +22,19 @@
 --/*
     Euphoria-compatibility-style nestable multiline comments/code
 --*/
-// This program should be runnable (C-style line comments, too!)
--- Uncomment this for an example of the tilde showing as 'Error':
---procedure ˜five() -- (unrunnable/invalid outside of a class)
-
+// This program should be runnable (C-style line comments, btw, too!)
 with javascript_semantics
 string pe, te := iff(platform()==JS?"JavaScript/browser":"Phix/desktop")
 ifdef PHIX then 
     pe = "Phix" 
 elsedef 
-    pe = "Euphoria" 
+    pe = "Euphoria" -- not that this file is compatible with that..
 end ifdef 
-printf(1,"This is %s (%s)\n",{pe,te})
+printf(1,"This is %s (%s)\n",{pe,te}); -- the ; is entirely optional
 assert("\n\r\b\t\\\"\'\0\e"=join({"",10,13,8,9,#5C,#22,#27,#00,#1B},""))
 assert("\#42\x43\u4445\U00105678"="B"&'C'&"\xE4\x91\x85\xF4\x85\x99\xB8")
 
+-- triplequote, triplequote indented, backtick, and doublequote strings:
 constant tqs = """
 this
 string\thing""",
@@ -48,9 +46,12 @@ _____this
 bts = `this
 string\thing`,
 
-ts = "this\nstring\\thing"
-assert(tqs==tqis and tqis==bts and bts==ts and ts==tqs)
+dqs = "this\nstring\\thing"
+assert(tqs==tqis and tqis==bts and bts==dqs and dqs==tqs)
 assert(x"1 2 34 5678_AbC"=={0x01, 0x02, 0x34, 0x56, 0x78, 0xAB, 0x0C})
+
+-- Beyond comments and strings, not much in Phix bothers a syntax colourer.
+-- Originally I had another 380+ lines in here, that didn't prove anything.
 
 function merge_sort(sequence x)
     -- put x into ascending order using a recursive merge sort
