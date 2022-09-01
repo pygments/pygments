@@ -1,4 +1,4 @@
-﻿"""
+"""
     pygments.lexers.phix
     ~~~~~~~~~~~~~~~~~~~~
 
@@ -355,9 +355,7 @@ class PhixLexer(RegexLexer):
             (words(preproc, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(constants, prefix=r'\b', suffix=r'\b'), Name.Constant),
-            # Aside: ˜ (unicode) ended up in here due to copy/paste malarkies, 
-            #          though it ain't actually supported, whereas a plain ~ is.
-            (r'!=|==|<<|>>|:=|[-~˜+/*%=<>&^|\.(){},?:\[\]$\\;#]', Operator),
+            (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|\.(){},?:\[\]$\\;#]', Operator),
             (r'[\w-]+', Text)
         ],
         'comment': [
