@@ -15,7 +15,7 @@ import sys
 
 top_src_dir = Path(__file__).parent.parent
 pygments_package = top_src_dir / 'pygments'
-sys.path.insert(0, pygments_package.parent.resolve())
+sys.path.insert(0, str(pygments_package.parent.resolve()))
 
 from pygments.util import docstring_headline
 
