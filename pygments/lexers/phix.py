@@ -355,6 +355,8 @@ class PhixLexer(RegexLexer):
             (words(preproc, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(constants, prefix=r'\b', suffix=r'\b'), Name.Constant),
+            # Note: The following contains an ascii tilde, but none of the
+            #       various unicode ones, which will get red-box'd Errors.
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|\.(){},?:\[\]$\\;#]', Operator),
             (r'[\w-]+', Text)
         ],
