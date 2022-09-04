@@ -342,12 +342,9 @@ class MumpsLexer(ExtendedRegexLexer):
         ],
         'l_actual': L('actual'),
         'actual': [
-            (r'\.', Punctuation, ('#pop', 'actualname')),
+            (r'(\.)(@)', bygroups(Punctuation, Operator), ('#pop', 'expratom')),
+            (r'(\.)(' + name_re + r')', bygroups(Punctuation, Name.Variable), '#pop'),
             default(('#pop', 'expr')),
-        ],
-        'actualname': [
-            ( name_re, Name.Variable, '#pop'),
-            ( '@', Operator, ('#pop', 'expratom')),
         ],
         # 8.2 - Command
         'command': [
@@ -543,24 +540,15 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'setleft'))
         ],
         'setleft': [
-            include('leftrestricted'),
-            include('leftexpr'),
-            include('glvn')
-        ],
-        'l_setleft': L('setleft'),
-        'leftrestricted': [
-            (words(('$DEVICE', '$D', '$KEY', '$K', '$X', '$Y'), suffix=r'\b'), Name.Variable.Magic, '#pop')
-        ],
-        'leftexpr': [
+            (words(('$DEVICE', '$D', '$KEY', '$K', '$X', '$Y'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             (words(('$PIECE', '$P'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren')),
             (words(('$EXTRACT', '$E'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren')),
             (words(('$ECODE', '$EC'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             (words(('$ETRAP', '$ET'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
+            include('glvn')
         ],
+        'l_setleft': L('setleft'),
         # 8.2.22 - TSTART
-        'command_tstart': [
-            (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
-        ],
         'tstartargument': [
             (':', Punctuation, ('#pop', 'transparameters')),
             default('restartargument')
