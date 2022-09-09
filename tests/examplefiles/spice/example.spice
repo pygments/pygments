@@ -1,3 +1,17 @@
+type BloodType enum {
+    A,
+    B = 3,
+    AB,
+    ZERO = 0
+}
+
+type Person struct {
+    string firstName
+    string lastName
+    unsigned int age
+    BloodType bloodType
+}
+
 // Function to compute fibonacci numbers recursively
 f<int> fib(int n) {
     if n <= 2 {

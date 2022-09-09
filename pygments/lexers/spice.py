@@ -40,10 +40,10 @@ class SpiceLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             # keywords
             (r'(import|as)\b', Keyword.Namespace),
-            (r'(f|p|type|struct)\b', Keyword.Declaration),
+            (r'(f|p|type|struct|enum)\b', Keyword.Declaration),
             (words(('if', 'else', 'for', 'foreach', 'while', 'break', 'continue', 'return', 'assert', 'thread', 'unsafe', 'ext', 'dll'), suffix=r'\b'), Keyword),
             (words(('const', 'signed', 'unsigned', 'inline', 'public'), suffix=r'\b'), Keyword.Pseudo),
-            (words(('new', 'switch', 'case', 'yield', 'stash', 'pick', 'sync'), suffix=r'\b'), Keyword.Reserved),
+            (words(('new', 'switch', 'case', 'yield', 'stash', 'pick', 'sync', 'class'), suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|nil)\b', Keyword.Constant),
             (words(('double', 'int', 'short', 'long', 'byte', 'char', 'string', 'bool', 'dyn'), suffix=r'\b'), Keyword.Type),
             (words(('printf', 'sizeof', 'len', 'tid', 'join'), suffix=r'\b(\()'), bygroups(Name.Builtin, Punctuation)),
