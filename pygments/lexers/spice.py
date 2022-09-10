@@ -48,11 +48,11 @@ class SpiceLexer(RegexLexer):
             (words(('double', 'int', 'short', 'long', 'byte', 'char', 'string', 'bool', 'dyn'), suffix=r'\b'), Keyword.Type),
             (words(('printf', 'sizeof', 'len', 'tid', 'join'), suffix=r'\b(\()'), bygroups(Name.Builtin, Punctuation)),
             # numeric literals
-            (r'(0[dD])?[0-9]+[sl]?', Number.Integer),
-            (r'[0-9]*.[0-9]+', Number.Double),
+            (r'[0-9]*[.][0-9]+', Number.Double),
             (r'0[bB][01]+[sl]?', Number.Bin),
             (r'0[oO][0-7]+[sl]?', Number.Oct),
             (r'0[xXhH][0-9a-fA-F]+[sl]?', Number.Hex),
+            (r'(0[dD])?[0-9]+[sl]?', Number.Integer),
             # string literal
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # char literal
