@@ -1,3 +1,84 @@
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'BloodType'   Name.Other
+' '           Text.Whitespace
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'A'           Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'B'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'AB'          Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ZERO'        Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'Person'      Name.Other
+' '           Text.Whitespace
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'firstName'   Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'lastName'    Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'unsigned'    Keyword.Pseudo
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'age'         Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'BloodType'   Name.Other
+' '           Text.Whitespace
+'bloodType'   Name.Other
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
 '// Function to compute fibonacci numbers recursively\n' Comment.Single
 
 'f'           Keyword.Declaration
