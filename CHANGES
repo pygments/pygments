@@ -7,10 +7,23 @@ Version 2.14.0
 --------------
 (not released yet)
 
+- Added lexers:
+
+  * GAP session (#2211)
+
 - Updated lexers:
 
+  * C family (C, C++ and many others): fix an issue where a chunk would
+    be wrongly recognized as a function definition due to braces in
+    comments (#2210)
+  * Inform 6: fix lexing of properties and doubles (#2214)
+  * NASM: add support for SSE/AVX/AVX-512 registers as well as 'rel'
+    and 'abs' address operators (#2212)
   * Spice: add ``enum`` keyword and fix a bug regarding binary,
     hexadecimal and octal number tokens (#2227)
+
+- Fix `make mapfiles` when Pygments is not installed in editable mode
+  (#2223)
 
 Version 2.13.0
 --------------
