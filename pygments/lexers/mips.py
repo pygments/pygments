@@ -24,39 +24,32 @@ class MIPSLexer(RegexLexer):
     aliases = ['mips']
     filenames = ['*.asm', '*.mips']
 
-    # Note: because these lists create regexes that are checked in order, any
-    # element that is a substring of another must come after that other element.
-    keywords1 = [
-        # branch: These need to be tested before pseudoinstructions to avoid
-        # substring problem
-        "bc1f", "bc1t", "bgezal", "bgez", "bgtz", "blez", "bltzal", "bltz",
-    ]
-
-    keywords2 = [
+    keywords = [
         # Arithmetic insturctions
-        "subu", "subi", "sub", "addu", "addiu", "addi", "add",
+        "add", "sub", "subu", "addi", "subi", "addu", "addiu",
         # Multiplication/division
-        "multu", "mult", "mulu", "mul", "maddu", "madd", "msubu", "msub", "divu", "div",
+        "mul", "mult", "multu", "mulu", "madd", "maddu", "msub", "msubu", "div", "divu",
         # Bitwise operations
-        "andi", "and", "nor", "xori", "ori", "xor", "or", "clo", "clz",
+        "and", "or", "nor", "xor", "andi", "ori", "xori", "clo", "clz",
         # Shifts
-        "sllv", "sll", "srlv", "srl", "srav", "sra",
+        "sll", "srl", "sllv", "srlv", "sra", "srav",
         # Comparisons
-        "sltiu", "sltu", "slti", "slt",
-        # branching
-        "bne", "beq",
+        "slt", "sltu", "slti", "sltiu",
         # Move data
         "mfhi", "mthi", "mflo", "mtlo", "movn", "movz", "movf", "movt",
         # Jump
-        "jalr", "jal", "jr", "j",
+        "j", "jal", "jalr", "jr",
+        # branch
+        "bc1f", "bc1t", "beq", "bgez", "bgezal", "bgtz", "blez", "bltzal", "bltz", "bne",
         # Load
-        "lui", "lbu", "lb", "lhu", "lh", "lwcl", "lwl", "lwr", "lw",
+        "lui", "lb", "lbu", "lh", "lhu", "lw", "lwcl", "lwl", "lwr",
         # Store
-        "sb", "sh", "swl", "swr", "sw", # coproc: swc1 sdc1
+        "sb", "sh", "sw", "swl", "swr", # coproc: swc1 sdc1
         # Concurrent load/store
         "ll", "sc",
         # Trap handling
-        "teqi", "teq", "tneqi", "tne", "tgeiu", "tgeu", "tgei", "tge", "tltiu", "tltu", "tlti", "tlt",
+        "teq", "teqi", "tne", "tneqi", "tge", "tgeu", "tgei", "tgeiu", "tlt", "tltu", "tlti",
+        "tltiu",
         # Exception / Interrupt
         "eret", "break", "bop", "syscall",
         #--- Floats -----------------------------------------------------
@@ -79,24 +72,24 @@ class MIPSLexer(RegexLexer):
 
     pseudoinstructions = [
         # Arithmetic & logical
-        "remu", "rem", "mulou", "mulo", "abs", "negu", "neg", "not", "rol", "ror",
+        "rem", "remu", "mulo", "mulou", "abs", "neg", "negu", "not", "rol", "ror",
         # branches
-        "beqz", "bgeu", "bge", "bgtu", "bgt", "bleu", "ble", "bltu", "blt", "bnez", "b",
+        "b", "beqz", "bge", "bgeu", "bgt", "bgtu", "ble", "bleu", "blt", "bltu", "bnez",
         # loads
-        "la", "li", "ld", "ulhu", "ulh", "ulw",
+        "la", "li", "ld", "ulh", "ulhu", "ulw",
         # Store
         "sd", "ush", "usw",
         # move
-        "move", # coproc: "mfc1.d"
+        "move", # coproc: "mfc1.d",
         # comparisons
-        "sgtu", "sgt", "sgeu", "sge", "sleu", "sle", "sne", "seq",
+        "sgt", "sgtu", "sge", "sgeu", "sle", "sleu", "sne", "seq",
         #--- Floats -----------------------------------------------------
         # load-store
         "l.d", "l.s", "s.d", "s.s",
     ]
 
     directives = [
-        ".align", ".asciiz", ".ascii", ".byte", ".data", ".double", ".extern", ".float",
+        ".align", ".ascii", ".asciiz", ".byte", ".data", ".double", ".extern", ".float",
         ".globl", ".half", ".kdata", ".ktext", ".space", ".text", ".word",
     ]
 
