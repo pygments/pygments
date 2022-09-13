@@ -8,7 +8,7 @@
 '\n\n'        Text.Whitespace
 
 '# ------------------------------------------------------------------' Comment
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 '.text'       Name.Entity
 '\n\n    '    Text.Whitespace
 '.globl'      Name.Entity
@@ -144,7 +144,7 @@
 '\n\n'        Text.Whitespace
 
 '# ------------------------------------------------------------------' Comment
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 '# FUNCTION: int fun(int a)' Comment
 '\n    '      Text.Whitespace
 '# Arguments are stored in $a0' Comment
@@ -154,7 +154,7 @@
 '# Return address is stored in $ra (put there by jal instruction)' Comment
 '\n    '      Text.Whitespace
 '# Typical function operation is:' Comment
-'\n    \n'    Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fun:'        Name.Function
 '    '        Text.Whitespace
@@ -288,7 +288,7 @@
 '4'           Keyword.Constant
 '      '      Text.Whitespace
 '# Adjust stack pointer' Comment
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 '# Return from function' Comment
 '\n    '      Text.Whitespace
 'jr'          Keyword
@@ -296,10 +296,10 @@
 '$ra'         Keyword.Type
 '          '  Text.Whitespace
 '# Jump to addr stored in $ra' Comment
-'\n    \n'    Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '# ------------------------------------------------------------------' Comment
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 '# Start .data segment (data!)' Comment
 '\n    '      Text.Whitespace
 '.data'       Name.Entity
@@ -323,12 +323,16 @@
 '   '         Text.Whitespace
 '.asciiz'     Name.Entity
 ' '           Text.Whitespace
-'"y="'        Literal.String
+'"'           Literal.String
+'y='          Literal.String
+'"'           Literal.String
 '\n'          Text.Whitespace
 
 'lf:'         Name.Function
 '     '       Text.Whitespace
 '.asciiz'     Name.Entity
 ' '           Text.Whitespace
-'"\\n"'       Literal.String
+'"'           Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace

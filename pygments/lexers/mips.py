@@ -26,23 +26,29 @@ class MIPSLexer(RegexLexer):
 
     # Note: because these lists create regexes that are checked in order, any
     # element that is a substring of another must come after that other element.
-    keywords = [
+    keywords1 = [
+        # branch: These need to be tested before pseudoinstructions to avoid
+        # substring problem
+        "bc1f", "bc1t", "bgezal", "bgez", "bgtz", "blez", "bltzal", "bltz",
+    ]
+
+    keywords2 = [
         # Arithmetic insturctions
         "subu", "subi", "sub", "addu", "addiu", "addi", "add",
         # Multiplication/division
         "multu", "mult", "mulu", "mul", "maddu", "madd", "msubu", "msub", "divu", "div",
         # Bitwise operations
-        "nor", "xor", "andi", "and", "ori", "or", "xori", "clo", "clz",
+        "andi", "and", "nor", "xori", "ori", "xor", "or", "clo", "clz",
         # Shifts
         "sllv", "sll", "srlv", "srl", "srav", "sra",
         # Comparisons
         "sltiu", "sltu", "slti", "slt",
+        # branching
+        "bne", "beq",
         # Move data
         "mfhi", "mthi", "mflo", "mtlo", "movn", "movz", "movf", "movt",
         # Jump
         "jalr", "jal", "jr", "j",
-        # branch
-        "bc1f", "bc1t", "beq", "bgez", "bgezal", "bgtz", "blez", "bltzal", "bltz", "bne",
         # Load
         "lui", "lbu", "lb", "lhu", "lh", "lwcl", "lwl", "lwr", "lw",
         # Store
@@ -75,7 +81,7 @@ class MIPSLexer(RegexLexer):
         # Arithmetic & logical
         "remu", "rem", "mulou", "mulo", "abs", "negu", "neg", "not", "rol", "ror",
         # branches
-        "beqz", "bgeu", "bgtu", "bge", "bgt", "bleu", "ble", "bltu", "blt", "bnez", "b",
+        "beqz", "bgeu", "bge", "bgtu", "bgt", "bleu", "ble", "bltu", "blt", "bnez", "b",
         # loads
         "la", "li", "ld", "ulhu", "ulh", "ulw",
         # Store
@@ -118,9 +124,10 @@ class MIPSLexer(RegexLexer):
             (r'"', String, 'string'),
             (r'-?[0-9]+?', Keyword.Constant),
             ("[a-zA-Z_0-9]*:", Name.Function),
-            (regexp_opt(keywords), Keyword),
+            (regexp_opt(deprecated), Keyword.Pseudo), # need warning face
+            (regexp_opt(keywords1), Keyword),
             (regexp_opt(pseudoinstructions), Name.Variable),
-            (regexp_opt(deprecated), Keyword), # need warning face
+            (regexp_opt(keywords2), Keyword),
             (r'[slm][ftwd]c[0-9](?:[.]d)?', Keyword),
             (r'\$(f?[0-2][0-9]|f?3[01]|[ft]?[0-9]|[vk][01]|a[0-3]|s[0-7]|[gsf]p|ra|at|zero)', Keyword.Type),
             (regexp_opt(directives), Name.Entity), # Preprocessor?
