@@ -99,7 +99,7 @@ class MIPSLexer(RegexLexer):
     ]
 
     @staticmethod
-    def regexp_opt(l: list):
+    def regexp_opt(l):
         """
         Creates a regexp that matches any string in list l by joining them
         via a pipe (|). Replaces . with \\. to avoid matching other
@@ -115,7 +115,7 @@ class MIPSLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'#.*?$', Comment),
-            (r'".*?"', String),
+            (r'"', String, 'string'),
             (r'-?[0-9]+?', Keyword.Constant),
             ("[a-zA-Z_0-9]*:", Name.Function),
             (regexp_opt(keywords), Keyword),
@@ -127,5 +127,9 @@ class MIPSLexer(RegexLexer):
             (r':|,|;|{|}|=>|@|\$|=', Name.Builtin),
             (r'\w+', Text),
             (r'.', Text),
-        ]
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'[^\\"]+', String),
+        ],
     }
