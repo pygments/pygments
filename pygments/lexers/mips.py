@@ -107,21 +107,22 @@ class MIPSLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'#.*?$', Comment),
+            (r'#.*', Comment),
             (r'"', String, 'string'),
             (r'-?[0-9]+?', Keyword.Constant),
-            ("[a-zA-Z_0-9]*:", Name.Function),
-            (r'[slm][ftwd]c[0-9](?:[.]d)?', Keyword),
+            (r'\w*:', Name.Function),
             (words(deprecated, suffix=r'\b'), Keyword.Pseudo), # need warning face
             (words(pseudoinstructions, suffix=r'\b'), Name.Variable),
             (words(keywords, suffix=r'\b'), Keyword),
+            (r'[slm][ftwd]c[0-9]([.]d)?', Keyword),
             (r'\$(f?[0-2][0-9]|f?3[01]|[ft]?[0-9]|[vk][01]|a[0-3]|s[0-7]|[gsf]p|ra|at|zero)', Keyword.Type),
-            (r':|,|;|{|}|=>|@|\$|=', Name.Builtin),
             (words(directives, suffix=r'\b'), Name.Entity), # Preprocessor?
+            (r':|,|;|\{|\}|=>|@|\$|=', Name.Builtin),
             (r'\w+', Text),
             (r'.', Text),
         ],
         'string': [
+            (r'\\.', String.Escape),
             (r'"', String, '#pop'),
             (r'[^\\"]+', String),
         ],
