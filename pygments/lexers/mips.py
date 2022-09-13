@@ -6,7 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Comment, String, Keyword, Name, Text
 
 __all__ = ["MIPSLexer"]
@@ -104,19 +104,6 @@ class MIPSLexer(RegexLexer):
         "beql", "bnel", "bgtzl", "bgezl", "bltzl", "blezl", "bltzall", "bgezall",
     ]
 
-    @staticmethod
-    def regexp_opt(l):
-        """
-        Creates a regexp that matches any string in list l by joining them
-        via a pipe (|). Replaces . with \\. to avoid matching other
-        characters.
-
-        >>> regexp_opt(['abc', 'd.f', 'ghi'])
-        'abc|d\\.f|ghi'
-        """
-
-        return "|".join([r"{}".format(s.replace('.', r'\.')) for s in l])
-
     tokens = {
         'root': [
             (r'\s+', Whitespace),
@@ -124,14 +111,13 @@ class MIPSLexer(RegexLexer):
             (r'"', String, 'string'),
             (r'-?[0-9]+?', Keyword.Constant),
             ("[a-zA-Z_0-9]*:", Name.Function),
-            (regexp_opt(deprecated), Keyword.Pseudo), # need warning face
-            (regexp_opt(keywords1), Keyword),
-            (regexp_opt(pseudoinstructions), Name.Variable),
-            (regexp_opt(keywords2), Keyword),
             (r'[slm][ftwd]c[0-9](?:[.]d)?', Keyword),
+            (words(deprecated, suffix=r'\b'), Keyword.Pseudo), # need warning face
+            (words(pseudoinstructions, suffix=r'\b'), Name.Variable),
+            (words(keywords, suffix=r'\b'), Keyword),
             (r'\$(f?[0-2][0-9]|f?3[01]|[ft]?[0-9]|[vk][01]|a[0-3]|s[0-7]|[gsf]p|ra|at|zero)', Keyword.Type),
-            (regexp_opt(directives), Name.Entity), # Preprocessor?
             (r':|,|;|{|}|=>|@|\$|=', Name.Builtin),
+            (words(directives, suffix=r'\b'), Name.Entity), # Preprocessor?
             (r'\w+', Text),
             (r'.', Text),
         ],
