@@ -46,7 +46,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
             (r'(\[.*?\])([ \t]*)$', bygroups(Keyword, Whitespace)),
-            (r'(.*?)([  \t]*)([=:])([  \t]*)([^;#\n]*)(\\)(\s+)',
+            (r'(.*?)([  \t]*)([=:])([ \t]*)([^;#\n]*)(\\)(\s+)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Text, Whitespace),
              "value"),
             (r'(.*?)([  \t]*)([=:])([  \t]*)([^ ;#\n]*(?: +[^ ;#\n]+)*)',
