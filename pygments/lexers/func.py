@@ -30,6 +30,8 @@ class FuncLexer(RegexLexer):
             include('storage'),
             include('functions'),
             include('variables'),
+
+            (r'[.;{}(),\[\]~]', Punctuation)
         ],
         'keywords': [
             (words((
