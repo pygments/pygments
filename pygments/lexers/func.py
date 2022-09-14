@@ -1,6 +1,6 @@
-from pygments.lexer import RegexLexer, include
+from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Whitespace
+    Number, Whitespace, Punctuation
 
 __all__ = ['FuncLexer']
 
@@ -9,6 +9,13 @@ class FuncLexer(RegexLexer):
     name = 'FunC'
     aliases = ['func', 'fc']
     filenames = ['*.fc', '*.func']
+
+    identifier_allowed_symbols = r'([^;,\[\]\(\)\s~.\{\}]+)'
+    # 1. Does not start from "
+    # 2. Can start from ` and end with `, containing any character
+    # 3. Starts with underscore 
+    # 4. Starts with letter, contains letters, numbers and underscores
+    identifier = '(?!")(`([^`]+)`|(?=_)(_{})|(?![_`]){})'.format(identifier_allowed_symbols, identifier_allowed_symbols)
 
     tokens = {
         'root': [
@@ -25,9 +32,22 @@ class FuncLexer(RegexLexer):
             include('variables'),
         ],
         'keywords': [
-            (r'(?<=\s)(<=>|>=|<=|!=|==|\^>>|\~>>|>>|<<|\/%|\^%|\~%|\^\/|\~\/|\+=|-=|\*=|\/=|~\/=|\^\/=|%=|\^%=|<<=|>>=|~>>=|\^>>=|&=|\|=|\^=|\^|=|~|\/|%|-|\*|\+|>|<|&|\||:|\?)(?=\s)', Operator),
-            (r'\b(if|ifnot|else|elseif|elseifnot|while|do|until|repeat|return|impure|method_id|forall|asm|inline|inline_ref)\b', Keyword),
-            (r'\b(false|true)\b', Keyword.Constant),
+            (words((
+                '<=>', '>=', '<=', '!=', '==', '^>>', '~>>',
+                '>>', '<<', '/%', '^%', '~%', '^/', '~/', '+=',
+                '-=', '*=', '/=', '~/=', '^/=', '%=', '^%=', '<<=',
+                '>>=', '~>>=', '^>>=', '&=', '|=', '^=', '^', '=', 
+                '~', '/', '%', '-', '*', '+','>', 
+                '<', '&', '|', ':', '?'), prefix=r'(?<=\s)', suffix=r'(?=\s)'), 
+             Operator),
+            (words((
+                'if', 'ifnot', 
+                'else', 'elseif', 'elseifnot', 
+                'while', 'do', 'until', 'repeat', 
+                'return', 'impure', 'method_id', 
+                'forall', 'asm', 'inline', 'inline_ref'), prefix=r'\b', suffix=r'\b'), 
+             Keyword),
+            (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Constant),
         ],
         'directives': [
             (r'#include|#pragma', Keyword, 'directive'),
@@ -39,7 +59,7 @@ class FuncLexer(RegexLexer):
             (r';', Text, '#pop')
         ],
         'strings': [
-            (r'\"([^\n\"]+)\"(H|h|c|u|s|a)?', String),
+            (r'\"([^\n\"]+)\"[Hhcusa]?', String),
         ],
         'numeric': [
             (r'(-?([\d]+|0x[\da-fA-F]+))\b', Number)
@@ -55,13 +75,17 @@ class FuncLexer(RegexLexer):
             (r'[-}]', Comment.Multiline),
         ],
         'storage': [
-            (r'\b(var|int|slice|tuple|cell|builder|cont|_)(?=[\s\),\[\]])', Keyword.Type),
-            (r'\b(global|const)\b', Keyword.Constant),
+            (words((
+                'var', 'int', 'slice', 'tuple', 
+                'cell', 'builder', 'cont', '_'), prefix=r'\b', suffix=r'(?=[\s\(\),\[\]])'), 
+             Keyword.Type),
+            (words(('global', 'const'), prefix='\b', suffix='\b'), Keyword.Constant),
         ],
         'variables': [
-            (r'(?!")(`([^`]+)`|(?=_[\w\d]*)(_([^;,\[\]\(\)\s~.\{\}]+))|(?![_`][\w\d]*)([^;,\[\]\(\)\s~.\{\}]+))', Name.Variable),
+            (identifier, Name.Variable),
         ],
         'functions': [
-            (r'(?!")(`([^`]+)`|(?=_[\w\d]*)(_([^;,\[\]\(\)\s~.\{\}]+))|(?![_`][\w\d]*)([^;,\[\]\(\)\s~.\{\}]+))(?=[\(])', Name.Function),
+            # identifier followed by (
+            (identifier + r'(?=[\(])', Name.Function),
         ]
     }
