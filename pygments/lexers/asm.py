@@ -95,7 +95,7 @@ class GasLexer(RegexLexer):
             (r'/[*][\w\W]*?[*]/', Comment.Multiline)
         ],
         'punctuation': [
-            (r'[-*,.()\[\]!:]+', Punctuation)
+            (r'[-*,.()\[\]!:{}]+', Punctuation)
         ]
     }
 
