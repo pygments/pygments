@@ -16,6 +16,7 @@ Version 2.14.0
   * C family (C, C++ and many others): fix an issue where a chunk would
     be wrongly recognized as a function definition due to braces in
     comments (#2210)
+  * gas (GNU assembler): recognize braces as punctuation (#2230)
   * Inform 6: fix lexing of properties and doubles (#2214)
   * NASM: add support for SSE/AVX/AVX-512 registers as well as 'rel'
     and 'abs' address operators (#2212)
