@@ -42,6 +42,8 @@ class PythonLexer(RegexLexer):
     filenames = [
         '*.py',
         '*.pyw',
+        # Type stubs
+        '*.pyi',
         # Jython
         '*.jy',
         # Sage
