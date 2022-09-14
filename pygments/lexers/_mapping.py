@@ -273,7 +273,7 @@ LEXERS = {
     'LuaLexer': ('pygments.lexers.scripting', 'Lua', ('lua',), ('*.lua', '*.wlua'), ('text/x-lua', 'application/x-lua')),
     'MCFunctionLexer': ('pygments.lexers.mcfunction', 'MCFunction', ('mcfunction', 'mcf'), ('*.mcfunction',), ('text/mcfunction',)),
     'MIMELexer': ('pygments.lexers.mime', 'MIME', ('mime',), (), ('multipart/mixed', 'multipart/related', 'multipart/alternative')),
-    'MIPSLexer': ('pygments.lexers.mips', 'MIPS', ('mips',), ('*.asm', '*.mips'), ()),
+    'MIPSLexer': ('pygments.lexers.mips', 'MIPS', ('mips',), ('*.s', '*.asm', '*.mips', '*.S', '*.ASM', '*.MIPS'), ()),
     'MOOCodeLexer': ('pygments.lexers.scripting', 'MOOCode', ('moocode', 'moo'), ('*.moo',), ('text/x-moocode',)),
     'MSDOSSessionLexer': ('pygments.lexers.shell', 'MSDOS Session', ('doscon',), (), ()),
     'Macaulay2Lexer': ('pygments.lexers.macaulay2', 'Macaulay2', ('macaulay2',), ('*.m2',), ()),
