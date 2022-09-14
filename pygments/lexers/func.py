@@ -62,7 +62,7 @@ class FuncLexer(RegexLexer):
             (r'\"([^\n\"]+)\"[Hhcusa]?', String),
         ],
         'numeric': [
-            (r'(-?([\d]+|0x[\da-fA-F]+))\b', Number)
+            (r'\b(-?(?!_)([\d_]+|0x[\d_a-fA-F]+)|0b[1_0]+)(?<!_)\b', Number)
         ],
         'comments': [
             (r';;([^\n]*)', Comment.Singleline),
