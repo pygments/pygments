@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+from copy import copy
 import os
 import sys
 import shutil
@@ -28,6 +29,66 @@ from pygments.formatters.terminal import TerminalFormatter
 from pygments.formatters.terminal256 import Terminal256Formatter, TerminalTrueColorFormatter
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
+
+try:
+    import shtab
+except ImportError:
+    from . import _shtab as shtab
+
+r"""
+E.g.,
+
+      "-l[description]:tag:_files_choices lexers lexer 'c c++ python'"
+
+will equal to
+
+      _alternative "files: :{_files -g '*.py'}" "lexers:lexer:(c c++ python)"
+
+1. empty means the default tag, ``_files``'s default tag is 'file'
+2. '$[-3]', '$[-2]', '$[-1]' are 'lexers', 'lexer', 'c c++ python' separately.
+
+And finally complete c, c++, python and all python files in current directory:
+
+      % pygmentize -l <TAB>
+      file
+      lexer
+      c             c++             directory\ may\ contains\ python\ files/
+      file1.py      file2.py        python
+
+This is because 'pygmentize -{l,f}' not only can input a lexer/formatter
+name, but also can input a python file when they are used together with '-x'.
+
+The another situation is only when user use '-x', pygmentize complete python
+files and lexers, or complete lexers when user don't use '-x'. However, maybe
+user type '-l' then type '-x', so we simply let pygmentize complete python
+files and lexers.
+
+It only work for zsh. For other shells, it just only complete python files,
+which is a TODO for those developers familiar to other shells.
+"""
+
+# https://github.com/zsh-users/zsh/blob/283fc8596b817bf731c4dbf339a3943847d9dd12/Etc/completion-style-guide#L320-L323
+PREAMBLE = {
+    "zsh": """
+_files_choices() {
+  _alternative "files: :{_files -g '*.py'}" "${@[-3]}:${@[-2]}:(${@[-1]})"
+}
+""",
+    "bash": """
+# $1=COMP_WORDS[1]
+_shtab_greeter_compgen_py_files() {
+  compgen -d -- $1  # recurse into subdirs
+  compgen -f -X '!*?.py' -- $1
+}
+""",
+}
+
+# https://github.com/iterative/shtab/blob/5358dda86e8ea98bf801a43a24ad73cd9f820c63/examples/customcomplete.py#L11-L22
+PY_FILE = {
+    "bash": "_shtab_greeter_compgen_py_files",
+    "zsh": "_files -g '*.py'",
+    "tcsh": "f:*.py",
+}
 
 
 def _parse_options(o_strs):
@@ -525,12 +586,41 @@ class HelpFormatter(argparse.HelpFormatter):
                                         max_help_position, width)
 
 
+def choices2complete(choices):
+    return {"zsh": "(" + " ".join(choices) + ")"}
+
+
+def choices_and_files2complete(choices, tag="", description=""):
+    if description == "" and tag != "":
+        description = tag[:-1]
+    if description != "" and tag == "":
+        tag = description + "s"
+    complete = copy(PY_FILE)
+    choices_str = " ".join(choices)
+    complete["zsh"] = f"_files_choices {tag} {description} '{choices_str}'"
+    return complete
+
+
 def main(args=sys.argv):
     """
     Main command line entry point.
     """
+    from .styles import STYLE_MAP
+    from .filters import FILTERS
+    from .formatters import FORMATTERS
+    from .lexers import LEXERS
+
+    CHOICES_WHAT = ['filters', 'formatters', 'lexers', 'styles']
+    CHOICES_LEXERS = []
+    for x in LEXERS.values():
+        CHOICES_LEXERS += list(x[2])
+    CHOICES_FORMATTERS = []
+    for x in FORMATTERS.values():
+        CHOICES_LEXERS += list(x[2])
+    CHOICES_FILTERS = FILTERS.keys()
     desc = "Highlight an input file and write the result to an output file."
-    parser = argparse.ArgumentParser(description=desc, add_help=False,
+    parser = argparse.ArgumentParser('pygmentize', description=desc,
+                                     add_help=False,
                                      formatter_class=HelpFormatter)
 
     operation = parser.add_argument_group('Main operation')
@@ -538,7 +628,8 @@ def main(args=sys.argv):
     lexersel.add_argument(
         '-l', metavar='LEXER',
         help='Specify the lexer to use.  (Query names with -L.)  If not '
-        'given and -g is not present, the lexer is guessed from the filename.')
+        'given and -g is not present, the lexer is guessed from the filename.'
+    ).complete = choices_and_files2complete(CHOICES_LEXERS, "lexers")
     lexersel.add_argument(
         '-g', action='store_true',
         help='Guess the lexer from the file contents, or pass through '
@@ -546,13 +637,15 @@ def main(args=sys.argv):
     operation.add_argument(
         '-F', metavar='FILTER[:options]', action='append',
         help='Add a filter to the token stream.  (Query names with -L.) '
-        'Filter options are given after a colon if necessary.')
+        'Filter options are given after a colon if necessary.'
+    ).complete = choices2complete(CHOICES_FILTERS)
     operation.add_argument(
         '-f', metavar='FORMATTER',
         help='Specify the formatter to use.  (Query names with -L.) '
         'If not given, the formatter is guessed from the output filename, '
         'and defaults to the terminal formatter if the output is to the '
-        'terminal or an unknown file extension.')
+        'terminal or an unknown file extension.'
+    ).complete = choices_and_files2complete(CHOICES_FORMATTERS, "formatters")
     operation.add_argument(
         '-O', metavar='OPTION=value[,OPTION=value,...]', action='append',
         help='Give options to the lexer and formatter as a comma-separated '
@@ -565,11 +658,13 @@ def main(args=sys.argv):
         'Example: `-P "heading=Pygments, the Python highlighter"`.')
     operation.add_argument(
         '-o', metavar='OUTPUTFILE',
-        help='Where to write the output.  Defaults to standard output.')
+        help='Where to write the output.  Defaults to standard output.'
+    ).complete = shtab.FILE
 
     operation.add_argument(
         'INPUTFILE', nargs='?',
-        help='Where to read the input.  Defaults to standard input.')
+        help='Where to read the input.  Defaults to standard input.'
+    ).complete = shtab.FILE
 
     flags = parser.add_argument_group('Operation flags')
     flags.add_argument(
@@ -600,8 +695,10 @@ def main(args=sys.argv):
     special_modes_group = parser.add_argument_group(
         'Special modes - do not do any highlighting')
     special_modes = special_modes_group.add_mutually_exclusive_group()
+    shtab.add_argument_to(special_modes, preamble=PREAMBLE)
     special_modes.add_argument(
         '-S', metavar='STYLE -f formatter',
+        choices=list(STYLE_MAP.keys()),
         help='Print style definitions for STYLE for a formatter '
         'given with -f. The argument given by -a is formatter '
         'dependent.')
@@ -609,12 +706,14 @@ def main(args=sys.argv):
         '-L', nargs='*', metavar='WHAT',
         help='List lexers, formatters, styles or filters -- '
         'give additional arguments for the thing(s) you want to list '
-        '(e.g. "styles"), or omit them to list everything.')
+        '(e.g. "styles"), or omit them to list everything.'
+    ).complete = choices2complete(CHOICES_WHAT)
     special_modes.add_argument(
         '-N', metavar='FILENAME',
         help='Guess and print out a lexer name based solely on the given '
         'filename. Does not take input or highlight anything. If no specific '
-        'lexer can be determined, "text" is printed.')
+        'lexer can be determined, "text" is printed.'
+    ).complete = shtab.FILE
     special_modes.add_argument(
         '-C', action='store_true',
         help='Like -N, but print out a lexer name based solely on '

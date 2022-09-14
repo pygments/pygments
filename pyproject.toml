@@ -43,6 +43,7 @@ classifiers = [
 [project.optional-dependencies]
 plugins = [] # kept for backwards compatibility
 windows-terminal = ["colorama >= 0.4.6"]
+completion = ["shtab"]
 
 [project.urls]
 Homepage = "https://pygments.org"
