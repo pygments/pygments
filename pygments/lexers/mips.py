@@ -6,6 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import re
 from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Comment, String, Keyword, Name, Text
 
@@ -22,7 +23,7 @@ class MIPSLexer(RegexLexer):
 
     name = 'MIPS'
     aliases = ['mips']
-    filenames = ['*.asm', '*.mips']
+    filenames = ['*.s', '*.asm', '*.mips', '*.S', '*.ASM', '*.MIPS']
 
     keywords = [
         # Arithmetic insturctions
@@ -120,3 +121,23 @@ class MIPSLexer(RegexLexer):
             (r'[^\\"]+', String),
         ],
     }
+
+    def analyse_text(text):
+        """
+        Analyze text according to how many common tokens are matched.
+        """
+
+        common_tokens = [
+            r'\.globl',
+            r'\.text',
+            r'\.data',
+            r'\.word',
+        ]
+
+        matches = 0
+
+        for t in common_tokens:
+            if re.search(t, text) is not None:
+                matches += 1
+
+        return (matches / len(common_tokens)) * 0.95
