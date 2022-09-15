@@ -28,7 +28,7 @@ class FuncLexer(RegexLexer):
     # 2. Can start from ` and end with `, containing any character
     # 3. Starts with underscore or { or } and have more than 1 character after it
     # 4. Starts with letter, contains letters, numbers and underscores
-    identifier = r'(?!")(`([^`]+)`|((?=_)_|(?={){|(?=})}|(?![_`{}]))([^;,\[\]\(\)\s~.]+))'
+    identifier = r'(?!")(`([^`]+)`|((?=_)_|(?=\{)\{|(?=\})\}|(?![_`{}]))([^;,\[\]\(\)\s~.]+))'
 
     tokens = {
         'root': [
@@ -81,12 +81,12 @@ class FuncLexer(RegexLexer):
         ],
         'comments': [
             (r';;([^\n]*)', Comment.Singleline),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
         ],
         'comment': [
             (r'[^-}]+', Comment.Multiline),
-            (r'{-', Comment.Multiline, '#push'),
-            (r'-}', Comment.Multiline, '#pop'),
+            (r'\{-', Comment.Multiline, '#push'),
+            (r'-\}', Comment.Multiline, '#pop'),
             (r'[-}]', Comment.Multiline),
         ],
         'storage': [
@@ -95,7 +95,7 @@ class FuncLexer(RegexLexer):
                 'cell', 'builder', 'cont', '_'),
                 prefix=r'\b', suffix=r'(?=[\s\(\),\[\]])'),
              Keyword.Type),
-            (words(('global', 'const'), prefix='\b', suffix='\b'), Keyword.Constant),
+            (words(('global', 'const'), prefix=r'\b', suffix=r'\b'), Keyword.Constant),
         ],
         'variables': [
             (identifier, Name.Variable),
