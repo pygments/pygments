@@ -10,12 +10,12 @@ class FuncLexer(RegexLexer):
     aliases = ['func', 'fc']
     filenames = ['*.fc', '*.func']
 
-    identifier_allowed_symbols = r'([^;,\[\]\(\)\s~.\{\}]+)'
+    identifier_allowed_symbols = r'([^;,\[\]\(\)\s~.]+)'
     # 1. Does not start from "
     # 2. Can start from ` and end with `, containing any character
-    # 3. Starts with underscore 
+    # 3. Starts with underscore or { or } and have more than 1 character after it
     # 4. Starts with letter, contains letters, numbers and underscores
-    identifier = '(?!")(`([^`]+)`|(?=_)(_{})|(?![_`]){})'.format(identifier_allowed_symbols, identifier_allowed_symbols)
+    identifier = '(?!")(`([^`]+)`|((?=_)_|(?={{){{|(?=}})}}|(?![_`{{}}])){})'.format(identifier_allowed_symbols)
 
     tokens = {
         'root': [
@@ -31,7 +31,7 @@ class FuncLexer(RegexLexer):
             include('functions'),
             include('variables'),
 
-            (r'[.;{}(),\[\]~]', Punctuation)
+            (r'[.;(),\[\]~{}]', Punctuation)
         ],
         'keywords': [
             (words((
@@ -64,7 +64,7 @@ class FuncLexer(RegexLexer):
             (r'\"([^\n\"]+)\"[Hhcusa]?', String),
         ],
         'numeric': [
-            (r'\b(-?(?!_)([\d_]+|0x[\d_a-fA-F]+)|0b[1_0]+)(?<!_)\b', Number)
+            (r'\b(-?(?!_)([\d_]+|0x[\d_a-fA-F]+)|0b[1_0]+)(?<!_)(?=[\s\)\],;])', Number)
         ],
         'comments': [
             (r';;([^\n]*)', Comment.Singleline),
