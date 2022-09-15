@@ -801,7 +801,7 @@ class ObjectiveJLexer(RegexLexer):
     mimetypes = ['text/x-objective-j']
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)*'
+    _ws = r'(?:\s|//[^\n]*\n|/[*](?:[^*]|[*][^/])*[*]/)*'
 
     flags = re.DOTALL | re.MULTILINE
 
