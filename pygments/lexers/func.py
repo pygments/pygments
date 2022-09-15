@@ -1,4 +1,14 @@
-from pygments.lexer import RegexLexer, bygroups, include, words
+"""
+    pygments.lexers.func
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for FunC.
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
+from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Whitespace, Punctuation
 
@@ -6,16 +16,19 @@ __all__ = ['FuncLexer']
 
 
 class FuncLexer(RegexLexer):
+    """
+    For FunC source code.
+    """
+
     name = 'FunC'
     aliases = ['func', 'fc']
     filenames = ['*.fc', '*.func']
 
-    identifier_allowed_symbols = r'([^;,\[\]\(\)\s~.]+)'
     # 1. Does not start from "
     # 2. Can start from ` and end with `, containing any character
     # 3. Starts with underscore or { or } and have more than 1 character after it
     # 4. Starts with letter, contains letters, numbers and underscores
-    identifier = '(?!")(`([^`]+)`|((?=_)_|(?={{){{|(?=}})}}|(?![_`{{}}])){})'.format(identifier_allowed_symbols)
+    identifier = r'(?!")(`([^`]+)`|((?=_)_|(?={){|(?=})}|(?![_`{}]))([^;,\[\]\(\)\s~.]+))'
 
     tokens = {
         'root': [
@@ -38,16 +51,16 @@ class FuncLexer(RegexLexer):
                 '<=>', '>=', '<=', '!=', '==', '^>>', '~>>',
                 '>>', '<<', '/%', '^%', '~%', '^/', '~/', '+=',
                 '-=', '*=', '/=', '~/=', '^/=', '%=', '^%=', '<<=',
-                '>>=', '~>>=', '^>>=', '&=', '|=', '^=', '^', '=', 
-                '~', '/', '%', '-', '*', '+','>', 
-                '<', '&', '|', ':', '?'), prefix=r'(?<=\s)', suffix=r'(?=\s)'), 
+                '>>=', '~>>=', '^>>=', '&=', '|=', '^=', '^', '=',
+                '~', '/', '%', '-', '*', '+','>',
+                '<', '&', '|', ':', '?'), prefix=r'(?<=\s)', suffix=r'(?=\s)'),
              Operator),
             (words((
-                'if', 'ifnot', 
-                'else', 'elseif', 'elseifnot', 
-                'while', 'do', 'until', 'repeat', 
-                'return', 'impure', 'method_id', 
-                'forall', 'asm', 'inline', 'inline_ref'), prefix=r'\b', suffix=r'\b'), 
+                'if', 'ifnot',
+                'else', 'elseif', 'elseifnot',
+                'while', 'do', 'until', 'repeat',
+                'return', 'impure', 'method_id',
+                'forall', 'asm', 'inline', 'inline_ref'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Constant),
         ],
@@ -78,8 +91,9 @@ class FuncLexer(RegexLexer):
         ],
         'storage': [
             (words((
-                'var', 'int', 'slice', 'tuple', 
-                'cell', 'builder', 'cont', '_'), prefix=r'\b', suffix=r'(?=[\s\(\),\[\]])'), 
+                'var', 'int', 'slice', 'tuple',
+                'cell', 'builder', 'cont', '_'),
+                prefix=r'\b', suffix=r'(?=[\s\(\),\[\]])'),
              Keyword.Type),
             (words(('global', 'const'), prefix='\b', suffix='\b'), Keyword.Constant),
         ],
