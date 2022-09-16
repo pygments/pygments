@@ -23,7 +23,10 @@ class MIPSLexer(RegexLexer):
 
     name = 'MIPS'
     aliases = ['mips']
-    filenames = ['*.s', '*.asm', '*.mips', '*.S', '*.ASM', '*.MIPS']
+    # TODO: add '*.s' and '*.asm', which will require designing an analyse_text
+    # method for this lexer and refactoring those from Gas and Nasm in order to
+    # have relatively reliable detection
+    filenames = ['*.mips', '*.MIPS']
 
     keywords = [
         # Arithmetic insturctions
@@ -121,23 +124,3 @@ class MIPSLexer(RegexLexer):
             (r'[^\\"]+', String),
         ],
     }
-
-    def analyse_text(text):
-        """
-        Analyze text according to how many common tokens are matched.
-        """
-
-        common_tokens = [
-            r'\.globl',
-            r'\.text',
-            r'\.data',
-            r'\.word',
-        ]
-
-        matches = 0
-
-        for t in common_tokens:
-            if re.search(t, text) is not None:
-                matches += 1
-
-        return (matches / len(common_tokens)) * 0.95
