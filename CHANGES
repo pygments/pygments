@@ -16,12 +16,19 @@ Version 2.14.0
   * C family (C, C++ and many others): fix an issue where a chunk would
     be wrongly recognized as a function definition due to braces in
     comments (#2210)
+  * gas (GNU assembler): recognize braces as punctuation (#2230)
   * Inform 6: fix lexing of properties and doubles (#2214)
+  * Objective J: fix catastrophic backtracking (#2225)
   * NASM: add support for SSE/AVX/AVX-512 registers as well as 'rel'
     and 'abs' address operators (#2212)
+  * Python: add `*.pyi` as filename pattern for typing stub files (#2231)
+  * Spice: add ``enum`` keyword and fix a bug regarding binary,
+    hexadecimal and octal number tokens (#2227)
 
 - Fix `make mapfiles` when Pygments is not installed in editable mode
   (#2223)
+
+- Support more filetypes and compression types in `autopygmentize` (#2219)
 
 Version 2.13.0
 --------------
