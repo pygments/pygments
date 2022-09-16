@@ -9,6 +9,7 @@
 #
 
 PYTHON ?= python3
+PYTEST ?= pytest
 
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; print ":".join(os.path.abspath(line.strip()) for line in file("PYTHONPATH"))' 2>/dev/null)
 
@@ -50,10 +51,10 @@ reindent:
 TEST = tests
 
 test:
-	@$(PYTHON) `which pytest` $(TEST)
+	@$(PYTEST) $(TEST)
 
 test-coverage:
-	@$(PYTHON) `which pytest` --cov --cov-report=html --cov-report=term $(TEST)
+	@$(PYTEST) --cov --cov-report=html --cov-report=term $(TEST)
 
 tox-test:
 	@tox -- $(TEST)
