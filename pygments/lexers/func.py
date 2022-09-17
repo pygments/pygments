@@ -69,6 +69,7 @@ class FuncLexer(RegexLexer):
         ],
         'directive': [
             include('strings'),
+            (r'\s+', Whitespace),
             (r'version|not-version', Keyword),
             (r'(>=|<=|=|>|<|\^)?([0-9]+)(.[0-9]+)?(.[0-9]+)?', Number), # version
             (r';', Text, '#pop')
@@ -84,10 +85,10 @@ class FuncLexer(RegexLexer):
             (r'\{-', Comment.Multiline, 'comment'),
         ],
         'comment': [
-            (r'[^-}]+', Comment.Multiline),
+            (r'[^-}{]+', Comment.Multiline),
             (r'\{-', Comment.Multiline, '#push'),
             (r'-\}', Comment.Multiline, '#pop'),
-            (r'[-}]', Comment.Multiline),
+            (r'[-}{]', Comment.Multiline),
         ],
         'storage': [
             (words((
