@@ -133,7 +133,7 @@ class PropertiesLexer(RegexLexer):
             # search for first separator
             (r'.+?[^\\](?:\\{2})*?(?=[ \f\t=:])', Name.Attribute, "separator"),
             # empty key
-            (r'(.+?)', Name.Attribute),
+            (r'.+?$', Name.Attribute),
         ],
         'separator': [
             # search for line continuation escape
