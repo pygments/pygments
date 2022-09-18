@@ -238,6 +238,7 @@ LEXERS = {
     'JsonBareObjectLexer': ('pygments.lexers.data', 'JSONBareObject', (), (), ()),
     'JsonLdLexer': ('pygments.lexers.data', 'JSON-LD', ('jsonld', 'json-ld'), ('*.jsonld',), ('application/ld+json',)),
     'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', 'Pipfile.lock'), ('application/json', 'application/json-object')),
+    'JsonnetLexer': ('pygments.lexers.jsonnet', 'Jsonnet', ('jsonnet',), ('*.jsonnet', '*.libsonnet'), ()),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'JuliaConsoleLexer': ('pygments.lexers.julia', 'Julia console', ('jlcon', 'julia-repl'), (), ()),
     'JuliaLexer': ('pygments.lexers.julia', 'Julia', ('julia', 'jl'), ('*.jl',), ('text/x-julia', 'application/x-julia')),
