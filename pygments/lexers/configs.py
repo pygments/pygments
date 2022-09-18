@@ -136,6 +136,7 @@ class PropertiesLexer(RegexLexer):
             (r'(.+?)', Name.Attribute),
         ],
         'separator': [
+            # search for line continuation escape
             (r'([ \f\t]*)([=:]*)([ \f\t]*)(.*(?<!\\)(?:\\{2})*)(\\)(?!\\)$',
              bygroups(Whitespace, Operator, Whitespace, String, Text), "value", "#pop"),
             (r'([ \f\t]*)([=:]*)([ \f\t]*)(.*)',
@@ -143,6 +144,7 @@ class PropertiesLexer(RegexLexer):
         ],
         'value': [     # line continuation
             (r'\s+', Whitespace),
+            # search for line continuation escape
             (r'(\s*)(.*(?<!\\)(?:\\{2})*)(\\)(?!\\)([ \t]*)',
              bygroups(Whitespace, String, Text, Whitespace)),
             (r'.*$', String, "#pop"),
