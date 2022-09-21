@@ -4,7 +4,7 @@
 
     Lexer for the Nim language (formerly known as Nimrod).
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -83,7 +83,7 @@ class NimrodLexer(RegexLexer):
              Punctuation),
             
             # Case statement branch
-            (r'(\n\s*)(of)(\s)', bygroups(Text, Keyword, Text), 'casebranch'),
+            (r'(\n\s*)(of)(\s)', bygroups(Text.Whitespace, Keyword, Text.Whitespace), 'casebranch'),
             
             # Strings
             (r'(?:[\w]+)"', String, 'rdqs'),
@@ -95,8 +95,8 @@ class NimrodLexer(RegexLexer):
 
             # Keywords
             (r'(%s)\b' % underscorize(opWords), Operator.Word),
-            (r'(proc\s|func\s|method\s|macro\s|template\s)(?![(\[\]])',
-             Keyword, 'funcname'),
+            (r'(proc|func|method|macro|template)(\s)(?![(\[\]])',
+             bygroups(Keyword, Text.Whitespace), 'funcname'),
             (r'(%s)\b' % underscorize(keywords), Keyword),
             (r'(%s)\b' % underscorize(['from', 'import', 'include']),
              Keyword.Namespace),
@@ -140,7 +140,7 @@ class NimrodLexer(RegexLexer):
             (r'[\]#]', String.Doc),
         ],
         'comment': [
-            (r'[^\]#]', Comment.Multiline),
+            (r'[^\]#]+', Comment.Multiline),
             (r'#\[', Comment.Multiline, '#push'),
             (r'\]#', Comment.Multiline, '#pop'),
             (r'[\]#]', Comment.Multiline),
@@ -183,10 +183,10 @@ class NimrodLexer(RegexLexer):
             default('#pop')
         ],
         'casebranch': [
-            (r',', Text),
+            (r',', Punctuation),
             (r'[\n ]+', Text.Whitespace),
             (r':', Operator, '#pop'),
-            (r'\w+|\W+|[^:]', Name.Label),
+            (r'\w+|[^:]', Name.Label),
         ],
         'pragma': [
             (r'[:,]', Text),
