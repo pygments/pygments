@@ -196,7 +196,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'getProjectTab' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -244,7 +245,8 @@
 'i'           Name
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'saveTab'     Name.Function
 '('           Punctuation
 'tabNr'       Name
@@ -563,7 +565,8 @@
 ')'           Punctuation
 '  \n\n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'saveAllTabs' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -615,7 +618,8 @@
 '# -- w(PWindow)' Comment
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'destroy'     Name.Function
 '('           Punctuation
 'widget'      Name
@@ -708,7 +712,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'delete_event' Name.Function
 '('           Punctuation
 'widget'      Name
@@ -909,9 +914,9 @@
 'case'        Keyword
 ' '           Text.Whitespace
 'resp'        Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'RESPONSE_ACCEPT' Name.Label
 ':'           Operator
 '\n        '  Text.Whitespace
@@ -942,9 +947,9 @@
 '='           Operator
 ' '           Text.Whitespace
 'True'        Keyword.Pseudo
-'\n      '    Text
+'\n      '    Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'RESPONSE_CANCEL' Name.Label
 ':'           Operator
 '\n        '  Text.Whitespace
@@ -955,9 +960,9 @@
 'False'       Keyword.Pseudo
 '\n        '  Text.Whitespace
 'break'       Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'RESPONSE_REJECT' Name.Label
 ':'           Operator
 '\n        '  Text.Whitespace
@@ -987,7 +992,8 @@
 'quit'        Name
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'windowState_Changed' Name.Function
 '('           Punctuation
 'widget'      Name
@@ -1037,7 +1043,8 @@
 '# -- SourceView(PSourceView) & SourceBuffer' Comment
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'updateStatusBar' Name.Function
 '('           Punctuation
 'buffer'      Name
@@ -1175,7 +1182,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'cursorMoved' Name.Function
 '('           Punctuation
 'buffer'      Name
@@ -1213,7 +1221,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'onCloseTab'  Name.Function
 '('           Punctuation
 'btn'         Name
@@ -1279,7 +1288,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'onSwitchTab' Name.Function
 '('           Punctuation
 'notebook'    Name
@@ -1349,7 +1359,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'createTabLabel' Name.Function
 '('           Punctuation
 'name'        Name
@@ -1563,7 +1574,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'changed'     Name.Function
 '('           Punctuation
 'buffer'      Name
@@ -1714,7 +1726,8 @@
 '# Other(Helper) functions' Comment
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initSourceView' Name.Function
 '('           Punctuation
 'SourceView'  Name
@@ -1976,7 +1989,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'addTab'      Name.Function
 '('           Punctuation
 'name'        Name
@@ -2366,7 +2380,8 @@
 '# -- TopMenu & TopBar' Comment
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'newFile'     Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2411,7 +2426,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'openFile'    Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2621,7 +2637,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'saveFile_Activate' Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2675,7 +2692,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'saveFileAs_Activate' Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2829,7 +2847,8 @@
 'saved'       Name
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'undo'        Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2890,7 +2909,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'redo'        Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -2951,7 +2971,8 @@
 ')'           Punctuation
 '\n    \n'    Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'find_Activate' Name.Function
 '('           Punctuation
 'menuItem'    Name
@@ -3190,7 +3211,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'replace_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -3256,7 +3278,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'settings_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -3281,7 +3304,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'viewBottomPanel_Toggled' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -3428,7 +3452,8 @@
 '"'           Literal.String
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'addText'     Name.Function
 '('           Punctuation
 'textView'    Name
@@ -3552,7 +3577,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'createColor' Name.Function
 '('           Punctuation
 'textView'    Name
@@ -3651,7 +3677,8 @@
 ')'           Punctuation
 ':'           Punctuation
 ' \n  '       Text.Whitespace
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'findExe'     Name.Function
 '('           Punctuation
 'exe'         Name
@@ -3753,7 +3780,8 @@
 '"'           Literal.String
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'GetCmd'      Name.Function
 '('           Punctuation
 'cmd'         Name
@@ -3885,7 +3913,8 @@
 'f'           Name
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'showBottomPanel' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -3991,7 +4020,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'compileRun'  Name.Function
 '('           Punctuation
 'currentTab'  Name
@@ -4356,7 +4386,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'CompileCurrent_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4396,7 +4427,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'CompileRunCurrent_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4436,7 +4468,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'CompileProject_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4468,7 +4501,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'CompileRunProject_Activate' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4500,7 +4534,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'RunCustomCommand' Name.Function
 '('           Punctuation
 'cmd'         Name
@@ -4669,7 +4704,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'RunCustomCommand1' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4696,7 +4732,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'RunCustomCommand2' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4723,7 +4760,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'RunCustomCommand3' Name.Function
 '('           Punctuation
 'menuitem'    Name
@@ -4753,7 +4791,8 @@
 '# -- FindBar' Comment
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'nextBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -4776,7 +4815,8 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'prevBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -4799,7 +4839,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'replaceBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -4976,7 +5017,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'replaceAllBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -5030,7 +5072,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'closeBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -5056,7 +5099,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'caseSens_Changed' Name.Function
 '('           Punctuation
 'radiomenuitem' Name
@@ -5086,7 +5130,8 @@
 '"'           Literal.String
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'caseInSens_Changed' Name.Function
 '('           Punctuation
 'radiomenuitem' Name
@@ -5116,7 +5161,8 @@
 '"'           Literal.String
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'style_Changed' Name.Function
 '('           Punctuation
 'radiomenuitem' Name
@@ -5146,7 +5192,8 @@
 '"'           Literal.String
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'regex_Changed' Name.Function
 '('           Punctuation
 'radiomenuitem' Name
@@ -5176,7 +5223,8 @@
 '"'           Literal.String
 '\n'          Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'peg_Changed' Name.Function
 '('           Punctuation
 'radiomenuitem' Name
@@ -5206,7 +5254,8 @@
 '"'           Literal.String
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'extraBtn_Clicked' Name.Function
 '('           Punctuation
 'button'      Name
@@ -5539,104 +5588,126 @@
 'settings'    Name
 '.'           Punctuation
 'search'      Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Name.Label
 'casesens'    Name.Label
-'":\n    '    Name.Label
-'PCheckMenuItem' Name.Label
-'('           Name.Label
-'caseSensMenuItem' Name.Label
-').'          Name.Label
-'ItemSetActive' Name.Label
-'('           Name.Label
-'True'        Name.Label
-')\n  '       Name.Label
-'of'          Name.Label
+'"'           Name.Label
+':'           Operator
+'\n    '      Text.Whitespace
+'PCheckMenuItem' Name
+'('           Punctuation
+'caseSensMenuItem' Name
+')'           Punctuation
+'.'           Punctuation
+'ItemSetActive' Name
+'('           Punctuation
+'True'        Keyword.Pseudo
+')'           Punctuation
+'\n  '        Text.Whitespace
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'caseinsens'  Name.Label
-'":\n    '    Name.Label
-'PCheckMenuItem' Name.Label
-'('           Name.Label
-'caseInSensMenuItem' Name.Label
-').'          Name.Label
-'ItemSetActive' Name.Label
-'('           Name.Label
-'True'        Name.Label
-')\n  '       Name.Label
-'of'          Name.Label
+'"'           Name.Label
+':'           Operator
+'\n    '      Text.Whitespace
+'PCheckMenuItem' Name
+'('           Punctuation
+'caseInSensMenuItem' Name
+')'           Punctuation
+'.'           Punctuation
+'ItemSetActive' Name
+'('           Punctuation
+'True'        Keyword.Pseudo
+')'           Punctuation
+'\n  '        Text.Whitespace
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'style'       Name.Label
-'":\n    '    Name.Label
-'PCheckMenuItem' Name.Label
-'('           Name.Label
-'styleMenuItem' Name.Label
-').'          Name.Label
-'ItemSetActive' Name.Label
-'('           Name.Label
-'True'        Name.Label
-')\n  '       Name.Label
-'of'          Name.Label
+'"'           Name.Label
+':'           Operator
+'\n    '      Text.Whitespace
+'PCheckMenuItem' Name
+'('           Punctuation
+'styleMenuItem' Name
+')'           Punctuation
+'.'           Punctuation
+'ItemSetActive' Name
+'('           Punctuation
+'True'        Keyword.Pseudo
+')'           Punctuation
+'\n  '        Text.Whitespace
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'regex'       Name.Label
-'":\n    '    Name.Label
-'PCheckMenuItem' Name.Label
-'('           Name.Label
-'regexMenuItem' Name.Label
-').'          Name.Label
-'ItemSetActive' Name.Label
-'('           Name.Label
-'True'        Name.Label
-')\n  '       Name.Label
-'of'          Name.Label
+'"'           Name.Label
+':'           Operator
+'\n    '      Text.Whitespace
+'PCheckMenuItem' Name
+'('           Punctuation
+'regexMenuItem' Name
+')'           Punctuation
+'.'           Punctuation
+'ItemSetActive' Name
+'('           Punctuation
+'True'        Keyword.Pseudo
+')'           Punctuation
+'\n  '        Text.Whitespace
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'peg'         Name.Label
-'":\n    '    Name.Label
-'PCheckMenuItem' Name.Label
-'('           Name.Label
-'pegMenuItem' Name.Label
-').'          Name.Label
-'ItemSetActive' Name.Label
-'('           Name.Label
-'True'        Name.Label
-')\n\n  '     Name.Label
-'extraMenu'   Name.Label
-'.'           Name.Label
-'popup'       Name.Label
-'('           Name.Label
-'nil'         Name.Label
-','           Text
+'"'           Name.Label
+':'           Operator
+'\n    '      Text.Whitespace
+'PCheckMenuItem' Name
+'('           Punctuation
+'pegMenuItem' Name
+')'           Punctuation
+'.'           Punctuation
+'ItemSetActive' Name
+'('           Punctuation
+'True'        Keyword.Pseudo
+')'           Punctuation
+'\n\n  '      Text.Whitespace
+'extraMenu'   Name
+'.'           Punctuation
+'popup'       Name
+'('           Punctuation
+'nil'         Keyword.Pseudo
+','           Punctuation
 ' '           Text.Whitespace
-'nil'         Name.Label
-','           Text
+'nil'         Keyword.Pseudo
+','           Punctuation
 ' '           Text.Whitespace
-'nil'         Name.Label
-','           Text
+'nil'         Keyword.Pseudo
+','           Punctuation
 ' '           Text.Whitespace
-'nil'         Name.Label
-','           Text
+'nil'         Keyword.Pseudo
+','           Punctuation
 ' '           Text.Whitespace
-'0'           Name.Label
-','           Text
+'0'           Literal.Number.Integer
+','           Punctuation
 ' '           Text.Whitespace
-'get_current_event_time' Name.Label
-'())\n\n# '   Name.Label
-'GUI'         Name.Label
-' '           Text.Whitespace
-'Initialization' Name.Label
+'get_current_event_time' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc'        Name.Label
+'# GUI Initialization' Comment
+'\n\n'        Text.Whitespace
+
+'proc'        Keyword
 ' '           Text.Whitespace
-'createAccelMenuItem' Name.Label
-'('           Name.Label
-'toolsMenu'   Name.Label
-':'           Operator
+'createAccelMenuItem' Name.Function
+'('           Punctuation
+'toolsMenu'   Name
+':'           Punctuation
 ' '           Text.Whitespace
 'PMenu'       Name
 ','           Punctuation
@@ -5746,7 +5817,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'createSeparator' Name.Function
 '('           Punctuation
 'menu'        Name
@@ -5781,7 +5853,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initTopMenu' Name.Function
 '('           Punctuation
 'MainBox'     Name
@@ -6858,7 +6931,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initToolBar' Name.Function
 '('           Punctuation
 'MainBox'     Name
@@ -7110,7 +7184,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initSourceViewTabs' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -7406,7 +7481,8 @@
 ')'           Punctuation
 '\n\n  \n'    Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initBottomTabs' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -7565,7 +7641,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initTAndBP'  Name.Function
 '('           Punctuation
 'MainBox'     Name
@@ -7670,7 +7747,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initFindBar' Name.Function
 '('           Punctuation
 'MainBox'     Name
@@ -8473,7 +8551,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initStatusBar' Name.Function
 '('           Punctuation
 'MainBox'     Name
@@ -8537,7 +8616,8 @@
 ')'           Punctuation
 '\n  \n'      Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'initControls' Name.Function
 '('           Punctuation
 ')'           Punctuation
