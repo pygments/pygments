@@ -13,6 +13,7 @@ from pygments.token import Comment, Name, Text, Punctuation, String, Keyword
 
 __all__ = ["WoWTocLexer"]
 
+
 def _create_tag_line_token(inner_pattern, inner_token, ignore_case=False):
     # this function template-izes the tag line for a specific type of tag, which will
     # have a different pattern and different token. otherwise, everything about a tag
@@ -58,19 +59,18 @@ class WoWTocLexer(RegexLexer):
             _create_tag_line_token(
                 r"(Interface|Title|Notes|RequiredDeps|Dep[^: ]*|OptionalDeps|LoadOnDemand|LoadWith|LoadManagers|SavedVariablesPerCharacter|SavedVariables|DefaultState|Secure|Author|Version)",
                 Name.Builtin,
-                ignore_case=True
+                ignore_case=True,
             ),
             # user-defined tags
             _create_tag_line_token(
                 r"(x-[^: ]*)",
                 Name.Variable,
-                ignore_case=True
+                ignore_case=True,
             ),
             # non-conforming tags, but still valid
             _create_tag_line_token(
                 r"([^: ]*)",
                 Name.Other,
-                ignore_case=True
             ),
             
             # Comments
