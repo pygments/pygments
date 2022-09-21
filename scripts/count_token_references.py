@@ -72,7 +72,10 @@ def fetch_lexer_sources():
     to a list of lines.
     """
     lexer_dir = (pathlib.Path(__file__).parent / "../pygments/lexers").resolve()
-    lexer_sources = {fn: fn.read_text().splitlines(keepends=False) for fn in lexer_dir.glob("*.py")}
+    lexer_sources = {
+        fn: fn.read_text(encoding='utf-8').splitlines(keepends=False)
+        for fn in lexer_dir.glob("*.py")
+    }
     return lexer_sources
 
 

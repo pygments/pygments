@@ -11,7 +11,7 @@ Goals & non-goals of Pygments
 Python support
 --------------
 
-Pygments supports all supported Python versions as per the [Python Developer's Guide](https://devguide.python.org/#status-of-python-branches). Additionally, the default Python version of the latest stable version of RHEL, Ubuntu LTS, and Debian are supported, even if they're officially EOL. Supporting other end-of-life versions is a non-goal of Pygments.
+Pygments supports all supported Python versions as per the [Python Developer's Guide](https://devguide.python.org/versions/). Additionally, the default Python version of the latest stable version of RHEL, Ubuntu LTS, and Debian are supported, even if they're officially EOL. Supporting other end-of-life versions is a non-goal of Pygments.
 
 Validation
 ----------
