@@ -21,7 +21,7 @@ def _create_tag_line_token(inner_pattern, inner_token, ignore_case=False):
         (r"(?i)" if ignore_case else r"")
         + r"^(##)( *)"
         + inner_pattern
-        + r"( *)(:)( *)([^\n]*?)( *)$",
+        + r"( *)(:)( *)(.*?)( *)$",
         bygroups(
             Keyword.Declaration,
             Text.Whitespace,
