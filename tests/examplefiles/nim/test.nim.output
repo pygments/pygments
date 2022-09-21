@@ -153,50 +153,39 @@
 'case'        Keyword
 ' '           Text.Whitespace
 'name'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of'          Keyword
-' '           Text
-'"":\n  '     Name.Label
-'echo'        Name.Label
-'("'          Name.Label
-'Poor'        Name.Label
 ' '           Text.Whitespace
-'soul'        Name.Label
-','           Text
-' '           Text.Whitespace
-'you'         Name.Label
-' '           Text.Whitespace
-'lost'        Name.Label
-' '           Text.Whitespace
-'your'        Name.Label
-' '           Text.Whitespace
-'name'        Name.Label
-'?")\n'       Name.Label
+'"'           Name.Label
+'"'           Name.Label
+':'           Operator
+'\n  '        Text.Whitespace
+'echo'        Name
+'('           Punctuation
+'"'           Literal.String
+'Poor soul, you lost your name?' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
 
-'of'          Name.Label
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'name'        Name.Label
-'":\n  '      Name.Label
-'echo'        Name.Label
-'("'          Name.Label
-'Very'        Name.Label
-' '           Text.Whitespace
-'funny'       Name.Label
-','           Text
-' '           Text.Whitespace
-'your'        Name.Label
-' '           Text.Whitespace
-'name'        Name.Label
-' '           Text.Whitespace
-'is'          Name.Label
-' '           Text.Whitespace
-'name'        Name.Label
-'.")\n'       Name.Label
-
-'else'        Name.Label
+'"'           Name.Label
 ':'           Operator
+'\n  '        Text.Whitespace
+'echo'        Name
+'('           Punctuation
+'"'           Literal.String
+'Very funny, your name is name.' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'else'        Keyword
+':'           Punctuation
 '\n  '        Text.Whitespace
 'Echo'        Name
 '('           Punctuation
@@ -249,17 +238,19 @@
 'case'        Keyword
 ' '           Text.Whitespace
 'n'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Name.Label
-'..'          Name.Label
+'.'           Name.Label
+'.'           Name.Label
 '2'           Name.Label
-','           Text
+','           Punctuation
 ' '           Text.Whitespace
 '4'           Name.Label
-'..'          Name.Label
+'.'           Name.Label
+'.'           Name.Label
 '7'           Name.Label
 ':'           Operator
 ' '           Text.Whitespace
@@ -269,12 +260,12 @@
 'The number is in the set: {0, 1, 2, 4, 5, 6, 7}' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 '3'           Name.Label
-','           Text
+','           Punctuation
 ' '           Text.Whitespace
 '8'           Name.Label
 ':'           Operator
@@ -326,7 +317,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'yes'         Name.Function
 '('           Punctuation
 'question'    Name
@@ -361,39 +353,61 @@
 '('           Punctuation
 'stdin'       Name
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Name.Label
 'y'           Name.Label
-'", "'        Name.Label
-'Y'           Name.Label
-'", "'        Name.Label
-'yes'         Name.Label
-'", "'        Name.Label
-'Yes'         Name.Label
-'": '         Name.Label
-'return'      Name.Label
+'"'           Name.Label
+','           Punctuation
 ' '           Text.Whitespace
-'true'        Name.Label
+'"'           Name.Label
+'Y'           Name.Label
+'"'           Name.Label
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Label
+'yes'         Name.Label
+'"'           Name.Label
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Label
+'Yes'         Name.Label
+'"'           Name.Label
+':'           Operator
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'true'        Keyword.Pseudo
 '\n    '      Text.Whitespace
-'of'          Name.Label
+'of'          Keyword
 ' '           Text.Whitespace
 '"'           Name.Label
 'n'           Name.Label
-'", "'        Name.Label
-'N'           Name.Label
-'", "'        Name.Label
-'no'          Name.Label
-'", "'        Name.Label
-'No'          Name.Label
-'": '         Name.Label
-'return'      Name.Label
+'"'           Name.Label
+','           Punctuation
 ' '           Text.Whitespace
-'false'       Name.Label
-'\n    '      Text.Whitespace
-'else'        Name.Label
+'"'           Name.Label
+'N'           Name.Label
+'"'           Name.Label
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Label
+'no'          Name.Label
+'"'           Name.Label
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Label
+'No'          Name.Label
+'"'           Name.Label
 ':'           Operator
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'false'       Keyword.Pseudo
+'\n    '      Text.Whitespace
+'else'        Keyword
+':'           Punctuation
 ' '           Text.Whitespace
 'Echo'        Name
 '('           Punctuation
@@ -403,7 +417,8 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'even'        Name.Function
 '('           Punctuation
 'n'           Name
@@ -416,7 +431,8 @@
 'bool'        Keyword.Type
 '\n\n'        Text.Whitespace
 
-'proc '       Keyword
+'proc'        Keyword
+' '           Text.Whitespace
 'odd'         Name.Function
 '('           Punctuation
 'n'           Name
