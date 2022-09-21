@@ -16,9 +16,9 @@ __all__ = ["WoWTocLexer"]
 
 def _create_tag_line_pattern(inner_pattern, ignore_case=False):
     return ((r"(?i)" if ignore_case else r"")
-        + r"^(##)( *)"
-        + inner_pattern
-        + r"( *)(:)( *)(.*?)( *)$")
+        + r"^(##)( *)"  # groups 1, 2
+        + inner_pattern  # group 3
+        + r"( *)(:)( *)(.*?)( *)$")  # groups 4, 5, 6, 7, 8
 
 
 def _create_tag_line_token(inner_pattern, inner_token, ignore_case=False):
@@ -99,7 +99,7 @@ class WoWTocLexer(RegexLexer):
         # `<major><minor><patch>`, with minor and patch being two-digit zero-padded.
         interface_pattern = _create_tag_line_pattern(r"(Interface)", ignore_case=True)
         match = re.search(interface_pattern, text)
-        if match and re.match(r"(\d+)(\d{2})(\d{2})", match.group(7) or ""):
+        if match and re.match(r"(\d+)(\d{2})(\d{2})", match.group(7)):
             result += 0.8
             
         casefolded = text.casefold()
