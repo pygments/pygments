@@ -7,11 +7,18 @@
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import re
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Text, Punctuation, String, Keyword
 
 __all__ = ["WoWTocLexer"]
+
+def _create_tag_line_pattern(inner_pattern, ignore_case=False):
+    return ((r"(?i)" if ignore_case else r"")
+        + r"^(##)( *)"
+        + inner_pattern
+        + r"( *)(:)( *)(.*?)( *)$")
 
 
 def _create_tag_line_token(inner_pattern, inner_token, ignore_case=False):
@@ -19,10 +26,7 @@ def _create_tag_line_token(inner_pattern, inner_token, ignore_case=False):
     # have a different pattern and different token. otherwise, everything about a tag
     # line is the same
     return (
-        (r"(?i)" if ignore_case else r"")
-        + r"^(##)( *)"
-        + inner_pattern
-        + r"( *)(:)( *)(.*?)( *)$",
+        _create_tag_line_pattern(inner_pattern, ignore_case=ignore_case),
         bygroups(
             Keyword.Declaration,
             Text.Whitespace,
@@ -80,3 +84,31 @@ class WoWTocLexer(RegexLexer):
             (r"^.+$", Name),
         ]
     }
+
+    def analyse_text(text):
+        # at time of writing, this file suffix conflict's with one of Tex's in
+        # markup.py. Tex's anaylse_text() appears to be definitive (binary) and does not
+        # share any likeness to WoW TOCs, which means we wont have to compete with it by
+        # abitrary increments in score.
+        
+        result = 0
+
+        # while not required, an almost certain marker of WoW TOC's is the interface tag
+        # if this tag is omitted, players will need to opt-in to loading the addon with
+        # an options change ("Load out of date addons"). the value is also standardized:
+        # `<major><minor><patch>`, with minor and patch being two-digit zero-padded.
+        interface_pattern = _create_tag_line_pattern(r"(Interface)", ignore_case=True)
+        match = re.search(interface_pattern, text)
+        if match and re.match(r"(\d+)(\d{2})(\d{2})", match.group(7) or ""):
+            result += 0.8
+            
+        casefolded = text.casefold()
+        # Lua file listing is good marker too, but probably conflicts with many other
+        # lexers
+        if ".lua" in casefolded:
+            result += 0.1
+        # ditto for XML files, but they're less used in WoW TOCs
+        if ".xml" in casefolded:
+            result += 0.05
+
+        return result
