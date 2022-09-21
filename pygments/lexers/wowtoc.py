@@ -63,7 +63,7 @@ class WoWTocLexer(RegexLexer):
             ),
             # user-defined tags
             _create_tag_line_token(
-                r"(x-[^: ]*)",
+                r"(X-[^: ]*)",
                 Name.Variable,
                 ignore_case=True,
             ),
