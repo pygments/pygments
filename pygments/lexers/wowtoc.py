@@ -74,9 +74,9 @@ class WoWTocLexer(RegexLexer):
             ),
             
             # Comments
-            (r"^#[^\n]*$", Comment),
+            (r"^#.*$", Comment),
             
             # Addon Files
-            (r"^[^\n]+$", Name),
+            (r"^.+$", Name),
         ]
     }
