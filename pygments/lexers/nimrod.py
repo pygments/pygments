@@ -136,7 +136,7 @@ class NimrodLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ],
         'doccomment': [
-            (r'[^\]#]', String.Doc),
+            (r'[^\]#]+', String.Doc),
             (r'##\[', String.Doc, '#push'),
             (r'\]##', String.Doc, '#pop'),
             (r'[\]#]', String.Doc),
