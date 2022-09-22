@@ -12,78 +12,90 @@ primitive 	type MyPrimitive 32 end
 mutable     struct MutableType end
 
 ---tokens---
-'mutable struct' Keyword
+'mutable'     Keyword
+' '           Text.Whitespace
+'struct'      Keyword
 ' '           Text
 'MutableType' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'struct'      Keyword
 ' '           Text
 'ImmutableType' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'abstract type' Keyword
+'abstract'    Keyword
+' '           Text.Whitespace
+'type'        Keyword
 ' '           Text
 'AbstractMyType' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'primitive type' Keyword
+'primitive'   Keyword
+' '           Text.Whitespace
+'type'        Keyword
 ' '           Text
 'MyPrimitive' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '32'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'abstract'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mutable'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'π'           Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'missing'     Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'abstract    type' Keyword
+'abstract'    Keyword
+'    '        Text.Whitespace
+'type'        Keyword
 ' '           Text
 'AbstractMyType' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'primitive \ttype' Keyword
+'primitive'   Keyword
+' \t'         Text.Whitespace
+'type'        Keyword
 ' '           Text
 'MyPrimitive' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '32'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'mutable     struct' Keyword
+'mutable'     Keyword
+'     '       Text.Whitespace
+'struct'      Keyword
 ' '           Text
 'MutableType' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

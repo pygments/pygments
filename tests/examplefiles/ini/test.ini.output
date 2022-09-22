@@ -1,4 +1,4 @@
-'[section]'   Keyword
+'[section1]'  Keyword
 '\n\n'        Text.Whitespace
 
 'foo'         Name.Attribute
@@ -6,6 +6,8 @@
 '='           Operator
 ' '           Text.Whitespace
 'bar'         Literal.String
+' '           Text.Whitespace
+'; inline comment' Comment.Single
 '\n'          Text.Whitespace
 
 'continued'   Name.Attribute
@@ -13,6 +15,10 @@
 '='           Operator
 ' '           Text.Whitespace
 'foo'         Literal.String
+' '           Text.Whitespace
+'# inline comment with \\' Comment.Single
+'\n                ' Text.Whitespace
+'# line continuation' Comment.Single
 '\n  '        Text.Whitespace
 'baz'         Name.Attribute
 '\n'          Text.Whitespace
@@ -28,4 +34,27 @@
 '\n'          Text.Whitespace
 
 '# comment'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'[section2]'  Keyword
+'\n\n'        Text.Whitespace
+
+'my_array'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"Asia, Africa, 'North America', South America, " Literal.String
+'\\'          Text
+'\n           ' Text.Whitespace
+'Antarctica, Europe, Australia' Literal.String
+'\n\n'        Text.Whitespace
+
+'implicit_boolean' Name.Attribute
+'\n'          Text.Whitespace
+
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bar'         Literal.String
 '\n'          Text.Whitespace

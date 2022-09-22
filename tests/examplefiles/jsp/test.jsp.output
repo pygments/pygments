@@ -1,9 +1,9 @@
 '<!-- This page was loaded on ' Comment.Multiline
 '<%='         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'java'        Name
 '.'           Punctuation
 'util'        Name.Attribute
@@ -16,92 +16,92 @@
 'toLocaleString' Name.Attribute
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 ' -->'        Comment.Multiline
 '\n'          Text
 
 '<%='         Keyword
-' '           Text
+' '           Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Keyword
 '\n'          Text
 
 '<%!'         Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text
 
 '<%!'         Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text
 
 '<%!'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Circle'      Name
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Circle'      Name
 '('           Punctuation
 '2.0'         Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n\n'        Text
 
 '<%'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'request'     Name
 '.'           Punctuation
@@ -111,44 +111,44 @@
 'name'        Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Keyword
 '\n'          Text
 
 '<%@'         Keyword
-' '           Text
+' '           Text.Whitespace
 'include'     Name
-' '           Text
+' '           Text.Whitespace
 'file'        Name
 '='           Operator
 '"'           Literal.String
 'error.html'  Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text
 
 '<%'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'foo'         Name
 '.'           Punctuation
 'setName'     Name.Attribute
@@ -163,11 +163,11 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'foo'         Name
 '.'           Punctuation
@@ -182,37 +182,37 @@
 '"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'acura'       Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'name'        Name
 '.'           Punctuation
 'equalsIgnoreCase' Name.Attribute
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'acura'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%>'          Keyword
 '\n\n'        Text

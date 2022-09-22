@@ -1,0 +1,186 @@
+'with'        Keyword.Namespace
+' '           Text
+'Ada.Text_IO' Name
+';'           Punctuation
+'            ' Text
+'use'         Keyword.Namespace
+' '           Text
+'Ada.Text_IO' Name
+';'           Punctuation
+'\n'          Text
+
+'with'        Keyword.Namespace
+' '           Text
+'Ada.Containers.Vectors' Name
+';'           Punctuation
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'Test_Ada2022' Name.Function
+' '           Text
+'is'          Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'package'     Keyword.Declaration
+' '           Text
+'Integer_Vectors' Name.Class
+' '           Text
+'is new'      Keyword.Reserved
+'\n'          Text
+
+'     '       Text
+'Ada.Containers.Vectors' Name.Class
+'\n'          Text
+
+'       '     Text
+'('           Punctuation
+'Index_Type'  Name.Variable
+'   '         Text
+'=>'          Punctuation
+' '           Text
+'N'           Text
+'a'           Text
+'t'           Text
+'u'           Text
+'r'           Text
+'a'           Text
+'l'           Text
+','           Punctuation
+'\n'          Text
+
+'        '    Text
+'Element_Type' Name.Variable
+' '           Text
+'=>'          Punctuation
+' '           Text
+'I'           Text
+'n'           Text
+'t'           Text
+'e'           Text
+'g'           Text
+'e'           Text
+'r'           Text
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'use'         Keyword.Namespace
+' '           Text
+'Integer_Vectors' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'procedure'   Keyword.Declaration
+' '           Text
+'Increment_All' Name.Function
+' '           Text
+'('           Punctuation
+'V'           Name.Variable
+' '           Text
+': '          Punctuation
+'in'          Name.Variable
+' '           Text
+'out'         Name.Variable
+' '           Text
+'Vector'      Name.Variable
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'begin'       Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'for'         Keyword.Reserved
+' '           Text
+'E'           Name
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'V'           Name
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'         '   Text
+'E'           Name
+' '           Text
+':='          Punctuation
+' '           Text
+'@'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'end'         Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'Increment_All' Name.Function
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'V'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Vector'      Name
+' '           Text
+':='          Punctuation
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'begin'       Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'Increment_All' Name
+' '           Text
+'('           Punctuation
+'V'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Put_Line'    Name
+' '           Text
+'('           Punctuation
+'V'           Name
+"'"           Punctuation
+'Image'       Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'end'         Keyword.Reserved
+' '           Text
+'Test_Ada2022' Name.Function
+';'           Punctuation
+'\n'          Text

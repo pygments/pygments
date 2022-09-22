@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+# :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
 # :license: BSD, see LICENSE for details.
 #
 
@@ -39,8 +39,7 @@ docs:
 	make -C doc html
 
 mapfiles:
-	(cd pygments/formatters; $(PYTHON) _mapping.py)
-	(cd pygments/lexers; $(PYTHON) _mapping.py)
+	$(PYTHON) scripts/gen_mapfiles.py
 
 pylint:
 	@pylint --rcfile scripts/pylintrc pygments
@@ -66,4 +65,4 @@ RLMODULES = pygments.lexers
 
 regexlint:
 	@if [ -z "$(REGEXLINT)" ]; then echo "Please set REGEXLINT=checkout path"; exit 1; fi
-	PYTHONPATH=`pwd`:$(REGEXLINT) $(REGEXLINT)/regexlint/cmdline.py $(RLMODULES)
+	PYTHONPATH=`pwd`:$(REGEXLINT) $(PYTHON) $(REGEXLINT)/regexlint/cmdline.py $(RLMODULES)

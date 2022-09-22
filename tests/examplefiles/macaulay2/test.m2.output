@@ -1,0 +1,84 @@
+'"'           Literal.String
+'this is a string' Literal.String
+'"'           Literal.String
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String
+'this is how we ' Literal.String
+'\\"'         Literal.String
+'escape quotes' Literal.String
+'\\"'         Literal.String
+' in a string' Literal.String
+'"'           Literal.String
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String
+'this is how ' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'|'           Text
+' '           Text.Whitespace
+'"'           Literal.String
+'we concatenate strings' Literal.String
+'"'           Literal.String
+'\n\n'        Text.Whitespace
+
+'///'         Literal.String
+'this is also\na string' Literal.String
+'///'         Literal.String
+'\n\n'        Text.Whitespace
+
+'///'         Literal.String
+'to escape forward slashes (' Literal.String
+'/'           Literal.String
+') in a string, we\nuse an even number in the middle ' Literal.String
+'////'        Literal.String
+' or an odd number\n(at least 3) at the end' Literal.String
+'///'         Literal.String
+'\n\n'        Text.Whitespace
+
+'-- this is a comment' Comment.Single
+'\n\n'        Text.Whitespace
+
+'-*'          Comment.Multiline
+' this is\nalso a comment ' Comment.Multiline
+'*-'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'-*'          Comment.Multiline
+' two comments ' Comment.Multiline
+'*-'          Comment.Multiline
+' '           Text.Whitespace
+'2'           Text
+' '           Text.Whitespace
+'+'           Text
+' '           Text.Whitespace
+'2'           Text
+' '           Text.Whitespace
+'-*'          Comment.Multiline
+' on the same line ' Comment.Multiline
+'*-'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'i'           Text
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'0'           Text
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'1'           Text
+'0'           Text
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'print'       Name.Function
+' '           Text.Whitespace
+'QQ'          Name.Builtin
+'\n\n'        Text.Whitespace
+
+'end'         Name.Constant
+'\n'          Text.Whitespace

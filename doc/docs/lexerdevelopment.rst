@@ -44,7 +44,8 @@ is a token type (like `Name.Builtin`).  That means: When `regex` matches, emit a
 token with the match text and type `tokentype` and push `new_state` on the state
 stack.  If the new state is ``'#pop'``, the topmost state is popped from the
 stack instead.  To pop more than one state, use ``'#pop:2'`` and so on.
-``'#push'`` is a synonym for pushing the current state on the stack.
+``'#push'`` is a synonym for pushing a second time the current state on top of
+the stack.
 
 The following example shows the `DiffLexer` from the builtin lexers.  Note that
 it contains some additional attributes `name`, `aliases` and `filenames` which
@@ -113,9 +114,6 @@ To specify a class name other than CustomLexer, append it with a colon:
 
     $ python -m pygments -x -l your_lexer.py:SomeLexer <inputfile>
 
-Use the ``-f`` flag to select a different output format than terminal
-escape sequences.
-
 Or, using the Python API:
 
 .. code-block:: python
@@ -131,6 +129,17 @@ trusted files; Pygments will perform the equivalent of ``eval`` on them.
 
 If you only want to use your lexer with the Pygments API, you can import and
 instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
+
+Use the ``-f`` flag to select a different output format than terminal
+escape sequences. The :class:`pygments.formatters.html.HtmlFormatter` helps
+you with debugging your lexer. You can use the ``debug_token_types`` option
+to display the token types assigned to each part of your input file:
+
+.. code-block:: console
+
+    $ python -m pygments -x -f html -Ofull,debug_token_types -l your_lexer.py:SomeLexer <inputfile>
+
+Hover over each token to see the token type displayed as a tooltip.
 
 To prepare your new lexer for inclusion in the Pygments distribution, so that it
 will be found when passing filenames or lexer aliases from the command line, you
@@ -161,7 +170,8 @@ the ``pygments.lexers`` package specify ``__all__``. For example,
 Add the name of your lexer class to this list (or create the list if your lexer
 is the only class in the module).
 
-Finally the lexer can be made publicly known by rebuilding the lexer mapping:
+Finally the lexer can be made publicly known by rebuilding the lexer mapping.
+In the root directory of the source (where the ``Makefile`` is located), run:
 
 .. code-block:: console
 
@@ -282,7 +292,7 @@ and single-line with ``//`` until end of line)::
                 (r'/', Text)
             ],
             'comment': [
-                (r'[^*/]', Comment.Multiline),
+                (r'[^*/]+', Comment.Multiline),
                 (r'/\*', Comment.Multiline, '#push'),
                 (r'\*/', Comment.Multiline, '#pop'),
                 (r'[*/]', Comment.Multiline)
@@ -337,7 +347,7 @@ There are a few more things you can do with states:
               ...
           ],
           'directive': [
-              (r'[^>]*', Comment.Directive),
+              (r'[^>]+', Comment.Directive),
               (r'>', Comment, '#pop'),
           ],
           'comment': [
@@ -367,20 +377,20 @@ There are a few more things you can do with states:
       class ExampleLexer(RegexLexer):
           tokens = {
               'comments': [
-                  (r'/\*.*?\*/', Comment),
+                  (r'(?s)/\*.*?\*/', Comment),
                   (r'//.*?\n', Comment),
               ],
               'root': [
                   include('comments'),
-                  (r'(function )(\w+)( {)',
-                   bygroups(Keyword, Name, Keyword), 'function'),
-                  (r'.', Text),
+                  (r'(function)( )(\w+)( )({)',
+                   bygroups(Keyword, Whitespace, Name, Whitespace, Punctuation), 'function'),
+                  (r'.*\n', Text),
               ],
               'function': [
                   (r'[^}/]+', Text),
                   include('comments'),
                   (r'/', Text),
-                  (r'\}', Keyword, '#pop'),
+                  (r'\}', Punctuation, '#pop'),
               ]
           }
 
@@ -446,7 +456,7 @@ defined in the parent and child class are merged.  For example::
                   ('[a-z]+', Name),
                   (r'/\*', Comment, 'comment'),
                   ('"', String, 'string'),
-                  ('\s+', Text),
+                  (r'\s+', Text),
               ],
               'string': [
                   ('[^"]+', String),

@@ -4,7 +4,7 @@
 
     Lexers for Makefiles and similar.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -44,7 +44,7 @@ class MakefileLexer(Lexer):
 
     def get_tokens_unprocessed(self, text):
         ins = []
-        lines = text.splitlines(True)
+        lines = text.splitlines(keepends=True)
         done = ''
         lex = BaseMakefileLexer(**self.options)
         backslashflag = False
@@ -125,11 +125,12 @@ class BaseMakefileLexer(RegexLexer):
 
 class CMakeLexer(RegexLexer):
     """
-    Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
+    Lexer for CMake files.
 
     .. versionadded:: 1.2
     """
     name = 'CMake'
+    url = 'https://cmake.org/documentation/'
     aliases = ['cmake']
     filenames = ['*.cmake', 'CMakeLists.txt']
     mimetypes = ['text/x-cmake']

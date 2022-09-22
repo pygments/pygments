@@ -2,7 +2,7 @@
 # Pygments documentation build configuration file
 #
 
-import sys, os, itertools
+import re, sys, os, itertools
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Pygments'
-copyright = '2006-2021, Georg Brandl and Pygments contributors'
+copyright = '2006-2022, Georg Brandl and Pygments contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -132,10 +132,14 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {'styles': 'styles.html'}
+html_additional_pages = {
+    'styles': 'styles.html',
+    'languages': 'languages.html'
+    }
 
 if os.environ.get('WEBSITE_BUILD'):
     html_additional_pages['demo'] = 'demo.html'
+    html_static_path.append('_build/pyodide')
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -224,18 +228,32 @@ man_pages = [
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'http://docs.python.org/': None}
 
+rst_prolog = '.. |language_count| replace:: {}'.format(len(list(pygments.lexers.get_all_lexers())))
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
 
-    if pagename == 'styles':
+    if pagename in ('demo', 'languages'):
+        all_lexers = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
+    if pagename == 'demo':
+        ctx['lexers'] = all_lexers
+
+    if pagename == 'languages':
+        lexer_name_url = []
+        for entry in all_lexers:
+            lexer_cls = pygments.lexers.find_lexer_class(entry[0])
+            lexer_name_url.append({'name': entry[0], 'url': lexer_cls.url})
+        ctx['languages'] = lexer_name_url
+
+    if pagename in ('styles', 'demo'):
         with open('examples/example.py') as f:
             html = f.read()
         lexer = pygments.lexers.get_lexer_for_filename('example.py')
         min_contrasts = test_contrasts.min_contrasts()
         ctx['styles_aa'] = []
         ctx['styles_sub_aa'] = []
-        for style in pygments.styles.get_all_styles():
+        # Use STYLE_MAP directly so we don't get plugins as with get_all_styles().
+        for style in pygments.styles.STYLE_MAP:
             if not pygments.styles.get_style_by_name(style).web_style_gallery_exclude:
                 aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
                 bg_r, bg_g, bg_b = test_contrasts.hex2rgb(pygments.styles.get_style_by_name(style).background_color)
@@ -251,14 +269,33 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
                         bg_luminance=(0.2126*bg_r + 0.7152*bg_g + 0.0722*bg_b)
                     )
                 )
+
         # sort styles according to their background luminance (light styles first)
         # if styles have the same background luminance sort them by their name
+        sortkey = lambda s: (-s['bg_luminance'], s['name'])
         # the default style is always displayed first
         default_style = ctx['styles_aa'].pop(0)
-        ctx['styles_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_aa'].sort(key=sortkey)
         ctx['styles_aa'].insert(0, default_style)
-        ctx['styles_sub_aa'].sort(key=lambda s: (-s['bg_luminance'], s['name']))
+        ctx['styles_sub_aa'].sort(key=sortkey)
+
+
+def source_read(app, docname, source):
+    # linkify issue / PR numbers in changelog
+    if docname == 'docs/changelog':
+        with open('../CHANGES') as f:
+            changelog = f.read()
+
+        idx = changelog.find('\nVersion 2.4.2\n')
+
+        def linkify(match):
+            url = 'https://github.com/pygments/pygments/issues/' + match[1]
+            return '`{} <{}>`_'.format(match[0], url)
+
+        linkified = re.sub(r'(?:PR)?#([0-9]+)\b', linkify, changelog[:idx])
+        source[0] = linkified + changelog[idx:]
 
 
 def setup(app):
     app.connect('html-page-context', pg_context)
+    app.connect('source-read', source_read)

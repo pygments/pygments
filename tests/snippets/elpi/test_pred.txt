@@ -1,0 +1,60 @@
+---input---
+pred p1.
+pred p2 i:int, o:list A.
+pred p3 i:(bool -> prop).
+:index(_ 2) pred p4 i:int, i:A.
+
+---tokens---
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'p1'          Name.Function
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'p2'          Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'int'         Keyword.Type
+','           Text
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'p3'          Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'('           Keyword.Type
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'prop'        Keyword.Type
+')'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+':index'      Keyword.Mode
+'('           Text.Whitespace
+'_ 2'         Literal.Number.Integer
+')'           Text
+' '           Text.Whitespace
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'p4'          Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'int'         Keyword.Type
+','           Text
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace

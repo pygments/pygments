@@ -1,4 +1,4 @@
-messagebox "text \\not escaped \nescaped n" "other\n\rthing"
+messagebox "double string" "title"
 messagebox "goto label /* a string */ ; same string"
 a=10
 b=  'abc'#$41'def'
@@ -21,14 +21,3 @@ else
 endif
 
 if abc messagebox "thing1" "title"
-
-
-; Invalid syntax
-bad = "no closing double quote
-bad = 'no closing single quote
-garbage
-...
-...
-...
-
-endgarbage

@@ -6,31 +6,31 @@ switch (x) {
 
 ---tokens---
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'default'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

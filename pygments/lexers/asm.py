@@ -4,7 +4,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -95,7 +95,7 @@ class GasLexer(RegexLexer):
             (r'/[*][\w\W]*?[*]/', Comment.Multiline)
         ],
         'punctuation': [
-            (r'[-*,.()\[\]!:]+', Punctuation)
+            (r'[-*,.()\[\]!:{}]+', Punctuation)
         ]
     }
 
@@ -131,6 +131,10 @@ def _objdump_lexer_tokens(asm_lexer):
             # Code line with disassembled instructions
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace,
+                         using(asm_lexer))),
+            # Code line without raw instructions (objdump --no-show-raw-insn)
+            ('( *)('+hex_re+r'+:)( *\t)([a-zA-Z].*?)$',
+                bygroups(Whitespace, Name.Label, Whitespace,
                          using(asm_lexer))),
             # Code line with ascii
             ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
@@ -346,6 +350,7 @@ class LlvmLexer(RegexLexer):
     For LLVM assembly code.
     """
     name = 'LLVM'
+    url = 'https://llvm.org/docs/LangRef.html'
     aliases = ['llvm']
     filenames = ['*.ll']
     mimetypes = ['text/x-llvm']
@@ -486,11 +491,10 @@ class LlvmMirBodyLexer(RegexLexer):
     """
     For LLVM MIR examples without the YAML wrapper.
 
-    For more information on LLVM MIR see https://llvm.org/docs/MIRLangRef.html.
-
     .. versionadded:: 2.6
     """
     name = 'LLVM-MIR Body'
+    url = 'https://llvm.org/docs/MIRLangRef.html'
     aliases = ['llvm-mir-body']
     filenames = []
     mimetypes = []
@@ -632,11 +636,10 @@ class LlvmMirLexer(RegexLexer):
     see the state of the compilation process at various points, as well as test
     individual pieces of the compiler.
 
-    For more information on LLVM MIR see https://llvm.org/docs/MIRLangRef.html.
-
     .. versionadded:: 2.6
     """
     name = 'LLVM-MIR'
+    url = 'https://llvm.org/docs/MIRLangRef.html'
     aliases = ['llvm-mir']
     filenames = ['*.mir']
 
@@ -727,8 +730,9 @@ class NasmLexer(RegexLexer):
     declkw = r'(?:res|d)[bwdqt]|times'
     register = (r'(r[0-9][0-5]?[bwd]?|'
                 r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
-                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7])\b')
-    wordop = r'seg|wrt|strict'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]|k[0-7]|'
+                r'[xyz]mm(?:[12][0-9]?|3[01]?|[04-9]))\b')
+    wordop = r'seg|wrt|strict|rel|abs'
     type = r'byte|[dq]?word'
     # Directives must be followed by whitespace, otherwise CPU will match
     # cpuid for instance.
@@ -771,10 +775,11 @@ class NasmLexer(RegexLexer):
         'whitespace': [
             (r'\n', Whitespace),
             (r'[ \t]+', Whitespace),
-            (r';.*', Comment.Single)
+            (r';.*', Comment.Single),
+            (r'#.*', Comment.Single)
         ],
         'punctuation': [
-            (r'[,():\[\]]+', Punctuation),
+            (r'[,{}():\[\]]+', Punctuation),
             (r'[&|^<>+*/%~-]+', Operator),
             (r'[$]+', Keyword.Constant),
             (wordop, Operator.Word),
@@ -856,7 +861,7 @@ class TasmLexer(RegexLexer):
             include('punctuation'),
             (register, Name.Builtin),
             (identifier, Name.Variable),
-            # Do not match newline when it's preceeded by a backslash
+            # Do not match newline when it's preceded by a backslash
             (r'(\\)(\s*)(;.*)([\r\n])', bygroups(Text, Whitespace, Comment.Single, Whitespace)),
             (r'[\r\n]+', Whitespace, '#pop'),
             include('whitespace')
@@ -930,11 +935,10 @@ class Dasm16Lexer(RegexLexer):
     """
     For DCPU-16 Assembly.
 
-    Check http://0x10c.com/doc/dcpu-16.txt
-
     .. versionadded:: 2.4
     """
     name = 'DASM16'
+    url = 'http://0x10c.com/doc/dcpu-16.txt'
     aliases = ['dasm16']
     filenames = ['*.dasm16', '*.dasm']
     mimetypes = ['text/x-dasm16']

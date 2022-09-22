@@ -2,13 +2,14 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import os
 import tempfile
 from os import path
+from io import StringIO
 from textwrap import dedent
 
 import pytest
@@ -20,6 +21,17 @@ from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
+
+
+def test_correct_output():
+    with open(TESTFILE) as fp:
+        tokensource = list(PythonLexer().get_tokens(fp.read()))
+    hfmt = LatexFormatter(nowrap=True)
+    houtfile = StringIO()
+    hfmt.format(tokensource, houtfile)
+
+    assert r'\begin{Verbatim}' not in houtfile.getvalue()
+    assert r'\end{Verbatim}' not in houtfile.getvalue()
 
 
 def test_valid_output():

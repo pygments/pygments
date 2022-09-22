@@ -1,124 +1,33 @@
 'messagebox'  Keyword
-' '           Text
-'"'           Literal.String.Double
-'t'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'\\\\'        Literal.String.Escape
-'n'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'e'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'a'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'d'           Literal.String
-' '           Literal.String
-'\\n'         Literal.String.Escape
-'e'           Literal.String
-'s'           Literal.String
-'c'           Literal.String
-'a'           Literal.String
-'p'           Literal.String
-'e'           Literal.String
-'d'           Literal.String
-' '           Literal.String
-'n'           Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'o'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
-'\\n'         Literal.String.Escape
-'\\'          Literal.String
-'r'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'"'           Literal.String.Double
-'\n'          Text
+' '           Text.Whitespace
+'"double string"' Literal.String.Double
+' '           Text.Whitespace
+'"title"'     Literal.String.Double
+'\n'          Text.Whitespace
 
 'messagebox'  Keyword
-' '           Text
-'"'           Literal.String.Double
-'g'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-'o'           Literal.String
-' '           Literal.String
-'l'           Literal.String
-'a'           Literal.String
-'b'           Literal.String
-'e'           Literal.String
-'l'           Literal.String
-' '           Literal.String
-'/'           Literal.String
-'*'           Literal.String
-' '           Literal.String
-'a'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-' '           Literal.String
-'*'           Literal.String
-'/'           Literal.String
-' '           Literal.String
-';'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'"'           Literal.String.Double
-'\n'          Text
+' '           Text.Whitespace
+'"goto label /* a string */ ; same string"' Literal.String.Double
+'\n'          Text.Whitespace
 
 'a'           Name.Variable
 '='           Operator
 '10'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name.Variable
 '='           Operator
-'  '          Text
-"'"           Literal.String.Single
-'a'           Literal.String
-'b'           Literal.String
-'c'           Literal.String
-"'"           Literal.String.Single
+'  '          Text.Whitespace
+"'abc'"       Literal.String.Single
 '#$41'        Literal.String.Char
-"'"           Literal.String.Single
-'d'           Literal.String
-'e'           Literal.String
-'f'           Literal.String
-"'"           Literal.String.Single
-'\n'          Text
+"'def'"       Literal.String.Single
+'\n'          Text.Whitespace
 
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '#65'         Literal.String.Char
-'   '         Text
+'   '         Text.Whitespace
 '/*'          Comment.Multiline
 ' multiline comment ' Comment.Multiline
 '*'           Comment.Multiline
@@ -133,114 +42,108 @@
 '/*'          Comment.Multiline
 '\ncomment '  Comment.Multiline
 '*/'          Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'   '         Text
+'   '         Text.Whitespace
 '; inline comment /* still inline */' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'e'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '20'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Literal.String.Symbol
 '('           Literal.String.Symbol
 '$a'          Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ')'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Literal.String.Symbol
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '>>'          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'result'      Name.Builtin
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 ':thing'      Name.Label
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'strcompare'  Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
-' '           Text
-'"'           Literal.String.Double
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'"'           Literal.String.Double
-'\n'          Text
+' '           Text.Whitespace
+'"thing"'     Literal.String.Double
+'\n'          Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'result'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'goto'        Keyword
-' '           Text
+' '           Text.Whitespace
 'label_'      Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elseif'      Keyword
-' '           Text
+' '           Text.Whitespace
 'result'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'goto'        Keyword
-' '           Text
+' '           Text.Whitespace
 '10'          Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elseif'      Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Literal.String.Symbol
 '1'           Literal.Number.Integer
 '+'           Operator
@@ -250,139 +153,31 @@
 ')'           Literal.String.Symbol
 '/'           Operator
 '7'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'messagebox'  Keyword
-' '           Text
-'"'           Literal.String.Double
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'"'           Literal.String.Double
-'\n'          Text
+' '           Text.Whitespace
+'"thing"'     Literal.String.Double
+'\n'          Text.Whitespace
 
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'messagebox'  Keyword
-' '           Text
-'"'           Literal.String.Double
-'d'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'e'           Literal.String
-'"'           Literal.String.Double
-'\n'          Text
+' '           Text.Whitespace
+'"done"'      Literal.String.Double
+'\n'          Text.Whitespace
 
 'endif'       Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'abc'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'messagebox'  Keyword
-' '           Text
-'"'           Literal.String.Double
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'1'           Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'t'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
-'"'           Literal.String.Double
-'\n\n\n'      Text
-
-'; Invalid syntax' Comment.Single
-'\n'          Text
-
-'bad'         Name.Variable
-' '           Text
-'='           Operator
-' '           Text
-'"'           Literal.String.Double
-'n'           Literal.String
-'o'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'o'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-' '           Literal.String
-'d'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'b'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'q'           Literal.String
-'u'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-'e'           Literal.String
-'\n'          Text
-
-'bad'         Name.Variable
-' '           Text
-'='           Operator
-' '           Text
-"'"           Literal.String.Single
-'n'           Literal.String
-'o'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-'l'           Literal.String
-'o'           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'q'           Literal.String
-'u'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-'e'           Literal.String
-'\n'          Text
-
-'garbage'     Name.Variable
-'\n'          Text
-
-'.'           Text
-'.'           Text
-'.'           Text
-'\n'          Text
-
-'.'           Text
-'.'           Text
-'.'           Text
-'\n'          Text
-
-'.'           Text
-'.'           Text
-'.'           Text
-'\n\n'        Text
-
-'endgarbage'  Name.Variable
-'\n'          Text
+' '           Text.Whitespace
+'"thing1"'    Literal.String.Double
+' '           Text.Whitespace
+'"title"'     Literal.String.Double
+'\n'          Text.Whitespace

@@ -33,116 +33,116 @@ A² # category No
 
 ---tokens---
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '# single character variable' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a_simple_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_leading_underscore' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '5'           Literal.Number.Integer
 'implicit_mul' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '6'           Literal.Number.Integer
 '_more_mul'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nums1'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nums_2'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nameswith!'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'multiple!!'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'embedded!_inthemiddle' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'embed!1'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'prime_suffix′' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'for_each'    Name
-' '           Text
+' '           Text.Whitespace
 '# starts with keyword substring' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# variables with characters > \\u00A1' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ð'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Ll' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Aʺ'          Name
-' '           Text
+' '           Text.Whitespace
 '# category Lm -- \\U02BA (MODIFIER LETTER DOUBLE PRIME), not \\U2033 (DOUBLE PRIME)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'א'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Lo' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Ð'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Lu' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A̅'          Name
-' '           Text
+' '           Text.Whitespace
 '# category Mn -- \\U0305 (COMBINING OVERLINE)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ⅿ'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Nl -- \\U217F (SMALL ROMAN NUMERAL ONE THOUSAND)' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A₁'          Name
-' '           Text
+' '           Text.Whitespace
 '# category No' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A²'          Name
-' '           Text
+' '           Text.Whitespace
 '# category No' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '€'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Sc' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '©'           Name
-' '           Text
+' '           Text.Whitespace
 '# category So' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# number-like names' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '𝟙'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Nd' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '𝟏'           Name
-' '           Text
+' '           Text.Whitespace
 '# category Nd' Comment
-'\n'          Text
+'\n'          Text.Whitespace

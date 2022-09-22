@@ -5,7 +5,7 @@ This is the home of Pygments.  It is a generic syntax highlighter suitable for
 use in code hosting, forums, wikis or other applications that need to prettify
 source code.  Highlights are:
 
-* a wide range of over 500 languages and other text formats is supported
+* a wide range of |language_count| languages and other text formats is supported
 * special attention is paid to details that increase highlighting quality
 * support for new languages and formats are added easily; most languages use a
   simple regex-based lexing mechanism
@@ -35,8 +35,7 @@ below.
 The authors
 -----------
 
-Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*
-and **Matthäus Chajdas**.
+Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*, **Matthäus Chajdas** and **Jean Abou-Samra**.
 
 Many lexers and fixes have been contributed by **Armin Ronacher**, the rest of
 the `Pocoo <https://dev.pocoo.org/>`_ team and **Tim Hatch**.

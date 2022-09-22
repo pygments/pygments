@@ -4,9 +4,6 @@
 {% block extrahead %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ pathto("_static/demo.css", 1) }}">
-<script type="text/javascript">var languagePluginUrl = "{{ pathto("_static/pyodide/", 1) }}";</script>
-<script type="text/javascript" src="{{ pathto("_static/pyodide/pyodide.js", 1) }}"></script>
-<script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
 
 {% block htmltitle %}<title>Demo{{ titlesuffix }}</title>{% endblock %}
@@ -14,43 +11,87 @@
 {% block body %}
 {{ body }}
 
-<h1>Demo - Try it out!</h1>
+<h1>Try out Pygments!</h1>
+
+<noscript>
+    <h2>This website requires JavaScript (and WebAssembly)</h2>
+
+    You can also try out pygments locally by running <code>pip install pygments</code>.
+    Then you can use <a href="{{pathto('docs/cmdline')}}">the command-line interface</a>.
+</noscript>
+
+<div id="try">
+    <p>
+        <label>Language
+            <select id="lang" autofocus>
+                <option value="">guess the language</option>
+                {% for name, info, _, _ in lexers %}
+                    <option value="{{info.0}}">{{name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <span id=guessed-lexer></span>
+    </p>
+    <p>
+        <label>
+            Enter some code:
+            <textarea id="code" rows="1" cols="60" spellcheck="false"></textarea>
+        </label>
+    </p>
+    <p>
+        <label>
+            Alternatively you can upload a file:
+            <input type="file" id="file">
+        </label>
+        <button id="reset-file">Reset</button>
+    </p>
+	<div id="format-settings">
+        <label>
+            Formatter
+            <select id=formatter>
+                <option value=html>HTML</option>
+                <option value=tokens>tokens</option>
+            </select>
+        </label>
+        <label>Style
+            <select id="style">
+                <optgroup label="Good contrast">
+                {% for style in styles_aa %}
+                    <option data-wcag=aa>{{style.name}}</option>
+                {% endfor %}
+                </optgroup>
+                <optgroup label="Suboptimal contrast">
+                {% for style in styles_sub_aa %}
+                    <option>{{style.name}}</option>
+                {% endfor %}
+                </optgroup>
+            </select>
+        </label>
+        <span id=contrast-warning hidden>style may have poor contrast</span>
+    </div>
+    </form>
+</div>
+
+<div id="loading" hidden>
+    <img src="{{ pathto("_static/spinner.gif", 1) }}" width="20">
+    <span id="loading-text">loading Python...</span>
+</div>
+
+<style id=css-style></style>
+
+<div id="hlcode"></div>
+
+<div id="code-header" hidden>
+    <div class=flex-grow-1></div>
+    <button onclick="download_code()">Download</button>
+    <a id="copylink" role="button">Copy link</a>
+    <span hidden id="uri-too-long">(Copy link unavailable because code too long)</span>
+</div>
+
 <p>The highlighting here is performed in-browser using
     a WebAssembly translation of the latest Pygments master branch, courtesy of
     <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
 <p>Your content is neither sent over the web nor stored anywhere.</p>
 
-<div id="try">
-    <h2>Enter code and select a language</h2>
-    <form>
-        <p><span id="aroundlang">
-            <label for="lang">Language:</label> &nbsp;<select id="lang" onchange="reset_err_hl()">
-                <option value="">&nbsp;&nbsp;Select a lexer&nbsp;&nbsp;</option>
-            </select>
-	    &nbsp;&nbsp;</span>
-            &middot;&nbsp;&nbsp;
-            <label for="style">Style:</label> &nbsp;<select id="style">
-                <option value="default">default&nbsp;&nbsp;&nbsp;&nbsp;</option>
-            </select></p>
-        <p><label for="file">Upload a file here:</label> &nbsp;
-	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
-	<p><textarea id="code" rows="1" cols="60"></textarea></p>
-	<p style="text-align: right">
-            <input type="button" value="Highlight!" onclick="highlight()" id="hlbtn" disabled>
-	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset"></p>
-    </form>
-    <div id="loading">
-        <p><img src="{{ pathto("_static/spinner.gif", 1) }}" style="vertical-align: middle"></p>
-        <p>Loading Python...</p>
-    </div>
-</div>
-
-<div id="hlcode"></div>
-
-<div id="hlcodedl" style="display: none">
-    <input type="text" id="copy_field" style="opacity: 0">
-    <input type="button" value="Download" onclick="download_code()">
-    &nbsp;&nbsp;&nbsp;
-    <input type="button" value="Copy link" onclick="copy_link()" id="copy_btn">
-</div>
+<script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}

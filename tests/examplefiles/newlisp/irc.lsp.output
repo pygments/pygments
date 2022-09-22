@@ -1,725 +1,725 @@
 '#!/usr/bin/env newlisp' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; @module IRC' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @description a basic irc library' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @version early alpha! 0.1 2011-10-31 14:21:26' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @author cormullion' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; Usage:'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; (IRC:init "newlithper") ; a username/nick (not that one obviously :-)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; (IRC:connect "irc.freenode.net" 6667) ; irc/server' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; (IRC:join-channel {#newlisp}) ; join a room' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; either (IRC:read-irc-loop) ; loop - monitor only, no input' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; or     (IRC:session)       ; a command-line session, end with /QUIT' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'context'     Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'IRC'         Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Iconnected'  Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Icallbacks'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Idle-time'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '400'         Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; seconds'   Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Itime-stamp' Literal.String.Symbol
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '; time since last message was processed' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'register-callback' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'function'    Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'registering callback for ' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' : '         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'sym'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'term'        Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'function'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'prefix'      Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'function'    Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'sym'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'term'        Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'function'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'prefix'      Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'function'    Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Icallbacks'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' \n\n'       Text
+' \n\n'       Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'do-callback' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'func'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Icallbacks'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; find first callback' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'if-not'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'apply'       Keyword
-' '           Text
+' '           Text.Whitespace
 'func'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'error'       Literal.String.Symbol
 ')'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'error in callback ' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ': '          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'error'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rf'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ref-all'     Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Icallbacks'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'callback'    Keyword
 '-'           Keyword
 'entry'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Icallbacks'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'rf'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when'        Keyword
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'func'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'entry'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'if-not'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'apply'       Keyword
-' '           Text
+' '           Text.Whitespace
 'func'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'error'       Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'error in callback ' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'callback'    Keyword
 '-'           Keyword
 'name'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ': '          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'error'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'init'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Inickname'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Iconnected'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Ichannels'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Itime-stamp' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'time-of-day' Keyword
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'connect'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'server'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'port'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Iserver'     Literal.String.Symbol
-'     '       Text
+'     '       Text.Whitespace
 '('           Punctuation
 'net-connect' Keyword
-' '           Text
+' '           Text.Whitespace
 'server'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'port'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"USER %s %s %s :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"NICK %s \\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Iconnected'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"connect"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"server"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'server'      Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"port"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'port'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'identify'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'password'    Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PRIVMSG nickserv :identify %s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'password'    Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'join'        Keyword
 '-'           Keyword
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"JOIN %s \\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"join-channel"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"nickname"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'part'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'chan'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'if-not'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'chan'        Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; leave specified' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PART %s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'chan'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"part"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; leave all' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'channel'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PART %s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"part"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -728,303 +728,303 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'do-quit'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"quit"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; chance to do stuff before quit...' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"QUIT :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'sleep'       Keyword
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Ichannels'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'close'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Iconnected'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'privmsg'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'user'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PRIVMSG %s :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'user'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'notice'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'user'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"NOTICE %s :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'user'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'send'        Keyword
 '-'           Keyword
 'to-server'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'channel'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '/'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; default command character' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'the-message' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"^/"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'copy'        Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; keep original' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"%s \\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'the-message' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; send it'   Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '; do a quit' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lower-case'  Keyword
-' '           Text
+' '           Text.Whitespace
 'the-message' Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"quit"'      Literal.String
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'do-quit'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' enough'     Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'true'        Keyword
-' \n            ' Text
+' \n            ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'nil'         Keyword
 '?'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '; say to all channels' Comment.Single
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PRIVMSG %s :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'c'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '; say to specified channel' Comment.Single
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PRIVMSG %s :%s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -1032,481 +1032,481 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"send-to-server"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"PING"'      Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"PONG %s\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"NOTICE"'    Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"PRIVMSG"'   Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"JOIN"'      Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '!|:'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'channel'     Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '!|:'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'username '   Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' joined '    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"join"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'channel'     Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'true'        Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'username'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '!|:'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'target'      Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '!|:'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'message'     Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'slice'       Keyword
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ':'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-' \n            ' Text
+' \n            ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001"'     Literal.String
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'ctcp'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-' \n                    ' Text
+' \n                    ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'PRIVMSG'     Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"channel-message"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'NOTICE'      Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"channel-notice"' Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -1514,89 +1514,89 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-' \n                    ' Text
+' \n                    ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'PRIVMSG'     Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"private-message"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'NOTICE'      Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"private-notice"' Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -1604,311 +1604,311 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'true'        Keyword
-'                \n                ' Text
+'                \n                ' Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n  \n'      Text
+'\n  \n'      Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'ctcp'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'cond'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001VERSION\\001"' Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"NOTICE %s :\\001VERSION %s\\001\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'version'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001PING"' Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\\001"'     Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"NOTICE %s :\\001PING %s\\001\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001ACTION"' Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\\001"'     Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Ichannels'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"channel-action"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'target'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"private-action"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\001TIME\\001"' Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'net-send'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'format'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"NOTICE %s:\\001TIME :%s\\001\\r\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date'        Keyword
 ')'           Punctuation
@@ -1917,590 +1917,590 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
 '-'           Keyword
 'buffer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'raw-buffer'  Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'messages'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'clean'       Keyword
-' '           Text
+' '           Text.Whitespace
 'empty?'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'raw-buffer'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\r\\n"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'sender'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; check for elapsed time since last activity    ' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '>'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'time-of-day' Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Itime-stamp' Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'mul'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Idle-time'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'do-callbacks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"idle-event"' Literal.String
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Itime-stamp' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'time-of-day' Keyword
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'message'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'messages'    Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'message-parts' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'message'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'           \n            ' Text
+'           \n            ' Text.Whitespace
 '('           Punctuation
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'message-parts' Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'message-parts' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest'        Keyword
-' '           Text
+' '           Text.Whitespace
 'message-parts' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'error'       Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'catch'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest'        Keyword
-' '           Text
+' '           Text.Whitespace
 'message-parts' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'error'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'sender'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'command'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'text'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'read'        Keyword
 '-'           Keyword
 'irc'         Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'buffer'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '!='          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'net-peek'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-' \n              ' Text
+' \n              ' Text.Whitespace
 '('           Punctuation
 'net-receive' Keyword
-' '           Text
+' '           Text.Whitespace
 'Iserver'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'buffer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '8192'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'buffer'      Literal.String.Symbol
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
 '-'           Keyword
 'buffer'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'buffer'      Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'read'        Keyword
 '-'           Keyword
 'irc-loop'    Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; monitoring' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'buffer'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'       \n        ' Text
+'       \n        ' Text.Whitespace
 '('           Punctuation
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Iconnected'  Literal.String.Symbol
-'    \n            ' Text
+'    \n            ' Text.Whitespace
 '('           Punctuation
 'read'        Keyword
 '-'           Keyword
 'irc'         Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'sleep'       Keyword
-' '           Text
+' '           Text.Whitespace
 '1000'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'print'       Keyword
 '-'           Keyword
 'raw-message' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; example of using a callback' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'raw-data'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'channel'     Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'message-text' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'raw-data'    Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date-value'  Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '%H:%M:%S '   Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'username'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '> '          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'message-text' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'print'       Keyword
 '-'           Keyword
 'outgoing-message' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'raw-data'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'channel'     Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"channel"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'data'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'message-text' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'raw-data'    Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date-value'  Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '%H:%M:%S '   Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Inickname'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '> '          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'message-text' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'session'     Name.Variable
 ')'           Punctuation
 '; interactive terminal' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '; must add callbacks to display messages' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'register-callback' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"channel-message"' Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'print'       Keyword
 '-'           Keyword
 'raw-message' Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'register-callback' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"send-to-server"' Literal.String
-'  '          Text
+'  '          Text.Whitespace
 "'"           Operator
 'print'       Keyword
 '-'           Keyword
 'outgoing-message' Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Iconnected'  Literal.String.Symbol
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'zero?'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'peek'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'read'        Keyword
 '-'           Keyword
 'irc'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'send'        Keyword
 '-'           Keyword
 'to-server'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'read-line'   Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'println'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'finished session ' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'date'        Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'exit'        Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '; end of IRC code' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

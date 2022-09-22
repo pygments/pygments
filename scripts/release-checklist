@@ -11,7 +11,7 @@ Release checklist
 * ``git commit``
 * Wait for the CI to finish
 * ``make clean``
-* ``python3 setup.py release bdist_wheel sdist``
+* ``python3 -m build``
 * Check the size of the generated packages. If they're significantly different from the last release, check if the repository is in a modified state and that ``make clean`` was run.
 * ``twine upload dist/Pygments-$NEWVER*``
 * Check PyPI release page for obvious errors (like different file sizes!)

@@ -5,9 +5,9 @@ s = √((1/n) * sum(count .^ 2) - mu .^2)
 
 ---tokens---
 's'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '√'           Operator
 '('           Punctuation
 '('           Punctuation
@@ -15,23 +15,23 @@ s = √((1/n) * sum(count .^ 2) - mu .^2)
 '/'           Operator
 'n'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'sum'         Name
 '('           Punctuation
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '.^'          Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'mu'          Name
-' '           Text
+' '           Text.Whitespace
 '.^'          Operator
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

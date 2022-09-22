@@ -1,0 +1,109 @@
+'int'         Keyword.Type
+' '           Text.Whitespace
+'id'          Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'id'          Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'default_value' Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'switch'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'Qfalse'      Name.Constant
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'break'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'Qnil'        Name.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'foo'         Name.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'std'         Name.Constant
+':'           Operator
+':'           Operator
+'bar'         Name.Constant
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'Qnil'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'default'     Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

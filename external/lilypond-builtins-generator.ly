@@ -1,6 +1,6 @@
 %% Autogenerate a list of LilyPond keywords
 
-\version "2.23.4"
+\version "2.23.6"
 
 #(use-modules (ice-9 receive)
               (ice-9 regex))
@@ -14,7 +14,7 @@
 
     LilyPond builtins.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 \"\"\"
 
@@ -139,7 +139,7 @@
 %% REPEAT TYPES
 
 #(define all-repeat-types
-   '(volta percent unfold))
+   '(volta percent unfold segno))
 
 #(dump-py-list 'repeat_types all-repeat-types)
 
@@ -159,15 +159,16 @@
 
 %% PITCHES
 
+#(define all-pitch-language-names
+   (map car language-pitch-names))
+
+#(dump-py-list 'pitch_language_names all-pitch-language-names)
+
 #(define all-pitch-names
    (append
      ; We highlight rests just like pitches.
      '(r R)
-     (apply append
-            (map
-              (lambda (lang)
-                (map car (cdr lang)))
-              language-pitch-names))
+     (map car (append-map cdr language-pitch-names))
      ; Drum note names.
      (map car drumPitchNames)))
 
@@ -346,11 +347,19 @@
      print-all-headers
      system-separator-markup
      footnote-separator-markup
-     ; Let's view these four as \paper variables.
+     ;; Let's view these four as \paper variables.
      basic-distance
      minimum-distance
      padding
-     stretchability))
+     stretchability
+     ;; These were forgotten in the documentation.
+     evenHeaderMarkup
+     oddHeaderMarkup
+     evenFooterMarkup
+     oddFooterMarkup
+     bookTitleMarkup
+     scoreTitleMarkup
+   ))
 
 #(dump-py-list 'paper_variables all-paper-variables)
 
