@@ -2,7 +2,9 @@
     pygments.lexers.wowtoc
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexer for World of Warcraft TOC files, which describe game addon metadata.
+    Lexer for World of Warcraft TOC files
+    
+    TOC files describe game addons.
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -44,7 +46,7 @@ class WoWTocLexer(RegexLexer):
     """
     Lexer for World of Warcraft TOC files.
 
-    .. versionadded:: 2.13
+    .. versionadded:: 2.14
     """
 
     name = "World of Warcraft TOC"
