@@ -1,4 +1,7 @@
-from pygments.lexer import RegexLexer
+from pygments.lexer import (
+    RegexLexer,
+    words,
+)
 from pygments.token import (
     Comment,
     Keyword,
@@ -28,10 +31,10 @@ comments = [
 whitespace = (r'[\n ]+', Whitespace)
 
 
-keywords = '|'.join([
+keywords = words([
     'assert', 'else', 'error', 'false', 'for', 'if', 'import', 'importstr',
     'in', 'null', 'tailstrict', 'then', 'self', 'super', 'true',
-])
+]).get()
 
 
 rvalues = comments + [
