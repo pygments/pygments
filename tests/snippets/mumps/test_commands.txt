@@ -3,7 +3,7 @@ commands ; Test command syntax parsing
  break:debug  b:dbg
  close device c @closeargs
  close dev1,dev2 c device:(param1:key2=value2)
- do label d ^ROUTINE,tag^routine(arg,.@arg2) do tag^|"GLD.m"|^GLDROUTINE(1,5,.array)
+ do label d ^ROUTINE,tag^routine(arg,.@arg2) do tag^|"GLD.m"|GLDROUTINE(1,5,.array)
  d:condition tag:cond2 do @doargs d tag+offset^BANANA,@tagName+offset^@ROUNAME(X,3):maybe
  i ready do &PKG.LABEL,&LABEL(arg),&PACKAGE.tag^ROUTINE(1,"abc")
  else  do something e  q
@@ -11,7 +11,7 @@ commands ; Test command syntax parsing
  f row=1:1 q:x>100 w ! f col=1:1:row s x=x+1 w $j(x,5)
  goto:done abort:fail,wrapup+1^DONE
  g @gotoargs
- if  halt else  h
+ if  halt  else  h
  e  hang:wait 2,extratime h 1
  job tag+4^ROUTINE:foo:5
  j:bar tag^ROU(1,"abc"):(startup="/opt/foo/script":err="job-err.txt"):3,@jobargs
@@ -20,7 +20,7 @@ commands ; Test command syntax parsing
  merge target(a,b)=^source(c) m a=b,c=@d,@e=f,@g=@h,@mergearg,@i(j)=@k@(l)
  new a,b,c,d n (everything,but,these) new $ET,$ES,@newargs n:all
  open devicefile:foo="bar":5:mnemspace o:ready @openargs,device,dev:foo:1,dev2:::spec,dev3::3,dev4:::(space1,space2,"steve")
- read #!!?5,"Hello! What is your name? ",name r:readargs,'="" @readargs r var:timeout,!,var2#length,@varname#len:tmo
+ read #!!?5,"Hello! What is your name? ",name r:readargs'="" @readargs r var:timeout,!,var2#length,@varname#len:tmo
  r !,"Press any key.",*key:15
  set a=b s c(d,e)=^f,(g,^h(i))=@k@(l,m) s @("result="_expr),$p(foo,",",3)="abc",$extract(bar,1,4)="4567"
  s $ECODE=",U01,",$ET="do handle^ERRORS" s $DEVICE="1,Connection reset",$d=0 s $KEY="",$K=$c(10),$x=20,$y=4
@@ -106,7 +106,6 @@ commands ; Test command syntax parsing
 '|'           Punctuation
 '"GLD.m"'     Literal.String
 '|'           Punctuation
-'^'           Error
 'GLDROUTINE'  Name.Namespace
 '('           Punctuation
 '1'           Literal.Number
@@ -225,8 +224,8 @@ commands ; Test command syntax parsing
 ' '           Text.Whitespace
 'w'           Name.Variable
 ' '           Text.Whitespace
-'!'           Error
-' '           Error
+'!'           Keyword.Pseudo
+' '           Text.Whitespace
 'f'           Keyword
 ' '           Text.Whitespace
 'col'         Name.Variable
@@ -282,11 +281,8 @@ commands ; Test command syntax parsing
 'if'          Keyword
 '  '          Text.Whitespace
 'halt'        Keyword
-' '           Error
-'e'           Error
-'l'           Error
-'s'           Error
-'e'           Error
+'  '          Text.Whitespace
+'else'        Keyword
 '  '          Text.Whitespace
 'h'           Keyword
 '\n'          Text
@@ -585,11 +581,9 @@ commands ; Test command syntax parsing
 'r'           Keyword
 ':'           Punctuation
 'readargs'    Name.Variable
-','           Error
-"'"           Error
-'='           Error
-'"'           Error
-'"'           Error
+"'"           Operator
+'='           Operator
+'""           Literal.String
 ' '           Text.Whitespace
 '@'           Operator
 'readargs'    Name.Variable
@@ -781,9 +775,9 @@ commands ; Test command syntax parsing
 ' '           Text.Whitespace
 '@'           Operator
 'tsarg'       Name.Variable
-' '           Error
+' '           Text.Whitespace
 'ts'          Name.Variable
-' '           Error
+' '           Text.Whitespace
 '@'           Operator
 'foo'         Name.Variable
 ':'           Punctuation
@@ -807,18 +801,10 @@ commands ; Test command syntax parsing
 't'           Keyword
 '='           Operator
 '5'           Literal.Number
-','           Error
-'z'           Error
-'e'           Error
-'b'           Error
-'r'           Error
-'a'           Error
-'='           Error
-'"'           Error
-'y'           Error
-'e'           Error
-'s'           Error
-'"'           Error
+','           Punctuation
+'zebra'       Keyword
+'='           Operator
+'"yes"'       Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
 'ts'          Keyword
@@ -826,9 +812,9 @@ commands ; Test command syntax parsing
 'everything'  Name.Variable
 ' '           Text.Whitespace
 '*'           Keyword.Pseudo
-' '           Error
+' '           Text.Whitespace
 'ts'          Name.Variable
-' '           Error
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation

@@ -1,5 +1,5 @@
 ---input---
- w !,"A is "_$acii("A")_", a is "_$a("play",3)
+ w !,"A is "_$ascii("A")_", a is "_$a("play",3)
  w !,"Newline could be "_$char(10)_" or "_$c(13,10)
  w !,"The variable array is "_$s($data(array)=0:"undefined",$d(array)=1:"a scalar",$DATA(array)=10:"an array",1:"an array or a scalar")
  w !,"The first letter is "_$Extract("ABCD")_", the second is "_$e("ABCD",2)_", so the first two are "_$EXTRACT("ABC",1,2)
@@ -28,8 +28,7 @@
 ','           Punctuation
 '"A is "'     Literal.String
 '_'           Operator
-'$'           Error
-'acii'        Name.Variable
+'$ascii'      Name.Function
 '('           Punctuation
 '"A"'         Literal.String
 ')'           Punctuation
@@ -328,14 +327,10 @@
 'for'         Keyword
 '  '          Text.Whitespace
 'set'         Keyword
-':'           Error
-'l'           Error
-'e'           Error
-'a'           Error
-'f'           Error
-'='           Error
-'"'           Error
-'"'           Error
+':'           Punctuation
+'leaf'        Name.Variable
+'='           Operator
+'""'          Literal.String
 ' '           Text.Whitespace
 'root'        Name.Variable
 '='           Operator

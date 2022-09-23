@@ -20,7 +20,7 @@
 '"-"'         Literal.String
 '4'           Literal.Number
 'N'           Name.Entity
-' '           Error
+' '           Text.Whitespace
 '"SSN"'       Literal.String
 '\n'          Text
 
@@ -39,7 +39,7 @@
 ')'           Punctuation
 '.'           Punctuation
 'AN'          Name.Entity
-' '           Error
+' '           Text.Whitespace
 '"NAME"'      Literal.String
 '\n'          Text
 
@@ -50,7 +50,7 @@
 '?'           Operator
 '1'           Literal.Number
 'YpizzaY'     Name.Entity
-' '           Error
+' '           Text.Whitespace
 '"Programmer Pizza"' Literal.String
 '\n'          Text
 
@@ -61,7 +61,7 @@
 '?'           Operator
 '1'           Literal.Number
 'ZbagelZ'     Name.Entity
-' '           Error
+' '           Text.Whitespace
 '"Implementation Bagel"' Literal.String
 '\n'          Text
 
