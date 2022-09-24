@@ -36,12 +36,6 @@ comments = [
 ]
 
 
-keywords = words([
-    'assert', 'else', 'error', 'false', 'for', 'if', 'import', 'importstr',
-    'in', 'null', 'tailstrict', 'then', 'self', 'super', 'true',
-]).get()
-
-
 rvalues = comments + [
     (r"@'.*'", String),
     (r'@".*"', String),
@@ -55,7 +49,10 @@ rvalues = comments + [
     (r'\[', Punctuation, 'array'),
     (r'local\b', Keyword, ('local_name')),
     (r'assert', Keyword, 'assert'),
-    (fr'({keywords})(?!{jsonnet_token_chars})', Keyword),
+    (words([
+        'assert', 'else', 'error', 'false', 'for', 'if', 'import', 'importstr',
+        'in', 'null', 'tailstrict', 'then', 'self', 'super', 'true',
+     ], suffix=r'\b'), Keyword),
     (r'\s+', Whitespace),
     (r'function(?=\()', Keyword, 'function_params'),
     (r'std\.' + jsonnet_function_token, Name.Builtin, 'function_args'),
