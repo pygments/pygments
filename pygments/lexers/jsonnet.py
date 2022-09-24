@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 from pygments.lexer import (
+    include,
     RegexLexer,
     words,
 )
@@ -27,39 +28,6 @@ __all__ = ['JsonnetLexer']
 jsonnet_token_chars = r'[_A-Za-z0-9]'
 jsonnet_token = r'[_A-Za-z]' + jsonnet_token_chars + '*'
 jsonnet_function_token = jsonnet_token + r'(?=\()'
-
-
-comments = [
-    (r'(//|#).*\n', Comment.Single),
-    (r'/\*\*([^/]|/(?!\*))*\*/', String.Doc),
-    (r'/\*([^/]|/(?!\*))*\*/', Comment),
-]
-
-
-rvalues = comments + [
-    (r"@'.*'", String),
-    (r'@".*"', String),
-    (r"'", String, 'singlestring'),
-    (r'"', String, 'doublestring'),
-    (r'(?s:\|\|\|.*\|\|\|)', String),
-    (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
-    # Omit : despite spec because it appears to be used as a field separator
-    (r'[!$~+\-&|^=<>*/%]', Operator),
-    (r'[{]', Punctuation, 'object'),
-    (r'\[', Punctuation, 'array'),
-    (r'local\b', Keyword, ('local_name')),
-    (r'assert', Keyword, 'assert'),
-    (words([
-        'assert', 'else', 'error', 'false', 'for', 'if', 'import', 'importstr',
-        'in', 'null', 'tailstrict', 'then', 'self', 'super', 'true',
-     ], suffix=r'\b'), Keyword),
-    (r'\s+', Whitespace),
-    (r'function(?=\()', Keyword, 'function_params'),
-    (r'std\.' + jsonnet_function_token, Name.Builtin, 'function_args'),
-    (jsonnet_function_token, Name.Function, 'function_args'),
-    (jsonnet_token, Name.Variable),
-    (r'[\.()]', Punctuation),
-]
 
 
 def string_rules(quote_mark):
@@ -82,13 +50,46 @@ class JsonnetLexer(RegexLexer):
     aliases = ['jsonnet']
     filenames = ['*.jsonnet', '*.libsonnet']
     tokens = {
-        'root': rvalues,
+        # Not used by itself
+        '_comments': [
+            (r'(//|#).*\n', Comment.Single),
+            (r'/\*\*([^/]|/(?!\*))*\*/', String.Doc),
+            (r'/\*([^/]|/(?!\*))*\*/', Comment),
+        ],
+        'root': [
+            include('_comments'),
+            (r"@'.*'", String),
+            (r'@".*"', String),
+            (r"'", String, 'singlestring'),
+            (r'"', String, 'doublestring'),
+            (r'(?s:\|\|\|.*\|\|\|)', String),
+            (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
+            # Omit : despite spec because it appears to be used as a field
+            # separator
+            (r'[!$~+\-&|^=<>*/%]', Operator),
+            (r'[{]', Punctuation, 'object'),
+            (r'\[', Punctuation, 'array'),
+            (r'local\b', Keyword, ('local_name')),
+            (r'assert', Keyword, 'assert'),
+            (words([
+                'assert', 'else', 'error', 'false', 'for', 'if', 'import',
+                'importstr', 'in', 'null', 'tailstrict', 'then', 'self',
+                'super', 'true',
+             ], suffix=r'\b'), Keyword),
+            (r'\s+', Whitespace),
+            (r'function(?=\()', Keyword, 'function_params'),
+            (r'std\.' + jsonnet_function_token, Name.Builtin, 'function_args'),
+            (jsonnet_function_token, Name.Function, 'function_args'),
+            (jsonnet_token, Name.Variable),
+            (r'[\.()]', Punctuation),
+        ],
         'singlestring': string_rules("'"),
         'doublestring': string_rules('"'),
         'array': [
             (r',', Punctuation),
             (r'\]', Punctuation, '#pop'),
-        ] + rvalues,
+            include('root'),
+        ],
         'local_name': [
             (jsonnet_function_token, Name.Function, 'function_params'),
             (jsonnet_token, Name.Variable),
@@ -98,11 +99,13 @@ class JsonnetLexer(RegexLexer):
         'local_value': [
             (r'=', Operator),
             (r';', Punctuation, '#pop'),
-        ] + rvalues,
+            include('root'),
+        ],
         'assert': [
             (r':', Punctuation),
             (r';', Punctuation, '#pop'),
-        ] + rvalues,
+            include('root'),
+        ],
         'function_params': [
             (jsonnet_token, Name.Variable),
             (r'\(', Punctuation),
@@ -116,7 +119,8 @@ class JsonnetLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             (r',', Punctuation),
             (r'\s+', Whitespace),
-        ] + rvalues,
+            include('root'),
+        ],
         'object': [
             (r'\s+', Whitespace),
             (r'local\b', Keyword, 'object_local_name'),
@@ -126,7 +130,8 @@ class JsonnetLexer(RegexLexer):
             (r'}', Punctuation, '#pop'),
             (r'"', Name.Variable, 'double_field_name'),
             (r"'", Name.Variable, 'single_field_name'),
-        ] + comments,
+            include('_comments'),
+        ],
         'field_name': [
             (jsonnet_function_token, Name.Function,
                 ('field_separator', 'function_params')
@@ -137,22 +142,27 @@ class JsonnetLexer(RegexLexer):
         'single_field_name': quoted_field_name("'"),
         'field_name_expr': [
             (r'\]', Operator, 'field_separator'),
-        ] + rvalues,
+            include('root'),
+        ],
         'function_param_default': [
-            (r'(?=[,\)])', Whitespace, '#pop')
-        ] + rvalues,
+            (r'(?=[,\)])', Whitespace, '#pop'),
+            include('root'),
+        ],
         'field_separator': [
             (r'\s+', Whitespace),
             (r'\+?::?:?', Punctuation, ('#pop', '#pop', 'field_value')),
-        ] + comments,
+            include('_comments'),
+        ],
         'field_value': [
             (r',', Punctuation, '#pop'),
             (r'}', Punctuation, '#pop:2'),
-        ] + rvalues,
+            include('root'),
+        ],
         'object_assert': [
             (r':', Punctuation),
             (r',', Punctuation, '#pop'),
-        ] + rvalues,
+            include('root'),
+        ],
         'object_local_name': [
             (jsonnet_token, Name.Variable, ('#pop', 'object_local_value')),
             (r'\s+', Whitespace),
@@ -161,5 +171,6 @@ class JsonnetLexer(RegexLexer):
             (r'=', Operator),
             (r',', Punctuation, '#pop'),
             (r'}', Punctuation, '#pop:2'),
-        ] + rvalues,
+            include('root'),
+        ],
     }
