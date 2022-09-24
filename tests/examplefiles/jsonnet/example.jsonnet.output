@@ -187,7 +187,7 @@
 '"'           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam'        Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -244,7 +244,7 @@
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam'        Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -264,7 +264,7 @@
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam2'       Name.Function
 '('           Punctuation
 'foo'         Name.Variable
@@ -277,7 +277,7 @@
 '2'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spa'         Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -289,7 +289,7 @@
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'foo'         Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -300,14 +300,14 @@
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'block'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '|||\n    Hello\n    Block\n  |||' Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'baz'         Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -351,7 +351,7 @@
 ')'           Punctuation
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'goo'         Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -372,7 +372,7 @@
 ']'           Punctuation
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam3'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -380,7 +380,7 @@
 '5'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam4'       Name.Variable
 ':::'         Punctuation
 ' '           Text.Whitespace
@@ -388,7 +388,7 @@
 '5'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam5'       Name.Variable
 ':::'         Punctuation
 ' '           Text.Whitespace
@@ -396,7 +396,7 @@
 '5'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam6'       Name.Variable
 '//funky\n'   Comment.Single
 
@@ -458,28 +458,28 @@
 '"'           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'raw1'        Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 "@'hello\\'"  Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'raw2'        Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '@"hello\\"'  Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam7'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'foo'         Name.Variable
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam8'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -492,7 +492,7 @@
 ')'           Punctuation
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam9'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -507,21 +507,21 @@
 ')'           Punctuation
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'intro'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'in1troduction' Name.Variable
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam_10'     Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '10'          Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam_11'     Name.Function
 '('           Punctuation
 'y'           Name.Variable
@@ -534,7 +534,7 @@
 '11'          Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam12'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -549,14 +549,14 @@
 ')'           Punctuation
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam13'      Name.Variable
 '+:'          Punctuation
 ' '           Text.Whitespace
 '27'          Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam14'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -565,7 +565,7 @@
 'spam13'      Name.Variable
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam15'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -573,7 +573,7 @@
 '5'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam16'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -581,7 +581,7 @@
 'false'       Keyword
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam17'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -592,7 +592,7 @@
 '5'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam18'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -603,7 +603,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam19'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -614,7 +614,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam20'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -625,7 +625,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam21'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -637,7 +637,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam22'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -648,7 +648,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam23'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -659,7 +659,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam24'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -670,7 +670,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam25'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -681,7 +681,7 @@
 '3'           Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Name.Variable
+''            Text
 'spam26'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
