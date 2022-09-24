@@ -5,14 +5,14 @@ for x in lines("myfile.txt"):
     echo "Key: ", matches[0],
          " Value: ", matches[1]
 
-echo("What's your name? ")
+Echo("What's your name? ")
 var name: string = readLine(stdin)
 if name == "":
   echo("Poor soul, you lost your name?")
 elif name == "name":
   echo("Very funny, your name is name.")
 else:
-  echo("Hi, ", name, "!")
+  Echo("Hi, ", name, "!")
 
 var name = readLine(stdin)
 case name
@@ -21,29 +21,29 @@ of "":
 of "name":
   echo("Very funny, your name is name.")
 else:
-  echo("Hi, ", name, "!")
+  Echo("Hi, ", name, "!")
 
 from strutils import parseInt
 
-echo("A number please: ")
+Echo("A number please: ")
 var n = parseInt(readLine(stdin))
 case n
-of 0..2, 4..7: echo("The number is in the set: {0, 1, 2, 4, 5, 6, 7}")
-of 3, 8: echo("The number is 3 or 8")
+of 0..2, 4..7: Echo("The number is in the set: {0, 1, 2, 4, 5, 6, 7}")
+of 3, 8: Echo("The number is 3 or 8")
 
-echo("Counting to 10: ")
+Echo("Counting to 10: ")
 var i = 1
 while i <= 10:
-  echo($i)
+  Echo($i)
   inc(i)
 
 proc yes(question: string): bool =
-  echo(question, " (y/n)")
+  Echo(question, " (y/n)")
   while true:
     case readLine(stdin)
     of "y", "Y", "yes", "Yes": return true
     of "n", "N", "no", "No": return false
-    else: echo("Please be clear: yes or no")
+    else: Echo("Please be clear: yes or no")
 
 proc even(n: int): bool
 
@@ -91,12 +91,3 @@ if open(f, "numbers.txt"):
     raise
   finally:
     close(f)
-
-
-let
-  aaa: string = "aaa"
-  bbb: int = 3
-  ccc: seq[char] = @['a', 'b']
-  ddd: float32 = 43.21
-  eee: bool = true
-
