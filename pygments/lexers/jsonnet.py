@@ -25,8 +25,7 @@ from pygments.token import (
 
 __all__ = ['JsonnetLexer']
 
-jsonnet_token_chars = r'[_A-Za-z0-9]'
-jsonnet_token = r'[_A-Za-z]' + jsonnet_token_chars + '*'
+jsonnet_token = r'[^\W\d]\w*'
 jsonnet_function_token = jsonnet_token + r'(?=\()'
 
 
