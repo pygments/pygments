@@ -20,6 +20,7 @@ from pygments.token import (
     Operator,
     Punctuation,
     String,
+    Text,
     Whitespace,
 )
 
@@ -48,6 +49,7 @@ class JsonnetLexer(RegexLexer):
     name = 'Jsonnet'
     aliases = ['jsonnet']
     filenames = ['*.jsonnet', '*.libsonnet']
+    url = "https://jsonnet.org"
     tokens = {
         # Not used by itself
         '_comments': [
@@ -62,6 +64,7 @@ class JsonnetLexer(RegexLexer):
             (r"'", String, 'singlestring'),
             (r'"', String, 'doublestring'),
             (r'(?s:\|\|\|.*\|\|\|)', String),
+            # Jsonnet has no integers, only an IEEE754 64-bit float
             (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
             # Omit : despite spec because it appears to be used as a field
             # separator
@@ -69,7 +72,7 @@ class JsonnetLexer(RegexLexer):
             (r'[{]', Punctuation, 'object'),
             (r'\[', Punctuation, 'array'),
             (r'local\b', Keyword, ('local_name')),
-            (r'assert', Keyword, 'assert'),
+            (r'assert\b', Keyword, 'assert'),
             (words([
                 'assert', 'else', 'error', 'false', 'for', 'if', 'import',
                 'importstr', 'in', 'null', 'tailstrict', 'then', 'self',
@@ -125,7 +128,7 @@ class JsonnetLexer(RegexLexer):
             (r'local\b', Keyword, 'object_local_name'),
             (r'assert\b', Keyword, 'object_assert'),
             (r'\[', Operator, 'field_name_expr'),
-            (fr'(?={jsonnet_token})', Name.Variable, 'field_name'),
+            (fr'(?={jsonnet_token})', Text, 'field_name'),
             (r'}', Punctuation, '#pop'),
             (r'"', Name.Variable, 'double_field_name'),
             (r"'", Name.Variable, 'single_field_name'),
