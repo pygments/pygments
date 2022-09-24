@@ -21,8 +21,7 @@ jsonnet_function_token = jsonnet_token + r'(?=\()'
 
 
 comments = [
-    (r'//.*\n', Comment.Single),
-    (r'#.*\n', Comment.Single),
+    (r'(//|#).*\n', Comment.Single),
     (r'/\*\*([^/]|/(?!\*))*\*/', String.Doc),
     (r'/\*([^/]|/(?!\*))*\*/', Comment),
 ]
