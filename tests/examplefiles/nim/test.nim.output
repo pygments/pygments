@@ -70,7 +70,7 @@
 'name'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -324,11 +324,11 @@
 'question'    Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 '\n  '        Text.Whitespace
@@ -424,11 +424,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 '\n\n'        Text.Whitespace
 
 'proc'        Keyword
@@ -438,11 +438,11 @@
 'n'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 '\n  '        Text.Whitespace
@@ -483,11 +483,11 @@
 'b'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 '\n  '        Text.Whitespace
@@ -535,14 +535,14 @@
 '*'           Operator
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 '  '          Text.Whitespace
 '# the * means that `name` is accessible from other modules' Comment
 '\n    '      Text.Whitespace
 'age'         Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 '       '     Text.Whitespace
 '# no * means that the field is hidden from other modules' Comment
 '\n\n  '      Text.Whitespace
@@ -561,7 +561,7 @@
 'id'          Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 '                    ' Text.Whitespace
 '# with an id field' Comment
 '\n\n'        Text.Whitespace

@@ -107,9 +107,9 @@
 'lastSession' Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'seq'         Keyword.Type
+'seq'         Name.Builtin
 '['           Operator
-'string'      Keyword.Type
+'string'      Name.Builtin
 ']'           Operator
 ' '           Text.Whitespace
 '='           Operator
@@ -203,7 +203,7 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' \n  '       Text.Whitespace
@@ -252,13 +252,13 @@
 'tabNr'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 'startpath'   Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -735,7 +735,7 @@
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 '\n  '        Text.Whitespace
@@ -1366,7 +1366,7 @@
 'name'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 't_child'     Name
@@ -1999,7 +1999,7 @@
 'filename'    Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -2184,7 +2184,7 @@
 'file'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -3465,7 +3465,7 @@
 'text'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 'colorTag'    Name
@@ -3593,7 +3593,7 @@
 'color'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -3684,11 +3684,11 @@
 'exe'         Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' \n    '     Text.Whitespace
@@ -3790,11 +3790,11 @@
 'filename'    Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' \n  '       Text.Whitespace
@@ -4027,13 +4027,13 @@
 'currentTab'  Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 'shouldRun'   Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'bool'        Keyword.Type
+'bool'        Name.Builtin
 ')'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -4541,7 +4541,7 @@
 'cmd'         Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ')'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -5721,7 +5721,7 @@
 'label'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'string'      Keyword.Type
+'string'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 'acc'         Name
@@ -8641,7 +8641,7 @@
 'langpaths'   Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'array'       Keyword.Type
+'array'       Name.Builtin
 '['           Operator
 '0'           Literal.Number.Float
 '..'          Punctuation
@@ -8725,7 +8725,7 @@
 'schemepaths' Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'array'       Keyword.Type
+'array'       Name.Builtin
 '['           Operator
 '0'           Literal.Number.Float
 '..'          Punctuation
