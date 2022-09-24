@@ -1,3 +1,12 @@
+"""
+    pygments.lexers.jsonnet
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for Jsonnet data templating language.
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 from pygments.lexer import (
     RegexLexer,
     words,
@@ -27,9 +36,6 @@ comments = [
 ]
 
 
-whitespace = (r'[\n ]+', Whitespace)
-
-
 keywords = words([
     'assert', 'else', 'error', 'false', 'for', 'if', 'import', 'importstr',
     'in', 'null', 'tailstrict', 'then', 'self', 'super', 'true',
@@ -47,10 +53,10 @@ rvalues = comments + [
     (r'[!$~+\-&|^=<>*/%]', Operator),
     (r'[{]', Punctuation, 'object'),
     (r'\[', Punctuation, 'array'),
-    (r'local', Keyword, ('local_name')),
+    (r'local\b', Keyword, ('local_name')),
     (r'assert', Keyword, 'assert'),
     (fr'({keywords})(?!{jsonnet_token_chars})', Keyword),
-    whitespace,
+    (r'\s+', Whitespace),
     (r'function(?=\()', Keyword, 'function_params'),
     (r'std\.' + jsonnet_function_token, Name.Builtin, 'function_args'),
     (jsonnet_function_token, Name.Function, 'function_args'),
@@ -89,7 +95,7 @@ class JsonnetLexer(RegexLexer):
         'local_name': [
             (jsonnet_function_token, Name.Function, 'function_params'),
             (jsonnet_token, Name.Variable),
-            whitespace,
+            (r'\s+', Whitespace),
             ('(?==)', Whitespace, ('#pop', 'local_value')),
         ],
         'local_value': [
@@ -105,19 +111,19 @@ class JsonnetLexer(RegexLexer):
             (r'\(', Punctuation),
             (r'\)', Punctuation, '#pop'),
             (r',', Punctuation),
-            whitespace,
+            (r'\s+', Whitespace),
             (r'=', Operator, 'function_param_default'),
         ],
         'function_args': [
             (r'\(', Punctuation),
             (r'\)', Punctuation, '#pop'),
             (r',', Punctuation),
-            whitespace,
+            (r'\s+', Whitespace),
         ] + rvalues,
         'object': [
-            whitespace,
-            (r'local', Keyword, 'object_local_name'),
-            ('assert', Keyword, 'object_assert'),
+            (r'\s+', Whitespace),
+            (r'local\b', Keyword, 'object_local_name'),
+            (r'assert\b', Keyword, 'object_assert'),
             (r'\[', Operator, 'field_name_expr'),
             (fr'(?={jsonnet_token})', Name.Variable, 'field_name'),
             (r'}', Punctuation, '#pop'),
@@ -139,7 +145,7 @@ class JsonnetLexer(RegexLexer):
             (r'(?=[,\)])', Whitespace, '#pop')
         ] + rvalues,
         'field_separator': [
-            whitespace,
+            (r'\s+', Whitespace),
             (r'\+?::?:?', Punctuation, ('#pop', '#pop', 'field_value')),
         ] + comments,
         'field_value': [
@@ -152,7 +158,7 @@ class JsonnetLexer(RegexLexer):
         ] + rvalues,
         'object_local_name': [
             (jsonnet_token, Name.Variable, ('#pop', 'object_local_value')),
-            whitespace,
+            (r'\s+', Whitespace),
         ],
         'object_local_value': [
             (r'=', Operator),
