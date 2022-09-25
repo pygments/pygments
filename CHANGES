@@ -11,6 +11,9 @@ Version 2.14.0
 
   * GAP session (#2211)
   * func (#2232)
+  * Java properties: fix issue with whitespace-delimited keys, support
+    comments starting with `!` and escapes, no longer support undocumented
+    `;` and `//` comments (#2241)
   * Jsonnet (#2239)
   * MIPS (#2228)
   * Phix (#2222)
@@ -37,7 +40,7 @@ Version 2.14.0
   (#2223)
 
 - Support more filetypes and compression types in `autopygmentize` (#2219)
-- Merge consecutive tokens in Autohotkey, Clay
+- Merge consecutive tokens in Autohotkey, Clay (#2248)
 
 Version 2.13.0
 --------------
