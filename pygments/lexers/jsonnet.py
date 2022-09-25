@@ -63,13 +63,13 @@ class JsonnetLexer(RegexLexer):
             (r'@".*"', String),
             (r"'", String, 'singlestring'),
             (r'"', String, 'doublestring'),
-            (r'(?s:\|\|\|.*\|\|\|)', String),
+            (r'\|\|\|(.|\n)*\|\|\|', String),
             # Jsonnet has no integers, only an IEEE754 64-bit float
             (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
             # Omit : despite spec because it appears to be used as a field
             # separator
             (r'[!$~+\-&|^=<>*/%]', Operator),
-            (r'[{]', Punctuation, 'object'),
+            (r'\{', Punctuation, 'object'),
             (r'\[', Punctuation, 'array'),
             (r'local\b', Keyword, ('local_name')),
             (r'assert\b', Keyword, 'assert'),
@@ -129,7 +129,7 @@ class JsonnetLexer(RegexLexer):
             (r'assert\b', Keyword, 'object_assert'),
             (r'\[', Operator, 'field_name_expr'),
             (fr'(?={jsonnet_token})', Text, 'field_name'),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
             (r'"', Name.Variable, 'double_field_name'),
             (r"'", Name.Variable, 'single_field_name'),
             include('_comments'),
@@ -157,7 +157,7 @@ class JsonnetLexer(RegexLexer):
         ],
         'field_value': [
             (r',', Punctuation, '#pop'),
-            (r'}', Punctuation, '#pop:2'),
+            (r'\}', Punctuation, '#pop:2'),
             include('root'),
         ],
         'object_assert': [
@@ -172,7 +172,7 @@ class JsonnetLexer(RegexLexer):
         'object_local_value': [
             (r'=', Operator),
             (r',', Punctuation, '#pop'),
-            (r'}', Punctuation, '#pop:2'),
+            (r'\}', Punctuation, '#pop:2'),
             include('root'),
         ],
     }
