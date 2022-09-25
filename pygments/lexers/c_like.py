@@ -126,7 +126,7 @@ class ClayLexer(RegexLexer):
         ],
         'strings': [
             (r'(?i)\\(x[0-9a-f]{2}|.)', String.Escape),
-            (r'.', String),
+            (r'[^\\"]+', String),
         ],
         'nl': [
             (r'\n', String),
