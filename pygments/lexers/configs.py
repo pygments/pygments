@@ -128,14 +128,26 @@ class PropertiesLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^(\w+)([ \t])(\w+\s*)$', bygroups(Name.Attribute, Whitespace, String)),
-            (r'^\w+(\\[ \t]\w*)*$', Name.Attribute),
-            (r'(^ *)([#!].*)', bygroups(Whitespace, Comment)),
-            # More controversial comments
-            (r'(^ *)((?:;|//).*)', bygroups(Whitespace, Comment)),
-            (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
-             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
-            (r'\s', Whitespace),
+            (r'\s+', Whitespace),
+            (r'[!#].*|/{2}.*', Comment.Single),
+            # search for first separator
+            (r'([^\\\n]|\\.)*?(?=[ \f\t=:])', Name.Attribute, "separator"),
+            # empty key
+            (r'.+?$', Name.Attribute),
+        ],
+        'separator': [
+            # search for line continuation escape
+            (r'([ \f\t]*)([=:]*)([ \f\t]*)(.*(?<!\\)(?:\\{2})*)(\\)(?!\\)$',
+             bygroups(Whitespace, Operator, Whitespace, String, Text), "value", "#pop"),
+            (r'([ \f\t]*)([=:]*)([ \f\t]*)(.*)',
+             bygroups(Whitespace, Operator, Whitespace, String), "#pop"),
+        ],
+        'value': [     # line continuation
+            (r'\s+', Whitespace),
+            # search for line continuation escape
+            (r'(\s*)(.*(?<!\\)(?:\\{2})*)(\\)(?!\\)([ \t]*)',
+             bygroups(Whitespace, String, Text, Whitespace)),
+            (r'.*$', String, "#pop"),
         ],
     }
 
