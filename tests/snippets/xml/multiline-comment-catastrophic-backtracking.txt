@@ -31,4 +31,26 @@ terminated
 
 ---tokens---
 '<'           Error
-'!--\nthis\ncomment\nis\nnever\nterminated\n...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n...\n' Text
+'!--'         Text
+'\n'          Text.Whitespace
+
+'this'        Text
+'\n'          Text.Whitespace
+
+'comment'     Text
+'\n'          Text.Whitespace
+
+'is'          Text
+'\n'          Text.Whitespace
+
+'never'       Text
+'\n'          Text.Whitespace
+
+'terminated'  Text
+'\n'          Text.Whitespace
+
+'...'         Text
+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' Text.Whitespace
+
+'...'         Text
+'\n'          Text.Whitespace
