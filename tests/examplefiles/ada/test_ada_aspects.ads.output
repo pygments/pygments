@@ -1,0 +1,470 @@
+'with'        Keyword.Namespace
+' '           Text
+'System'      Name
+';'           Punctuation
+'\n'          Text
+
+'with'        Keyword.Namespace
+' '           Text
+'Interfaces.C' Name
+';'           Punctuation
+'\n\n'        Text
+
+'package'     Keyword.Declaration
+' '           Text
+'Test_Ada_Aspects' Name.Class
+' '           Text
+'is'          Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'R'           Keyword.Type
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'record'      Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'V'           Name
+'  '          Text
+':'           Punctuation
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'range'       Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+' '           Text
+'255'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'B1'          Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Boolean'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'B2'          Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Boolean'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end record'  Keyword.Reserved
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Pack'        Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'Float_Int_Union' Keyword.Type
+' '           Text
+'('           Punctuation
+'Use_Float'   Name.Variable
+' '           Text
+': '          Punctuation
+'Boolean'     Name.Variable
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'record'      Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'case'        Keyword.Reserved
+' '           Text
+'Use_Float'   Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'         '   Text
+'when'        Keyword.Reserved
+' '           Text
+'True'        Keyword.Constant
+'  '          Text
+'=>'          Punctuation
+' '           Text
+'F'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Float'       Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'when'        Keyword.Reserved
+' '           Text
+'False'       Keyword.Constant
+' '           Text
+'=>'          Punctuation
+' '           Text
+'I'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Integer'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'end'         Keyword.Reserved
+' '           Text
+'case'        Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end record'  Keyword.Reserved
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Unchecked_Union' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'my_struct'   Keyword.Type
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'record'      Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'A'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Interfaces'  Name
+'.'           Punctuation
+'C'           Name
+'.'           Punctuation
+'int'         Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Interfaces'  Name
+'.'           Punctuation
+'C'           Name
+'.'           Punctuation
+'int'         Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end record'  Keyword.Reserved
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Convention'  Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'C_Pass_By_Copy' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'procedure'   Keyword.Declaration
+' '           Text
+'Initialize'  Name.Function
+' '           Text
+'('           Punctuation
+'Size'        Name.Variable
+' '           Text
+': '          Punctuation
+'Integer'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Namespace
+'\n       '   Text
+'Import'      Name
+'        '    Text
+'=>'          Punctuation
+' '           Text
+'True'        Keyword.Constant
+','           Punctuation
+'\n'          Text
+
+'       '     Text
+'Convention'  Name
+'    '        Text
+'=>'          Punctuation
+' '           Text
+'C'           Name
+','           Punctuation
+'\n'          Text
+
+'       '     Text
+'External_Name' Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'"registerInterface_Initialize"' Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'Percentage'  Keyword.Type
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'range'       Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+' '           Text
+'100'         Literal.Number.Integer
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Default_Value' Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'State'       Keyword.Type
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Off'         Name.Variable
+','           Punctuation
+' '           Text
+'State_1'     Name.Variable
+','           Punctuation
+' '           Text
+'State_2'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Size'        Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'Integer'     Keyword.Type
+"'"           Punctuation
+'Size'        Name.Attribute
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'for'         Keyword.Reserved
+' '           Text
+'State'       Name
+' '           Text
+'use'         Keyword.Namespace
+' '           Text
+'('           Punctuation
+'Off'         Name
+'     '       Text
+'=>'          Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'                  ' Text
+'State_1'     Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'32'          Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'                  ' Text
+'State_2'     Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'64'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'type'        Keyword.Declaration
+' '           Text
+'Registers'   Keyword.Type
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'record'      Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'Reserved_0'  Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Integer'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Reserved_1'  Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Integer'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end record'  Keyword.Reserved
+'\n'          Text
+
+'     '       Text
+'with'        Keyword.Reserved
+' '           Text
+'Volatile'    Name
+','           Punctuation
+' '           Text
+'Size'        Name
+' '           Text
+'=>'          Punctuation
+' '           Text
+'128'         Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text
+
+'private'     Keyword.Declaration
+'\n\n'        Text
+
+'   '         Text
+'Arr_1'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'array'       Keyword.Reserved
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'Long_Float'  Keyword.Type
+' '           Text
+'with'        Keyword.Namespace
+' '           Text
+'Volatile'    Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Arr_2'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'array'       Keyword.Reserved
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'with'        Keyword.Namespace
+' '           Text
+'Atomic_Components' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'V'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'with'        Keyword.Namespace
+'\n     '     Text
+'Atomic'      Name
+','           Punctuation
+'\n'          Text
+
+'     '       Text
+'Address'     Keyword.Type
+' '           Text
+'=>'          Punctuation
+' '           Text
+'System'      Name
+"'"           Punctuation
+'To_Address'  Name.Attribute
+' '           Text
+'('           Punctuation
+'16#FFFF00A0#' Literal.Number.Hex
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'end'         Keyword.Reserved
+' '           Text
+'Test_Ada_Aspects' Name.Function
+';'           Punctuation
+'\n'          Text

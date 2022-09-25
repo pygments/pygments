@@ -1,0 +1,34 @@
+---input---
+beql
+bnel
+bgtzl
+bgezl
+bltzl
+blezl
+bltzall
+bgezall
+
+---tokens---
+'beql'        Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bnel'        Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bgtzl'       Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bgezl'       Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bltzl'       Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'blezl'       Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bltzall'     Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'bgezall'     Keyword.Pseudo
+'\n'          Text.Whitespace

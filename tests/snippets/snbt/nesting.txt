@@ -1,0 +1,39 @@
+---input---
+{root: [{compound: 1b}, {compound: 2b, tag: {key: "value"}}]}
+
+---tokens---
+'{'           Punctuation
+'root'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'{'           Punctuation
+'compound'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'1b'          Literal.Number.Integer
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'compound'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'2b'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'tag'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'key'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+'}'           Punctuation
+'\n'          Text

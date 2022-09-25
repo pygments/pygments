@@ -1,0 +1,606 @@
+'#!/bin/bash' Comment.Single
+'\n'          Text.Whitespace
+
+'#['          Comment.Multiline
+'\n  echo Phix ignores all text between ' Comment.Multiline
+'#['          Comment.Multiline
+' and '       Comment.Multiline
+'#]'          Comment.Multiline
+' in exactly the same way as ' Comment.Multiline
+'/*'          Comment.Multiline
+' and '       Comment.Multiline
+'*/'          Comment.Multiline
+' \n  echo (both "and" are nested comments), allowing arbitrary shell code, for example:\n  cd ' Comment.Multiline
+'/'           Comment.Multiline
+'user'        Comment.Multiline
+'/'           Comment.Multiline
+'project'     Comment.Multiline
+'/'           Comment.Multiline
+'working\n  exec ' Comment.Multiline
+'/'           Comment.Multiline
+'path'        Comment.Multiline
+'/'           Comment.Multiline
+'to'          Comment.Multiline
+'/'           Comment.Multiline
+'phix "$0" "$@"\n  exit ' Comment.Multiline
+'#'           Comment.Multiline
+' may be needed for the shell to ignore the rest of this file.\n' Comment.Multiline
+
+'#'           Comment.Multiline
+' comments('  Comment.Multiline
+'/'           Comment.Multiline
+'shebang) ignored by Phix end here -> ' Comment.Multiline
+'#]'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'-- aside: few files have [multiline] shebangs like above, but this *is* a test file.' Comment.Single
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'  \n    Standard\n    ' Comment.Multiline
+'/*'          Comment.Multiline
+'\n    '      Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'  Nested\n    ' Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'  '          Comment.Multiline
+'/*'          Comment.Multiline
+'\n    '      Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'      Block\n    ' Comment.Multiline
+'*/'          Comment.Multiline
+'/*'          Comment.Multiline
+'    '        Comment.Multiline
+'/*'          Comment.Multiline
+'\n    '      Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'          Comments, of which Phix has quite a few [ok, six] varieties...\n    ' Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'      '      Comment.Multiline
+'*/'          Comment.Multiline
+'\n    '      Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'*'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n    '      Comment.Multiline
+'*'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'--/*'        Comment.Multiline
+'\n    Euphoria-compatibility-style nestable multiline comments' Comment.Multiline
+'/'           Comment.Multiline
+'code\n--'    Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'// This program should be runnable (C-style line comments, btw, too!)' Comment.Single
+'\n'          Text.Whitespace
+
+'with'        Keyword.Declaration
+' '           Text.Whitespace
+'javascript_semantics' Keyword.Declaration
+'\n'          Text.Whitespace
+
+'string'      Name.Function
+' '           Text.Whitespace
+'pe'          Text
+','           Operator
+' '           Text.Whitespace
+'te'          Text
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'iff'         Name.Function
+'('           Operator
+'platform'    Name.Function
+'('           Operator
+')'           Operator
+'=='          Operator
+'JS'          Name.Constant
+'?'           Operator
+'"JavaScript/browser"' Literal.String.Other
+':'           Operator
+'"Phix/desktop"' Literal.String.Other
+')'           Operator
+'\n'          Text.Whitespace
+
+'ifdef'       Keyword.Declaration
+' '           Text.Whitespace
+'PHIX'        Text
+' '           Text.Whitespace
+'then'        Keyword.Declaration
+' \n    '     Text.Whitespace
+'pe'          Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"Phix"'      Literal.String.Other
+' \n'         Text.Whitespace
+
+'elsedef'     Keyword.Declaration
+' \n    '     Text.Whitespace
+'pe'          Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"Euphoria"'  Literal.String.Other
+' '           Text.Whitespace
+'-- not that this file is compatible with that..' Comment.Single
+'\n'          Text.Whitespace
+
+'end'         Keyword.Declaration
+' '           Text.Whitespace
+'ifdef'       Keyword.Declaration
+' \n'         Text.Whitespace
+
+'printf'      Name.Function
+'('           Operator
+'1'           Text
+','           Operator
+'"This is %s (%s)\\n"' Literal.String.Other
+','           Operator
+'{'           Operator
+'pe'          Text
+','           Operator
+'te'          Text
+'}'           Operator
+')'           Operator
+';'           Operator
+' '           Text.Whitespace
+'-- the ; is entirely optional' Comment.Single
+'\n'          Text.Whitespace
+
+'assert'      Name.Function
+'('           Operator
+'"\\n\\r\\b\\t\\\\\\"\\\'\\0\\e"' Literal.String.Other
+'='           Operator
+'join'        Name.Function
+'('           Operator
+'{'           Operator
+'""'          Literal.String.Other
+','           Operator
+'10'          Text
+','           Operator
+'13'          Text
+','           Operator
+'8'           Text
+','           Operator
+'9'           Text
+','           Operator
+'#'           Operator
+'5C'          Text
+','           Operator
+'#'           Operator
+'22'          Text
+','           Operator
+'#'           Operator
+'27'          Text
+','           Operator
+'#'           Operator
+'00'          Text
+','           Operator
+'#'           Operator
+'1B'          Text
+'}'           Operator
+','           Operator
+'""'          Literal.String.Other
+')'           Operator
+')'           Operator
+'\n'          Text.Whitespace
+
+'assert'      Name.Function
+'('           Operator
+'"\\#42\\x43\\u4445\\U00105678"' Literal.String.Other
+'='           Operator
+'"B"'         Literal.String.Other
+'&'           Operator
+"'C'"         Literal.String.Other
+'&'           Operator
+'"\\xE4\\x91\\x85\\xF4\\x85\\x99\\xB8"' Literal.String.Other
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'-- triplequote, triplequote indented, backtick, and doublequote strings:' Comment.Single
+'\n'          Text.Whitespace
+
+'constant'    Keyword.Declaration
+' '           Text.Whitespace
+'tqs'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'""'          Literal.String.Other
+'"\nthis\nstring\\thing"' Literal.String.Other
+'""'          Literal.String.Other
+','           Operator
+'\n\n'        Text.Whitespace
+
+'tqis'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'""'          Literal.String.Other
+'"\n_____this\n     string\\thing"' Literal.String.Other
+'""'          Literal.String.Other
+','           Operator
+'\n\n'        Text.Whitespace
+
+'bts'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'`this\nstring\\thing`' Literal.String.Other
+','           Operator
+'\n\n'        Text.Whitespace
+
+'dqs'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"this\\nstring\\\\thing"' Literal.String.Other
+'\n'          Text.Whitespace
+
+'assert'      Name.Function
+'('           Operator
+'tqs'         Text
+'=='          Operator
+'tqis'        Text
+' '           Text.Whitespace
+'and'         Keyword.Declaration
+' '           Text.Whitespace
+'tqis'        Text
+'=='          Operator
+'bts'         Text
+' '           Text.Whitespace
+'and'         Keyword.Declaration
+' '           Text.Whitespace
+'bts'         Text
+'=='          Operator
+'dqs'         Text
+' '           Text.Whitespace
+'and'         Keyword.Declaration
+' '           Text.Whitespace
+'dqs'         Text
+'=='          Operator
+'tqs'         Text
+')'           Operator
+'\n'          Text.Whitespace
+
+'assert'      Name.Function
+'('           Operator
+'x'           Text
+'"1 2 34 5678_AbC"' Literal.String.Other
+'=='          Operator
+'{'           Operator
+'0x01'        Text
+','           Operator
+' '           Text.Whitespace
+'0x02'        Text
+','           Operator
+' '           Text.Whitespace
+'0x34'        Text
+','           Operator
+' '           Text.Whitespace
+'0x56'        Text
+','           Operator
+' '           Text.Whitespace
+'0x78'        Text
+','           Operator
+' '           Text.Whitespace
+'0xAB'        Text
+','           Operator
+' '           Text.Whitespace
+'0x0C'        Text
+'}'           Operator
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'-- Beyond comments and strings, not much in Phix bothers a syntax colourer.' Comment.Single
+'\n'          Text.Whitespace
+
+"-- Originally I had another 380+ lines in here, that didn't prove anything." Comment.Single
+'\n\n'        Text.Whitespace
+
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'merge_sort'  Text
+'('           Operator
+'sequence'    Name.Function
+' '           Text.Whitespace
+'x'           Text
+')'           Operator
+'\n    '      Text.Whitespace
+'-- put x into ascending order using a recursive merge sort' Comment.Single
+'\n     '     Text.Whitespace
+'if'          Keyword.Declaration
+' '           Text.Whitespace
+'length'      Name.Function
+'('           Operator
+'x'           Text
+')'           Operator
+'<'           Operator
+'='           Operator
+'1'           Text
+' '           Text.Whitespace
+'then'        Keyword.Declaration
+'\n         ' Text.Whitespace
+'return'      Keyword.Declaration
+' '           Text.Whitespace
+'x'           Text
+'  '          Text.Whitespace
+'-- trivial case' Comment.Single
+'\n     '     Text.Whitespace
+'end'         Keyword.Declaration
+' '           Text.Whitespace
+'if'          Keyword.Declaration
+'\n     '     Text.Whitespace
+'integer'     Name.Function
+' '           Text.Whitespace
+'midpoint'    Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'floor'       Name.Function
+'('           Operator
+'length'      Name.Function
+'('           Operator
+'x'           Text
+')'           Operator
+'/'           Operator
+'2'           Text
+')'           Operator
+'\n     '     Text.Whitespace
+'sequence'    Name.Function
+' '           Text.Whitespace
+'merged'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Operator
+'}'           Operator
+','           Operator
+'\n          ' Text.Whitespace
+'first_half'  Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'merge_sort'  Text
+'('           Operator
+'x'           Text
+'['           Operator
+'1'           Text
+'.'           Operator
+'.'           Operator
+'midpoint'    Text
+']'           Operator
+')'           Operator
+','           Operator
+'\n         ' Text.Whitespace
+'second_half' Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'merge_sort'  Text
+'('           Operator
+'x'           Text
+'['           Operator
+'midpoint'    Text
+'+'           Operator
+'1'           Text
+'.'           Operator
+'.'           Operator
+'$'           Operator
+']'           Operator
+')'           Operator
+'\n     '     Text.Whitespace
+'-- merge the two sorted halves into one' Comment.Single
+'\n     '     Text.Whitespace
+'while'       Keyword.Declaration
+' '           Text.Whitespace
+'length'      Name.Function
+'('           Operator
+'first_half'  Text
+')'           Operator
+'>'           Operator
+'0'           Text
+' \n       '  Text.Whitespace
+'and'         Keyword.Declaration
+' '           Text.Whitespace
+'length'      Name.Function
+'('           Operator
+'second_half' Text
+')'           Operator
+'>'           Operator
+'0'           Text
+' '           Text.Whitespace
+'do'          Keyword.Declaration
+'\n         ' Text.Whitespace
+'if'          Keyword.Declaration
+' '           Text.Whitespace
+'first_half'  Text
+'['           Operator
+'1'           Text
+']'           Operator
+'<'           Operator
+'='           Operator
+'second_half' Text
+'['           Operator
+'1'           Text
+']'           Operator
+' '           Text.Whitespace
+'then'        Keyword.Declaration
+'\n             ' Text.Whitespace
+'merged'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'append'      Name.Function
+'('           Operator
+'merged'      Text
+','           Operator
+' '           Text.Whitespace
+'first_half'  Text
+'['           Operator
+'1'           Text
+']'           Operator
+')'           Operator
+'\n             ' Text.Whitespace
+'first_half'  Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'first_half'  Text
+'['           Operator
+'2'           Text
+'.'           Operator
+'.'           Operator
+'$'           Operator
+']'           Operator
+'\n         ' Text.Whitespace
+'else'        Keyword.Declaration
+'\n             ' Text.Whitespace
+'merged'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'append'      Name.Function
+'('           Operator
+'merged'      Text
+','           Operator
+' '           Text.Whitespace
+'second_half' Text
+'['           Operator
+'1'           Text
+']'           Operator
+')'           Operator
+'\n             ' Text.Whitespace
+'second_half' Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'second_half' Text
+'['           Operator
+'2'           Text
+'.'           Operator
+'.'           Operator
+'$'           Operator
+']'           Operator
+'\n         ' Text.Whitespace
+'end'         Keyword.Declaration
+' '           Text.Whitespace
+'if'          Keyword.Declaration
+'\n     '     Text.Whitespace
+'end'         Keyword.Declaration
+' '           Text.Whitespace
+'while'       Keyword.Declaration
+'\n     '     Text.Whitespace
+'-- result is the merged data plus any leftovers' Comment.Single
+'\n     '     Text.Whitespace
+'return'      Keyword.Declaration
+' '           Text.Whitespace
+'merged'      Text
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'first_half'  Text
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'second_half' Text
+'\n'          Text.Whitespace
+
+'end'         Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'?'           Operator
+'merge_sort'  Text
+'('           Operator
+'{'           Operator
+'9'           Text
+','           Operator
+' '           Text.Whitespace
+'10'          Text
+','           Operator
+' '           Text.Whitespace
+'3'           Text
+','           Operator
+' '           Text.Whitespace
+'1'           Text
+','           Operator
+' '           Text.Whitespace
+'4'           Text
+','           Operator
+' '           Text.Whitespace
+'5'           Text
+','           Operator
+' '           Text.Whitespace
+'8'           Text
+','           Operator
+' '           Text.Whitespace
+'7'           Text
+','           Operator
+' '           Text.Whitespace
+'6'           Text
+','           Operator
+' '           Text.Whitespace
+'2'           Text
+'}'           Operator
+')'           Operator
+'\n'          Text.Whitespace
+
+'?'           Operator
+'{'           Operator
+'1'           Text
+','           Operator
+'0'           Text
+'('           Operator
+'2'           Text
+')'           Operator
+'10'          Text
+','           Operator
+'0b11'        Text
+','           Operator
+'0d4'         Text
+','           Operator
+'0t5'         Text
+','           Operator
+'0'           Text
+'('           Operator
+'6'           Text
+')'           Operator
+'10'          Text
+','           Operator
+'0'           Text
+'('           Operator
+'7'           Text
+')'           Operator
+'10'          Text
+','           Operator
+'0o10'        Text
+','           Operator
+'0x9'         Text
+','           Operator
+'#'           Operator
+'A'           Text
+'}'           Operator
+' '           Text.Whitespace
+'-- [the same 1..10 but with extra weirdness]' Comment.Single
+'\n\n'        Text.Whitespace
+
+'wait_key'    Name.Function
+'('           Operator
+')'           Operator
+'\n'          Text.Whitespace

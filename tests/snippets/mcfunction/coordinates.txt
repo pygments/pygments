@@ -1,0 +1,188 @@
+---input---
+# normal
+tp 1 2 3
+tp 100.5 80 -100.5
+
+# relative
+tp 10 ~ -10
+tp 10 ~10 -10
+tp 10 ~0.5 -10
+tp 10 ~.5 -10
+tp 10 ~-10 -10
+tp 10 ~-0.5 -10
+tp 10 ~-.5 -10
+
+# carrot
+tp 10 ^ -10
+tp 10 ^10 -10
+tp 10 ^0.5 -10
+tp 10 ^.5 -10
+tp 10 ^-10 -10
+tp 10 ^-0.5 -10
+tp 10 ^-.5 -10
+
+---tokens---
+'# normal'    Comment.Single
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+' '           Text.Whitespace
+'3'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'100.5'       Literal.Number.Float
+' '           Text.Whitespace
+'80'          Literal.Number.Float
+' '           Text.Whitespace
+'-100.5'      Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'# relative'  Comment.Single
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-0.5'        Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'# carrot'    Comment.Single
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-0.5'        Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tp'          Name.Builtin
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+'\n'          Text.Whitespace

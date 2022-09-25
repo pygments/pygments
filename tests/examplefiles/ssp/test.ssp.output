@@ -1,27 +1,27 @@
 '<%@'         Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'someName'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'someDefaultValue' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text.Whitespace
 
 '<%'          Keyword
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'com.acme.MySnippets._' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text.Whitespace
 
@@ -51,20 +51,20 @@
 '\n'          Text.Whitespace
 
 '<%='         Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'person'      Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'people'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n  '        Text.Whitespace
 '<'           Punctuation
@@ -78,9 +78,9 @@
 '\n'          Text.Whitespace
 
 '<%'          Keyword
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Keyword
 '\n'          Text.Whitespace
 

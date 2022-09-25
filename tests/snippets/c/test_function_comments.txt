@@ -1,0 +1,409 @@
+---input---
+int func1(int x, int y)
+    /*@requires y >= 0*/
+{
+    return x / y;
+}
+
+
+int func2(int x, int y)    //@requires y >= 0;
+{
+    return x / y;
+}
+
+
+void func3()
+//#test{};
+{
+    fun(2,3)//test1;
+    ;
+}
+
+
+int func4(int x, int y)
+    /*@requires y >= 0;*/
+{
+    return x / y;
+}
+
+
+int func5(int x, int y)
+    /*@requires y >= 0
+    {
+        return x / y;
+    }
+    */
+   {
+       return 2;
+   }
+
+
+//@requires y >= 0;
+//@requires y >= 0
+/*
+calling(2,5)
+*/
+/*
+calling(2,5);
+*/
+int func6(int x, int y)
+    //@requires y >= 0
+    //@requires y >= 0;
+    /*
+    hello(2,3);
+    */
+    /*
+    hello(2,3)
+    */
+    {
+        // haha(2,3);
+        return x / y;
+        /*
+        callblabla(x, y);
+        */
+    }
+//@requires y >= 0;
+//@requires y >= 0
+/*
+calling(2,5)
+*/
+/*
+calling(2,5);
+*/
+
+
+int * //@# a pointer to int
+func7 /* @# why a comment here?  */ (
+  int /* the index has to be an int */ a, // index into the array
+  int *b    //the array @!
+)
+/*
+    The end of the func params @ (@ will result error if parsed incorrectly)
+*/
+{
+  // yet another comment
+  return b[a];
+}
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'func1'       Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/*@requires y >= 0*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'func2'       Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'    '        Text.Whitespace
+'//@requires y >= 0;\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'func3'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'//#test{};\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'fun'         Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+'//test1;\n'  Comment.Single
+
+'    '        Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'func4'       Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/*@requires y >= 0;*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'func5'       Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/*@requires y >= 0\n    {\n        return x / y;\n    }\n    */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'       '     Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//@requires y >= 0;\n' Comment.Single
+
+'//@requires y >= 0\n' Comment.Single
+
+'/*\ncalling(2,5)\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'/*\ncalling(2,5);\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'func6'       Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'//@requires y >= 0\n' Comment.Single
+
+'    '        Text.Whitespace
+'//@requires y >= 0;\n' Comment.Single
+
+'    '        Text.Whitespace
+'/*\n    hello(2,3);\n    */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/*\n    hello(2,3)\n    */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// haha(2,3);\n' Comment.Single
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'/*\n        callblabla(x, y);\n        */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'//@requires y >= 0;\n' Comment.Single
+
+'//@requires y >= 0\n' Comment.Single
+
+'/*\ncalling(2,5)\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'/*\ncalling(2,5);\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'//@# a pointer to int\n' Comment.Single
+
+'func7'       Name.Function
+' '           Text.Whitespace
+'/* @# why a comment here?  */' Comment.Multiline
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'/* the index has to be an int */' Comment.Multiline
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'// index into the array\n' Comment.Single
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'b'           Name
+'    '        Text.Whitespace
+'//the array @!\n' Comment.Single
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'/*\n    The end of the func params @ (@ will result error if parsed incorrectly)\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// yet another comment\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'b'           Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

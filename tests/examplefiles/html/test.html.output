@@ -12,23 +12,23 @@
 'script'      Name.Tag
 '>'           Punctuation
 ''            Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'initCodeBlock' Name.Other
 '('           Punctuation
 'id'          Name.Other
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'el'          Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'document'    Name.Builtin
 '.'           Punctuation
 'getElementById' Name.Other
@@ -36,9 +36,9 @@
 'id'          Name.Other
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation

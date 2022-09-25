@@ -1,0 +1,338 @@
+'# Simple routine to demo functions' Comment
+'\n'          Text.Whitespace
+
+'# USING a stack in this example to preserve' Comment
+'\n'          Text.Whitespace
+
+'# values of calling function' Comment
+'\n\n'        Text.Whitespace
+
+'# ------------------------------------------------------------------' Comment
+'\n\n    '    Text.Whitespace
+'.text'       Name.Entity
+'\n\n    '    Text.Whitespace
+'.globl'      Name.Entity
+'  '          Text.Whitespace
+'main'        Text
+'\n'          Text.Whitespace
+
+'main:'       Name.Function
+'\n    '      Text.Whitespace
+'# Register assignments' Comment
+'\n    '      Text.Whitespace
+'# $s0 = x'   Comment
+'\n    '      Text.Whitespace
+'# $s1 = y'   Comment
+'\n\n    '    Text.Whitespace
+'# Initialize registers' Comment
+'\n    '      Text.Whitespace
+'lw'          Keyword
+'  '          Text.Whitespace
+'$s0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'x'           Text
+'      '      Text.Whitespace
+'# Reg $s0 = x' Comment
+'\n    '      Text.Whitespace
+'lw'          Keyword
+'  '          Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'y'           Text
+'      '      Text.Whitespace
+'# Reg $s1 = y' Comment
+'\n\n    '    Text.Whitespace
+'# Call function' Comment
+'\n    '      Text.Whitespace
+'move'        Name.Variable
+'    '        Text.Whitespace
+'$a0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'$s0'         Keyword.Type
+'    '        Text.Whitespace
+'# Argument 1: x ($s0)' Comment
+'\n    '      Text.Whitespace
+'jal'         Keyword
+' '           Text.Whitespace
+'fun'         Text
+'     '       Text.Whitespace
+'# Save current PC in $ra, and jump to fun' Comment
+'\n    '      Text.Whitespace
+'move'        Name.Variable
+'    '        Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+'$v0'         Keyword.Type
+'     '       Text.Whitespace
+'# Return value saved in $v0. This is y ($s1)' Comment
+'\n\n    '    Text.Whitespace
+'# Print msg1' Comment
+'\n    '      Text.Whitespace
+'li'          Name.Variable
+'  '          Text.Whitespace
+'$v0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'4'           Keyword.Constant
+'      '      Text.Whitespace
+'# print_string syscall code = 4' Comment
+'\n    '      Text.Whitespace
+'la'          Name.Variable
+'  '          Text.Whitespace
+'$a0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'msg1'        Text
+'\n    '      Text.Whitespace
+'syscall'     Keyword
+'\n\n    '    Text.Whitespace
+'# Print result (y)' Comment
+'\n    '      Text.Whitespace
+'li'          Name.Variable
+'  '          Text.Whitespace
+'$v0'         Keyword.Type
+','           Name.Builtin
+'1'           Keyword.Constant
+'       '     Text.Whitespace
+'# print_int syscall code = 1' Comment
+'\n    '      Text.Whitespace
+'move'        Name.Variable
+'    '        Text.Whitespace
+'$a0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'$s1'         Keyword.Type
+'    '        Text.Whitespace
+'# Load integer to print in $a0' Comment
+'\n    '      Text.Whitespace
+'syscall'     Keyword
+'\n\n    '    Text.Whitespace
+'# Print newline' Comment
+'\n    '      Text.Whitespace
+'li'          Name.Variable
+'  '          Text.Whitespace
+'$v0'         Keyword.Type
+','           Name.Builtin
+'4'           Keyword.Constant
+'       '     Text.Whitespace
+'# print_string syscall code = 4' Comment
+'\n    '      Text.Whitespace
+'la'          Name.Variable
+'  '          Text.Whitespace
+'$a0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'lf'          Text
+'\n    '      Text.Whitespace
+'syscall'     Keyword
+'\n\n    '    Text.Whitespace
+'# Exit'      Comment
+'\n    '      Text.Whitespace
+'li'          Name.Variable
+'  '          Text.Whitespace
+'$v0'         Keyword.Type
+','           Name.Builtin
+'1'           Keyword.Constant
+'0'           Keyword.Constant
+'      '      Text.Whitespace
+'# exit'      Comment
+'\n    '      Text.Whitespace
+'syscall'     Keyword
+'\n\n'        Text.Whitespace
+
+'# ------------------------------------------------------------------' Comment
+'\n\n    '    Text.Whitespace
+'# FUNCTION: int fun(int a)' Comment
+'\n    '      Text.Whitespace
+'# Arguments are stored in $a0' Comment
+'\n    '      Text.Whitespace
+'# Return value is stored in $v0' Comment
+'\n    '      Text.Whitespace
+'# Return address is stored in $ra (put there by jal instruction)' Comment
+'\n    '      Text.Whitespace
+'# Typical function operation is:' Comment
+'\n\n'        Text.Whitespace
+
+'fun:'        Name.Function
+'    '        Text.Whitespace
+'# This function overwrites $s0 and $s1' Comment
+'\n    '      Text.Whitespace
+'# We should save those on the stack' Comment
+'\n    '      Text.Whitespace
+"# This is PUSH'ing onto the stack" Comment
+'\n    '      Text.Whitespace
+'addi'        Keyword
+' '           Text.Whitespace
+'$sp'         Keyword.Type
+','           Name.Builtin
+'$sp'         Keyword.Type
+','           Name.Builtin
+'-4'          Keyword.Constant
+'     '       Text.Whitespace
+'# Adjust stack pointer' Comment
+'\n    '      Text.Whitespace
+'sw'          Keyword
+' '           Text.Whitespace
+'$s0'         Keyword.Type
+','           Name.Builtin
+'0'           Keyword.Constant
+'('           Text
+'$sp'         Keyword.Type
+')'           Text
+'       '     Text.Whitespace
+'# Save $s0'  Comment
+'\n    '      Text.Whitespace
+'addi'        Keyword
+' '           Text.Whitespace
+'$sp'         Keyword.Type
+','           Name.Builtin
+'$sp'         Keyword.Type
+','           Name.Builtin
+'-4'          Keyword.Constant
+'     '       Text.Whitespace
+'# Adjust stack pointer' Comment
+'\n    '      Text.Whitespace
+'sw'          Keyword
+' '           Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+'0'           Keyword.Constant
+'('           Text
+'$sp'         Keyword.Type
+')'           Text
+'       '     Text.Whitespace
+'# Save $s1'  Comment
+'\n\n    '    Text.Whitespace
+'# Do the function math' Comment
+'\n    '      Text.Whitespace
+'li'          Name.Variable
+' '           Text.Whitespace
+'$s0'         Keyword.Type
+','           Name.Builtin
+' '           Text.Whitespace
+'3'           Keyword.Constant
+'\n    '      Text.Whitespace
+'mul'         Keyword
+' '           Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+'$s0'         Keyword.Type
+','           Name.Builtin
+'$a0'         Keyword.Type
+'     '       Text.Whitespace
+'# s1 = 3*$a0  (i.e. 3*a)' Comment
+'\n    '      Text.Whitespace
+'addi'        Keyword
+' '           Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+'$s1'         Keyword.Type
+','           Name.Builtin
+'5'           Keyword.Constant
+'      '      Text.Whitespace
+'# 3*a+5'     Comment
+'\n\n    '    Text.Whitespace
+'# Save the return value in $v0' Comment
+'\n    '      Text.Whitespace
+'move'        Name.Variable
+' '           Text.Whitespace
+'$v0'         Keyword.Type
+','           Name.Builtin
+'$s1'         Keyword.Type
+'\n\n    '    Text.Whitespace
+'# Restore saved register values from stack in opposite order' Comment
+'\n    '      Text.Whitespace
+"# This is POP'ing from the stack" Comment
+'\n    '      Text.Whitespace
+'lw'          Keyword
+' '           Text.Whitespace
+'$s1'         Keyword.Type
+','           Name.Builtin
+'0'           Keyword.Constant
+'('           Text
+'$sp'         Keyword.Type
+')'           Text
+'       '     Text.Whitespace
+'# Restore $s1' Comment
+'\n    '      Text.Whitespace
+'addi'        Keyword
+' '           Text.Whitespace
+'$sp'         Keyword.Type
+','           Name.Builtin
+'$sp'         Keyword.Type
+','           Name.Builtin
+'4'           Keyword.Constant
+'      '      Text.Whitespace
+'# Adjust stack pointer' Comment
+'\n    '      Text.Whitespace
+'lw'          Keyword
+' '           Text.Whitespace
+'$s0'         Keyword.Type
+','           Name.Builtin
+'0'           Keyword.Constant
+'('           Text
+'$sp'         Keyword.Type
+')'           Text
+'       '     Text.Whitespace
+'# Restore $s0' Comment
+'\n    '      Text.Whitespace
+'addi'        Keyword
+' '           Text.Whitespace
+'$sp'         Keyword.Type
+','           Name.Builtin
+'$sp'         Keyword.Type
+','           Name.Builtin
+'4'           Keyword.Constant
+'      '      Text.Whitespace
+'# Adjust stack pointer' Comment
+'\n\n    '    Text.Whitespace
+'# Return from function' Comment
+'\n    '      Text.Whitespace
+'jr'          Keyword
+' '           Text.Whitespace
+'$ra'         Keyword.Type
+'          '  Text.Whitespace
+'# Jump to addr stored in $ra' Comment
+'\n\n'        Text.Whitespace
+
+'# ------------------------------------------------------------------' Comment
+'\n\n    '    Text.Whitespace
+'# Start .data segment (data!)' Comment
+'\n    '      Text.Whitespace
+'.data'       Name.Entity
+'\n'          Text.Whitespace
+
+'x:'          Name.Function
+'  '          Text.Whitespace
+'.word'       Name.Entity
+' '           Text.Whitespace
+'5'           Keyword.Constant
+'\n'          Text.Whitespace
+
+'y:'          Name.Function
+'  '          Text.Whitespace
+'.word'       Name.Entity
+' '           Text.Whitespace
+'0'           Keyword.Constant
+'\n'          Text.Whitespace
+
+'msg1:'       Name.Function
+'   '         Text.Whitespace
+'.asciiz'     Name.Entity
+' '           Text.Whitespace
+'"'           Literal.String
+'y='          Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'lf:'         Name.Function
+'     '       Text.Whitespace
+'.asciiz'     Name.Entity
+' '           Text.Whitespace
+'"'           Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

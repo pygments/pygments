@@ -23,7 +23,7 @@
     bloated output and are usually an indication that someone is missing a + or *
     in the regex. 
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import argparse

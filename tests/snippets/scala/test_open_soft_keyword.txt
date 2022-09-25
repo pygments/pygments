@@ -3,10 +3,10 @@ val open = true
 
 ---tokens---
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'open'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace

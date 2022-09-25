@@ -2,7 +2,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -93,13 +93,21 @@ def test_all_options():
                     check(optdict)
 
 
+def test_linespans():
+    outfile = StringIO()
+    fmt = HtmlFormatter(linespans='L', anchorlinenos=True, linenos="inline")
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert re.search(r"""<span id="L-1">\s*<a href="#L-1"><span\s*class="linenos">\s*1</span></a>""", html)
+
+
 def test_lineanchors():
     optdict = dict(lineanchors="foo")
     outfile = StringIO()
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-1\" name=\"foo-1\" href=\"foo-1\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-1\" name=\"foo-1\" href=\"#foo-1\">", html)
 
 
 def test_lineanchors_with_startnum():
@@ -108,7 +116,7 @@ def test_lineanchors_with_startnum():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"foo-5\">", html)
+    assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"#foo-5\">", html)
 
 
 def test_valid_output():

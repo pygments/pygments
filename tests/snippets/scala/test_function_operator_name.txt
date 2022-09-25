@@ -3,16 +3,16 @@ def < (y: String): Boolean
 
 ---tokens---
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'y'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Name.Class
 ')'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Boolean'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace

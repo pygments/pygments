@@ -1,483 +1,484 @@
 ''            Text
 '/* Block comment */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*\n    Multiline block\n    comment\n*/' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'// inline comment\n' Comment.Single
+'// inline comment' Comment.Single
+'\n'          Text.Whitespace
 
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'juttleFunction' Name.Other
 '('           Punctuation
 'arg'         Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'arg'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'null'        Keyword.Constant
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'arg'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 "'zero'"      Literal.String.Single
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'arg'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"one"'       Literal.String.Double
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1.1'         Literal.Number.Float
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'reducer'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'juttleReducer' Name.Other
 '('           Punctuation
 'field'       Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'update'      Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'field'       Name.Other
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'result'      Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Other
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'sub'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'myemit'      Name.Other
 '('           Punctuation
 'limit'       Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'emit'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'limit'       Name.Other
-' '           Text
+' '           Text.Whitespace
 'limit'       Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'input'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'text'        Name.Other
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'default'     Name.Other
-' '           Text
+' '           Text.Whitespace
 "'input'"     Literal.String.Single
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'object'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'xyz'         Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number.Integer
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'name'        Name.Other
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 "'something'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'array'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01T01:00:00:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01T01:00:00.000:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01T01:00:00.000Z:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01T01:00:00.000-0800:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':2016-01-01T01:00:00.000-08:00:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':00:00:01:'  Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':00:00:00.001:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':now:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':beginning:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':end:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':forever:'   Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':yesterday:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':today:'     Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':tomorrow:'  Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1:'         Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1.1:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1s:'        Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1 second:'  Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1 seconds:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':100ms:'     Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':100 millisecond:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':100 milliseconds:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1d:'        Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1 day:'     Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1 days:'    Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':.2h:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1.2h:'      Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':.2 hour:'   Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1.2 hours:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':.5d:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1.5d:'      Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':.5 day:'    Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1.5 days:'  Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':5m:'        Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':5 minutes:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':10w:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':10 weeks:'  Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':10M:'       Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':10 months:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':100y:'      Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':100 years:' Literal.String.Moment
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':1 year and 2 months and 2 days:' Literal.String.Moment
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'emit'        Keyword.Reserved
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'batch'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 ':10 minutes:' Literal.String.Moment
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Other
 '='           Operator
 'true'        Keyword.Constant
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'head'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'join'        Keyword.Reserved
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'keep'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Other
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'pace'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'every'       Name.Other
-' '           Text
+' '           Text.Whitespace
 ':1 minute:'  Literal.String.Moment
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'pass'        Keyword.Reserved
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'put'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'y'           Name.Other
 '='           Operator
 'false'       Keyword.Constant
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'remove'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'z'           Name.Other
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'sequence'    Keyword.Reserved
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'skip'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'sort'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'field'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'desc'        Name.Other
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'split'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'field'       Name.Other
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'tail'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'unbatch'     Keyword.Reserved
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'uniq'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'field'       Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'read'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'adapter'     Name.Other
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'last'        Name.Other
-' '           Text
+' '           Text.Whitespace
 ':day:'       Literal.String.Moment
-' '           Text
+' '           Text.Whitespace
 "'search'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'AND'         Name.Other
-' '           Text
+' '           Text.Whitespace
 'field'       Name.Other
 '~'           Operator
 '/pattern/'   Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 'OR'          Name.Other
-' '           Text
+' '           Text.Whitespace
 'field'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 "'string'"    Literal.String.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'write'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'adapter'     Name.Other
-'\n'          Text
+'\n'          Text.Whitespace

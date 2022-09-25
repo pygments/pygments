@@ -1,0 +1,254 @@
+---input---
+subu
+subi
+sub
+addu
+addiu
+addi
+add
+multu
+mult
+mulu
+mul
+maddu
+madd
+msubu
+msub
+divu
+div
+nor
+xor
+andi
+and
+ori
+xori
+or
+sllv
+sll
+srlv
+srl
+srav
+sra
+sltiu
+sltu
+slti
+slt
+jalr
+jal
+jr
+j
+bgezal
+bgez
+bltzal
+bltz
+lbu
+lb
+lhu
+lh
+lwr
+lw
+swl
+swr
+sw
+teqi
+teq
+tneqi
+tne
+tgeiu
+tgeu
+tgei
+tge
+tltiu
+tltu
+tlti
+tlt
+
+---tokens---
+'subu'        Keyword
+'\n'          Text.Whitespace
+
+'subi'        Keyword
+'\n'          Text.Whitespace
+
+'sub'         Keyword
+'\n'          Text.Whitespace
+
+'addu'        Keyword
+'\n'          Text.Whitespace
+
+'addiu'       Keyword
+'\n'          Text.Whitespace
+
+'addi'        Keyword
+'\n'          Text.Whitespace
+
+'add'         Keyword
+'\n'          Text.Whitespace
+
+'multu'       Keyword
+'\n'          Text.Whitespace
+
+'mult'        Keyword
+'\n'          Text.Whitespace
+
+'mulu'        Keyword
+'\n'          Text.Whitespace
+
+'mul'         Keyword
+'\n'          Text.Whitespace
+
+'maddu'       Keyword
+'\n'          Text.Whitespace
+
+'madd'        Keyword
+'\n'          Text.Whitespace
+
+'msubu'       Keyword
+'\n'          Text.Whitespace
+
+'msub'        Keyword
+'\n'          Text.Whitespace
+
+'divu'        Keyword
+'\n'          Text.Whitespace
+
+'div'         Keyword
+'\n'          Text.Whitespace
+
+'nor'         Keyword
+'\n'          Text.Whitespace
+
+'xor'         Keyword
+'\n'          Text.Whitespace
+
+'andi'        Keyword
+'\n'          Text.Whitespace
+
+'and'         Keyword
+'\n'          Text.Whitespace
+
+'ori'         Keyword
+'\n'          Text.Whitespace
+
+'xori'        Keyword
+'\n'          Text.Whitespace
+
+'or'          Keyword
+'\n'          Text.Whitespace
+
+'sllv'        Keyword
+'\n'          Text.Whitespace
+
+'sll'         Keyword
+'\n'          Text.Whitespace
+
+'srlv'        Keyword
+'\n'          Text.Whitespace
+
+'srl'         Keyword
+'\n'          Text.Whitespace
+
+'srav'        Keyword
+'\n'          Text.Whitespace
+
+'sra'         Keyword
+'\n'          Text.Whitespace
+
+'sltiu'       Keyword
+'\n'          Text.Whitespace
+
+'sltu'        Keyword
+'\n'          Text.Whitespace
+
+'slti'        Keyword
+'\n'          Text.Whitespace
+
+'slt'         Keyword
+'\n'          Text.Whitespace
+
+'jalr'        Keyword
+'\n'          Text.Whitespace
+
+'jal'         Keyword
+'\n'          Text.Whitespace
+
+'jr'          Keyword
+'\n'          Text.Whitespace
+
+'j'           Keyword
+'\n'          Text.Whitespace
+
+'bgezal'      Keyword
+'\n'          Text.Whitespace
+
+'bgez'        Keyword
+'\n'          Text.Whitespace
+
+'bltzal'      Keyword
+'\n'          Text.Whitespace
+
+'bltz'        Keyword
+'\n'          Text.Whitespace
+
+'lbu'         Keyword
+'\n'          Text.Whitespace
+
+'lb'          Keyword
+'\n'          Text.Whitespace
+
+'lhu'         Keyword
+'\n'          Text.Whitespace
+
+'lh'          Keyword
+'\n'          Text.Whitespace
+
+'lwr'         Keyword
+'\n'          Text.Whitespace
+
+'lw'          Keyword
+'\n'          Text.Whitespace
+
+'swl'         Keyword
+'\n'          Text.Whitespace
+
+'swr'         Keyword
+'\n'          Text.Whitespace
+
+'sw'          Keyword
+'\n'          Text.Whitespace
+
+'teqi'        Keyword
+'\n'          Text.Whitespace
+
+'teq'         Keyword
+'\n'          Text.Whitespace
+
+'tneqi'       Keyword
+'\n'          Text.Whitespace
+
+'tne'         Keyword
+'\n'          Text.Whitespace
+
+'tgeiu'       Keyword
+'\n'          Text.Whitespace
+
+'tgeu'        Keyword
+'\n'          Text.Whitespace
+
+'tgei'        Keyword
+'\n'          Text.Whitespace
+
+'tge'         Keyword
+'\n'          Text.Whitespace
+
+'tltiu'       Keyword
+'\n'          Text.Whitespace
+
+'tltu'        Keyword
+'\n'          Text.Whitespace
+
+'tlti'        Keyword
+'\n'          Text.Whitespace
+
+'tlt'         Keyword
+'\n'          Text.Whitespace

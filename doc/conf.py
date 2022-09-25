@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Pygments'
-copyright = '2006-2021, Georg Brandl and Pygments contributors'
+copyright = '2006-2022, Georg Brandl and Pygments contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -132,10 +132,14 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {'styles': 'styles.html'}
+html_additional_pages = {
+    'styles': 'styles.html',
+    'languages': 'languages.html'
+    }
 
 if os.environ.get('WEBSITE_BUILD'):
     html_additional_pages['demo'] = 'demo.html'
+    html_static_path.append('_build/pyodide')
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -229,8 +233,17 @@ rst_prolog = '.. |language_count| replace:: {}'.format(len(list(pygments.lexers.
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
 
+    if pagename in ('demo', 'languages'):
+        all_lexers = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
     if pagename == 'demo':
-        ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(), key=lambda x: x[0].lower())
+        ctx['lexers'] = all_lexers
+
+    if pagename == 'languages':
+        lexer_name_url = []
+        for entry in all_lexers:
+            lexer_cls = pygments.lexers.find_lexer_class(entry[0])
+            lexer_name_url.append({'name': entry[0], 'url': lexer_cls.url})
+        ctx['languages'] = lexer_name_url
 
     if pagename in ('styles', 'demo'):
         with open('examples/example.py') as f:
@@ -239,7 +252,8 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         min_contrasts = test_contrasts.min_contrasts()
         ctx['styles_aa'] = []
         ctx['styles_sub_aa'] = []
-        for style in pygments.styles.get_all_styles():
+        # Use STYLE_MAP directly so we don't get plugins as with get_all_styles().
+        for style in pygments.styles.STYLE_MAP:
             if not pygments.styles.get_style_by_name(style).web_style_gallery_exclude:
                 aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
                 bg_r, bg_g, bg_b = test_contrasts.hex2rgb(pygments.styles.get_style_by_name(style).background_color)

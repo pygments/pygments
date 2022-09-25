@@ -32,8 +32,8 @@ be used to find typos in token names, as those tokens are only used by one lexer
 
 .. option:: -s, --subtokens
     When ``--subtoken`` is given each token is also counted for each of its
-    parent tokens. I.e. if we have 10 occurences of the token
-    ``Token.Literal.Number.Integer`` and 10 occurences of the token
+    parent tokens. I.e. if we have 10 occurrences of the token
+    ``Token.Literal.Number.Integer`` and 10 occurrences of the token
     ``Token.Literal.Number.Hex`` but none for ``Token.Literal.Number``, with
     ``--subtoken`` ``Token.Literal.Number`` would be counted as having
     20 references.
@@ -72,7 +72,10 @@ def fetch_lexer_sources():
     to a list of lines.
     """
     lexer_dir = (pathlib.Path(__file__).parent / "../pygments/lexers").resolve()
-    lexer_sources = {fn: fn.read_text().splitlines(keepends=False) for fn in lexer_dir.glob("*.py")}
+    lexer_sources = {
+        fn: fn.read_text(encoding='utf-8').splitlines(keepends=False)
+        for fn in lexer_dir.glob("*.py")
+    }
     return lexer_sources
 
 

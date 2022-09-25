@@ -1,0 +1,34 @@
+---input---
+<!--
+this
+comment
+is
+never
+terminated
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+...
+
+---tokens---
+'<'           Error
+'!--\nthis\ncomment\nis\nnever\nterminated\n...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n...\n' Text

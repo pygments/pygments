@@ -1,112 +1,121 @@
 ''            Text
-'// Node.js REPL Session\n' Comment.Single
+'// Node.js REPL Session' Comment.Single
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'undefined'   Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'a'           Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 '3'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'4'"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'undefined'   Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'4'"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 'false'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'b'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 'false'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'a'           Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'   '         Text
+'   '         Text.Whitespace
 'console'     Name.Other
 '.'           Punctuation
 'log'         Name.Other
 '('           Punctuation
 'a'           Name.Other
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '3'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'undefined'   Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'> '          Generic.Prompt
+'>'           Generic.Prompt
+' '           Text.Whitespace
 'c'           Name.Other
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Uncaught'    Name.Other
-' '           Text
+' '           Text.Whitespace
 'ReferenceError' Name.Exception
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Other
-' '           Text
+' '           Text.Whitespace
 'is'          Name.Other
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Other
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Other
-'\n'          Text
+'\n'          Text.Whitespace

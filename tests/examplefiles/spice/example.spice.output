@@ -1,3 +1,96 @@
+'const'       Keyword.Pseudo
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'test'        Name.Other
+' '           Text.Whitespace
+'0x123'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'BloodType'   Name.Other
+' '           Text.Whitespace
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'A'           Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'B'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'AB'          Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ZERO'        Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'Person'      Name.Other
+' '           Text.Whitespace
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'firstName'   Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'lastName'    Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'unsigned'    Keyword.Pseudo
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'age'         Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'BloodType'   Name.Other
+' '           Text.Whitespace
+'bloodType'   Name.Other
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
 '// Function to compute fibonacci numbers recursively\n' Comment.Single
 
 'f'           Keyword.Declaration
@@ -70,6 +163,8 @@
 
 '// Function to compute factorial numbers recursively\n' Comment.Single
 
+'inline'      Keyword.Pseudo
+' '           Text.Whitespace
 'f'           Keyword.Declaration
 '<'           Punctuation
 'int'         Keyword.Type
@@ -133,7 +228,7 @@
 
 '\n'          Text.Whitespace
 
-'/*\n* Entry point of the program\n*/' Comment.Multiline
+'/**\n* Entry point of the program\n*/' Literal.String.Doc
 '\n'          Text.Whitespace
 
 'f'           Keyword.Declaration
@@ -155,11 +250,7 @@
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'('           Punctuation
-'short'       Keyword.Type
-')'           Punctuation
-' '           Text.Whitespace
-'10'          Literal.Number.Integer
+'0d10s'       Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -264,6 +355,37 @@
 ' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Sizeof usage\n' Comment.Single
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'size'        Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sizeof'      Name.Builtin
+'('           Punctuation
+"'T'"         Literal.String.Char
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"Size of char is %d, %d\\n"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'size'        Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace

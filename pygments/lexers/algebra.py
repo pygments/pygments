@@ -4,26 +4,27 @@
 
     Lexers for computer algebra systems.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Generic, Whitespace
 
-__all__ = ['GAPLexer', 'MathematicaLexer', 'MuPADLexer', 'BCLexer']
+__all__ = ['GAPLexer', 'GAPConsoleLexer', 'MathematicaLexer', 'MuPADLexer', 'BCLexer']
 
 
 class GAPLexer(RegexLexer):
     """
-    For `GAP <http://www.gap-system.org>`_ source code.
+    For GAP source code.
 
     .. versionadded:: 2.0
     """
     name = 'GAP'
+    url = 'http://www.gap-system.org'
     aliases = ['gap']
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
 
@@ -87,13 +88,71 @@ class GAPLexer(RegexLexer):
         return min(score, 1.0)
 
 
+class GAPConsoleLexer(Lexer):
+    """
+    For GAP console sessions. Modeled after JuliaConsoleLexer.
+
+    .. versionadded:: 2.14
+    """
+    name = 'GAP session'
+    aliases = ['gap-console', 'gap-repl']
+    filenames = ['*.tst']
+
+    def get_tokens_unprocessed(self, text):
+        gaplexer = GAPLexer(**self.options)
+        start = 0
+        curcode = ''
+        insertions = []
+        output = False
+        error = False
+
+        for line in text.splitlines(keepends=True):
+            if line.startswith('gap> ') or line.startswith('brk> '):
+                insertions.append((len(curcode), [(0, Generic.Prompt, line[:5])]))
+                curcode += line[5:]
+                output = False
+                error = False
+            elif not output and line.startswith('> '):
+                insertions.append((len(curcode), [(0, Generic.Prompt, line[:2])]))
+                curcode += line[2:]
+            else:
+                if curcode:
+                    yield from do_insertions(
+                        insertions, gaplexer.get_tokens_unprocessed(curcode))
+                    curcode = ''
+                    insertions = []
+                if line.startswith('Error, ') or error:
+                    yield start, Generic.Error, line
+                    error = True
+                else:
+                    yield start, Generic.Output, line
+                output = True
+            start += len(line)
+
+        if curcode:
+            yield from do_insertions(
+                insertions, gaplexer.get_tokens_unprocessed(curcode))
+
+    # the following is needed to distinguish Scilab and GAP .tst files
+    def analyse_text(text):
+        # GAP prompts are a dead give away, although hypothetical;y a
+        # file in another language could be trying to compare a variable
+        # "gap" as in "gap> 0.1". But that this should happen at the
+        # start of a line seems unlikely...
+        if re.search(r"^gap> ", text):
+            return 0.9
+        else:
+            return 0.0
+
+
 class MathematicaLexer(RegexLexer):
     """
-    Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
+    Lexer for Mathematica source code.
 
     .. versionadded:: 2.0
     """
     name = 'Mathematica'
+    url = 'http://www.wolfram.com/mathematica/'
     aliases = ['mathematica', 'mma', 'nb']
     filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
     mimetypes = ['application/mathematica',
@@ -136,12 +195,13 @@ class MathematicaLexer(RegexLexer):
 
 class MuPADLexer(RegexLexer):
     """
-    A `MuPAD <http://www.mupad.com>`_ lexer.
+    A MuPAD lexer.
     Contributed by Christopher Creutzig <christopher@creutzig.de>.
 
     .. versionadded:: 0.8
     """
     name = 'MuPAD'
+    url = 'http://www.mupad.com'
     aliases = ['mupad']
     filenames = ['*.mu']
 
@@ -208,11 +268,12 @@ class MuPADLexer(RegexLexer):
 
 class BCLexer(RegexLexer):
     """
-    A `BC <https://www.gnu.org/software/bc/>`_ lexer.
+    A BC lexer.
 
     .. versionadded:: 2.1
     """
     name = 'BC'
+    url = 'https://www.gnu.org/software/bc/'
     aliases = ['bc']
     filenames = ['*.bc']
 
