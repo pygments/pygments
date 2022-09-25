@@ -131,7 +131,7 @@ class PropertiesLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[!#].*|/{2}.*', Comment.Single),
             # search for first separator
-            (r'.+?[^\\](?:\\{2})*?(?=[ \f\t=:])', Name.Attribute, "separator"),
+            (r'([^\\\n]|\\.)*?(?=[ \f\t=:])', Name.Attribute, "separator"),
             # empty key
             (r'.+?$', Name.Attribute),
         ],
