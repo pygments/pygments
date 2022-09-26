@@ -49,7 +49,7 @@ class FiftLexer(RegexLexer):
             (r'B\{[0-9a-fA-F_]+\}', Literal),
 
             # treat anything as word
-            (r'[\S]+', Name)
+            (r'\S+', Name)
         ],
 
         'comments': [
