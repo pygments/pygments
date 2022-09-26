@@ -42,14 +42,14 @@ class FiftLexer(RegexLexer):
             (r'0[bB][01]+', Number.Bin),
 
             # slices
-            (r'b\{[01]+}', Literal),
-            (r'x\{[0-9a-fA-F_]+}', Literal),
+            (r'b\{[01]+\}', Literal),
+            (r'x\{[0-9a-fA-F_]+\}', Literal),
 
             # byte literal
-            (r'B\{[0-9a-fA-F_]+}', Literal),
+            (r'B\{[0-9a-fA-F_]+\}', Literal),
 
             # treat anything as word
-            (r'[^\s]+', Name)
+            (r'[\S]+', Name)
         ],
 
         'comments': [
