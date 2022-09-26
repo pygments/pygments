@@ -35,9 +35,9 @@ class TlbLexer(RegexLexer):
                 '+', '-', '*', '=', '?', '~', '.',
                 '^', '==', '<', '>', '<=', '>=', '!='
             )), Operator),
+            (words(('##', '#<', '#<=')), Name.Tag),
             (r'#[0-9a-f]*_?', Name.Tag),
             (r'\$[01]*_?', Name.Tag),
-            (words(('##', '#<', '#<=', '#')), Name.Tag),
 
             (r'[a-zA-Z_][0-9a-zA-Z_]*', Name),
 
