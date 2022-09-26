@@ -26,7 +26,6 @@ class TlbLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Whitespace),
             (r'\s+', Whitespace),
 
             include('comments'),
@@ -36,8 +35,8 @@ class TlbLexer(RegexLexer):
                 '+', '-', '*', '=', '?', '~', '.',
                 '^', '==', '<', '>', '<=', '>=', '!='
             )), Operator),
-            (r'#(_|[0-9a-f]+_?)', Name.Tag),
-            (r'\$(_|[01]*)', Name.Tag),
+            (r'#[0-9a-f]*_?', Name.Tag),
+            (r'\$[01]*_?', Name.Tag),
             (words(('##', '#<', '#<=', '#')), Name.Tag),
 
             (r'[a-zA-Z_][0-9a-zA-Z_]*', Name),
@@ -46,7 +45,7 @@ class TlbLexer(RegexLexer):
         ],
 
         'comments': [
-            (r'//([^\n]*)', Comment.Singleline),
+            (r'//.*', Comment.Singleline),
             (r'/\*', Comment.Multiline, 'comment'),
         ],
         'comment': [
