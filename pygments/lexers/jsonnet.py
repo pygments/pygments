@@ -46,6 +46,8 @@ def quoted_field_name(quote_mark):
 
 
 class JsonnetLexer(RegexLexer):
+    """Lexer for Jsonnet source code."""
+
     name = 'Jsonnet'
     aliases = ['jsonnet']
     filenames = ['*.jsonnet', '*.libsonnet']
