@@ -23,6 +23,7 @@ class FiftLexer(RegexLexer):
     name = 'Fift'
     aliases = ['fift', 'fif']
     filenames = ['*.fif']
+    url = 'https://ton-blockchain.github.io/docs/fiftbase.pdf'
 
     tokens = {
         'root': [
@@ -30,16 +31,12 @@ class FiftLexer(RegexLexer):
 
             include('comments'),
 
-            # allow escapes in strings
-            (r'\"([^\"\r\n\\]|\\.)*\"', String),
-
-            # print string literal
-            (r'\.\"([^\"\r\n\\]|\\.)*\"', String),
+            (r'[\.+]?\"', String, 'string'),
 
             # numbers
-            (r'-?[0-9]+("/"-?[0-9]+)?', Number.Dec),
-            (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'0[bB][01]+', Number.Bin),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'0b[01]+', Number.Bin),
+            (r'-?[0-9]+("/"-?[0-9]+)?', Number.Decimal),
 
             # slices
             (r'b\{[01]+\}', Literal),
@@ -50,6 +47,12 @@ class FiftLexer(RegexLexer):
 
             # treat anything as word
             (r'\S+', Name)
+        ],
+
+        'string': [
+            (r'\\.', String.Escape),
+            (r'\"', String, '#pop'),
+            (r'[^\"\r\n\\]+', String)
         ],
 
         'comments': [

@@ -1,34 +1,61 @@
-'"TonUtil.fif"' Literal.String
+'"'           Literal.String
+'TonUtil.fif' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'include'     Name
 '\n'          Text.Whitespace
 
-'"Asm.fif"'   Literal.String
+'"'           Literal.String
+'Asm'         Literal.String
+'\\"'         Literal.String.Escape
+'.fif'        Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'include'     Name
 '\n\n'        Text.Whitespace
 
+'0x01'        Literal.Number.Hex
+' '           Text.Whitespace
+'0xaC'        Literal.Number.Hex
+' '           Text.Whitespace
+'0b0001'      Literal.Number.Bin
+' '           Text.Whitespace
+'b{0101}'     Literal
+' '           Text.Whitespace
+'x{eBac0c}'   Literal
+' '           Text.Whitespace
+'B{eBaC0C}'   Literal
+'\n\n'        Text.Whitespace
+
 '{'           Name
 ' '           Text.Whitespace
-'."usage: "'  Literal.String
+'."'          Literal.String
+'usage: '     Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 '$0'          Name
 ' '           Text.Whitespace
 'type'        Name
 ' '           Text.Whitespace
-'." <workchain-id> <wallet-id> [<filename-base>]"' Literal.String
+'."'          Literal.String
+' <workchain-id> <wallet-id> [<filename-base>]' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'cr'          Name
 '\n  '        Text.Whitespace
-'."Creates a new advanced wallet with unique 32-bit identifier <wallet-id> in specified workchain, with private key saved to or loaded from <filename-base>.pk"' Literal.String
+'."'          Literal.String
+'Creates a new advanced wallet with unique 32-bit identifier <wallet-id> in specified workchain, with private key saved to or loaded from <filename-base>.pk' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'cr'          Name
 '\n  '        Text.Whitespace
-'."(\'new-wallet.pk\' by default)"' Literal.String
+'."'          Literal.String
+"('new-wallet.pk' by default)" Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'cr'          Name
 ' '           Text.Whitespace
-'1'           Literal.Number.Dec
+'1'           Literal.Number.Decimal
 ' '           Text.Whitespace
 'halt'        Name
 '\n'          Text.Whitespace
@@ -42,10 +69,10 @@
 
 '$#'          Name
 ' '           Text.Whitespace
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 '-'           Name
 ' '           Text.Whitespace
-'-2'          Literal.Number.Dec
+'-2'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'and'         Name
 ' '           Text.Whitespace
@@ -56,7 +83,7 @@
 'if'          Name
 '\n\n'        Text.Whitespace
 
-'3'           Literal.Number.Dec
+'3'           Literal.Number.Decimal
 ' '           Text.Whitespace
 ':$1..n'      Name
 '\n'          Text.Whitespace
@@ -83,7 +110,9 @@
 
 '$3'          Name
 ' '           Text.Whitespace
-'"new-wallet"' Literal.String
+'"'           Literal.String
+'new-wallet'  Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'replace-if-null' Name
 ' '           Text.Whitespace
@@ -92,7 +121,9 @@
 'file-base'   Name
 '\n\n'        Text.Whitespace
 
-'."Creating new advanced v3 wallet in workchain "' Literal.String
+'."'          Literal.String
+'Creating new advanced v3 wallet in workchain ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'wc'          Name
 ' '           Text.Whitespace
@@ -101,7 +132,9 @@
 'cr'          Name
 '\n'          Text.Whitespace
 
-'."with unique wallet id "' Literal.String
+'."'          Literal.String
+'with unique wallet id ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'subwallet-id' Name
 ' '           Text.Whitespace
@@ -113,7 +146,9 @@
 '// Create new advanced wallet; code adapted from `auto/wallet3-code.fif`' Comment.Singleline
 '\n'          Text.Whitespace
 
-'"wallet-v3-code.fif"' Literal.String
+'"'           Literal.String
+'wallet-v3-code.fif' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'include'     Name
 '\n'          Text.Whitespace
@@ -126,21 +161,23 @@
 
 '<b'          Name
 ' '           Text.Whitespace
-'0'           Literal.Number.Dec
+'0'           Literal.Number.Decimal
 ' '           Text.Whitespace
-'32'          Literal.Number.Dec
+'32'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'u,'          Name
 ' '           Text.Whitespace
 'subwallet-id' Name
 ' '           Text.Whitespace
-'32'          Literal.Number.Dec
+'32'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'u,'          Name
 '\n   '       Text.Whitespace
 'file-base'   Name
 ' '           Text.Whitespace
-'+".pk"'      Name
+'+"'          Literal.String
+'.pk'         Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'load-generate-keypair' Name
 '\n   '       Text.Whitespace
@@ -167,7 +204,7 @@
 ' '           Text.Whitespace
 's,'          Name
 ' '           Text.Whitespace
-'3'           Literal.Number.Dec
+'3'           Literal.Number.Decimal
 ' '           Text.Whitespace
 'roll'        Name
 ' '           Text.Whitespace
@@ -188,7 +225,9 @@
 
 'dup'         Name
 ' '           Text.Whitespace
-'."StateInit: "' Literal.String
+'."'          Literal.String
+'StateInit: ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 '<s'          Name
 ' '           Text.Whitespace
@@ -205,18 +244,20 @@
 ' '           Text.Whitespace
 'swap'        Name
 ' '           Text.Whitespace
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 'dup'         Name
 ' '           Text.Whitespace
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 'constant'    Name
 ' '           Text.Whitespace
 'wallet_addr' Name
 '\n'          Text.Whitespace
 
-'."new wallet address = "' Literal.String
+'."'          Literal.String
+'new wallet address = ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 'dup'         Name
 ' '           Text.Whitespace
 '.addr'       Name
@@ -224,31 +265,37 @@
 'cr'          Name
 '\n'          Text.Whitespace
 
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 'dup'         Name
 ' '           Text.Whitespace
 'file-base'   Name
 ' '           Text.Whitespace
-'+".addr"'    Name
+'+"'          Literal.String
+'.addr'       Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'save-address-verbose' Name
 '\n'          Text.Whitespace
 
-'."Non-bounceable address (for init): "' Literal.String
+'."'          Literal.String
+'Non-bounceable address (for init): ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 'dup'         Name
 ' '           Text.Whitespace
-'7'           Literal.Number.Dec
+'7'           Literal.Number.Decimal
 ' '           Text.Whitespace
 '.Addr'       Name
 ' '           Text.Whitespace
 'cr'          Name
 '\n'          Text.Whitespace
 
-'."Bounceable address (for later access): "' Literal.String
+'."'          Literal.String
+'Bounceable address (for later access): ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
-'6'           Literal.Number.Dec
+'6'           Literal.Number.Decimal
 ' '           Text.Whitespace
 '.Addr'       Name
 ' '           Text.Whitespace
@@ -259,19 +306,19 @@
 ' '           Text.Whitespace
 'subwallet-id' Name
 ' '           Text.Whitespace
-'32'          Literal.Number.Dec
+'32'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'u,'          Name
 ' '           Text.Whitespace
-'-1'          Literal.Number.Dec
+'-1'          Literal.Number.Decimal
 ' '           Text.Whitespace
-'32'          Literal.Number.Dec
+'32'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'i,'          Name
 ' '           Text.Whitespace
-'0'           Literal.Number.Dec
+'0'           Literal.Number.Decimal
 ' '           Text.Whitespace
-'32'          Literal.Number.Dec
+'32'          Literal.Number.Decimal
 ' '           Text.Whitespace
 'u,'          Name
 ' '           Text.Whitespace
@@ -280,7 +327,9 @@
 
 'dup'         Name
 ' '           Text.Whitespace
-'."signing message: "' Literal.String
+'."'          Literal.String
+'signing message: ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 '<s'          Name
 ' '           Text.Whitespace
@@ -339,7 +388,9 @@
 
 'dup'         Name
 ' '           Text.Whitespace
-'."External message for initialization is "' Literal.String
+'."'          Literal.String
+'External message for initialization is ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 '<s'          Name
 ' '           Text.Whitespace
@@ -348,7 +399,7 @@
 'cr'          Name
 '\n'          Text.Whitespace
 
-'2'           Literal.Number.Dec
+'2'           Literal.Number.Decimal
 ' '           Text.Whitespace
 'boc+>B'      Name
 ' '           Text.Whitespace
@@ -361,18 +412,24 @@
 
 'file-base'   Name
 ' '           Text.Whitespace
-'+"-query.boc"' Name
+'+"'          Literal.String
+'-query.boc'  Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'tuck'        Name
 ' '           Text.Whitespace
 'B>file'      Name
 '\n'          Text.Whitespace
 
-'."(Saved wallet creating query to file "' Literal.String
+'."'          Literal.String
+'(Saved wallet creating query to file ' Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'type'        Name
 ' '           Text.Whitespace
-'.")"'        Literal.String
+'."'          Literal.String
+')'           Literal.String
+'"'           Literal.String
 ' '           Text.Whitespace
 'cr'          Name
 '\n'          Text.Whitespace

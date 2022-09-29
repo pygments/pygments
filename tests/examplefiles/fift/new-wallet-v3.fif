@@ -1,5 +1,7 @@
 "TonUtil.fif" include
-"Asm.fif" include
+"Asm\".fif" include
+
+0x01 0xaC 0b0001 b{0101} x{eBac0c} B{eBaC0C}
 
 { ."usage: " $0 type ." <workchain-id> <wallet-id> [<filename-base>]" cr
   ."Creates a new advanced wallet with unique 32-bit identifier <wallet-id> in specified workchain, with private key saved to or loaded from <filename-base>.pk" cr
