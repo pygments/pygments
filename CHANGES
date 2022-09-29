@@ -10,10 +10,8 @@ Version 2.14.0
 - Added lexers:
 
   * GAP session (#2211)
+  * Fift (#2249)
   * func (#2232)
-  * Java properties: fix issue with whitespace-delimited keys, support
-    comments starting with `!` and escapes, no longer support undocumented
-    `;` and `//` comments (#2241)
   * Jsonnet (#2239)
   * MIPS (#2228)
   * Phix (#2222)
@@ -29,6 +27,9 @@ Version 2.14.0
   * HTTP: add `CONNECT` keyword
   * Inform 6: fix lexing of properties and doubles (#2214)
   * INI: allow comments that are not their own line (#2217)
+  * Java properties: fix issue with whitespace-delimited keys, support
+    comments starting with `!` and escapes, no longer support undocumented
+    `;` and `//` comments (#2241)
   * Nim: general improvements (#1970)
   * Objective J: fix catastrophic backtracking (#2225)
   * NASM: add support for SSE/AVX/AVX-512 registers as well as 'rel'
