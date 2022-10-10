@@ -665,7 +665,7 @@ class PowerShellLexer(RegexLexer):
     keywords = (
         'while validateset validaterange validatepattern validatelength '
         'validatecount until trap switch return ref process param parameter in '
-        'if global: function foreach for finally filter end elseif else '
+        'if global: local: function foreach for finally filter end elseif else '
         'dynamicparam do default continue cmdletbinding break begin alias \\? '
         '% #script #private #local #global mandatory parametersetname position '
         'valuefrompipeline valuefrompipelinebypropertyname '
