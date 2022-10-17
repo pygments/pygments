@@ -8,7 +8,7 @@ commands ; Test command syntax parsing
  i ready do &PKG.LABEL,&LABEL(arg),&PACKAGE.tag^ROUTINE(1,"abc")
  else  do something e  q
  for  do  quit 
- f row=1:1 q:x>100 w ! f col=1:1:row s x=x+1 w $j(x,5)
+ f row=1:1 q:x>100  w ! f col=1:1:row s x=x+1 w $j(x,5)
  goto:done abort:fail,wrapup+1^DONE
  g @gotoargs
  if  halt  else  h
@@ -26,7 +26,7 @@ commands ; Test command syntax parsing
  s $ECODE=",U01,",$ET="do handle^ERRORS" s $DEVICE="1,Connection reset",$d=0 s $KEY="",$K=$c(10),$x=20,$y=4
  tstart  tcommit:ready  trestart:'ready  trollback:abort
  ts foo:serial  tc:ready  tre:'ready  tro:abort
- ts @tsarg ts @foo:t="b" TStart (a,b,c):(serial:t=5,zebra="yes") ts:everything * ts ():t="label"
+ ts @tsarg ts @foo:t="b" TStart (a,b,c):(serial:t=5:zebra="yes") ts:everything * ts ():t="label"
  use newio u:open @useargs use dev:foo="bar":mnemspec u dev::mnemspec
  write #!?5,"Hello, world!" w:writeargs'="" @writeargs,!  w *10 write /bold(1),"Bold text",/plain
  xecute:function'="" "s %=$$"_function_"(a,b,c)" x finish:done,@xargs
@@ -221,8 +221,8 @@ commands ; Test command syntax parsing
 'x'           Name.Variable
 '>'           Operator
 '100'         Literal.Number
-' '           Text.Whitespace
-'w'           Name.Variable
+'  '          Text.Whitespace
+'w'           Keyword
 ' '           Text.Whitespace
 '!'           Keyword.Pseudo
 ' '           Text.Whitespace
@@ -583,7 +583,7 @@ commands ; Test command syntax parsing
 'readargs'    Name.Variable
 "'"           Operator
 '='           Operator
-'""           Literal.String
+'""'          Literal.String
 ' '           Text.Whitespace
 '@'           Operator
 'readargs'    Name.Variable
@@ -776,7 +776,7 @@ commands ; Test command syntax parsing
 '@'           Operator
 'tsarg'       Name.Variable
 ' '           Text.Whitespace
-'ts'          Name.Variable
+'ts'          Keyword
 ' '           Text.Whitespace
 '@'           Operator
 'foo'         Name.Variable
@@ -801,7 +801,7 @@ commands ; Test command syntax parsing
 't'           Keyword
 '='           Operator
 '5'           Literal.Number
-','           Punctuation
+':'           Punctuation
 'zebra'       Keyword
 '='           Operator
 '"yes"'       Literal.String
@@ -813,7 +813,7 @@ commands ; Test command syntax parsing
 ' '           Text.Whitespace
 '*'           Keyword.Pseudo
 ' '           Text.Whitespace
-'ts'          Name.Variable
+'ts'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation

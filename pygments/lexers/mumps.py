@@ -363,7 +363,7 @@ class MumpsLexer(ExtendedRegexLexer):
             (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
             (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
             (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
-            (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
+            (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp', 'postcond')),
             (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
             (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
             (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
@@ -550,7 +550,7 @@ class MumpsLexer(ExtendedRegexLexer):
             (r'\*', Keyword.Pseudo, '#pop'),
             (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
             (r'\(', Punctuation, ('#pop', 'opt_transparameters', 'close_paren', 'l_lname')),
-            ('@', Whitespace, ('#pop', 'opt_transparameters', 'expratom')),
+            ('@', Operator, ('#pop', 'opt_transparameters', 'expratom')),
             (r':', Punctuation, ('#pop', 'transparameters')),
             default(('#pop', 'opt_transparameters', 'lname'))
         ],
