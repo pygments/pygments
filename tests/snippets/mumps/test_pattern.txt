@@ -1,5 +1,5 @@
 ---input---
- q:var?3N1"-"2N"-"4N "SSN"
+ q:var?3N1"-"2N1"-"4N "SSN"
  q:var?1(1"%",1A).AN "NAME"
  q:var?1YpizzaY "Programmer Pizza"
  q:var?1ZbagelZ "Implementation Bagel"
@@ -17,6 +17,7 @@
 '"-"'         Literal.String
 '2'           Literal.Number
 'N'           Name.Entity
+'1'           Literal.Number
 '"-"'         Literal.String
 '4'           Literal.Number
 'N'           Name.Entity
