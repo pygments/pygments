@@ -234,14 +234,11 @@ class MumpsLexer(ExtendedRegexLexer):
         'exprtail': [
             ( r'\*\*|[-_+*/\\#]', Operator, ('#pop', 'expratom')), # 7.2.2 - Binaryop
             ( r'\]\]|[&!<=>\[\]]', Operator, ('#pop', 'expratom')), # 7.2.2 - Truthop
-            ( r'\?', Operator, ('#pop', 'pattern')), # 7.2.3 - Pattern
+            ( r'(\?)(@)', bygroups(Operator, Operator), ('#pop', 'expratom')), # 7.2.3 - Pattern
+            ( r'\?', Operator, ('#pop', 'more_patatoms', 'patatom')),
             ( r'(\')(\]\]|[&!<=>\[\]])', bygroups(Operator, Operator), ('#pop', 'expratom')),
-            ( r'(\')(\?)', bygroups(Operator, Operator), ('#pop', 'pattern')),
-        ],
-        # 7.2.3 - Pattern match 'pattern'
-        'pattern': [
-            ( '@', Operator, ('#pop', 'expratom')),
-            default(('#pop', 'more_patatoms', 'patatom')),
+            ( r'(\')(\?)(@)', bygroups(Operator, Operator, Operator), ('#pop', 'expratom')), # 7.2.3 - Pattern
+            ( r'(\')(\?)', bygroups(Operator, Operator), ('#pop', 'more_patatoms', 'patatom')),
         ],
         'patatom': [
             ( r'([0-9]+)(\.)([0-9]*)', bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice')),
@@ -250,8 +247,8 @@ class MumpsLexer(ExtendedRegexLexer):
         ],
 	'l_patatom': L('patatom'),
         'more_patatoms': [
-            ( r'([0-9]+)(\.?)([0-9]*)', bygroups(Number, Punctuation, Number), 'patatom_choice'),
-            ( r'(\.?)([0-9]*)', bygroups(Punctuation, Number), 'patatom_choice'),
+            ( r'([0-9]+)(\.)([0-9]*)', bygroups(Number, Punctuation, Number), 'patatom_choice'),
+            ( r'(\.)([0-9]*)', bygroups(Punctuation, Number), 'patatom_choice'),
             ( '[0-9]+', Number, 'patatom_choice'),
             default('#pop')
         ],
@@ -371,7 +368,7 @@ class MumpsLexer(ExtendedRegexLexer):
             (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
             (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
             (words(('tstart', 'ts'), suffix=r'\b'), Keyword, ('#pop', 'tstartargument', 'optargsp', 'postcond')),
-            (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'useargument', 'argumentsp', 'postcond')),
+            (words(('use', 'u'), suffix=r'\b'), Keyword, ('#pop', 'expr', 'colon_sep', 'deviceparameters', 'colon_sep', 'expr', 'argumentsp', 'postcond')),
             (words(('view', 'v'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
             (words(('write', 'w'), suffix=r'\b'), Keyword, ('#pop', 'l_writeargument', 'argumentsp', 'postcond')),
             (words(('xecute', 'x'), suffix=r'\b'), Keyword, ('#pop', 'l_xargument', 'argumentsp', 'postcond')),
@@ -382,11 +379,12 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'deviceparameters', 'colon_sep', 'expr')),
         ],
         'deviceparameters': [
-            (r'\(', Punctuation, ('#pop', 'deviceparams_group')),
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'colon_expr_list', 'expr')),
             include('expr'),
         ],
-        'deviceparams_group': [
-            default(('colon_group', 'expr'))
+        'colon_expr_list': [
+            (':', Punctuation, 'expr'),
+            default('#pop'),
         ],
         'colon_group': [
             include('colon'),
@@ -427,11 +425,8 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'timeout', 'processparameters'))
         ],
         'processparameters': [
-            (r'\(', Punctuation, ('#pop', 'processparameter_group')),
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'colon_expr_list', 'expr')),
             include('expr'),
-        ],
-        'processparameter_group': [
-            default(('colon_group', 'expr'))
         ],
         # 8.2.11 - KILL
         'killargument': [
@@ -550,28 +545,36 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_setleft': L('setleft'),
         # 8.2.22 - TSTART
         'tstartargument': [
+            (r'(\*)(:)', bygroups(Keyword.Pseudo, Punctuation), ('#pop', 'transparameters')),
+            (r'(\()(\))(:)', bygroups(Punctuation, Punctuation, Punctuation), ('#pop', 'transparameters')),
+            (r'\*', Keyword.Pseudo, '#pop'),
+            (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
+            (r'\(', Punctuation, ('#pop', 'opt_transparameters', 'close_paren', 'l_lname')),
+            ('@', Whitespace, ('#pop', 'opt_transparameters', 'expratom')),
+            (r':', Punctuation, ('#pop', 'transparameters')),
+            default(('#pop', 'opt_transparameters', 'lname'))
+        ],
+        'opt_transparameters': [
             (':', Punctuation, ('#pop', 'transparameters')),
-            default('restartargument')
+            default('#pop')
         ],
         'transparameters': [
-            (r'\(', Punctuation, ('#pop', 'tsparam_group')),
-            include('tsparam')
+            (r'\(', Punctuation, ('#pop', 'close_paren', 'colon_tsparam_list', 'tsparam')),
+            include('tsparam'),
         ],
-        'tsparam_group': [
-            default(('colon_group', 'tsparam'))
+        'colon_tsparam_list': [
+            (':', Punctuation, 'tsparam'), 
+            default('#pop'),
         ],
         'tsparam': [
-            (r'([A-Z]+)(=)', bygroups( Keyword, Operator ), ('#pop', 'expr')),	            (r'[A-Z]+', Keyword, '#pop')
+            (r'([A-Z]+)(=)', bygroups( Keyword, Operator ), ('#pop', 'expr')),
+            (r'[A-Z]+', Keyword, '#pop')
         ],
         'restartargument': [
             (r'\*', Keyword.Pseudo, '#pop'),
             (r'(\()(\))', bygroups(Punctuation, Punctuation), '#pop'),
             (r'\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
             include('lname')
-        ],
-        # 8.2.23 - USE
-        'useargument': [
-            default(('#pop', 'expr', 'colon_sep', 'deviceparameters', 'colon_sep', 'expr'))
         ],
         # 8.2.25 - WRITE
         'l_writeargument': L('writeargument'),
