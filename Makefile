@@ -50,10 +50,10 @@ reindent:
 TEST = tests
 
 test:
-	@$(PYTHON) `which pytest` $(TEST)
+	@$(PYTHON) -m pytest $(TEST)
 
 test-coverage:
-	@$(PYTHON) `which pytest` --cov --cov-report=html --cov-report=term $(TEST)
+	@$(PYTHON) -m pytest --cov --cov-report=html --cov-report=term $(TEST)
 
 tox-test:
 	@tox -- $(TEST)
