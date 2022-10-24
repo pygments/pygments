@@ -79,30 +79,30 @@ class ArturoLexer(RegexLexer):
             include('punctuation'),
             include('sugar'),
 
-            (r'<:|:>|:<|:>',    Operator),
-            (r'-:|:-',          Operator),
-
-            (r'ø|∞', Operator),
-            (r'\@|\#|\$|\%|\&|\_|\!|\!\!',  Operator),
-            (r'\+|\-|\*|\~|\=|\>|\<',       Operator),
-
-            (r'==>|<=>|<==>',       Operator),
-            (r'=>>|<<=>>|<<==>>',   Operator),
-            (r'-->|<->|<-->',       Operator),
-            (r'<\\|\<|\>',          Operator),
-            (r'\=\||\|\=',          Operator),
-            (r'\./|\^|\.\.|\.',     Operator),
-            (r'\\',                 Operator),
+            (r'<:|:>|:<|:>'
+             r'|-:|:-'
+             r'|ø|∞'
+             r'|\@|\#|\$|\%|\&|\_|\!|\!\!'
+             r'|\+|\-|\*|\~|\=|\>|\<'
+             r'|==>|<=>|<==>'
+             r'|=>>|<<=>>|<<==>>'
+             r'|-->|<->|<-->'
+             r'|<\\|\<|\>'
+             r'|\=\||\|\='
+             r'|\./|\^|\.\.|\.'
+             r'|\\',
+            Operator)
 
         ],
             'punctuation': [
                 (r'[()[\],]',   Punctuation),
             ],
             'sugar':[
-                (r'->', Name.Decorator),
-                (r'=>', Name.Decorator),
-                (r'\|', Name.Decorator),
-                (r'::', Name.Decorator),
+                (r'->'
+                 r'|=>'
+                 r'|\|'
+                 r'|::',
+                Name.Decorator),
             ],
 
         'constants': [
