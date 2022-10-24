@@ -13,14 +13,6 @@ class ArturoLexer(RegexLexer):
     aliases = ['Arturo', 'Art', 'arturo', 'art']
     filenames = ['*.art']
 
-
-    def string_end(regex_pattern: str, string_type) -> list[tuple]:
-        """
-        Usage:
-            >>> string_end(r'"', String.Single)
-        """
-        return (regex_pattern, string_type, '#pop')
-
     def handle_annotated_strings(self, match):
         """Adds syntax from another languages inside annotated strings
 
@@ -205,26 +197,26 @@ class ArturoLexer(RegexLexer):
 
         'inside-simple-string': [
             include('string-basics'),
-            string_end(r'"', String.Double),        # Closing Quote
+            (r'"', String.Double, '#pop'),        # Closing Quote
             include('string-content-single-line')   # String Content
         ],
 
         'inside-smart-string': [
             include('string-basics'),
-            string_end(r'\n', String.Single),       # Closing Quote
+            (r'\n', String.Single, '#pop'),       # Closing Quote
             include('string-content-single-line')   # String Content
         ],
 
         'inside-safe-string': [
             include('string-basics'),
-            string_end(r'»»»', String.Double),      # Closing Quote
+            (r'»»»', String.Double, '#pop'),      # Closing Quote
             include('string-content-single-line')   # String Content
         ],
 
         'inside-regex-string': [
             include('regex-escapes'),
             include('string-interpol'),
-            string_end(r'\/\}', String.Single),     # Closing Quote
+            (r'\/\}', String.Single, '#pop'),     # Closing Quote
             (r'.',              String.Regex ),    # String Content
         ],
             'regex-escapes': [
@@ -234,19 +226,19 @@ class ArturoLexer(RegexLexer):
 
         'inside-curly-verb-string': [
             include('string-basics'),
-            string_end(r'\:\}', String.Double),     # Closing Quote
+            (r'\:\}', String.Double, '#pop'),     # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
 
         'inside-curly-string': [
             include('string-basics'),
-            string_end(r'\}', String.Single),       # Closing Quote
+            (r'\}', String.Single, '#pop'),       # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
 
         'inside-eof-string': [
             include('string-basics'),
-            string_end(r'\Z$', String.Single),       # Closing Quote
+            (r'\Z$', String.Single, '#pop'),       # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
 
