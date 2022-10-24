@@ -134,7 +134,6 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 # template names.
 html_additional_pages = {
     'styles': 'styles.html',
-    'languages': 'languages.html'
     }
 
 if os.environ.get('WEBSITE_BUILD'):
@@ -233,17 +232,8 @@ rst_prolog = '.. |language_count| replace:: {}'.format(len(list(pygments.lexers.
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
 
-    if pagename in ('demo', 'languages'):
-        all_lexers = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
     if pagename == 'demo':
-        ctx['lexers'] = all_lexers
-
-    if pagename == 'languages':
-        lexer_name_url = []
-        for entry in all_lexers:
-            lexer_cls = pygments.lexers.find_lexer_class(entry[0])
-            lexer_name_url.append({'name': entry[0], 'url': lexer_cls.url})
-        ctx['languages'] = lexer_name_url
+        ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
 
     if pagename in ('styles', 'demo'):
         with open('examples/example.py') as f:
