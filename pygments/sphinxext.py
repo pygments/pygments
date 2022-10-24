@@ -89,7 +89,7 @@ class PygmentsDoc(Directive):
         """Generate a tabular overview of all lexers.
         
         The columns are the lexer name, the extensions handled by this lexer
-        (or "None"), and a link to the lexer class."""
+        (or "None"), the aliases and a link to the lexer class."""
         from pygments.lexers._mapping import LEXERS
         import pygments.lexers
         out = []
@@ -131,7 +131,7 @@ class PygmentsDoc(Directive):
             return write_row(*sep)
         
         out.append(write_seperator())
-        out.append(write_row('Name', 'Extensions', 'Aliases', 'Lexer class'))
+        out.append(write_row('Name', 'Extension(s)', 'Short name(s)', 'Lexer class'))
         out.append(write_seperator())
         for row in table:
             out.append(write_row(
