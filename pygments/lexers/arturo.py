@@ -140,10 +140,7 @@ class ArturoLexer(RegexLexer):
             (r'[^|]+', using(this)),
         ],
         'string-escape': [
-            (r'\\\\', String.Escape), # Escaping backslash
-            (r'\\n',  String.Escape), # Escaping NewLine control
-            (r'\\t',  String.Escape), # Escaping Tabulation control
-            (r'\\"',  String.Escape), # Escaping Quote Character
+            ((words('\\\\', '\\n', '\\t','\\"')), String.Escape)
         ],
         'string-content-multi-line': [
             (r'[\s\S]', String)
