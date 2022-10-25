@@ -67,7 +67,15 @@ class ArturoLexer(RegexLexer):
     tokens = {
         'root': [
             include('comments'),
-            include('constants'),
+            include('boolean'),
+            include('character'),
+            include('color'),
+            include('float'),
+            include('integer'),
+            include('label'),
+            include('literal'),
+            include('strings'),
+            include('type'),
             include('builtin_functions'),
             include('operators'),
             (r'.', Text),
@@ -110,18 +118,6 @@ class ArturoLexer(RegexLexer):
                 r'|\|'
                 r'|::',
             Name.Decorator),
-        ],
-
-        'constants': [
-            include('boolean'),
-            include('character'),
-            include('color'),
-            include('float'),
-            include('integer'),
-            include('label'),
-            include('literal'),
-            include('strings'),
-            include('type'),
         ],
 
         'boolean': [
