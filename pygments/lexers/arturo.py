@@ -140,7 +140,7 @@ class ArturoLexer(RegexLexer):
             (r'[^|]+', using(this)),
         ],
         'string-escape': [
-            ((words('\\\\', '\\n', '\\t','\\"')), String.Escape)
+            (words(('\\\\', '\\n', '\\t','\\"')), String.Escape)
         ],
 
         'inside-simple-string': [
