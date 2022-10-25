@@ -87,9 +87,8 @@ class ArturoLexer(RegexLexer):
         ],
 
         'operators': [
-            include('punctuation'),
-            include('sugar'),
-
+            (r'[()[\],]',   Punctuation),
+            (words(( '->', '==>', '|', '::')), Name.Decorator), # sugar syntax
             (
                 words((
                     '<:', ':>', ':<', ':>', '<\\', '<>', '<', '>',
@@ -103,17 +102,6 @@ class ArturoLexer(RegexLexer):
                     '_', '.', '..', './', '\\'
                 )), Operator
             )
-        ],
-
-        'punctuation': [
-            (r'[()[\],]',   Punctuation),
-        ],
-        'sugar':[
-            (r'->'
-                r'|=>'
-                r'|\|'
-                r'|::',
-            Name.Decorator),
         ],
 
         'constants': [
