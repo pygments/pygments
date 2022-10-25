@@ -18,6 +18,7 @@ c2: {
     this is a multiline string
     that is indentation-agnostic
 }
+
 c3: {:
     this is
         a verbatim
@@ -25,6 +26,11 @@ c3: {:
                 which will remain exactly
                     as the original
 :}
+
+c4: {
+    this is a multiline string
+    with |a1| lines.
+}
 
 annotatedStrings: {!md
     # This is a markdown example
