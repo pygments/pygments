@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.arturo
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for the Arturo language.
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import bygroups, default, DelegatingLexer, do_insertions,\
