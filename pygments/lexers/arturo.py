@@ -273,7 +273,7 @@ class ArturoLexer(RegexLexer):
                 'sorted', 'standalone', 'string', 'subset', 'suffix'
                 'superset', 'ymbol', 'true', 'try', 'type', 'unless', 'upper'
                 'when', 'whitespace', 'word', 'xnor', 'xor', 'zero'
-            ), prefix='\b', suffix=r'\b\?'), Name.Builtin)
+            ), prefix=r'\b', suffix=r'\b\?'), Name.Builtin)
         ],
 
     }
