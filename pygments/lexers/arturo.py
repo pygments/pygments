@@ -69,8 +69,9 @@ class ArturoLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r';.*?$', Comment.Single),
+            (r'^((\s#!)|(#!)).*?$', Comment.Hashbang),
 
-            include('comments'),
             include('constants'),
 
             # Single Line Strings
@@ -91,15 +92,6 @@ class ArturoLexer(RegexLexer):
 
             (r'.', Text),
 
-        ],
-
-        'comments': [
-            (r';.*?$', Comment.Single),
-            include('shebang'),
-        ],
-        'shebang': [
-            (r'^((\s#!)|(#!)).*?$',
-                    Comment.Hashbang)
         ],
 
         'operators': [
