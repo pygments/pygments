@@ -25,7 +25,7 @@ class ArturoLexer(RegexLexer):
     """
 
     name = 'Arturo'
-    aliases = ['Arturo', 'Art', 'arturo', 'art']
+    aliases = ['arturo', 'art']
     filenames = ['*.art']
 
     def handle_annotated_strings(self, match):
