@@ -67,15 +67,7 @@ class ArturoLexer(RegexLexer):
     tokens = {
         'root': [
             include('comments'),
-            include('boolean'),
-            include('character'),
-            include('color'),
-            include('float'),
-            include('integer'),
-            include('label'),
-            include('literal'),
-            include('strings'),
-            include('type'),
+            include('constants'),
             include('builtin_functions'),
             include('operators'),
             (r'.', Text),
@@ -120,42 +112,18 @@ class ArturoLexer(RegexLexer):
             Name.Decorator),
         ],
 
-        'boolean': [
-            (words(('false', 'true', 'maybe'), suffix=r'\b'),
-                Name.Constant)
+        'constants': [
+            (words(('false', 'true', 'maybe'), suffix=r'\b'),   # boolean
+                Name.Constant),
+            (r'`.`', String.Char),                              # character
+            (r'#\w+', Name.Constant),                           # color
+            (r'[0-9]+\.[0-9]+', Number.Float),                  # float
+            (r'[0-9]+', Number.Integer),                        # integer
+            (r'\w+\b\??:', Name.Label),                         # label
+            (r'\'(?:\w+\b\??:?)', Keyword.Declaration),         # literal
+            (r'\:\w+', Keyword.Type),                           # type
+            (r'\.\w+', Name.Attribute),                         # attributes
         ],
-        'character': [
-            (r'`.`', String.Char)
-        ],
-        'color': [
-            (r'#\w+',
-                    Name.Constant)
-        ],
-        'float': [
-            (r'[0-9]+\.[0-9]+',
-                    Number.Float)
-        ],
-        'integer': [
-            (r'[0-9]+',
-                    Number.Integer)
-        ],
-        'label': [
-            (r'\w+\b\??:',
-                    Name.Label)
-        ],
-        'literal': [
-            (r'\'(?:\w+\b\??:?)',
-                    Keyword.Declaration)
-        ],
-        'type': [
-            (r'\:\w+',
-                    Keyword.Type)
-        ],
-        'attributes': [
-            (r'\.\w+',
-                    Name.Attribute)
-        ],
-
 
         'strings': [
             # Single Line Strings
