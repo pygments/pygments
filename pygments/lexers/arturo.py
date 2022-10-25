@@ -69,12 +69,28 @@ class ArturoLexer(RegexLexer):
 
     tokens = {
         'root': [
+
             include('comments'),
             include('constants'),
-            include('strings'),
+
+            # Single Line Strings
+            (r'"',   String.Double, 'inside-simple-string'),
+            (r'»',   String.Single, 'inside-smart-string' ),
+            (r'«««', String.Double, 'inside-safe-string'  ),
+            (r'\{\/', String.Single, 'inside-regex-string'),
+
+            # Multi Line Strings
+            (r'\{\:',   String.Double, 'inside-curly-verb-string'),
+            (r'(\{)(\!)(\w+)(\s|\n)([\w\W]*?)(^\})',
+                                         handle_annotated_strings),
+            (r'\{',     String.Single, 'inside-curly-string'     ),
+            (r'\-{3,}', String.Single, 'inside-eof-string'       ),
+
             include('builtin-functions'),
             include('operators'),
+
             (r'.', Text),
+
         ],
 
         'comments': [
@@ -114,21 +130,6 @@ class ArturoLexer(RegexLexer):
             (r'\'(?:\w+\b\??:?)', Keyword.Declaration),         # literal
             (r'\:\w+', Keyword.Type),                           # type
             (r'\.\w+', Name.Attribute),                         # attributes
-        ],
-
-        'strings': [
-            # Single Line Strings
-            (r'"',   String.Double, 'inside-simple-string'),
-            (r'»',   String.Single, 'inside-smart-string' ),
-            (r'«««', String.Double, 'inside-safe-string'  ),
-            (r'\{\/', String.Single, 'inside-regex-string'),
-
-            # Multi Line Strings
-            (r'\{\:',   String.Double, 'inside-curly-verb-string'),
-            (r'(\{)(\!)(\w+)(\s|\n)([\w\W]*?)(^\})',
-                                         handle_annotated_strings),
-            (r'\{',     String.Single, 'inside-curly-string'     ),
-            (r'\-{3,}', String.Single, 'inside-eof-string'       ),
         ],
 
         'inside-interpol': [
