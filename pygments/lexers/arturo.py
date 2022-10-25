@@ -72,7 +72,7 @@ class ArturoLexer(RegexLexer):
             include('comments'),
             include('constants'),
             include('strings'),
-            include('builtin_functions'),
+            include('builtin-functions'),
             include('operators'),
             (r'.', Text),
         ],
@@ -205,7 +205,7 @@ class ArturoLexer(RegexLexer):
             include('string-content-multi-line')    # String Content
         ],
 
-        'builtin_functions': [
+        'builtin-functions': [
             (words((
                 'all', 'and', 'any', 'ascii', 'attr', 'attribute',
                 'attributeLabel', 'binary', 'block' 'char', 'contains',
