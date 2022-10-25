@@ -206,7 +206,20 @@ class ArturoLexer(RegexLexer):
         ],
 
         'builtin_functions': [
-            include('builtin-predicate-functions'),
+            (words((
+                'all', 'and', 'any', 'ascii', 'attr', 'attribute',
+                'attributeLabel', 'binary', 'block' 'char', 'contains',
+                'database', 'date', 'dictionary', 'empty', 'equal', 'even',
+                'every', 'exists', 'false', 'floatin', 'function', 'greater',
+                'greaterOrEqual', 'if', 'in', 'inline', 'integer', 'is',
+                'key', 'label', 'leap', 'less', 'lessOrEqual', 'literal',
+                'logical', 'lower', 'nand', 'negative', 'nor', 'not',
+                'notEqual', 'null', 'numeric', 'odd', 'or', 'path',
+                'pathLabel', 'positive', 'prefix', 'prime', 'set', 'some',
+                'sorted', 'standalone', 'string', 'subset', 'suffix',
+                'superset', 'ymbol', 'true', 'try', 'type', 'unless', 'upper',
+                'when', 'whitespace', 'word', 'xnor', 'xor', 'zero',
+            ), prefix=r'\b', suffix=r'\b\?'), Name.Builtin),
             (words((
                 'abs', 'acos', 'acosh', 'acsec', 'acsech', 'actan', 'actanh',
                 'add', 'after', 'alphabet', 'and', 'angle', 'append', 'arg',
@@ -245,22 +258,6 @@ class ArturoLexer(RegexLexer):
                 'variance', 'volume', 'webview', 'while', 'with', 'wordwrap',
                 'write', 'xnor', 'xor', 'zip'
             ), prefix=r'\b', suffix=r'\b'), Name.Builtin)
-        ],
-        'builtin-predicate-functions': [
-            (words((
-                'all', 'and', 'any', 'ascii', 'attr', 'attribute',
-                'attributeLabel', 'binary', 'block' 'char', 'contains',
-                'database', 'date', 'dictionary', 'empty', 'equal', 'even',
-                'every', 'exists', 'false', 'floatin', 'function', 'greater',
-                'greaterOrEqual', 'if', 'in', 'inline', 'integer', 'is',
-                'key', 'label', 'leap', 'less', 'lessOrEqual', 'literal',
-                'logical', 'lower', 'nand', 'negative', 'nor', 'not',
-                'notEqual', 'null', 'numeric', 'odd', 'or', 'path',
-                'pathLabel', 'positive', 'prefix', 'prime', 'set', 'some',
-                'sorted', 'standalone', 'string', 'subset', 'suffix',
-                'superset', 'ymbol', 'true', 'try', 'type', 'unless', 'upper',
-                'when', 'whitespace', 'word', 'xnor', 'xor', 'zero',
-            ), prefix=r'\b', suffix=r'\b\?'), Name.Builtin)
         ],
 
     }
