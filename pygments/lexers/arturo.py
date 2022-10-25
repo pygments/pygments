@@ -91,7 +91,6 @@ class ArturoLexer(RegexLexer):
             include('operators'),
 
             (r'.', Text),
-
         ],
 
         'operators': [
@@ -132,7 +131,6 @@ class ArturoLexer(RegexLexer):
             (r'\|\|\>', String.Interpol, '#pop'),
             (r'[^|]+', using(this)),
         ],
-
         'string-escape': [
             (words(('\\\\', '\\n', '\\t','\\"')), String.Escape)
         ],
@@ -144,7 +142,6 @@ class ArturoLexer(RegexLexer):
             (r'"', String.Double, '#pop'),  # Closing Quote
             (r'[^|"]+', String)             # String Content
         ],
-
         'inside-smart-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
@@ -152,7 +149,6 @@ class ArturoLexer(RegexLexer):
             (r'\n', String.Single, '#pop'), # Closing Quote
             (r'[^|\n]+', String)            # String Content
         ],
-
         'inside-safe-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
@@ -160,7 +156,6 @@ class ArturoLexer(RegexLexer):
             (r'»»»', String.Double, '#pop'),    # Closing Quote
             (r'[^|»]+', String)                 # String Content
         ],
-
         'inside-regex-string': [
             (r'\\[sSwWdDbBZApPxucItnvfr0]+', String.Escape),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
@@ -168,7 +163,6 @@ class ArturoLexer(RegexLexer):
             (r'\/\}', String.Single, '#pop'),   # Closing Quote
             (r'[^|\/]+', String.Regex) ,        # String Content
         ],
-
         'inside-curly-verb-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
@@ -176,7 +170,6 @@ class ArturoLexer(RegexLexer):
             (r'\:\}', String.Double, '#pop'),   # Closing Quote
             (r'[\s\S]', String)                 # String Content
         ],
-
         'inside-curly-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
@@ -184,7 +177,6 @@ class ArturoLexer(RegexLexer):
             (r'\}', String.Single, '#pop'), # Closing Quote
             (r'[\s\S]', String),            # String Content
         ],
-
         'inside-eof-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
