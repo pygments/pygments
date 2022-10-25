@@ -77,10 +77,10 @@ class ArturoLexer(RegexLexer):
             (r';.*?$', Comment.Single),
             include('shebang'),
         ],
-            'shebang': [
-                (r'^((\s#!)|(#!)).*?$',
-                        Comment.Hashbang)
-            ],
+        'shebang': [
+            (r'^((\s#!)|(#!)).*?$',
+                    Comment.Hashbang)
+        ],
 
         'operators': [
             include('punctuation'),
@@ -101,16 +101,16 @@ class ArturoLexer(RegexLexer):
             Operator)
 
         ],
-            'punctuation': [
-                (r'[()[\],]',   Punctuation),
-            ],
-            'sugar':[
-                (r'->'
-                 r'|=>'
-                 r'|\|'
-                 r'|::',
-                Name.Decorator),
-            ],
+        'punctuation': [
+            (r'[()[\],]',   Punctuation),
+        ],
+        'sugar':[
+            (r'->'
+                r'|=>'
+                r'|\|'
+                r'|::',
+            Name.Decorator),
+        ],
 
         'constants': [
             include('boolean'),
@@ -124,41 +124,41 @@ class ArturoLexer(RegexLexer):
             include('type'),
         ],
 
-            'boolean': [
-                (words(('false', 'true', 'maybe'), suffix=r'\b'),
+        'boolean': [
+            (words(('false', 'true', 'maybe'), suffix=r'\b'),
+                Name.Constant)
+        ],
+        'character': [
+            (r'`.`', String.Char)
+        ],
+        'color': [
+            (r'#\w+',
                     Name.Constant)
-            ],
-            'character': [
-                (r'`.`', String.Char)
-            ],
-            'color': [
-                (r'#\w+',
-                        Name.Constant)
-            ],
-            'float': [
-                (r'[0-9]+\.[0-9]+',
-                        Number.Float)
-            ],
-            'integer': [
-                (r'[0-9]+',
-                        Number.Integer)
-            ],
-            'label': [
-                (r'\w+\b\??:',
-                        Name.Label)
-            ],
-            'literal': [
-                (r'\'(?:\w+\b\??:?)',
-                        Keyword.Declaration)
-            ],
-            'type': [
-                (r'\:\w+',
-                        Keyword.Type)
-            ],
-            'attributes': [
-                (r'\.\w+',
-                        Name.Attribute)
-            ],
+        ],
+        'float': [
+            (r'[0-9]+\.[0-9]+',
+                    Number.Float)
+        ],
+        'integer': [
+            (r'[0-9]+',
+                    Number.Integer)
+        ],
+        'label': [
+            (r'\w+\b\??:',
+                    Name.Label)
+        ],
+        'literal': [
+            (r'\'(?:\w+\b\??:?)',
+                    Keyword.Declaration)
+        ],
+        'type': [
+            (r'\:\w+',
+                    Keyword.Type)
+        ],
+        'attributes': [
+            (r'\.\w+',
+                    Name.Attribute)
+        ],
 
 
         'strings': [
@@ -175,40 +175,40 @@ class ArturoLexer(RegexLexer):
             (r'\{',     String.Single, 'inside-curly-string'     ),
             (r'\-{3,}', String.Single, 'inside-eof-string'       ),
         ],
-            'string-basics': [
-                include('string-interpol'),
-                include('string-escape'),
-                include('string-templates'),
-            ],
-                'string-interpol': [
-                    (r'\|',
-                        String.Interpol, 'inside-interpol'), # Interpolation
-                ],
-                    'inside-interpol': [
-                        (r'\|', String.Interpol, '#pop'),
-                        (r'.', using(this)),
-                    ],
-                'string-templates': [
-                    (r'\<\|\|',
-                        String.Interpol, 'inside-template'), # Templates
-                ],
-                    'inside-template': [
-                        (r'\|\|\>',
-                            String.Interpol, '#pop'),
-                        (r'.', using(this)),
-                    ],
-                'string-escape': [
-                    (r'\\\\', String.Escape), # Escaping backslash
-                    (r'\\n',  String.Escape), # Escaping NewLine control
-                    (r'\\t',  String.Escape), # Escaping Tabulation control
-                    (r'\\"',  String.Escape), # Escaping Quote Character
-                ],
-            'string-content-single-line': [
-                (r'.', String)
-            ],
-            'string-content-multi-line': [
-                (r'[\s\S]', String)
-            ],
+        'string-basics': [
+            include('string-interpol'),
+            include('string-escape'),
+            include('string-templates'),
+        ],
+        'string-interpol': [
+            (r'\|',
+                String.Interpol, 'inside-interpol'), # Interpolation
+        ],
+        'inside-interpol': [
+            (r'\|', String.Interpol, '#pop'),
+            (r'.', using(this)),
+        ],
+        'string-templates': [
+            (r'\<\|\|',
+                String.Interpol, 'inside-template'), # Templates
+        ],
+        'inside-template': [
+            (r'\|\|\>',
+                String.Interpol, '#pop'),
+            (r'.', using(this)),
+        ],
+        'string-escape': [
+            (r'\\\\', String.Escape), # Escaping backslash
+            (r'\\n',  String.Escape), # Escaping NewLine control
+            (r'\\t',  String.Escape), # Escaping Tabulation control
+            (r'\\"',  String.Escape), # Escaping Quote Character
+        ],
+        'string-content-single-line': [
+            (r'.', String)
+        ],
+        'string-content-multi-line': [
+            (r'[\s\S]', String)
+        ],
 
         'inside-simple-string': [
             include('string-basics'),
@@ -298,23 +298,23 @@ class ArturoLexer(RegexLexer):
                 'write', 'xnor', 'xor', 'zip'
             ), prefix=r'\b', suffix=r'\b'), Name.Builtin)
         ],
-            'builtin-predicate-functions': [
-                (
-                    r'\b('
-                    r'all|and|any|ascii|attr|attribute|attributeLabel|binary|block'
-                    r'|char|contains|database|date|dictionary|empty|equal|even'
-                    r'|every|exists|false|floatin|function|greater|'
-                    r'|greaterOrEqual|if|in|inline|integer|is|'
-                    r'|key|label|leap|less|lessOrEqual|literal|'
-                    r'|logical|lower|nand|negative|nor|not'
-                    r'|notEqual|null|numeric|odd|or|path'
-                    r'|pathLabel|positive|prefix|prime|set|some'
-                    r'|sorted|standalone|string|subset|suffix'
-                    r'|superset|ymbol|true|try|type|unless|upper'
-                    r'|when|whitespace|word|xnor|xor|zero'
-                    r')\b\?', Name.Builtin
-                ),
-            ],
+        'builtin-predicate-functions': [
+            (
+                r'\b('
+                r'all|and|any|ascii|attr|attribute|attributeLabel|binary|block'
+                r'|char|contains|database|date|dictionary|empty|equal|even'
+                r'|every|exists|false|floatin|function|greater|'
+                r'|greaterOrEqual|if|in|inline|integer|is|'
+                r'|key|label|leap|less|lessOrEqual|literal|'
+                r'|logical|lower|nand|negative|nor|not'
+                r'|notEqual|null|numeric|odd|or|path'
+                r'|pathLabel|positive|prefix|prime|set|some'
+                r'|sorted|standalone|string|subset|suffix'
+                r'|superset|ymbol|true|try|type|unless|upper'
+                r'|when|whitespace|word|xnor|xor|zero'
+                r')\b\?', Name.Builtin
+            ),
+        ],
 
     }
 
