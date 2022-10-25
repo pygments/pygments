@@ -263,16 +263,16 @@ class ArturoLexer(RegexLexer):
             (words((
                 'all', 'and', 'any', 'ascii', 'attr', 'attribute',
                 'attributeLabel', 'binary', 'block' 'char', 'contains',
-                'database', 'date', 'dictionary', 'empty', 'equal', 'even'
-                'every', 'exists', 'false', 'floatin', 'function', 'greater'
-                'greaterOrEqual', 'if', 'in', 'inline', 'integer', 'is'
-                'key', 'label', 'leap', 'less', 'lessOrEqual', 'literal'
-                'logical', 'lower', 'nand', 'negative', 'nor', 'not'
-                'notEqual', 'null', 'numeric', 'odd', 'or', 'path'
-                'pathLabel', 'positive', 'prefix', 'prime', 'set', 'some'
-                'sorted', 'standalone', 'string', 'subset', 'suffix'
-                'superset', 'ymbol', 'true', 'try', 'type', 'unless', 'upper'
-                'when', 'whitespace', 'word', 'xnor', 'xor', 'zero'
+                'database', 'date', 'dictionary', 'empty', 'equal', 'even',
+                'every', 'exists', 'false', 'floatin', 'function', 'greater',
+                'greaterOrEqual', 'if', 'in', 'inline', 'integer', 'is',
+                'key', 'label', 'leap', 'less', 'lessOrEqual', 'literal',
+                'logical', 'lower', 'nand', 'negative', 'nor', 'not',
+                'notEqual', 'null', 'numeric', 'odd', 'or', 'path',
+                'pathLabel', 'positive', 'prefix', 'prime', 'set', 'some',
+                'sorted', 'standalone', 'string', 'subset', 'suffix',
+                'superset', 'ymbol', 'true', 'try', 'type', 'unless', 'upper',
+                'when', 'whitespace', 'word', 'xnor', 'xor', 'zero',
             ), prefix=r'\b', suffix=r'\b\?'), Name.Builtin)
         ],
 
