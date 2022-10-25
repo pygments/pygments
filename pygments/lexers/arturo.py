@@ -24,6 +24,9 @@ class ArturoLexer(RegexLexer):
     """
     For Arturo source code
 
+    [Arturo's Github](https://github.com/arturo-lang/arturo)
+    [Arturo's Website](http://arturo-lang.io/)
+
     .. versionadded:: 2.14.0
     """
 
