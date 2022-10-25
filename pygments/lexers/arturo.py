@@ -24,7 +24,7 @@ class ArturoLexer(RegexLexer):
     """
     For Arturo source code
 
-    .. versionadded:: 0.9.80
+    .. versionadded:: 2.14.0
     """
 
     name = 'Arturo'
