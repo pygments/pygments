@@ -167,36 +167,33 @@ class ArturoLexer(RegexLexer):
             (r'\\t',  String.Escape), # Escaping Tabulation control
             (r'\\"',  String.Escape), # Escaping Quote Character
         ],
-        'string-content-single-line': [
-            (r'.', String)
-        ],
         'string-content-multi-line': [
             (r'[\s\S]', String)
         ],
 
         'inside-simple-string': [
             include('string-basics'),
-            (r'"', String.Double, '#pop'),        # Closing Quote
-            include('string-content-single-line')   # String Content
+            (r'"', String.Double, '#pop'),      # Closing Quote
+            (r'[^"]+', String)                  # String Content
         ],
 
         'inside-smart-string': [
             include('string-basics'),
-            (r'\n', String.Single, '#pop'),       # Closing Quote
-            include('string-content-single-line')   # String Content
+            (r'\n', String.Single, '#pop'),     # Closing Quote
+            (r'[^\n]+', String)                 # String Content
         ],
 
         'inside-safe-string': [
             include('string-basics'),
-            (r'»»»', String.Double, '#pop'),      # Closing Quote
-            include('string-content-single-line')   # String Content
+            (r'»»»', String.Double, '#pop'),    # Closing Quote
+            (r'[^»]+', String)                  # String Content
         ],
 
         'inside-regex-string': [
             include('regex-escapes'),
             include('string-interpol'),
-            (r'\/\}', String.Single, '#pop'),     # Closing Quote
-            (r'.',              String.Regex ),    # String Content
+            (r'\/\}', String.Single, '#pop'),   # Closing Quote
+            (r'[^\/]+', String.Regex) ,         # String Content
         ],
             'regex-escapes': [
                 (r'\\[sSwWdDbBZApPxucItnvfr0]+',
