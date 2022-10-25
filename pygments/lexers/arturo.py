@@ -70,7 +70,7 @@ class ArturoLexer(RegexLexer):
             include('constants'),
             include('builtin_functions'),
             include('operators'),
-            (r'.', Name),
+            (r'.', Text),
         ],
 
         'comments': [
