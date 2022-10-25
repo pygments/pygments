@@ -18,6 +18,11 @@ from pygments.token import Comment, Generic, Keyword, Name, Number, Operator,\
 from pygments.util import ClassNotFound, get_bool_opt
 
 class ArturoLexer(RegexLexer):
+    """
+    For Arturo source code
+
+    .. versionadded:: 0.9.80
+    """
 
     name = 'Arturo'
     aliases = ['Arturo', 'Art', 'arturo', 'art']
