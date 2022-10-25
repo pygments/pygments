@@ -194,15 +194,11 @@ class ArturoLexer(RegexLexer):
         ],
 
         'inside-regex-string': [
-            include('regex-escapes'),
+            (r'\\[sSwWdDbBZApPxucItnvfr0]+', String.Escape),
             include('string-interpol'),
             (r'\/\}', String.Single, '#pop'),   # Closing Quote
             (r'[^\/]+', String.Regex) ,         # String Content
         ],
-            'regex-escapes': [
-                (r'\\[sSwWdDbBZApPxucItnvfr0]+',
-                                String.Escape),
-            ],
 
         'inside-curly-verb-string': [
             include('string-basics'),
