@@ -130,26 +130,13 @@ class ArturoLexer(RegexLexer):
             (r'\{',     String.Single, 'inside-curly-string'     ),
             (r'\-{3,}', String.Single, 'inside-eof-string'       ),
         ],
-        'string-basics': [
-            include('string-interpol'),
-            include('string-escape'),
-            include('string-templates'),
-        ],
-        'string-interpol': [
-            (r'\|',
-                String.Interpol, 'inside-interpol'), # Interpolation
-        ],
+
         'inside-interpol': [
             (r'\|', String.Interpol, '#pop'),
             (r'[^|]+', using(this)),
         ],
-        'string-templates': [
-            (r'\<\|\|',
-                String.Interpol, 'inside-template'), # Templates
-        ],
         'inside-template': [
-            (r'\|\|\>',
-                String.Interpol, '#pop'),
+            (r'\|\|\>', String.Interpol, '#pop'),
             (r'[^|]+', using(this)),
         ],
         'string-escape': [
@@ -163,44 +150,57 @@ class ArturoLexer(RegexLexer):
         ],
 
         'inside-simple-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'"', String.Double, '#pop'),      # Closing Quote
             (r'[^|"]+', String)                  # String Content
         ],
 
         'inside-smart-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\n', String.Single, '#pop'),     # Closing Quote
             (r'[^|\n]+', String)                 # String Content
         ],
 
         'inside-safe-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'»»»', String.Double, '#pop'),    # Closing Quote
             (r'[^|»]+', String)                  # String Content
         ],
 
         'inside-regex-string': [
             (r'\\[sSwWdDbBZApPxucItnvfr0]+', String.Escape),
-            include('string-interpol'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\/\}', String.Single, '#pop'),   # Closing Quote
             (r'[^|\/]+', String.Regex) ,         # String Content
         ],
 
         'inside-curly-verb-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\:\}', String.Double, '#pop'),     # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
 
         'inside-curly-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\}', String.Single, '#pop'),       # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
 
         'inside-eof-string': [
-            include('string-basics'),
+            include('string-escape'),
+            (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
+            (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\Z$', String.Single, '#pop'),       # Closing Quote
             include('string-content-multi-line')    # String Content
         ],
