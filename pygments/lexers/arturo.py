@@ -165,26 +165,26 @@ class ArturoLexer(RegexLexer):
         'inside-simple-string': [
             include('string-basics'),
             (r'"', String.Double, '#pop'),      # Closing Quote
-            (r'[^"]+', String)                  # String Content
+            (r'[^|"]+', String)                  # String Content
         ],
 
         'inside-smart-string': [
             include('string-basics'),
             (r'\n', String.Single, '#pop'),     # Closing Quote
-            (r'[^\n]+', String)                 # String Content
+            (r'[^|\n]+', String)                 # String Content
         ],
 
         'inside-safe-string': [
             include('string-basics'),
             (r'»»»', String.Double, '#pop'),    # Closing Quote
-            (r'[^»]+', String)                  # String Content
+            (r'[^|»]+', String)                  # String Content
         ],
 
         'inside-regex-string': [
             (r'\\[sSwWdDbBZApPxucItnvfr0]+', String.Escape),
             include('string-interpol'),
             (r'\/\}', String.Single, '#pop'),   # Closing Quote
-            (r'[^\/]+', String.Regex) ,         # String Content
+            (r'[^|\/]+', String.Regex) ,         # String Content
         ],
 
         'inside-curly-verb-string': [
