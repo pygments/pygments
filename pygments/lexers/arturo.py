@@ -78,7 +78,7 @@ class ArturoLexer(RegexLexer):
             include('shebang'),
         ],
             'shebang': [
-                (r'^((\s#!)|(#!)).*$',
+                (r'^((\s#!)|(#!)).*?$',
                         Comment.Hashbang)
             ],
 
