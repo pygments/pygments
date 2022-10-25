@@ -17,6 +17,9 @@ from pygments.token import Comment, Generic, Keyword, Name, Number, Operator,\
 
 from pygments.util import ClassNotFound, get_bool_opt
 
+__all__ = [
+    'ArturoLexer'
+]
 class ArturoLexer(RegexLexer):
     """
     For Arturo source code
@@ -282,7 +285,3 @@ class ArturoLexer(RegexLexer):
     def __init__(self, **options):
         self.handle_annotateds = get_bool_opt(options, 'handle_annotateds', True)
         RegexLexer.__init__(self, **options)
-
-__all__ = [
-    'ArturoLexer'
-]
