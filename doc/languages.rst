@@ -8,7 +8,7 @@ Languages
 
 Well, why not write your own? Contributing to Pygments is easy and fun. Take a
 look at the :doc:`docs on lexer development <lexerdevelopment>`. Pull
-requests are welcome on <a href="https://github.com/pygments/pygments">GitHub</a>.
+requests are welcome on `GitHub <https://github.com/pygments/pygments>`_.
 
 .. note:: 
     
