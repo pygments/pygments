@@ -50,7 +50,7 @@ class ArturoLexer(RegexLexer):
         lexer = None
         if self.handle_annotateds:
             try:
-                lexer = get_lexer_by_name( match.group(3).strip() )
+                lexer = get_lexer_by_name(match.group(3).strip())
             except ClassNotFound:
                 pass
         code = match.group(5)
