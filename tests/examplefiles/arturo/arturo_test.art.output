@@ -26,13 +26,11 @@
 '\n'          Text
 
 'a1:'         Name.Label
-' '           Text
-'2'           Literal.Number.Integer
+' 2'          Literal.Number.Integer
 '\n'          Text
 
 'a2:'         Name.Label
-' '           Text
-'3.14'        Literal.Number.Float
+' 3.14'       Literal.Number.Float
 '\n'          Text
 
 'a3:'         Name.Label
@@ -41,10 +39,8 @@
 ' '           Text
 ':complex'    Keyword.Type
 ' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'2.0'         Literal.Number.Float
+'[1'          Literal.Number.Integer
+' 2.0'        Literal.Number.Float
 ']'           Punctuation
 ' '           Text
 ' '           Text
@@ -138,6 +134,8 @@
 '\n'          Literal.String
 
 '}'           Literal.String.Single
+'\n'          Text
+
 '\n'          Text
 
 'c3:'         Name.Label
@@ -289,6 +287,70 @@
 '\n'          Literal.String
 
 ':}'          Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'c4:'         Name.Label
+' '           Text
+'{'           Literal.String.Single
+'\n'          Literal.String
+
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'u'           Literal.String
+'l'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'\n'          Literal.String
+
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+' '           Literal.String
+'|'           Literal.String.Interpol
+'a'           Text
+'1'           Text
+'|'           Literal.String.Interpol
+' '           Literal.String
+'l'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'.'           Literal.String
+'\n'          Literal.String
+
+'}'           Literal.String.Single
 '\n'          Text
 
 '\n'          Text
@@ -470,12 +532,9 @@
 
 'd:'          Name.Label
 ' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
+'[1'          Literal.Number.Integer
+' 2'          Literal.Number.Integer
+' 3'          Literal.Number.Integer
 ']'           Punctuation
 '\n'          Text
 
@@ -517,8 +576,7 @@
 ' '           Text
 ' '           Text
 'age:'        Name.Label
-' '           Text
-'34'          Literal.Number.Integer
+' 34'         Literal.Number.Integer
 '\n'          Text
 
 ' '           Text
@@ -567,8 +625,7 @@
 ' '           Text
 ' '           Text
 ' '           Text
-' '           Text
-'2'           Literal.Number.Integer
+' 2'          Literal.Number.Integer
 ' '           Text
 '*'           Operator
 ' '           Text
@@ -652,13 +709,10 @@
 '\n'          Text
 
 '; simple arithmetic' Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '+'           Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -667,13 +721,10 @@
 ' '           Text
 ' '           Text
 '; => 2'      Comment.Single
-'\n'          Text
-
-'8'           Literal.Number.Integer
+'\n8'         Literal.Number.Integer
 ' '           Text
 '-'           Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -682,24 +733,18 @@
 ' '           Text
 ' '           Text
 '; => 7'      Comment.Single
-'\n'          Text
-
-'4.2'         Literal.Number.Float
+'\n4.2'       Literal.Number.Float
 ' '           Text
 '-'           Operator
-' '           Text
-'1.1'         Literal.Number.Float
+' 1.1'        Literal.Number.Float
 ' '           Text
 ' '           Text
 ' '           Text
 '; => 3.1'    Comment.Single
-'\n'          Text
-
-'10'          Literal.Number.Integer
+'\n10'        Literal.Number.Integer
 ' '           Text
 '*'           Operator
-' '           Text
-'2'           Literal.Number.Integer
+' 2'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -707,13 +752,10 @@
 ' '           Text
 ' '           Text
 '; => 20'     Comment.Single
-'\n'          Text
-
-'35'          Literal.Number.Integer
+'\n35'        Literal.Number.Integer
 ' '           Text
 '/'           Text
-' '           Text
-'4'           Literal.Number.Integer
+' 4'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -721,27 +763,21 @@
 ' '           Text
 ' '           Text
 '; => 8'      Comment.Single
-'\n'          Text
-
-'35'          Literal.Number.Integer
+'\n35'        Literal.Number.Integer
 ' '           Text
 '/'           Text
 '/'           Text
-' '           Text
-'4'           Literal.Number.Integer
+' 4'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 '; => 8.75'   Comment.Single
-'\n'          Text
-
-'2'           Literal.Number.Integer
+'\n2'         Literal.Number.Integer
 ' '           Text
 '^'           Operator
-' '           Text
-'5'           Literal.Number.Integer
+' 5'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -750,13 +786,10 @@
 ' '           Text
 ' '           Text
 '; => 32'     Comment.Single
-'\n'          Text
-
-'5'           Literal.Number.Integer
+'\n5'         Literal.Number.Integer
 ' '           Text
 '%'           Operator
-' '           Text
-'3'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -773,10 +806,8 @@
 '\n'          Text
 
 'and'         Name.Builtin
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'5'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
+' 5'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -786,10 +817,8 @@
 '\n'          Text
 
 'or'          Name.Builtin
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'5'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
+' 5'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -800,10 +829,8 @@
 '\n'          Text
 
 'xor'         Name.Builtin
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'5'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
+' 5'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -889,13 +916,10 @@
 '\n'          Text
 
 '; equality'  Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '='           Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -904,13 +928,10 @@
 ' '           Text
 ' '           Text
 '; => true'   Comment.Single
-'\n'          Text
-
-'2'           Literal.Number.Integer
+'\n2'         Literal.Number.Integer
 ' '           Text
 '='           Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -924,13 +945,10 @@
 '\n'          Text
 
 '; inequality' Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '<>'          Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -938,13 +956,10 @@
 ' '           Text
 ' '           Text
 '; => false'  Comment.Single
-'\n'          Text
-
-'2'           Literal.Number.Integer
+'\n2'         Literal.Number.Integer
 ' '           Text
 '<>'          Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -957,13 +972,10 @@
 '\n'          Text
 
 '; more comparisons' Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '<'           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -971,40 +983,31 @@
 ' '           Text
 ' '           Text
 '; => true'   Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '='           Operator
 '<'           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 '; => true'   Comment.Single
-'\n'          Text
-
-'10'          Literal.Number.Integer
+'\n10'        Literal.Number.Integer
 ' '           Text
 '='           Operator
 '<'           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 '; => true'   Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '>'           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -1012,28 +1015,22 @@
 ' '           Text
 ' '           Text
 '; => false'  Comment.Single
-'\n'          Text
-
-'1'           Literal.Number.Integer
+'\n1'         Literal.Number.Integer
 ' '           Text
 '>'           Operator
 '='           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 '; => false'  Comment.Single
-'\n'          Text
-
-'11'          Literal.Number.Integer
+'\n11'        Literal.Number.Integer
 ' '           Text
 '>'           Operator
 '='           Operator
-' '           Text
-'10'          Literal.Number.Integer
+' 10'         Literal.Number.Integer
 ' '           Text
 ' '           Text
 ' '           Text
@@ -1057,8 +1054,7 @@
 '; logical operators' Comment.Single
 '\n'          Text
 
-'and'         Name.Builtin
-'?'           Text
+'and?'        Name.Builtin
 ' '           Text
 'true'        Name.Constant
 ' '           Text
@@ -1072,8 +1068,7 @@
 '; => true'   Comment.Single
 '\n'          Text
 
-'and'         Name.Builtin
-'?'           Text
+'and?'        Name.Builtin
 ' '           Text
 'true'        Name.Constant
 ' '           Text
@@ -1086,8 +1081,7 @@
 '; => false'  Comment.Single
 '\n'          Text
 
-'or'          Name.Builtin
-'?'           Text
+'or?'         Name.Builtin
 ' '           Text
 'true'        Name.Constant
 ' '           Text
@@ -1101,8 +1095,7 @@
 '; => true'   Comment.Single
 '\n'          Text
 
-'or'          Name.Builtin
-'?'           Text
+'or?'         Name.Builtin
 ' '           Text
 'false'       Name.Constant
 ' '           Text
@@ -1117,18 +1110,13 @@
 
 '\n'          Text
 
-'and'         Name.Builtin
-'?'           Text
+'and?'        Name.Builtin
 ' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-'='           Operator
-'2'           Literal.Number.Integer
+'[1'          Literal.Number.Integer
+'=2'          Literal.Number.Integer
 ']'           Punctuation
-'['           Punctuation
-'2'           Literal.Number.Integer
-'<'           Operator
-'3'           Literal.Number.Integer
+'[2'          Literal.Number.Integer
+'<3'          Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 ' '           Text
@@ -1167,12 +1155,10 @@
 '\n'          Text
 
 'if'          Name.Builtin
-' '           Text
-'2'           Literal.Number.Integer
+' 2'          Literal.Number.Integer
 ' '           Text
 '>'           Operator
-' '           Text
-'1'           Literal.Number.Integer
+' 1'          Literal.Number.Integer
 ' '           Text
 '['           Punctuation
 ' '           Text
@@ -1190,12 +1176,10 @@
 '\n'          Text
 
 'if'          Name.Builtin
-' '           Text
-'3'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
 ' '           Text
 '<>'          Operator
-' '           Text
-'2'           Literal.Number.Integer
+' 2'          Literal.Number.Integer
 ' '           Text
 '->'          Name.Decorator
 ' '           Text
@@ -1214,2972 +1198,824 @@
 '; if/else statements' Comment.Single
 '\n'          Text
 
-'if'          Name.Builtin
-'?'           Text
-' '           Text
-'2'           Literal.Number.Integer
+'if?'         Name.Builtin
+' 2'          Literal.Number.Integer
 ' '           Text
 '>'           Operator
-' '           Text
-'3'           Literal.Number.Integer
+' 3'          Literal.Number.Integer
 ' '           Text
 '->'          Name.Decorator
 ' '           Text
 'print'       Name.Builtin
 ' '           Text
+'"2'          Literal.Number.Integer
+' '           Text
+'i'           Text
+'s'           Text
+' '           Text
+'g'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 3'          Literal.Number.Integer
 '"'           Literal.String.Double
-'2 is greater than 3' Literal.String
+'\nelse -> print ' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
-
-'else'        Name.Builtin
+'2'           Text
 ' '           Text
-'->'          Name.Decorator
+'i'           Text
+'s'           Text
 ' '           Text
-'print'       Name.Builtin
+'not'         Name.Builtin
 ' '           Text
+'g'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 3'          Literal.Number.Integer
 '"'           Literal.String.Double
-'2 is not greater than 3' Literal.String
+'         ; 2 is not greater than 3\n\n; switch statements\nswitch 2 > 3 -> print ' Literal.String
 '"'           Literal.String.Double
+'2'           Text
 ' '           Text
+'i'           Text
+'s'           Text
 ' '           Text
+'g'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'r'           Text
 ' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; 2 is not greater than 3' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; switch statements' Comment.Single
-'\n'          Text
-
-'switch'      Name.Builtin
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'>'           Operator
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'print'       Name.Builtin
-' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 3'          Literal.Number.Integer
 '"'           Literal.String.Double
-'2 is greater than 3' Literal.String
+'\n             -> print ' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
-
+'2'           Text
 ' '           Text
+'i'           Text
+'s'           Text
 ' '           Text
+'not'         Name.Builtin
 ' '           Text
+'g'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'r'           Text
 ' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'print'       Name.Builtin
-' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 3'          Literal.Number.Integer
 '"'           Literal.String.Double
-'2 is not greater than 3' Literal.String
+' ; 2 is not greater than 3\n\na: (2 > 3)[' Literal.String
 '"'           Literal.String.Double
-' '           Text
-'; 2 is not greater than 3' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'a:'          Name.Label
-' '           Text
-'('           Punctuation
-'2'           Literal.Number.Integer
-' '           Text
-'>'           Operator
-' '           Text
-'3'           Literal.Number.Integer
-')'           Punctuation
-'['           Punctuation
+'y'           Text
+'e'           Text
+'s'           Text
 '"'           Literal.String.Double
-'yes'         Literal.String
+']['          Literal.String
 '"'           Literal.String.Double
-']'           Punctuation
-'['           Punctuation
+'n'           Text
+'o'           Text
 '"'           Literal.String.Double
-'no'          Literal.String
+']         ; a: ' Literal.String
 '"'           Literal.String.Double
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; a: "no"'   Comment.Single
-'\n'          Text
-
-'a:'          Name.Label
-' '           Text
-'('           Punctuation
-'2'           Literal.Number.Integer
-' '           Text
-'>'           Operator
-' '           Text
-'3'           Literal.Number.Integer
-')'           Punctuation
-'?'           Text
-' '           Text
-'->'          Name.Decorator
-' '           Text
+'n'           Text
+'o'           Text
 '"'           Literal.String.Double
-'yes'         Literal.String
+'\na: (2 > 3)? -> ' Literal.String
 '"'           Literal.String.Double
-' '           Text
-'->'          Name.Decorator
-' '           Text
+'y'           Text
+'e'           Text
+'s'           Text
 '"'           Literal.String.Double
-'no'          Literal.String
+' -> '        Literal.String
 '"'           Literal.String.Double
+'n'           Text
+'o'           Text
+'"'           Literal.String.Double
+'    ; a: '   Literal.String
+'"'           Literal.String.Double
+'n'           Text
+'o'           Text
+'"'           Literal.String.Double
+' (exactly the same as above)\n\n; case/when statements\ncase [1]\n    when? [>2] -> print ' Literal.String
+'"'           Literal.String.Double
+'1'           Text
 ' '           Text
+'i'           Text
+'s'           Text
 ' '           Text
+'g'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'r'           Text
 ' '           Text
-' '           Text
-'; a: "no" (exactly the same as above)' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; case/when statements' Comment.Single
-'\n'          Text
-
-'case'        Name.Builtin
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 2'          Literal.Number.Integer
+'.'           Operator
 ' '           Text
 'w'           Text
 'h'           Text
-'e'           Text
-'n'           Text
+'a'           Text
+'t'           Text
 '?'           Text
-' '           Text
-'['           Punctuation
-'>'           Operator
-'2'           Literal.Number.Integer
-']'           Punctuation
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'print'       Name.Builtin
-' '           Text
+'!'           Operator
 '"'           Literal.String.Double
-'1 is greater than 2. what?!' Literal.String
+'\n    when? [<0] -> print ' Literal.String
 '"'           Literal.String.Double
-'\n'          Text
-
+'1'           Text
 ' '           Text
+'i'           Text
+'s'           Text
 ' '           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'s'           Text
 ' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' 0'          Literal.Number.Integer
+'.'           Operator
+' '           Text
+'n'           Text
+'o'           Text
+'p'           Text
+'e'           Text
+'..'          Operator
+'.'           Operator
+'"'           Literal.String.Double
+'\n    else -> print ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'r'           Text
+'e'           Text
 ' '           Text
 'w'           Text
-'h'           Text
 'e'           Text
-'n'           Text
-'?'           Text
-' '           Text
-'['           Punctuation
-'<'           Operator
-'0'           Literal.Number.Integer
-']'           Punctuation
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'1 is less than 0. nope...' Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'else'        Name.Builtin
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'here we are!' Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; here we are!' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'; LOOPS'     Comment.Single
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; with `loop`' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'4'           Literal.Number.Integer
-' '           Text
-'5'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'loop'        Name.Builtin
 ' '           Text
 'a'           Text
 'r'           Text
-'r'           Text
-' '           Text
-"'x"          Keyword.Declaration
-' '           Text
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
+'e'           Text
+'!'           Operator
 '"'           Literal.String.Double
-'x ='         Literal.String
+"                ; here we are!\n\n;---------------------------------\n; LOOPS\n;---------------------------------\n\n; with `loop`\narr: [1 4 5 3]\nloop arr 'x [\n    print [" Literal.String
 '"'           Literal.String.Double
-' '           Text
 'x'           Text
-']'           Punctuation
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'; x = 1'     Comment.Single
-'\n'          Text
-
-'; x = 4'     Comment.Single
-'\n'          Text
-
-'; x = 5'     Comment.Single
-'\n'          Text
-
-'; x = 3'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; with loop and custom index' Comment.Single
-'\n'          Text
-
-'loop'        Name.Builtin
-'.with'       Name.Attribute
-':'           Text
-"'i"          Keyword.Declaration
 ' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-"'x"          Keyword.Declaration
-' '           Text
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
+'='           Operator
 '"'           Literal.String.Double
-'item at position' Literal.String
+" x]\n]\n; x = 1\n; x = 4\n; x = 5\n; x = 3\n\n; with loop and custom index\nloop.with:'i arr 'x [\n    print [" Literal.String
 '"'           Literal.String.Double
-' '           Text
 'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
 ' '           Text
+'a'           Text
+'t'           Text
+' '           Text
+'p'           Text
+'o'           Text
+'s'           Text
+'i'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
 '"'           Literal.String.Double
-'=>'          Literal.String
+' i '         Literal.String
 '"'           Literal.String.Double
-' '           Text
-'x'           Text
-']'           Punctuation
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'; item at position 0 => 1' Comment.Single
-'\n'          Text
-
-'; item at position 1 => 4' Comment.Single
-'\n'          Text
-
-'; item at position 2 => 5' Comment.Single
-'\n'          Text
-
-'; item at position 3 => 3' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; using ranges' Comment.Single
-'\n'          Text
-
-'loop'        Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'3'           Literal.Number.Integer
-' '           Text
-"'x"          Keyword.Declaration
-' '           Text
-'->'          Name.Decorator
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-"; since it's a single statement" Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
+'='           Operator
+'>'           Operator
+'"'           Literal.String.Double
+" x]\n]\n; item at position 0 => 1\n; item at position 1 => 4\n; item at position 2 => 5\n; item at position 3 => 3\n\n; using ranges\nloop 1..3 'x ->         ; since it's a single statement\n    print x             ; there's no need for [block] notation\n                        ; we can wrap it up using the `->` syntactic sugar\n\nloop `a`..`c` 'ch ->\n    print ch\n; a\n; b\n; c\n\n; picking multiple items\nloop 1..10 [x y] ->\n    print [" Literal.String
+'"'           Literal.String.Double
 'x'           Text
 ' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-"; there's no need for [block] notation" Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; we can wrap it up using the `->` syntactic sugar' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'loop'        Name.Builtin
-' '           Text
-'`a`'         Literal.String.Char
-'..'          Operator
-'`c`'         Literal.String.Char
-' '           Text
-"'ch"         Keyword.Declaration
-' '           Text
-'->'          Name.Decorator
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'c'           Text
-'h'           Text
-'\n'          Text
-
-'; a'         Comment.Single
-'\n'          Text
-
-'; b'         Comment.Single
-'\n'          Text
-
-'; c'         Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; picking multiple items' Comment.Single
-'\n'          Text
-
-'loop'        Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'['           Punctuation
-'x'           Text
-' '           Text
-'y'           Text
-']'           Punctuation
-' '           Text
-'->'          Name.Decorator
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
+'='           Operator
 '"'           Literal.String.Double
-'x ='         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'x'           Text
-' '           Text
-'"'           Literal.String.Double
-', y ='       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'y'           Text
-']'           Punctuation
-'\n'          Text
-
-'; x = 1 , y = 2' Comment.Single
-'\n'          Text
-
-'; x = 3 , y = 4' Comment.Single
-'\n'          Text
-
-'; x = 5 , y = 6' Comment.Single
-'\n'          Text
-
-'; x = 7 , y = 8' Comment.Single
-'\n'          Text
-
-'; x = 9 , y = 10' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; looping through a dictionary' Comment.Single
-'\n'          Text
-
-'dict:'       Name.Label
-' '           Text
-'#'           Operator
-'['           Punctuation
-'name:'       Name.Label
-' '           Text
-'"'           Literal.String.Double
-'John'        Literal.String
+' x '         Literal.String
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'surname:'    Name.Label
-' '           Text
-'"'           Literal.String.Double
-'Doe'         Literal.String
-'"'           Literal.String.Double
-','           Punctuation
-' '           Text
-'age:'        Name.Label
-' '           Text
-'34'          Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'loop'        Name.Builtin
-' '           Text
-'d'           Text
-'i'           Text
-'c'           Text
-'t'           Text
-' '           Text
-'['           Punctuation
-'k'           Text
-'e'           Text
 'y'           Text
 ' '           Text
-'v'           Text
-'a'           Text
-'l'           Text
-'u'           Text
-'e'           Text
-']'           Punctuation
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
-'k'           Text
-'e'           Text
-'y'           Text
-' '           Text
-'"'           Literal.String.Double
-'->'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-'v'           Text
-'a'           Text
-'l'           Text
-'u'           Text
-'e'           Text
-']'           Punctuation
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'; name -> John' Comment.Single
-'\n'          Text
-
-'; surname -> Doe' Comment.Single
-'\n'          Text
-
-'; age -> 34' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; while loops' Comment.Single
-'\n'          Text
-
-'i:'          Name.Label
-' '           Text
-'new'         Name.Builtin
-' '           Text
-'0'           Literal.Number.Integer
-'\n'          Text
-
-'while'       Name.Builtin
-' '           Text
-'['           Punctuation
-'i'           Text
-'<'           Operator
-'3'           Literal.Number.Integer
-']'           Punctuation
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'i ='         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'i'           Text
-']'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'inc'         Name.Builtin
-' '           Text
-"'i"          Keyword.Declaration
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'; i = 0'     Comment.Single
-'\n'          Text
-
-'; i = 1'     Comment.Single
-'\n'          Text
-
-'; i = 2'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'; STRINGS'   Comment.Single
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; case'      Comment.Single
-'\n'          Text
-
-'a:'          Name.Label
-' '           Text
-'"'           Literal.String.Double
-'tHis Is a stRinG' Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'upper'       Name.Builtin
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; THIS IS A STRING' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'lower'       Name.Builtin
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; this is a string' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'capitalize'  Name.Builtin
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; THis Is a stRinG' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; concatenation' Comment.Single
-'\n'          Text
-
-'a:'          Name.Label
-' '           Text
-'"'           Literal.String.Double
-'Hello '      Literal.String
-'"'           Literal.String.Double
-' '           Text
-'+'           Operator
-'+'           Operator
-' '           Text
-'"'           Literal.String.Double
-'World!'      Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; a: "Hello World!"' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; strings as an array' Comment.Single
-'\n'          Text
-
-'split'       Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [h e l l o]' Comment.Single
-'\n'          Text
-
-'split'       Name.Builtin
-'.words'      Name.Attribute
-' '           Text
-'"'           Literal.String.Double
-'hello world' Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-'; => [hello world]' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'first'       Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; h'         Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'last'        Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; o'         Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; conversion' Comment.Single
-'\n'          Text
-
-'to'          Name.Builtin
-' '           Text
-':string'     Keyword.Type
-' '           Text
-'123'         Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => "123"'  Comment.Single
-'\n'          Text
-
-'to'          Name.Builtin
-' '           Text
-':integer'    Keyword.Type
-' '           Text
-'"'           Literal.String.Double
-'123'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => 123'    Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; joining strings together' Comment.Single
-'\n'          Text
-
-'join'        Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'world'       Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => "helloworld"' Comment.Single
-'\n'          Text
-
-'join'        Name.Builtin
-'.with'       Name.Attribute
-':'           Text
-'"'           Literal.String.Double
-'-'           Literal.String
-'"'           Literal.String.Double
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'world'       Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => "hello-world"' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; string interpolation' Comment.Single
-'\n'          Text
-
-'x:'          Name.Label
-' '           Text
-'2'           Literal.Number.Integer
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'~'           Operator
-'"'           Literal.String.Double
-'x = |x|'     Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; x = 2'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; interpolation with `print`' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'x ='         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'x'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; x = 2'     Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; (`print` works by calculating the given block' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-';  and joining the different values as strings' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-';  with a single space between them)' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; templates' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'render'      Name.Builtin
-'.template'   Name.Attribute
-' '           Text
-'{'           Literal.String.Single
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'<||'         Literal.String.Interpol
 '='           Operator
-' '           Text
-'switch'      Name.Builtin
-' '           Text
-'x'           Text
-'='           Operator
-'2'           Literal.Number.Integer
-' '           Text
-'['           Punctuation
-' '           Text
-'||>'         Literal.String.Interpol
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'Y'           Literal.String
-'e'           Literal.String
-'s'           Literal.String
-','           Literal.String
-' '           Literal.String
-'x'           Literal.String
-' '           Literal.String
-'='           Literal.String
-' '           Literal.String
-'2'           Literal.String
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'<||'         Literal.String.Interpol
-']'           Punctuation
-'['           Punctuation
-'||>'         Literal.String.Interpol
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'N'           Literal.String
-'o'           Literal.String
-','           Literal.String
-' '           Literal.String
-'x'           Literal.String
-' '           Literal.String
-'i'           Literal.String
-'s'           Literal.String
-' '           Literal.String
-'n'           Literal.String
-'o'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'2'           Literal.String
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'<||'         Literal.String.Interpol
-']'           Punctuation
-'||>'         Literal.String.Interpol
-'\n'          Literal.String
-
-'}'           Literal.String.Single
-' '           Text
-'; Yes, x = 2' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; matching'  Comment.Single
-'\n'          Text
-
-'prefix'      Name.Builtin
-'?'           Text
-' '           Text
 '"'           Literal.String.Double
-'hello'       Literal.String
+' y]\n; x = 1 , y = 2\n; x = 3 , y = 4\n; x = 5 , y = 6\n; x = 7 , y = 8\n; x = 9 , y = 10\n\n; looping through a dictionary\ndict: #[name: ' Literal.String
 '"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'he'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => true'   Comment.Single
-'\n'          Text
-
-'suffix'      Name.Builtin
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'he'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => false'  Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'c'           Text
+'J'           Text
 'o'           Text
-'n'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'ll'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => true'   Comment.Single
-'\n'          Text
-
-'c'           Text
-'o'           Text
-'n'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'he'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => true'   Comment.Single
-'\n'          Text
-
-'c'           Text
-'o'           Text
-'n'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'x'           Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => false'  Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'in'          Name.Builtin
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'ll'          Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => true'   Comment.Single
-'\n'          Text
-
-'in'          Name.Builtin
-'?'           Text
-' '           Text
-'"'           Literal.String.Double
-'x'           Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => false'  Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'; BLOCKS'    Comment.Single
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; calculate a block' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'1'           Literal.Number.Integer
-'+'           Operator
-'1'           Literal.Number.Integer
-' '           Text
-'1'           Literal.Number.Integer
-'+'           Operator
-'1'           Literal.Number.Integer
-'+'           Operator
-'1'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'@'           Operator
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 2 3]' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; execute a block' Comment.Single
-'\n'          Text
-
-'sth:'        Name.Label
-' '           Text
-'['           Punctuation
-'print'       Name.Builtin
-' '           Text
-'"'           Literal.String.Double
-'Hello world' Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-' '           Text
-' '           Text
-'; this is perfectly valid,' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; could contain *anything*' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; and will not be executed...' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'do'          Name.Builtin
-' '           Text
-'s'           Text
-'t'           Text
 'h'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; Hello world' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; (...until we tell it to)' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; array indexing' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'zero'        Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'two'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'three'       Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'first'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; zero'      Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-'\\'          Operator
-'0'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; zero'      Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'last'        Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; three'     Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-'\\'          Operator
-'3'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; three'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'x:'          Name.Label
-' '           Text
-'2'           Literal.Number.Integer
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'get'         Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-'x'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; two'       Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-'\\'          Operator
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; two'       Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; setting an array element' Comment.Single
-'\n'          Text
-
-'a'           Text
-'r'           Text
-'r'           Text
-'\\'          Operator
-'0'           Literal.Number.Integer
-':'           Text
-' '           Text
-'"'           Literal.String.Double
-'nada'        Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-'set'         Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'"'           Literal.String.Double
-'dos'         Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; nada one dos three' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; adding elements to an array' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'new'         Name.Builtin
-' '           Text
-'['           Punctuation
-']'           Punctuation
-'\n'          Text
-
-"'arr"        Keyword.Declaration
-' '           Text
-'+'           Operator
-'+'           Operator
-' '           Text
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-"'arr"        Keyword.Declaration
-' '           Text
-'+'           Operator
-'+'           Operator
-' '           Text
-'"'           Literal.String.Double
-'two'         Literal.String
-'"'           Literal.String.Double
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; one two'   Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; remove elements from an array' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'new'         Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'two'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'three'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'four'        Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-'\n'          Text
-
-"'arr"        Keyword.Declaration
-' '           Text
-'-'           Operator
-'-'           Operator
-' '           Text
-'"'           Literal.String.Double
-'two'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; arr: ["one" "three" "four"]' Comment.Single
-'\n'          Text
-
-'remove'      Name.Builtin
-' '           Text
-"'arr"        Keyword.Declaration
-' '           Text
-'.index'      Name.Attribute
-' '           Text
-'0'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; arr: ["three" "four"]' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; getting the size of an array' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'"'           Literal.String.Double
-'three'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'4'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'size'        Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; 4'         Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; getting a slice of an array' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'slice'       Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'two'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'three'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'four'        Literal.String
-'"'           Literal.String.Double
-']'           Punctuation
-' '           Text
-'0'           Literal.Number.Integer
-' '           Text
-'1'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; one two'   Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; check if array contains a specific element' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'c'           Text
-'o'           Text
 'n'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'?'           Text
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
 '"'           Literal.String.Double
-'one'         Literal.String
+', surname: ' Literal.String
 '"'           Literal.String.Double
-' '           Text
-' '           Text
-' '           Text
-'; true'      Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'c'           Text
+'D'           Text
 'o'           Text
-'n'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'?'           Text
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-'"'           Literal.String.Double
-'five'        Literal.String
-'"'           Literal.String.Double
-' '           Text
-' '           Text
-'; false'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; sorting array' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'5'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'4'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'sort'        Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 2 3 4 5]' Comment.Single
-'\n'          Text
-
-'sort'        Name.Builtin
-'.descending' Name.Attribute
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [5 4 3 2 1]' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; mapping values' Comment.Single
-'\n'          Text
-
-'map'         Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'['           Punctuation
-'2'           Literal.Number.Integer
-'*'           Operator
-'x'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [2 4 6 8 10 12 14 16 18 20]' Comment.Single
-'\n'          Text
-
-'map'         Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-"'x"          Keyword.Declaration
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'2'           Literal.Number.Integer
-'*'           Operator
-'x'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above' Comment.Single
-'\n'          Text
-
-'map'         Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'=>'          Name.Decorator
-' '           Text
-'['           Punctuation
-'2'           Literal.Number.Integer
-'*'           Operator
-'&'           Operator
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above' Comment.Single
-'\n'          Text
-
-'map'         Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'=>'          Name.Decorator
-' '           Text
-'['           Punctuation
-'2'           Literal.Number.Integer
-'*'           Operator
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; selecting/filtering array values' Comment.Single
-'\n'          Text
-
-'select'      Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'['           Punctuation
-'o'           Text
-'d'           Text
-'d'           Text
-'?'           Text
-' '           Text
-'x'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 3 5 7 9]' Comment.Single
-'\n'          Text
-
-'select'      Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'=>'          Name.Decorator
-' '           Text
-'o'           Text
-'d'           Text
-'d'           Text
-'?'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'filter'      Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'=>'          Name.Decorator
-' '           Text
-'o'           Text
-'d'           Text
-'d'           Text
-'?'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [2 4 6 8 10]' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; (now, we leave out all odd numbers -' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-';  while select keeps them)' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; misc operations' Comment.Single
-'\n'          Text
-
-'arr:'        Name.Label
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'one'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'"'           Literal.String.Double
-'three'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'4'           Literal.Number.Integer
-']'           Punctuation
-'\n'          Text
-
-'reverse'     Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [4 "three" 2 "one"]' Comment.Single
-'\n'          Text
-
-'shuffle'     Name.Builtin
-' '           Text
-'a'           Text
-'r'           Text
-'r'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [2 4 "three" "one"]' Comment.Single
-'\n'          Text
-
-'unique'      Name.Builtin
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-'1'           Literal.Number.Integer
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 2 3]' Comment.Single
-'\n'          Text
-
-'permutate'   Name.Builtin
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [[1 2 3] [1 3 2] [3 1 2] [2 1 3] [2 3 1] [3 2 1]]' Comment.Single
-'\n'          Text
-
-'take'        Name.Builtin
-' '           Text
-'1'           Literal.Number.Integer
-'..'          Operator
-'10'          Literal.Number.Integer
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 2 3]' Comment.Single
-'\n'          Text
-
-'repeat'      Name.Builtin
-' '           Text
-'['           Punctuation
-'1'           Literal.Number.Integer
-' '           Text
-'2'           Literal.Number.Integer
-']'           Punctuation
-' '           Text
-'3'           Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => [1 2 1 2 1 2]' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'; FUNCTIONS' Comment.Single
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; declaring a function' Comment.Single
-'\n'          Text
-
-'f:'          Name.Label
-' '           Text
-'function'    Name.Builtin
-' '           Text
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'['           Punctuation
-' '           Text
-'2'           Literal.Number.Integer
-'*'           Operator
-'x'           Text
-' '           Text
-']'           Punctuation
-'\n'          Text
-
-'f:'          Name.Label
-' '           Text
-'function'    Name.Builtin
-' '           Text
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'->'          Name.Decorator
-' '           Text
-'2'           Literal.Number.Integer
-'*'           Operator
-'x'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above' Comment.Single
-'\n'          Text
-
-'f:'          Name.Label
-' '           Text
-'$'           Operator
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'->'          Name.Decorator
-'2'           Literal.Number.Integer
-'*'           Operator
-'x'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; same as above (only using the `$` alias' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-';  for the `function`... function)' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; calling a function' Comment.Single
-'\n'          Text
-
-'f'           Text
-' '           Text
-'10'          Literal.Number.Integer
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; => 20'     Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; returning a value' Comment.Single
-'\n'          Text
-
-'g:'          Name.Label
-' '           Text
-'function'    Name.Builtin
-' '           Text
-'['           Punctuation
-'x'           Text
-']'           Punctuation
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'if'          Name.Builtin
-' '           Text
-'x'           Text
-' '           Text
-'<'           Operator
-' '           Text
-'2'           Literal.Number.Integer
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'return'      Name.Builtin
-' '           Text
-'0'           Literal.Number.Integer
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'res:'        Name.Label
-' '           Text
-'0'           Literal.Number.Integer
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'loop'        Name.Builtin
-' '           Text
-'0'           Literal.Number.Integer
-'..'          Operator
-'x'           Text
-' '           Text
-"'z"          Keyword.Declaration
-' '           Text
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'res:'        Name.Label
-' '           Text
-'r'           Text
 'e'           Text
+'"'           Literal.String.Double
+', age: 34]\nloop dict [key value][\n    print [key ' Literal.String
+'"'           Literal.String.Double
+'->'          Name.Decorator
+'"'           Literal.String.Double
+' value]\n]\n; name -> John\n; surname -> Doe\n; age -> 34\n\n; while loops\ni: new 0\nwhile [i<3][\n    print [' Literal.String
+'"'           Literal.String.Double
+'i'           Text
+' '           Text
+'='           Operator
+'"'           Literal.String.Double
+" i]\n    inc 'i\n]\n; i = 0\n; i = 1\n; i = 2\n\n;---------------------------------\n; STRINGS\n;---------------------------------\n\n; case\na: " Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'H'           Text
+'i'           Text
 's'           Text
 ' '           Text
-'+'           Operator
+'I'           Text
+'s'           Text
 ' '           Text
+'a'           Text
+' '           Text
+'s'           Text
+'t'           Text
+'R'           Text
+'i'           Text
+'n'           Text
+'G'           Text
+'"'           Literal.String.Double
+'\nprint upper a               ; THIS IS A STRING\nprint lower a               ; this is a string\nprint capitalize a          ; THis Is a stRinG\n\n; concatenation\na: ' Literal.String
+'"'           Literal.String.Double
+'H'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+' '           Text
+'"'           Literal.String.Double
+' ++ '        Literal.String
+'"'           Literal.String.Double
+'W'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'!'           Operator
+'"'           Literal.String.Double
+'     ; a: '  Literal.String
+'"'           Literal.String.Double
+'H'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+' '           Text
+'W'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'!'           Operator
+'"'           Literal.String.Double
+'\n\n; strings as an array\nsplit ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+'               ; => [h e l l o]\nsplit.words ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+' '           Text
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+'   ; => [hello world]\n\nprint first ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+'         ; h\nprint last ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+'          ; o\n\n; conversion\nto :string 123              ; => ' Literal.String
+'"'           Literal.String.Double
+'1'           Text
+'2'           Text
+'3'           Text
+'"'           Literal.String.Double
+'\nto :integer ' Literal.String
+'"'           Literal.String.Double
+'1'           Text
+'2'           Text
+'3'           Text
+'"'           Literal.String.Double
+'           ; => 123\n\n; joining strings together\njoin [' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+']              ; => ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+'\njoin.with:' Literal.String
+'"'           Literal.String.Double
+'-'           Operator
+'"'           Literal.String.Double
+' ['          Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+']     ; => ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'-'           Operator
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+'\n\n; string interpolation\nx: 2\nprint ~' Literal.String
+'"'           Literal.String.Double
+'x'           Text
+' '           Text
+'='           Operator
+' '           Text
+'|'           Name.Decorator
+'x'           Text
+'|'           Name.Decorator
+'"'           Literal.String.Double
+'            ; x = 2\n\n; interpolation with `print`\nprint [' Literal.String
+'"'           Literal.String.Double
+'x'           Text
+' '           Text
+'='           Operator
+'"'           Literal.String.Double
+' x]             ; x = 2\n                            ; (`print` works by calculating the given block\n                            ;  and joining the different values as strings\n                            ;  with a single space between them)\n\n; templates\nprint render.template {\n    <' Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+'= switch x=2 [ ' Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+'>\n        Yes, x = 2\n    <' Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+']['          Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+'>\n        No, x is not 2\n    <' Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+']'           Literal.String
+'|'           Literal.String.Interpol
+'|'           Literal.String.Interpol
+'>\n} ; Yes, x = 2\n\n; matching\nprefix? ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'"'           Literal.String.Double
+'        ; => true\nsuffix? ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'"'           Literal.String.Double
+'        ; => false\n\ncontains? ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'l'           Text
+'l'           Text
+'"'           Literal.String.Double
+'      ; => true\ncontains? ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'"'           Literal.String.Double
+'      ; => true\ncontains? ' Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'x'           Text
+'"'           Literal.String.Double
+'       ; => false\n\nin? ' Literal.String
+'"'           Literal.String.Double
+'l'           Text
+'l'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+'            ; => true\nin? ' Literal.String
+'"'           Literal.String.Double
+'x'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Literal.String.Double
+'             ; => false\n\n;---------------------------------\n; BLOCKS\n;---------------------------------\n\n; calculate a block\narr: [1 1+1 1+1+1]\n@arr                        ; => [1 2 3]\n\n; execute a block\nsth: [print ' Literal.String
+'"'           Literal.String.Double
+'H'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+' '           Text
+'w'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'d'           Text
+'"'           Literal.String.Double
+']  ; this is perfectly valid,\n                            ; could contain *anything*\n                            ; and will not be executed...\n\ndo sth                      ; Hello world\n                            ; (...until we tell it to)\n\n; array indexing\narr: [' Literal.String
+'"'           Literal.String.Double
 'z'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-']'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'return'      Name.Builtin
-' '           Text
+'e'           Text
+'r'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'w'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
 'r'           Text
 'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+']\nprint first arr             ; zero\nprint arr\\0                 ; zero\nprint last arr              ; three\nprint arr\\3                 ; three\n\nx: 2\nprint get arr x             ; two\nprint arr\\[x]               ; two\n\n; setting an array element\narr\\0: ' Literal.String
+'"'           Literal.String.Double
+'n'           Text
+'a'           Text
+'d'           Text
+'a'           Text
+'"'           Literal.String.Double
+'\nset arr 2 ' Literal.String
+'"'           Literal.String.Double
+'d'           Text
+'o'           Text
 's'           Text
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'; CUSTOM TYPES' Comment.Single
-'\n'          Text
-
-';---------------------------------' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; defining a custom type' Comment.Single
-'\n'          Text
-
-'define'      Name.Builtin
+'"'           Literal.String.Double
+"\nprint arr                   ; nada one dos three\n\n; adding elements to an array\narr: new []\n'arr ++ " Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+"\n'arr ++ "  Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'w'           Text
+'o'           Text
+'"'           Literal.String.Double
+'\nprint arr                   ; one two\n\n; remove elements from an array\narr: new [' Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'w'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'f'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'"'           Literal.String.Double
+"]\n'arr -- " Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'w'           Text
+'o'           Text
+'"'           Literal.String.Double
+'               ; arr: [' Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'f'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'"'           Literal.String.Double
+"]\nremove 'arr .index 0        ; arr: [" Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'f'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'"'           Literal.String.Double
+']\n\n; getting the size of an array\narr: [' Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 2 '         Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 4]\nprint size arr              ; 4\n\n; getting a slice of an array\nprint slice [' Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'w'           Text
+'o'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'f'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'"'           Literal.String.Double
+'] 0 1        ; one two\n\n; check if array contains a specific element\nprint contains? arr ' Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+'   ; true\nprint contains? arr ' Literal.String
+'"'           Literal.String.Double
+'f'           Text
+'i'           Text
+'v'           Text
+'e'           Text
+'"'           Literal.String.Double
+"  ; false\n\n; sorting array\narr: [1 5 3 2 4]\nsort arr                    ; => [1 2 3 4 5]\nsort.descending arr         ; => [5 4 3 2 1]\n\n; mapping values\nmap 1..10 [x][2*x]          ; => [2 4 6 8 10 12 14 16 18 20]\nmap 1..10 'x -> 2*x         ; same as above\nmap 1..10 => [2*&]          ; same as above\nmap 1..10 => [2*]           ; same as above\n\n; selecting/filtering array values\nselect 1..10 [x][odd? x]    ; => [1 3 5 7 9]\nselect 1..10 => odd?        ; same as above\n\nfilter 1..10 => odd?        ; => [2 4 6 8 10]\n                            ; (now, we leave out all odd numbers -\n                            ;  while select keeps them)\n\n; misc operations\narr: [" Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 2 '         Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 4]\nreverse arr                 ; => [4 ' Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 2 '         Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+']\nshuffle arr                 ; => [2 4 ' Literal.String
+'"'           Literal.String.Double
+'t'           Text
+'h'           Text
+'r'           Text
+'e'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'o'           Text
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+"]\nunique [1 2 3 2 3 1]        ; => [1 2 3]\npermutate [1 2 3]           ; => [[1 2 3] [1 3 2] [3 1 2] [2 1 3] [2 3 1] [3 2 1]]\ntake 1..10 3                ; => [1 2 3]\nrepeat [1 2] 3              ; => [1 2 1 2 1 2]\n\n;---------------------------------\n; FUNCTIONS\n;---------------------------------\n\n; declaring a function\nf: function [x][ 2*x ]\nf: function [x]-> 2*x       ; same as above\nf: $[x]->2*x                ; same as above (only using the `$` alias\n                            ;  for the `function`... function)\n\n; calling a function\nf 10                        ; => 20\n\n; returning a value\ng: function [x][\n    if x < 2 -> return 0\n\n    res: 0\n    loop 0..x 'z [\n        res: res + z\n    ]\n    return res\n]\n\n;---------------------------------\n; CUSTOM TYPES\n;---------------------------------\n\n; defining a custom type\ndefine :person [                            ; define a new custom type " Literal.String
+'"'           Literal.String.Double
+'P'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'o'           Text
+'n'           Text
+'"'           Literal.String.Double
+'\n    name                                    ; with fields: name, surname, age\n    surname\n    age\n][\n    ; with custom post-construction initializer\n    init: [\n        this\\name: capitalize this\\name\n    ]\n\n    ; custom print function\n    print: [\n        render ' Literal.String
+'"'           Literal.String.Double
+'NAME:'       Name.Label
 ' '           Text
-':person'     Keyword.Type
-' '           Text
-'['           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; define a new custom type "Person"' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'|'           Name.Decorator
+'t'           Text
+'h'           Text
+'i'           Text
+'s'           Text
+'\\'          Operator
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
+'|'           Name.Decorator
+','           Punctuation
 ' '           Text
+'SURNAME:'    Name.Label
 ' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; with fields: name, surname, age' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'|'           Name.Decorator
+'t'           Text
+'h'           Text
+'i'           Text
+'s'           Text
+'\\'          Operator
 's'           Text
 'u'           Text
 'r'           Text
@@ -4187,774 +2023,120 @@
 'a'           Text
 'm'           Text
 'e'           Text
-'\n'          Text
-
+'|'           Name.Decorator
+','           Punctuation
 ' '           Text
+'AGE:'        Name.Label
 ' '           Text
-' '           Text
-' '           Text
+'|'           Name.Decorator
+'t'           Text
+'h'           Text
+'i'           Text
+'s'           Text
+'\\'          Operator
 'a'           Text
 'g'           Text
 'e'           Text
-'\n'          Text
-
-']'           Punctuation
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; with custom post-construction initializer' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'init:'       Name.Label
-' '           Text
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-'\\'          Operator
-'name:'       Name.Label
-' '           Text
-'capitalize'  Name.Builtin
-' '           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-'\\'          Operator
-'n'           Text
-'a'           Text
-'m'           Text
-'e'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-']'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; custom print function' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print:'      Name.Label
-' '           Text
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'render'      Name.Builtin
-' '           Text
+'|'           Name.Decorator
 '"'           Literal.String.Double
-'NAME: |this\\name|, SURNAME: |this\\surname|, AGE: |this\\age|' Literal.String
+"\n    ]\n\n    ; custom comparison operator\n    compare: 'age\n]\n\n; create a method for our custom type\nsayHello: function [this][\n    ensure -> is? :person this\n\n    print [" Literal.String
 '"'           Literal.String.Double
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-']'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; custom comparison operator' Comment.Single
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'compare:'    Name.Label
-' '           Text
-"'age"        Keyword.Declaration
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'; create a method for our custom type' Comment.Single
-'\n'          Text
-
-'sayHello:'   Name.Label
-' '           Text
-'function'    Name.Builtin
-' '           Text
-'['           Punctuation
-'t'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-']'           Punctuation
-'['           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'ensure'      Name.Builtin
-' '           Text
-'->'          Name.Decorator
-' '           Text
-'i'           Text
-'s'           Text
-'?'           Text
-' '           Text
-':person'     Keyword.Type
-' '           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'Hello'       Literal.String
-'"'           Literal.String.Double
-' '           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-'\\'          Operator
-'n'           Text
-'a'           Text
-'m'           Text
-'e'           Text
-']'           Punctuation
-'\n'          Text
-
-']'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'; create new objects of our custom type' Comment.Single
-'\n'          Text
-
-'a:'          Name.Label
-' '           Text
-'to'          Name.Builtin
-' '           Text
-':person'     Keyword.Type
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'John'        Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'Doe'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'34'          Literal.Number.Integer
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; let\'s create 2 "Person"s' Comment.Single
-'\n'          Text
-
-'b:'          Name.Label
-' '           Text
-'to'          Name.Builtin
-' '           Text
-':person'     Keyword.Type
-' '           Text
-'['           Punctuation
-'"'           Literal.String.Double
-'jane'        Literal.String
-'"'           Literal.String.Double
-' '           Text
-'"'           Literal.String.Double
-'Doe'         Literal.String
-'"'           Literal.String.Double
-' '           Text
-'33'          Literal.Number.Integer
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; and another one' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; call pseudo-inner method' Comment.Single
-'\n'          Text
-
-'s'           Text
-'a'           Text
-'y'           Text
 'H'           Text
 'e'           Text
 'l'           Text
 'l'           Text
 'o'           Text
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; Hello John' Comment.Single
-'\n'          Text
-
-'s'           Text
-'a'           Text
-'y'           Text
-'H'           Text
-'e'           Text
-'l'           Text
-'l'           Text
+'"'           Literal.String.Double
+' this\\name]\n]\n\n; create new objects of our custom type\na: to :person [' Literal.String
+'"'           Literal.String.Double
+'J'           Text
 'o'           Text
-' '           Text
-'b'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; Hello Jane' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; access object fields' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
+'h'           Text
+'n'           Text
 '"'           Literal.String.Double
-"The first person's name is:" Literal.String
+' '           Literal.String
 '"'           Literal.String.Double
-' '           Text
+'D'           Text
+'o'           Text
+'e'           Text
+'"'           Literal.String.Double
+" 34]                 ; let's create 2 " Literal.String
+'"'           Literal.String.Double
+'P'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'o'           Text
+'n'           Text
+'"'           Literal.String.Double
+'s\nb: to :person [' Literal.String
+'"'           Literal.String.Double
+'j'           Text
 'a'           Text
-'\\'          Operator
+'n'           Text
+'e'           Text
+'"'           Literal.String.Double
+' '           Literal.String
+'"'           Literal.String.Double
+'D'           Text
+'o'           Text
+'e'           Text
+'"'           Literal.String.Double
+' 33]                 ; and another one\n\n; call pseudo-inner method\nsayHello a                                      ; Hello John\nsayHello b                                      ; Hello Jane\n\n; access object fields\nprint [' Literal.String
+'"'           Literal.String.Double
+'T'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'first'       Name.Builtin
+' '           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'o'           Text
+'n'           Text
+"'s"          Keyword.Declaration
+' '           Text
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
-']'           Punctuation
 ' '           Text
-' '           Text
-' '           Text
-' '           Text
-"; The first person's name is: John" Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'['           Punctuation
+'is:'         Name.Label
 '"'           Literal.String.Double
-"The second person's name is:" Literal.String
+" a\\name]    ; The first person's name is: John\nprint [" Literal.String
 '"'           Literal.String.Double
+'T'           Text
+'h'           Text
+'e'           Text
 ' '           Text
-'b'           Text
-'\\'          Operator
+'s'           Text
+'e'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'o'           Text
+'n'           Text
+"'s"          Keyword.Declaration
+' '           Text
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
-']'           Punctuation
 ' '           Text
-' '           Text
-' '           Text
-"; The second person's name is: Jane" Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; changing object fields' Comment.Single
-'\n'          Text
-
-'a'           Text
-'\\'          Operator
-'name:'       Name.Label
-' '           Text
+'is:'         Name.Label
 '"'           Literal.String.Double
-'Bob'         Literal.String
+" b\\name]   ; The second person's name is: Jane\n\n; changing object fields\na\\name: " Literal.String
 '"'           Literal.String.Double
-'\n'          Text
-
-'s'           Text
-'a'           Text
-'y'           Text
-'H'           Text
-'e'           Text
-'l'           Text
-'l'           Text
+'B'           Text
 'o'           Text
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; Hello Bob' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; verifying object type' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'type'        Name.Builtin
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; :person'   Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'i'           Text
-'s'           Text
-'?'           Text
-' '           Text
-':person'     Keyword.Type
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; true'      Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; printing objects' Comment.Single
-'\n'          Text
-
-'print'       Name.Builtin
-' '           Text
-'a'           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; NAME: John, SURNAME: Doe, AGE: 34' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'; sorting user objects (using custom comparator)' Comment.Single
-'\n'          Text
-
-'sort'        Name.Builtin
-' '           Text
-'@'           Operator
-'['           Punctuation
-'a'           Text
-' '           Text
 'b'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; Jane..., John...' Comment.Single
-'\n'          Text
-
-'sort'        Name.Builtin
-'.descending' Name.Attribute
-' '           Text
-'@'           Operator
-'['           Punctuation
-'a'           Text
-' '           Text
-'b'           Text
-']'           Punctuation
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'; John..., Jane...' Comment.Single
-'\n'          Text
-
-'\n'          Text
-
-'eofString:'  Name.Label
-'\n'          Text
-
-'---'         Literal.String.Single
-'\n'          Literal.String
-
-'I'           Literal.String
-"'"           Literal.String
-'m'           Literal.String
-' '           Literal.String
-'a'           Literal.String
-'n'           Literal.String
-' '           Literal.String
-'e'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-' '           Literal.String
-'o'           Literal.String
-'f'           Literal.String
-' '           Literal.String
-'f'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
-'e'           Literal.String
-'\n'          Literal.String
-
-'M'           Literal.String
-'u'           Literal.String
-'l'           Literal.String
-'t'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'.'           Literal.String
-'\n'          Literal.String
-
-''            Literal.String.Single
+'"'           Literal.String.Double
+"\nsayHello a                                      ; Hello Bob\n\n; verifying object type\nprint type a                                    ; :person\nprint is? :person a                             ; true\n\n; printing objects\nprint a                                         ; NAME: John, SURNAME: Doe, AGE: 34\n\n; sorting user objects (using custom comparator)\nsort @[a b]                                     ; Jane..., John...\nsort.descending @[a b]                          ; John..., Jane...\n\neofString:\n---\nI'm an end of file\nMultiline string.\n" Literal.String
