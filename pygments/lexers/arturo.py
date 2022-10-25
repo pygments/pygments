@@ -115,8 +115,8 @@ class ArturoLexer(RegexLexer):
                 Name.Constant),
             (r'`.`', String.Char),                              # character
             (r'#\w+', Name.Constant),                           # color
-            (r'[0-9]+\.[0-9]+', Number.Float),                  # float
-            (r'[0-9]+', Number.Integer),                        # integer
+            (r'[^\w][0-9]+\.[0-9]+', Number.Float),                  # float
+            (r'[^\w][0-9]+', Number.Integer),                        # integer
             (r'\w+\b\??:', Name.Label),                         # label
             (r'\'(?:\w+\b\??:?)', Keyword.Declaration),         # literal
             (r'\:\w+', Keyword.Type),                           # type
