@@ -71,6 +71,7 @@ class ArturoLexer(RegexLexer):
         'root': [
             include('comments'),
             include('constants'),
+            include('strings'),
             include('builtin_functions'),
             include('operators'),
             (r'.', Text),
