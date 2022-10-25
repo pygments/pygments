@@ -142,9 +142,6 @@ class ArturoLexer(RegexLexer):
         'string-escape': [
             ((words('\\\\', '\\n', '\\t','\\"')), String.Escape)
         ],
-        'string-content-multi-line': [
-            (r'[\s\S]', String)
-        ],
 
         'inside-simple-string': [
             include('string-escape'),
@@ -183,7 +180,7 @@ class ArturoLexer(RegexLexer):
             (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\:\}', String.Double, '#pop'),     # Closing Quote
-            include('string-content-multi-line')    # String Content
+            (r'[\s\S]', String)    # String Content
         ],
 
         'inside-curly-string': [
@@ -191,7 +188,7 @@ class ArturoLexer(RegexLexer):
             (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\}', String.Single, '#pop'),       # Closing Quote
-            include('string-content-multi-line')    # String Content
+            (r'[\s\S]', String)    # String Content
         ],
 
         'inside-eof-string': [
@@ -199,7 +196,7 @@ class ArturoLexer(RegexLexer):
             (r'\|', String.Interpol, 'inside-interpol'), # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'), # Templates
             (r'\Z$', String.Single, '#pop'),       # Closing Quote
-            include('string-content-multi-line')    # String Content
+            (r'[\s\S]', String)   # String Content
         ],
 
         'builtin-functions': [
