@@ -75,7 +75,28 @@ class ArturoLexer(RegexLexer):
             (r';.*?$', Comment.Single),
             (r'^((\s#!)|(#!)).*?$', Comment.Hashbang),
 
-            include('constants'),
+            # Constants
+            (words(('false', 'true', 'maybe'),      # boolean
+                            suffix=r'\b'),
+                            Name.Constant       ),
+            (words(('this', 'init'),                # class related
+                            prefix=r'\b',           # keywords
+                            suffix=r'\b\??:?'),
+                            Name.Builtin.Pseudo ),
+            (r'`.`',        String.Char         ),  # character
+            (r'\b\\[\w\d]+\b\??:?',                 # array index
+                            Name.Property       ),
+            (r'#\w+',       Name.Constant       ),  # color
+            (r'\b[0-9]+\.[0-9]+',                   # float
+                            Number.Float        ),
+            (r'\b[0-9]+',   Number.Integer      ),  # integer
+            (r'\w+\b\??:',  Name.Label          ),  # label
+            # Note: Literals can be labeled too
+            (r'\'(?:\w+\b\??:?)',                   # literal
+                            Keyword.Declaration ),
+            (r'\:\w+',      Keyword.Type        ),  # type
+            # Note: Attributes can be labeled too
+            (r'\.\w+\??:?', Name.Attribute      ),  # attributes
 
             # Switch structure
             (r'(\()(.*?)(\)\?)',
@@ -119,24 +140,6 @@ class ArturoLexer(RegexLexer):
                     '_', '.', '..', '\\'
                 )), Operator
             )
-        ],
-
-        'constants': [
-            (words(('false', 'true', 'maybe'), suffix=r'\b'),   # boolean
-                Name.Constant),
-            (words(('this', 'init'), prefix=r'\b', suffix=r'\b\??:?'),
-                Name.Builtin.Pseudo),
-            (r'`.`', String.Char),                              # character
-            (r'\b\\[\w\d]+\b\??:?', Name.Property),             # array index
-            (r'#\w+', Name.Constant),                           # color
-            (r'\b[0-9]+\.[0-9]+', Number.Float),                  # float
-            (r'\b[0-9]+', Number.Integer),                        # integer
-            (r'\w+\b\??:', Name.Label),                         # label
-            # Note: Literals can be labeled too
-            (r'\'(?:\w+\b\??:?)', Keyword.Declaration),         # literal
-            (r'\:\w+', Keyword.Type),                           # type
-            # Note: Attributes can be labeled too
-            (r'\.\w+\??:?', Name.Attribute),                         # attributes
         ],
 
         'inside-interpol': [
