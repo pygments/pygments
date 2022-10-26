@@ -123,6 +123,7 @@ class ArturoLexer(RegexLexer):
             (words(('false', 'true', 'maybe'), suffix=r'\b'),   # boolean
                 Name.Constant),
             (r'`.`', String.Char),                              # character
+            (r'\b\\[\w\d]+\b\??:?', Name.Property),             # array index
             (r'#\w+', Name.Constant),                           # color
             (r'\b[0-9]+\.[0-9]+', Number.Float),                  # float
             (r'\b[0-9]+', Number.Integer),                        # integer
