@@ -12,8 +12,8 @@ import re
 
 from pygments.lexer import bygroups, default, DelegatingLexer, do_insertions,\
     include, RegexLexer, this, using, words
-from pygments.token import Comment, Generic, Keyword, Name, Number, Operator,\
-    Other, Punctuation, String, Text
+from pygments.token import Comment, Error, Generic, Keyword, Name, Number, \
+    Operator, Other, Punctuation, String, Text
 
 from pygments.util import ClassNotFound, get_bool_opt
 
