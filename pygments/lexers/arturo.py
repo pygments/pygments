@@ -122,6 +122,8 @@ class ArturoLexer(RegexLexer):
         'constants': [
             (words(('false', 'true', 'maybe'), suffix=r'\b'),   # boolean
                 Name.Constant),
+            (words(('this', 'init'), prefix=r'\b', suffix=r'\b\??:?'),
+                Name.Builtin.Pseudo),
             (r'`.`', String.Char),                              # character
             (r'\b\\[\w\d]+\b\??:?', Name.Property),             # array index
             (r'#\w+', Name.Constant),                           # color
