@@ -87,7 +87,7 @@ class PygmentsDoc(Directive):
 
     def document_lexers_overview(self):
         """Generate a tabular overview of all lexers.
-        
+
         The columns are the lexer name, the extensions handled by this lexer
         (or "None"), the aliases and a link to the lexer class."""
         from pygments.lexers._mapping import LEXERS
@@ -95,6 +95,7 @@ class PygmentsDoc(Directive):
         out = []
 
         table = []
+
         def format_link(name, url):
             if url:
                 return f'`{name} <{url}>`_'
@@ -105,14 +106,15 @@ class PygmentsDoc(Directive):
             extensions = lexer_cls.filenames + lexer_cls.alias_filenames
 
             table.append({
-                'name' : format_link(data[1], lexer_cls.url),
+                'name': format_link(data[1], lexer_cls.url),
                 'extensions': ', '.join(extensions).replace('*', '\\*').replace('_', '\\') or 'None',
                 'aliases': ', '.join(data[2]),
                 'class': f'{data[0]}.{classname}'
             })
 
         column_names = ['name', 'extensions', 'aliases', 'class']
-        column_lengths = [max([len(row[column]) for row in table if row[column]]) for column in column_names]
+        column_lengths = [max([len(row[column]) for row in table if row[column]])
+                          for column in column_names]
 
         def write_row(*columns):
             """Format a table row"""
@@ -129,7 +131,7 @@ class PygmentsDoc(Directive):
             """Write a table separator row"""
             sep = ['='*c for c in column_lengths]
             return write_row(*sep)
-        
+
         out.append(write_seperator())
         out.append(write_row('Name', 'Extension(s)', 'Short name(s)', 'Lexer class'))
         out.append(write_seperator())
@@ -142,7 +144,6 @@ class PygmentsDoc(Directive):
         out.append(write_seperator())
 
         return '\n'.join(out)
-
 
     def document_lexers(self):
         from pygments.lexers._mapping import LEXERS
