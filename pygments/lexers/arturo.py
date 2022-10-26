@@ -184,7 +184,7 @@ class ArturoLexer(RegexLexer):
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\Z$', String.Single, '#pop'),    # Closing Quote
+            (r'\Z', String.Single, '#pop'),    # Closing Quote
             (r'[\s\S]', String),                # String Content
         ],
 
