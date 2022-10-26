@@ -84,7 +84,7 @@ class ArturoLexer(RegexLexer):
                             suffix=r'\b\??:?'),
                             Name.Builtin.Pseudo ),
             (r'`.`',        String.Char         ),  # character
-            (r'\b\\[\w\d]+\b\??:?',                 # array index
+            (r'\\([\w\d]+)\b\??:?',                 # array index
                             Name.Property       ),
             (r'#\w+',       Name.Constant       ),  # color
             (r'\b[0-9]+\.[0-9]+',                   # float
