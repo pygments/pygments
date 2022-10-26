@@ -187,21 +187,21 @@ class ArturoLexer(RegexLexer):
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
             (r'\:\}', String.Double, '#pop'),   # Closing Quote
-            (r'[\s\S]', String)                 # String Content
+            (r'[^|<:]+', String)                 # String Content
         ],
         'inside-curly-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
             (r'\}', String.Single, '#pop'), # Closing Quote
-            (r'[\s\S]', String),            # String Content
+            (r'[^|<}]+', String),            # String Content
         ],
         'inside-eof-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
             (r'\Z', String.Single, '#pop'),    # Closing Quote
-            (r'[\s\S]', String),                # String Content
+            (r'[^|<]+', String),                # String Content
         ],
 
         'builtin-functions': [
