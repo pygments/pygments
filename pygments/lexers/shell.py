@@ -157,6 +157,7 @@ class ShellSessionBaseLexer(Lexer):
     .. versionadded:: 2.1
     """
 
+    _bare_continuation = False
     _venv = re.compile(r'^(\([^)]*\))(\s*)')
 
     def get_tokens_unprocessed(self, text):
@@ -175,10 +176,10 @@ class ShellSessionBaseLexer(Lexer):
                 venv = venv_match.group(1)
                 venv_whitespace = venv_match.group(2)
                 insertions.append((len(curcode),
-                    [(0, Generic.Prompt.VirtualEnv, venv)]))
+                                   [(0, Generic.Prompt.VirtualEnv, venv)]))
                 if venv_whitespace:
                     insertions.append((len(curcode),
-                        [(0, Text, venv_whitespace)]))
+                                       [(0, Text, venv_whitespace)]))
                 line = line[venv_match.end():]
 
             m = self._ps1rgx.match(line)
@@ -196,11 +197,17 @@ class ShellSessionBaseLexer(Lexer):
             elif backslash_continuation:
                 if line.startswith(self._ps2):
                     insertions.append((len(curcode),
-                                    [(0, Generic.Prompt, line[:len(self._ps2)])]))
+                                       [(0, Generic.Prompt,
+                                         line[:len(self._ps2)])]))
                     curcode += line[len(self._ps2):]
                 else:
                     curcode += line
                 backslash_continuation = curcode.endswith('\\\n')
+            elif self._bare_continuation and line.startswith(self._ps2):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt,
+                                     line[:len(self._ps2)])]))
+                curcode += line[len(self._ps2):]
             else:
                 if insertions:
                     toks = innerlexer.get_tokens_unprocessed(curcode)
@@ -777,8 +784,9 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
 
     _innerLexerCls = PowerShellLexer
+    _bare_continuation = True
     _ps1rgx = re.compile(r'^((?:\[[^]]+\]: )?PS[^>]*> ?)(.*\n?)')
-    _ps2 = '>> '
+    _ps2 = '> '
 
 
 class FishShellLexer(RegexLexer):
