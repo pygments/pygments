@@ -1,0 +1,124 @@
+---input---
+PS> python -m doctest `
+> -o DONT_ACCEPT_TRUE_FOR_1 `
+> -o ELLIPSIS options.txt
+
+PS>  $Params = @{
+>     Height = 50
+>     Width  = 50
+>     Depth  = 50
+>     Name   = 'My Widget'
+>     ID     = '10dbe43f-0269-48b8-96cb-447a755add55'
+> }
+
+
+PS>  ls |
+> grep "python"
+
+---tokens---
+'PS> '        Generic.Prompt
+'python'      Name
+' '           Text
+'-m'          Name
+' '           Text
+'doctest'     Name
+' '           Text
+'`'           Punctuation
+'\n'          Text
+
+'> '          Generic.Prompt
+'-o'          Name
+' '           Text
+'DONT_ACCEPT_TRUE_FOR_1' Name
+' '           Text
+'`'           Punctuation
+'\n'          Text
+
+'> '          Generic.Prompt
+'-o'          Name
+' '           Text
+'ELLIPSIS'    Name
+' '           Text
+'options'     Name
+'.'           Punctuation
+'txt'         Name
+'\n'          Text
+
+'\n'          Generic.Output
+
+'PS> '        Generic.Prompt
+' '           Text
+'$Params'     Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'@'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'> '          Generic.Prompt
+'    '        Text
+'Height'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'50'          Name
+'\n'          Text
+
+'> '          Generic.Prompt
+'    '        Text
+'Width'       Name
+'  '          Text
+'='           Punctuation
+' '           Text
+'50'          Name
+'\n'          Text
+
+'> '          Generic.Prompt
+'    '        Text
+'Depth'       Name
+'  '          Text
+'='           Punctuation
+' '           Text
+'50'          Name
+'\n'          Text
+
+'> '          Generic.Prompt
+'    '        Text
+'Name'        Name
+'   '         Text
+'='           Punctuation
+' '           Text
+"'My Widget'" Literal.String.Single
+'\n'          Text
+
+'> '          Generic.Prompt
+'    '        Text
+'ID'          Name
+'     '       Text
+'='           Punctuation
+' '           Text
+"'10dbe43f-0269-48b8-96cb-447a755add55'" Literal.String.Single
+'\n'          Text
+
+'> '          Generic.Prompt
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Generic.Output
+
+'\n'          Generic.Output
+
+'PS> '        Generic.Prompt
+' '           Text
+'ls '         Name.Builtin
+'|'           Punctuation
+'\n'          Text
+
+'> '          Generic.Prompt
+'grep'        Name
+' '           Text
+'"'           Literal.String.Double
+'python'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
