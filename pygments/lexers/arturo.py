@@ -78,7 +78,8 @@ class ArturoLexer(RegexLexer):
             include('constants'),
 
             # Switch structure
-            (r'(\()(.*?)(\)\?)', bygroups(Punctuation, using(this), Punctuation)),
+            (r'(\()(.*?)(\)\?)',
+                bygroups(Punctuation, using(this), Punctuation)),
 
             # Single Line Strings
             (r'"',   String.Double, 'inside-simple-string'),
