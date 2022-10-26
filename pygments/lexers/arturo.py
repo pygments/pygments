@@ -8,24 +8,22 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import bygroups, default, DelegatingLexer, do_insertions,\
-    include, RegexLexer, this, using, words
-from pygments.token import Comment, Error, Generic, Keyword, Name, Number, \
-    Operator, Other, Punctuation, String, Text
+from pygments.lexer import RegexLexer, bygroups, do_insertions, include, \
+    this, using, words
+from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
+    Punctuation, String, Text
 
 from pygments.util import ClassNotFound, get_bool_opt
 
-__all__ = [
-    'ArturoLexer'
-]
+__all__ = ['ArturoLexer']
+
+
 class ArturoLexer(RegexLexer):
     """
-    For Arturo source code
+    For Arturo source code.
 
     See `Arturo's Github <https://github.com/arturo-lang/arturo>`_
-    and `Arturo's Website <http://arturo-lang.io/>`_
+    and `Arturo's Website <https://arturo-lang.io/>`_.
 
     .. versionadded:: 2.14.0
     """
@@ -33,6 +31,12 @@ class ArturoLexer(RegexLexer):
     name = 'Arturo'
     aliases = ['arturo', 'art']
     filenames = ['*.art']
+    url = 'https://arturo-lang.io/'
+
+    def __init__(self, **options):
+        self.handle_annotateds = get_bool_opt(options, 'handle_annotateds',
+                                              True)
+        RegexLexer.__init__(self, **options)
 
     def handle_annotated_strings(self, match):
         """Adds syntax from another languages inside annotated strings
@@ -48,10 +52,10 @@ class ArturoLexer(RegexLexer):
         from pygments.lexers import get_lexer_by_name
 
         # Header's section
-        yield match.start(1),  String.Double  ,  match.group(1)
-        yield match.start(2),  String.Interpol,  match.group(2)
-        yield match.start(3),  String.Interpol,  match.group(3)
-        yield match.start(4),  Text.Whitespace,  match.group(4)
+        yield match.start(1), String.Double,   match.group(1)
+        yield match.start(2), String.Interpol, match.group(2)
+        yield match.start(3), String.Interpol, match.group(3)
+        yield match.start(4), Text.Whitespace, match.group(4)
 
         lexer = None
         if self.handle_annotateds:
@@ -68,8 +72,6 @@ class ArturoLexer(RegexLexer):
 
         yield match.start(6), String.Double, match.group(6)
 
-
-
     tokens = {
         'root': [
             (r';.*?$', Comment.Single),
@@ -77,67 +79,55 @@ class ArturoLexer(RegexLexer):
 
             # Constants
             (words(('false', 'true', 'maybe'),      # boolean
-                            suffix=r'\b'),
-                            Name.Constant       ),
-            (words(('this', 'init'),                # class related
-                            prefix=r'\b',           # keywords
-                            suffix=r'\b\??:?'),
-                            Name.Builtin.Pseudo ),
-            (r'`.`',        String.Char         ),  # character
-            (r'\\\w+\b\??:?',                       # array index
-                            Name.Property       ),
-            (r'#\w+',       Name.Constant       ),  # color
-            (r'\b[0-9]+\.[0-9]+',                   # float
-                            Number.Float        ),
-            (r'\b[0-9]+',   Number.Integer      ),  # integer
-            (r'\w+\b\??:',  Name.Label          ),  # label
+                   suffix=r'\b'), Name.Constant),
+            (words(('this', 'init'),                # class related keywords
+                   prefix=r'\b', suffix=r'\b\??:?'), Name.Builtin.Pseudo),
+            (r'`.`', String.Char),                  # character
+            (r'\\\w+\b\??:?', Name.Property),       # array index
+            (r'#\w+', Name.Constant),               # color
+            (r'\b[0-9]+\.[0-9]+', Number.Float),    # float
+            (r'\b[0-9]+', Number.Integer),          # integer
+            (r'\w+\b\??:', Name.Label),             # label
             # Note: Literals can be labeled too
-            (r'\'(?:\w+\b\??:?)',                   # literal
-                            Keyword.Declaration ),
-            (r'\:\w+',      Keyword.Type        ),  # type
+            (r'\'(?:\w+\b\??:?)', Keyword.Declaration),  # literal
+            (r'\:\w+', Keyword.Type),               # type
             # Note: Attributes can be labeled too
-            (r'\.\w+\??:?', Name.Attribute      ),  # attributes
+            (r'\.\w+\??:?', Name.Attribute),        # attributes
 
             # Switch structure
             (r'(\()(.*?)(\)\?)',
-                bygroups(Punctuation, using(this), Punctuation)),
+             bygroups(Punctuation, using(this), Punctuation)),
 
             # Single Line Strings
             (r'"',   String.Double, 'inside-simple-string'),
-            (r'»',   String.Single, 'inside-smart-string' ),
-            (r'«««', String.Double, 'inside-safe-string'  ),
+            (r'»',   String.Single, 'inside-smart-string'),
+            (r'«««', String.Double, 'inside-safe-string'),
             (r'\{\/', String.Single, 'inside-regex-string'),
 
             # Multi Line Strings
-            (r'\{\:',   String.Double, 'inside-curly-verb-string'),
-            (r'(\{)(\!)(\w+)(\s|\n)([\w\W]*?)(^\})',
-                                         handle_annotated_strings),
-            (r'\{',     String.Single, 'inside-curly-string'     ),
-            (r'\-{3,}', String.Single, 'inside-eof-string'       ),
+            (r'\{\:', String.Double, 'inside-curly-verb-string'),
+            (r'(\{)(\!)(\w+)(\s|\n)([\w\W]*?)(^\})', handle_annotated_strings),
+            (r'\{', String.Single, 'inside-curly-string'),
+            (r'\-{3,}', String.Single, 'inside-eof-string'),
 
             include('builtin-functions'),
 
             # Operators
-            (r'[()[\],]',   Punctuation),
-            (words((
-                '->', '==>', '|', '::',
-                '@', '#', '$', '&', '!', '!!', './'
-                )), Name.Decorator), # sugar syntax
-            (words((
-                    '<:', ':>', ':<', '>:', '<\\', '<>', '<', '>',
+            (r'[()[\],]', Punctuation),
+            (words(('->', '==>', '|', '::', '@', '#',  # sugar syntax
+                    '$', '&', '!', '!!', './')), Name.Decorator),
+            (words(('<:', ':>', ':<', '>:', '<\\', '<>', '<', '>',
                     'ø', '∞',
                     '+', '-', '*', '~', '=', '^', '%', '/', '//',
                     '==>', '<=>', '<==>',
                     '=>>', '<<=>>', '<<==>>',
                     '-->', '<->', '<-->',
                     '=|', '|=', '-:', ':-',
-                    '_', '.', '..', '\\'
-                )), Operator
-            ),
+                    '_', '.', '..', '\\')), Operator),
 
             (r'\b\w+', Name),
-            (r'\s+',   Text.Whitespace),
-            (r'.+$',   Error),
+            (r'\s+', Text.Whitespace),
+            (r'.+$', Error),
         ],
 
         'inside-interpol': [
@@ -149,22 +139,22 @@ class ArturoLexer(RegexLexer):
             (r'[^|]+', using(this)),
         ],
         'string-escape': [
-            (words(('\\\\', '\\n', '\\t','\\"')), String.Escape)
+            (words(('\\\\', '\\n', '\\t', '\\"')), String.Escape),
         ],
 
         'inside-simple-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'"', String.Double, '#pop'),  # Closing Quote
-            (r'[^|"]+', String)             # String Content
+            (r'"', String.Double, '#pop'),   # Closing Quote
+            (r'[^|"]+', String)              # String Content
         ],
         'inside-smart-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\n', String.Single, '#pop'), # Closing Quote
-            (r'[^|\n]+', String)            # String Content
+            (r'\n', String.Single, '#pop'),  # Closing Quote
+            (r'[^|\n]+', String)             # String Content
         ],
         'inside-safe-string': [
             include('string-escape'),
@@ -177,29 +167,29 @@ class ArturoLexer(RegexLexer):
             (r'\\[sSwWdDbBZApPxucItnvfr0]+', String.Escape),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\/\}', String.Single, '#pop'),   # Closing Quote
-            (r'[^|\/]+', String.Regex) ,        # String Content
+            (r'\/\}', String.Single, '#pop'),  # Closing Quote
+            (r'[^|\/]+', String.Regex),        # String Content
         ],
         'inside-curly-verb-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\:\}', String.Double, '#pop'),   # Closing Quote
-            (r'[^|<:]+', String)                 # String Content
+            (r'\:\}', String.Double, '#pop'),  # Closing Quote
+            (r'[^|<:]+', String),              # String Content
         ],
         'inside-curly-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\}', String.Single, '#pop'), # Closing Quote
-            (r'[^|<}]+', String),            # String Content
+            (r'\}', String.Single, '#pop'),   # Closing Quote
+            (r'[^|<}]+', String),             # String Content
         ],
         'inside-eof-string': [
             include('string-escape'),
             (r'\|', String.Interpol, 'inside-interpol'),        # Interpolation
             (r'\<\|\|', String.Interpol, 'inside-template'),    # Templates
-            (r'\Z', String.Single, '#pop'),    # Closing Quote
-            (r'[^|<]+', String),                # String Content
+            (r'\Z', String.Single, '#pop'),   # Closing Quote
+            (r'[^|<]+', String),              # String Content
         ],
 
         'builtin-functions': [
@@ -258,7 +248,3 @@ class ArturoLexer(RegexLexer):
         ],
 
     }
-
-    def __init__(self, **options):
-        self.handle_annotateds = get_bool_opt(options, 'handle_annotateds', True)
-        RegexLexer.__init__(self, **options)
