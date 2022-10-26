@@ -116,14 +116,8 @@ class ArturoLexer(RegexLexer):
             (r'\-{3,}', String.Single, 'inside-eof-string'       ),
 
             include('builtin-functions'),
-            include('operators'),
 
-            (r'\b\w+', Name),
-            (r'\s+',   Text.Whitespace),
-            (r'.+$',   Error),
-        ],
-
-        'operators': [
+            # Operators
             (r'[()[\],]',   Punctuation),
             (words((
                 '->', '==>', '|', '::',
@@ -139,7 +133,11 @@ class ArturoLexer(RegexLexer):
                     '=|', '|=', '-:', ':-',
                     '_', '.', '..', '\\'
                 )), Operator
-            )
+            ),
+
+            (r'\b\w+', Name),
+            (r'\s+',   Text.Whitespace),
+            (r'.+$',   Error),
         ],
 
         'inside-interpol': [
