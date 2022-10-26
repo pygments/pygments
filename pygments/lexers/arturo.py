@@ -119,8 +119,8 @@ class ArturoLexer(RegexLexer):
             include('operators'),
 
             (r'\b\w+', Name),
-            (r'\s+', Text.Whitespace),
-            (r'.+$', Error),
+            (r'\s+',   Text.Whitespace),
+            (r'.+$',   Error),
         ],
 
         'operators': [
