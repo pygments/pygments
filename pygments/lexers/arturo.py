@@ -130,9 +130,11 @@ class ArturoLexer(RegexLexer):
             (r'\b[0-9]+\.[0-9]+', Number.Float),                  # float
             (r'\b[0-9]+', Number.Integer),                        # integer
             (r'\w+\b\??:', Name.Label),                         # label
+            # Note: Literals can be labeled too
             (r'\'(?:\w+\b\??:?)', Keyword.Declaration),         # literal
             (r'\:\w+', Keyword.Type),                           # type
-            (r'\.\w+', Name.Attribute),                         # attributes
+            # Note: Attributes can be labeled too
+            (r'\.\w+\??:?', Name.Attribute),                         # attributes
         ],
 
         'inside-interpol': [
