@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, default, words, \
-    bygroups, include, using
+    bygroups, include, using, line_re
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace, Literal, Error, Generic
 from pygments.lexers.shell import BashLexer
@@ -675,7 +675,6 @@ class TerraformLexer(ExtendedRegexLexer):
         tolerant = True  # leading whitespace is always accepted
 
         lines = []
-        line_re = re.compile('.*?\n')
 
         for match in line_re.finditer(ctx.text, ctx.pos):
             if tolerant:

@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, \
-    include, default, this, using, words
+    include, default, this, using, words, line_re
 from pygments.token import Punctuation, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
@@ -20,8 +20,6 @@ __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
            'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
            'PowerShellSessionLexer', 'TcshSessionLexer', 'FishShellLexer',
            'ExeclineLexer']
-
-line_re = re.compile('.*?\n')
 
 
 class BashLexer(RegexLexer):

@@ -11,14 +11,12 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions, \
-    include, default
+    include, default, line_re
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
 __all__ = ['ErlangLexer', 'ErlangShellLexer', 'ElixirConsoleLexer',
            'ElixirLexer']
-
-line_re = re.compile('.*?\n')
 
 
 class ErlangLexer(RegexLexer):

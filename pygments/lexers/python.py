@@ -12,7 +12,7 @@ import re
 import keyword
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-    default, words, combined, do_insertions, this
+    default, words, combined, do_insertions, this, line_re
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error
@@ -21,8 +21,6 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python2Lexer', 'Python2TracebackLexer',
            'CythonLexer', 'DgLexer', 'NumPyLexer']
-
-line_re = re.compile('.*?\n')
 
 
 class PythonLexer(RegexLexer):

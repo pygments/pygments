@@ -20,8 +20,6 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 __all__ = ["GDScriptLexer"]
 
-line_re = re.compile(".*?\n")
-
 
 class GDScriptLexer(RegexLexer):
     """
