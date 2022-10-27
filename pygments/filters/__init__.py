@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import regex as re
 
 from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype

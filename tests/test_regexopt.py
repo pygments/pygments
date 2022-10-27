@@ -6,9 +6,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 import random
 from itertools import combinations_with_replacement
+
+import regex as re
 
 from pygments.regexopt import regex_opt
 

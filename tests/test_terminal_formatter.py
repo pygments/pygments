@@ -6,8 +6,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 from io import StringIO
+
+import regex as re
 
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \

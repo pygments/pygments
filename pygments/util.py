@@ -8,8 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 from io import TextIOWrapper
+
+import regex as re
 
 
 split_path_re = re.compile(r'[/\\ ]')

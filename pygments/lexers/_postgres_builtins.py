@@ -573,8 +573,8 @@ PLPGSQL_KEYWORDS = (
 
 
 if __name__ == '__main__':  # pragma: no cover
-    import re
     from urllib.request import urlopen
+    import regex as re
 
     from pygments.util import format_lines
 

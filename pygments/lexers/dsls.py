@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import regex as re
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
     include, default, this, using, combined

@@ -8,9 +8,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 import sys
 import time
+
+import regex as re
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name

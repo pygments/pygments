@@ -10,8 +10,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Text, Punctuation, String, Keyword
 

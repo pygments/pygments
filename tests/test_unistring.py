@@ -6,8 +6,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 import random
+
+import regex as re
 
 from pygments import unistring as uni
 

@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import regex as re
 
 from pygments.lexers.html import XmlLexer
 from pygments.lexers.javascript import JavascriptLexer

@@ -175,9 +175,9 @@ MODULES = {'basic': ('_G',
           'utf8.offset')}
 
 if __name__ == '__main__':  # pragma: no cover
-    import re
     from urllib.request import urlopen
     import pprint
+    import regex as re
 
     # you can't generally find out what module a function belongs to if you
     # have only its name. Because of this, here are some callback functions

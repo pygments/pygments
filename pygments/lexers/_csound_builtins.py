@@ -36,7 +36,7 @@ vbap1move
 
 # Opcodes in Csound 6.17.0 using:
 #   python3 -c "
-#   import re
+#   import regex as re
 #   from subprocess import Popen, PIPE
 #   output = Popen(['csound', '--list-opcodes0'], stderr=PIPE, text=True).communicate()[1]
 #   opcodes = output[re.search(r'^\$', output, re.M).end() : re.search(r'^\d+ opcodes\$', output, re.M).start()].split()

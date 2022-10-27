@@ -1,4 +1,4 @@
-import re
+import regex as re
 
 from pygments.util import format_lines
 

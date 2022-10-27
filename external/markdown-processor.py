@@ -32,7 +32,7 @@
 INLINESTYLES = False
 
 
-import re
+import regex as re
 
 from markdown.preprocessors import Preprocessor
 from markdown.extensions import Extension

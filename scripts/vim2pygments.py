@@ -11,9 +11,10 @@
 """
 
 import sys
-import re
 from os import path
 from io import StringIO
+
+import regex as re
 
 split_re = re.compile(r'(?<!\\)\s+')
 

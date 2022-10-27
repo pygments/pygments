@@ -8,11 +8,12 @@
 
 import io
 import os
-import re
 import sys
 import tempfile
 from io import BytesIO
 from os import path
+
+import regex as re
 
 import pytest
 from pytest import raises

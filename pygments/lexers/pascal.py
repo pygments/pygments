@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import regex as re
 
 from pygments.lexer import Lexer
 from pygments.util import get_bool_opt, get_list_opt

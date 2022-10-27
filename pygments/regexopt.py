@@ -9,11 +9,12 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-from re import escape
 from os.path import commonprefix
 from itertools import groupby
 from operator import itemgetter
+
+import regex as re
+from regex import escape
 
 CS_ESCAPE = re.compile(r'[\[\^\\\-\]]')
 FIRST_ELEMENT = itemgetter(0)

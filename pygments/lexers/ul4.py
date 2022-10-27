@@ -10,7 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import regex as re
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, words, include
 from pygments.token import Comment, Text, Keyword, String, Number, Literal, \

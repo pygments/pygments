@@ -12,10 +12,11 @@
 
 import io
 import os
-import re
 import sys
 import getopt
 from os.path import join, splitext, abspath
+
+import regex as re
 
 
 checkers = {}
