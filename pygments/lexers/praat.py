@@ -9,8 +9,8 @@
 """
 
 from pygments.lexer import RegexLexer, words, bygroups, include
-from pygments.token import Name, Text, Comment, Keyword, String, Punctuation, Number, \
-    Operator
+from pygments.token import Name, Text, Comment, Keyword, String, Punctuation, \
+    Number, Operator
 
 __all__ = ['PraatLexer']
 

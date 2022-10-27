@@ -1,11 +1,7 @@
 import pytest
 
-from pygments.lexers.templates import (
-    JavascriptDjangoLexer,
-    MasonLexer,
-    SqlJinjaLexer,
-    VelocityLexer,
-)
+from pygments.lexers.templates import JavascriptDjangoLexer, MasonLexer, \
+    SqlJinjaLexer, VelocityLexer
 
 from pygments.token import Comment
 

@@ -8,9 +8,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, words
-from pygments.token import Literal, Comment, Name, String, \
-    Number, Whitespace
+from pygments.lexer import RegexLexer, include
+from pygments.token import Literal, Comment, Name, String, Number, Whitespace
 
 __all__ = ['FiftLexer']
 

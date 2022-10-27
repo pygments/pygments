@@ -13,6 +13,7 @@ from pygments.token import Comment, Name, Number, String, Text, Keyword
 
 __all__ = ['TealLexer']
 
+
 class TealLexer(RegexLexer):
     """
     For the Transaction Execution Approval Language (TEAL)

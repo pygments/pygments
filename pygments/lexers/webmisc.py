@@ -26,7 +26,7 @@ __all__ = ['DuelLexer', 'SlimLexer', 'XQueryLexer', 'QmlLexer', 'CirruLexer']
 class DuelLexer(RegexLexer):
     """
     Lexer for Duel Views Engine (formerly JBST) markup with JavaScript code blocks.
-    
+
     .. versionadded:: 1.4
     """
 

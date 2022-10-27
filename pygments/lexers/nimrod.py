@@ -75,23 +75,24 @@ class NimrodLexer(RegexLexer):
             (r'##.*$', String.Doc),
             (r'#\[', Comment.Multiline, 'comment'),
             (r'#.*$', Comment),
-            
+
             # Pragmas
             (r'\{\.', String.Other, 'pragma'),
-            
+
             # Operators
             (r'[*=><+\-/@$~&%!?|\\\[\]]', Operator),
             (r'\.\.|\.|,|\[\.|\.\]|\{\.|\.\}|\(\.|\.\)|\{|\}|\(|\)|:|\^|`|;',
              Punctuation),
-            
+
             # Case statement branch
-            (r'(\n\s*)(of)(\s)', bygroups(Text.Whitespace, Keyword, Text.Whitespace), 'casebranch'),
-            
+            (r'(\n\s*)(of)(\s)', bygroups(Text.Whitespace, Keyword,
+                                          Text.Whitespace), 'casebranch'),
+
             # Strings
             (r'(?:[\w]+)"', String, 'rdqs'),
             (r'"""', String.Double, 'tdqs'),
             ('"', String, 'dqs'),
-            
+
             # Char
             ("'", String.Char, 'chars'),
 
@@ -105,10 +106,10 @@ class NimrodLexer(RegexLexer):
             (r'(v_?a_?r)\b', Keyword.Declaration),
             (r'(%s)\b' % underscorize(types), Name.Builtin),
             (r'(%s)\b' % underscorize(keywordsPseudo), Keyword.Pseudo),
-            
+
             # Identifiers
             (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),
-            
+
             # Numbers
             (r'[0-9][0-9_]*(?=([e.]|\'f(32|64)))',
              Number.Float, ('float-suffix', 'float-number')),
@@ -116,7 +117,7 @@ class NimrodLexer(RegexLexer):
             (r'0b[01][01_]*', Number.Bin, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
-            
+
             # Whitespace
             (r'\s+', Text.Whitespace),
             (r'.+$', Error),
