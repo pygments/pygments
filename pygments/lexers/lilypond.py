@@ -35,6 +35,7 @@ def builtin_words(names, backslash, suffix=NAME_END_RE):
         assert backslash == "disallowed"
     return words(names, prefix, suffix)
 
+
 class LilyPondLexer(SchemeLexer):
     """
     Lexer for input to LilyPond, a text-based music typesetter.

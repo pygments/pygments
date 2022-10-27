@@ -1,6 +1,7 @@
 """
     pygments.lexers.macaulay2
     ~~~~~~~~~~~~~~~~~~~~~~~~~
+
     Lexer for Macaulay2.
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.

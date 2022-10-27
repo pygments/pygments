@@ -171,7 +171,7 @@ class PythonLexer(RegexLexer):
              combined('bytesescape', 'dqs')),
             ("([bB])(')", bygroups(String.Affix, String.Single),
              combined('bytesescape', 'sqs')),
-            
+
             (r'[^\S\n]+', Text),
             include('numbers'),
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),

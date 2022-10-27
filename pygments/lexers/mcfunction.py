@@ -9,10 +9,8 @@
 """
 
 from pygments.lexer import RegexLexer, default, include, bygroups
-from pygments.token import (Comment, Keyword, Literal, Name, Number,
-                            Operator, Punctuation, String, Text, Token,
-                            Whitespace)
-
+from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
+    Punctuation, String, Text, Whitespace
 
 __all__ = ['SNBTLexer', 'MCFunctionLexer']
 
@@ -20,7 +18,7 @@ __all__ = ['SNBTLexer', 'MCFunctionLexer']
 class SNBTLexer(RegexLexer):
     """Lexer for stringified NBT, a data format used in Minecraft
 
-    .. versionadded:: 2.12.0
+    .. versionadded:: 2.12
     """
 
     name = "SNBT"
@@ -125,10 +123,7 @@ class MCFunctionLexer(RegexLexer):
             (r"(?<=run)\s+[a-z_]+", Name.Builtin),
 
             # UUID
-            (
-                r"\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b",
-                Name.Variable,
-            ),
+            (r"\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b", Name.Variable),
             include("resource-name"),
             # normal command names and scoreboards
             #  there's no way to know the differences unfortuntely
@@ -137,17 +132,11 @@ class MCFunctionLexer(RegexLexer):
         ],
 
         "resource-name": [
-            (
-                # resource names have to be lowercase
-                r"#?[a-z_][a-z_.-]*:[a-z0-9_./-]+",
-                Name.Function,
-            ),
-            (
-                # similar to above except optional `:``
-                #  a `/` must be present "somewhere"
-                r"#?[a-z0-9_\.\-]+\/[a-z0-9_\.\-\/]+",
-                Name.Function,
-            )
+            # resource names have to be lowercase
+            (r"#?[a-z_][a-z_.-]*:[a-z0-9_./-]+", Name.Function),
+            # similar to above except optional `:``
+            #  a `/` must be present "somewhere"
+            (r"#?[a-z0-9_\.\-]+\/[a-z0-9_\.\-\/]+", Name.Function),
         ],
 
         "whitespace": [
@@ -155,18 +144,13 @@ class MCFunctionLexer(RegexLexer):
         ],
 
         "comments": [
-            (
-                rf"^\s*(#{_block_comment_prefix})",
-                Comment.Multiline,
-                (
-                    "comments.block",
-                    "comments.block.emphasized",
-                ),
-            ),
+            (rf"^\s*(#{_block_comment_prefix})", Comment.Multiline,
+             ("comments.block", "comments.block.emphasized")),
             (r"#.*$", Comment.Single),
         ],
         "comments.block": [
-            (rf"^\s*#{_block_comment_prefix}", Comment.Multiline, "comments.block.emphasized"),
+            (rf"^\s*#{_block_comment_prefix}", Comment.Multiline,
+             "comments.block.emphasized"),
             (r"^\s*#", Comment.Multiline, "comments.block.normal"),
             default("#pop"),
         ],

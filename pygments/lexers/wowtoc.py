@@ -3,12 +3,13 @@
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for World of Warcraft TOC files
-    
+
     TOC files describe game addons.
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import re
 
 from pygments.lexer import RegexLexer, bygroups
@@ -58,12 +59,15 @@ class WoWTocLexer(RegexLexer):
             # official localized tags, Notes and Title
             # (normal part is insensitive, locale part is sensitive)
             _create_tag_line_token(
-                r"((?:[nN][oO][tT][eE][sS]|[tT][iI][tT][lL][eE])-(?:ptBR|zhCN|enCN|frFR|deDE|itIT|esMX|ptPT|koKR|ruRU|esES|zhTW|enTW|enGB|enUS))",
+                r"((?:[nN][oO][tT][eE][sS]|[tT][iI][tT][lL][eE])-(?:ptBR|zhCN|"
+                r"enCN|frFR|deDE|itIT|esMX|ptPT|koKR|ruRU|esES|zhTW|enTW|enGB|enUS))",
                 Name.Builtin,
             ),
             # other official tags
             _create_tag_line_token(
-                r"(Interface|Title|Notes|RequiredDeps|Dep[^: ]*|OptionalDeps|LoadOnDemand|LoadWith|LoadManagers|SavedVariablesPerCharacter|SavedVariables|DefaultState|Secure|Author|Version)",
+                r"(Interface|Title|Notes|RequiredDeps|Dep[^: ]*|OptionalDeps|"
+                r"LoadOnDemand|LoadWith|LoadManagers|SavedVariablesPerCharacter|"
+                r"SavedVariables|DefaultState|Secure|Author|Version)",
                 Name.Builtin,
                 ignore_case=True,
             ),
@@ -78,10 +82,10 @@ class WoWTocLexer(RegexLexer):
                 r"([^: ]*)",
                 Name.Other,
             ),
-            
+
             # Comments
             (r"^#.*$", Comment),
-            
+
             # Addon Files
             (r"^.+$", Name),
         ]
@@ -92,7 +96,7 @@ class WoWTocLexer(RegexLexer):
         # markup.py. Tex's anaylse_text() appears to be definitive (binary) and does not
         # share any likeness to WoW TOCs, which means we wont have to compete with it by
         # abitrary increments in score.
-        
+
         result = 0
 
         # while not required, an almost certain marker of WoW TOC's is the interface tag
@@ -103,7 +107,7 @@ class WoWTocLexer(RegexLexer):
         match = re.search(interface_pattern, text)
         if match and re.match(r"(\d+)(\d{2})(\d{2})", match.group(7)):
             result += 0.8
-            
+
         casefolded = text.casefold()
         # Lua file listing is good marker too, but probably conflicts with many other
         # lexers

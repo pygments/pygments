@@ -47,7 +47,8 @@ class IniLexer(RegexLexer):
             (r'[;#].*', Comment.Single),
             (r'(\[.*?\])([ \t]*)$', bygroups(Keyword, Whitespace)),
             (r'(.*?)([  \t]*)([=:])([ \t]*)([^;#\n]*)(\\)(\s+)',
-             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Text, Whitespace),
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String,
+                      Text, Whitespace),
              "value"),
             (r'(.*?)([ \t]*)([=:])([  \t]*)([^ ;#\n]*(?: +[^ ;#\n]+)*)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
@@ -744,14 +745,12 @@ class TerraformLexer(ExtendedRegexLexer):
              bygroups(Keyword.Reserved, Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
 
             # here-doc style delimited strings
-            (
-                r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)',
-                heredoc_callback,
-            )
+            (r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)', heredoc_callback),
         ],
         'identifier': [
             (r'\b(var\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
-            (r'\b([0-9a-zA-Z-_\[\]]+\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
+            (r'\b([0-9a-zA-Z-_\[\]]+\.[0-9a-zA-Z-_\.\[\]]+)\b',
+             bygroups(Name.Variable)),
         ],
         'punctuation': [
             (r'[\[\]()\{\},.?:!=]', Punctuation),

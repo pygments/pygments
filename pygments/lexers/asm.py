@@ -862,7 +862,8 @@ class TasmLexer(RegexLexer):
             (register, Name.Builtin),
             (identifier, Name.Variable),
             # Do not match newline when it's preceded by a backslash
-            (r'(\\)(\s*)(;.*)([\r\n])', bygroups(Text, Whitespace, Comment.Single, Whitespace)),
+            (r'(\\)(\s*)(;.*)([\r\n])',
+             bygroups(Text, Whitespace, Comment.Single, Whitespace)),
             (r'[\r\n]+', Whitespace, '#pop'),
             include('whitespace')
         ],
