@@ -10,7 +10,8 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, default
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
+    default, line_re
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Literal, Whitespace
 
@@ -259,7 +260,6 @@ class DylanConsoleLexer(Lexer):
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
 
-    _line_re = re.compile('.*?\n')
     _prompt_re = re.compile(r'\?| ')
 
     def get_tokens_unprocessed(self, text):
@@ -267,7 +267,7 @@ class DylanConsoleLexer(Lexer):
 
         curcode = ''
         insertions = []
-        for match in self._line_re.finditer(text):
+        for match in line_re.finditer(text):
             line = match.group()
             m = self._prompt_re.match(line)
             if m is not None:

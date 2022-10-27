@@ -11,14 +11,12 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, \
-    bygroups, default, LexerContext, do_insertions, words
+    bygroups, default, LexerContext, do_insertions, words, line_re
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Generic
 from pygments.util import shebang_matches
 
 __all__ = ['RubyLexer', 'RubyConsoleLexer', 'FancyLexer']
-
-line_re = re.compile('.*?\n')
 
 
 RUBY_OPERATORS = (

@@ -8,15 +8,11 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, words, include, bygroups
 from pygments.token import Comment, Whitespace, Operator, Keyword, Name, \
     String, Number, Punctuation
 
 __all__ = ['BerryLexer']
-
-line_re = re.compile('.*?\n')
 
 
 class BerryLexer(RegexLexer):
