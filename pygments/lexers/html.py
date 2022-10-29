@@ -584,7 +584,7 @@ class PugLexer(ExtendedRegexLexer):
                 bygroups(Name.Attribute, Whitespace, Operator),
                 'html-attribute-value'),
             (r'[\w:-]+', Name.Attribute),
-            (r'\)', Whitespace, '#pop'),
+            (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
