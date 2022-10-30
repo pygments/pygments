@@ -478,7 +478,7 @@ class LlvmLexer(RegexLexer):
             # Types
             (words(('void', 'half', 'bfloat', 'float', 'double', 'fp128',
                     'x86_fp80', 'ppc_fp128', 'label', 'metadata', 'x86_mmx',
-                    'x86_amx', 'token')),
+                    'x86_amx', 'token', 'ptr')),
                    Keyword.Type),
 
             # Integer types
