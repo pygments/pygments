@@ -7,10 +7,11 @@
 """
 
 import os
-import re
 import tempfile
 from io import StringIO
 from os import path
+
+import regex as re
 
 import pytest
 

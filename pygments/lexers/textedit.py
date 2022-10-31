@@ -8,8 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 from bisect import bisect
+
+import regex as re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, this, using
 from pygments.lexers.python import PythonLexer

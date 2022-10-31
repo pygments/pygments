@@ -13,6 +13,8 @@ import types
 from fnmatch import fnmatch
 from os.path import basename
 
+import regex as re
+
 from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers

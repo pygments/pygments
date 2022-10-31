@@ -10,8 +10,9 @@
 
 from importlib import import_module
 from pathlib import Path
-import re
 import sys
+
+import regex as re
 
 top_src_dir = Path(__file__).parent.parent
 pygments_package = top_src_dir / 'pygments'

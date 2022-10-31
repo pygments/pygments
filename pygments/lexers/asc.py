@@ -7,7 +7,8 @@
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re
+
+import regex as re
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Generic, Name, Operator, String, Whitespace

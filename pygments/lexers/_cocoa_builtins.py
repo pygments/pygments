@@ -17,7 +17,7 @@ COCOA_PRIMITIVES = {'ACErrorCode', 'ALCcontext_struct', 'ALCdevice_struct', 'ALM
 
 if __name__ == '__main__':  # pragma: no cover
     import os
-    import re
+    import regex as re
 
     FRAMEWORKS_PATH = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/'
     frameworks = os.listdir(FRAMEWORKS_PATH)

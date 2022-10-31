@@ -3249,10 +3249,10 @@ if __name__ == '__main__':  # pragma: no cover
     import glob
     import os
     import pprint
-    import re
     import shutil
     import tarfile
     from urllib.request import urlretrieve
+    import regex as re
 
     PHP_MANUAL_URL     = 'http://us3.php.net/distributions/manual/php_manual_en.tar.gz'
     PHP_MANUAL_DIR     = './php-chunked-xhtml/'

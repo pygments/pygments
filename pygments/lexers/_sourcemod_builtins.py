@@ -1092,8 +1092,8 @@ FUNCTIONS = (
 
 
 if __name__ == '__main__':  # pragma: no cover
-    import re
     from urllib.request import FancyURLopener
+    import regex as re
 
     from pygments.util import format_lines
 
