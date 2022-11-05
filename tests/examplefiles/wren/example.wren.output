@@ -2,27 +2,14 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'I'           Comment.Multiline
-'M'           Comment.Multiline
-'P'           Comment.Multiline
-'O'           Comment.Multiline
-'R'           Comment.Multiline
-'T'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' IMPORTS '   Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 '"'           Literal.String
-'r'           Literal.String
-'a'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
+'random'      Literal.String
 '"'           Literal.String
 ' '           Text.Whitespace
 'for'         Keyword
@@ -35,16 +22,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'C'           Comment.Multiline
-'O'           Comment.Multiline
-'M'           Comment.Multiline
-'M'           Comment.Multiline
-'E'           Comment.Multiline
-'N'           Comment.Multiline
-'T'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' COMMENTS '  Comment.Multiline
 '*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -52,105 +30,17 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-'\n'          Comment.Multiline
-
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-'m'           Comment.Multiline
-'u'           Comment.Multiline
-'l'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'l'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'c'           Comment.Multiline
-'o'           Comment.Multiline
-'m'           Comment.Multiline
-'m'           Comment.Multiline
-'e'           Comment.Multiline
-'n'           Comment.Multiline
-'t'           Comment.Multiline
-'\n'          Comment.Multiline
-
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-'/*'          Comment.Multiline
-'\n'          Comment.Multiline
-
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-'n'           Comment.Multiline
-'e'           Comment.Multiline
-'s'           Comment.Multiline
-'t'           Comment.Multiline
-'e'           Comment.Multiline
-'d'           Comment.Multiline
-' '           Comment.Multiline
-'m'           Comment.Multiline
-'u'           Comment.Multiline
-'l'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'l'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'c'           Comment.Multiline
-'o'           Comment.Multiline
-'m'           Comment.Multiline
-'m'           Comment.Multiline
-'e'           Comment.Multiline
-'n'           Comment.Multiline
-'t'           Comment.Multiline
-'\n'          Comment.Multiline
-
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
+'\n    multiline comment\n    /' Comment.Multiline
+'*'           Comment.Multiline
+'\n        nested multiline comment\n    ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Comment.Multiline
+'\n'          Text.Whitespace
 
-'*/'          Comment.Multiline
+'*/'          Operator
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'C'           Comment.Multiline
-'L'           Comment.Multiline
-'A'           Comment.Multiline
-'S'           Comment.Multiline
-'S'           Comment.Multiline
-'E'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
-'&'           Comment.Multiline
-' '           Comment.Multiline
-'A'           Comment.Multiline
-'T'           Comment.Multiline
-'T'           Comment.Multiline
-'R'           Comment.Multiline
-'I'           Comment.Multiline
-'B'           Comment.Multiline
-'U'           Comment.Multiline
-'T'           Comment.Multiline
-'E'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' CLASSES & ATTRIBUTES ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -171,7 +61,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'field'       Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -189,7 +79,7 @@
 'new'         Name
 '('           Punctuation
 'parent'      Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -216,7 +106,7 @@
 ' '           Text.Whitespace
 'method'      Name
 '('           Punctuation
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -233,7 +123,7 @@
 ' '           Text.Whitespace
 'Child'       Name.Class
 ' '           Text.Whitespace
-'is'          Keyword
+'is'          Operator.Word
 ' '           Text.Whitespace
 'Parent'      Name.Class
 ' '           Text.Whitespace
@@ -247,7 +137,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'child'       Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -255,7 +145,7 @@
 'super'       Keyword
 '('           Punctuation
 'parent'      Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n        '  Text.Whitespace
 '_child'      Name.Variable.Instance
@@ -278,7 +168,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'this'        Name.Builtin
+'this'        Name
 '.'           Operator
 'parent'      Name
 ' '           Text.Whitespace
@@ -289,27 +179,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'V'           Comment.Multiline
-'A'           Comment.Multiline
-'R'           Comment.Multiline
-'I'           Comment.Multiline
-'A'           Comment.Multiline
-'B'           Comment.Multiline
-'L'           Comment.Multiline
-'E'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
-'&'           Comment.Multiline
-' '           Comment.Multiline
-'S'           Comment.Multiline
-'T'           Comment.Multiline
-'R'           Comment.Multiline
-'I'           Comment.Multiline
-'N'           Comment.Multiline
-'G'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' VARIABLES & STRINGS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -323,7 +193,7 @@
 '.'           Operator
 'new'         Name
 '('           Punctuation
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -333,13 +203,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"""'         Literal.String
-'D'           Literal.String
-'a'           Literal.String
-'v'           Literal.String
-'i'           Literal.String
-'d'           Literal.String
-'"""'         Literal.String
+'"""David"""' Literal.String
 '\n'          Text.Whitespace
 
 'var'         Keyword
@@ -351,14 +215,9 @@
 '"'           Literal.String
 '%('          Literal.String.Interpol
 'name'        Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Literal.String.Interpol
-' '           Literal.String
-'S'           Literal.String
-'m'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+' Smith'      Literal.String
 '"'           Literal.String
 '\n'          Text.Whitespace
 
@@ -373,23 +232,12 @@
 'new'         Name
 '('           Punctuation
 '"'           Literal.String
-'P'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'l'           Literal.String
-'i'           Literal.String
-'p'           Literal.String
-' '           Literal.String
-'S'           Literal.String
-'m'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
+'Philip Smith' Literal.String
 '"'           Literal.String
 ','           Punctuation
 ' '           Text.Whitespace
 'fullName'    Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -447,124 +295,25 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"""'         Literal.String
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'"'           Literal.String
-'H'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'s'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'n'           Literal.String
-'a'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-'"'           Literal.String
-' '           Literal.String
-'1'           Literal.String
-'2'           Literal.String
-' '           Literal.String
-'A'           Literal.String
-'n'           Literal.String
-'y'           Literal.String
-' '           Literal.String
-'S'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'e'           Literal.String
-'e'           Literal.String
-'t'           Literal.String
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'S'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'T'           Literal.String
-'o'           Literal.String
-'w'           Literal.String
-'n'           Literal.String
-'\n'          Literal.String
-
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-' '           Literal.String
-'\\'          Literal.String
-'t'           Literal.String
-' '           Literal.String
-'%'           Literal.String
-'('           Literal.String
-'"'           Literal.String
-'S'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'C'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'n'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'y'           Literal.String
-'"'           Literal.String
-')'           Literal.String
-' '           Literal.String
-'"'           Literal.String
-'\n'          Literal.String
-
-'"""'         Literal.String
+'"""\n    "House name" 12 Any Street\n    Some Town\n    \\t %("Some Country") "\n"""' Literal.String
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'L'           Comment.Multiline
-'O'           Comment.Multiline
-'O'           Comment.Multiline
-'P'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
-'&'           Comment.Multiline
-' '           Comment.Multiline
-'C'           Comment.Multiline
-'O'           Comment.Multiline
-'N'           Comment.Multiline
-'D'           Comment.Multiline
-'I'           Comment.Multiline
-'T'           Comment.Multiline
-'I'           Comment.Multiline
-'O'           Comment.Multiline
-'N'           Comment.Multiline
-'A'           Comment.Multiline
-'L'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' LOOPS & CONDITIONALS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
 'for'         Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name
+'i'           Name.Builtin
 ' '           Text.Whitespace
-'in'          Keyword
+'in'          Operator.Word
 ' '           Text.Whitespace
 '1'           Literal.Number.Float
 '..'          Operator
 '5'           Literal.Number.Float
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -572,12 +321,12 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name
+'i'           Name.Builtin
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Float
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -591,12 +340,12 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name
+'i'           Name.Builtin
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
 '4'           Literal.Number.Float
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -609,8 +358,8 @@
 '.'           Operator
 'print'       Name
 '('           Punctuation
-'i'           Name
-''            Text.Whitespace
+'i'           Name.Builtin
+''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -634,7 +383,7 @@
 '<='          Operator
 ' '           Text.Whitespace
 '1e+1'        Literal.Number.Float
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -647,7 +396,7 @@
 '=='          Operator
 ' '           Text.Whitespace
 '8'           Literal.Number.Float
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -657,7 +406,7 @@
 'print'       Name
 '('           Punctuation
 'j'           Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'j'           Name
@@ -675,28 +424,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'A'           Comment.Multiline
-'R'           Comment.Multiline
-'I'           Comment.Multiline
-'T'           Comment.Multiline
-'H'           Comment.Multiline
-'M'           Comment.Multiline
-'E'           Comment.Multiline
-'T'           Comment.Multiline
-'I'           Comment.Multiline
-'C'           Comment.Multiline
-' '           Comment.Multiline
-'O'           Comment.Multiline
-'P'           Comment.Multiline
-'E'           Comment.Multiline
-'R'           Comment.Multiline
-'A'           Comment.Multiline
-'T'           Comment.Multiline
-'O'           Comment.Multiline
-'R'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' ARITHMETIC OPERATORS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
@@ -778,25 +506,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'B'           Comment.Multiline
-'I'           Comment.Multiline
-'T'           Comment.Multiline
-'W'           Comment.Multiline
-'I'           Comment.Multiline
-'S'           Comment.Multiline
-'E'           Comment.Multiline
-' '           Comment.Multiline
-'O'           Comment.Multiline
-'P'           Comment.Multiline
-'E'           Comment.Multiline
-'R'           Comment.Multiline
-'A'           Comment.Multiline
-'T'           Comment.Multiline
-'O'           Comment.Multiline
-'R'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' BITWISE OPERATORS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
@@ -866,28 +576,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'C'           Comment.Multiline
-'O'           Comment.Multiline
-'M'           Comment.Multiline
-'P'           Comment.Multiline
-'A'           Comment.Multiline
-'R'           Comment.Multiline
-'I'           Comment.Multiline
-'S'           Comment.Multiline
-'O'           Comment.Multiline
-'N'           Comment.Multiline
-' '           Comment.Multiline
-'O'           Comment.Multiline
-'P'           Comment.Multiline
-'E'           Comment.Multiline
-'R'           Comment.Multiline
-'A'           Comment.Multiline
-'T'           Comment.Multiline
-'O'           Comment.Multiline
-'R'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' COMPARISON OPERATORS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
@@ -902,7 +591,7 @@
 
 'var'         Keyword
 ' '           Text.Whitespace
-'h'           Name
+'h'           Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -911,7 +600,7 @@
 
 'var'         Keyword
 ' '           Text.Whitespace
-'i'           Name
+'i'           Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -967,23 +656,13 @@
 ' '           Text.Whitespace
 'firstChild'  Name
 ' '           Text.Whitespace
-'is'          Keyword
+'is'          Operator.Word
 ' '           Text.Whitespace
 'Parent'      Name.Class
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'F'           Comment.Multiline
-'U'           Comment.Multiline
-'N'           Comment.Multiline
-'C'           Comment.Multiline
-'T'           Comment.Multiline
-'I'           Comment.Multiline
-'O'           Comment.Multiline
-'N'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' FUNCTIONS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
 
@@ -1010,10 +689,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
-'t'           Literal.String
-'h'           Literal.String
-'i'           Literal.String
-'s'           Literal.String
+'this'        Literal.String
 '"'           Literal.String
 '\n    '      Text.Whitespace
 'System'      Name.Class
@@ -1031,7 +707,7 @@
 '+'           Operator
 ' '           Text.Whitespace
 'param'       Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1043,35 +719,14 @@
 'call'        Name
 '('           Punctuation
 '"'           Literal.String
-'f'           Literal.String
-'u'           Literal.String
-'n'           Literal.String
-'c'           Literal.String
-'t'           Literal.String
-'i'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
+'function'    Literal.String
 '"'           Literal.String
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'M'           Comment.Multiline
-'I'           Comment.Multiline
-'S'           Comment.Multiline
-'C'           Comment.Multiline
-'E'           Comment.Multiline
-'L'           Comment.Multiline
-'L'           Comment.Multiline
-'A'           Comment.Multiline
-'N'           Comment.Multiline
-'E'           Comment.Multiline
-'O'           Comment.Multiline
-'U'           Comment.Multiline
-'S'           Comment.Multiline
-' '           Comment.Multiline
+' MISCELLANEOUS ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
@@ -1183,15 +838,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
-'£'           Literal.String
-' '           Literal.String
-'é'           Literal.String
-' '           Literal.String
-'😀'           Literal.String
-' '           Literal.String
-' '           Literal.String
-'\u200e'      Literal.String
-'🎷'           Literal.String
+'£ é 😀  \u200e🎷' Literal.String
 '"'           Literal.String
 '\n'          Text.Whitespace
 
@@ -1242,7 +889,7 @@
 'b'           Literal.String
 '"'           Literal.String
 ']'           Punctuation
-''            Text.Whitespace
+''            Punctuation
 ')'           Literal.String.Interpol
 '"'           Literal.String
 '\n'          Text.Whitespace
@@ -1257,7 +904,7 @@
 '1'           Literal.Number.Float
 '...'         Operator
 'h'           Name
-''            Text.Whitespace
+''            Punctuation
 ')'           Punctuation
 '.'           Operator
 'where'       Name
@@ -1265,10 +912,10 @@
 '{'           Punctuation
 ' '           Text.Whitespace
 '|'           Operator
-'i'           Name
+'i'           Name.Builtin
 '|'           Operator
 ' '           Text.Whitespace
-'i'           Name
+'i'           Name.Builtin
 ' '           Text.Whitespace
 '%'           Operator
 ' '           Text.Whitespace
@@ -1282,4 +929,14 @@
 '\n                 ' Text.Whitespace
 '.'           Operator
 'toList'      Name
+'\n'          Text.Whitespace
+
+'var'         Keyword
+' '           Text.Whitespace
+'emp'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'"'           Literal.String
 '\n'          Text.Whitespace
