@@ -119,3 +119,4 @@ var map = {"a": 1, "b": 2}
 var iex = "%(map["a"] + map["b"])"
 var odd = (1...h).where { |i| i % 2 == 1 }
                  .toList
+var emp = ""
