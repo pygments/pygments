@@ -8,7 +8,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, words, include
+from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
     Operator, Number, String
 
