@@ -8,7 +8,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, words, include
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
     Operator, Number, String
 
@@ -16,6 +16,7 @@ __all__ = ['WrenLexer']
 
 class WrenLexer(RegexLexer):
     name = 'Wren'
+    url = 'https://wren.io'
     aliases = ['wren']
     filenames = ['*.wren']
 
@@ -35,15 +36,25 @@ class WrenLexer(RegexLexer):
             # parenthesized expression or the end of an interpolation. So, do
             # a non-consuming match and let the parent state (either
             # 'parenthesized' or 'interpolation') decide.
-            (r'(?=\))', Whitespace, '#pop'),
+            (r'(?=\))', Punctuation, '#pop'),
 
             # Keywords.
-            (r'(as|break|class|construct|continue|else|for|foreign|if|import|'
-             r'in|is|return|static|super|var|while)\b', Keyword),
+            (words((
+                'as', 'break', 'class', 'construct', 'continue', 'else',
+                'for', 'foreign', 'if', 'import', 'return', 'static', 'super',
+                'var', 'while'), prefix = r'(?<![.$])',
+                suffix = r'\b'), Keyword),
+            (words((
+                'true', 'false', 'null'), prefix = r'(?<![.$])',
+                suffix = r'\b'), Keyword.Constant),
 
-            (r'(true|false|null)\b', Keyword.Constant),
+            (words((
+                'this'), prefix = r'(?<![.$])',
+                suffix = r'\b'), Name.Builtin),
 
-            (r'this\b', Name.Builtin),
+            (words((
+                'in', 'is'), prefix = r'(?<![.$])',
+                suffix = r'\b'), Operator.Word),
 
             # Comments.
             (r'/\*', Comment.Multiline, 'comment'), # Multiline, can nest.
@@ -62,19 +73,13 @@ class WrenLexer(RegexLexer):
             (r'\d+(\.\d+)?([eE][-+]?\d+)?', Number.Float),
 
             # Strings.
-            (r'"""', String, 'raw_string'),
-            (r'"', String, 'string'),
+            (r'""".*?"""', String),   # Raw string
+            (r'"', String, 'string'), # Other string
         ],
         'comment': [
-            (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'.', Comment.Multiline), # All other characters.
-        ],
-        'raw_string': [
-            (r'"""', String, '#pop'),
-            (r'"', String),
-            (r'"', String, '#pop'),
-            (r'.', String), # All characters.
+            (r'[^*]+', Comment.Multiline),
+            (r'\*', Comment.Multiline),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -84,7 +89,7 @@ class WrenLexer(RegexLexer):
             (r'\\U[a-fA-F0-9]{8}', String.Escape), # Long Unicode escape.
 
             (r'%\(', String.Interpol, ('interpolation', 'root')),
-            (r'.', String), # All other characters.
+            (r'[^\\"%]*', String), # All remaining characters.
         ],
         'parenthesized': [
             # We only get to this state when we're at a ')'.
