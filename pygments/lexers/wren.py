@@ -42,18 +42,18 @@ class WrenLexer(RegexLexer):
             (words((
                 'as', 'break', 'class', 'construct', 'continue', 'else',
                 'for', 'foreign', 'if', 'import', 'return', 'static', 'super',
-                'var', 'while'), prefix = r'(?<![.$])',
+                'var', 'while'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Keyword),
             (words((
-                'true', 'false', 'null'), prefix = r'(?<![.$])',
+                'true', 'false', 'null'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Keyword.Constant),
 
             (words((
-                'this'), prefix = r'(?<![.$])',
+                'this'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Name.Builtin),
 
             (words((
-                'in', 'is'), prefix = r'(?<![.$])',
+                'in', 'is'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Operator.Word),
 
             # Comments.
