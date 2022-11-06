@@ -1,3 +1,4 @@
+
 """
     pygments.lexers.wren
     ~~~~~~~~~~~~~~~~~~~~
@@ -15,6 +16,11 @@ from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
 __all__ = ['WrenLexer']
 
 class WrenLexer(RegexLexer):
+    """
+    For Wren source code, version 0.4.0.
+
+    .. versionadded:: 2.14.0
+    """
     name = 'Wren'
     url = 'https://wren.io'
     aliases = ['wren']
@@ -77,9 +83,9 @@ class WrenLexer(RegexLexer):
             (r'"', String, 'string'), # Other string
         ],
         'comment': [
+            (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^*]+', Comment.Multiline),
-            (r'\*', Comment.Multiline),
+            (r'([^*/]|\*(?!/)|/(?!\*))+', Comment.Multiline),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -89,7 +95,7 @@ class WrenLexer(RegexLexer):
             (r'\\U[a-fA-F0-9]{8}', String.Escape), # Long Unicode escape.
 
             (r'%\(', String.Interpol, ('interpolation', 'root')),
-            (r'[^\\"%]*', String), # All remaining characters.
+            (r'[^\\"%]+', String), # All remaining characters.
         ],
         'parenthesized': [
             # We only get to this state when we're at a ')'.
