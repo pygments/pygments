@@ -30,13 +30,13 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-'\n    multiline comment\n    /' Comment.Multiline
-'*'           Comment.Multiline
+'\n    multiline comment\n    ' Comment.Multiline
+'/*'          Comment.Multiline
 '\n        nested multiline comment\n    ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
+'\n'          Comment.Multiline
 
-'*/'          Operator
+'*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
