@@ -1,5 +1,5 @@
 """
-    pygments.lexers.schema
+    pygments.lexers.mcschema
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Data Schemas for Minecraft Add-on Development.
@@ -14,14 +14,14 @@
 from pygments.lexer import bygroups, default, include, RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, String, Number, Punctuation, Whitespace
 
-__all__ = ['SchemaLexer']
+__all__ = ['MCSchemaLexer']
 
-class SchemaLexer(RegexLexer):
-    name = 'Schema'
+class MCSchemaLexer(RegexLexer):
+    name = 'MCSchema'
     url = 'https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/'
-    aliases = ['schema']
-    filenames = ['*.schema']
-    mimetypes = ['text/schema']
+    aliases = ['mcschema']
+    filenames = ['*.mcschema']
+    mimetypes = ['text/mcschema']
 
     tokens = {
         'commentsandwhitespace': [
