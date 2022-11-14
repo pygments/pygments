@@ -16,18 +16,17 @@ __all__ = ['MumpsLexer']
 
 class MumpsLexer(ExtendedRegexLexer):
     """
-    For MUMPS source code.
+    Lexer for ANSI-standard M[UMPS].
 
-    Derived from `The Annotated M[UMPS] Standard <http://71.174.62.16/Demo/AnnoStd>`
-    Section numbers below refer to the sections from the 1995 (current) standard on that site
     """
-
+    url = "https://en.wikipedia.org/wiki/MUMPS"
     name = 'MUMPS'
     aliases = ['mumps', 'm']
     # Filenames aren't meaningful in M, but some implementations allow file export/import of routines
     # For example, YottaDB would have the source file for "dmex" in "dmex.m"
     filenames = ['*.m', '*.mumps', '*.epc', '*.int']
     flags = re.IGNORECASE
+    # Section numbers below are as per the 1995 standard available at `The Annotated M[UMPS] Standard <http://71.174.62.16/Demo/AnnoStd>`
 
     # 5 - Metalanguage description
     # 'L': list of one or more, separated by commas
