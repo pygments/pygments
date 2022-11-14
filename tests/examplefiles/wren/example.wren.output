@@ -168,7 +168,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'this'        Name
+'this'        Keyword
 '.'           Operator
 'parent'      Name
 ' '           Text.Whitespace
@@ -306,7 +306,7 @@
 'for'         Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name.Builtin
+'i'           Name
 ' '           Text.Whitespace
 'in'          Operator.Word
 ' '           Text.Whitespace
@@ -321,7 +321,7 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name.Builtin
+'i'           Name
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -340,7 +340,7 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'i'           Name.Builtin
+'i'           Name
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -358,7 +358,7 @@
 '.'           Operator
 'print'       Name
 '('           Punctuation
-'i'           Name.Builtin
+'i'           Name
 ''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -591,7 +591,7 @@
 
 'var'         Keyword
 ' '           Text.Whitespace
-'h'           Name.Builtin
+'h'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -600,7 +600,7 @@
 
 'var'         Keyword
 ' '           Text.Whitespace
-'i'           Name.Builtin
+'i'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -912,10 +912,10 @@
 '{'           Punctuation
 ' '           Text.Whitespace
 '|'           Operator
-'i'           Name.Builtin
+'i'           Name
 '|'           Operator
 ' '           Text.Whitespace
-'i'           Name.Builtin
+'i'           Name
 ' '           Text.Whitespace
 '%'           Operator
 ' '           Text.Whitespace
