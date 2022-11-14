@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
-    Operator, Number, String
+    Operator, Number, String, Error
 
 __all__ = ['WrenLexer']
 
@@ -49,15 +49,12 @@ class WrenLexer(RegexLexer):
             (words((
                 'as', 'break', 'class', 'construct', 'continue', 'else',
                 'for', 'foreign', 'if', 'import', 'return', 'static', 'super',
-                'var', 'while'), prefix = r'(?<!\.)',
+                'this', 'var', 'while'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Keyword),
+
             (words((
                 'true', 'false', 'null'), prefix = r'(?<!\.)',
                 suffix = r'\b'), Keyword.Constant),
-
-            (words((
-                'this'), prefix = r'(?<!\.)',
-                suffix = r'\b'), Name.Builtin),
 
             (words((
                 'in', 'is'), prefix = r'(?<!\.)',
@@ -82,6 +79,9 @@ class WrenLexer(RegexLexer):
             # Strings.
             (r'""".*?"""', String),   # Raw string
             (r'"', String, 'string'), # Other string
+
+            # Errors.
+            (r'.+$', Error), 
         ],
         'comment': [
             (r'/\*', Comment.Multiline, '#push'),
