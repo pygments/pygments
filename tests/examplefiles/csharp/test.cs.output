@@ -212,7 +212,7 @@
 '                                ' Text.Whitespace
 'Container'   Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'container'   Name
 ';'           Punctuation
@@ -221,7 +221,7 @@
 '                                ' Text.Whitespace
 'Depends'     Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
@@ -237,7 +237,7 @@
 '                                ' Text.Whitespace
 'SystemType'  Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
@@ -248,7 +248,7 @@
 '                                ' Text.Whitespace
 'RefId'       Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
@@ -339,8 +339,7 @@
 '.'           Punctuation
 'Length'      Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
@@ -374,7 +373,7 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'!'           Punctuation
+'!'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'provider'    Name
@@ -502,9 +501,9 @@
 '                ' Text.Whitespace
 'List'        Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'ObjectInfo'  Name
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 'objectsList' Name
 ';'           Punctuation
@@ -532,12 +531,12 @@
 '                ' Text.Whitespace
 'Dictionary'  Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'int'         Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'object'      Keyword.Type
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 'idToObject'  Name
 ';'           Punctuation
@@ -547,12 +546,12 @@
 '                ' Text.Whitespace
 'Dictionary'  Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'object'      Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'int'         Keyword.Type
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 'objectToId'  Name
 ';'           Punctuation
@@ -566,7 +565,7 @@
 ' '           Text.Whitespace
 'projectName' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
@@ -579,7 +578,7 @@
 ' '           Text.Whitespace
 'projectDirectory' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
@@ -988,7 +987,7 @@
 '.'           Punctuation
 'fileName'    Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'fileName'    Name
 ';'           Punctuation
@@ -999,7 +998,7 @@
 ' '           Text.Whitespace
 'verbatimString' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '@"c:\\test\\"' Literal.String
 ';'           Punctuation
@@ -1012,7 +1011,7 @@
 ' '           Text.Whitespace
 'verbatimStringWithNewline' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '@"test \\\\ \\n \\t \\r\na\nb\nc"' Literal.String
 ';'           Punctuation
@@ -1023,7 +1022,7 @@
 ' '           Text.Whitespace
 'verbatimStringWithEscapedQuotes' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '@"He said\n""she says \\"" is not an escaped character in verbatimstrings""\n"' Literal.String
 ';'           Punctuation
@@ -1038,7 +1037,7 @@
 ' '           Text.Whitespace
 'numbers'     Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -1071,7 +1070,7 @@
 ' '           Text.Whitespace
 'linqExample' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'from'        Keyword
 ' '           Text.Whitespace
@@ -1087,7 +1086,7 @@
 ' '           Text.Whitespace
 'n'           Name
 ' '           Text.Whitespace
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 '5'           Literal.Number
 '\n'          Text.Whitespace
@@ -1106,7 +1105,7 @@
 ' '           Text.Whitespace
 'anotherlinqExample' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'from'        Keyword
 ' '           Text.Whitespace
@@ -1141,7 +1140,7 @@
 ' '           Text.Whitespace
 'someMoreNumbers' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -1149,11 +1148,9 @@
 ','           Punctuation
 '2'           Literal.Number
 ','           Punctuation
-'1'           Literal.Number
-'7'           Literal.Number
+'17'          Literal.Number
 ','           Punctuation
-'3'           Literal.Number
-'4'           Literal.Number
+'34'          Literal.Number
 ','           Punctuation
 '8'           Literal.Number
 ','           Punctuation
@@ -1182,7 +1179,7 @@
 ' '           Text.Whitespace
 'moreLinq'    Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'from'        Keyword
 ' '           Text.Whitespace
@@ -1210,7 +1207,7 @@
 ' '           Text.Whitespace
 'mn'          Name
 ' '           Text.Whitespace
-'+'           Punctuation
+'+'           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number
 '\n'          Text.Whitespace
@@ -1256,18 +1253,18 @@
 '                        ' Text.Whitespace
 'objectToId'  Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'new'         Keyword
 ' '           Text.Whitespace
 'Dictionary'  Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'object'      Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'int'         Keyword.Type
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
@@ -1277,18 +1274,18 @@
 '                        ' Text.Whitespace
 'idToObject'  Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'new'         Keyword
 ' '           Text.Whitespace
 'Dictionary'  Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'int'         Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'object'      Keyword.Type
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
@@ -1301,7 +1298,7 @@
 '                        ' Text.Whitespace
 'xmlDocument' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'null'        Keyword
 ';'           Punctuation
@@ -1316,7 +1313,7 @@
 '                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1485,7 +1482,7 @@
 ' '           Text.Whitespace
 'cont'        Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
@@ -1522,15 +1519,15 @@
 '                                        ' Text.Whitespace
 'objectsList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'new'         Keyword
 ' '           Text.Whitespace
 'List'        Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 'ObjectInfo'  Name
-'>'           Punctuation
+'>'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
@@ -1540,7 +1537,7 @@
 '                                        ' Text.Whitespace
 'xmlDocument' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'new'         Keyword
 ' '           Text.Whitespace
@@ -1565,7 +1562,7 @@
 '                                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1596,7 +1593,7 @@
 '                                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1646,8 +1643,7 @@
 '.'           Punctuation
 'Name'        Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 '"projectinfo"' Literal.String
 ')'           Punctuation
@@ -1671,7 +1667,7 @@
 '                                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1722,8 +1718,7 @@
 '.'           Punctuation
 'Name'        Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 '"objectlist"' Literal.String
 ')'           Punctuation
@@ -1733,7 +1728,7 @@
 '                                                        ' Text.Whitespace
 'objectListContainer' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'ObjectListContainer' Name
@@ -1764,8 +1759,7 @@
 '('           Punctuation
 'objectListContainer' Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 'null'        Keyword
 ')'           Punctuation
@@ -1789,7 +1783,7 @@
 '                                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1818,7 +1812,7 @@
 ' '           Text.Whitespace
 'flush'       Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'EnumerateSomeObjects' Name
 ' '           Text.Whitespace
@@ -1838,7 +1832,7 @@
 '                                                ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1867,7 +1861,7 @@
 ' '           Text.Whitespace
 'done'        Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'UnBoilSomeObjects' Name
 ' '           Text.Whitespace
@@ -1887,7 +1881,7 @@
 '                                                ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -1918,7 +1912,7 @@
 '                                        ' Text.Whitespace
 'projectTrackList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'TrackList'   Name
@@ -1935,7 +1929,7 @@
 '                                        ' Text.Whitespace
 'projectTagList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'TagList'     Name
@@ -1952,7 +1946,7 @@
 '                                        ' Text.Whitespace
 'projectStuffList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'StuffList'   Name
@@ -1969,7 +1963,7 @@
 '                                        ' Text.Whitespace
 'projectClipList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'ClipList'    Name
@@ -1986,7 +1980,7 @@
 '                                        ' Text.Whitespace
 'projectMediaItemList' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'MediaItemList' Name
@@ -2003,7 +1997,7 @@
 '                                        ' Text.Whitespace
 'projectPipeline' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'Gdv'         Name
@@ -2022,7 +2016,7 @@
 '                                        ' Text.Whitespace
 'projectCommander' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'Commander'   Name
@@ -2039,7 +2033,7 @@
 '                                        ' Text.Whitespace
 'projectFormat' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'Gdv'         Name
@@ -2061,7 +2055,7 @@
 '                                        ' Text.Whitespace
 'currentStep' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
@@ -2089,7 +2083,7 @@
 '                                        ' Text.Whitespace
 'cont'        Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'false'       Keyword
 ';'           Punctuation
@@ -2226,7 +2220,7 @@
 '                                                ' Text.Whitespace
 'projectName' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'childNode'   Name
 '.'           Punctuation
@@ -2254,7 +2248,7 @@
 '                                                ' Text.Whitespace
 'projectDirectory' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'childNode'   Name
 '.'           Punctuation
@@ -2308,8 +2302,7 @@
 '('           Punctuation
 'objectsEnumerator' Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 'null'        Keyword
 ')'           Punctuation
@@ -2318,7 +2311,7 @@
 '                                ' Text.Whitespace
 'objectsEnumerator' Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'objectListContainer' Name
 '.'           Punctuation
@@ -2345,22 +2338,20 @@
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Punctuation
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
-'0'           Literal.Number
+'10'          Literal.Number
 ';'           Punctuation
 ' '           Text.Whitespace
 'i'           Name
-'+'           Punctuation
-'+'           Punctuation
+'++'          Operator
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -2377,8 +2368,7 @@
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 'false'       Keyword
 ')'           Punctuation
@@ -2398,7 +2388,7 @@
 ' '           Text.Whitespace
 'container'   Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'ObjectContainer' Name
@@ -2420,7 +2410,7 @@
 ' '           Text.Whitespace
 'newInfo'     Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'new'         Keyword
 ' '           Text.Whitespace
@@ -2555,21 +2545,20 @@
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Punctuation
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-'<'           Punctuation
+'<'           Operator
 ' '           Text.Whitespace
 '5'           Literal.Number
 ';'           Punctuation
 ' '           Text.Whitespace
 'i'           Name
-'+'           Punctuation
-'+'           Punctuation
+'++'          Operator
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -2586,8 +2575,7 @@
 '.'           Punctuation
 'Count'       Name
 ' '           Text.Whitespace
-'='           Punctuation
-'='           Punctuation
+'=='          Operator
 ' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
@@ -2608,7 +2596,7 @@
 ' '           Text.Whitespace
 'objInfo'     Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'GetNextCandidate' Name
 ' '           Text.Whitespace
@@ -2624,7 +2612,7 @@
 ' '           Text.Whitespace
 'o'           Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'BoilFactory' Name
 '.'           Punctuation
@@ -2666,7 +2654,7 @@
 'RefId'       Name
 ']'           Punctuation
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'o'           Name
 ';'           Punctuation
@@ -2679,7 +2667,7 @@
 'o'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'objInfo'     Name
 '.'           Punctuation
@@ -2730,7 +2718,7 @@
 ' '           Text.Whitespace
 'container'   Name
 ' '           Text.Whitespace
-'='           Punctuation
+'='           Operator
 ' '           Text.Whitespace
 'objectListContainer' Name
 '.'           Punctuation

@@ -3,25 +3,25 @@ val (a: List<Something>, b: Set<Wobble>) =
 
 ---tokens---
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name.Variable
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'List'        Name
 '<'           Operator
 'Something'   Name
 '>'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Variable
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Set'         Name
 '<'           Operator
 'Wobble'      Name
 '>'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace

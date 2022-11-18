@@ -4,17 +4,14 @@
 
     Lexer for scdoc, a simple man page generator.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, \
-    using, this
-from pygments.token import Text, Comment, Keyword, String, \
-    Generic
-
+from pygments.lexer import RegexLexer, include, bygroups, using, this
+from pygments.token import Text, Comment, Keyword, String, Generic
 
 __all__ = ['ScdocLexer']
 
@@ -22,11 +19,11 @@ __all__ = ['ScdocLexer']
 class ScdocLexer(RegexLexer):
     """
     `scdoc` is a simple man page generator for POSIX systems written in C99.
-    https://git.sr.ht/~sircmpwn/scdoc
 
     .. versionadded:: 2.5
     """
     name = 'scdoc'
+    url = 'https://git.sr.ht/~sircmpwn/scdoc'
     aliases = ['scdoc', 'scd']
     filenames = ['*.scd', '*.scdoc']
     flags = re.MULTILINE

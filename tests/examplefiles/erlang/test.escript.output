@@ -1,16 +1,16 @@
 '#!/usr/bin/env escript\n' Comment.Hashbang
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'main'        Name.Function
 '('           Punctuation
 '_'           Punctuation
 'Args'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ok'          Name
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

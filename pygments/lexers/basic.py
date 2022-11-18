@@ -4,7 +4,7 @@
 
     Lexers for BASIC like languages (other than VB.net).
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,12 +22,13 @@ __all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
 
 class BlitzMaxLexer(RegexLexer):
     """
-    For `BlitzMax <http://blitzbasic.com>`_ source code.
+    For BlitzMax source code.
 
     .. versionadded:: 1.4
     """
 
     name = 'BlitzMax'
+    url = 'http://blitzbasic.com'
     aliases = ['blitzmax', 'bmax']
     filenames = ['*.bmx']
     mimetypes = ['text/x-bmx']
@@ -113,12 +114,13 @@ class BlitzMaxLexer(RegexLexer):
 
 class BlitzBasicLexer(RegexLexer):
     """
-    For `BlitzBasic <http://blitzbasic.com>`_ source code.
+    For BlitzBasic source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'BlitzBasic'
+    url = 'http://blitzbasic.com'
     aliases = ['blitzbasic', 'b3d', 'bplus']
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
@@ -623,7 +625,8 @@ class BBCBasicLexer(RegexLexer):
 
             # Some special cases to make functions come out nicer
             (r'(DEF)(\s*)(FN|PROC)([A-Za-z_@][\w@]*)',
-             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration, Name.Function)),
+             bygroups(Keyword.Declaration, Whitespace,
+                      Keyword.Declaration, Name.Function)),
             (r'(FN|PROC)([A-Za-z_@][\w@]*)',
              bygroups(Keyword, Name.Function)),
 
@@ -631,7 +634,8 @@ class BBCBasicLexer(RegexLexer):
              bygroups(Keyword, Whitespace, Name.Label)),
 
             (r'(TRUE|FALSE)', Keyword.Constant),
-            (r'(PAGE|LOMEM|HIMEM|TIME|WIDTH|ERL|ERR|REPORT\$|POS|VPOS|VOICES)', Keyword.Pseudo),
+            (r'(PAGE|LOMEM|HIMEM|TIME|WIDTH|ERL|ERR|REPORT\$|POS|VPOS|VOICES)',
+             Keyword.Pseudo),
 
             (words(base_keywords), Keyword),
             (words(basic5_keywords), Keyword),

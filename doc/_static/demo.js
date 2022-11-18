@@ -1,127 +1,189 @@
-languagePluginLoader.then(() => {
-    // pyodide is now ready to use...
-    pyodide.loadPackage('Pygments').then(() => {
-        pyodide.runPython('import pygments.lexers, pygments.formatters.html, pygments.styles');
+const loadingDiv = document.getElementById("loading");
+const langSelect = document.getElementById("lang");
+const styleSelect = document.getElementById("style");
+const formatterSelect = document.getElementById("formatter");
+const outputDiv = document.getElementById("hlcode");
+const codeHeader = document.getElementById("code-header");
+const copyLink = document.getElementById("copylink");
+const style = document.getElementById("css-style");
+const textarea = document.getElementById("code");
+const uriTooLongMsg = document.getElementById('uri-too-long');
+const contrastWarning = document.getElementById('contrast-warning');
+const fileInput = document.getElementById("file");
+const fileInputResetButton = document.getElementById('reset-file');
 
-        let qvars = getQueryVariables();
+const qvars = Object.fromEntries(new URLSearchParams(window.location.search));
+if (qvars.lexer) {
+    langSelect.value = qvars.lexer;
+}
+if (qvars.code !== undefined) {
+    textarea.value = qvars.code;
+    loadingDiv.hidden = false;
+}
+if (qvars.style !== undefined) {
+    styleSelect.value = qvars.style;
+    updateContrastWarning();
+}
+if (qvars.formatter !== undefined) {
+    formatterSelect.value = qvars.formatter;
+}
 
-        var lexerlist = pyodide.runPython('list(pygments.lexers.get_all_lexers())');
-        lexerlist.sort((a,b) => a[1][0] < b[1][0] ? -1 : 1);
-        var sel = document.getElementById("lang");
-        for (lex of lexerlist) {
-            if (lex[1][0] === undefined) {
-                continue;
-            }
-            var opt = document.createElement("option");
-            opt.text = lex[0];
-            opt.value = lex[1][0];
-            sel.add(opt);
-            if (lex[1].indexOf(qvars['lexer']) >= 0) {
-                opt.selected = true;
-            }
-        }
-
-        var stylelist = pyodide.runPython('list(pygments.styles.get_all_styles())');
-        var sel = document.getElementById("style");
-        for (sty of stylelist) {
-            if (sty != "default") {
-                var opt = document.createElement("option");
-                opt.text = sty;
-                opt.value = sty;
-                sel.add(opt);
-            }
-        }
-
-        document.getElementById("hlbtn").disabled = false;
-        document.getElementById("loading").style.display = "none";
-
-        if (qvars['code'] !== undefined) {
-            document.getElementById("code").value = qvars['code'];
-            highlight();
-        }
-    });
+styleSelect.addEventListener('change', () => {
+    if (!styles)
+        // Worker has not loaded yet.
+        return;
+    style.textContent = styles.get(styleSelect.value);
+    updateCopyLink();
+    updateContrastWarning();
 });
 
-function getQueryVariables() {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    var var_obj = {};
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-	var_obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-    }
-    return var_obj;
+function updateContrastWarning() {
+    contrastWarning.hidden = styleSelect.selectedOptions[0].dataset.wcag == 'aa';
 }
 
-function new_file() {
-    pyodide.globals['fname'] = document.getElementById("file").files[0].name;
-    var alias = pyodide.runPython('pygments.lexers.find_lexer_class_for_filename(fname).aliases[0]');
-    var sel = document.getElementById("lang");
-    for (var i = 0; i < sel.length; i++) {
-        if (sel.options[i].value == alias) {
-            sel.selectedIndex = i;
-            reset_err_hl();
-            break;
+function debounce(func, timeout) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), timeout);
+    };
+}
+
+const highlightShortDebounce = debounce(highlight, 50);
+const highlightLongDebounce = debounce(highlight, 500);
+
+function debouncedUpdate() {
+    if (fileInput.files.length > 0)
+        return;
+
+    if (textarea.value.length < 1000) {
+        highlightShortDebounce();
+    } else {
+        highlightLongDebounce();
+    }
+}
+
+langSelect.addEventListener('change', debouncedUpdate);
+textarea.addEventListener('input', debouncedUpdate);
+formatterSelect.addEventListener('change', debouncedUpdate);
+fileInput.addEventListener('change', () => {
+    fileInputResetButton.hidden = false;
+    highlight();
+});
+fileInputResetButton.hidden = fileInput.files.length == 0;
+fileInputResetButton.addEventListener('click', () => {
+    fileInputResetButton.hidden = true;
+    fileInput.value = '';
+    highlight();
+});
+
+let styles;
+
+const highlightWorker = new Worker("/_static/demo-worker.js");
+highlightWorker.onmessage = (msg) => {
+    if (msg.data.loaded) {
+        styles = msg.data.loaded.styles;
+
+        if (qvars.code !== undefined || textarea.value) {
+            loadingDiv.hidden = true;
+            highlight();
         }
+    } else if (msg.data.html) {
+        outputDiv.innerHTML = msg.data.html;
+        codeHeader.hidden = false;
+        loadingDiv.hidden = true;
+        style.textContent = styles.get(styleSelect.value);
+    } else if (msg.data.tokens) {
+        const table = document.createElement('table');
+        table.className = 'tokens';
+        for (const [tokenType, value] of msg.data.tokens) {
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            td1.textContent = tokenType.join('.');
+            const td2 = document.createElement('td');
+            const inlineCode = document.createElement('code');
+            inlineCode.textContent = value;
+            td2.appendChild(inlineCode);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+        }
+        outputDiv.innerHTML = '';
+        outputDiv.appendChild(table);
+
+        codeHeader.hidden = false;
+        loadingDiv.hidden = true;
+    } else if (msg.data.lexer) {
+        highlight(msg.data.lexer);
+    } else {
+        console.warn('unexpected message from highlight worker', msg);
+    }
+};
+
+function updateCopyLink() {
+    var url = document.location.origin + document.location.pathname +
+        "?" + new URLSearchParams({
+            lexer: langSelect.value,
+            style: styleSelect.value,
+            formatter: formatterSelect.value,
+            code: textarea.value,
+        }).toString()
+    if (url.length > 8201) {
+        // pygments.org is hosted on GitHub pages which does not support URIs longer than 8201
+        copyLink.hidden = true;
+        uriTooLongMsg.hidden = false;
+    } else {
+        copyLink.href = url;
+        copyLink.textContent = 'Copy link';
+        copyLink.hidden = false;
+        uriTooLongMsg.hidden = true;
     }
 }
 
-function reset_err_hl() {
-    document.getElementById("aroundlang").style.backgroundColor = null;
-}
+async function highlight(guessedLexer) {
+    var lexer = langSelect.value || guessedLexer;
+    var file = fileInput.files[0];
 
-function highlight() {
-    var select = document.getElementById("lang");
-    var alias = select.options.item(select.selectedIndex).value
+    let code;
+    if (file) {
+        code = await file.arrayBuffer();
+    } else {
+        code = textarea.value;
+    }
 
-    if (alias == "") {
-        document.getElementById("aroundlang").style.backgroundColor = "#ffcccc";
+    loadingDiv.hidden = false;
+
+    if (!lexer) {
+        const guess_lexer = {code};
+        if (file)
+            guess_lexer.filename = file.name;
+        highlightWorker.postMessage({guess_lexer});
+        document.getElementById('loading-text').textContent = 'guessing lexer...';
         return;
     }
-    pyodide.globals['alias'] = alias;
 
-    var select = document.getElementById("style");
-    pyodide.globals['style'] = select.options.item(select.selectedIndex).value;
+    document.getElementById('loading-text').textContent = 'highlighting code...';
 
-    pyodide.runPython('lexer = pygments.lexers.get_lexer_by_name(alias)');
-    pyodide.runPython('fmter = pygments.formatters.html.HtmlFormatter(noclasses=True, style=style)');
+    document.getElementById('guessed-lexer').textContent = guessedLexer;
 
-    var file = document.getElementById("file").files[0];
-    if (file) {
-        file.arrayBuffer().then(function(buf) {
-            pyodide.globals['code_mem'] = buf;
-            pyodide.runPython('code = bytes(code_mem)');
-            document.getElementById("copy_btn").style.display = "none";
-            highlight_now();
-        });
+    highlightWorker.postMessage({highlight: {code, lexer, formatter: formatterSelect.value}});
+
+    if (code instanceof ArrayBuffer) {
+        copyLink.hidden = true;
+        uriTooLongMsg.hidden = true;
     } else {
-        var code = document.getElementById("code").value;
-        pyodide.globals['code'] = code;
-        var link = document.location.origin + document.location.pathname +
-            "?lexer=" + encodeURIComponent(alias) + "&code=" + encodeURIComponent(code);
-        document.getElementById("copy_field").value = link;
-        document.getElementById("copy_btn").style.display = "";
-        highlight_now();
+        updateCopyLink();
     }
 }
 
-function highlight_now() {
-    var out = document.getElementById("hlcode");
-    out.innerHTML = pyodide.runPython('pygments.highlight(code, lexer, fmter)');
-    document.location.hash = "#try";
-    document.getElementById("hlcodedl").style.display = "block";
-}
-
-function copy_link() {
-    var copy_field = document.getElementById("copy_field");
-    copy_field.select();
-    copy_field.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-}
+copyLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await navigator.clipboard.writeText(e.target.href);
+});
 
 function download_code() {
     var filename = "highlighted.html";
-    var hlcode = document.getElementById("hlcode").innerHTML;
+    var hlcode = document.getElementById("hlcode").innerHTML + style.outerHTML;
     var blob = new Blob([hlcode], {type: 'text/html'});
     if (window.navigator.msSaveOrOpenBlob) {
         window.navigator.msSaveBlob(blob, filename);

@@ -14,10 +14,11 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+.PHONY: help clean pyodide html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  pyodide    to make Pyodide with currently checked out Pygments"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -41,12 +42,21 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
+pyodide:
+	$(if $(test ! -f docker), $(error "Could not find Docker. Please install that before continuing."))
+	# Enable the BuildKit backend to use the --output option.
+	DOCKER_BUILDKIT=1 docker build --file pyodide/Dockerfile --output $(BUILDDIR)/pyodide/pyodide ..
+	@echo
+	@echo "Pyodide build finished. The Pyodide artifacts are in $(BUILDDIR)/pyodide."
+
 html:
+	$(if $(WEBSITE_BUILD), $(MAKE) pyodide)
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
 dirhtml:
+	$(if $(WEBSITE_BUILD), $(MAKE) pyodide)
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."

@@ -176,6 +176,8 @@
 '`equals`'    Operator.Word
 ' '           Text
 'x'           Name
+'  '          Text
+'// Test'     Comment
 '\n\n'        Text
 
 'let'         Keyword.Declaration
@@ -1992,34 +1994,7 @@
 '\n\n    '    Text
 '='           Operator
 ' '           Text
-'//'          Operator
-'can'         Name
-' '           Text
-'join'        Name
-' '           Text
-'any'         Name
-' '           Text
-'disjoint'    Name
-' '           Text
-'heap'        Name
-' '           Text
-'to'          Name
-' '           Text
-'the'         Name
-' '           Text
-'pre'         Name
-'-'           Operator
-'heap'        Name
-' '           Text
-'and'         Name
-' '           Text
-'q'           Name
-' '           Text
-'is'          Name
-' '           Text
-'still'       Name
-' '           Text
-'valid'       Name
+'//can join any disjoint heap to the pre-heap and q is still valid' Comment
 '\n  '        Text
 '('           Operator
 'forall'      Keyword
@@ -2079,34 +2054,7 @@
 ' '           Text
 '/\\'         Operator
 '\n  '        Text
-'//'          Operator
-'can'         Name
-' '           Text
-'join'        Name
-' '           Text
-'any'         Name
-' '           Text
-'disjoint'    Name
-' '           Text
-'heap'        Name
-' '           Text
-'to'          Name
-' '           Text
-'the'         Name
-' '           Text
-'post'        Name
-'-'           Operator
-'heap'        Name
-' '           Text
-'and'         Name
-' '           Text
-'q'           Name
-' '           Text
-'is'          Name
-' '           Text
-'still'       Name
-' '           Text
-'valid'       Name
+'//can join any disjoint heap to the post-heap and q is still valid' Comment
 '\n  '        Text
 '('           Operator
 'forall'      Keyword

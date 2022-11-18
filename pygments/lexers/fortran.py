@@ -4,7 +4,7 @@
 
     Lexers for Fortran languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +24,8 @@ class FortranLexer(RegexLexer):
     .. versionadded:: 0.10
     """
     name = 'Fortran'
-    aliases = ['fortran']
+    url = 'https://fortran-lang.org/'
+    aliases = ['fortran', 'f90']
     filenames = ['*.f03', '*.f90', '*.F03', '*.F90']
     mimetypes = ['text/x-fortran']
     flags = re.IGNORECASE | re.MULTILINE
@@ -67,8 +68,8 @@ class FortranLexer(RegexLexer):
                 'FUNCTION', 'GENERIC', 'IF', 'IMAGES', 'IMPLICIT',
                 'IMPORT', 'IMPURE', 'INCLUDE', 'INQUIRE', 'INTENT', 'INTERFACE',
                 'INTRINSIC', 'IS', 'LOCK', 'MEMORY', 'MODULE', 'NAMELIST', 'NULLIFY',
-                'NONE', 'NON_INTRINSIC', 'NON_OVERRIDABLE', 'NOPASS', 'ONLY', 'OPEN', 
-                'OPTIONAL', 'OPTIONS', 'PARAMETER', 'PASS', 'PAUSE', 'POINTER', 'PRINT', 
+                'NONE', 'NON_INTRINSIC', 'NON_OVERRIDABLE', 'NOPASS', 'ONLY', 'OPEN',
+                'OPTIONAL', 'OPTIONS', 'PARAMETER', 'PASS', 'PAUSE', 'POINTER', 'PRINT',
                 'PRIVATE', 'PROGRAM', 'PROCEDURE', 'PROTECTED', 'PUBLIC', 'PURE', 'READ',
                 'RECURSIVE', 'RESULT', 'RETURN', 'REWIND', 'SAVE', 'SELECT', 'SEQUENCE',
                 'STOP', 'SUBMODULE', 'SUBROUTINE', 'SYNC', 'SYNCALL', 'SYNCIMAGES',
@@ -156,8 +157,8 @@ class FortranLexer(RegexLexer):
         ],
 
         'strings': [
-            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
-            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r'"(\\[0-7]+|\\[^0-7]|[^"\\])*"', String.Double),
+            (r"'(\\[0-7]+|\\[^0-7]|[^'\\])*'", String.Single),
         ],
 
         'nums': [

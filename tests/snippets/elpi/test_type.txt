@@ -1,0 +1,112 @@
+---input---
+kind list type -> type.
+type nil list A.
+type cons A -> list A -> list A.
+kind tm type.
+type fun (tm -> tm) -> tm.
+type app tm -> tm -> tm.
+pred foo i:(tm -> tm), o:tm.
+
+---tokens---
+'kind'        Keyword.Declaration
+' '           Text.Whitespace
+'list'        Name.Function
+' '           Text.Whitespace
+'type'        Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'type'        Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'nil'         Name.Function
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'cons'        Name.Function
+' '           Text.Whitespace
+'A'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'kind'        Keyword.Declaration
+' '           Text.Whitespace
+'tm'          Name.Function
+' '           Text.Whitespace
+'type'        Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'fun'         Name.Function
+' '           Text.Whitespace
+'('           Keyword.Type
+'tm'          Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'tm'          Keyword.Type
+')'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'tm'          Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'app'         Name.Function
+' '           Text.Whitespace
+'tm'          Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'tm'          Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'tm'          Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'('           Keyword.Type
+'tm'          Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'tm'          Keyword.Type
+')'           Keyword.Type
+','           Text
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'tm'          Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace

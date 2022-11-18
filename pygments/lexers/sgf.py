@@ -4,12 +4,12 @@
 
     Lexer for Smart Game Format (sgf) file format.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, bygroups
-from pygments.token import Name, Literal, String, Text, Punctuation, Whitespace
+from pygments.token import Name, Literal, String, Punctuation, Whitespace
 
 __all__ = ["SmartGameFormatLexer"]
 
@@ -20,12 +20,11 @@ class SmartGameFormatLexer(RegexLexer):
 
     The format is used to store game records of board games for two players
     (mainly Go game).
-    For more information about the definition of the format, see:
-    https://www.red-bean.com/sgf/
 
     .. versionadded:: 2.4
     """
     name = 'SmartGameFormat'
+    url = 'https://www.red-bean.com/sgf/'
     aliases = ['sgf']
     filenames = ['*.sgf']
 

@@ -4,14 +4,14 @@
 
     Lexers for ANSYS Parametric Design Language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, include, words
-from pygments.token import Comment, Keyword, Name, Text, Number, Operator, \
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
     String, Generic, Punctuation, Whitespace
 
 __all__ = ['apdlexer']

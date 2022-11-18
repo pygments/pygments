@@ -1,0 +1,211 @@
+'/*'          Comment.Multiline
+'\nThrowing a coin with uncertainty on its fairness, from\nJ. Vennekens, S. Verbaeten, and M. Bruynooghe. Logic programs with annotated\ndisjunctions. In International Conference on Logic Programming,\nvolume 3131 of LNCS, pages 195-209. Springer, 2004.\n\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_module'  Name.Function
+'('           Punctuation
+'library'     Name.Function
+'('           Punctuation
+'pita'        Literal.String.Atom
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'if'          Name.Function
+'('           Punctuation
+'current_predicate' Name.Function
+'('           Punctuation
+'use_rendering' Literal.String.Atom
+'/'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'c3'          Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'graphviz'    Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'table'       Literal.String.Atom
+','           Punctuation
+'['           Punctuation
+'header'      Name.Function
+'('           Punctuation
+'['           Punctuation
+"'Multivalued variable index'" Literal.String.Atom
+','           Punctuation
+"'Rule index'" Literal.String.Atom
+','           Punctuation
+"'Grounding substitution'" Literal.String.Atom
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'endif'       Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'pita'        Literal.String.Atom
+'.'           Punctuation
+'\n\n\n'      Text
+
+':-'          Operator
+' '           Text
+'begin_lpad'  Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'heads'       Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+':'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'/'           Operator
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'tails'       Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'/'           Operator
+'2'           Literal.Number.Integer
+':-'          Operator
+'toss'        Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+','           Punctuation
+'\\+'         Literal.String.Atom
+'biased'      Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% if we toss a Coin that is not biased then it lands heads with probability 1/2' Comment.Single
+'\n'          Text
+
+'% and tails with probability 1/2' Comment.Single
+'\n'          Text
+
+'heads'       Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+':'           Operator
+' '           Text
+'0.6'         Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'tails'       Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'0.4'         Literal.Number.Float
+':-'          Operator
+'toss'        Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+','           Punctuation
+'biased'      Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% if we toss a Coin that is biased then it lands heads with probability 0.6' Comment.Single
+'\n'          Text
+
+'% % and tails with probability 0.4' Comment.Single
+'\n'          Text
+
+'fair'        Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+':'           Operator
+'0.9'         Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'biased'      Name.Function
+'('           Punctuation
+'Coin'        Name.Variable
+')'           Punctuation
+':'           Operator
+'0.1'         Literal.Number.Float
+'.'           Punctuation
+'\n'          Text
+
+'% a Coin is fair with probability 0.9 and biased with probability 0.1' Comment.Single
+'\n'          Text
+
+'toss'        Name.Function
+'('           Punctuation
+'coin'        Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'% coin is certainly tossed' Comment.Single
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'end_lpad'    Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+" <examples>\n\n?- prob(heads(coin),Prob).  % what is the probability that coin lands heads?\n% expected result 0.51\n?- prob(tails(coin),Prob).  % what is the probability that coin lands tails?\n% expected result 0.49\n?- prob(heads(coin),Prob),bar1(Prob,C).  % draw a bar representing \n% the probability that coin lands heads\n?- prob(heads(coin),Prob),bar(Prob,C).  % draw two bars representing \n% the probabilities that coin lands heads and that it doesn't land heads\n?- prob(tails(coin),Prob),bar1(Prob,C).  % draw a bar representing \n% the probability that coin lands tails\n\n?- prob(heads(coin),biased(coin),Prob).\n% what is the probability that coin lands heads given the coin is biased?\n% expected result 0.6\n\n?- bdd_dot_string(heads(coin),BDD,Var).\n% What is the BDD for query heads(coin)?\n% A solid edge indicates a 1-child, a dashed edge indicates a 0-child and\n% a dotted\n% edge indicates a negated 0-child.\n% The table Var contains the associations between the rule groundings and the\n% multivalued variables.\n\n\n" Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text

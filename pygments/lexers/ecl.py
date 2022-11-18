@@ -4,29 +4,28 @@
 
     Lexers for the ECL language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+from pygments.token import Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Whitespace
 
 __all__ = ['ECLLexer']
 
 
 class ECLLexer(RegexLexer):
     """
-    Lexer for the declarative big-data `ECL
-    <https://hpccsystems.com/training/documentation/ecl-language-reference/html>`_
-    language.
+    Lexer for the declarative big-data ECL language.
 
     .. versionadded:: 1.5
     """
 
     name = 'ECL'
+    url = 'https://hpccsystems.com/training/documentation/ecl-language-reference/html'
     aliases = ['ecl']
     filenames = ['*.ecl']
     mimetypes = ['application/x-ecl']
@@ -39,7 +38,7 @@ class ECLLexer(RegexLexer):
             include('statements'),
         ],
         'whitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\/\/.*', Comment.Single),
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
         ],
@@ -67,7 +66,7 @@ class ECLLexer(RegexLexer):
             (r'((?:ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
              r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
              r'UNSIGNED|VARSTRING|VARUNICODE)\d*)(\s+)',
-             bygroups(Keyword.Type, Text)),
+             bygroups(Keyword.Type, Whitespace)),
         ],
         'keywords': [
             (words((
@@ -80,39 +79,48 @@ class ECLLexer(RegexLexer):
              Keyword.Reserved),
             # These are classed differently, check later
             (words((
-                'ALL', 'AND', 'ANY', 'AS', 'ATMOST', 'BEFORE', 'BEGINC++', 'BEST', 'BETWEEN', 'CASE',
-                'CONST', 'COUNTER', 'CSV', 'DESCEND', 'ENCRYPT', 'ENDC++', 'ENDMACRO', 'EXCEPT',
-                'EXCLUSIVE', 'EXPIRE', 'EXPORT', 'EXTEND', 'FALSE', 'FEW', 'FIRST', 'FLAT', 'FULL',
-                'FUNCTION', 'GROUP', 'HEADER', 'HEADING', 'HOLE', 'IFBLOCK', 'IMPORT', 'IN', 'JOINED',
-                'KEEP', 'KEYED', 'LAST', 'LEFT', 'LIMIT', 'LOAD', 'LOCAL', 'LOCALE', 'LOOKUP', 'MACRO',
-                'MANY', 'MAXCOUNT', 'MAXLENGTH', 'MIN SKEW', 'MODULE', 'INTERFACE', 'NAMED', 'NOCASE',
-                'NOROOT', 'NOSCAN', 'NOSORT', 'NOT', 'OF', 'ONLY', 'OPT', 'OR', 'OUTER', 'OVERWRITE',
-                'PACKED', 'PARTITION', 'PENALTY', 'PHYSICALLENGTH', 'PIPE', 'QUOTE', 'RELATIONSHIP',
-                'REPEAT', 'RETURN', 'RIGHT', 'SCAN', 'SELF', 'SEPARATOR', 'SERVICE', 'SHARED', 'SKEW',
-                'SKIP', 'SQL', 'STORE', 'TERMINATOR', 'THOR', 'THRESHOLD', 'TOKEN', 'TRANSFORM', 'TRIM',
-                'TRUE', 'TYPE', 'UNICODEORDER', 'UNSORTED', 'VALIDATE', 'VIRTUAL', 'WHOLE', 'WILD',
-                'WITHIN', 'XML', 'XPATH', '__COMPRESSED__'), suffix=r'\b'),
+                'ALL', 'AND', 'ANY', 'AS', 'ATMOST', 'BEFORE', 'BEGINC++', 'BEST',
+                'BETWEEN', 'CASE', 'CONST', 'COUNTER', 'CSV', 'DESCEND', 'ENCRYPT',
+                'ENDC++', 'ENDMACRO', 'EXCEPT', 'EXCLUSIVE', 'EXPIRE', 'EXPORT',
+                'EXTEND', 'FALSE', 'FEW', 'FIRST', 'FLAT', 'FULL', 'FUNCTION',
+                'GROUP', 'HEADER', 'HEADING', 'HOLE', 'IFBLOCK', 'IMPORT', 'IN',
+                'JOINED', 'KEEP', 'KEYED', 'LAST', 'LEFT', 'LIMIT', 'LOAD', 'LOCAL',
+                'LOCALE', 'LOOKUP', 'MACRO', 'MANY', 'MAXCOUNT', 'MAXLENGTH',
+                'MIN SKEW', 'MODULE', 'INTERFACE', 'NAMED', 'NOCASE', 'NOROOT',
+                'NOSCAN', 'NOSORT', 'NOT', 'OF', 'ONLY', 'OPT', 'OR', 'OUTER',
+                'OVERWRITE', 'PACKED', 'PARTITION', 'PENALTY', 'PHYSICALLENGTH',
+                'PIPE', 'QUOTE', 'RELATIONSHIP', 'REPEAT', 'RETURN', 'RIGHT',
+                'SCAN', 'SELF', 'SEPARATOR', 'SERVICE', 'SHARED', 'SKEW', 'SKIP',
+                'SQL', 'STORE', 'TERMINATOR', 'THOR', 'THRESHOLD', 'TOKEN',
+                'TRANSFORM', 'TRIM', 'TRUE', 'TYPE', 'UNICODEORDER', 'UNSORTED',
+                'VALIDATE', 'VIRTUAL', 'WHOLE', 'WILD', 'WITHIN', 'XML', 'XPATH',
+                '__COMPRESSED__'), suffix=r'\b'),
              Keyword.Reserved),
         ],
         'functions': [
             (words((
-                'ABS', 'ACOS', 'ALLNODES', 'ASCII', 'ASIN', 'ASSTRING', 'ATAN', 'ATAN2', 'AVE', 'CASE',
-                'CHOOSE', 'CHOOSEN', 'CHOOSESETS', 'CLUSTERSIZE', 'COMBINE', 'CORRELATION', 'COS',
-                'COSH', 'COUNT', 'COVARIANCE', 'CRON', 'DATASET', 'DEDUP', 'DEFINE', 'DENORMALIZE',
-                'DISTRIBUTE', 'DISTRIBUTED', 'DISTRIBUTION', 'EBCDIC', 'ENTH', 'ERROR', 'EVALUATE',
-                'EVENT', 'EVENTEXTRA', 'EVENTNAME', 'EXISTS', 'EXP', 'FAILCODE', 'FAILMESSAGE',
-                'FETCH', 'FROMUNICODE', 'GETISVALID', 'GLOBAL', 'GRAPH', 'GROUP', 'HASH', 'HASH32',
-                'HASH64', 'HASHCRC', 'HASHMD5', 'HAVING', 'IF', 'INDEX', 'INTFORMAT', 'ISVALID',
-                'ITERATE', 'JOIN', 'KEYUNICODE', 'LENGTH', 'LIBRARY', 'LIMIT', 'LN', 'LOCAL', 'LOG', 'LOOP',
-                'MAP', 'MATCHED', 'MATCHLENGTH', 'MATCHPOSITION', 'MATCHTEXT', 'MATCHUNICODE',
-                'MAX', 'MERGE', 'MERGEJOIN', 'MIN', 'NOLOCAL', 'NONEMPTY', 'NORMALIZE', 'PARSE', 'PIPE',
-                'POWER', 'PRELOAD', 'PROCESS', 'PROJECT', 'PULL', 'RANDOM', 'RANGE', 'RANK', 'RANKED',
-                'REALFORMAT', 'RECORDOF', 'REGEXFIND', 'REGEXREPLACE', 'REGROUP', 'REJECTED',
-                'ROLLUP', 'ROUND', 'ROUNDUP', 'ROW', 'ROWDIFF', 'SAMPLE', 'SET', 'SIN', 'SINH', 'SIZEOF',
-                'SOAPCALL', 'SORT', 'SORTED', 'SQRT', 'STEPPED', 'STORED', 'SUM', 'TABLE', 'TAN', 'TANH',
-                'THISNODE', 'TOPN', 'TOUNICODE', 'TRANSFER', 'TRIM', 'TRUNCATE', 'TYPEOF', 'UNGROUP',
-                'UNICODEORDER', 'VARIANCE', 'WHICH', 'WORKUNIT', 'XMLDECODE', 'XMLENCODE',
-                'XMLTEXT', 'XMLUNICODE'), suffix=r'\b'),
+                'ABS', 'ACOS', 'ALLNODES', 'ASCII', 'ASIN', 'ASSTRING', 'ATAN',
+                'ATAN2', 'AVE', 'CASE', 'CHOOSE', 'CHOOSEN', 'CHOOSESETS',
+                'CLUSTERSIZE', 'COMBINE', 'CORRELATION', 'COS', 'COSH', 'COUNT',
+                'COVARIANCE', 'CRON', 'DATASET', 'DEDUP', 'DEFINE', 'DENORMALIZE',
+                'DISTRIBUTE', 'DISTRIBUTED', 'DISTRIBUTION', 'EBCDIC', 'ENTH',
+                'ERROR', 'EVALUATE', 'EVENT', 'EVENTEXTRA', 'EVENTNAME', 'EXISTS',
+                'EXP', 'FAILCODE', 'FAILMESSAGE', 'FETCH', 'FROMUNICODE',
+                'GETISVALID', 'GLOBAL', 'GRAPH', 'GROUP', 'HASH', 'HASH32',
+                'HASH64', 'HASHCRC', 'HASHMD5', 'HAVING', 'IF', 'INDEX',
+                'INTFORMAT', 'ISVALID', 'ITERATE', 'JOIN', 'KEYUNICODE', 'LENGTH',
+                'LIBRARY', 'LIMIT', 'LN', 'LOCAL', 'LOG', 'LOOP', 'MAP', 'MATCHED',
+                'MATCHLENGTH', 'MATCHPOSITION', 'MATCHTEXT', 'MATCHUNICODE', 'MAX',
+                'MERGE', 'MERGEJOIN', 'MIN', 'NOLOCAL', 'NONEMPTY', 'NORMALIZE',
+                'PARSE', 'PIPE', 'POWER', 'PRELOAD', 'PROCESS', 'PROJECT', 'PULL',
+                'RANDOM', 'RANGE', 'RANK', 'RANKED', 'REALFORMAT', 'RECORDOF',
+                'REGEXFIND', 'REGEXREPLACE', 'REGROUP', 'REJECTED', 'ROLLUP',
+                'ROUND', 'ROUNDUP', 'ROW', 'ROWDIFF', 'SAMPLE', 'SET', 'SIN',
+                'SINH', 'SIZEOF', 'SOAPCALL', 'SORT', 'SORTED', 'SQRT', 'STEPPED',
+                'STORED', 'SUM', 'TABLE', 'TAN', 'TANH', 'THISNODE', 'TOPN',
+                'TOUNICODE', 'TRANSFER', 'TRIM', 'TRUNCATE', 'TYPEOF', 'UNGROUP',
+                'UNICODEORDER', 'VARIANCE', 'WHICH', 'WORKUNIT', 'XMLDECODE',
+                'XMLENCODE', 'XMLTEXT', 'XMLUNICODE'), suffix=r'\b'),
              Name.Function),
         ],
         'string': [
@@ -124,7 +132,7 @@ class ECLLexer(RegexLexer):
 
     def analyse_text(text):
         """This is very difficult to guess relative to other business languages.
-        -> in conjuction with BEGIN/END seems relatively rare though."""
+        -> in conjunction with BEGIN/END seems relatively rare though."""
         result = 0
 
         if '->' in text:

@@ -4,11 +4,9 @@
 
     Lexers for the Smithy IDL.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-import re
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Keyword, Name, String, \
@@ -24,10 +22,10 @@ class SmithyLexer(RegexLexer):
     .. versionadded:: 2.10
     """
     name = 'Smithy'
+    url = 'https://awslabs.github.io/smithy/'
     filenames = ['*.smithy']
     aliases = ['smithy']
 
-    flags = re.MULTILINE | re.UNICODE
     unquoted = r'[A-Za-z0-9_\.#$-]+'
     identifier = r"[A-Za-z0-9_\.#$-]+"
 

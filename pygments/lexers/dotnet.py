@@ -4,7 +4,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -12,7 +12,7 @@ import re
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
     using, this, default, words
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
-        Name, String, Number, Literal, Other, Whitespace
+    Name, String, Number, Literal, Other, Whitespace
 from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
@@ -24,8 +24,7 @@ __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
 
 class CSharpLexer(RegexLexer):
     """
-    For `C# <http://msdn2.microsoft.com/en-us/vcsharp/default.aspx>`_
-    source code.
+    For C# source code.
 
     Additional options accepted:
 
@@ -47,11 +46,12 @@ class CSharpLexer(RegexLexer):
     """
 
     name = 'C#'
+    url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
     aliases = ['csharp', 'c#', 'cs']
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
@@ -62,9 +62,9 @@ class CSharpLexer(RegexLexer):
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
                                     'Cf', 'Mn', 'Mc') + ']*'),
         'full': ('@?(?:_|[^' +
-                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
-                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
-                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])' +
+                 '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                      'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
     tokens = {}
@@ -77,25 +77,32 @@ class CSharpLexer(RegexLexer):
                 (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
-                 bygroups(Whitespace, using(this), Name.Function, Whitespace, 
-                     Punctuation)),
+                 bygroups(Whitespace, using(this), Name.Function, Whitespace,
+                          Punctuation)),
                 (r'^(\s*)(\[.*?\])', bygroups(Whitespace, Name.Attribute)),
                 (r'[^\S\n]+', Whitespace),
                 (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
                 (r'//.*?\n', Comment.Single),
                 (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Whitespace),
-                (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
+                (words((
+                    '>>>=', '>>=', '<<=', '<=', '>=', '+=', '-=', '*=', '/=',
+                    '%=', '&=', '|=', '^=', '??=', '=>', '??', '?.', '!=', '==',
+                    '&&', '||', '>>>', '>>', '<<', '++', '--', '+', '-', '*',
+                    '/', '%', '&', '|', '^', '<', '>', '?', '!', '~', '=',
+                )), Operator),
+                (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
+                (r'[()\[\];:,.]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'@"(""|[^"])*"', String),
                 (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
-                (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
+                (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r'(#)([ \t]*)(if|endif|else|elif|define|undef|'
                  r'line|error|warning|region|endregion|pragma)\b(.*?)(\n)',
-                 bygroups(Comment.Preproc, Whitespace, Comment.Preproc, 
-                     Comment.Preproc, Whitespace)),
+                 bygroups(Comment.Preproc, Whitespace, Comment.Preproc,
+                          Comment.Preproc, Whitespace)),
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Whitespace,
                  Keyword)),
                 (r'(abstract|as|async|await|base|break|by|case|catch|'
@@ -140,7 +147,7 @@ class CSharpLexer(RegexLexer):
 
 class NemerleLexer(RegexLexer):
     """
-    For `Nemerle <http://nemerle.org>`_ source code.
+    For Nemerle source code.
 
     Additional options accepted:
 
@@ -162,11 +169,12 @@ class NemerleLexer(RegexLexer):
     """
 
     name = 'Nemerle'
+    url = 'http://nemerle.org'
     aliases = ['nemerle']
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
@@ -177,9 +185,9 @@ class NemerleLexer(RegexLexer):
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
                                     'Cf', 'Mn', 'Mc') + ']*'),
         'full': ('@?(?:_|[^' +
-                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
-                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
-                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])' +
+                 '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                      'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
     tokens = {}
@@ -193,7 +201,7 @@ class NemerleLexer(RegexLexer):
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
                  bygroups(Whitespace, using(this), Name.Function, Whitespace, \
-                     Punctuation)),
+                          Punctuation)),
                 (r'^(\s*)(\[.*?\])', bygroups(Whitespace, Name.Attribute)),
                 (r'[^\S\n]+', Whitespace),
                 (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
@@ -206,8 +214,8 @@ class NemerleLexer(RegexLexer):
                     'splice-string2'),
                 (r'<#', String, 'recursive-string'),
 
-                (r'(<\[)(\s*)(' + cs_ident + ':)?', bygroups(Keyword, 
-                    Whitespace, Keyword)),
+                (r'(<\[)(\s*)(' + cs_ident + ':)?',
+                 bygroups(Keyword, Whitespace, Keyword)),
                 (r'\]\>', Keyword),
 
                 # quasiquotation only
@@ -317,10 +325,11 @@ class NemerleLexer(RegexLexer):
 
 class BooLexer(RegexLexer):
     """
-    For `Boo <http://boo.codehaus.org/>`_ source code.
+    For Boo source code.
     """
 
     name = 'Boo'
+    url = 'https://github.com/boo-lang/boo'
     aliases = ['boo']
     filenames = ['*.boo']
     mimetypes = ['text/x-boo']
@@ -384,13 +393,13 @@ class BooLexer(RegexLexer):
 
 class VbNetLexer(RegexLexer):
     """
-    For
-    `Visual Basic.NET <http://msdn2.microsoft.com/en-us/vbasic/default.aspx>`_
-    source code.
+    For Visual Basic.NET source code.
+    Also LibreOffice Basic, OpenOffice Basic, and StarOffice Basic.
     """
 
     name = 'VB.net'
-    aliases = ['vb.net', 'vbnet']
+    url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
+    aliases = ['vb.net', 'vbnet', 'lobas', 'oobas', 'sobas']
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
 
@@ -412,8 +421,9 @@ class VbNetLexer(RegexLexer):
              Comment.Preproc),
             (r'[(){}!#,.:]', Punctuation),
             (r'(Option)(\s+)(Strict|Explicit|Compare)(\s+)'
-             r'(On|Off|Binary|Text)', bygroups(Keyword.Declaration, Whitespace,
-                 Keyword.Declaration, Whitespace, Keyword.Declaration)),
+             r'(On|Off|Binary|Text)',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
+                      Whitespace, Keyword.Declaration)),
             (words((
                 'AddHandler', 'Alias', 'ByRef', 'ByVal', 'Call', 'Case',
                 'Catch', 'CBool', 'CByte', 'CChar', 'CDate', 'CDec', 'CDbl',
@@ -559,12 +569,13 @@ class VbNetAspxLexer(DelegatingLexer):
 # Very close to functional.OcamlLexer
 class FSharpLexer(RegexLexer):
     """
-    For the `F# language <https://fsharp.org/>`_ (version 3.0).
+    For the F# language (version 3.0).
 
     .. versionadded:: 1.5
     """
 
     name = 'F#'
+    url = 'https://fsharp.org/'
     aliases = ['fsharp', 'f#']
     filenames = ['*.fs', '*.fsi']
     mimetypes = ['text/x-fsharp']
@@ -645,8 +656,8 @@ class FSharpLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
             (r'(#)([ \t]*)(if|endif|else|line|nowarn|light|\d+)\b(.*?)(\n)',
-             bygroups(Comment.Preproc, Whitespace, Comment.Preproc, 
-                 Comment.Preproc, Whitespace)),
+             bygroups(Comment.Preproc, Whitespace, Comment.Preproc,
+                      Comment.Preproc, Whitespace)),
 
             (r"[^\W\d][\w']*", Name),
 

@@ -1,775 +1,775 @@
 '('           Punctuation
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pygments-test' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'some'        Literal
-' '           Text
+' '           Text.Whitespace
 'symbols'     Literal
 ']'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\* multiline\n   comment\n*\\' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ With vars as functions' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'Value'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Succ'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'End'         Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Action'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Combine'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Zero'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'End'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Value'       Name.Variable
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'Zero'        Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'Combine'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Action'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'Value'       Name.Variable
 ')'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '('           Punctuation
 'super'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '('           Punctuation
 'Succ'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'Value'       Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Succ'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'End'         Name.Variable
 ']'           Punctuation
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'Action'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Combine'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Zero'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'for'         Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Stream'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Action'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'super'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'Stream'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Action'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'do'          Name.Function
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'filter'      Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Stream'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Condition'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'super'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'Stream'      Name.Variable
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 '/.'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Val'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Condition'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'Val'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Val'         Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Pseudo
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'append'      Name.Function
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '[]'          Keyword.Pseudo
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'for'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'filter'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '/.'          Keyword
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'integer?'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '/'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '\\\\ Typed functions' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'typed-map'   Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'typed-map-h' Name.Function
-' '           Text
+' '           Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Pseudo
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'typed-map-h' Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\\ comment' Comment.Single
-'\n       '   Text
+'\n       '   Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'reverse'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'typed-map-h' Name.Function
-' '           Text
+' '           Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '('           Punctuation
 'F'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'append-string' Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '\\* comment *\\' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'S1'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'S2'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'cn'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'S1'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'S2'          Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n     '     Text
+'\n     '     Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 '+'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'number'      Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'number'      Literal
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ Yacc'   Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defcc'       Keyword
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<lrb>'       Literal
-'  '          Text
+'  '          Text.Whitespace
 '<st_input1>' Literal
-' '           Text
+' '           Text.Whitespace
 '<rrb>'       Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input2>' Literal
-' \n   '      Text
+' \n   '      Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'package-macro' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'macroexpand' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '<st_input1>' Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input2>' Literal
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<lcurly>'    Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '{'           Literal
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<rcurly>'    Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '}'           Literal
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'    \n  '    Text
+'    \n  '    Text.Whitespace
 '<bar>'       Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'bar!'        Literal
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'  \n  '      Text
+'  \n  '      Text.Whitespace
 '<semicolon>' Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<colon>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<equal>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<colon>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<minus>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ':-'          Literal
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<colon>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<comma>'     Literal
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '('           Punctuation
 'intern'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ','           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<st_input>'  Literal
 ']'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<e>'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Pseudo
 ';'           Punctuation
 ')'           Punctuation
-'\n  \n'      Text
+'\n  \n'      Text.Whitespace
 
 '('           Punctuation
 'defcc'       Keyword
-' '           Text
+' '           Text.Whitespace
 '<lsb>'       Name.Function
-'\n   '       Text
+'\n   '       Text.Whitespace
 '91'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ':='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'skip'        Name.Builtin
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ Pattern matching' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'matches'     Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'where'       Name.Builtin
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'true'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Pseudo
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 '@p'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Literal
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'c'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '@s'          Keyword
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'a'           Literal.String
 'b'           Literal.String
 'c'           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '@v'          Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '<>'          Keyword.Pseudo
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Pseudo
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Rest'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '[]'          Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'a'           Literal
-' '           Text
+' '           Text.Whitespace
 'b'           Literal
-' '           Text
+' '           Text.Whitespace
 'c'           Literal
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Pseudo
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 '('           Punctuation
 '@p'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Literal
-' '           Text
+' '           Text.Whitespace
 'b'           Literal
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 's'           Literal.String
 't'           Literal.String
@@ -778,561 +778,561 @@
 'n'           Literal.String
 'g'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Pseudo
-'\n  '        Text
+'\n  '        Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Pseudo
 ')'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '\\\\ Prolog' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defprolog'   Keyword
-' '           Text
+' '           Text.Whitespace
 'th*'         Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Hyps'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'show'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyps'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'when'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Pseudo
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '_'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fwhen'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'typedf?'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'bind'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'sigf'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'call'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'mode'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'F'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'F'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'mode'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'cons'        Literal
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'list'        Literal
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'list'        Literal
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'mode'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '@s'          Literal
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Literal
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'string'      Literal
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'string'      Literal
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'mode'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'lambda'      Literal
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '-->'         Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Name.Builtin
-' \n                                           ' Text
+' \n                                           ' Text.Whitespace
 '('           Punctuation
 'bind'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'X&&'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'placeholder' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-' \n                                           ' Text
+' \n                                           ' Text.Whitespace
 '('           Punctuation
 'bind'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ebr'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'X&&'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Y'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                                           ' Text
+'\n                                           ' Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'X&&'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-' \n  '       Text
+' \n  '       Text.Whitespace
 '('           Punctuation
 'mode'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'type'        Literal
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Literal
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<--'         Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'unify'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'th*'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Hyp'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ Macros' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defmacro'    Keyword
-' '           Text
+' '           Text.Whitespace
 'log-macro'   Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'log'         Literal
-' '           Text
+' '           Text.Whitespace
 'N'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'log'         Literal
-' '           Text
+' '           Text.Whitespace
 'N'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ Sequent calculus' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'datatype'    Keyword
-' '           Text
+' '           Text.Whitespace
 'rank'        Keyword.Type
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'if'          Literal
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'element?'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'ace'         Literal
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '9'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'jack'        Literal
-' '           Text
+' '           Text.Whitespace
 'queen'       Literal
-' '           Text
+' '           Text.Whitespace
 'king'        Literal
 ']'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '________'    Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'X'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'rank'        Keyword.Type
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'datatype'    Keyword
-' '           Text
+' '           Text.Whitespace
 'suit'        Literal
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'if'          Literal
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'element?'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'spades'      Literal
-' '           Text
+' '           Text.Whitespace
 'hearts'      Literal
-' '           Text
+' '           Text.Whitespace
 'diamonds'    Literal
-' '           Text
+' '           Text.Whitespace
 'clubs'       Literal
 ']'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '_________'   Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Suit'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'suit'        Keyword.Type
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'datatype'    Keyword
-' '           Text
+' '           Text.Whitespace
 'card'        Literal
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'rank'        Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'suit'        Keyword.Type
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '_________________' Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'card'        Keyword.Type
 ';'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'rank,'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'suit'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '>>'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'P'           Name.Variable
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '_____________________' Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'card'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '>>'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'P'           Name.Variable
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'datatype'    Keyword
-' '           Text
+' '           Text.Whitespace
 'card'        Literal
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'rank'        Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'suit'        Keyword.Type
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '==================' Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '['           Punctuation
 'Rank'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Suit'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Literal
-' '           Text
+' '           Text.Whitespace
 'card'        Keyword.Type
 ';'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '\\\\ String interpolation and escape sequences' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '"'           Literal.String
 'a'           Literal.String
@@ -1359,7 +1359,7 @@
 'a'           Literal.String
 'h'           Literal.String
 '"'           Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

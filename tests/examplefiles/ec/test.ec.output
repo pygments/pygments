@@ -2544,9 +2544,9 @@
 ' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
-'AnchorButton' Name.Label
+'AnchorButton' Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'Button'      Name
 '\n'          Text.Whitespace
@@ -2881,7 +2881,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -2897,9 +2897,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ';'           Punctuation
@@ -2912,7 +2912,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -2928,9 +2928,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ';'           Punctuation
@@ -2943,7 +2943,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -2959,9 +2959,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ';'           Punctuation
@@ -2974,7 +2974,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -2990,9 +2990,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ';'           Punctuation
@@ -4123,9 +4123,9 @@
 ' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
-'AnchorRelButton' Name.Label
+'AnchorRelButton' Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'Button'      Name
 '\n'          Text.Whitespace
@@ -4720,7 +4720,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -4736,9 +4736,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'relative'    Name.Label
+'relative'    Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'anchor'      Name
@@ -4749,9 +4749,9 @@
 '   '         Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ')'           Punctuation
@@ -4765,7 +4765,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -4781,9 +4781,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'relative'    Name.Label
+'relative'    Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'anchor'      Name
@@ -4794,9 +4794,9 @@
 '    '        Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ')'           Punctuation
@@ -4810,7 +4810,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -4826,9 +4826,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'relative'    Name.Label
+'relative'    Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'anchor'      Name
@@ -4839,9 +4839,9 @@
 '  '          Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ')'           Punctuation
@@ -4855,7 +4855,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'anchor'      Name
 '.'           Punctuation
@@ -4871,9 +4871,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'relative'    Name.Label
+'relative'    Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'anchor'      Name
@@ -4884,9 +4884,9 @@
 ' '           Text.Whitespace
 '?'           Operator
 ' '           Text.Whitespace
-'offset'      Name.Label
+'offset'      Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'none'        Name
 ')'           Punctuation
@@ -5911,9 +5911,9 @@
 ' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
-'AnchorEditor' Name.Label
+'AnchorEditor' Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'Window'      Name
 '\n'          Text.Whitespace
@@ -6019,9 +6019,9 @@
 ' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
-'AnchorDropBox' Name.Label
+'AnchorDropBox' Name
 ' '           Text.Whitespace
-':'           Punctuation
+':'           Operator
 ' '           Text.Whitespace
 'DropBox'     Name
 '\n'          Text.Whitespace
@@ -6341,7 +6341,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '               ' Text.Whitespace
@@ -6478,7 +6478,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 '\n'          Text.Whitespace
 
 '               ' Text.Whitespace
@@ -6614,7 +6614,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '\n'          Text.Whitespace
 
@@ -6752,7 +6752,7 @@
 'case'        Keyword
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '\n'          Text.Whitespace
 

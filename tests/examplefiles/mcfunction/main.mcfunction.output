@@ -1,0 +1,2052 @@
+'# This example file is borrowed from https://github.com/Arcensoth/language-mcfunction/blob/main/tests/everything.mcfunction' Comment.Single
+'\n\n'        Text.Whitespace
+
+'#>'          Comment.Multiline
+' '           Text.Whitespace
+'Raycasting'  Literal.String.Doc
+'\n'          Text
+
+'#'           Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'Casts'       Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+' '           Text.Whitespace
+'ray'         Comment.Multiline
+' '           Text.Whitespace
+'from'        Comment.Multiline
+' '           Text.Whitespace
+'starting'    Comment.Multiline
+' '           Text.Whitespace
+'position'    Comment.Multiline
+' '           Text.Whitespace
+'along'       Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+' '           Text.Whitespace
+'configurable' Comment.Multiline
+' '           Text.Whitespace
+'number'      Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'of'          Comment.Multiline
+' '           Text.Whitespace
+'blocks'      Comment.Multiline
+' '           Text.Whitespace
+'with'        Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+' '           Text.Whitespace
+'confugrable' Comment.Multiline
+' '           Text.Whitespace
+'accuracy,'   Comment.Multiline
+' '           Text.Whitespace
+'counting'    Comment.Multiline
+' '           Text.Whitespace
+'the'         Comment.Multiline
+' '           Text.Whitespace
+'number'      Comment.Multiline
+' '           Text.Whitespace
+'of'          Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'entities'    Comment.Multiline
+' '           Text.Whitespace
+'hit'         Comment.Multiline
+' '           Text.Whitespace
+'by'          Comment.Multiline
+' '           Text.Whitespace
+'the'         Comment.Multiline
+' '           Text.Whitespace
+'ray'         Comment.Multiline
+' '           Text.Whitespace
+'along'       Comment.Multiline
+' '           Text.Whitespace
+'the'         Comment.Multiline
+' '           Text.Whitespace
+'way.'        Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'@params'     Name.Decorator
+'\n'          Text
+
+'#'           Comment.Multiline
+'   '         Text.Whitespace
+'$mypack.raycast.distance' Name.Variable.Magic
+' '           Text.Whitespace
+'param'       Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'       '     Text.Whitespace
+'The'         Comment.Multiline
+' '           Text.Whitespace
+'number'      Comment.Multiline
+' '           Text.Whitespace
+'of'          Comment.Multiline
+' '           Text.Whitespace
+'blocks'      Comment.Multiline
+' '           Text.Whitespace
+'to'          Comment.Multiline
+' '           Text.Whitespace
+'cast'        Comment.Multiline
+' '           Text.Whitespace
+'forward.'    Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'   '         Text.Whitespace
+'$mypack.raycast.precision' Name.Variable.Magic
+' '           Text.Whitespace
+'param'       Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'       '     Text.Whitespace
+'The'         Comment.Multiline
+' '           Text.Whitespace
+'ratio'       Comment.Multiline
+' '           Text.Whitespace
+'of'          Comment.Multiline
+' '           Text.Whitespace
+'block'       Comment.Multiline
+' '           Text.Whitespace
+'precision'   Comment.Multiline
+' '           Text.Whitespace
+'to'          Comment.Multiline
+' '           Text.Whitespace
+'a'           Comment.Multiline
+' '           Text.Whitespace
+'full'        Comment.Multiline
+' '           Text.Whitespace
+'block.'      Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+' '           Text.Whitespace
+'@returns'    Name.Decorator
+'\n'          Text
+
+'#'           Comment.Multiline
+'   '         Text.Whitespace
+'$mypack.raycast.result' Name.Variable.Magic
+' '           Text.Whitespace
+'return'      Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Multiline
+'       '     Text.Whitespace
+'The'         Comment.Multiline
+' '           Text.Whitespace
+'number'      Comment.Multiline
+' '           Text.Whitespace
+'of'          Comment.Multiline
+' '           Text.Whitespace
+'entities'    Comment.Multiline
+' '           Text.Whitespace
+'hit'         Comment.Multiline
+' '           Text.Whitespace
+'by'          Comment.Multiline
+' '           Text.Whitespace
+'the'         Comment.Multiline
+' '           Text.Whitespace
+'ray.'        Comment.Multiline
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'#mypack:hooks/raycast/begin' Name.Function
+'\n\n'        Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'mypack:raycast/loop' Name.Function
+'\n\n'        Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'#mypack:hooks/raycast/end' Name.Function
+'\n\n'        Text.Whitespace
+
+'# this is a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'hello'       Keyword.Constant
+' '           Text.Whitespace
+'world'       Keyword.Constant
+'\n\n    '    Text.Whitespace
+'# indented comment' Comment.Single
+'\n    '      Text.Whitespace
+'say'         Keyword.Constant
+' '           Text.Whitespace
+'hello'       Keyword.Constant
+' '           Text.Whitespace
+'indent'      Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'effect'      Name.Builtin
+' '           Text.Whitespace
+'give'        Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'minecraft:night_vision' Name.Function
+' '           Text.Whitespace
+'999999'      Literal.Number.Float
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'effect'      Name.Builtin
+' '           Text.Whitespace
+'give'        Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'minecraft:night_vision' Name.Function
+' '           Text.Whitespace
+'999999'      Literal.Number.Float
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'teleport'    Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+' '           Text.Whitespace
+'3'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'teleport'    Name.Builtin
+' '           Text.Whitespace
+'100.5'       Literal.Number.Float
+' '           Text.Whitespace
+'80'          Literal.Number.Float
+' '           Text.Whitespace
+'-100.5'      Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'temp'        Keyword.Constant
+' '           Text.Whitespace
+'matches'     Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+'..'          Literal
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'temp'        Keyword.Constant
+' '           Text.Whitespace
+'matches'     Keyword.Constant
+' '           Text.Whitespace
+'..'          Literal
+'20'          Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'temp'        Keyword.Constant
+' '           Text.Whitespace
+'matches'     Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+'..'          Literal
+'20'          Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-0.5'        Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'~'           Operator
+'-.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-0.5'        Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'^'           Operator
+'-.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-10'         Literal.Number.Float
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nfunction' Name.Builtin
+' '           Text.Whitespace
+'mypack:foo'  Name.Function
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'mypack:foo/bar' Name.Function
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'mypack:foo/bar/baz' Name.Function
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'#mypack:foo' Name.Function
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'#mypack:foo/bar' Name.Function
+'\n'          Text.Whitespace
+
+'function'    Name.Builtin
+' '           Text.Whitespace
+'#mypack:foo/bar/baz' Name.Function
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:oak_log' Name.Function
+'['           Punctuation
+'axis'        Name.Attribute
+'='           Punctuation
+'x'           Name.Variable.Class
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:oak_leaves' Name.Function
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'5'           Literal.Number.Float
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:oak_leaves' Name.Function
+'['           Punctuation
+'persistent'  Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:oak_leaves' Name.Function
+'['           Punctuation
+'persistent'  Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:oak_leaves' Name.Function
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'5'           Literal.Number.Float
+','           Punctuation
+'persistent'  Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'#minecraft:leaves' Name.Function
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'5'           Literal.Number.Float
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'#minecraft:leaves' Name.Function
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'5'           Literal.Number.Float
+','           Punctuation
+'persistent'  Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nsetblock'  Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'mypack:foo'  Name.Function
+'{'           Punctuation
+'foo'         Name.Attribute
+':'           Punctuation
+'bar'         Name.Tag
+'}'           Punctuation
+' '           Text.Whitespace
+'destroy'     Keyword.Constant
+'\n'          Text.Whitespace
+
+'setblock'    Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'mypack:foo'  Name.Function
+'{'           Punctuation
+'foo'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Tag
+'}'           Punctuation
+' '           Text.Whitespace
+'destroy'     Keyword.Constant
+'\n'          Text.Whitespace
+
+'setblock'    Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'mypack:foo'  Name.Function
+'['           Punctuation
+'facing'      Name.Attribute
+'='           Punctuation
+'up'          Name.Tag
+']'           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Tag
+'}'           Punctuation
+' '           Text.Whitespace
+'destroy'     Keyword.Constant
+'\n'          Text.Whitespace
+
+'setblock'    Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'mypack:foo'  Name.Function
+'['           Punctuation
+'facing'      Name.Attribute
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'up'          Name.Tag
+']'           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Tag
+'}'           Punctuation
+' '           Text.Whitespace
+'destroy'     Keyword.Constant
+'\n'          Text.Whitespace
+
+'setblock'    Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'minecraft:dispenser' Name.Function
+'['           Punctuation
+'facing'      Name.Attribute
+'='           Punctuation
+'up'          Name.Tag
+']'           Punctuation
+'{'           Punctuation
+'Items'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'{'           Punctuation
+'id'          Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'minecraft:diamond' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Count'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+'}'           Punctuation
+']'           Punctuation
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tag'         Name.Builtin
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'add'         Keyword.Constant
+' '           Text.Whitespace
+'my.tag'      Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'datapack'    Name.Builtin
+' '           Text.Whitespace
+'enable'      Keyword.Constant
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello world' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'datapack'    Name.Builtin
+' '           Text.Whitespace
+'enable'      Keyword.Constant
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'escape '     Literal.String.Double
+'\\"'         Literal.String.Escape
+' me'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'datapack'    Name.Builtin
+' '           Text.Whitespace
+'enable'      Keyword.Constant
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'hello world' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'datapack'    Name.Builtin
+' '           Text.Whitespace
+'enable'      Keyword.Constant
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'escape '     Literal.String.Single
+"\\'"         Literal.String.Escape
+' me'         Literal.String.Single
+"'"           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'f7a39418-72ca-4bf2-bc7e-ba9df67a4707' Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'0-0-0-0-0'   Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'store'       Keyword.Constant
+' '           Text.Whitespace
+'result'      Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'#fakeplayer' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'store'       Keyword.Constant
+' '           Text.Whitespace
+'result'      Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'#fake.player' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'store'       Keyword.Constant
+' '           Text.Whitespace
+'result'      Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'#fake_player' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'store'       Keyword.Constant
+' '           Text.Whitespace
+'result'      Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'$fakeplayer' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'store'       Keyword.Constant
+' '           Text.Whitespace
+'result'      Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'%fakeplayer' Name.Variable.Magic
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@b'          Name.Variable
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'tag'         Name.Attribute
+'='           Punctuation
+'foo'         Name.Tag
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'tag'         Name.Attribute
+'=!'          Punctuation
+'foo'         Name.Tag
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'sort'        Name.Attribute
+'='           Punctuation
+'nearest'     Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'gamemode'    Name.Attribute
+'='           Punctuation
+'survival'    Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'gamemode'    Name.Attribute
+'=!'          Punctuation
+'creative'    Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'tag'         Name.Attribute
+'='           Punctuation
+'foo'         Name.Tag
+','           Punctuation
+'tag'         Name.Attribute
+'='           Punctuation
+'bar'         Name.Tag
+','           Punctuation
+'tag'         Name.Attribute
+'=!'          Punctuation
+'baz'         Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'15'          Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'1.5'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'.5'          Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'-.25'        Literal.Number.Float
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'100'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'..'          Literal
+'10'          Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'11'          Literal.Number.Float
+'..'          Literal
+'19'          Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'20'          Literal.Number.Float
+'..'          Literal
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'0.5'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'..'          Literal
+'0.1'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'0.2'         Literal.Number.Float
+'..'          Literal
+'0.8'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'0.9'         Literal.Number.Float
+'..'          Literal
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'type'        Name.Attribute
+'='           Punctuation
+'minecraft:bat' Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'type'        Name.Attribute
+'=!'          Punctuation
+'minecraft:cow' Name.Tag
+','           Punctuation
+'type'        Name.Attribute
+'=!'          Punctuation
+'minecraft:pig' Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'type'        Name.Attribute
+'='           Punctuation
+'#minecraft:skeletons' Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'type'        Name.Attribute
+'=!'          Punctuation
+'#minecraft:skeletons' Name.Tag
+','           Punctuation
+'type'        Name.Attribute
+'=!'          Punctuation
+'minecraft:zombie' Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'tag'         Name.Attribute
+'='           Punctuation
+'my.tag'      Name.Tag
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'name'        Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'hello world' Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'name'        Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'escape '     Literal.String.Double
+'\\"'         Literal.String.Escape
+' me'         Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'name'        Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'how, about, commas ?' Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'name'        Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'and [braces] ?' Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@e'          Name.Variable
+'['           Punctuation
+'nbt'         Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'PortalCooldown' Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@e'          Name.Variable
+'['           Punctuation
+'nbt'         Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'Item'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'id'          Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'minecraft:diamond' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Count'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'64'          Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'>'           Operator
+'='           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\ndata'    Name.Builtin
+' '           Text.Whitespace
+'get'         Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'SelectedItem.tag.display.Name' Keyword.Constant
+'\n'          Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'get'         Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'Inventory'   Keyword.Constant
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'get'         Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'Inventory'   Keyword.Constant
+'['           Punctuation
+'{'           Punctuation
+'id'          Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'minecraft:diamond' Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+']'           Punctuation
+'.'           Operator
+'Count'       Keyword.Constant
+'\n'          Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'get'         Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'Inventory'   Keyword.Constant
+'['           Punctuation
+']'           Punctuation
+'.'           Operator
+'tag'         Keyword.Constant
+'{'           Punctuation
+'custom'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Name.Tag
+'}'           Punctuation
+'.'           Operator
+'display.Name' Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'merge'       Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'foo'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'1234'        Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'modify'      Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'RecordItem.tag' Keyword.Constant
+' '           Text.Whitespace
+'set'         Keyword.Constant
+' '           Text.Whitespace
+'value'       Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'messages'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'hi'          Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'bye'         Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Name.Builtin
+' '           Text.Whitespace
+'modify'      Keyword.Constant
+' '           Text.Whitespace
+'block'       Keyword.Constant
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'~'           Operator
+' '           Text.Whitespace
+'RecordItem.tag.messages' Keyword.Constant
+' '           Text.Whitespace
+'append'      Keyword.Constant
+' '           Text.Whitespace
+'value'       Keyword.Constant
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'message'     Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello world' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tellraw'     Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'"'           Name.Attribute
+'text'        Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello world' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Attribute
+'color'       Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'blue'        Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'tellraw'     Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'{'           Punctuation
+'"'           Name.Attribute
+'text'        Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Attribute
+'color'       Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'blue'        Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'"'           Name.Attribute
+'text'        Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Name.Attribute
+'color'       Name.Attribute
+'"'           Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'blue'        Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'scores'      Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'myscore'     Name.Attribute
+'='           Punctuation
+'10'          Literal.Number.Float
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'scores'      Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'myscore'     Name.Attribute
+'='           Punctuation
+'10'          Literal.Number.Float
+'..'          Literal
+'12'          Literal.Number.Float
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'scores'      Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+'='           Punctuation
+'10'          Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Attribute
+'='           Punctuation
+'1'           Literal.Number.Float
+'..'          Literal
+'5'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'baz'         Name.Attribute
+'='           Punctuation
+'..'          Literal
+'0'           Literal.Number.Float
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\nexecute' Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'minecraft:story/form_obsidian' Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'minecraft:story/obtain_armor' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'iron_helmet' Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+'}'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'minecraft:story/obtain_armor' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'iron_helmet' Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'gold_helmet' Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+'}'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'minecraft:story/form_obsidian' Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'minecraft:story/follow_ender_eye' Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\nexecute'   Name.Builtin
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'advancements' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'minecraft:story/form_obsidian' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+'}'           Punctuation
+','           Punctuation
+'minecraft:story/follow_ender_eye' Name.Attribute
+'='           Punctuation
+'{'           Punctuation
+'foo'         Name.Attribute
+'='           Punctuation
+'false'       Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'bar'         Name.Attribute
+'='           Punctuation
+'true'        Name.Tag
+'}'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'run'         Keyword.Constant
+'\n\ngive'    Name.Builtin
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'diamond_sword' Keyword.Constant
+'{'           Punctuation
+'display'     Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'Name'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'"My Custom Sword"' Literal.String.Single
+"'"           Literal.String.Single
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'give'        Name.Builtin
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'minecraft:diamond_sword' Name.Function
+'{'           Punctuation
+'display'     Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'Name'        Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'"My Custom Sword"' Literal.String.Single
+"'"           Literal.String.Single
+'}'           Punctuation
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+' say'        Name.Builtin
+' '           Text.Whitespace
+'execute'     Keyword.Constant
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+' say'        Name.Builtin
+'\n'          Text.Whitespace
+
+'execute'     Name.Builtin
+' '           Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'score'       Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'foo'         Keyword.Constant
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'@s'          Name.Variable
+' '           Text.Whitespace
+'bar'         Keyword.Constant
+' '           Text.Whitespace
+'run'         Keyword.Constant
+' say'        Name.Builtin
+' '           Text.Whitespace
+'hello'       Keyword.Constant
+' '           Text.Whitespace
+'@e'          Name.Variable
+'['           Punctuation
+'tag'         Name.Attribute
+'='           Punctuation
+'baz'         Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'sort'        Name.Attribute
+'='           Punctuation
+'nearest'     Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'limit'       Name.Attribute
+'='           Punctuation
+'1'           Literal.Number.Float
+']'           Punctuation
+' '           Text.Whitespace
+'how'         Keyword.Constant
+' '           Text.Whitespace
+'are'         Keyword.Constant
+' '           Text.Whitespace
+'you'         Keyword.Constant
+'?'           Operator
+'\n\n'        Text.Whitespace
+
+'execute'     Name.Builtin
+'\n    '      Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@a'          Name.Variable
+'                               ' Text.Whitespace
+'# For each "player",' Comment.Single
+'\n    '      Text.Whitespace
+'at'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'                               ' Text.Whitespace
+'# start at their feet.' Comment.Single
+'\n    '      Text.Whitespace
+'anchored'    Keyword.Constant
+' '           Text.Whitespace
+'eyes'        Keyword.Constant
+'                       ' Text.Whitespace
+'# Looking through their eyes,' Comment.Single
+'\n    '      Text.Whitespace
+'facing'      Keyword.Constant
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+'                        ' Text.Whitespace
+'# face perfectly at the target' Comment.Single
+'\n    '      Text.Whitespace
+'anchored'    Keyword.Constant
+' '           Text.Whitespace
+'feet'        Keyword.Constant
+'                       ' Text.Whitespace
+'# (go back to the feet)' Comment.Single
+'\n    '      Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'1'           Literal.Number.Float
+'                   ' Text.Whitespace
+'# and move one block forward.' Comment.Single
+'\n    '      Text.Whitespace
+'rotated'     Keyword.Constant
+' '           Text.Whitespace
+'as'          Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'                       ' Text.Whitespace
+'# Face the direction the player' Comment.Single
+'\n                                           ' Text.Whitespace
+'# is actually facing,' Comment.Single
+'\n    '      Text.Whitespace
+'positioned'  Keyword.Constant
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'-1'          Literal.Number.Float
+'                  ' Text.Whitespace
+'# and move one block back.' Comment.Single
+'\n    '      Text.Whitespace
+'if'          Keyword.Constant
+' '           Text.Whitespace
+'entity'      Keyword.Constant
+' '           Text.Whitespace
+'@s'          Name.Variable
+'['           Punctuation
+'distance'    Name.Attribute
+'='           Punctuation
+'..'          Literal
+'0.6'         Literal.Number.Float
+']'           Punctuation
+'        '    Text.Whitespace
+"# Check if we're close to the" Comment.Single
+'\n                                           ' Text.Whitespace
+"# player's feet." Comment.Single
+'\n    '      Text.Whitespace
+'run'         Keyword.Constant
+'\n        say' Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+"I'm facing the target!" Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

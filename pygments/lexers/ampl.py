@@ -4,7 +4,7 @@
 
     Lexers for the AMPL language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,11 +17,12 @@ __all__ = ['AmplLexer']
 
 class AmplLexer(RegexLexer):
     """
-    For `AMPL <http://ampl.com/>`_ source code.
+    For AMPL source code.
 
     .. versionadded:: 2.2
     """
     name = 'Ampl'
+    url = 'http://ampl.com/'
     aliases = ['ampl']
     filenames = ['*.run']
 
@@ -58,7 +59,8 @@ class AmplLexer(RegexLexer):
              bygroups(Keyword.Declaration, Whitespace, Punctuation, Whitespace,
                       Name.Variable, Whitespace, Punctuation, Whitespace, Name.Variable)),
             (r'(let|fix|unfix)(\s*)((?:\{.*\})?)(\s*)(\w+)',
-             bygroups(Keyword.Declaration, Whitespace, using(this), Whitespace, Name.Variable)),
+             bygroups(Keyword.Declaration, Whitespace, using(this), Whitespace,
+                      Name.Variable)),
             (words((
                 'abs', 'acos', 'acosh', 'alias', 'asin', 'asinh', 'atan', 'atan2',
                 'atanh', 'ceil', 'ctime', 'cos', 'exp', 'floor', 'log', 'log10',

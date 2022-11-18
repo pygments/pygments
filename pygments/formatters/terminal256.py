@@ -10,7 +10,7 @@
 
     Formatter version 1.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -279,7 +279,7 @@ class Terminal256Formatter(Formatter):
 
                 except KeyError:
                     # ottype = ttype
-                    ttype = ttype[:-1]
+                    ttype = ttype.parent
                     # outfile.write( '!' + str(ottype) + '->' + str(ttype) + '!' )
 
             if not_found:

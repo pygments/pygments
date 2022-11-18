@@ -1,142 +1,142 @@
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
 'x'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'match'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '`y`'         Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' \n    '     Text
+' \n    '     Text.Whitespace
 'case'        Keyword
-'  '          Text
+'  '          Text.Whitespace
 's'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'Seq'         Name.Class
 '('           Punctuation
 '_'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' \n    '     Text
+' \n    '     Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Seq'         Name.Class
 '('           Punctuation
 'first'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tail'        Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 '_*'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'first'       Name
-' '           Text
+' '           Text.Whitespace
 '+:'          Operator
-' '           Text
+' '           Text.Whitespace
 'tail'        Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Number'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '.'           Punctuation
 'n'           Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Lit'         Name.Class
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'IsZero'      Name.Class
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'eval'        Name
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n    '      Text
+'\n    '      Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '15'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

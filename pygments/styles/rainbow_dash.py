@@ -6,13 +6,13 @@
 
     .. _theme: http://sanssecours.github.io/Rainbow-Dash.tmbundle
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
-from pygments.token import (Comment, Error, Generic, Name, Number, Operator,
-                            String, Text, Whitespace, Keyword)
+from pygments.token import Comment, Error, Generic, Name, Number, Operator, \
+    String, Text, Whitespace, Keyword
 
 BLUE_LIGHT = '#0080ff'
 BLUE = '#2c5dcd'

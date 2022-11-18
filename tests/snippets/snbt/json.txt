@@ -1,0 +1,43 @@
+---input---
+{
+    "text": "This is JSON",
+    "extra": [
+        "however",
+        "it's also technically valid SNBT.."
+    ]
+}
+
+---tokens---
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'This is JSON' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'"'           Literal.String.Double
+'extra'       Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'"'           Literal.String.Double
+'however'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n        '  Text.Whitespace
+'"'           Literal.String.Double
+"it's also technically valid SNBT.." Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text

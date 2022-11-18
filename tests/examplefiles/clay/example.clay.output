@@ -204,18 +204,7 @@
 'assert'      Name
 '['           Punctuation
 '"'           Literal.String
-'b'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'s'           Literal.String
-'C'           Literal.String
-'h'           Literal.String
-'e'           Literal.String
-'c'           Literal.String
-'k'           Literal.String
-'s'           Literal.String
+'boundsChecks' Literal.String
 '"'           Literal.String
 ']'           Punctuation
 '('           Punctuation
@@ -239,42 +228,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '"'           Literal.String
-'S'           Literal.String
-'t'           Literal.String
-'r'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'L'           Literal.String
-'i'           Literal.String
-'t'           Literal.String
-'e'           Literal.String
-'r'           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'R'           Literal.String
-'e'           Literal.String
-'f'           Literal.String
-' '           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
-' '           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'o'           Literal.String
-'f'           Literal.String
-' '           Literal.String
-'b'           Literal.String
-'o'           Literal.String
-'u'           Literal.String
-'n'           Literal.String
-'d'           Literal.String
-'s'           Literal.String
+'StringLiteralRef index out of bounds' Literal.String
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
@@ -307,25 +261,9 @@
 '='           Operator
 ' '           Text.Whitespace
 '"""'         Literal.String
-'\n'          Literal.String
-
-'l'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
+'\nlong'      Literal.String
 '\\t'         Literal.String.Escape
-'l'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-'\n'          Literal.String
-
-'s'           Literal.String
-'t'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
-'y'           Literal.String
-'\n'          Literal.String
+'long\nstory\n' Literal.String
 
 '"""'         Literal.String
 '\n'          Text.Whitespace

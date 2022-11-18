@@ -4,14 +4,15 @@
 
     Lexers for the Dylan language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
+    default, line_re
+from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Literal, Whitespace
 
 __all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
@@ -19,12 +20,13 @@ __all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
 
 class DylanLexer(RegexLexer):
     """
-    For the `Dylan <http://www.opendylan.org/>`_ language.
+    For the Dylan language.
 
     .. versionadded:: 0.7
     """
 
     name = 'Dylan'
+    url = 'http://www.opendylan.org/'
     aliases = ['dylan']
     filenames = ['*.dylan', '*.dyl', '*.intr']
     mimetypes = ['text/x-dylan']
@@ -258,7 +260,6 @@ class DylanConsoleLexer(Lexer):
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
 
-    _line_re = re.compile('.*?\n')
     _prompt_re = re.compile(r'\?| ')
 
     def get_tokens_unprocessed(self, text):
@@ -266,7 +267,7 @@ class DylanConsoleLexer(Lexer):
 
         curcode = ''
         insertions = []
-        for match in self._line_re.finditer(text):
+        for match in line_re.finditer(text):
             line = match.group()
             m = self._prompt_re.match(line)
             if m is not None:

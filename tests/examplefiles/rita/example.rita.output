@@ -1,0 +1,121 @@
+'@alias IN_LIST IL\n' Operator
+
+'\n'          Text.Whitespace
+
+'!'           Operator
+'CONFIG'      Keyword
+'('           Punctuation
+'"case_sensitive"' Literal
+','           Punctuation
+' '           Text.Whitespace
+'"N"'         Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cars'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LOAD'        Keyword
+'('           Punctuation
+'"examples/cars.txt"' Literal
+')'           Punctuation
+' '           Text.Whitespace
+'# Load items from file\n' Comment.Single
+
+'colors'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'"red"'       Literal
+','           Punctuation
+' '           Text.Whitespace
+'"green"'     Literal
+','           Punctuation
+' '           Text.Whitespace
+'"blue"'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'"white"'     Literal
+','           Punctuation
+' '           Text.Whitespace
+'"black"'     Literal
+'}'           Punctuation
+' '           Text.Whitespace
+'# Declare items inline\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'IL'          Keyword
+'('           Punctuation
+'colors'      Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'WORD'        Keyword
+'('           Punctuation
+'"car"'       Literal
+')'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'MARK'        Keyword
+'('           Punctuation
+'"CAR_COLOR"' Literal
+')'           Punctuation
+' '           Text.Whitespace
+'# If first token is in list `colors` and second one is word `car`, label it\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'IL'          Keyword
+'('           Punctuation
+'cars'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'WORD'        Keyword
+'+'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'MARK'        Keyword
+'('           Punctuation
+'"CAR_MODEL"' Literal
+')'           Punctuation
+' '           Text.Whitespace
+'# If first token is in list `cars` and follows by 1..N words, label it\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'ENTITY'      Keyword
+'('           Punctuation
+'"PERSON"'    Literal
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'LEMMA'       Keyword
+'('           Punctuation
+'"like"'      Literal
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'WORD'        Keyword
+'}'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'MARK'        Keyword
+'('           Punctuation
+'"LIKED_ACTION"' Literal
+')'           Punctuation
+' '           Text.Whitespace
+'# If first token is Person, followed by any word which has lemma `like`, label it\n' Comment.Single

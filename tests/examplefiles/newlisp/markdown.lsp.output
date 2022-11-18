@@ -1,282 +1,282 @@
 '#!/usr/bin/env newlisp' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; @module markdown' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @author cormullion' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ";; @description a port of John Gruber's Markdown to newLISP" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @location http://unbalanced-parentheses.nfshost.com/' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; @version of date 2011-10-02 22:36:02' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version history: at the end' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ";; a port of John Gruber's Markdown.pl (http://daringfireball.net/markdown) script to newLISP..." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; see his original Perl script for explanations of the fearsome regexen and' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; byzantine logic, etc...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; TODO:'    Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   the following Markdown tests fail:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Inline HTML (Advanced) ... FAILED' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Links, reference style ... FAILED -- nested brackets ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Links, shortcut references ... FAILED' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Markdown Documentation - Syntax ... FAILED' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Ordered and unordered lists ... FAILED -- a nested ordered list error' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   parens in url : ![this is a stupid URL](http://example.com/(parens).jpg) see (Images.text)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Add: email address scrambling' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'context'     Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'Hash'        Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'HashTable'   Literal.String.Symbol
 ':'           Operator
 'HashTable'   Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'build-escape-table' Name.Variable
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '*'           Keyword
 'escape-chars*' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '\\`*_{}[]()>#+-.![/text]' Literal.String
 ')'           Punctuation
-'   \n   '    Text
+'   \n   '    Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'explode'     Keyword
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'escape-chars*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'c'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'hash'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'c'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'init-hash'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "; finds a hash identifier that doesn't occur anywhere in the text" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'counter'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'hash-prefix' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"HASH"'      Literal.String
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'hash-id'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 'hash-prefix' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'counter'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'do-while'    Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 'hash-id'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'hash-id'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 'hash-prefix' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'counter'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'Hash'        Name.Variable
 ':'           Operator
 'build-escape-table' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'hash'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 'hash-id'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'counter'     Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'context'     Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'markdown'    Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'markdown'    Name.Variable
 ':'           Operator
 'markdown'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'initialize'  Name.Variable
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'Hash'        Name.Variable
 ':'           Operator
 'init-hash'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'unescape-special-chars' Name.Variable
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'block-transforms' Name.Variable
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'strip-link-definitions' Name.Variable
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'protect'     Name.Variable
-' \n            ' Text
+' \n            ' Text.Whitespace
 '('           Punctuation
 'cleanup'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -284,239 +284,239 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'initialize'  Name.Variable
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '*'           Keyword
 'escape-pairs*' Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 "'"           Operator
 '('           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\\\'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\'          Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\`'       Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '{'           Literal.String
 '`'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\*'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' \n       '  Text
+' \n       '  Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\_'       Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '[text]'      Literal.String
 '\\\\\\{[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '{[/text]'    Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '[text]'      Literal.String
 '\\\\\\}[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '}[/text]'    Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\['     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '['           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\]'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ']'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\('     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '('           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\)'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ')'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\>'       Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\#'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '#'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\+'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '+'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\-'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '-'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\\\.'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '.'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 '{'           Literal.String
 '\\\\!'       Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 '{'           Literal.String
 '!'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '*'           Keyword
 'hashed-html-blocks*' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '*'           Keyword
 'list'        Keyword
 '-'           Keyword
 'level*'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'block-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'form-paragraphs' Name.Variable
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'protect'     Name.Variable
-' \n     '    Text
+' \n     '    Text.Whitespace
 '('           Punctuation
 'block-quotes' Name.Variable
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'code-blocks' Name.Variable
-' \n       '  Text
+' \n       '  Text.Whitespace
 '('           Punctuation
 'lists'       Name.Variable
-' \n        ' Text
+' \n        ' Text.Whitespace
 '('           Punctuation
 'horizontal-rules' Name.Variable
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'headers'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
@@ -526,47 +526,47 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'line-breaks' Name.Variable
-' \n   '      Text
+' \n   '      Text.Whitespace
 '('           Punctuation
 'emphasis'    Name.Variable
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'amps-and-angles' Name.Variable
-' \n     '    Text
+' \n     '    Text.Whitespace
 '('           Punctuation
 'auto-links'  Name.Variable
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'anchors'     Name.Variable
-' \n       '  Text
+' \n       '  Text.Whitespace
 '('           Punctuation
 'images'      Name.Variable
-' \n        ' Text
+' \n        ' Text.Whitespace
 '('           Punctuation
 'escape-special-chars' Name.Variable
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'escape-special-chars' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'code-spans'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'inside-attributes' Literal.String.Symbol
 ')'           Punctuation
@@ -578,1936 +578,1936 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'tokenize-html' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'xhtml'       Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; return list of tag/text portions of xhtml text' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'letn'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'tag-match'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '((?s:<!(-- .*? -- \\s*)+>)|\n(?s:<\\?.*?\\?>)|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>])*>))*>))*>))*>))*>))*>))[/text]' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; yeah, well...' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'str'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'xhtml'       Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'len'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'length'      Keyword
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'pos'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'tokens'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'tag-start'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 'tag-match'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'tag-start'   Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'slice'       Keyword
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tag-start'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tokens'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'tag'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$0'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tokens'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'str'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'slice'       Keyword
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tag-start'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'length'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$0'          Keyword
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'pos'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '; leftovers' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'len'         Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'slice'       Keyword
-' '           Text
+' '           Text.Whitespace
 'str'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'len'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'pos'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'tokens'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'tokens'      Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'escape-special-chars' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'within-tag-attributes' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'temp'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'tokenize-html' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'    \n    '  Text
+'    \n    '  Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pair'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'temp'        Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'tag'         Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 "; 'tag"      Comment.Single
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'              \n              ' Text
+'              \n              ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\\\'        Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\\\'        Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(?<=.)</?code>(?=.)[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '`'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 "; 'text"     Comment.Single
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'within-tag-attributes' Literal.String.Symbol
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-backslash-escapes' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'setf'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'temp'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$idx'        Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; return as text' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'map'         Keyword
-' '           Text
+' '           Text.Whitespace
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'temp'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-backslash-escapes' Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pair'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'escape-pairs*' Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '14'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-code' Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '; encode/escape certain characters inside Markdown code runs' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '"&amp;"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '"&lt;"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '"&gt;"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\\\'        Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"{"'         Literal.String
-'  '          Text
+'  '          Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"{"'         Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\['         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '['           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\]'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ']'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\\\'        Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\\\"'      Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'code-spans'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-'  \n    '    Text
+'  \n    '    Text.Whitespace
 '{'           Literal.String
 '(?<!\\\\)(`+)(.+?)(?<!`)\\1(?!`)' Literal.String
 '}'           Literal.String
-' \n    '     Text
+' \n    '     Text.Whitespace
 's'           Literal.String.Symbol
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<code>'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-code' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</code>'     Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' \n    '     Text
+' \n    '     Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-alt'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"&amp;"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"&quot;"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'images'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'alt-text'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'url'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'ref'         Keyword
 '-'           Keyword
 'regex'       Keyword
-'    '        Text
+'    '        Text.Whitespace
 '{'           Literal.String
 '(!\\[(.*?)\\][ ]?(?:\\n[ ]*)?\\[(.*?)\\])' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'inline-regex' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(!\\[(.*?)\\]\\([ \\t]*<?(\\S+?)>?[ \\t]*(([\'"])(.*?)\\5[ \\t]*)?\\))' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'whole-match' Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'result'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'id-ref'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'url'         Name.Variable
-'    '        Text
+'    '        Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 ';  reference links ![alt text][id]' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 'ref'         Keyword
 '-'           Keyword
 'regex'       Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'whole-match' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
 ')'           Punctuation
-'       \n       ' Text
+'       \n       ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'alt-text'    Literal.String.Symbol
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lower-case'  Keyword
-' '           Text
+' '           Text.Whitespace
 'alt-text'    Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'     \n       ' Text
+'     \n       ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n              ' Text
+' \n              ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-' \n            ' Text
+' \n            ' Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
-'             \n       ' Text
+'             \n       ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '; title'     Comment.Single
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '; no title'  Comment.Single
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 ')'           Punctuation
-'       \n       ' Text
+'       \n       ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'result'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' \n          ' Text
+' \n          ' Text.Whitespace
 '{'           Literal.String
 '<img src="'  Literal.String
 '}'           Literal.String
-' \n          ' Text
+' \n          ' Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
 ')'           Punctuation
-' \n          ' Text
+' \n          ' Text.Whitespace
 '{'           Literal.String
 '" alt="'     Literal.String
 '}'           Literal.String
-' \n          ' Text
+' \n          ' Text.Whitespace
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '" '          Literal.String
 '}'           Literal.String
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' title="'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '{'           Literal.String
 ' />'         Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'result'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'whole-match' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '0'           Literal.String.Symbol
-'\n   '       Text
+'\n   '       Text.Whitespace
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '; inline image refs:  ![alt text](url "optional title")' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 'inline-regex' Literal.String.Symbol
-' \n      '   Text
+' \n      '   Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'whole-match' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$6'          Keyword
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'alt-text'    Literal.String.Symbol
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'          \n        ' Text
+'          \n        ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' \n             ' Text
+' \n             ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n               ' Text
+' \n               ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'           \n        ' Text
+'           \n        ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' \n           ' Text
+' \n           ' Text.Whitespace
 '{'           Literal.String
 '<img src="'  Literal.String
 '}'           Literal.String
-' \n           ' Text
+' \n           ' Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
 ')'           Punctuation
-' \n           ' Text
+' \n           ' Text.Whitespace
 '{'           Literal.String
 '" alt="'     Literal.String
 '}'           Literal.String
-' \n           ' Text
+' \n           ' Text.Whitespace
 'alt-text'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '" '          Literal.String
 '}'           Literal.String
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 'title="'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' />'         Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '0'           Literal.String.Symbol
-'\n     '     Text
+'\n     '     Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '; empty ones are possible' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '!\\[(.*?)\\]\\([ \\t]*\\)' Literal.String
 '}'           Literal.String
-' \n     '    Text
+' \n     '    Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n     '    Text
+' \n     '    Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<img src="" alt="' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '" title="" />' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'make-anchor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Link defs are in the form: ^[id]: url "optional title"' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; stored in link db list  as (id (url title))' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; params are text to be linked and the id of the link in the db' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; eg bar 1 for [bar][1]' Comment.Single
-'\n\n   '     Text
+'\n\n   '     Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'id'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'url'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\n'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '[ ]?\\n'     Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'   \n      ' Text
+'   \n      ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'null?'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'id'          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'id'          Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'lower-case'  Keyword
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'nil'         Keyword
 '?'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '*'           Keyword
 'link-database*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n                      ' Text
+' \n                      ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<a href="'   Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
 ')'           Punctuation
-' \n               ' Text
+' \n               ' Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'\n               ' Text
+'\n               ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' title="'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n               ' Text
+'\n               ' Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</a>'        Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '['           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ']['          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'id-ref'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ']'           Literal.String
 '}'           Literal.String
@@ -2515,2614 +2515,2614 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'anchors'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'letn'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'nested-brackets' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(?>[^\\[\\]]+)*' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'ref'         Keyword
 '-'           Keyword
 'link-regex'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(\\[('       Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'nested-brackets' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ')\\][ ]?(?:\\n[ ]*)?\\[(.*?)\\])' Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'inline-regex' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(\\[(.*?)\\]\\([ ]*<?(.*?\\)?)>?[ ]*(([\'"])(.*?)\\5[ \\t]*)?\\))' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'link-text'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'url'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'         \n  ' Text
+'         \n  ' Text.Whitespace
 '; reference-style links: [link text] [id]' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$3'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$4'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$5'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$6'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 "; i still don't think I should have to do this..." Comment.Single
-'\n  \n  '    Text
+'\n  \n  '    Text.Whitespace
 '; what about this regex instead?' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'ref'         Keyword
 '-'           Keyword
 'link-regex'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(\\[(.*?)\\][ ]?\\[(.*?)\\])' Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n   \n  '   Text
+'\n   \n  '   Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ref'         Keyword
 '-'           Keyword
 'link-regex'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'make-anchor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; $2 is link text, $3 is id' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; inline links: [link text](url "optional title")' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$3'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$4'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$5'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$6'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n     '    Text
+' \n     '    Text.Whitespace
 'inline-regex' Literal.String.Symbol
-' \n     '    Text
+' \n     '    Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$6'          Keyword
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'          \n      ' Text
+'          \n      ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' \n           ' Text
+' \n           ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n             ' Text
+' \n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'title'       Literal.String.Symbol
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'           \n      ' Text
+'           \n      ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\*'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '*'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '_'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '^<(.*)>$'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' \n         ' Text
+' \n         ' Text.Whitespace
 '{'           Literal.String
 '<a href="'   Literal.String
 '}'           Literal.String
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' title="'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' \n                 ' Text
+' \n                 ' Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'link-text'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</a>'        Literal.String
 '}'           Literal.String
-'\n         ' Text
+'\n         ' Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '8'           Literal.String.Symbol
-'\n   '       Text
+'\n   '       Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; replace'   Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'auto-links'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 '<((https?|ftp):[^\'">\\s]+)>[/text]' Literal.String
-' \n    '     Text
+' \n    '     Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<a href="'   Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '">'          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</a>'        Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'  \n    '    Text
+'  \n    '    Text.Whitespace
 '0'           Literal.String.Symbol
-'\n '         Text
+'\n '         Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; to-do: email ...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'amps-and-angles' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Smart processing for ampersands and angle brackets' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 '&(?!\\#?[xX]?(?:[0-9a-fA-F]+|\\w+);)[/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Literal.String
 '&amp;'       Literal.String
 '}'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '10'          Literal.String.Symbol
-'\n  '        Text
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 '<(?![a-z/?\\$!])[/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Literal.String
 '&lt;'        Literal.String
 '}'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '10'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'emphasis'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; italics/bold: strong first' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 ' (\\*\\*|__) (?=\\S) (.+?[*_]*) (?<=\\S) \\1 [/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<strong>'    Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</strong>'   Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '8'           Literal.String.Symbol
-'   \n  '     Text
+'   \n  '     Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 ' (\\*|_) (?=\\S) (.+?) (?<=\\S) \\1 [/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<em>'        Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</em>'       Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '8'           Literal.String.Symbol
-'  \n  '      Text
+'  \n  '      Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'line-breaks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; handles line break markers' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '" {2,}\\n"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '" <br/>\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'hex-str-to-unicode-char' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'strng'       Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '; given a five character string, assume it\'s "U" + 4 hex chars and convert' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '; return the character...' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'char'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"0x"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '1'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'strng'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ustring'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; any four digit string preceded by U ' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"U[0-9a-f]{4,}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'hex-str-to-unicode-char' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$0'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'cleanup'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; cleanup the text by normalizing some possible variations' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"\\r\\n|\\r"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '; standardize line ends' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
-'                ' Text
+'                ' Text.Whitespace
 '; end with two returns' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'detab'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 '; convert tabs to spaces' Comment.Single
-'\n  \n  '    Text
+'\n  \n  '    Text.Whitespace
 '; convert inline Unicode:' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ustring'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"\\n[ \\t]+\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; lines with only spaces and tabs' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'protect'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '; protect or "hash html blocks" ' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'letn'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'nested-block-regex' Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '[text]'      Literal.String
 '(^<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\\b(.*\\n)*?</\\2>[ \\t]*(?=\\n+|\\Z))[/text]' Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'liberal-tag-regex' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(^<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math)\\b(.*\\n)*?.*</\\2>[ \\t]*(?=\\n+|\\Z))[/text]' Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'hr-regex'    Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '[text]'      Literal.String
 '(?:(?<=\\n\\n)|\\A\\n?)([ ]{0,3}<(hr)\\b([^<>])*?/?>[ \\t]*(?=\\n{2,}|\\Z))[/text]' Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'html-comment-regex' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(?:(?<=\\n\\n)|\\A\\n?)([ ]{0,3}(?s:<!(--.*?--\\s*)+>)[ \\t]*(?=\\n{2,}|\\Z))[/text]' Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'results'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'chunk-count' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'length'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'chunks'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'chunk-size'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '500'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n   \n   '  Text
+'\n   \n   '  Text.Whitespace
 "; due to a limitation in PCRE, long sections have to be divided up otherwise we'll crash" Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '; so divide up long texts into chunks, then do the regex on each chunk' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '; not an ideal solution, but it works ok :( ' Comment.Single
-'\n  \n   '   Text
+'\n  \n   '   Text.Whitespace
 '('           Punctuation
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'chunk-count' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'chunk-size'  Literal.String.Symbol
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '; do a chunk' Comment.Single
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'text-chunk'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'min'         Keyword
-' '           Text
+' '           Text.Whitespace
 'chunk-count' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'i'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'chunk-size'  Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'chunks'      Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rgx'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'nested-block-regex' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'liberal-tag-regex' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'hr-regex'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'html-comment-regex' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n            ' Text
+' \n            ' Text.Whitespace
 'rgx'         Literal.String.Symbol
-' \n            ' Text
+' \n            ' Text.Whitespace
 'text-chunk'  Literal.String.Symbol
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'key'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Hash'        Name.Variable
 ':'           Operator
 'hash'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'key'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'hashed-html-blocks*' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'key'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; save this partial result' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 'text-chunk'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'results'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '-'           Keyword
 '1'           Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; for'       Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; return string result' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 'results'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'unescape-special-chars' Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 "; Swap back in all the special characters we've hidden. " Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pair'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'HashTable'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'last'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first'       Keyword
-' '           Text
+' '           Text.Whitespace
 'pair'        Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'strip-link-definitions' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '; strip link definitions from the text and store them' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '; Link defs are in the form: ^[id]: url "optional title"' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '; stored in link db list  as (id (url title))' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'link-db'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'url'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'id'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n       '  Text
+' \n       '  Text.Whitespace
 '[text]'      Literal.String
 '^[ ]{0,3}\\[(.+)\\]:[ \\t]*\\n?[ \\t]*<?(\\S+?)>?[ \\t]*\\n?[ \\t]*(?:(?<=\\s)["(](.+?)[")][ \\t]*)?(?:\\n+|\\Z)[/text]' Literal.String
-'\n       '   Text
+'\n       '   Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n       '  Text
+' \n       '  Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'id'          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lower-case'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'amps-and-angles' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '"'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '&quot;'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'push'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'list'        Keyword
-' '           Text
+' '           Text.Whitespace
 'url'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'title'       Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'link-db'     Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$3'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; necessary?' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; remove from text' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 ')'           Punctuation
-' \n       '  Text
+' \n       '  Text.Whitespace
 '10'          Literal.String.Symbol
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '*'           Keyword
 'link-database*' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'link-db'     Literal.String.Symbol
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'horizontal-rules' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n   '      Text
+' \n   '      Text.Whitespace
 '[text]'      Literal.String
 '^[ ]{0,2}([ ]?\\*[ ]?){3,}[ \\t]*$[/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '"\\n<hr />"' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '14'          Literal.String.Symbol
 ')'           Punctuation
-'  \n   '     Text
+'  \n   '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n   '      Text
+' \n   '      Text.Whitespace
 '[text]'      Literal.String
 '^[ ]{0,2}([ ]? -[ ]?){3,}[ \\t]*$[/text]' Literal.String
-'\n   '       Text
+'\n   '       Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n   '       Text
+'\n   '       Text.Whitespace
 '"\\n<hr />"' Literal.String
-'\n   '       Text
+'\n   '       Text.Whitespace
 '14'          Literal.String.Symbol
 ')'           Punctuation
-'  \n   '     Text
+'  \n   '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 '^[ ]{0,2}([ ]? _[ ]?){3,}[ \\t]*$[/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n    '      Text
+'\n    '      Text.Whitespace
 '"\\n<hr />"' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '14'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'headers'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; setext headers' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'level'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 '[text]'      Literal.String
 '^(.+)[ \\t]*\\n=+[ \\t]*\\n+[/text]' Literal.String
-'\n      '    Text
+'\n      '    Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"<h1>"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"</h1>\\n\\n"' Literal.String
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
-'  \n  \n    ' Text
+'  \n  \n    ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 '[text]'      Literal.String
 '^(.+)[ \\t]*\\n-+[ \\t]*\\n+[/text]' Literal.String
-'\n      '    Text
+'\n      '    Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"<h2>"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"</h2>\\n\\n"' Literal.String
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
-' \n   '      Text
+' \n   '      Text.Whitespace
 '; atx headers' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 '[text]'      Literal.String
 '^(\\#{1,6})\\s*(.+?)[ ]*\\#*(\\n+)[/text]' Literal.String
-'\n      '    Text
+'\n      '    Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'level'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'length'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"<h"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'level'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '">"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"</h"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'level'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '">\\n\\n"'   Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lists'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'letn'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'marker-ul'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '[*+-]'       Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'marker-ol'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\d+[.]'     Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'marker-any'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(?:'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-ul'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '|'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-ol'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ')'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'whole-list-regex' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(([ ]{0,3}([/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 ')[ \\t]+)(?s:.+?)(\\z|\\n{2,}(?=\\S)(?![ \\t]*[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '[ \\t]+)))[/text]' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'my-list'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'list'        Keyword
 '-'           Keyword
 'type'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'my-result'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '>'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'list'        Keyword
 '-'           Keyword
 'level*'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '^'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'whole-list-regex' Literal.String.Symbol
 ')'           Punctuation
-' \n          ' Text
+' \n          ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '(?:(?<=\\n\\n)|\\A\\n?)' Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'whole-list-regex' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'txt'         Literal.String.Symbol
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'my-list'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'find'        Keyword
-' '           Text
+' '           Text.Whitespace
 '$3'          Keyword
-' '           Text
+' '           Text.Whitespace
 'marker-ul'   Literal.String.Symbol
 ')'           Punctuation
-' \n            ' Text
+' \n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'list'        Keyword
 '-'           Keyword
 'type'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"ul"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'marker-type' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'marker-ul'   Literal.String.Symbol
 ')'           Punctuation
-' \n            ' Text
+' \n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'list'        Keyword
 '-'           Keyword
 'type'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"ol"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'marker-type' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'marker-ol'   Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '\\n{2,}[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'my-list'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'my-result'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'list'        Keyword
 '-'           Keyword
 'items'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'my-list'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '\\s+$'       Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'my-result'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'type'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'my-result'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</'          Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'type'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '>'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '10'          Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '; must be multiline' Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'process'     Keyword
 '-'           Keyword
 'list'        Keyword
 '-'           Keyword
 'items'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
 ')'           Punctuation
-'    \n  '    Text
+'    \n  '    Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'list'        Keyword
 '-'           Keyword
 'regex'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(\\n)?(^[ \\t]*)([/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 ')[ \\t]+((?s:.+?)(\\n{1,2}))(?=\\n*(\\z|\\2([/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'marker-any'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 ')[ \\t]+))[/text]' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'item'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'leading-line' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'leading-space' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'result'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'list'        Keyword
 '-'           Keyword
 'level*'      Literal.String.Symbol
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '\\n{2,}\\z[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$2'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$3'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$4'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$5'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n       '  Text
+' \n       '  Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'regex'       Keyword
-'\n       '   Text
+'\n       '   Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$4'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'leading-line' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'leading-space' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$2'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'empty?'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'leading-line' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ends-with'   Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n{2,}"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'block-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'outdent'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'item'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '; recurse for sub lists' Comment.Single
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n              ' Text
+' \n              ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lists'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'outdent'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'item'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' \n              ' Text
+' \n              ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<li>'        Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'item'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</li>'       Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '10'          Literal.String.Symbol
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'dec'         Keyword
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'list'        Keyword
 '-'           Keyword
 'level*'      Literal.String.Symbol
 ')'           Punctuation
-'\n   '       Text
+'\n   '       Text.Whitespace
 'list'        Keyword
 '-'           Keyword
 'text'        Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'code-blocks' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'code-block'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'token-list'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n    '     Text
+' \n    '     Text.Whitespace
 '[text]'      Literal.String
 '(?:\\n\\n|\\A)((?:(?:[ ]{4}|\\t).*\\n+)+)((?=^[ ]{0,3}\\S)|\\Z)[/text]' Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n    '     Text
+' \n    '     Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 "; format if Nestor module is loaded and it's not marked as plain" Comment.Single
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'starts-with' Keyword
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"    ;plain\\n"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'context'     Keyword
 '?'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'Nestor'      Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '; format newlisp' Comment.Single
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n             ' Text
+' \n             ' Text.Whitespace
 '; remove flag if present' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"[ ]{4};newlisp\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'       \n            ' Text
+'       \n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'protect'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Nestor'      Name.Variable
 ':'           Operator
 'nlx-to-html' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Nestor'      Name.Variable
 ':'           Operator
 'my-read'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'detab'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'outdent'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'code-block'  Literal.String.Symbol
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 "; don't format " Comment.Single
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-'\n            ' Text
+'\n            ' Text.Whitespace
 '; trim leading and trailing newlines' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"[ ]{4};plain\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'detab'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'encode-code' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'outdent'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n<pre><code>"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'code-block'  Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n</code></pre>\\n\\n"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '10'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'block-quotes' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'block-quote' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n     '     Text
+'\n     '     Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n       '  Text
+' \n       '  Text.Whitespace
 '[text]'      Literal.String
 '((^[ \\t]*>[ \\t]?.+\\n(.+\\n)*\\n*)+)[/text]' Literal.String
-'\n       '   Text
+'\n       '   Text.Whitespace
 'txt'         Literal.String.Symbol
-' \n       '  Text
+' \n       '  Text.Whitespace
 '('           Punctuation
 'begin'       Keyword
-' \n         ' Text
+' \n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'block-quote' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '^[ ]*>[ ]?'  Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'block-quote' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '^[ ]+$'      Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'block-quote' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'block-quote' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'block-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'block-quote' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '; recurse     ' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 '; remove leading spaces' Comment.Single
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' \n             ' Text
+' \n             ' Text.Whitespace
 '{'           Literal.String
 '(\\s*<pre>.+?</pre>)' Literal.String
 '}'           Literal.String
-' \n             ' Text
+' \n             ' Text.Whitespace
 'block-quote' Literal.String.Symbol
-' \n             ' Text
+' \n             ' Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"<blockquote>\\n"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'block-quote' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n</blockquote>\\n\\n"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'outdent'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '^(\\t|[ ]{1,4})[/text]' Literal.String
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'detab'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '[text]'      Literal.String
 '(.*?)\\t[/text]' Literal.String
-' \n    '     Text
+' \n    '     Text.Whitespace
 's'           Literal.String.Symbol
-'   \n    '   Text
+'   \n    '   Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'dup'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 ' '           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '%'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'length'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '2'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'form-paragraphs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'grafs'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'original'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'txt'         Literal.String.Symbol
-'   '         Text
+'   '         Text.Whitespace
 '('           Punctuation
 'trim'        Keyword
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'            ' Text
+'            ' Text.Whitespace
 '; strip blank lines before and after' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'grafs'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'parse'       Keyword
-' '           Text
+' '           Text.Whitespace
 'txt'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n{2,}"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '; split    ' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'dolist'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'p'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'grafs'       Literal.String.Symbol
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 'original'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
 'hashed-html-blocks*' Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; html blocks' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'setf'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grafs'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$idx'        Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'original'    Literal.String.Symbol
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '; wrap <p> tags round everything else' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'setf'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'grafs'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$idx'        Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '<p>'         Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'replace'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '^[ ]*'       Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'span-transforms' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'p'           Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '}'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.String.Symbol
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Literal.String
 '</p>'        Literal.String
 '}'           Literal.String
@@ -5130,150 +5130,150 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 'grafs'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '"\\n\\n"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '[text]'      Literal.String
 '\n; three command line arguments: let\'s hope last one is a file\n(when (= 3 (length (main-args)))\n      (println (markdown (read-file (main-args 2))))\n      (exit))\n\n; hack for command-line and module loading\n(set \'level (sys-info 3))\n\n; if level is 2, then we\'re probably invoking markdown.lsp directly\n; if level is > 3, then we\'re probably loading it into another script...\n    \n(when (= level 2)\n   ; running on command line, read STDIN and execute:\n   (while (read-line)\n          (push (current-line) *stdin* -1))\n   (println (markdown (join *stdin* "\\n")))\n   (exit))\n[/text]' Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';; version 2011-09-16 16:31:29' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Changed to different hash routine. Profiling shows that hashing takes 40% of the execution time.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   Unfortunately this new version is only very slightly faster.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ";;   Command-line arguments hack in previous version doesn't work." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version 2011-08-18 15:04:40' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;   various fixes, and added hack for running this from the command-line:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;     echo "hi there"     | newlisp markdown.lsp ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;     echo "hello world"  | markdown.lsp ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;     cat file.text       | newlisp markdown.lsp' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version 2010-11-14 17:34:52' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ";;    some problems in ustring. Probably remove it one day, as it's non standard..." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version 2010-10-14 18:41:38' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    added code to work round PCRE crash in (protect ...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2010-07-10 22:20:25' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ";;    modified call to 'read' since lutz has changed it" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2009-11-16 22:10:10' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    fixed bug in tokenize.html' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2008-10-08 18:44:46' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    changed nth-set to setf to be version-10 ready. ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    This means that now this script will NOT work with' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    earlier versions of newLISP!!!!!!!!!!!' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    requires Nestor if you want source code colouring...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2008-08-08 16:54:56' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    changed (unless to (if (not ... :(' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2008-07-20 14:!2:29' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    added hex-str-to-unicode-char ustring' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2008-03-07 15:36:09' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    fixed load error' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date 2007-11-17 16:20:57' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    added syntax colouring module' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; '         Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';; version date  2007-11-14 09:19:42' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';;    removed reliance on dostring for compatibility with 9.1' Comment.Single
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '; eof'       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
