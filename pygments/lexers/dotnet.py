@@ -577,7 +577,7 @@ class FSharpLexer(RegexLexer):
     name = 'F#'
     url = 'https://fsharp.org/'
     aliases = ['fsharp', 'f#']
-    filenames = ['*.fs', '*.fsi']
+    filenames = ['*.fs', '*.fsi', '*.fsx']
     mimetypes = ['text/x-fsharp']
 
     keywords = [
