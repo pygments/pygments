@@ -138,8 +138,8 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
             # normal command names and scoreboards
             #  there's no way to know the differences unfortuntely
-            (r"[A-Za-z_][A-Za-z0-9_.#%$]+", Keyword.Constant),
-            (r"[#%$][A-Za-z0-9_.#%$]+", Name.Variable.Magic),
+            (r"[A-Za-z_][\w.#%$]+", Keyword.Constant),
+            (r"[#%$][\w.#%$]+", Name.Variable.Magic),
         ],
 
         "resource-name": [
@@ -184,7 +184,7 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
 
             # Scoreboard player names
-            (r"[#%$][A-Za-z0-9_.#%$]+", Name.Variable.Magic),
+            (r"[#%$][\w.#%$]+", Name.Variable.Magic),
         ],
 
         "operators": [
@@ -347,20 +347,30 @@ class MCSchemaLexer(RegexLexer):
         'badregex': [
             (r'\n', Whitespace, '#pop')
         ],
+        'singlestring': [
+            (r'\\.', String.Escape),
+            (r"'", String.Single, '#pop'),
+            (r"[^\\']+", String.Single),
+        ],
+        'doublestring': [
+            (r'\\.', String.Escape),
+            (r'"', String.Double, '#pop'),
+            (r'[^\\"]+', String.Double),
+        ],
         'root': [
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             
             # keywords for optional word and field types
             (r'(?<=: )opt', Operator.Word),
-            (r'(?<=\s)[a-zA-Z0-9_-]*(?=(\s+"|\n))', Keyword.Declaration),
+            (r'(?<=\s)[\w-]*(?=(\s+"|\n))', Keyword.Declaration),
             
             # numeric literals
             (r'0[bB][01]+', Number.Bin),
             (r'0[oO]?[0-7]+', Number.Oct),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
-            (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
+            (r'\d+', Number.Integer),
+            (r'(\.\d+|\d+\.\d*|\d+)([eE][-+]?\d+)?', Number.Float),
             
             # possible punctuations
             (r'\.\.\.|=>', Punctuation),
@@ -370,14 +380,14 @@ class MCSchemaLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             
             # strings
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
-            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
+            (r'"', String.Single, 'singlestring'),
+            (r'"', String.Double, 'doublestring'),
             
             # title line
-            (r'[a-zA-Z0-9_-]*?(?=:{?\n)', String.Symbol),
+            (r'[\w-]*?(?=:\{?\n)', String.Symbol),
             # title line with a version code, formatted
             # `major.minor.patch-prerelease+buildmeta`
-            (r'([a-zA-Z0-9_-]*?)(:)(0|[1-9][0-9]*)(?:(\.)(0|[1-9][0-9]*)(?:(\.)(0|[1-9][0-9]*)(?:(\-)((?:(?:(?:(?:0[0-9]*[A-Za-z-])|[1-9A-Za-z-])[0-9A-Za-z-]*)|0)(?:\.(?:(?:(?:(?:0[0-9]*[A-Za-z-])|[1-9A-Za-z-])[0-9A-Za-z-]*)|0))*))?(?:(\+)([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?)?)?(?=:{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
+            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)([0-9A-Za-z-]*(?:\.[0-9A-Za-z-]*)*))?(?:(\+)([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?)?)?(?=:\{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
             
             (r'.*\n', Text),
         ]

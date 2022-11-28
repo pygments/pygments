@@ -276,7 +276,7 @@ LEXERS = {
     'LogtalkLexer': ('pygments.lexers.prolog', 'Logtalk', ('logtalk',), ('*.lgt', '*.logtalk'), ('text/x-logtalk',)),
     'LuaLexer': ('pygments.lexers.scripting', 'Lua', ('lua',), ('*.lua', '*.wlua'), ('text/x-lua', 'application/x-lua')),
     'MCFunctionLexer': ('pygments.lexers.minecraft', 'MCFunction', ('mcfunction', 'mcf'), ('*.mcfunction',), ('text/mcfunction',)),
-    'MCSchemaLexer': ('pygments.lexers.minecraft', 'MCSchema', ('mcschema'), ('*.mcschema'), ('text/mcschema',)),
+    'MCSchemaLexer': ('pygments.lexers.minecraft', 'MCSchema', ('mcschema',), ('*.mcschema',), ('text/mcschema',)),
     'MIMELexer': ('pygments.lexers.mime', 'MIME', ('mime',), (), ('multipart/mixed', 'multipart/related', 'multipart/alternative')),
     'MIPSLexer': ('pygments.lexers.mips', 'MIPS', ('mips',), ('*.mips', '*.MIPS'), ()),
     'MOOCodeLexer': ('pygments.lexers.scripting', 'MOOCode', ('moocode', 'moo'), ('*.moo',), ('text/x-moocode',)),
