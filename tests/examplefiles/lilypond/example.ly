@@ -76,7 +76,8 @@ piuPiano = \markup \italic "più piano"
     \key d \major
     \cadenzaOn
     deses'!4.~(\tweak thickness 4\( deses^\p-\signumcongruentiae_1\4
-    deses\longa) \myFunc { r } 4 des8 8[ <des ges>8]\)
+    deses\longa) \myFunc { r } 4
+      des8-- 8[__ \ottava -1 <des, ges>8]\) \ottava 0
     \bar "||"
     \cadenzaOff
     \pageBreak
@@ -100,7 +101,7 @@ piuPiano = \markup \italic "più piano"
   }
   \addlyrics {
     \set Score.melismaBusyProperties = #'()
-    My Lily -- Song
+    My Lily -- Song __
   }
   \chordmode {
     c cis:dim3+\dim des:maj7/+e\!

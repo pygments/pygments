@@ -713,7 +713,7 @@ class NasmLexer(RegexLexer):
     """
     name = 'NASM'
     aliases = ['nasm']
-    filenames = ['*.asm', '*.ASM']
+    filenames = ['*.asm', '*.ASM', '*.nasm']
     mimetypes = ['text/x-nasm']
 
     # Tasm uses the same file endings, but TASM is not as common as NASM, so
