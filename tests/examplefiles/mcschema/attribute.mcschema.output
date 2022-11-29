@@ -19,7 +19,9 @@
 '\n    '      Text.Whitespace
 'float_range' Keyword.Declaration
 ' '           Text.Whitespace
-'"value"'     Literal.String.Double
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -27,7 +29,9 @@
 '\n    '      Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"min"'       Literal.String.Double
+'"'           Literal.String.Double
+'min'         Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -35,7 +39,9 @@
 '\n    '      Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"max"'       Literal.String.Double
+'"'           Literal.String.Double
+'max'         Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace

@@ -10,23 +10,31 @@
 '\n    '      Text.Whitespace
 'version'     Keyword.Declaration
 ' '           Text.Whitespace
-'"format_version"' Literal.String.Double
+'"'           Literal.String.Double
+'format_version' Literal.String.Double
+'"'           Literal.String.Double
 '\n    '      Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"animations"' Literal.String.Double
+'"'           Literal.String.Double
+'animations'  Literal.String.Double
+'"'           Literal.String.Double
 '\n    '      Text.Whitespace
 '{'           Punctuation
 '\n        '  Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"animation.<identifier>"' Literal.String.Double
+'"'           Literal.String.Double
+'animation.<identifier>' Literal.String.Double
+'"'           Literal.String.Double
 '\n        '  Text.Whitespace
 '{'           Punctuation
 '\n            ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"loop"'      Literal.String.Double
+'"'           Literal.String.Double
+'loop'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -36,9 +44,13 @@
 '\n            ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"loop"'      Literal.String.Double
+'"'           Literal.String.Double
+'loop'        Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"hold_on_last_frame"' Literal.String.Double
+'"'           Literal.String.Double
+'hold_on_last_frame' Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 ':'           Operator
@@ -49,7 +61,9 @@
 '\n            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"start_delay"' Literal.String.Double
+'"'           Literal.String.Double
+'start_delay' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -59,7 +73,9 @@
 '\n            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"loop_delay"' Literal.String.Double
+'"'           Literal.String.Double
+'loop_delay'  Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -69,7 +85,9 @@
 '\n            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"anim_time_update"' Literal.String.Double
+'"'           Literal.String.Double
+'anim_time_update' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -79,7 +97,9 @@
 '\n            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"blend_weight"' Literal.String.Double
+'"'           Literal.String.Double
+'blend_weight' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -87,7 +107,9 @@
 '\n            ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"override_previous_animation"' Literal.String.Double
+'"'           Literal.String.Double
+'override_previous_animation' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -97,7 +119,9 @@
 '\n            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"bones"'     Literal.String.Double
+'"'           Literal.String.Double
+'bones'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -107,13 +131,17 @@
 '\n                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<identifier>"' Literal.String.Double
+'"'           Literal.String.Double
+'<identifier>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                ' Text.Whitespace
 '{'           Punctuation
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"relative_to"' Literal.String.Double
+'"'           Literal.String.Double
+'relative_to' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -123,9 +151,13 @@
 '\n                        ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"entity"'    Literal.String.Double
+'"'           Literal.String.Double
+'entity'      Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 ':'           Operator
@@ -138,7 +170,9 @@
 '\n                    ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"position"'  Literal.String.Double
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -146,7 +180,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"position"'  Literal.String.Double
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -156,13 +192,17 @@
 '\n                        ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                    ' Text.Whitespace
 '}'           Punctuation
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"position"'  Literal.String.Double
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -172,7 +212,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -181,24 +223,34 @@
 '\n                            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'enumerated_value' Keyword.Declaration
 ' '           Text.Whitespace
-'"lerp_mode"' Literal.String.Double
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"linear"'    Literal.String.Double
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"catmullrom"' Literal.String.Double
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 ':'           Operator
@@ -207,7 +259,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"pre"'       Literal.String.Double
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -220,13 +274,17 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"post"'      Literal.String.Double
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -239,7 +297,9 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
@@ -249,7 +309,9 @@
 '\n                    ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -257,7 +319,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -267,17 +331,23 @@
 '\n                        ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"[xyz]"'     Literal.String.Double
+'"'           Literal.String.Double
+'[xyz]'       Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '}'           Punctuation
 '\n                    ' Text.Whitespace
@@ -285,7 +355,9 @@
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -295,7 +367,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -304,24 +378,34 @@
 '\n                            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'enumerated_value' Keyword.Declaration
 ' '           Text.Whitespace
-'"lerp_mode"' Literal.String.Double
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"linear"'    Literal.String.Double
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"catmullrom"' Literal.String.Double
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 ':'           Operator
@@ -330,7 +414,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"pre"'       Literal.String.Double
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -343,13 +429,17 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"post"'      Literal.String.Double
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -362,7 +452,9 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
@@ -372,7 +464,9 @@
 '\n                    ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"scale"'     Literal.String.Double
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -380,7 +474,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"scale"'     Literal.String.Double
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -390,13 +486,17 @@
 '\n                        ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                    ' Text.Whitespace
 '}'           Punctuation
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"scale"'     Literal.String.Double
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -406,7 +506,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -415,24 +517,34 @@
 '\n                            ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'enumerated_value' Keyword.Declaration
 ' '           Text.Whitespace
-'"lerp_mode"' Literal.String.Double
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"linear"'    Literal.String.Double
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"catmullrom"' Literal.String.Double
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 ':'           Operator
@@ -441,7 +553,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"pre"'       Literal.String.Double
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -454,13 +568,17 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"post"'      Literal.String.Double
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -473,7 +591,9 @@
 '\n                                ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '}'           Punctuation
 '\n                        ' Text.Whitespace
@@ -487,7 +607,9 @@
 '\n            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"particle_effects"' Literal.String.Double
+'"'           Literal.String.Double
+'particle_effects' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -497,7 +619,9 @@
 '\n                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -507,13 +631,17 @@
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"effect"'    Literal.String.Double
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The name of a particle effect that should be played' Comment.Single
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"locator"'   Literal.String.Double
+'"'           Literal.String.Double
+'locator'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -523,7 +651,9 @@
 '\n                    ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"pre_effect_script"' Literal.String.Double
+'"'           Literal.String.Double
+'pre_effect_script' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -533,7 +663,9 @@
 '\n                    ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"bind_to_actor"' Literal.String.Double
+'"'           Literal.String.Double
+'bind_to_actor' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -545,7 +677,9 @@
 '\n                ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -555,7 +689,9 @@
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -565,13 +701,17 @@
 '\n                        ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"effect"'    Literal.String.Double
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The name of a particle effect that should be played' Comment.Single
 '\n                        ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"locator"'   Literal.String.Double
+'"'           Literal.String.Double
+'locator'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -581,7 +721,9 @@
 '\n                        ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"pre_effect_script"' Literal.String.Double
+'"'           Literal.String.Double
+'pre_effect_script' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -591,7 +733,9 @@
 '\n                        ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"bind_to_actor"' Literal.String.Double
+'"'           Literal.String.Double
+'bind_to_actor' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -607,7 +751,9 @@
 '\n            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"sound_effects"' Literal.String.Double
+'"'           Literal.String.Double
+'sound_effects' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -619,7 +765,9 @@
 '\n                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -629,7 +777,9 @@
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"effect"'    Literal.String.Double
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 "// Valid sound effect names should be listed in the entity's resource_definition json file." Comment.Single
 '\n                ' Text.Whitespace
@@ -637,7 +787,9 @@
 '\n                ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -647,7 +799,9 @@
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -657,7 +811,9 @@
 '\n                        ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"effect"'    Literal.String.Double
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 "// Valid sound effect names should be listed in the entity's resource_definition json file." Comment.Single
 '\n                    ' Text.Whitespace
@@ -669,7 +825,9 @@
 '\n            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"timeline"'  Literal.String.Double
+'"'           Literal.String.Double
+'timeline'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -679,7 +837,9 @@
 '\n                ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -687,7 +847,9 @@
 '\n                ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<time_stamp>"' Literal.String.Double
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -697,7 +859,9 @@
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -709,7 +873,9 @@
 '\n            ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"animation_length"' Literal.String.Double
+'"'           Literal.String.Double
+'animation_length' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace

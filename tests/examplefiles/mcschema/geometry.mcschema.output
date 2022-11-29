@@ -10,11 +10,15 @@
 '\n    '      Text.Whitespace
 'version'     Keyword.Declaration
 ' '           Text.Whitespace
-'"format_version"' Literal.String.Double
+'"'           Literal.String.Double
+'format_version' Literal.String.Double
+'"'           Literal.String.Double
 '\n    '      Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"debug"'     Literal.String.Double
+'"'           Literal.String.Double
+'debug'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -22,7 +26,9 @@
 '\n    '      Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"minecraft:geometry"' Literal.String.Double
+'"'           Literal.String.Double
+'minecraft:geometry' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
@@ -33,25 +39,33 @@
 '\n        '  Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n        '  Text.Whitespace
 '{'           Punctuation
 '\n            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"description"' Literal.String.Double
+'"'           Literal.String.Double
+'description' Literal.String.Double
+'"'           Literal.String.Double
 '\n            ' Text.Whitespace
 '{'           Punctuation
 '\n                ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"identifier"' Literal.String.Double
+'"'           Literal.String.Double
+'identifier'  Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Entity definition and Client Block definition files refer to this geometry via this identifier.' Comment.Single
 '\n                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"visible_bounds_width"' Literal.String.Double
+'"'           Literal.String.Double
+'visible_bounds_width' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -61,7 +75,9 @@
 '\n                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"visible_bounds_height"' Literal.String.Double
+'"'           Literal.String.Double
+'visible_bounds_height' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -71,7 +87,9 @@
 '\n                ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"visible_bounds_offset"' Literal.String.Double
+'"'           Literal.String.Double
+'visible_bounds_offset' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -84,7 +102,9 @@
 '\n                    ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Offset of the visibility bounding box from the entity location point (in model space units).' Comment.Single
 '\n                ' Text.Whitespace
@@ -92,7 +112,9 @@
 '\n                ' Text.Whitespace
 'int'         Keyword.Declaration
 ' '           Text.Whitespace
-'"texture_width"' Literal.String.Double
+'"'           Literal.String.Double
+'texture_width' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -102,7 +124,9 @@
 '\n                ' Text.Whitespace
 'int'         Keyword.Declaration
 ' '           Text.Whitespace
-'"texture_height"' Literal.String.Double
+'"'           Literal.String.Double
+'texture_height' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -114,7 +138,9 @@
 '\n            ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"cape"'      Literal.String.Double
+'"'           Literal.String.Double
+'cape'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -122,7 +148,9 @@
 '\n            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"bones"'     Literal.String.Double
+'"'           Literal.String.Double
+'bones'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -134,7 +162,9 @@
 '\n                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -144,13 +174,17 @@
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"name"'      Literal.String.Double
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Animation files refer to this bone via this identifier.' Comment.Single
 '\n                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"parent"'    Literal.String.Double
+'"'           Literal.String.Double
+'parent'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -160,7 +194,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"pivot"'     Literal.String.Double
+'"'           Literal.String.Double
+'pivot'       Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -173,7 +209,9 @@
 '\n                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The bone pivots around this point (in model space units).' Comment.Single
 '\n                    ' Text.Whitespace
@@ -181,7 +219,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -194,7 +234,9 @@
 '\n                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// This is the initial rotation of the bone around the pivot, pre-animation (in degrees, x-then-y-then-z order).' Comment.Single
 '\n                    ' Text.Whitespace
@@ -202,7 +244,9 @@
 '\n                    ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"mirror"'    Literal.String.Double
+'"'           Literal.String.Double
+'mirror'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -212,7 +256,9 @@
 '\n                    ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"inflate"'   Literal.String.Double
+'"'           Literal.String.Double
+'inflate'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -222,7 +268,9 @@
 '\n                    ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"debug"'     Literal.String.Double
+'"'           Literal.String.Double
+'debug'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -230,7 +278,9 @@
 '\n                    ' Text.Whitespace
 'int'         Keyword.Declaration
 ' '           Text.Whitespace
-'"render_group_id"' Literal.String.Double
+'"'           Literal.String.Double
+'render_group_id' Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
 '0'           Literal.Number.Integer
 '-'           Operator
@@ -243,7 +293,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"cubes"'     Literal.String.Double
+'"'           Literal.String.Double
+'cubes'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -255,7 +307,9 @@
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -265,7 +319,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"origin"'    Literal.String.Double
+'"'           Literal.String.Double
+'origin'      Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -278,7 +334,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// This point declares the unrotated lower corner of cube (smallest x/y/z value in model space units).' Comment.Single
 '\n                            ' Text.Whitespace
@@ -286,7 +344,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"size"'      Literal.String.Double
+'"'           Literal.String.Double
+'size'        Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -299,7 +359,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The cube extends this amount relative to its origin (in model space units).' Comment.Single
 '\n                            ' Text.Whitespace
@@ -307,7 +369,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -320,7 +384,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The cube is rotated by this amount (in degrees, x-then-y-then-z order) around the pivot.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -328,7 +394,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"pivot"'     Literal.String.Double
+'"'           Literal.String.Double
+'pivot'       Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -341,7 +409,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// If this field is specified, rotation of this cube occurs around this point, otherwise its rotation is around the center of the box.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -349,7 +419,9 @@
 '\n                            ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"inflate"'   Literal.String.Double
+'"'           Literal.String.Double
+'inflate'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -359,7 +431,9 @@
 '\n                            ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"mirror"'    Literal.String.Double
+'"'           Literal.String.Double
+'mirror'      Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -369,7 +443,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -382,7 +458,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Specifies the upper-left corner on the texture for the start of the texture mapping for this box.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -390,7 +468,9 @@
 '\n                            ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -402,7 +482,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"north"'     Literal.String.Double
+'"'           Literal.String.Double
+'north'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -414,7 +496,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -423,7 +507,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -431,7 +517,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -444,7 +532,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -452,7 +542,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -462,7 +554,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"south"'     Literal.String.Double
+'"'           Literal.String.Double
+'south'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -474,7 +568,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -483,7 +579,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -491,7 +589,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -504,7 +604,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -512,7 +614,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -522,7 +626,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"east"'      Literal.String.Double
+'"'           Literal.String.Double
+'east'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -534,7 +640,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -543,7 +651,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -551,7 +661,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -564,7 +676,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -572,7 +686,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -582,7 +698,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"west"'      Literal.String.Double
+'"'           Literal.String.Double
+'west'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -594,7 +712,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -603,7 +723,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -611,7 +733,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -624,7 +748,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -632,7 +758,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -642,7 +770,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"up"'        Literal.String.Double
+'"'           Literal.String.Double
+'up'          Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -654,7 +784,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -663,7 +795,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 "// Specifies the uv origin for the face. For this face, it is the back-upper-left corner, assuming you're facing 'north' relative to the cube." Comment.Single
 '\n                                    ' Text.Whitespace
@@ -671,7 +805,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -684,7 +820,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -692,7 +830,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -702,7 +842,9 @@
 '\n                                ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"down"'      Literal.String.Double
+'"'           Literal.String.Double
+'down'        Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -714,7 +856,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv"'        Literal.String.Double
+'"'           Literal.String.Double
+'uv'          Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -723,7 +867,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 "// Specifies the uv origin for the face. For this face, it is the back-down-right corner, assuming you're facing 'north' relative to the cube." Comment.Single
 '\n                                    ' Text.Whitespace
@@ -731,7 +877,9 @@
 '\n                                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uv_size"'   Literal.String.Double
+'"'           Literal.String.Double
+'uv_size'     Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -744,7 +892,9 @@
 '\n                                        ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.' Comment.Single
 '\n                                    ' Text.Whitespace
@@ -752,7 +902,9 @@
 '\n                                    ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"material_instance"' Literal.String.Double
+'"'           Literal.String.Double
+'material_instance' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -768,7 +920,9 @@
 '\n                    ' Text.Whitespace
 'molang'      Keyword.Declaration
 ' '           Text.Whitespace
-'"binding"'   Literal.String.Double
+'"'           Literal.String.Double
+'binding'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -778,7 +932,9 @@
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"locators"'  Literal.String.Double
+'"'           Literal.String.Double
+'locators'    Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -788,7 +944,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<identifier>"' Literal.String.Double
+'"'           Literal.String.Double
+'<identifier>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -800,7 +958,9 @@
 '\n                            ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -812,7 +972,9 @@
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<identifier>"' Literal.String.Double
+'"'           Literal.String.Double
+'<identifier>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -824,13 +986,17 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"offset"'    Literal.String.Double
+'"'           Literal.String.Double
+'offset'      Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '{'           Punctuation
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -842,13 +1008,17 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 '\n                            ' Text.Whitespace
 '{'           Punctuation
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -860,7 +1030,9 @@
 '\n                            ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"ignore_inherited_scale"' Literal.String.Double
+'"'           Literal.String.Double
+'ignore_inherited_scale' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -874,7 +1046,9 @@
 '\n                    ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"poly_mesh"' Literal.String.Double
+'"'           Literal.String.Double
+'poly_mesh'   Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -886,7 +1060,9 @@
 '\n                        ' Text.Whitespace
 'bool'        Keyword.Declaration
 ' '           Text.Whitespace
-'"normalized_uvs"' Literal.String.Double
+'"'           Literal.String.Double
+'normalized_uvs' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -896,7 +1072,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"positions"' Literal.String.Double
+'"'           Literal.String.Double
+'positions'   Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -906,7 +1084,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -919,7 +1099,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Vertex positions for the mesh.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the normals and UVs sections.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -929,7 +1111,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"normals"'   Literal.String.Double
+'"'           Literal.String.Double
+'normals'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -939,7 +1123,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -952,7 +1138,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Vertex normals.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the positions and UVs sections.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -962,7 +1150,9 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"uvs"'       Literal.String.Double
+'"'           Literal.String.Double
+'uvs'         Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -972,7 +1162,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '2'           Literal.Number.Integer
 ']'           Punctuation
@@ -985,7 +1177,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Vertex UVs.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the positions and normals sections.' Comment.Single
 '\n                            ' Text.Whitespace
@@ -995,13 +1189,17 @@
 '\n                        ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"polys"'     Literal.String.Double
+'"'           Literal.String.Double
+'polys'       Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ','           Punctuation
@@ -1016,7 +1214,9 @@
 '\n                                ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -1025,7 +1225,9 @@
 '\n                                    ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// Poly element indices, as an array of polygons, each an array of either three or four vertices, each an array of indices into positions, normals, and UVs (in that order).' Comment.Single
 '\n                                ' Text.Whitespace
@@ -1037,12 +1239,18 @@
 '\n                        ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"polys"'     Literal.String.Double
+'"'           Literal.String.Double
+'polys'       Literal.String.Double
+'"'           Literal.String.Double
 '<'           Operator
-'"tri_list"'  Literal.String.Double
+'"'           Literal.String.Double
+'tri_list'    Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"quad_list"' Literal.String.Double
+'"'           Literal.String.Double
+'quad_list'   Literal.String.Double
+'"'           Literal.String.Double
 '>'           Operator
 ' '           Text.Whitespace
 '// If not specifying vertex indices, arrays of data must be a list of tris or quads, set by making this property either "tri_list" or "quad_list"' Comment.Single
@@ -1051,7 +1259,9 @@
 '\n                    ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"texture_meshes"' Literal.String.Double
+'"'           Literal.String.Double
+'texture_meshes' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
@@ -1063,19 +1273,25 @@
 '\n                        ' Text.Whitespace
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 '\n                        ' Text.Whitespace
 '{'           Punctuation
 '\n                            ' Text.Whitespace
 'string'      Keyword.Declaration
 ' '           Text.Whitespace
-'"texture"'   Literal.String.Double
+'"'           Literal.String.Double
+'texture'     Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The friendly-named texture to use.' Comment.Single
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"position"'  Literal.String.Double
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -1088,7 +1304,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The position of the pivot point after rotation (in *entity space* not texture or bone space) of the texture geometry' Comment.Single
 '\n                            ' Text.Whitespace
@@ -1096,7 +1314,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"local_pivot"' Literal.String.Double
+'"'           Literal.String.Double
+'local_pivot' Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -1109,7 +1329,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The pivot point on the texture (in *texture space* not entity or bone space) of the texture geometry' Comment.Single
 '\n                            ' Text.Whitespace
@@ -1117,7 +1339,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"rotation"'  Literal.String.Double
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -1130,7 +1354,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The rotation (in degrees) of the texture geometry relative to the offset' Comment.Single
 '\n                            ' Text.Whitespace
@@ -1138,7 +1364,9 @@
 '\n                            ' Text.Whitespace
 'array'       Keyword.Declaration
 ' '           Text.Whitespace
-'"scale"'     Literal.String.Double
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
 '['           Punctuation
 '3'           Literal.Number.Integer
 ']'           Punctuation
@@ -1151,7 +1379,9 @@
 '\n                                ' Text.Whitespace
 'float'       Keyword.Declaration
 ' '           Text.Whitespace
-'"<any array element>"' Literal.String.Double
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '// The scale (in degrees) of the texture geometry relative to the offset' Comment.Single
 '\n                            ' Text.Whitespace

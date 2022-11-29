@@ -1,6 +1,6 @@
 """
     pygments.lexers.minecraft
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Minecraft related languages.
     
@@ -380,14 +380,14 @@ class MCSchemaLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             
             # strings
-            (r'"', String.Single, 'singlestring'),
+            (r"'", String.Single, 'singlestring'),
             (r'"', String.Double, 'doublestring'),
             
             # title line
             (r'[\w-]*?(?=:\{?\n)', String.Symbol),
             # title line with a version code, formatted
             # `major.minor.patch-prerelease+buildmeta`
-            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)([0-9A-Za-z-]*(?:\.[0-9A-Za-z-]*)*))?(?:(\+)([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?)?)?(?=:\{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
+            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)((?:[^\W_]|-)*(?:\.(?:[^\W_]|-)*)*))?(?:(\+)((?:[^\W_]|-)+(?:\.(?:[^\W_]|-)+)*))?)?)?(?=:\{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
             
             (r'.*\n', Text),
         ]
