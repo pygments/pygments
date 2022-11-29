@@ -529,6 +529,7 @@ LEXERS = {
     'WebIDLLexer': ('pygments.lexers.webidl', 'Web IDL', ('webidl',), ('*.webidl',), ()),
     'WhileyLexer': ('pygments.lexers.whiley', 'Whiley', ('whiley',), ('*.whiley',), ('text/x-whiley',)),
     'WoWTocLexer': ('pygments.lexers.wowtoc', 'World of Warcraft TOC', ('wowtoc',), ('*.toc',), ()),
+    'WrenLexer': ('pygments.lexers.wren', 'Wren', ('wren',), ('*.wren',), ()),
     'X10Lexer': ('pygments.lexers.x10', 'X10', ('x10', 'xten'), ('*.x10',), ('text/x-x10',)),
     'XMLUL4Lexer': ('pygments.lexers.ul4', 'XML+UL4', ('xml+ul4',), ('*.xmlul4',), ()),
     'XQueryLexer': ('pygments.lexers.webmisc', 'XQuery', ('xquery', 'xqy', 'xq', 'xql', 'xqm'), ('*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm'), ('text/xquery', 'application/xquery')),
