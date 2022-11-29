@@ -1,0 +1,892 @@
+'actor_animation' Literal.String.Symbol
+':'           Operator
+'1'           Literal.Number.Integer
+'.'           Operator
+'8'           Literal.Number.Integer
+'.'           Operator
+'0'           Literal.Number.Integer
+':'           Operator
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'version'     Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'format_version' Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'animations'  Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'animation.<identifier>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'loop'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// should this animation stop, loop, or stay on the last frame when finished (true, false, "hold_on_last_frame"' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'loop'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'hold_on_last_frame' Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// should this animation stop, loop, or stay on the last frame when finished (true, false, "hold_on_last_frame"' Comment.Single
+'\n            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'start_delay' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+"// How long to wait in seconds before playing this animation.  Note that this expression is evaluated once before playing, and only re-evaluated if asked to play from the beginning again.  A looping animation should use 'loop_delay' if it wants a delay between loops." Comment.Single
+'\n            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'loop_delay'  Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// How long to wait in seconds before looping this animation.  Note that this expression is evaluated after each loop and on looping animation only.' Comment.Single
+'\n            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'anim_time_update' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// how does time pass when playing the animation.  Defaults to "query.anim_time + query.delta_time" which means advance in seconds.' Comment.Single
+'\n            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'blend_weight' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'override_previous_animation' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// reset bones in this animation to the default pose before applying this animation' Comment.Single
+'\n            ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bones'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<identifier>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'relative_to' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'entity'      Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+"// if set, makes the bone rotation relative to the entity instead of the bone's parent" Comment.Single
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'position'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'[xyz]'       Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'rotation'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'scale'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                        ' Text.Whitespace
+'{'           Punctuation
+'\n                            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'lerp_mode'   Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'linear'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'catmullrom'  Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pre'         Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'post'        Literal.String.Double
+'"'           Literal.String.Double
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                            ' Text.Whitespace
+'{'           Punctuation
+'\n                                ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n                            ' Text.Whitespace
+'}'           Punctuation
+'\n                        ' Text.Whitespace
+'}'           Punctuation
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'particle_effects' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// The name of a particle effect that should be played' Comment.Single
+'\n                    ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'locator'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// The name of a locator on the actor where the effect should be located' Comment.Single
+'\n                    ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pre_effect_script' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// A Molang script that will be run when the particle emitter is initialized' Comment.Single
+'\n                    ' Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bind_to_actor' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// Set to false to have the effect spawned in the world without being bound to an actor (by default an effect is bound to the actor).' Comment.Single
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// The name of a particle effect that should be played' Comment.Single
+'\n                        ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'locator'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// The name of a locator on the actor where the effect should be located' Comment.Single
+'\n                        ' Text.Whitespace
+'molang'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pre_effect_script' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// A Molang script that will be run when the particle emitter is initialized' Comment.Single
+'\n                        ' Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bind_to_actor' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// Set to false to have the effect spawned in the world without being bound to an actor (by default an effect is bound to the actor).' Comment.Single
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'sound_effects' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// sound effects to trigger as this animation plays, keyed by time' Comment.Single
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+"// Valid sound effect names should be listed in the entity's resource_definition json file." Comment.Single
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                    ' Text.Whitespace
+'{'           Punctuation
+'\n                        ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'effect'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+"// Valid sound effect names should be listed in the entity's resource_definition json file." Comment.Single
+'\n                    ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'timeline'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<time_stamp>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'animation_length' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// override calculated value (set as the max keyframe or event time) and set animation length in seconds.' Comment.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

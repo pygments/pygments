@@ -1,8 +1,19 @@
 """
-    pygments.lexers.mcfunction
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.minecraft
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for MCFunction and related languages.
+    Lexers for Minecraft related languages.
+    
+    SNBT. A data communication format used in Minecraft.
+    wiki: https://minecraft.fandom.com/wiki/NBT_format
+    
+    MCFunction. The Function file for Minecraft Data packs and Add-ons.
+    official: https://learn.microsoft.com/en-us/minecraft/creator/documents/functionsintroduction
+    wiki: https://minecraft.fandom.com/wiki/Function
+    
+    MCSchema. A kind of data Schema for Minecraft Add-on Development.
+    official: https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/
+    community example: https://www.mcbe-dev.net/addons/data-driven/manifest.html
 
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -12,13 +23,13 @@ from pygments.lexer import RegexLexer, default, include, bygroups
 from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
-__all__ = ['SNBTLexer', 'MCFunctionLexer']
+__all__ = ['SNBTLexer', 'MCFunctionLexer', 'MCSchemaLexer']
 
 
 class SNBTLexer(RegexLexer):
     """Lexer for stringified NBT, a data format used in Minecraft
 
-    .. versionadded:: 2.12
+    .. versionadded:: 2.12.0
     """
 
     name = "SNBT"
@@ -127,8 +138,8 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
             # normal command names and scoreboards
             #  there's no way to know the differences unfortuntely
-            (r"[A-Za-z_][A-Za-z0-9_.#%$]+", Keyword.Constant),
-            (r"[#%$][A-Za-z0-9_.#%$]+", Name.Variable.Magic),
+            (r"[A-Za-z_][\w.#%$]+", Keyword.Constant),
+            (r"[#%$][\w.#%$]+", Name.Variable.Magic),
         ],
 
         "resource-name": [
@@ -173,7 +184,7 @@ class MCFunctionLexer(RegexLexer):
             include("resource-name"),
 
             # Scoreboard player names
-            (r"[#%$][A-Za-z0-9_.#%$]+", Name.Variable.Magic),
+            (r"[#%$][\w.#%$]+", Name.Variable.Magic),
         ],
 
         "operators": [
@@ -305,4 +316,79 @@ class MCFunctionLexer(RegexLexer):
 
             default("#pop"),
         ],
+    }
+
+
+class MCSchemaLexer(RegexLexer):
+    """Lexer for Minecraft Add-ons data Schemas, an interface structure standard used in Minecraft
+
+    .. versionadded:: 2.14.0
+    """
+    
+    name = 'MCSchema'
+    url = 'https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/'
+    aliases = ['mcschema']
+    filenames = ['*.mcschema']
+    mimetypes = ['text/mcschema']
+
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Whitespace),
+            (r'//.*?$', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            default('#pop')
+        ],
+        'badregex': [
+            (r'\n', Whitespace, '#pop')
+        ],
+        'singlestring': [
+            (r'\\.', String.Escape),
+            (r"'", String.Single, '#pop'),
+            (r"[^\\']+", String.Single),
+        ],
+        'doublestring': [
+            (r'\\.', String.Escape),
+            (r'"', String.Double, '#pop'),
+            (r'[^\\"]+', String.Double),
+        ],
+        'root': [
+            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            
+            # keywords for optional word and field types
+            (r'(?<=: )opt', Operator.Word),
+            (r'(?<=\s)[\w-]*(?=(\s+"|\n))', Keyword.Declaration),
+            
+            # numeric literals
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[oO]?[0-7]+', Number.Oct),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            (r'(\.\d+|\d+\.\d*|\d+)([eE][-+]?\d+)?', Number.Float),
+            
+            # possible punctuations
+            (r'\.\.\.|=>', Punctuation),
+            (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
+             r'(<<|>>>?|==?|!=?|(?:\*\*|\|\||&&|[-<>+*%&|^/]))=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            
+            # strings
+            (r"'", String.Single, 'singlestring'),
+            (r'"', String.Double, 'doublestring'),
+            
+            # title line
+            (r'[\w-]*?(?=:\{?\n)', String.Symbol),
+            # title line with a version code, formatted
+            # `major.minor.patch-prerelease+buildmeta`
+            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)((?:[^\W_]|-)*(?:\.(?:[^\W_]|-)*)*))?(?:(\+)((?:[^\W_]|-)+(?:\.(?:[^\W_]|-)+)*))?)?)?(?=:\{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
+            
+            (r'.*\n', Text),
+        ]
     }
