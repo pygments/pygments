@@ -116,7 +116,7 @@ var o = l || m
 var esc = "\\ \% \" \0 \a \b \t \f \n \r \v \e \x01 \uabcd \Uabcdef01"
 var uni = "£ é 😀  ‎🎷"
 var map = {"a": 1, "b": 2}
-var iex = "%(map["a"] + map["b"])"
+var iex = "%(map["a"] + map[("b")])"
 var odd = (1...h).where { |i| i % 2 == 1 }
                  .toList
 var emp = ""

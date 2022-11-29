@@ -61,7 +61,6 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'field'       Name
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -79,7 +78,6 @@
 'new'         Name
 '('           Punctuation
 'parent'      Name
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -106,7 +104,6 @@
 ' '           Text.Whitespace
 'method'      Name
 '('           Punctuation
-''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -137,7 +134,6 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'child'       Name
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -145,7 +141,6 @@
 'super'       Keyword
 '('           Punctuation
 'parent'      Name
-''            Punctuation
 ')'           Punctuation
 '\n        '  Text.Whitespace
 '_child'      Name.Variable.Instance
@@ -193,7 +188,6 @@
 '.'           Operator
 'new'         Name
 '('           Punctuation
-''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -215,7 +209,6 @@
 '"'           Literal.String
 '%('          Literal.String.Interpol
 'name'        Name
-''            Punctuation
 ')'           Literal.String.Interpol
 ' Smith'      Literal.String
 '"'           Literal.String
@@ -237,7 +230,6 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'fullName'    Name
-''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -313,7 +305,6 @@
 '1'           Literal.Number.Float
 '..'          Operator
 '5'           Literal.Number.Float
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -326,7 +317,6 @@
 '=='          Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Float
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -345,7 +335,6 @@
 '=='          Operator
 ' '           Text.Whitespace
 '4'           Literal.Number.Float
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -359,7 +348,6 @@
 'print'       Name
 '('           Punctuation
 'i'           Name
-''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -383,7 +371,6 @@
 '<='          Operator
 ' '           Text.Whitespace
 '1e+1'        Literal.Number.Float
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -396,7 +383,6 @@
 '=='          Operator
 ' '           Text.Whitespace
 '8'           Literal.Number.Float
-''            Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -406,7 +392,6 @@
 'print'       Name
 '('           Punctuation
 'j'           Name
-''            Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'j'           Name
@@ -707,7 +692,6 @@
 '+'           Operator
 ' '           Text.Whitespace
 'param'       Name
-''            Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -721,7 +705,6 @@
 '"'           Literal.String
 'function'    Literal.String
 '"'           Literal.String
-''            Punctuation
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -885,11 +868,12 @@
 ' '           Text.Whitespace
 'map'         Name
 '['           Punctuation
+'('           Punctuation
 '"'           Literal.String
 'b'           Literal.String
 '"'           Literal.String
+')'           Punctuation
 ']'           Punctuation
-''            Punctuation
 ')'           Literal.String.Interpol
 '"'           Literal.String
 '\n'          Text.Whitespace
@@ -904,7 +888,6 @@
 '1'           Literal.Number.Float
 '...'         Operator
 'h'           Name
-''            Punctuation
 ')'           Punctuation
 '.'           Operator
 'where'       Name

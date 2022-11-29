@@ -1,16 +1,16 @@
 """
     pygments.lexers.wren
     ~~~~~~~~~~~~~~~~~~~~
-    
+
     Lexer for Wren.
-    
+
     :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, words
+from pygments.lexer import include, RegexLexer, words
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
     Operator, Number, String, Error
 
@@ -35,15 +35,11 @@ class WrenLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[,\\\[\]{}]', Punctuation),
 
-            # Push a parenthesized state so that we know the corresponding ')'
-            # is for a parenthesized expression and not interpolation.
-            (r'\(', Punctuation, ('parenthesized', 'root')),
-
-            # In this state, we don't know whether a closing ')' is for a
-            # parenthesized expression or the end of an interpolation. So, do
-            # a non-consuming match and let the parent state (either
-            # 'parenthesized' or 'interpolation') decide.
-            (r'(?=\))', Punctuation, '#pop'),
+            # Really 'root', not '#push': in 'interpolation',
+            # parentheses inside the interpolation expression are
+            # Punctuation, not String.Interpol.
+            (r'\(', Punctuation, 'root'),
+            (r'\)', Punctuation, '#pop'),
 
             # Keywords.
             (words((
@@ -79,9 +75,6 @@ class WrenLexer(RegexLexer):
             # Strings.
             (r'""".*?"""', String),   # Raw string
             (r'"', String, 'string'), # Other string
-
-            # Errors.
-            (r'.+$', Error), 
         ],
         'comment': [
             (r'/\*', Comment.Multiline, '#push'),
@@ -95,15 +88,12 @@ class WrenLexer(RegexLexer):
             (r'\\u[a-fA-F0-9]{4}', String.Escape), # Unicode escape.
             (r'\\U[a-fA-F0-9]{8}', String.Escape), # Long Unicode escape.
 
-            (r'%\(', String.Interpol, ('interpolation', 'root')),
+            (r'%\(', String.Interpol, 'interpolation'),
             (r'[^\\"%]+', String), # All remaining characters.
         ],
-        'parenthesized': [
-            # We only get to this state when we're at a ')'.
-            (r'\)', Punctuation, '#pop'),
-        ],
         'interpolation': [
-            # We only get to this state when we're at a ')'.
+            # redefine closing paren to be String.Interpol
             (r'\)', String.Interpol, '#pop'),
+            include('root'),
         ],
     }
