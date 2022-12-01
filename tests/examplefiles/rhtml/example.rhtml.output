@@ -553,11 +553,11 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Auftritte: Wann treten wir Wo auf?"' Literal.String
@@ -643,7 +643,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_datum"' Literal.String
@@ -685,7 +685,7 @@
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<'           Punctuation
@@ -709,7 +709,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_zeit"' Literal.String
@@ -732,7 +732,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_stueck"' Literal.String
@@ -791,7 +791,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_besetzung"' Literal.String
@@ -859,11 +859,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_datum"' Literal.String
@@ -876,11 +876,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_zeit"' Literal.String
@@ -893,11 +893,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_stueck"' Literal.String
@@ -910,11 +910,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_besetzung"' Literal.String
@@ -995,7 +995,7 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"members"'   Literal.String
@@ -1052,7 +1052,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"page-links"' Literal.String
@@ -1214,7 +1214,7 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"members"'   Literal.String
@@ -1319,7 +1319,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"counter"'   Literal.String
@@ -1468,7 +1468,7 @@
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<%='         Comment.Preproc
@@ -1565,7 +1565,7 @@
 
 '<'           Punctuation
 'tr'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"member"'    Literal.String
@@ -1646,7 +1646,7 @@
 
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"liste"'     Literal.String
@@ -1718,7 +1718,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
@@ -1767,7 +1767,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
@@ -1807,7 +1807,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
@@ -1874,7 +1874,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
@@ -2153,7 +2153,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"flash"'     Literal.String
@@ -2162,7 +2162,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"error"'     Literal.String
@@ -2267,7 +2267,7 @@
 '\n\tUnser Orchester besteht zu einem sehr großen Teil aus Schülern und auch die\n\tMusikschule, der die meisten von uns entstammen, hat in den Schulferien\n\tgeschlossen.' Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\tDeshalb finden innerhalb der ' Text
@@ -2289,15 +2289,15 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Schulferien"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien"'    Literal.String
@@ -2309,11 +2309,11 @@
 '\n  \t'      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2326,11 +2326,11 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2343,11 +2343,11 @@
 '\n\t  '      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2360,11 +2360,11 @@
 '\n\t  '      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2386,7 +2386,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2399,7 +2399,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2412,7 +2412,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2425,7 +2425,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2447,7 +2447,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2460,7 +2460,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2473,7 +2473,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2486,7 +2486,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2508,7 +2508,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2521,7 +2521,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2534,7 +2534,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2547,7 +2547,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2569,7 +2569,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2582,7 +2582,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2595,7 +2595,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2608,7 +2608,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2630,7 +2630,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2643,7 +2643,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2656,7 +2656,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2669,7 +2669,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2691,7 +2691,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_zeitraum"' Literal.String
@@ -2704,7 +2704,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2717,7 +2717,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2730,7 +2730,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"ferien_jahr"' Literal.String
@@ -2844,11 +2844,11 @@
 
 '<'           Punctuation
 'html'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'xmlns'       Name.Attribute
 '='           Operator
 '"http://www.w3.org/1999/xhtml"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'xml:lang'    Name.Attribute
 '='           Operator
 '"de"'        Literal.String
@@ -2921,141 +2921,141 @@
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"AUTHOR"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Publisher"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Copyright"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich, 2006"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Keywords"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Jugendsinfonieorchester,Marzahn,Hellersdorf,Marzahn-Hellersdorf,Berlin,Orchester,Jobst Liebrecht,FEZ,Pollicino,Moritz Eggert,Popel,Konzert"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Description"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"JSO - JugendSinfonieOrchester der Musikschule Marzahn-Hellerdorf in Berlin"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Page-topic"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"JSO Marzahn-Hellersdorf - "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\n\t'      Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Audience"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Alle"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"content-language"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"DE"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"Page-Type"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"Homepage"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\t'        Text
 '<'           Punctuation
 'meta'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '"robots"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'content'     Name.Attribute
 '='           Operator
 '"all"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n\n\t'      Text
@@ -3128,11 +3128,11 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"width:100%; height:100%;"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"10"'        Literal.String
@@ -3144,7 +3144,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"height:120px; width:15%;text-align:center;vertical-align:middle;"' Literal.String
@@ -3177,7 +3177,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"title"'     Literal.String
@@ -3185,14 +3185,14 @@
 '\n\t\t\t'    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"musikschule"' Literal.String
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"http://www.musikschule-marzahn-hellersdorf.de"' Literal.String
@@ -3209,7 +3209,7 @@
 '\n\t\t\t'    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"orchester"' Literal.String
@@ -3262,7 +3262,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"width:15%;"' Literal.String
@@ -3284,7 +3284,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'li'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"menu2"'     Literal.String
@@ -3406,7 +3406,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"main"'      Literal.String
@@ -3428,7 +3428,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"flash"'     Literal.String
@@ -3451,7 +3451,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -3539,7 +3539,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"height:80px; width:15%;"' Literal.String
@@ -3552,7 +3552,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"height:80px;"' Literal.String
@@ -3560,7 +3560,7 @@
 '\n\t\t\t'    Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"position:relative; top:80px; right:0px; text-align:right; font-size: x-small; color: #003;"' Literal.String
@@ -3568,7 +3568,7 @@
 '\n\t\t\t\tpowered by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"http://rubyonrails.org"' Literal.String
@@ -3747,15 +3747,15 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Probenplan: Wann wird Was geprobt?"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"proben"'    Literal.String
@@ -3846,15 +3846,15 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Auftritte: Wann treten wir Wo auf?"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"auftritte"' Literal.String
@@ -4208,7 +4208,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<'           Punctuation
@@ -4248,11 +4248,11 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Probenplan: Wann wird Was geprobt?"' Literal.String
@@ -4305,7 +4305,7 @@
 
 '<'           Punctuation
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"font-size:14px; margin-top:-10px; padding-top:0px; padding-left:40px;"' Literal.String
@@ -4364,7 +4364,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_datum"' Literal.String
@@ -4406,7 +4406,7 @@
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '<'           Punctuation
@@ -4430,7 +4430,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_zeit"' Literal.String
@@ -4453,7 +4453,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_stueck"' Literal.String
@@ -4542,7 +4542,7 @@
 '\n\t'        Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_besetzung"' Literal.String
@@ -4590,11 +4590,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_datum"' Literal.String
@@ -4607,11 +4607,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_zeit"' Literal.String
@@ -4624,11 +4624,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_stueck"' Literal.String
@@ -4641,11 +4641,11 @@
 '\n\t'        Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"pplan_besetzung"' Literal.String
@@ -4675,11 +4675,11 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'summary'     Name.Attribute
 '='           Operator
 '"Probenräume: Wer probt Wo?"' Literal.String
@@ -4691,11 +4691,11 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_wer"' Literal.String
@@ -4708,11 +4708,11 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_raum"' Literal.String
@@ -4725,11 +4725,11 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'scope'       Name.Attribute
 '='           Operator
 '"col"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_adresse"' Literal.String
@@ -4751,7 +4751,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_wer"' Literal.String
@@ -4764,7 +4764,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_raum"' Literal.String
@@ -4772,7 +4772,7 @@
 'Schule am Pappelhof' Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '(Raum Nr.)'  Text
@@ -4783,7 +4783,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_adresse"' Literal.String
@@ -4805,7 +4805,7 @@
 '\n\n\t\t'    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_wer"' Literal.String
@@ -4818,7 +4818,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_raum"' Literal.String
@@ -4826,7 +4826,7 @@
 'Musikschule Marzahn' Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '(Raum Nr.)'  Text
@@ -4837,7 +4837,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_adresse"' Literal.String
@@ -4859,7 +4859,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_wer"' Literal.String
@@ -4872,7 +4872,7 @@
 '\n\n\t\t'    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_raum"' Literal.String
@@ -4880,7 +4880,7 @@
 'Schule am Pappelhof' Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '(Raum Nr.)'  Text
@@ -4891,7 +4891,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_adresse"' Literal.String
@@ -4913,7 +4913,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_wer"' Literal.String
@@ -4926,7 +4926,7 @@
 '\n\t\t'      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_raum"' Literal.String
@@ -4934,7 +4934,7 @@
 '(Ort)'       Text
 '<'           Punctuation
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '(Raum Nr.)'  Text
@@ -4945,7 +4945,7 @@
 '\n\n\t\t'    Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"praum_adresse"' Literal.String

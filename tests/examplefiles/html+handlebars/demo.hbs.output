@@ -3,7 +3,7 @@
 
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 "'intro'"     Literal.String
@@ -29,7 +29,7 @@
 '\n  '        Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 "'body'"      Literal.String
@@ -44,7 +44,7 @@
 '\n  '        Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 'action'      Name.Variable
 ' '           Text
@@ -64,7 +64,7 @@
 '\n  '        Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 'action'      Name.Variable
 ' '           Text

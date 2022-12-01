@@ -1,178 +1,178 @@
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'PUBLIC'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"-//W3C//DTD XHTML 1.0 Transitional//EN"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"' Literal.String.Double
 '>'           Keyword
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'PUBLIC'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"-//W3C//DTD XHTML 1.0 Transitional//EN"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '['           Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<!--'        Comment
 ' an internal subset can be embedded here ' Comment
 '-->'         Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Keyword
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
-' '           Text
+' '           Text.Whitespace
 'SYSTEM'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"hello.dtd"' Literal.String.Double
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
-' '           Text
+' '           Text.Whitespace
 '['           Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '#PCDATA'     Keyword.Constant
 ')'           Operator
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!--'        Comment
 ' examples from XML spec ' Comment
 '-->'         Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'br'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'EMPTY'       Keyword.Constant
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '#PCDATA'     Keyword.Constant
 '|'           Operator
 'emph'        Name.Tag
 ')'           Operator
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 '%name.para;' Name.Tag
-' '           Text
+' '           Text.Whitespace
 '%content.para;' Name.Entity
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'container'   Name.Tag
-' '           Text
+' '           Text.Whitespace
 'ANY'         Keyword.Constant
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'spec'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'front'       Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'body'        Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'back'        Name.Tag
 '?'           Operator
 ')'           Operator
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'div1'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'head'        Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'list'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'note'        Name.Tag
 ')'           Operator
 '*'           Operator
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'div2'        Name.Tag
 '*'           Operator
 ')'           Operator
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'dictionary-body' Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '%div.mix;'   Name.Entity
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%dict.mix;'  Name.Entity
 ')'           Operator
 '*'           Operator
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '#PCDATA'     Keyword.Constant
 '|'           Operator
@@ -188,70 +188,70 @@
 ')'           Operator
 '*'           Operator
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '#PCDATA'     Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%font;'      Name.Entity
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%phrase;'    Name.Entity
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%special;'   Name.Entity
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%form;'      Name.Entity
 ')'           Operator
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 '#PCDATA'     Keyword.Constant
 ')'           Operator
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'termdef'     Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 'id'          Name.Attribute
-'      '      Text
+'      '      Text.Whitespace
 'ID'          Keyword.Constant
-'      '      Text
+'      '      Text.Whitespace
 '#REQUIRED'   Keyword.Constant
-'\n          ' Text
+'\n          ' Text.Whitespace
 'name'        Name.Attribute
-'    '        Text
+'    '        Text.Whitespace
 'CDATA'       Keyword.Constant
-'   '         Text
+'   '         Text.Whitespace
 '#IMPLIED'    Keyword.Constant
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 'type'        Name.Attribute
-'    '        Text
+'    '        Text.Whitespace
 '('           Operator
 'bullets'     Name.Attribute
 '|'           Operator
@@ -259,294 +259,294 @@
 '|'           Operator
 'glossary'    Name.Attribute
 ')'           Operator
-'  '          Text
+'  '          Text.Whitespace
 '"ordered"'   Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'form'        Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 'method'      Name.Attribute
-'  '          Text
+'  '          Text.Whitespace
 'CDATA'       Keyword.Constant
-'   '         Text
+'   '         Text.Whitespace
 '#FIXED'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"POST"'      Literal.String.Double
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"&#xD;"'     Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"&#xA;"'     Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'da'          Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"&#xD;&#xA;"' Literal.String.Double
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 'ISOLat2'     Name.Entity
-'\n         ' Text
+'\n         ' Text.Whitespace
 'SYSTEM'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"http://www.xml.com/iso/isolat2-xml.entities"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Pub-Status'  Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"This is a pre-release of the\n specification."' Literal.String.Double
 '>'           Keyword
-'\n \n '      Text
+'\n \n '      Text.Whitespace
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'open-hatch'  Name.Entity
-'\n         ' Text
+'\n         ' Text.Whitespace
 'SYSTEM'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"http://www.textuality.com/boilerplate/OpenHatch.xml"' Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'open-hatch'  Name.Entity
-'\n         ' Text
+'\n         ' Text.Whitespace
 'PUBLIC'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"-//Textuality//TEXT Standard open-hatch boilerplate//EN"' Literal.String.Double
-'\n         ' Text
+'\n         ' Text.Whitespace
 '"http://www.textuality.com/boilerplate/OpenHatch.xml"' Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'hatch-pic'   Name.Entity
-'\n         ' Text
+'\n         ' Text.Whitespace
 'SYSTEM'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"../grafix/OpenHatch.gif"' Literal.String.Double
-'\n         ' Text
+'\n         ' Text.Whitespace
 'NDATA'       Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'gif'         Name.Entity
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n         \n' Text
+'\n         \n' Text.Whitespace
 
 '<!NOTATION'  Keyword
-' '           Text
+' '           Text.Whitespace
 'gif'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'PUBLIC'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '"gif viewer"' Literal.String.Double
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 'YN'          Name.Entity
-' '           Text
+' '           Text.Whitespace
 '\'"Yes"\''   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'WhatHeSaid'  Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"He said %YN;"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'EndAttr'     Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"27\'"'      Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 'pub'         Name.Entity
-'    '        Text
+'    '        Text.Whitespace
 '"&#xc9;ditions Gallimard"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-'   '         Text
+'   '         Text.Whitespace
 'rights'      Name.Entity
-' '           Text
+' '           Text.Whitespace
 '"All rights reserved"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-'   '         Text
+'   '         Text.Whitespace
 'book'        Name.Entity
-'   '         Text
+'   '         Text.Whitespace
 '"La Peste: Albert Camus,\n&#xA9; 1947 %pub;. &rights;"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'lt'          Name.Entity
-'     '       Text
+'     '       Text.Whitespace
 '"&#38;#60;"' Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'gt'          Name.Entity
-'     '       Text
+'     '       Text.Whitespace
 '"&#62;"'     Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'amp'         Name.Entity
-'    '        Text
+'    '        Text.Whitespace
 '"&#38;#38;"' Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'apos'        Name.Entity
-'   '         Text
+'   '         Text.Whitespace
 '"&#39;"'     Literal.String.Double
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'quot'        Name.Entity
-'   '         Text
+'   '         Text.Whitespace
 '"&#34;"'     Literal.String.Double
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 'draft'       Name.Entity
-' '           Text
+' '           Text.Whitespace
 "'INCLUDE'"   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
-' '           Text
+' '           Text.Whitespace
 'final'       Name.Entity
-' '           Text
+' '           Text.Whitespace
 "'IGNORE'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<!['         Keyword
 '%draft;'     Name.Entity
 '['           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'book'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'comments'    Name.Tag
 '*'           Operator
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'body'        Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'supplements' Name.Tag
 '?'           Operator
 ')'           Operator
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Keyword
 ']'           Keyword
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!['         Keyword
 '%final;'     Name.Entity
 '['           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'book'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'title'       Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'body'        Name.Tag
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'supplements' Name.Tag
 '?'           Operator
 ')'           Operator
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Keyword
 ']'           Keyword
 '>'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ']'           Keyword
 '>'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace

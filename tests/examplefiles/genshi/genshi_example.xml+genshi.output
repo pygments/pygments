@@ -1,5 +1,5 @@
 '<!DOCTYPE html\n    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<html'       Name.Tag
 ' '           Text
@@ -21,7 +21,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<xi:include' Name.Tag
 ' '           Text
 'href='       Name.Attribute
@@ -31,28 +31,49 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<head'       Name.Tag
 '>'           Name.Tag
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<title'      Name.Tag
 '>'           Name.Tag
 '$title'      Name.Variable
-'</title>'    Name.Tag
-'\n    '      Text
-'<script'     Name.Tag
-' '           Text
-'type='       Name.Attribute
+'<'           Punctuation
+'/'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text.Whitespace
+'type'        Name.Attribute
+'='           Operator
 '"text/javascript"' Literal.String
-'>'           Name.Tag
-'\n      $(document).ready(function() {\n        $("#group").change(function() {\n          $("#groupdesc").enable(this.selectedIndex != 0)\n        }).change();\n      });\n    ' Text
-'</script>'   Name.Tag
-'\n  '        Text
-'</head>'     Name.Tag
-'\n\n  '      Text
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'$(document).ready(function() {' Text
+'\n        '  Text.Whitespace
+'$("#group").change(function() {' Text
+'\n          ' Text.Whitespace
+'$("#groupdesc").enable(this.selectedIndex != 0)' Text
+'\n        '  Text.Whitespace
+'}).change();' Text
+'\n      '    Text.Whitespace
+'});'         Text
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n  '        Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n\n  '      Text.Whitespace
 '<body'       Name.Tag
 '>'           Name.Tag
-'\n    '      Text
+'\n    '      Text.Whitespace
 '<div'        Name.Tag
 ' '           Text
 'id='         Name.Attribute
@@ -67,7 +88,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n      '    Text
+'\n      '    Text.Whitespace
 '<ul'         Name.Tag
 ' '           Text
 'py:if='      Name.Attribute
@@ -75,7 +96,7 @@
 'report_href' Name
 '"'           Literal.String
 '>'           Name.Tag
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<li'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -93,9 +114,15 @@
 ''            Literal.String
 '>'           Name.Tag
 'Available Reports' Text
-'</a>'        Name.Tag
-'</li>'       Name.Tag
-'\n        '  Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
 '<li'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -105,12 +132,21 @@
 ''            Literal.String
 '>'           Name.Tag
 'Custom Query' Text
-'</li>'       Name.Tag
-'\n      '    Text
-'</ul>'       Name.Tag
-'\n    '      Text
-'</div>'      Name.Tag
-'\n\n    '    Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
 '<py:def'     Name.Tag
 ' '           Text
 'function='   Name.Attribute
@@ -121,7 +157,7 @@
 ')'           Punctuation
 '"'           Literal.String
 '>'           Name.Tag
-'\n      '    Text
+'\n      '    Text.Whitespace
 '<span'       Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -160,10 +196,16 @@
 "'"           Literal.String.Single
 '}'           Comment.Preproc
 ')'           Text
-'</span>'     Name.Tag
-'\n    '      Text
-'</py:def>'   Name.Tag
-'\n\n    '    Text
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:def'      Name.Tag
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
 '<div'        Name.Tag
 ' '           Text
 'id='         Name.Attribute
@@ -178,11 +220,11 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n      '    Text
+'\n      '    Text.Whitespace
 '<h1'         Name.Tag
 '>'           Name.Tag
 '$title'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '${'          Comment.Preproc
 'num_matches' Name
 '('           Punctuation
@@ -192,8 +234,11 @@
 ')'           Punctuation
 ')'           Punctuation
 '}'           Comment.Preproc
-'</h1>'       Name.Tag
-'\n\n      '  Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n\n      '  Text.Whitespace
 '<form'       Name.Tag
 ' '           Text
 'id='         Name.Attribute
@@ -218,7 +263,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<fieldset'   Name.Tag
 ' '           Text
 'id='         Name.Attribute
@@ -227,12 +272,15 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<legend'     Name.Tag
 '>'           Name.Tag
 'Filters'     Text
-'</legend>'   Name.Tag
-'\n          ' Text
+'<'           Punctuation
+'/'           Punctuation
+'legend'      Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
 '<table'      Name.Tag
 ' '           Text
 'summary='    Name.Attribute
@@ -241,10 +289,10 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n            ' Text
+'\n            ' Text.Whitespace
 '<tbody'      Name.Tag
 '>'           Name.Tag
-'\n              ' Text
+'\n              ' Text.Whitespace
 '<tr'         Name.Tag
 ' '           Text
 'style='      Name.Attribute
@@ -261,11 +309,20 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'</td>'       Name.Tag
-'</tr>'       Name.Tag
-'\n            ' Text
-'</tbody>'    Name.Tag
-'\n            ' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'tbody'       Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
 '<py:for'     Name.Tag
 ' '           Text
 'each='       Name.Attribute
@@ -284,7 +341,7 @@
 ')'           Punctuation
 '"'           Literal.String
 '>'           Name.Tag
-'\n              ' Text
+'\n              ' Text.Whitespace
 '<py:for'     Name.Tag
 ' '           Text
 'each='       Name.Attribute
@@ -303,7 +360,7 @@
 ')'           Punctuation
 '"'           Literal.String
 '>'           Name.Tag
-'\n                ' Text
+'\n                ' Text.Whitespace
 '<tbody'      Name.Tag
 ' '           Text
 'py:if='      Name.Attribute
@@ -339,7 +396,7 @@
 ')'           Punctuation
 '"'           Literal.String
 '>'           Name.Tag
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '<py:for'     Name.Tag
 ' '           Text
 'each='       Name.Attribute
@@ -362,7 +419,7 @@
 ')'           Punctuation
 '"'           Literal.String
 '>'           Name.Tag
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '<tr'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -386,7 +443,7 @@
 '0'           Literal.Number.Integer
 '"'           Literal.String
 '>'           Name.Tag
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '<py:choose'  Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -394,7 +451,7 @@
 'constraint_idx' Name
 '"'           Literal.String
 '>'           Name.Tag
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '<py:when'    Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -402,7 +459,7 @@
 '0'           Literal.Number.Integer
 '"'           Literal.String
 '>'           Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<th'         Name.Tag
 ' '           Text
 'scope='      Name.Attribute
@@ -414,9 +471,15 @@
 '<label'      Name.Tag
 '>'           Name.Tag
 '$field.label' Name.Variable
-'</label>'    Name.Tag
-'</th>'       Name.Tag
-'\n                          ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n                          ' Text.Whitespace
 '<td'         Name.Tag
 ' '           Text
 'py:if='      Name.Attribute
@@ -447,7 +510,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '<select'     Name.Tag
 ' '           Text
 'name='       Name.Attribute
@@ -459,7 +522,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                              ' Text
+'\n                              ' Text.Whitespace
 '<option'     Name.Tag
 ' '           Text
 'py:for='     Name.Attribute
@@ -509,19 +572,31 @@
 ''            Literal.String
 '>'           Name.Tag
 '$mode.name'  Name.Variable
-'\n                              ' Text
-'</option>'   Name.Tag
-'\n                            ' Text
-'</select>'   Name.Tag
-'\n                          ' Text
-'</td>'       Name.Tag
-'\n                        ' Text
-'</py:when>'  Name.Tag
-'\n                        ' Text
+'\n                              ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n                            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'select'      Name.Tag
+'>'           Punctuation
+'\n                          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:when'     Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
 '<py:otherwise' Name.Tag
 '>'           Name.Tag
 '<!--! not the first line of a multiline constraint -->' Comment.Multiline
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<th'         Name.Tag
 ' '           Text
 'colspan='    Name.Attribute
@@ -533,13 +608,25 @@
 '<label'      Name.Tag
 '>'           Name.Tag
 'or'          Text
-'</label>'    Name.Tag
-'</th>'       Name.Tag
-'\n                        ' Text
-'</py:otherwise>' Name.Tag
-'\n                      ' Text
-'</py:choose>' Name.Tag
-'\n\n                      ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:otherwise' Name.Tag
+'>'           Punctuation
+'\n                      ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:choose'   Name.Tag
+'>'           Punctuation
+'\n\n                      ' Text.Whitespace
 '<td'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -586,7 +673,7 @@
 'type'        Name
 '"'           Literal.String
 '>'           Name.Tag
-'\n\n                        ' Text
+'\n\n                        ' Text.Whitespace
 '<py:when'    Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -596,7 +683,7 @@
 "'"           Literal.String.Single
 '"'           Literal.String
 '>'           Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<select'     Name.Tag
 ' '           Text
 'name='       Name.Attribute
@@ -607,11 +694,14 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '<option'     Name.Tag
 '>'           Name.Tag
-'</option>'   Name.Tag
-'\n                            ' Text
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n                            ' Text.Whitespace
 '<option'     Name.Tag
 ' '           Text
 'py:for='     Name.Attribute
@@ -648,13 +738,22 @@
 ''            Literal.String
 '>'           Name.Tag
 '$option'     Name.Variable
-'\n                            ' Text
-'</option>'   Name.Tag
-'\n                          ' Text
-'</select>'   Name.Tag
-'\n                        ' Text
-'</py:when>'  Name.Tag
-'\n\n\n                        ' Text
+'\n                            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n                          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'select'      Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:when'     Name.Tag
+'>'           Punctuation
+'\n\n\n                        ' Text.Whitespace
 '<py:when'    Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -664,7 +763,7 @@
 "'"           Literal.String.Single
 '"'           Literal.String
 '>'           Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<py:for'     Name.Tag
 ' '           Text
 'each='       Name.Attribute
@@ -678,7 +777,7 @@
 'options'     Name
 '"'           Literal.String
 '>'           Name.Tag
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -769,7 +868,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -791,12 +890,21 @@
 'none'        Literal.String.Single
 "'"           Literal.String.Single
 '}'           Comment.Preproc
-'</label>'    Name.Tag
-'\n                          ' Text
-'</py:for>'   Name.Tag
-'\n                        ' Text
-'</py:when>'  Name.Tag
-'\n\n                        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n                          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:when'     Name.Tag
+'>'           Punctuation
+'\n\n                        ' Text.Whitespace
 '<py:when'    Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -806,7 +914,7 @@
 "'"           Literal.String.Single
 '"'           Literal.String
 '>'           Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -857,7 +965,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -870,8 +978,11 @@
 ''            Literal.String
 '>'           Name.Tag
 'yes'         Text
-'</label>'    Name.Tag
-'\n                          ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n                          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -922,7 +1033,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -935,10 +1046,16 @@
 ''            Literal.String
 '>'           Name.Tag
 'no'          Text
-'</label>'    Name.Tag
-'\n                        ' Text
-'</py:when>'  Name.Tag
-'\n\n                        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:when'     Name.Tag
+'>'           Punctuation
+'\n\n                        ' Text.Whitespace
 '<py:when'    Name.Tag
 ' '           Text
 'test='       Name.Attribute
@@ -948,7 +1065,7 @@
 "'"           Literal.String.Single
 '"'           Literal.String
 '>'           Name.Tag
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -978,11 +1095,17 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                        ' Text
-'</py:when>'  Name.Tag
-'\n\n                      ' Text
-'</td>'       Name.Tag
-'\n                      ' Text
+'\n                        ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:when'     Name.Tag
+'>'           Punctuation
+'\n\n                      ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n                      ' Text.Whitespace
 '<td'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1018,7 +1141,7 @@
 '1'           Literal.Number.Integer
 '"'           Literal.String
 '>'           Name.Tag
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1073,22 +1196,40 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                      ' Text
-'</td>'       Name.Tag
-'\n                    ' Text
-'</tr>'       Name.Tag
-'\n                  ' Text
-'</py:for>'   Name.Tag
-'\n                ' Text
-'</tbody>'    Name.Tag
-'\n              ' Text
-'</py:for>'   Name.Tag
-'\n            ' Text
-'</py:for>'   Name.Tag
-'\n\n            ' Text
+'\n                      ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n                    ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n                  ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n                ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'tbody'       Name.Tag
+'>'           Punctuation
+'\n              ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n\n            ' Text.Whitespace
 '<tbody'      Name.Tag
 '>'           Name.Tag
-'\n              ' Text
+'\n              ' Text.Whitespace
 '<tr'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1097,7 +1238,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                ' Text
+'\n                ' Text.Whitespace
 '<td'         Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1118,7 +1259,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -1128,9 +1269,12 @@
 ''            Literal.String
 '>'           Name.Tag
 'Add filter'  Text
-'</label>'    Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
 '&nbsp;'      Name.Entity
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '<select'     Name.Tag
 ' '           Text
 'name='       Name.Attribute
@@ -1145,11 +1289,14 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '<option'     Name.Tag
 '>'           Name.Tag
-'</option>'   Name.Tag
-'\n                    ' Text
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n                    ' Text.Whitespace
 '<option'     Name.Tag
 ' '           Text
 'py:for='     Name.Attribute
@@ -1217,17 +1364,23 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 '${'          Comment.Preproc
 'field'       Name
 '.'           Operator
 'label'       Name
 '}'           Comment.Preproc
-'\n                    ' Text
-'</option>'   Name.Tag
-'\n                  ' Text
-'</select>'   Name.Tag
-'\n                  ' Text
+'\n                    ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n                  ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'select'      Name.Tag
+'>'           Punctuation
+'\n                  ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1249,17 +1402,32 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n                ' Text
-'</td>'       Name.Tag
-'\n              ' Text
-'</tr>'       Name.Tag
-'\n            ' Text
-'</tbody>'    Name.Tag
-'\n          ' Text
-'</table>'    Name.Tag
-'\n        '  Text
-'</fieldset>' Name.Tag
-'\n\n        ' Text
+'\n                ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n              ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'tbody'       Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'fieldset'    Name.Tag
+'>'           Punctuation
+'\n\n        ' Text.Whitespace
 '<p'          Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1268,7 +1436,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -1278,8 +1446,11 @@
 ''            Literal.String
 '>'           Name.Tag
 'Group results by' Text
-'</label>'    Name.Tag
-'\n          ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
 '<select'     Name.Tag
 ' '           Text
 'name='       Name.Attribute
@@ -1294,11 +1465,14 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n            ' Text
+'\n            ' Text.Whitespace
 '<option'     Name.Tag
 '>'           Name.Tag
-'</option>'   Name.Tag
-'\n            ' Text
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
 '<option'     Name.Tag
 ' '           Text
 'py:for='     Name.Attribute
@@ -1378,10 +1552,16 @@
 '.'           Operator
 'label'       Name
 '}'           Comment.Preproc
-'</option>'   Name.Tag
-'\n          ' Text
-'</select>'   Name.Tag
-'\n          ' Text
+'<'           Punctuation
+'/'           Punctuation
+'option'      Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'select'      Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1417,7 +1597,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -1427,10 +1607,16 @@
 ''            Literal.String
 '>'           Name.Tag
 'descending'  Text
-'</label>'    Name.Tag
-'\n        '  Text
-'</p>'        Name.Tag
-'\n\n        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n        ' Text.Whitespace
 '<p'          Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1439,7 +1625,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1475,7 +1661,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<label'      Name.Tag
 ' '           Text
 'for='        Name.Attribute
@@ -1485,10 +1671,16 @@
 ''            Literal.String
 '>'           Name.Tag
 'Show full description under each result' Text
-'</label>'    Name.Tag
-'\n        '  Text
-'</p>'        Name.Tag
-'\n\n        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'label'       Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n        ' Text.Whitespace
 '<div'        Name.Tag
 ' '           Text
 'class='      Name.Attribute
@@ -1497,7 +1689,7 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1519,7 +1711,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'py:if='      Name.Attribute
@@ -1546,7 +1738,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n          ' Text
+'\n          ' Text.Whitespace
 '<input'      Name.Tag
 ' '           Text
 'type='       Name.Attribute
@@ -1568,95 +1760,169 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n        '  Text
-'</div>'      Name.Tag
-'\n        '  Text
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
 '<hr'         Name.Tag
 ' '           Text
 '/>'          Name.Tag
-'\n      '    Text
-'</form>'     Name.Tag
-'\n\n      '  Text
-'<script'     Name.Tag
-' '           Text
-'type='       Name.Attribute
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n\n      '  Text.Whitespace
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text.Whitespace
+'type'        Name.Attribute
+'='           Operator
 '"text/javascript"' Literal.String
-'>'           Name.Tag
-'\n        var properties={\n        ' Text
-'<py:for'     Name.Tag
-' '           Text
-'each='       Name.Attribute
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'var properties={' Text
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'py:for'      Name.Tag
+' '           Text.Whitespace
+'each'        Name.Attribute
+'='           Operator
 '"idx, (field_name, field) in enumerate(fields.items())"' Literal.String
-'>'           Name.Tag
-'\n          $field_name: { type: "$field.type", label: "$field.label"\n          ' Text
-'<py:if'      Name.Tag
-' '           Text
-'test='       Name.Attribute
+'>'           Punctuation
+'\n          ' Text.Whitespace
+'$field_name: { type: "$field.type", label: "$field.label"' Text
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'py:if'       Name.Tag
+' '           Text.Whitespace
+'test'        Name.Attribute
+'='           Operator
 '"field.options"' Literal.String
-'>'           Name.Tag
-', options: [\n            ' Text
-'<py:for'     Name.Tag
-' '           Text
-'each='       Name.Attribute
+'>'           Punctuation
+', options: [' Text
+'\n            ' Text.Whitespace
+'<'           Punctuation
+'py:for'      Name.Tag
+' '           Text.Whitespace
+'each'        Name.Attribute
+'='           Operator
 '"idx, option in enumerate(field.options)"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 '"$option"'   Text
-'<py:if'      Name.Tag
-'\n                ' Text
-'test='       Name.Attribute
+'<'           Punctuation
+'py:if'       Name.Tag
+'\n                ' Text.Whitespace
+'test'        Name.Attribute
+'='           Operator
 '"idx &lt; len(field.options)-1"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 ','           Text
-'</py:if>'    Name.Tag
-'\n            ' Text
-'</py:for>'   Name.Tag
-']\n          ' Text
-'</py:if>'    Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'py:if'       Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+']'           Text
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:if'       Name.Tag
+'>'           Punctuation
 '}'           Text
-'<py:if'      Name.Tag
-' '           Text
-'test='       Name.Attribute
+'<'           Punctuation
+'py:if'       Name.Tag
+' '           Text.Whitespace
+'test'        Name.Attribute
+'='           Operator
 '"idx &lt; len(fields)-1"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 ','           Text
-'</py:if>'    Name.Tag
-'\n        '  Text
-'</py:for>'   Name.Tag
-'\n        };\n        var modes = {\n        ' Text
-'<py:for'     Name.Tag
-' '           Text
-'each='       Name.Attribute
+'<'           Punctuation
+'/'           Punctuation
+'py:if'       Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'};'          Text
+'\n        '  Text.Whitespace
+'var modes = {' Text
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'py:for'      Name.Tag
+' '           Text.Whitespace
+'each'        Name.Attribute
+'='           Operator
 '"idx, (type_name, type_modes) in enumerate(modes.items())"' Literal.String
-'>'           Name.Tag
-'\n          $type_name: [\n          ' Text
-'<py:for'     Name.Tag
-' '           Text
-'each='       Name.Attribute
+'>'           Punctuation
+'\n          ' Text.Whitespace
+'$type_name: [' Text
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'py:for'      Name.Tag
+' '           Text.Whitespace
+'each'        Name.Attribute
+'='           Operator
 '"idx, mode in enumerate(type_modes)"' Literal.String
-'>'           Name.Tag
-'\n            {text: "$mode.name", value: "$mode.value" }' Text
-'<py:if'      Name.Tag
-'\n              ' Text
-'test='       Name.Attribute
+'>'           Punctuation
+'\n            ' Text.Whitespace
+'{text: "$mode.name", value: "$mode.value" }' Text
+'<'           Punctuation
+'py:if'       Name.Tag
+'\n              ' Text.Whitespace
+'test'        Name.Attribute
+'='           Operator
 '"idx &lt; len(type_modes)-1"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 ','           Text
-'</py:if>'    Name.Tag
-'\n          ' Text
-'</py:for>'   Name.Tag
-'\n            ]' Text
-'<py:if'      Name.Tag
-' '           Text
-'test='       Name.Attribute
+'<'           Punctuation
+'/'           Punctuation
+'py:if'       Name.Tag
+'>'           Punctuation
+'\n          ' Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n            ' Text.Whitespace
+']'           Text
+'<'           Punctuation
+'py:if'       Name.Tag
+' '           Text.Whitespace
+'test'        Name.Attribute
+'='           Operator
 '"idx &lt; len(modes)-1"' Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 ','           Text
-'</py:if>'    Name.Tag
-'\n        '  Text
-'</py:for>'   Name.Tag
-'\n        };\n        initializeFilters();\n      ' Text
-'</script>'   Name.Tag
-'\n\n      '  Text
+'<'           Punctuation
+'/'           Punctuation
+'py:if'       Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'py:for'      Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'};'          Text
+'\n        '  Text.Whitespace
+'initializeFilters();' Text
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n\n      '  Text.Whitespace
 '<xi:include' Name.Tag
 ' '           Text
 'href='       Name.Attribute
@@ -1666,7 +1932,7 @@
 ''            Literal.String
 ' '           Text
 '/>'          Name.Tag
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 '<div'        Name.Tag
 ' '           Text
 'id='         Name.Attribute
@@ -1675,11 +1941,14 @@
 '"'           Literal.String
 ''            Literal.String
 '>'           Name.Tag
-'\n        '  Text
+'\n        '  Text.Whitespace
 '<strong'     Name.Tag
 '>'           Name.Tag
 'Note:'       Text
-'</strong>'   Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
 ' See '       Text
 '<a'          Name.Tag
 ' '           Text
@@ -1699,14 +1968,31 @@
 ''            Literal.String
 '>'           Name.Tag
 'TracQuery'   Text
-'</a>'        Name.Tag
-'\n        for help on using queries.\n      ' Text
-'</div>'      Name.Tag
-'\n\n    '    Text
-'</div>'      Name.Tag
-'\n  '        Text
-'</body>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n        '  Text.Whitespace
+'for help on using queries.' Text
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n  '        Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'</html>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

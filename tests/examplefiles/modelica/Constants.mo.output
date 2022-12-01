@@ -543,10 +543,10 @@
 '.\n    Journal of Physical and Chemical Reference Data, Vol. 28, No. 6, 1999 and\n    Reviews of Modern Physics, Vol. 72, No. 2, 2000. See also ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\"http://physics.nist.gov/cuu/Constants/\\"' Literal.String
 '>'           Punctuation
@@ -604,7 +604,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
@@ -640,7 +640,7 @@
 '\n    email: ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"mailto:Martin.Otter@dlr.de\\"' Literal.String
@@ -714,7 +714,7 @@
 
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"Modelica://Modelica.UsersGuide.ModelicaLicense\\"' Literal.String
@@ -776,7 +776,7 @@
 '\n       by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"http://www.robotic.dlr.de/Christian.Schweiger/\\"' Literal.String
@@ -811,7 +811,7 @@
 '\n       by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
@@ -846,7 +846,7 @@
 '\n       by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
@@ -881,7 +881,7 @@
 '\n       by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String

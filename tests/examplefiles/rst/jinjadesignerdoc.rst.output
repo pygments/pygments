@@ -63,15 +63,15 @@
 '    '        Text
 '<'           Punctuation
 'html'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'xmlns'       Name.Attribute
 '='           Operator
 '"http://www.w3.org/1999/xhtml"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
 '"en"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'xml:lang'    Name.Attribute
 '='           Operator
 '"en"'        Literal.String
@@ -113,7 +113,7 @@
 '    '        Text
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"navigation"' Literal.String
@@ -142,7 +142,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -1005,7 +1005,7 @@
 '    '        Text
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"sitemap"'   Literal.String
@@ -1035,7 +1035,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -1174,7 +1174,7 @@
 '    '        Text
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"messages"'  Literal.String
@@ -1199,7 +1199,7 @@
 '  '          Text
 '<'           Punctuation
 'li'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -1268,7 +1268,7 @@
 '    '        Text
 '<'           Punctuation
 'li'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color: '    Literal.String
@@ -1430,7 +1430,7 @@
 '    '        Text
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color: red"' Literal.String
@@ -1458,7 +1458,7 @@
 '    '        Text
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color: black"' Literal.String
@@ -2038,7 +2038,7 @@
 '  '          Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"test"'      Literal.String
@@ -2152,7 +2152,7 @@
 '  '          Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"dialog"'    Literal.String
@@ -2181,7 +2181,7 @@
 '    '        Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"test"'      Literal.String
@@ -2300,7 +2300,7 @@
 '    '        Text
 '<'           Punctuation
 'html'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'xmlns'       Name.Attribute
 '='           Operator
 '"http://www.w3.org/1999/xhtml"' Literal.String
@@ -2317,15 +2317,15 @@
 '  '          Text
 '<'           Punctuation
 'link'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'rel'         Name.Attribute
 '='           Operator
 '"stylesheet"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"style.css"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n'          Text
@@ -2387,7 +2387,7 @@
 '  '          Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"content"'   Literal.String
@@ -2422,7 +2422,7 @@
 '  '          Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"footer"'    Literal.String
@@ -2446,7 +2446,7 @@
 ' Copyright 2006 by ' Text
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"http://mydomain.tld"' Literal.String
@@ -2561,7 +2561,7 @@
 '  '          Text
 '<'           Punctuation
 'style'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/css"'  Literal.String
@@ -2635,7 +2635,7 @@
 '    '        Text
 '<'           Punctuation
 'p'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"important"' Literal.String

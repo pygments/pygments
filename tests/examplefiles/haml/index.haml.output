@@ -1,0 +1,60 @@
+''            Text.Whitespace
+'!!! XML'     Name.Namespace
+'\n'          Text.Whitespace
+
+''            Text.Whitespace
+'!!!'         Name.Namespace
+'\n'          Text.Whitespace
+
+''            Text.Whitespace
+'%html'       Name.Tag
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'%head'       Name.Tag
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%title'      Name.Tag
+' Welcome to pygments' Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'%body'       Name.Tag
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%h1'         Name.Tag
+' Welcome!'   Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%p'          Name.Tag
+' This is a haml test page for pygments' Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/ Putting a html comment here\n' Comment
+
+'    '        Text.Whitespace
+'-# Putting a haml comment here, which will not be rendered\n' Comment.Preproc
+
+'      '      Text.Whitespace
+'nor this,'   Comment.Preproc
+'\n'          Text.Whitespace
+
+'          '  Text.Whitespace
+'nor this'    Comment.Preproc
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/'           Comment
+'[if IE]'     Comment.Special
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'%p'          Name.Tag
+' You see this line only when your browser is old' Text
+'\n'          Text.Whitespace
+
+''            Text.Whitespace

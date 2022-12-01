@@ -21,19 +21,23 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '%>'          Name.Tag
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'<html'       Name.Tag
-'>'           Name.Tag
-'\n\n  '      Text
-'<script'     Name.Tag
-' '           Text
-'language='   Name.Attribute
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n\n  '      Text.Whitespace
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text.Whitespace
+'language'    Name.Attribute
+'='           Operator
 '"VB"'        Literal.String
-' '           Text
-'runat='      Name.Attribute
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'>'           Name.Tag
+'>'           Punctuation
 '\n\n      '  Text.Whitespace
 'Sub'         Keyword
 ' '           Text.Whitespace
@@ -77,61 +81,92 @@
 ' '           Text.Whitespace
 'Sub'         Keyword
 '\n\n  '      Text.Whitespace
-'</script>'   Name.Tag
-'\n\n'        Text
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n\n'        Text.Whitespace
 
-'<body'       Name.Tag
-' '           Text
-'style='      Name.Attribute
+'<'           Punctuation
+'body'        Name.Tag
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
 '"font: 10pt verdana"' Literal.String
-'>'           Name.Tag
-'\n\n  '      Text
-'<h3'         Name.Tag
-'>'           Name.Tag
+'>'           Punctuation
+'\n\n  '      Text.Whitespace
+'<'           Punctuation
+'h3'          Name.Tag
+'>'           Punctuation
 'A Simple User Control w/ Properties' Text
-'</h3>'       Name.Tag
-'\n\n  '      Text
-'<form'       Name.Tag
-' '           Text
-'runat='      Name.Attribute
+'<'           Punctuation
+'/'           Punctuation
+'h3'          Name.Tag
+'>'           Punctuation
+'\n\n  '      Text.Whitespace
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'>'           Name.Tag
-'\n\n    '    Text
-'<Acme:Message' Name.Tag
-' '           Text
-'id='         Name.Attribute
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
+'<'           Punctuation
+'Acme:Message' Name.Tag
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
 '"MyMessage"' Literal.String
-' '           Text
-'MessageText=' Name.Attribute
+' '           Text.Whitespace
+'MessageText' Name.Attribute
+'='           Operator
 '"This is a custom message!"' Literal.String
-' '           Text
-'Color='      Name.Attribute
+' '           Text.Whitespace
+'Color'       Name.Attribute
+'='           Operator
 '"blue"'      Literal.String
-' '           Text
-'runat='      Name.Attribute
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 '"server"'    Literal.String
-'/>'          Name.Tag
-'\n\n    '    Text
-'<p'          Name.Tag
-'>'           Name.Tag
-'\n\n    '    Text
-'<asp:button' Name.Tag
-' '           Text
-'text='       Name.Attribute
+'/'           Punctuation
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n    '    Text.Whitespace
+'<'           Punctuation
+'asp:button'  Name.Tag
+' '           Text.Whitespace
+'text'        Name.Attribute
+'='           Operator
 '"Change Properties"' Literal.String
-' '           Text
-'OnClick='    Name.Attribute
+' '           Text.Whitespace
+'OnClick'     Name.Attribute
+'='           Operator
 '"SubmitBtn_Click"' Literal.String
-' '           Text
-'runat='      Name.Attribute
+' '           Text.Whitespace
+'runat'       Name.Attribute
+'='           Operator
 'server/'     Literal.String
-'>'           Name.Tag
-'\n\n  '      Text
-'</form>'     Name.Tag
-'\n\n'        Text
+'>'           Punctuation
+'\n\n  '      Text.Whitespace
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text.Whitespace
 
-'</body>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'</html>'     Name.Tag
-'\n'          Text
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

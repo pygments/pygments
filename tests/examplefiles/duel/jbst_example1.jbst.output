@@ -16,7 +16,7 @@
 
 '<'           Punctuation
 'script'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/javascript"' Literal.String
@@ -119,7 +119,7 @@
 
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color:red"' Literal.String
@@ -142,7 +142,7 @@
 
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color:green"' Literal.String
@@ -168,7 +168,7 @@
 
 '<'           Punctuation
 'span'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'style'       Name.Attribute
 '='           Operator
 '"color:blue"' Literal.String

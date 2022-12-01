@@ -1,5 +1,6 @@
 ''            Text.Whitespace
-'-@ '         Punctuation
+'-@'          Punctuation
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text.Whitespace
 'val'         Keyword.Declaration
@@ -29,11 +30,11 @@
 
 ''            Text.Whitespace
 '%html'       Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '%body'       Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 '%p'          Name.Tag
@@ -45,11 +46,11 @@
 '#{'          Literal.String.Interpol
 'city'        Name
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 '%ul'         Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 '-'           Punctuation
@@ -77,6 +78,6 @@
 '#{'          Literal.String.Interpol
 'i'           Name
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Text.Whitespace

@@ -18,7 +18,7 @@
 '\n  '        Text
 '<'           Punctuation
 'tr'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -37,7 +37,7 @@
 '>'           Punctuation
 '<'           Punctuation
 'a'           Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href'        Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -111,23 +111,23 @@
 
 '<'           Punctuation
 'table'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"site-map"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"index"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'cellpadding' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'cellspacing' Name.Attribute
 '='           Operator
 '"0"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'border'      Name.Attribute
 '='           Operator
 '"0"'         Literal.String
@@ -143,7 +143,7 @@
 '\n      '    Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"page"'      Literal.String
@@ -156,7 +156,7 @@
 '\n      '    Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"status"'    Literal.String
@@ -169,11 +169,11 @@
 '\n      '    Text
 '<'           Punctuation
 'th'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"modify"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'colspan'     Name.Attribute
 '='           Operator
 '"2"'         Literal.String
@@ -229,11 +229,11 @@
 '\n    '      Text
 '<'           Punctuation
 'td'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'colspan'     Name.Attribute
 '='           Operator
 '"4"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"note"'      Literal.String
@@ -270,7 +270,7 @@
 
 '<'           Punctuation
 'script'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/javascript"' Literal.String
@@ -299,7 +299,7 @@
 
 '<'           Punctuation
 'form'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'action'      Name.Attribute
 '='           Operator
 '"'           Literal.String
@@ -309,7 +309,7 @@
 ' '           Text
 '%>'          Comment.Preproc
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'method'      Name.Attribute
 '='           Operator
 '"post"'      Literal.String

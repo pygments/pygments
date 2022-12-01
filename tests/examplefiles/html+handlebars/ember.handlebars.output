@@ -12,7 +12,7 @@
 '\n  '        Text
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"chat-messages-container"' Literal.String
@@ -20,7 +20,7 @@
 '\n    '      Text
 '<'           Punctuation
 'ul'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"chat-messages"' Literal.String
@@ -110,7 +110,7 @@
 '\n    '      Text
 '<'           Punctuation
 'form'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"form-inline"' Literal.String
@@ -132,15 +132,15 @@
 '\n          ' Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"message"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'placeholder' Name.Attribute
 '='           Operator
 '"Message"'   Literal.String
@@ -148,7 +148,7 @@
 '\n          ' Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 'action'      Name.Variable
 ' '           Text
@@ -158,7 +158,7 @@
 '='           Operator
 '"view"'      Literal.String.Double
 '}}'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"btn"'       Literal.String
@@ -175,15 +175,15 @@
 '\n          ' Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'id'          Name.Attribute
 '='           Operator
 '"username"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 'placeholder' Name.Attribute
 '='           Operator
 '"Enter your username..."' Literal.String
@@ -191,7 +191,7 @@
 '\n          ' Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 'action'      Name.Variable
 ' '           Text
@@ -201,7 +201,7 @@
 '='           Operator
 '"view"'      Literal.String.Double
 '}}'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"btn"'       Literal.String
@@ -223,15 +223,15 @@
 '\n        '  Text
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'placeholder' Name.Attribute
 '='           Operator
 '"Log in with Persona to chat!"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'disabled'    Name.Attribute
 '='           Operator
 '"disabled"'  Literal.String
@@ -239,13 +239,13 @@
 '\n        '  Text
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 '{{'          Comment.Preproc
 'action'      Name.Variable
 ' '           Text
 '"login"'     Literal.String.Double
 '}}'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'class'       Name.Attribute
 '='           Operator
 '"btn"'       Literal.String
