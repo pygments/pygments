@@ -59,7 +59,7 @@ class SolidityLexer(RegexLexer):
             (datatype, Keyword.Type),
             include('constants'),
             (r'[a-zA-Z_]\w*', Text),
-            (r'[!<=>+*/-]', Operator),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[.;:{}(),\[\]]', Punctuation)
         ],
         'comments': [
