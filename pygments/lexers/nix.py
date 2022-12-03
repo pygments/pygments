@@ -102,6 +102,7 @@ class NixLexer(RegexLexer):
             (r"''\t", String.Escape),
             (r"''", String.Single, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
+            (r"'", String.Single),
             (r"[^']", String.Single),
         ],
         'doublequote': [
