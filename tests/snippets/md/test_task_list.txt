@@ -14,7 +14,7 @@
 'task'        Text
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* '          Keyword
 '[ ]'         Keyword
@@ -24,7 +24,7 @@
 'task'        Text
 '\n'          Text
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 '* '          Keyword
 '[ ]'         Keyword
 ' '           Text

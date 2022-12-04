@@ -6,10 +6,10 @@
 '## this is a 2nd level header' Generic.Subheading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Text
 ' '           Text
 'item'        Text
@@ -17,9 +17,9 @@
 '1'           Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '*'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Text
 ' '           Text
 'item'        Text
@@ -28,7 +28,7 @@
 '\n'          Text
 
 '*'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Text
 ' '           Text
 'item'        Text
@@ -37,7 +37,7 @@
 '\n'          Text
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Text
 ' '           Text
 'item'        Text
@@ -45,7 +45,7 @@
 '3'           Text
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.'          Keyword
 ' '           Text
@@ -69,7 +69,7 @@
 '2'           Text
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '[ ]'         Keyword
