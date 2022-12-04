@@ -138,6 +138,7 @@ LEXERS = {
     'EarlGreyLexer': ('pygments.lexers.javascript', 'Earl Grey', ('earl-grey', 'earlgrey', 'eg'), ('*.eg',), ('text/x-earl-grey',)),
     'EasytrieveLexer': ('pygments.lexers.scripting', 'Easytrieve', ('easytrieve',), ('*.ezt', '*.mac'), ('text/x-easytrieve',)),
     'EbnfLexer': ('pygments.lexers.parsers', 'EBNF', ('ebnf',), ('*.ebnf',), ('text/x-ebnf',)),
+    'Edk2DscLexer': ('pygments.lexers.edk2dsc', 'DSC', ('dsc',), ('*.dsc',), ()),
     'EiffelLexer': ('pygments.lexers.eiffel', 'Eiffel', ('eiffel',), ('*.e',), ('text/x-eiffel',)),
     'ElixirConsoleLexer': ('pygments.lexers.erlang', 'Elixir iex session', ('iex',), (), ('text/x-elixir-shellsession',)),
     'ElixirLexer': ('pygments.lexers.erlang', 'Elixir', ('elixir', 'ex', 'exs'), ('*.ex', '*.eex', '*.exs', '*.leex'), ('text/x-elixir',)),
