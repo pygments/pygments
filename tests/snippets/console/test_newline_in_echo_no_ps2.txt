@@ -6,11 +6,11 @@ hi
 ---tokens---
 '$ '          Generic.Prompt
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'  '          Text
+'  '          Text.Whitespace
 'hi'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'hi\n'        Generic.Output

@@ -107,17 +107,17 @@
 '%setup'      Generic.Heading
 '\n    '      Text.Whitespace
 'touch'       Text
-' '           Text
+' '           Text.Whitespace
 '/file1'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'touch'       Text
-' '           Text
+' '           Text.Whitespace
 '${'          Literal.String.Interpol
 'SINGULARITY_ROOTFS' Name.Variable
 '}'           Literal.String.Interpol
 '/file2'      Text
-' '           Text
+' '           Text.Whitespace
 '# pass: leading whitespace optional\n' Comment.Single
 
 '\n'          Text
@@ -125,194 +125,194 @@
 '%files'      Generic.Heading
 '\n    '      Text.Whitespace
 '/file1'      Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 '/file1'      Text
-' '           Text
+' '           Text.Whitespace
 '/opt'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%environment' Generic.Heading
 '\n    '      Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'LISTEN_PORT' Name.Variable
 '='           Operator
 '12345'       Literal.Number
-'\n    '      Text
+'\n    '      Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'LC_ALL'      Name.Variable
 '='           Operator
 'C'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%runscript'  Generic.Heading
 '\n    '      Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Container was created ' Literal.String.Double
 '$NOW'        Name.Variable
 '"'           Literal.String.Double
-'\n    '      Text
+'\n    '      Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Arguments received: ' Literal.String.Double
 '$*'          Name.Variable
 '"'           Literal.String.Double
-'\n    '      Text
+'\n    '      Text.Whitespace
 'exec'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$@'          Name.Variable
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%startscript' Generic.Heading
 '\n    '      Text.Whitespace
 'nc'          Text
-' '           Text
+' '           Text.Whitespace
 '-lp'         Text
-' '           Text
+' '           Text.Whitespace
 '$LISTEN_PORT' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%test'       Generic.Heading
 '\n    '      Text.Whitespace
 'grep'        Text
-' '           Text
+' '           Text.Whitespace
 '-q'          Text
-' '           Text
+' '           Text.Whitespace
 'NAME'        Name.Variable
 '='           Operator
 '\\"'         Literal.String.Escape
 'Ubuntu'      Text
 '\\"'         Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 '/etc/os-release' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Operator
-' '           Text
+' '           Text.Whitespace
 '$?'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '-eq'         Text
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 ']'           Operator
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Container base is Ubuntu as expected."' Literal.String.Double
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Container base is not Ubuntu."' Literal.String.Double
-'\n    '      Text
+'\n    '      Text.Whitespace
 'fi'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%labels'     Generic.Heading
 '\n    '      Text.Whitespace
 'Author'      Text
-' '           Text
+' '           Text.Whitespace
 'd@sylabs.io' Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Version'     Text
-' '           Text
+' '           Text.Whitespace
 'v0.0.1'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%help'       Generic.Heading
 '\n    '      Text.Whitespace
 'This'        Text
-' '           Text
+' '           Text.Whitespace
 'is'          Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'demo'        Text
-' '           Text
+' '           Text.Whitespace
 'container'   Text
-' '           Text
+' '           Text.Whitespace
 'used'        Text
-' '           Text
+' '           Text.Whitespace
 'to'          Text
-' '           Text
+' '           Text.Whitespace
 'illustrate'  Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'def'         Text
-' '           Text
+' '           Text.Whitespace
 'file'        Text
-' '           Text
+' '           Text.Whitespace
 'that'        Text
-' '           Text
+' '           Text.Whitespace
 'uses'        Text
-' '           Text
+' '           Text.Whitespace
 'all'         Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'supported'   Text
-' '           Text
+' '           Text.Whitespace
 'sections.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '%post'       Generic.Heading
 '\n    '      Text.Whitespace
 'apt-get'     Text
-' '           Text
+' '           Text.Whitespace
 'update'      Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'apt-get'     Text
-' '           Text
+' '           Text.Whitespace
 'install'     Text
-' '           Text
+' '           Text.Whitespace
 '-y'          Text
-' '           Text
+' '           Text.Whitespace
 'netcat'      Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'NOW'         Name.Variable
 '='           Operator
 '$(('         Keyword
 'date'        Text
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 '))'          Keyword
-' '           Text
+' '           Text.Whitespace
 "# pass: don't highlight '%'\n" Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'export NOW=\\"' Literal.String.Double
 '${'          Literal.String.Interpol
@@ -320,8 +320,8 @@
 '}'           Literal.String.Interpol
 '\\"'         Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>>'          Text
-' '           Text
+' '           Text.Whitespace
 '$SINGULARITY_ENVIRONMENT' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace

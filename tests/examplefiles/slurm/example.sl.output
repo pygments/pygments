@@ -9,6 +9,6 @@
 '#SBATCH --cpus-per-task=8\n' Keyword.Pseudo
 
 'srun'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/usr/bin/sleep' Text
-'\n'          Text
+'\n'          Text.Whitespace

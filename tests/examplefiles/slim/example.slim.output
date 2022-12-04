@@ -74,21 +74,21 @@
 
 '      '      Text.Whitespace
 '=='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'yield'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '      '      Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'items'       Name
 '.'           Operator
 'empty?'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 'table'       Name.Tag
@@ -96,17 +96,17 @@
 
 '          '  Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'items'       Name
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text.Whitespace
 'tr'          Name.Tag
@@ -116,27 +116,27 @@
 'td'          Name.Tag
 '.name'       Name.Class
 ' ='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'name'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '              ' Text.Whitespace
 'td'          Name.Tag
 '.price'      Name.Class
 ' ='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'price'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 'p'           Name.Tag
@@ -162,13 +162,13 @@
 
 '      '      Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'footer'      Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 '| Copyright (C) #{year} #{author}\n' Text

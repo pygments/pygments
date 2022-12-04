@@ -5,14 +5,14 @@
 '='           Operator
 ' '           Text
 'debug'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
 'DBG'         Name.Variable
 ' '           Text
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
@@ -23,4 +23,4 @@
 '$('          Keyword
 'DBG'         Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
