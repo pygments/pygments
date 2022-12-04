@@ -1,49 +1,49 @@
 '#############################################################################' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#W  example.gd' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  This file contains a sample of a GAP implementation file.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#############################################################################' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#M  SomeOperation( <val> )' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  performs some operation on <val>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'InstallMethod' Name.Builtin
 '('           Punctuation
 ' '           Text
 'SomeProperty' Name.Variable
 ','           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -51,7 +51,7 @@
 ' '           Text
 '"for left modules"' Literal.String
 ','           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -66,7 +66,7 @@
 ' '           Text
 '0'           Name.Variable
 ','           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -78,7 +78,7 @@
 'M'           Name.Variable
 ' '           Text
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -105,7 +105,7 @@
 ')'           Punctuation
 ' '           Text
 'then'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -117,7 +117,7 @@
 ' '           Text
 'true'        Name.Constant
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -125,7 +125,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -135,7 +135,7 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -145,31 +145,31 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#############################################################################' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#F  SomeGlobalFunction( )' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  A global variadic funfion.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'InstallGlobalFunction' Name.Builtin
 '('           Punctuation
@@ -183,7 +183,7 @@
 'arg'         Name.Variable
 ' '           Text
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -203,7 +203,7 @@
 '3'           Name.Variable
 ' '           Text
 'then'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -232,7 +232,7 @@
 '3'           Name.Variable
 ']'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -252,7 +252,7 @@
 '2'           Name.Variable
 ' '           Text
 'then'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -273,14 +273,14 @@
 '['           Punctuation
 '2'           Name.Variable
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -295,7 +295,7 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -303,7 +303,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -313,20 +313,20 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# A plain function.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SomeFunc'    Name.Variable
 ' '           Text
@@ -339,7 +339,7 @@
 ' '           Text
 'y'           Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -358,7 +358,7 @@
 ' '           Text
 'j'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -376,7 +376,7 @@
 '.'           Operator
 '0'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -394,7 +394,7 @@
 ' '           Text
 'y'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -415,7 +415,7 @@
 ' '           Text
 '5'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -440,7 +440,7 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -455,7 +455,7 @@
 '0'           Name.Variable
 ' '           Text
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -474,7 +474,7 @@
 'tmp'         Name.Variable
 ' '           Text
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -496,7 +496,7 @@
 '"\\n"'       Literal.String
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -508,7 +508,7 @@
 ' '           Text
 'od'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -519,7 +519,7 @@
 ' '           Text
 ' '           Text
 'repeat'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -543,7 +543,7 @@
 ' '           Text
 '1'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -561,7 +561,7 @@
 ' '           Text
 '1'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -580,7 +580,7 @@
 '-'           Operator
 '1'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -588,7 +588,7 @@
 ' '           Text
 'od'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -598,11 +598,11 @@
 ' '           Text
 'z'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -612,4 +612,4 @@
 ' '           Text
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace

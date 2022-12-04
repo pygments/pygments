@@ -2,7 +2,7 @@
 '\nmultiline comment\nmsgbox(comment)\n' Comment.Multiline
 
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'send'        Name.Builtin
 ','           Punctuation
@@ -11,7 +11,7 @@
 '['           Punctuation
 'pgdn'        Name
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'string'      Name
 ' '           Text
@@ -30,7 +30,7 @@
 '"'           Literal.String
 'world!'      Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'string'      Name
 ' '           Text
@@ -43,7 +43,7 @@
 '""'          Literal.String.Escape
 '! '          Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'string'      Name
 ' '           Text
@@ -58,11 +58,11 @@
 '!'           Operator
 ' '           Text
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; single line comment1' Comment.Single
 '\n;;;  single line comment2' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -72,7 +72,7 @@
 ')'           Punctuation
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -82,7 +82,7 @@
 ' '           Text
 '^'           Operator
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mylabel:'    Name.Label
 'send'        Name
@@ -93,7 +93,7 @@
 'space'       Name
 '}'           Punctuation
 '  ;; set mark' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'e::'         Name.Label
 'send'        Name
@@ -101,10 +101,10 @@
 ' '           Text
 '^'           Operator
 'e'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n::'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'send'        Name.Builtin
@@ -112,11 +112,11 @@
 ' '           Text
 '^'           Operator
 'n'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!'           Operator
 'i'           Name
@@ -127,7 +127,7 @@
 ' '           Text
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'viper'       Name
 '('           Punctuation
@@ -136,7 +136,7 @@
 '"'           Literal.String
 ')'           Punctuation
 '   ; stdlib' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name
 ' '           Text
@@ -148,10 +148,10 @@
 ' '           Literal.String
 '"'           Literal.String
 '  ; escaped quote' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#If'         Name
 ' '           Text
@@ -162,7 +162,7 @@
 '"'           Literal.String
 ' '           Text
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'indexdir'    Name
 ' '           Text
@@ -171,7 +171,7 @@
 '%A_ScriptDir%' Name.Variable
 '\\'          Text
 '%dir%'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'FileCreateDir' Name.Builtin
 ','           Punctuation
@@ -179,7 +179,7 @@
 '%'           Operator
 ' '           Text
 'indexdir'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fileindex'   Name
 ' '           Text
@@ -188,7 +188,7 @@
 '%indexdir%'  Name.Variable
 '\\'          Text
 '_files'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'FileSelectFile' Name.Builtin
 ','           Punctuation
@@ -259,7 +259,7 @@
 'dll'         Name
 ')'           Punctuation
 '\n\n; viper' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\n'        Text
 
@@ -268,11 +268,11 @@
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#If'         Name
 '\n\n;; keybindings' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#If'         Name
 ' '           Text
@@ -291,25 +291,25 @@
 'ahk_class Emacs' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 'p::'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'k::'         Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'send'        Name.Builtin
 ','           Punctuation
 ' '           Text
 '^'           Operator
 'p'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 ','           Punctuation
 ':'           Operator
@@ -321,7 +321,7 @@
 '!'           Operator
 ','           Punctuation
 '  ;; beginning of page' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Operator
 ':'           Operator
@@ -333,7 +333,7 @@
 '!'           Operator
 '.'           Operator
 '  ;; end of page' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Punctuation
 ':'           Operator
@@ -343,7 +343,7 @@
 ' '           Text
 '!'           Operator
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Punctuation
 ':'           Operator
@@ -355,14 +355,14 @@
 'e'           Name
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'd::'         Name.Label
 ' '           Text
 '^'           Operator
 'k'           Name
 '  ;; kill line' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x::'         Name.Label
 ' '           Text
@@ -370,7 +370,7 @@
 ' '           Text
 '^'           Operator
 'd'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\::'        Name.Label
 ' '           Text
@@ -378,29 +378,29 @@
 '!'           Operator
 'k'           Name
 '  ;; kill next word or sexp' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\n'        Text
 
 '#IfWinActive' Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#Persistent' Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  \n'        Text
 
 'F2::'        Name.Label
 '     ;; hotkey' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'start:'      Name.Label
 '   ;; label' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'start2:'     Name.Label
 '   ; label'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -422,7 +422,7 @@
 ' '           Text
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -445,7 +445,7 @@
 ' '           Text
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'msgbox'      Name.Builtin
@@ -466,7 +466,7 @@
 ' '           Text
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -489,7 +489,7 @@
 ' '           Text
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'msgbox'      Name.Builtin
@@ -506,12 +506,12 @@
 ' '           Text
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'ListVars'    Name.Builtin
 '  ; command' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'msgbox'      Name.Builtin
@@ -519,19 +519,19 @@
 '%'           Operator
 ' '           Text
 'ppm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -539,12 +539,12 @@
 '('           Punctuation
 'file'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 'fileread'    Name.Builtin
@@ -556,37 +556,37 @@
 '%'           Operator
 ' '           Text
 'file'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'return'      Name.Builtin
 ' '           Text
 'ppm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '::hotstring::' Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Operator
 ':'           Operator
 'hot3'        Name
 ':'           Operator
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_width'   Name
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'regexmatch'  Name.Function
@@ -601,25 +601,25 @@
 ' '           Text
 'dim'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'return'      Name.Builtin
 ' '           Text
 'dim1'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_height'  Name
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'regexmatch'  Name.Function
@@ -634,28 +634,28 @@
 ' '           Text
 'dim'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'return'      Name.Builtin
 ' '           Text
 'dim2'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_colors'  Name
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'regexmatch'  Name.Function
 '('           Punctuation
@@ -670,26 +670,26 @@
 'colors'      Name
 ')'           Punctuation
 '  ; \\R stands for any' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
 ' '           Text
 'colors1'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_data'    Name
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pos'         Name
 ' '           Text
@@ -709,7 +709,7 @@
 'colors'      Name
 ')'           Punctuation
 '  ; \\R stands for any newline' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringtrimleft' Name.Builtin
 ','           Punctuation
@@ -728,24 +728,24 @@
 '('           Punctuation
 'colors1'     Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
 ' '           Text
 'data'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_header'  Name
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pos'         Name
 ' '           Text
@@ -765,7 +765,7 @@
 'colors'      Name
 ')'           Punctuation
 '  ; \\R stands for any newline' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stringleft'  Name.Builtin
 ','           Punctuation
@@ -784,17 +784,17 @@
 '('           Punctuation
 'colors1'     Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
 ' '           Text
 'header'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_fill'    Name
 '('           Punctuation
@@ -811,10 +811,10 @@
 ' '           Text
 'b'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -827,7 +827,7 @@
 'ppm'         Name
 ')'           Punctuation
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -839,7 +839,7 @@
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -851,7 +851,7 @@
 '('           Punctuation
 'ppm'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -864,7 +864,7 @@
 'header'      Name
 ')'           Punctuation
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -882,7 +882,7 @@
 ' '           Text
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'loop'        Name.Builtin
@@ -897,17 +897,17 @@
 ' '           Text
 'height'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 'if '         Name.Builtin
 'r'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -937,12 +937,12 @@
 'uchar'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'if '         Name.Builtin
 'g'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -976,12 +976,12 @@
 'uchar'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 'if '         Name.Builtin
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1015,10 +1015,10 @@
 'uchar'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VarCopy'     Name
 '('           Punctuation
@@ -1040,14 +1040,14 @@
 ' '           Text
 'height'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ppm_new'     Name
 '('           Punctuation
@@ -1059,10 +1059,10 @@
 ' '           Text
 'colors'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1078,7 +1078,7 @@
 '`n'          Literal.String.Escape
 '%colors%'    Name.Variable
 '`n'          Literal.String.Escape
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1090,7 +1090,7 @@
 '('           Punctuation
 'header'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1112,7 +1112,7 @@
 ' '           Text
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1130,7 +1130,7 @@
 ' '           Text
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1146,7 +1146,7 @@
 ' '           Text
 'headerLength' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1170,24 +1170,24 @@
 ' '           Text
 'height'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Name.Builtin
 ' '           Text
 'ppm'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'heredoc'     Name
 ' '           Text
 '='           Operator
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Generic
 '\n'          Generic
@@ -1246,7 +1246,7 @@
 
 ')'           Generic
 '\n\n; Example: Simple image viewer:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -1255,7 +1255,7 @@
 ' '           Text
 '+'           Operator
 'Resize'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1275,7 +1275,7 @@
 'New'         Name
 ' '           Text
 'Image'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1305,7 +1305,7 @@
 'actual'      Name
 ' '           Text
 'size'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1333,7 +1333,7 @@
 'fit'         Name
 ' '           Text
 'screen'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1347,21 +1347,21 @@
 'xm'          Name
 ' '           Text
 'vPic'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
 ' '           Text
 'Show'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 'ButtonLoadNewImage:' Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'FileSelectFile' Name.Builtin
 ','           Punctuation
@@ -1431,17 +1431,17 @@
 '.'           Operator
 'dll'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if '         Name.Builtin
 'file'        Name
 ' '           Text
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1451,7 +1451,7 @@
 ' '           Text
 'NoHide'      Name
 ' ; Save the values of the radio buttons.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if '         Name.Builtin
 'Radio'       Name
@@ -1460,10 +1460,10 @@
 ' '           Text
 '1'           Literal.Number.Integer
 '  ; Display image at its actual size.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1474,7 +1474,7 @@
 '='           Operator
 ' '           Text
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1485,17 +1485,17 @@
 '='           Operator
 ' '           Text
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Name.Builtin
 ' ; Second radio is selected: Resize the image to fit the screen.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1511,7 +1511,7 @@
 ' '           Text
 '28'          Literal.Number.Integer
 '  ; Minus 28 to allow room for borders and margins inside.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -1524,10 +1524,10 @@
 '-'           Operator
 '1'           Literal.Number.Integer
 '  ; "Keep aspect ratio" seems best.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GuiControl'  Name.Builtin
 ','           Punctuation
@@ -1546,7 +1546,7 @@
 ' '           Text
 '%file%'      Name.Variable
 '  ; Load the image.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1563,20 +1563,20 @@
 ' '           Text
 '%file%'      Name.Variable
 '  ; Resize the window to match the picture size.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 'GuiClose:'   Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ExitApp'     Name.Builtin
 '\n; Example: Simple text editor with menu bar.' Comment.Single
 '\n\n; Create the sub-menus for the menu bar:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Menu'        Name.Builtin
 ','           Punctuation
@@ -1592,4 +1592,4 @@
 ','           Punctuation
 ' '           Text
 'FileNew'     Name
-'\n'          Text
+'\n'          Text.Whitespace

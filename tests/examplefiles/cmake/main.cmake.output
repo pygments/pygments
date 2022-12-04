@@ -6,9 +6,9 @@
 ' '           Text.Whitespace
 'FATAL_ERROR' Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SET'         Name.Builtin
 '('           Punctuation
@@ -22,7 +22,7 @@
 'main.c'      Literal.String
 ' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SET'         Name.Builtin
 '('           Punctuation
@@ -34,7 +34,7 @@
 '}'           Operator
 ' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
@@ -99,7 +99,7 @@
 ' '           Text.Whitespace
 '# this message contains literal characters\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
@@ -128,7 +128,7 @@
 ' '           Text.Whitespace
 '# prints "Hi. ) MESSAGE( x )"\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
@@ -180,7 +180,7 @@
 ' '           Text.Whitespace
 '# rule 3\n'  Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SET'         Name.Builtin
 '('           Punctuation
@@ -282,7 +282,7 @@
 '               ' Text.Whitespace
 '# prints "y=x" to stdout (without quotes)\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SET'         Name.Builtin
 '('           Punctuation
@@ -359,7 +359,7 @@
 '  '          Text.Whitespace
 '# prints "a b c" to stdout (without quotes)\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# This is a comment.\n' Comment
 
@@ -373,7 +373,7 @@
 'here'        Literal.String
 ' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ANOTHER_COMMAND' Name.Builtin
 '('           Punctuation
@@ -385,7 +385,7 @@
 '('           Punctuation
 ' '           Text.Whitespace
 'these'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'arguments'   Literal.String
@@ -404,4 +404,4 @@
 'lines'       Literal.String
 ' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

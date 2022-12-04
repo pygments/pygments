@@ -1,12 +1,12 @@
 'scdoc(5)'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Generic.Heading
 ' NAME\n'     Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'scdoc'       Text
 ' '           Text
@@ -23,14 +23,14 @@
 'manual'      Text
 ' '           Text
 'pages'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Generic.Heading
 ' SYNTAX\n'   Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Input'       Text
 ' '           Text
@@ -45,14 +45,14 @@
 'UTF-8'       Text
 ' '           Text
 'encoding.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' PREAMBLE\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Each'        Text
 ' '           Text
@@ -71,9 +71,9 @@
 'following'   Text
 ' '           Text
 'preamble:'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '*name*'      Generic.Strong
@@ -87,7 +87,7 @@
 '["center'    Text
 '\\_'         Text
 'header"]]'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -122,7 +122,7 @@
 'the'         Text
 ' '           Text
 'section'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "you're"      Text
 ' '           Text
@@ -145,9 +145,9 @@
 'manual'      Text
 ' '           Text
 'sections).'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_left'       Text
 '\\_'         Text
@@ -172,7 +172,7 @@
 'the'         Text
 ' '           Text
 'text'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'positioned'  Text
 ' '           Text
@@ -197,7 +197,7 @@
 '*must*'      Generic.Strong
 ' '           Text
 'be'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'surrounded'  Text
 ' '           Text
@@ -206,14 +206,14 @@
 'double'      Text
 ' '           Text
 'quotes.'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' SECTION HEADERS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Each'        Text
 ' '           Text
@@ -240,12 +240,12 @@
 'to'          Text
 ' '           Text
 'the'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'following:'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '#'           Text
@@ -253,9 +253,9 @@
 'HEADER'      Text
 ' '           Text
 'NAME'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Subsection'  Text
 ' '           Text
@@ -282,7 +282,7 @@
 'must'        Text
 ' '           Text
 'have'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'an'          Text
 ' '           Text
@@ -295,14 +295,14 @@
 'either'      Text
 ' '           Text
 'side.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' PARAGRAPHS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Begin'       Text
 ' '           Text
@@ -319,14 +319,14 @@
 'empty'       Text
 ' '           Text
 'line.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' LINE BREAKS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Insert'      Text
 ' '           Text
@@ -349,28 +349,28 @@
 '\\+'         Text
 '\\+'         Text
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
 'result'      Text
 ' '           Text
 'looks++'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'like'        Text
 ' '           Text
 'this.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' FORMATTING\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Text'        Text
 ' '           Text
@@ -397,7 +397,7 @@
 '\\*'         Text
 'bold'        Text
 '\\*'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'or'          Text
 ' '           Text
@@ -417,14 +417,14 @@
 'be'          Text
 ' '           Text
 'disregarded.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' INDENTATION\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You'         Text
 ' '           Text
@@ -457,7 +457,7 @@
 'spaces'      Text
 ' '           Text
 'in'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the'         Text
 ' '           Text
@@ -474,9 +474,9 @@
 'contain'     Text
 ' '           Text
 'headers.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 'The'         Text
@@ -490,9 +490,9 @@
 'like'        Text
 ' '           Text
 'this.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 'You'         Text
@@ -511,9 +511,9 @@
 ' '           Text
 '_formatting_' Generic.Emph
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Deindent'    Text
 ' '           Text
@@ -538,17 +538,17 @@
 'your'        Text
 ' '           Text
 'indentation' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'depth.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' LISTS\n'    Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You'         Text
 ' '           Text
@@ -569,18 +569,18 @@
 'like'        Text
 ' '           Text
 'so:'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 '- Item 1\n- Item 2\n\t- Subitem 1\n\t- Subitem 2\n- Item 3\n' Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -591,7 +591,7 @@
 'like'        Text
 ' '           Text
 'this:'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -600,14 +600,14 @@
 'Item'        Text
 ' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
 ' '           Text
 'Item'        Text
 ' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '-'           Keyword
@@ -615,7 +615,7 @@
 'Subitem'     Text
 ' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '-'           Keyword
@@ -623,16 +623,16 @@
 'Subitem'     Text
 ' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
 ' '           Text
 'Item'        Text
 ' '           Text
 '3'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You'         Text
 ' '           Text
@@ -663,7 +663,7 @@
 'same'        Text
 ' '           Text
 'indent'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'level,'      Text
 ' '           Text
@@ -690,16 +690,16 @@
 'list'        Text
 ' '           Text
 'entry.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 "- Item 1 is pretty long so let's\n  break it up onto two lines\n- Item 2 is shorter\n\t- But its children can go on\n\t  for a while\n" Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -718,7 +718,7 @@
 'so'          Text
 ' '           Text
 "let's"       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -733,7 +733,7 @@
 'two'         Text
 ' '           Text
 'lines'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
 ' '           Text
@@ -744,7 +744,7 @@
 'is'          Text
 ' '           Text
 'shorter'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '-'           Keyword
@@ -760,7 +760,7 @@
 'go'          Text
 ' '           Text
 'on'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 ' '           Text
@@ -770,14 +770,14 @@
 'a'           Text
 ' '           Text
 'while'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' NUMBERED LISTS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Numbered'    Text
 ' '           Text
@@ -804,7 +804,7 @@
 '(.)'         Text
 ' '           Text
 'instead'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of'          Text
 ' '           Text
@@ -815,39 +815,39 @@
 'like'        Text
 ' '           Text
 'so:'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 '. Item 1\n. Item 2\n. Item 3,\n  with multiple lines\n' Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Text
 ' '           Text
 'Item'        Text
 ' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Text
 ' '           Text
 'Item'        Text
 ' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Text
 ' '           Text
 'Item'        Text
 ' '           Text
 '3,'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -856,14 +856,14 @@
 'multiple'    Text
 ' '           Text
 'lines'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' TABLES\n'   Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'To'          Text
 ' '           Text
@@ -892,9 +892,9 @@
 'of'          Text
 ' '           Text
 'rows.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Each'        Text
 ' '           Text
@@ -931,7 +931,7 @@
 'or'          Text
 ' '           Text
 'column'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'respectively' Text
 ' '           Text
@@ -954,7 +954,7 @@
 'multiple'    Text
 ' '           Text
 'lines),'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'followed'    Text
 ' '           Text
@@ -989,7 +989,7 @@
 'or'          Text
 ' '           Text
 'right,'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'followed'    Text
 ' '           Text
@@ -1023,7 +1023,7 @@
 'space'       Text
 ' '           Text
 'instead'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of'          Text
 ' '           Text
@@ -1052,14 +1052,14 @@
 'in'          Text
 ' '           Text
 'the'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'previous'    Text
 ' '           Text
 'row.'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -1090,7 +1090,7 @@
 'has'         Text
 ' '           Text
 'special'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'meaning.'    Text
 ' '           Text
@@ -1121,7 +1121,7 @@
 'produce'     Text
 ' '           Text
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'table'       Text
 ' '           Text
@@ -1152,12 +1152,12 @@
 'the'         Text
 ' '           Text
 'whole'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'table.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'To'          Text
 ' '           Text
@@ -1182,18 +1182,18 @@
 'last'        Text
 ' '           Text
 'row.'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 '[[ *Foo*\n:- _Bar_\n:-\n|  *Row 1*\n:  Hello\n:] world!\n|  *Row 2*\n:  こんにちは\n:  世界\n   !\n' Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '[['          Text
 ' '           Text
@@ -1206,7 +1206,7 @@
 '\n'          Text
 
 ':-'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Text
 ' '           Text
@@ -1218,12 +1218,12 @@
 ' '           Text
 ' '           Text
 'Hello'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':]'          Text
 ' '           Text
 'world!'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Text
 ' '           Text
@@ -1235,26 +1235,26 @@
 ' '           Text
 ' '           Text
 'こんにちは'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Text
 ' '           Text
 ' '           Text
 '世界'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
 ' '           Text
 '!'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' LITERAL TEXT\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You'         Text
 ' '           Text
@@ -1283,7 +1283,7 @@
 'codes'       Text
 ' '           Text
 'and'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'literal'     Text
 ' '           Text
@@ -1310,7 +1310,7 @@
 'subsequent'  Text
 ' '           Text
 'symbol'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to'          Text
 ' '           Text
@@ -1343,7 +1343,7 @@
 'also'        Text
 ' '           Text
 'make'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'blocks'      Text
 ' '           Text
@@ -1356,18 +1356,18 @@
 'like'        Text
 ' '           Text
 'so:'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 '\\```\n_This formatting_ will *not* be interpreted by scdoc.\n\\```\n' Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'These'       Text
 ' '           Text
@@ -1394,7 +1394,7 @@
 'is'          Text
 ' '           Text
 'shown'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'literally'   Text
 ' '           Text
@@ -1427,7 +1427,7 @@
 'your'        Text
 ' '           Text
 'own'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'roff'        Text
 ' '           Text
@@ -1454,7 +1454,7 @@
 'within'      Text
 ' '           Text
 'literal'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'blocks,'     Text
 ' '           Text
@@ -1484,17 +1484,17 @@
 'a'           Text
 ' '           Text
 'literal'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'block.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Generic.Subheading
 ' COMMENTS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Lines'       Text
 ' '           Text
@@ -1513,23 +1513,23 @@
 'are'         Text
 ' '           Text
 'ignored.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String
 
 '; This is a comment\n' Text
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Generic.Heading
 ' CONVENTIONS\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'By'          Text
 ' '           Text
@@ -1554,9 +1554,9 @@
 '80'          Text
 ' '           Text
 'columns.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Generic.Heading
 ' SEE ALSO\n' Text
@@ -1566,14 +1566,14 @@
 '*scdoc*'     Generic.Strong
 '('           Text
 '1)'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Generic.Heading
 ' AUTHORS\n'  Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Maintained'  Text
 ' '           Text
@@ -1596,7 +1596,7 @@
 'found'       Text
 ' '           Text
 'at'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'https://git.sr.ht/~sircmpwn/scdoc' Text
 ' '           Text
@@ -1615,7 +1615,7 @@
 'email'       Text
 ' '           Text
 'to'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '~sircmpwn/public-inbox@lists.sr.ht.' Text
-'\n'          Text
+'\n'          Text.Whitespace

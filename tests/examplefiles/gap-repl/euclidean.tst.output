@@ -6,7 +6,7 @@
 '"euclidean.tst"' Literal.String
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -18,7 +18,7 @@
 'checkEuclideanRing' Name.Variable
 ' '           Text
 ':='          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 'function'    Keyword
@@ -31,7 +31,7 @@
 '.'           Operator
 '.'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -64,7 +64,7 @@
 ' '           Text
 'qr'          Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -90,7 +90,7 @@
 '1'           Name.Variable
 ']'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -115,7 +115,7 @@
 ' '           Text
 'R'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -144,14 +144,14 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -177,7 +177,7 @@
 '2'           Name.Variable
 ']'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -202,7 +202,7 @@
 ' '           Text
 'R'           Name.Variable
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -231,14 +231,14 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -252,7 +252,7 @@
 'coll1'       Name.Variable
 ' '           Text
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -273,7 +273,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -292,7 +292,7 @@
 'b'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -308,7 +308,7 @@
 'coll2'       Name.Variable
 ' '           Text
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -345,7 +345,7 @@
 'R'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -382,7 +382,7 @@
 'R'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -425,7 +425,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -446,7 +446,7 @@
 'r'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -491,7 +491,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -515,7 +515,7 @@
 'b'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -557,7 +557,7 @@
 ' '           Text
 'fi'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -566,14 +566,14 @@
 ' '           Text
 'od'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'od'          Keyword
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
@@ -582,13 +582,13 @@
 ' '           Text
 'true'        Name.Constant
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 'end'         Keyword
 ';'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -616,7 +616,7 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -626,7 +626,7 @@
 'Rationals'   Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -636,7 +636,7 @@
 'GaussianIntegers' Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -646,7 +646,7 @@
 'GaussianRationals' Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -683,7 +683,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -717,7 +717,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -741,7 +741,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -765,33 +765,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
-
-'true\n'      Generic.Output
-
-'gap> '       Generic.Prompt
-'checkEuclideanRing' Name.Variable
-'('           Punctuation
-'Integers'    Name.Variable
-' '           Text
-'mod'         Operator.Word
-' '           Text
-'('           Punctuation
-'('           Punctuation
-'2'           Name.Variable
-'*'           Operator
-'3'           Name.Variable
-'*'           Operator
-'5'           Name.Variable
-'*'           Operator
-'7'           Name.Variable
-')'           Punctuation
-'^'           Operator
-'2'           Name.Variable
-')'           Punctuation
-')'           Punctuation
-';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -813,11 +787,37 @@
 '7'           Name.Variable
 ')'           Punctuation
 '^'           Operator
+'2'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'2'           Name.Variable
+'*'           Operator
+'3'           Name.Variable
+'*'           Operator
+'5'           Name.Variable
+'*'           Operator
+'7'           Name.Variable
+')'           Punctuation
+'^'           Operator
 '3'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'true\n'      Generic.Output
 
@@ -835,4 +835,4 @@
 '1'           Name.Variable
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

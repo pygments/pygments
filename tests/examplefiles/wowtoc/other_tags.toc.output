@@ -4,7 +4,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'Value'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Keyword.Declaration
 ' '           Text.Whitespace
@@ -12,13 +12,13 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'Value'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Keyword.Declaration
 'no'          Name.Other
 ':'           Punctuation
 'whitespace'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Keyword.Declaration
 '      '      Text.Whitespace
@@ -28,13 +28,13 @@
 '    '        Text.Whitespace
 'of   whitespace' Literal.String
 '   '         Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Keyword.Declaration
 ' '           Text.Whitespace
 'NoValueOk'   Name.Other
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Keyword.Declaration
 ' '           Text.Whitespace
@@ -42,4 +42,4 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'is ok'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

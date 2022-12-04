@@ -362,5 +362,5 @@ def test_bracket_escape():
     # This used to emit a FutureWarning.
     assert list(MySecondLexer().get_tokens("x")) == [
         (Token.Name, "x"),
-        (Token.Text, "\n"),
+        (Token.Text.Whitespace, "\n"),
     ]

@@ -102,7 +102,7 @@
 '18.04'       Literal.Number
 ' # pass: leading whitespace allowed\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%setup'      Generic.Heading
 '\n    '      Text.Whitespace
@@ -120,7 +120,7 @@
 ' '           Text.Whitespace
 '# pass: leading whitespace optional\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%files'      Generic.Heading
 '\n    '      Text.Whitespace
@@ -131,7 +131,7 @@
 '/opt'        Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%environment' Generic.Heading
 '\n    '      Text.Whitespace
@@ -148,7 +148,7 @@
 'C'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%runscript'  Generic.Heading
 '\n    '      Text.Whitespace
@@ -175,7 +175,7 @@
 '"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%startscript' Generic.Heading
 '\n    '      Text.Whitespace
@@ -186,7 +186,7 @@
 '$LISTEN_PORT' Name.Variable
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%test'       Generic.Heading
 '\n    '      Text.Whitespace
@@ -230,7 +230,7 @@
 'fi'          Keyword
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%labels'     Generic.Heading
 '\n    '      Text.Whitespace
@@ -243,7 +243,7 @@
 'v0.0.1'      Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%help'       Generic.Heading
 '\n    '      Text.Whitespace
@@ -280,7 +280,7 @@
 'sections.'   Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%post'       Generic.Heading
 '\n    '      Text.Whitespace

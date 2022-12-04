@@ -1,17 +1,17 @@
 '#'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#a'          Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# a comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# a comment with a # in it' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## no comma, thus a comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## has space: and is thus, a comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace

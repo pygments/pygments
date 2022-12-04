@@ -1,7 +1,7 @@
 '# this is a header' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '## this is a 2nd level header' Generic.Subheading
 '\n'          Text
@@ -15,7 +15,7 @@
 'item'        Text
 ' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '*'           Keyword
@@ -25,7 +25,7 @@
 'item'        Text
 ' '           Text
 '1.1'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Keyword
 ' '           Text.Whitespace
@@ -34,7 +34,7 @@
 'item'        Text
 ' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
 ' '           Text.Whitespace
@@ -43,7 +43,7 @@
 'item'        Text
 ' '           Text
 '3'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -56,7 +56,7 @@
 'item'        Text
 ' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.'          Keyword
 ' '           Text
@@ -67,7 +67,7 @@
 'item'        Text
 ' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -75,21 +75,21 @@
 '[ ]'         Keyword
 ' '           Text
 'todo'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '[x]'         Keyword
 ' '           Text
 'done'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '[X]'         Keyword
 ' '           Text
 'done'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -100,7 +100,7 @@
 'italic:'     Text
 ' '           Text
 '*italic*'    Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -111,9 +111,9 @@
 'italic:'     Text
 ' '           Text
 '_italic_'    Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -128,7 +128,7 @@
 '\\*'         Text
 'italic'      Text
 '\\*'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -143,9 +143,9 @@
 '\\_'         Text
 'italic'      Text
 '\\_'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -158,7 +158,7 @@
 'italic:'     Text
 ' '           Text
 'snake*case*word' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -171,9 +171,9 @@
 'italic:'     Text
 ' '           Text
 'snake_case_word' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -186,7 +186,7 @@
 '**bold**'    Generic.Strong
 ' '           Text
 '**two or more words**' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -199,9 +199,9 @@
 '__bold__'    Generic.Strong
 ' '           Text
 '__two or more words__' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -214,7 +214,7 @@
 'bold:'       Text
 ' '           Text
 'snake**case**word' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -227,9 +227,9 @@
 'bold:'       Text
 ' '           Text
 'snake__case__word' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -240,7 +240,7 @@
 'strikethrough:' Text
 ' '           Text
 '~~bold~~'    Generic.Deleted
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -253,9 +253,9 @@
 'strikethrough:' Text
 ' '           Text
 'snake~~case~~word' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The'         Text
 ' '           Text
@@ -272,7 +272,7 @@
 'inside:'     Text
 ' '           Text
 '**the next _word_ should have been italics**' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n> '        Keyword
 'this is a quote\n' Generic.Emph
@@ -283,7 +283,7 @@
 '> '          Keyword
 'quote string thing\n' Generic.Emph
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this'        Text
 ' '           Text
@@ -294,9 +294,9 @@
 'in'          Text
 ' '           Text
 'it'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this'        Text
 ' '           Text
@@ -314,9 +314,9 @@
 ' '           Text
 '#topic'      Name.Entity
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Text
 'google'      Name.Tag
@@ -324,7 +324,7 @@
 '('           Text
 'https://google.com/some/path.html' Name.Attribute
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!['          Text
 'Image of Yaktocat' Name.Tag
@@ -332,9 +332,9 @@
 '('           Text
 'https://octodex.github.com/images/yaktocat.png' Name.Attribute
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Text
 'reference link' Name.Tag
@@ -342,24 +342,24 @@
 '['           Text
 'id'          Name.Label
 ']'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Text
 'id'          Name.Label
 ']: '         Text
 'http://example.com/' Name.Attribute
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n```\n  * this is just unformated\n      __text__\n```\n' Literal.String.Backtick
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'some'        Text
 ' '           Text
 'other'       Text
 ' '           Text
 'text'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n```'       Literal.String.Backtick
 'python'      Literal.String.Backtick
@@ -379,11 +379,11 @@
 
 '```\n'       Literal.String.Backtick
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'some'        Text
 ' '           Text
 'more'        Text
 ' '           Text
 'text'        Text
-'\n'          Text
+'\n'          Text.Whitespace

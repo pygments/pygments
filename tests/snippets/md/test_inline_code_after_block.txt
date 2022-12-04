@@ -11,9 +11,9 @@ code
 '*'           Keyword
 ' '           Text.Whitespace
 'nocode'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Keyword
 ' '           Text.Whitespace
 '`code`'      Literal.String.Backtick
-'\n'          Text
+'\n'          Text.Whitespace

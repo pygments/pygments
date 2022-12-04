@@ -104,9 +104,9 @@
 'markdown'    Text
 ' '           Text
 'example'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -117,7 +117,7 @@
 'a'           Text
 ' '           Text
 'paragraph'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n    > '    Keyword
 "I'm a blockquote\n" Generic.Emph

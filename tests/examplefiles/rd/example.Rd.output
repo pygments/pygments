@@ -2,48 +2,48 @@
 '{'           Name.Builtin
 'foo'         Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\alias'     Keyword
 '{'           Name.Builtin
 'foo'         Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "% I'm a comment" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\title'     Keyword
 '{'           Name.Builtin
 'The foo function' Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\description' Keyword
 '{'           Name.Builtin
 "It doesn't do much" Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\usage'     Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo(x, y)'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\arguments' Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\item'      Keyword
@@ -53,7 +53,7 @@
 '{'           Name.Builtin
 'A number'    Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\item'      Keyword
@@ -63,14 +63,14 @@
 '{'           Name.Builtin
 'Another number' Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\details'   Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  I just adds ' Text
 '\\code'      Keyword
@@ -83,10 +83,10 @@
 'y'           Text
 '}'           Name.Builtin
 ', '          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\value'     Keyword
 '{'           Name.Builtin
@@ -106,11 +106,11 @@
 '}'           Name.Builtin
 '.'           Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\references' Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\href'      Keyword
@@ -120,24 +120,24 @@
 '{'           Name.Builtin
 'Sum'         Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\author'    Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Anonymous' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\note'      Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Lorem ipsum ' Text
 '\\dots'      Keyword.Constant
@@ -159,7 +159,7 @@
 'bold'        Text
 '}'           Name.Builtin
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\sQuote'    Keyword
@@ -177,7 +177,7 @@
 'code'        Text
 '}'           Name.Builtin
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\preformatted' Keyword
@@ -195,7 +195,7 @@
 'literal seq' Text
 '}'           Name.Builtin
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\pkg'       Keyword
@@ -213,7 +213,7 @@
 'email@hostname' Text
 '}'           Name.Builtin
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\url'       Keyword
@@ -231,7 +231,7 @@
 'HOME'        Text
 '}'           Name.Builtin
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\option'    Keyword
@@ -249,9 +249,9 @@
 'GNU'         Text
 '}'           Name.Builtin
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Escaped symbols: ' Text
 '\\\\'        Literal.String.Escape
@@ -264,10 +264,10 @@
 ' not comment. ' Text
 '\\\\'        Literal.String.Escape
 'NotAMacro.'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 '\\tabular'   Keyword
@@ -275,7 +275,7 @@
 'rlll'        Text
 '}'           Name.Builtin
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         [,1] ' Text
 '\\tab'       Keyword.Constant
@@ -285,7 +285,7 @@
 '\\tab'       Keyword.Constant
 ' A (ppb)'    Text
 '\\cr'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         [,2] ' Text
 '\\tab'       Keyword.Constant
@@ -295,7 +295,7 @@
 '\\tab'       Keyword.Constant
 ' B '         Text
 '\\cr'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         [,3] ' Text
 '\\tab'       Keyword.Constant
@@ -305,52 +305,52 @@
 '\\tab'       Keyword.Constant
 ' C '         Text
 '\\cr'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '       '     Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 '\\enumerate' Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 '\\item'      Keyword
 ' delta'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 '\\item'      Keyword
 ' echo'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '       '     Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 '\\itemize'   Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 '\\item'      Keyword
 ' foxtrot'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 '\\item'      Keyword
 ' golf'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '       '     Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\deqn'      Keyword
@@ -388,7 +388,7 @@
 '}'           Name.Builtin
 '{'           Name.Builtin
 '%'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '             p(' Text
 '\\mu'        Keyword
@@ -402,7 +402,7 @@
 '\\sigma'     Keyword
 ')) '         Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '       for ' Text
 '\\eqn'       Keyword
@@ -411,10 +411,10 @@
 '\\ldots'     Keyword.Constant
 '}'           Name.Builtin
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\if'        Keyword
@@ -440,49 +440,49 @@
 '{'           Name.Builtin
 'beta'        Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n#ifdef unix' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Now windows' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#endif'      Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#ifndef windows' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Using windows' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#endif'      Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\section'   Keyword
 '{'           Name.Builtin
 'Misc'        Text
 '}'           Name.Builtin
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Stuff.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\seealso'   Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '\\code'      Keyword
@@ -492,41 +492,41 @@
 'sum'         Text
 '}'           Name.Builtin
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\examples'  Keyword
 '{'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x <- 1'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'y <- 2'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'z <- foo(x, y)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\dontrun'   Keyword
 '{'           Name.Builtin
 'plot(z)'     Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\dontshow'  Keyword
 '{'           Name.Builtin
 'log(x)'      Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\keyword'   Keyword
 '{'           Name.Builtin
 'arith'       Text
 '}'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace

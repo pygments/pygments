@@ -1,14 +1,14 @@
 '// See README.txt for information and build instructions.\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'package'     Keyword.Namespace
 ' '           Text.Whitespace
 'tutorial'    Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'option'      Keyword
 ' '           Text.Whitespace
@@ -18,7 +18,7 @@
 ' '           Text.Whitespace
 '"com.example.tutorial"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'option'      Keyword
 ' '           Text.Whitespace
@@ -28,16 +28,16 @@
 ' '           Text.Whitespace
 '"AddressBookProtos"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'message'     Keyword.Declaration
 ' '           Text.Whitespace
 'Person'      Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'required'    Keyword
@@ -50,7 +50,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'required'    Keyword
@@ -77,9 +77,9 @@
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'enum'        Keyword.Declaration
@@ -87,7 +87,7 @@
 'PhoneType'   Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'MOBILE'      Name.Attribute
@@ -96,7 +96,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'HOME'        Name.Attribute
@@ -105,7 +105,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'WORK'        Name.Attribute
@@ -114,13 +114,13 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'message'     Keyword.Declaration
@@ -128,7 +128,7 @@
 'PhoneNumber' Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'required'    Keyword
@@ -141,7 +141,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'optional'    Keyword
@@ -162,13 +162,13 @@
 'HOME'        Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'repeated'    Keyword
@@ -181,12 +181,12 @@
 ' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Our address book file is just one of these.\n' Comment.Single
 
@@ -195,7 +195,7 @@
 'AddressBook' Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'repeated'    Keyword
@@ -208,7 +208,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

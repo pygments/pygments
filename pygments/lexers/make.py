@@ -163,7 +163,7 @@ class CMakeLexer(RegexLexer):
             # r'VTK_MAKE_INSTANTIATOR|VTK_WRAP_JAVA|VTK_WRAP_PYTHON|'
             # r'VTK_WRAP_TCL|WHILE|WRITE_FILE|'
             # r'COUNTARGS)\b', Name.Builtin, 'args'),
-            (r'\b(\w+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
+            (r'\b(\w+)([ \t]*)(\()', bygroups(Name.Builtin, Whitespace,
                                               Punctuation), 'args'),
             include('keywords'),
             include('ws')
@@ -177,7 +177,7 @@ class CMakeLexer(RegexLexer):
             (r'(?s)".*?"', String.Double),
             (r'\\\S+', String),
             (r'[^)$"# \t\n]+', String),
-            (r'\n', Text),  # explicitly legal
+            (r'\n', Whitespace),  # explicitly legal
             include('keywords'),
             include('ws')
         ],
@@ -200,7 +200,7 @@ class CMakeLexer(RegexLexer):
             r'\([ \t]*VERSION[ \t]*\d+(\.\d+)*[ \t]*'
             r'([ \t]FATAL_ERROR)?[ \t]*\)[ \t]*'
             r'(#[^\n]*)?$'
-       )
+        )
         if re.search(exp, text, flags=re.MULTILINE | re.IGNORECASE):
             return 0.8
         return 0.0

@@ -1,5 +1,5 @@
 '#'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -55,10 +55,10 @@
 'p'           Comment
 ' '           Comment
 '$'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -105,10 +105,10 @@
 '1'           Comment
 '.'           Comment
 '1'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -166,9 +166,9 @@
 '.'           Comment
 'n'           Comment
 'l'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -180,7 +180,7 @@
 'r'           Comment
 'y'           Comment
 ':'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -230,7 +230,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -306,9 +306,9 @@
 'c'           Comment
 't'           Comment
 '.'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print'       Keyword
 ' '           Text.Whitespace
@@ -461,7 +461,7 @@
 '"'           Literal.String
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'load'        Keyword
 ' '           Text.Whitespace
@@ -496,7 +496,7 @@
 '4.0'         Literal.Number.Float
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -539,7 +539,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n'           Name.Variable
 ' '           Text.Whitespace
@@ -1018,7 +1018,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -1062,7 +1062,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n'           Name.Variable
 ' '           Text.Whitespace
@@ -1535,7 +1535,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -1578,7 +1578,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'p'           Keyword
 ' '           Text.Whitespace
@@ -2015,7 +2015,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -2059,7 +2059,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'p'           Keyword
 ' '           Text.Whitespace
@@ -2478,7 +2478,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -2529,7 +2529,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nn'          Name.Variable
 ' '           Text.Whitespace
@@ -3070,7 +3070,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -3119,7 +3119,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nn'          Name.Variable
 ' '           Text.Whitespace
@@ -3637,7 +3637,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -3688,7 +3688,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'r'           Name.Variable
 ' '           Text.Whitespace
@@ -4189,7 +4189,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -4241,7 +4241,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'r'           Name.Variable
 ' '           Text.Whitespace
@@ -4722,7 +4722,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -4765,7 +4765,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mu'          Name.Variable
 ' '           Text.Whitespace
@@ -5185,7 +5185,7 @@
 'label'       Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
 ' '           Comment
@@ -5227,7 +5227,7 @@
 'i'           Comment
 'o'           Comment
 'n'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mu'          Name.Variable
 ' '           Text.Whitespace

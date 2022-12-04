@@ -16,7 +16,7 @@ rule: 'a' ~ 'b'
 '|'           Operator
 ' '           Text
 "'b'"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'rule'        Name.Class
 ':'           Operator
@@ -26,4 +26,4 @@ rule: 'a' ~ 'b'
 '~'           Operator
 ' '           Text
 "'b'"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace

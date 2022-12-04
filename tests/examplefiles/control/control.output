@@ -1,29 +1,29 @@
 'Source'      Keyword
 ': '          Text.Whitespace
 'foo'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Section'     Keyword
 ': '          Text.Whitespace
 'misc'        Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Priority'    Keyword
 ': '          Text.Whitespace
 'optional'    Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Maintainer'  Keyword
 ': '          Text
 'Debian Python Team ' Text
 '<team+python@domain.tld>' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Uploaders'   Keyword
 ': '          Text
 'Alice '      Text
 '<alice@domain.tld>' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Build-Depends' Keyword
 ': '          Text
@@ -65,39 +65,39 @@
 'Rules-Requires-Root' Keyword
 ': '          Text.Whitespace
 'no'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Standards-Version' Keyword
 ': '          Text.Whitespace
 '4.5.1'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Vcs-Git'     Keyword
 ': '          Text.Whitespace
 'https://salsa.domain.tld/python-team/packages/foo.git' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Vcs-Browser' Keyword
 ': '          Text.Whitespace
 'https://salsa.domain.tld/python-team/packages/foo' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Homepage'    Keyword
 ': '          Text.Whitespace
 'https://domain.tld/owner/foo' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Package'     Keyword
 ': '          Text.Whitespace
 'foo'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Architecture' Keyword
 ': '          Text.Whitespace
 'all'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Pre-Depends' Keyword
 ':\n '        Text
@@ -135,7 +135,7 @@
 'Provides'    Keyword
 ': '          Text.Whitespace
 'x-terminal-emulator' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Recommends'  Keyword
 ':\n '        Text

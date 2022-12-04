@@ -5,7 +5,7 @@
 '.'           Operator
 'au3'         Name
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';http://msdn.microsoft.com/en-us/library/Aa752084.aspx\n' Comment.Single
 
@@ -14,9 +14,9 @@
 '"'           Literal.String
 'http://localhost:5000/' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$oIE'        Name.Variable
 ' '           Text
@@ -42,7 +42,7 @@
 '$_IEStatus_NoMatch' Name.Variable
 ' '           Text
 'Then'        Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 '$oIE'        Name.Variable
@@ -63,9 +63,9 @@
 '\n'          Text
 
 'endIf'       Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$oForm'      Name.Variable
 ' '           Text
@@ -81,7 +81,7 @@
 'form1'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';username, call DOM directly\n' Comment.Single
 
@@ -101,7 +101,7 @@
 '"'           Literal.String
 'helloAutoIT' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';state select\n' Comment.Single
 
@@ -119,7 +119,7 @@
 'state'       Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_IEFormElementOptionSelect' Name
 ' '           Text
@@ -139,7 +139,7 @@
 'byText'      Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';options raido\n' Comment.Single
 
@@ -165,9 +165,9 @@
 'byValue'     Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$myvar'      Name.Variable
 ' '           Text
@@ -176,12 +176,12 @@
 "'"           Literal.String
 'boo; bar; "baz"' Literal.String
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#cs\nConsoleWrite(@Error)\nSleep(10000)\n#ce' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_IEFormSubmit' Name
 '('           Punctuation
@@ -190,22 +190,22 @@
 ' '           Text
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_IELoadWait' Name
 '('           Punctuation
 '$oIE'        Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Sleep'       Name.Function
 '('           Punctuation
 '60000'       Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_IEQuit'     Name
 '('           Punctuation
 '$oIE'        Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

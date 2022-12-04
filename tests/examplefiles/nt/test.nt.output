@@ -1,46 +1,46 @@
 '# comment'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '# indented comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'dict'        Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'key1'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'dict-like: value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'key2'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 '- list-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'key3'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 '> str-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'key4'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'no trailing whitespace' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'key5'        Name
@@ -48,21 +48,21 @@
 ' '           Text.Whitespace
 'trailing whitespace' Literal.String
 '    '        Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 "'"           Punctuation
 'key: single-quoted' Name
 "': "         Punctuation
 'value'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '"'           Punctuation
 'key: double-quoted' Name
 '": '         Punctuation
 'value'       Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'empty'       Name
@@ -73,31 +73,31 @@
 
 'list'        Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
 ' '           Text.Whitespace
 'dict-like: value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
 ' '           Text.Whitespace
 '- list-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
 ' '           Text.Whitespace
 '> str-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
 ' '           Text.Whitespace
 'no trailing whitespace' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
@@ -109,7 +109,7 @@
 
 'empty list'  Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation
@@ -119,38 +119,38 @@
 
 'string'      Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation
 ' '           Text.Whitespace
 'dict-like: value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation
 ' '           Text.Whitespace
 '- list-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation
 ' '           Text.Whitespace
 '> str-like value' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation
 ' '           Text.Whitespace
 'no trailing whitespace' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation
 ' '           Text.Whitespace
 'trailing whitespace' Literal.String
 '    '        Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '>'           Punctuation

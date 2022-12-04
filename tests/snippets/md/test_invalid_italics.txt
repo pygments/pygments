@@ -11,21 +11,21 @@ __no italics__
 '*no'         Text
 ' '           Text
 'italics_'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '_no'         Text
 ' '           Text
 'italics*'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '**no italics**' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '__no italics__' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace

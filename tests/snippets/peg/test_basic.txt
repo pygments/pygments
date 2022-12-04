@@ -14,4 +14,4 @@ rule<-("terminal"/nonterminal/[cls])*
 ']'           Punctuation
 ')'           Punctuation
 '*'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

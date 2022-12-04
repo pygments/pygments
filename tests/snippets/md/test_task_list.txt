@@ -12,7 +12,7 @@
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -22,7 +22,7 @@
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n  '        Text.Whitespace
 '* '          Keyword
@@ -31,4 +31,4 @@
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace
