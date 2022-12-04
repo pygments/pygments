@@ -8,6 +8,7 @@
 
 import os
 
+
 def unpack_output_file(path):
     """
     Unpack an output file into objects contining the line number, the text,
@@ -28,6 +29,7 @@ def unpack_output_file(path):
             text = text.replace('\\t', '\t')
             yield entry(text, token, linenumber + 1)
 
+
 def process_output_files(root_directory, callback):
     """
     Process all output files in a directory using the provided callback.
@@ -41,7 +43,7 @@ def process_output_files(root_directory, callback):
         for file in files:
             if not file.endswith('.output'):
                 continue
-            
+
             path = os.path.join(dir, file)
             if not callback(path):
                 errors += 1
