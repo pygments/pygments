@@ -70,45 +70,45 @@
 
 '# ***** END LICENSE BLOCK *****\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DEPTH'       Name.Variable
 '\t\t'        Text
 '='           Operator
 ' '           Text
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'topsrcdir'   Name.Variable
 '\t'          Text
 '='           Operator
 ' '           Text
 '@top_srcdir@' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'srcdir'      Name.Variable
 '\t\t'        Text
 '='           Operator
 ' '           Text
 '@srcdir@'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VPATH'       Name.Variable
 '\t\t'        Text
 '='           Operator
 ' '           Text
 '@srcdir@'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'include $(DEPTH)/config/autoconf.mk\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'include $(topsrcdir)/build/unix/modules.mk\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifeq ($(BUILD_MODULES),all)\n' Comment.Preproc
 
@@ -127,9 +127,9 @@
 '='           Operator
 ' '           Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'default alldep all' Name.Function
 '::'          Operator
@@ -139,87 +139,87 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'RM'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-rf'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
 '/sdk'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'RM'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-rf'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
 '/include'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'config'      Text
-' '           Text
+' '           Text.Whitespace
 'export'      Name.Builtin
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'nspr'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'ldap'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_0'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_1'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_2'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_9'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_50'     Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'tier_99'     Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Make sure that the existing rulesets work\n' Comment
 
@@ -229,46 +229,46 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'tier_0_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'tier_1_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'tier_2_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'tier_9_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'tier_50_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
 
@@ -277,11 +277,11 @@
 '+='          Operator
 ' '           Text
 'gc/boehm'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DIRS'        Name.Variable
 '\t'          Text
@@ -290,9 +290,9 @@
 '$('          Keyword
 'tier_99_dirs' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#\n'         Comment
 
@@ -306,21 +306,21 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'config'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'build'       Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#\n'         Comment
 
@@ -333,9 +333,9 @@
 '+='          Operator
 ' '           Text
 'dbm'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MOZ_NATIVE_JPEG\n' Comment.Preproc
 
@@ -344,11 +344,11 @@
 '+='          Operator
 ' '           Text
 'jpeg'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MOZ_NATIVE_ZLIB\n' Comment.Preproc
 
@@ -357,11 +357,11 @@
 '+='          Operator
 ' '           Text
 'modules/zlib' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Installer needs standalone libjar, hence standalone zlib\n' Comment
 
@@ -372,11 +372,11 @@
 '+='          Operator
 ' '           Text
 'modules/zlib/standalone' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_UPDATER\n' Comment.Preproc
 
@@ -385,18 +385,18 @@
 '+='          Operator
 ' '           Text
 'modules/libbz2' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_1_dirs' Name.Variable
 ' '           Text
 '+='          Operator
 ' '           Text
 'modules/libmar' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_SVG_RENDERER_LIBART\n' Comment.Preproc
 
@@ -405,11 +405,11 @@
 '+='          Operator
 ' '           Text
 'other-licenses/libart_lgpl' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#\n'         Comment
 
@@ -423,21 +423,21 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'js'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'xpcom'       Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifndef MOZ_NO_XPCOM_OBSOLETE\n' Comment.Preproc
 
@@ -446,13 +446,13 @@
 '+='          Operator
 ' '           Text
 'modules/libreg' Text
-' '           Text
+' '           Text.Whitespace
 'xpcom/obsolete' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
 
@@ -461,11 +461,11 @@
 '+='          Operator
 ' '           Text
 'tools/trace-malloc/lib' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#\n'         Comment
 
@@ -473,7 +473,7 @@
 
 '#\n'         Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_9_dirs' Name.Variable
 ' '           Text
@@ -481,26 +481,26 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'js/src/xpconnect' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'intl'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'db'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifdef MOZ_STORAGE\n' Comment.Preproc
 
@@ -509,11 +509,11 @@
 '+='          Operator
 ' '           Text
 'storage'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_ENABLE_XLIB\n' Comment.Preproc
 
@@ -522,13 +522,13 @@
 '+='          Operator
 ' '           Text
 'gfx/src/xlibrgb' Text
-' '           Text
+' '           Text.Whitespace
 'widget/src/xlibxtbin' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_ENABLE_GTK\n' Comment.Preproc
 
@@ -537,13 +537,13 @@
 '+='          Operator
 ' '           Text
 'widget/src/gtksuperwin' Text
-' '           Text
+' '           Text.Whitespace
 'widget/src/gtkxtbin' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_ENABLE_GTK2\n' Comment.Preproc
 
@@ -552,11 +552,11 @@
 '+='          Operator
 ' '           Text
 'widget/src/gtkxtbin' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_IPCD\n' Comment.Preproc
 
@@ -565,11 +565,11 @@
 '+='          Operator
 ' '           Text
 'ipc/ipcd'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_JSDEBUGGER\n' Comment.Preproc
 
@@ -578,11 +578,11 @@
 '+='          Operator
 ' '           Text
 'js/jsd'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_9_dirs' Name.Variable
 '\t'          Text
@@ -590,141 +590,141 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/libutil' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'netwerk'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/libjar' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'uriloader'   Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/libpref' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/libimg' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'caps'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'rdf'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'parser/expat' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'parser/xml'  Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'parser/htmlparser' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'gfx'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/libpr0n' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'sun-java'    Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/plugin' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'dom'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'view'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'widget'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'content'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'layout'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'xpfe/components/shistory' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'docshell'    Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'webshell'    Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'embedding'   Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'editor'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'xpfe/appshell' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifdef MOZ_OJI\n' Comment.Preproc
 
@@ -734,25 +734,25 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'js/src/liveconnect' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'modules/oji' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef ACCESSIBILITY\n' Comment.Preproc
 
@@ -761,11 +761,11 @@
 '+='          Operator
 ' '           Text
 'accessible'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# \n'        Comment
 
@@ -773,7 +773,7 @@
 
 '#\n'         Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_XUL\n' Comment.Preproc
 
@@ -784,7 +784,7 @@
 '+='          Operator
 ' '           Text
 'chrome'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
@@ -793,7 +793,7 @@
 '+='          Operator
 ' '           Text
 'rdf/chrome'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
@@ -804,20 +804,20 @@
 '+='          Operator
 ' '           Text
 'embedding/minimo/chromelite' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_50_dirs' Name.Variable
 ' '           Text
 '+='          Operator
 ' '           Text
 'profile'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# This must preceed xpfe\n' Comment
 
@@ -828,11 +828,11 @@
 '+='          Operator
 ' '           Text
 'tools/jprof' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifneq (,$(filter mac cocoa,$(MOZ_WIDGET_TOOLKIT)))\n' Comment.Preproc
 
@@ -841,11 +841,11 @@
 '+='          Operator
 ' '           Text
 'xpfe/bootstrap/appleevents' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_50_dirs' Name.Variable
 '\t'          Text
@@ -853,21 +853,21 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'xpfe'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'toolkit/components' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifndef MOZ_XUL_APP\n' Comment.Preproc
 
@@ -876,11 +876,11 @@
 '+='          Operator
 ' '           Text
 'themes'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_ENABLE_XREMOTE\n' Comment.Preproc
 
@@ -889,11 +889,11 @@
 '+='          Operator
 ' '           Text
 'widget/src/xremoteclient' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_XUL_APP\n' Comment.Preproc
 
@@ -902,11 +902,11 @@
 '+='          Operator
 ' '           Text
 'toolkit'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_PHOENIX\n' Comment.Preproc
 
@@ -917,11 +917,11 @@
 '+='          Operator
 ' '           Text
 'browser/components/shell/public' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_XPINSTALL\n' Comment.Preproc
 
@@ -930,11 +930,11 @@
 '+='          Operator
 '  '          Text
 'xpinstall'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# JavaXPCOM JNI code is compiled into libXUL\n' Comment
 
@@ -945,11 +945,11 @@
 '+='          Operator
 ' '           Text
 'extensions/java/xpcom/src' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
 
@@ -959,25 +959,25 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'toolkit/library' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'xpcom/stub'  Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
 
@@ -986,11 +986,11 @@
 '+='          Operator
 ' '           Text
 'tools/trace-malloc' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_PSM\n' Comment.Preproc
 
@@ -999,7 +999,7 @@
 '+='          Operator
 ' '           Text
 'security/manager' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
@@ -1008,13 +1008,13 @@
 '+='          Operator
 ' '           Text
 'security/manager/boot/public' Text
-' '           Text
+' '           Text.Whitespace
 'security/manager/ssl/public' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
@@ -1023,11 +1023,11 @@
 '+='          Operator
 ' '           Text
 'directory/xpcom' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MINIMO\n' Comment.Preproc
 
@@ -1040,7 +1040,7 @@
 '+='          Operator
 ' '           Text
 'toolkit/components/gnome' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
@@ -1048,7 +1048,7 @@
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_LEAKY\n' Comment.Preproc
 
@@ -1057,11 +1057,11 @@
 '+='          Operator
 ' '           Text
 'tools/leaky' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_MAPINFO\n' Comment.Preproc
 
@@ -1070,11 +1070,11 @@
 '+='          Operator
 ' '           Text
 'tools/codesighs' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#\n'         Comment
 
@@ -1082,7 +1082,7 @@
 
 '#\n'         Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_MAIL_NEWS\n' Comment.Preproc
 
@@ -1091,11 +1091,11 @@
 '+='          Operator
 ' '           Text
 'mailnews'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_CALENDAR\n' Comment.Preproc
 
@@ -1104,11 +1104,11 @@
 '+='          Operator
 ' '           Text
 'calendar'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_EXTENSIONS\n' Comment.Preproc
 
@@ -1117,11 +1117,11 @@
 '+='          Operator
 ' '           Text
 'extensions'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_JAVAXPCOM\n' Comment.Preproc
 
@@ -1130,11 +1130,11 @@
 '+='          Operator
 ' '           Text
 'extensions/java' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# axcontrol\n' Comment
 
@@ -1148,27 +1148,27 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'embedding/browser/activex/src/control' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'embedding/browser/activex/src/control_kicker' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Java Embedding Plugin\n' Comment
 
@@ -1179,11 +1179,11 @@
 '+='          Operator
 ' '           Text
 'plugin/oji/JEP' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifneq (,$(filter browser suite,$(MOZ_BUILD_APP)))\n' Comment.Preproc
 
@@ -1192,11 +1192,11 @@
 '+='          Operator
 ' '           Text
 'xpfe/components/search' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_BRANDING_DIRECTORY\n' Comment.Preproc
 
@@ -1207,11 +1207,11 @@
 '$('          Keyword
 'MOZ_BRANDING_DIRECTORY' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_PHOENIX\n' Comment.Preproc
 
@@ -1220,13 +1220,13 @@
 '+='          Operator
 ' '           Text
 'browser'     Text
-' '           Text
+' '           Text.Whitespace
 'xpfe/bootstrap/init.d' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_XULRUNNER\n' Comment.Preproc
 
@@ -1235,11 +1235,11 @@
 '+='          Operator
 ' '           Text
 'xulrunner'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_COMPOSER\n' Comment.Preproc
 
@@ -1248,11 +1248,11 @@
 '+='          Operator
 ' '           Text
 'editor/ui'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_THUNDERBIRD\n' Comment.Preproc
 
@@ -1261,13 +1261,13 @@
 '+='          Operator
 ' '           Text
 'mail'        Text
-' '           Text
+' '           Text.Whitespace
 'xpfe/bootstrap/init.d' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_STANDALONE_COMPOSER\n' Comment.Preproc
 
@@ -1276,11 +1276,11 @@
 '+='          Operator
 ' '           Text
 'composer'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_SUNBIRD\n' Comment.Preproc
 
@@ -1289,11 +1289,11 @@
 '+='          Operator
 ' '           Text
 'calendar/sunbird' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_SUITE\n' Comment.Preproc
 
@@ -1302,11 +1302,11 @@
 '+='          Operator
 ' '           Text
 'suite'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MINIMO\n' Comment.Preproc
 
@@ -1315,11 +1315,11 @@
 '+='          Operator
 ' '           Text
 'minimo'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_XUL_APP\n' Comment.Preproc
 
@@ -1330,7 +1330,7 @@
 '+='          Operator
 '  '          Text
 'toolkit/mozapps/installer' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
@@ -1345,7 +1345,7 @@
 '+='          Operator
 ' '           Text
 'xpfe/bootstrap' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
@@ -1353,7 +1353,7 @@
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifneq (,$(MOZ_ENABLE_GTK)$(MOZ_ENABLE_GTK2))\n' Comment.Preproc
 
@@ -1362,11 +1362,11 @@
 '+='          Operator
 ' '           Text
 'embedding/browser/gtk' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# viewer\n'  Comment
 
@@ -1379,13 +1379,13 @@
 '+='          Operator
 ' '           Text
 'webshell/tests' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# winembed, mfcembed\n' Comment
 
@@ -1398,13 +1398,13 @@
 '+='          Operator
 ' '           Text
 'embedding/tests' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# os2embed\n' Comment
 
@@ -1417,13 +1417,13 @@
 '+='          Operator
 ' '           Text
 'embedding/tests' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifeq ($(MOZ_BUILD_APP),macbrowser)\n' Comment.Preproc
 
@@ -1433,25 +1433,25 @@
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'embedding/config' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'camino'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'NULL'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# test harnesses \n' Comment
 
@@ -1462,19 +1462,19 @@
 '+='          Operator
 ' '           Text
 'tools/test-harness' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Standalone build\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DIRS'        Name.Variable
 '\t\t'        Text
@@ -1483,9 +1483,9 @@
 '$('          Keyword
 'BUILD_MODULE_DIRS' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Hack to generate xpidl Makefile\n' Comment
 
@@ -1498,24 +1498,24 @@
 ':='          Operator
 ' '           Text
 'xpcom/typelib' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIRS'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SUBMAKEFILES' Name.Variable
 '\t'          Text
 ':='          Operator
 ' '           Text
 'xpcom/typelib/Makefile' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'default'     Name.Function
 '::'          Operator
@@ -1525,87 +1525,87 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'export'      Name.Builtin
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'libs'        Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'endif # BUILD_MODULES == all\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'STATIC_MAKEFILES' Name.Variable
 ' '           Text
 ':='          Operator
 ' '           Text
 'nsprpub'     Text
-' '           Text
+' '           Text.Whitespace
 'directory/c-sdk' Text
-' '           Text
+' '           Text.Whitespace
 'security/nss' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GARBAGE_DIRS' Name.Variable
 ' '           Text
 '+='          Operator
 ' '           Text
 'dist'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DIST_GARBAGE' Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
 'config.cache' Text
-' '           Text
+' '           Text.Whitespace
 'config.log'  Text
-' '           Text
+' '           Text.Whitespace
 'config.status' Text
-' '           Text
+' '           Text.Whitespace
 'config-defs.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'   '         Text
+'   '         Text.Whitespace
 'dependencies.beos' Text
-' '           Text
+' '           Text.Whitespace
 'config/autoconf.mk' Text
-' '           Text
+' '           Text.Whitespace
 'config/myrules.mk' Text
-' '           Text
+' '           Text.Whitespace
 'config/myconfig.mk' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'   '         Text
+'   '         Text.Whitespace
 'unallmakefiles' Text
-' '           Text
+' '           Text.Whitespace
 'mozilla-config.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'   '         Text
+'   '         Text.Whitespace
 '$('          Keyword
 'topsrcdir'   Text
 ')'           Keyword
 '/.mozconfig.mk' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'topsrcdir'   Text
 ')'           Keyword
 '/.mozconfig.out' Text
-' \n\n'       Text
+' \n\n'       Text.Whitespace
 
 '# Build pseudo-external modules first when export is explicitly called\n' Comment
 
@@ -1613,66 +1613,66 @@
 '::'          Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'RM'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-rf'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
 '/sdk'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'config'      Text
-' '           Text
+' '           Text.Whitespace
 'export'      Name.Builtin
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'nspr'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'ldap'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifneq ($(BUILD_MODULES),all)\n' Comment.Preproc
 
 'ifneq (,$(findstring xpcom, $(BUILD_MODULE_DIRS)))\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'xpcom/typelib' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'export-idl'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'install'     Name.Function
 '::'          Operator
@@ -1680,45 +1680,45 @@
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'nsprpub'     Text
-' '           Text
+' '           Text.Whitespace
 'real_install' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'libdir'      Name.Variable
 '='           Operator
 '$('          Keyword
 'mozappdir'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'includedir'  Name.Variable
 '='           Operator
 '$('          Keyword
 'includedir'  Text
 ')'           Keyword
 '/nspr'       Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'RM'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'addprefix'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -1730,33 +1730,33 @@
 'LIB_PREFIX'  Text
 ')'           Keyword
 ','           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'addsuffix'   Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
 '$('          Keyword
 'LIB_SUFFIX'  Text
 ')'           Keyword
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'nspr4'       Text
-' '           Text
+' '           Text.Whitespace
 'plds4'       Text
-' '           Text
+' '           Text.Whitespace
 'plc4'        Text
 ')'           Keyword
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'RM'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'addprefix'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -1764,55 +1764,55 @@
 'bindir'      Text
 ')'           Keyword
 '/,nspr-config' Text
-' '           Text
+' '           Text.Whitespace
 'compile-et.pl' Text
-' '           Text
+' '           Text.Whitespace
 'prerr.properties' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'directory/c-sdk' Text
-' '           Text
+' '           Text.Whitespace
 'real_install' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'libdir'      Name.Variable
 '='           Operator
 '$('          Keyword
 'mozappdir'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'includedir'  Name.Variable
 '='           Operator
 '$('          Keyword
 'includedir'  Text
 ')'           Keyword
 '/ldap'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'include $(topsrcdir)/config/rules.mk\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Clean up after pseudo-external modules\n' Comment
 
@@ -1822,37 +1822,37 @@
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'nsprpub'     Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'directory/c-sdk' Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Map mozilla targets to standard automake target\n' Comment
 
@@ -1885,44 +1885,44 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@echo'       Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'tier_50: '   Literal.String.Double
 '$('          Keyword
 'tier_50_dirs' Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@'           Text
 '$('          Keyword
 'EXIT_ON_ERROR' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'tier_50_dirs' Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 '$('          Keyword
 'UPDATE_TITLE' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t    if test ! -f $$d/Makefile; then \\\n' Comment.Preproc
@@ -1943,80 +1943,80 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@echo'       Text
-' '           Text
+' '           Text.Whitespace
 '"Building tools from tier 2/9/50"' Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@'           Text
 '$('          Keyword
 'EXIT_ON_ERROR' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'tier_2_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'tier_9_dirs' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'tier_50_dirs' Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 '$('          Keyword
 'UPDATE_TITLE' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'tools'       Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'done'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tier_%'      Name.Function
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@echo'       Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$@'          Name.Variable
 ': '          Literal.String.Double
@@ -2025,36 +2025,36 @@
 '_dirs'       Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@'           Text
 '$('          Keyword
 'EXIT_ON_ERROR' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 '$@'          Name.Variable
 '_dirs'       Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 '$('          Keyword
 'UPDATE_TITLE' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t    if test ! -f $$d/Makefile; then \\\n' Comment.Preproc
@@ -2073,7 +2073,7 @@
 
 '\t  done\n'  Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#\n'         Comment
 
@@ -2087,19 +2087,19 @@
 
 'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'gc/boehm'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nspr'        Name.Function
 ':'           Operator
@@ -2109,19 +2109,19 @@
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'nsprpub'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ldap'        Name.Function
 ':'           Operator
@@ -2129,49 +2129,49 @@
 
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-C'          Text
-' '           Text
+' '           Text.Whitespace
 'directory/c-sdk' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'distclean'   Name.Function
 '::'          Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cat'         Text
-' '           Text
+' '           Text.Whitespace
 'unallmakefiles' Text
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'XARGS'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'unallmakefiles' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST_GARBAGE' Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ifeq ($(OS_ARCH),WINNT)\n' Comment.Preproc
 
@@ -2181,51 +2181,51 @@
 
 'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'rebasing'    Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.dll"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '>'           Text
-' '           Text
+' '           Text.Whitespace
 'rebase.lst'  Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rebase'      Text
-' '           Text
+' '           Text.Whitespace
 '-b'          Text
-' '           Text
+' '           Text.Whitespace
 '60000000'    Literal.Number
-' '           Text
+' '           Text.Whitespace
 '-R'          Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-G'          Text
-' '           Text
+' '           Text.Whitespace
 'rebase.lst'  Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 'rebase.lst'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif\n'     Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'splitsymbols' Name.Function
 ':'           Operator
@@ -2235,19 +2235,19 @@
 
 'ifdef MOZ_DEBUG_SYMBOLS\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'finding'     Text
-' '           Text
+' '           Text.Whitespace
 'pdb'         Text
-' '           Text
+' '           Text.Whitespace
 'files'       Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'mkdir'       Text
-' '           Text
+' '           Text.Whitespace
 '-p'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2255,41 +2255,41 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-cp'         Text
-' '           Text
+' '           Text.Whitespace
 '`'           Literal.String.Backtick
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-path'       Text
-' '           Text
+' '           Text.Whitespace
 '"./dist"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-prune'      Text
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.dll"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sed'         Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 's/\\.dll'    Literal.String.Double
 '$$'          Name.Variable
 '/\\.pdb/'    Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
 '`'           Literal.String.Backtick
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2297,41 +2297,41 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-cp'         Text
-' '           Text
+' '           Text.Whitespace
 '`'           Literal.String.Backtick
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-path'       Text
-' '           Text
+' '           Text.Whitespace
 '"./dist"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-prune'      Text
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.exe"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sed'         Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 's/\\.exe'    Literal.String.Double
 '$$'          Name.Variable
 '/\\.pdb/'    Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
 '`'           Literal.String.Backtick
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2339,41 +2339,41 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-cp'         Text
-' '           Text
+' '           Text.Whitespace
 '`'           Literal.String.Backtick
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-path'       Text
-' '           Text
+' '           Text.Whitespace
 '"./dist"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-prune'      Text
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.EXE"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sed'         Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 's/\\.EXE'    Literal.String.Double
 '$$'          Name.Variable
 '/\\.pdb/'    Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
 '`'           Literal.String.Backtick
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2381,86 +2381,86 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif # MOZ_DEBUG_SYMBOLS\n' Comment.Preproc
 
 'ifdef MOZ_PROFILE\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'splitting'   Text
-' '           Text
+' '           Text.Whitespace
 'symbols'     Text
-' '           Text
+' '           Text.Whitespace
 'out'         Text
-' '           Text
+' '           Text.Whitespace
 'of'          Text
-' '           Text
+' '           Text.Whitespace
 'binaries'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.dll"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'splitsym'    Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\;'         Literal.String.Escape
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.exe"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'splitsym'    Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\;'         Literal.String.Escape
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.EXE"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'splitsym'    Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\;'         Literal.String.Escape
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'mkdir'       Text
-' '           Text
+' '           Text.Whitespace
 '-p'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2468,24 +2468,24 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '/bin/find'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '"*.dbg"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'mv'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
@@ -2493,15 +2493,15 @@
 '$('          Keyword
 'BUILDID'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\;'         Literal.String.Escape
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif # MOZ_PROFILE\n' Comment.Preproc
 
 'endif # MOZILLA_OFFICIAL\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'signnss'     Name.Function
 ':'           Operator
@@ -2509,51 +2509,51 @@
 
 'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'signing'     Text
-' '           Text
+' '           Text.Whitespace
 'NSS'         Text
-' '           Text
+' '           Text.Whitespace
 'libs'        Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
 '/bin'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 './shlibsign.exe' Text
-' '           Text
+' '           Text.Whitespace
 '-v'          Text
-' '           Text
+' '           Text.Whitespace
 '-i'          Text
-' '           Text
+' '           Text.Whitespace
 'softokn3.dll' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIST'        Text
 ')'           Keyword
 '/bin'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 './shlibsign.exe' Text
-' '           Text
+' '           Text.Whitespace
 '-v'          Text
-' '           Text
+' '           Text.Whitespace
 '-i'          Text
-' '           Text
+' '           Text.Whitespace
 'freebl3.dll' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif # MOZILLA_OFFICIAL\n' Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BUILDID'     Name.Variable
 ' '           Text
@@ -2561,15 +2561,15 @@
 ' '           Text
 '$('          Keyword
 'shell'       Text
-' '           Text
+' '           Text.Whitespace
 'cat'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DEPTH'       Text
 ')'           Keyword
 '/config/build_number' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deliver'     Name.Function
 ':'           Operator
@@ -2581,6 +2581,6 @@
 'signnss'     Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endif # WINNT\n' Comment.Preproc

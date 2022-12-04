@@ -16,25 +16,25 @@
 'run'         Keyword
 ' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'  '          Text
+'  '          Text.Whitespace
 '123'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 '$bar'        Name.Variable
 '\n'          Text
 
 'RUN'         Keyword
 ' '           Text.Whitespace
 'apk'         Text
-' '           Text
+' '           Text.Whitespace
 '--update'    Text
-' '           Text
+' '           Text.Whitespace
 'add'         Text
-' '           Text
+' '           Text.Whitespace
 'rsync'       Text
-' '           Text
+' '           Text.Whitespace
 'dumb-init'   Text
 '\n'          Text
 
@@ -46,19 +46,19 @@
 'ENV'         Keyword
 ' '           Text.Whitespace
 'FOO'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"BAR"'       Literal.String.Double
 '\n'          Text
 
 'ENV'         Keyword
 ' '           Text.Whitespace
 'FOO'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"BAR"'       Literal.String.Double
 '\n'          Text
 
@@ -67,17 +67,17 @@
 'COPY'        Keyword
 ' '           Text.Whitespace
 'foo'         Text
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
 '\n'          Text
 
 'COPY'        Keyword
 ' '           Text.Whitespace
 'foo'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"bar"'       Literal.String.Double
 '\n'          Text
 
@@ -87,30 +87,30 @@
 ' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 '--interval'  Text
 '='           Operator
 '5m'          Text
-' '           Text
+' '           Text.Whitespace
 '--timeout'   Text
 '='           Operator
 '3s'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 'CMD'         Keyword
 ' '           Text.Whitespace
 'curl'        Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'http://localhost/' Text
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'exit'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 '\n'          Text
 
@@ -124,7 +124,7 @@
 'ADD'         Keyword
 ' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '/app/src'    Text
 '\n'          Text
 
@@ -132,13 +132,13 @@
 ' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'RUN'         Keyword
 ' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 '$bar'        Name.Variable
 '\n'          Text
 
@@ -152,7 +152,7 @@
 '\\'          Literal.String
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '/foo'        Text
 '\n'          Text
 
@@ -160,7 +160,7 @@
 ' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 '['           Punctuation
 '"/bar"'      Literal.String.Double
 ']'           Punctuation

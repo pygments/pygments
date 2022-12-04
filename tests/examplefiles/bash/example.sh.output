@@ -1,29 +1,29 @@
 '#!/bin/bash\n' Comment.Hashbang
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'printf'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"%d %s\\n"'  Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '"foo"'       Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'printf'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"%d %s\\n"'  Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '$(('         Keyword
 '10#1'        Literal.Number
 '))'          Keyword
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'let'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'm = 10#'     Literal.String.Double
 '${'          Literal.String.Interpol
@@ -34,12 +34,12 @@
 '2'           Name.Variable
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'm'           Name.Variable
 '='           Operator
@@ -52,9 +52,9 @@
 ':'           Punctuation
 '3'           Name.Variable
 '}'           Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '10#'         Literal.Number
 '${'          Literal.String.Interpol
 '1'           Name.Variable
@@ -64,12 +64,12 @@
 '3'           Name.Variable
 '}'           Literal.String.Interpol
 '))'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'm'           Name.Variable
 '='           Operator
@@ -83,12 +83,12 @@
 '3'           Name.Variable
 '}'           Literal.String.Interpol
 '))'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'm'           Name.Variable
 '='           Operator
@@ -96,33 +96,33 @@
 '10#'         Literal.Number
 '$1'          Name.Variable
 '))'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'm'           Name.Variable
 '='           Operator
 '$(('         Keyword
 '10#1'        Literal.Number
 '))'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'm'           Name.Variable
 '='           Operator
 '$(('         Keyword
 '10'          Literal.Number
 '))'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$m'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace

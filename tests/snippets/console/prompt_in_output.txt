@@ -9,12 +9,12 @@ line1
 ---tokens---
 '$ '          Generic.Prompt
 'cat'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '> '          Generic.Prompt
 'test.txt'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'line1\n'     Generic.Output
 

@@ -38,35 +38,35 @@
 
 '# See also the section "Build instructions" in the README file.\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# === Variables set by makesetup ===\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MODOBJS'     Name.Variable
 '='           Operator
 '          '  Text
 'Modules/threadmodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/signalmodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/posixmodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/errnomodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/pwdmodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/_sre.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/_codecsmodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/zipimport.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/symtablemodule.o' Text
-'  '          Text
+'  '          Text.Whitespace
 'Modules/xxsubtype.o' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MODLIBS'     Name.Variable
 '='           Operator
@@ -74,13 +74,13 @@
 '$('          Keyword
 'LOCALMODLIBS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BASEMODLIBS' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# === Variables set by configure\n' Comment
 
@@ -89,31 +89,31 @@
 '\t'          Text
 '2'           Literal.Number
 '.6'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'srcdir'      Name.Variable
 '='           Operator
 '\t\t'        Text
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'CC'          Name.Variable
 '='           Operator
 '\t\t'        Text
 'gcc'         Text
-' '           Text
+' '           Text.Whitespace
 '-pthread'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CXX'         Name.Variable
 '='           Operator
 '\t\t'        Text
 'g++'         Text
-' '           Text
+' '           Text.Whitespace
 '-pthread'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MAINCC'      Name.Variable
 '='           Operator
@@ -121,7 +121,7 @@
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LINKCC'      Name.Variable
 '='           Operator
@@ -129,35 +129,35 @@
 '$('          Keyword
 'PURIFY'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAINCC'      Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AR'          Name.Variable
 '='           Operator
 '\t\t'        Text
 'ar'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'RANLIB'      Name.Variable
 '='           Operator
 '\t\t'        Text
 'ranlib'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SVNVERSION'  Name.Variable
 '='           Operator
 '\t'          Text
 'svnversion'  Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Shell used by make (some versions default to the login shell, which is bad)\n' Comment
 
@@ -165,9 +165,9 @@
 '='           Operator
 '\t\t'        Text
 '/bin/sh'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Use this to make a link between python$(VERSION) and python in $(BINDIR)\n' Comment
 
@@ -175,9 +175,9 @@
 '='           Operator
 '\t\t'        Text
 'ln'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Portable install script (configure doesn't always guess right)\n" Comment
 
@@ -185,16 +185,16 @@
 '='           Operator
 '\t'          Text
 '/usr/bin/install' Text
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INSTALL_PROGRAM' Name.Variable
 '='           Operator
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INSTALL_SCRIPT' Name.Variable
 '='           Operator
@@ -202,7 +202,7 @@
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INSTALL_DATA' Name.Variable
 '='           Operator
@@ -210,11 +210,11 @@
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 '-m'          Text
-' '           Text
+' '           Text.Whitespace
 '644'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Shared libraries must be installed with executable mode on some systems;\n' Comment
 
@@ -228,13 +228,13 @@
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 '-m'          Text
-' '           Text
+' '           Text.Whitespace
 '555'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MAKESETUP'   Name.Variable
 '='           Operator
@@ -243,9 +243,9 @@
 'srcdir'      Text
 ')'           Keyword
 '/Modules/makesetup' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Compiler options\n' Comment
 
@@ -253,17 +253,17 @@
 '='           Operator
 '\t\t'        Text
 '-g'          Text
-' '           Text
+' '           Text.Whitespace
 '-Wall'       Text
-' '           Text
+' '           Text.Whitespace
 '-Wstrict-prototypes' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BASECFLAGS'  Name.Variable
 '='           Operator
 '\t '         Text
 '-fno-strict-aliasing' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CFLAGS'      Name.Variable
 '='           Operator
@@ -271,15 +271,15 @@
 '$('          Keyword
 'BASECFLAGS'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'OPT'         Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'EXTRA_CFLAGS' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Both CPPFLAGS and LDFLAGS need to contain the shell's value for setup.py to\n" Comment
 
@@ -291,48 +291,48 @@
 '='           Operator
 '\t'          Text
 '-I.'         Text
-' '           Text
+' '           Text.Whitespace
 '-I'          Text
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Include'    Text
-' \n'         Text
+' \n'         Text.Whitespace
 
 'LDFLAGS'     Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LDLAST'      Name.Variable
 '='           Operator
 '\t\t'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SGI_ABI'     Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CCSHARED'    Name.Variable
 '='           Operator
 '\t'          Text
 '-fPIC'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LINKFORSHARED' Name.Variable
 '='           Operator
 '\t'          Text
 '-Xlinker'    Text
-' '           Text
+' '           Text.Whitespace
 '-export-dynamic' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Extra C flags added for building the interpreter object files.\n' Comment
 
 'CFLAGSFORSHARED' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# C flags used for building the interpreter object files\n' Comment
 
@@ -342,19 +342,19 @@
 '$('          Keyword
 'CFLAGS'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CPPFLAGS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CFLAGSFORSHARED' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-DPy_BUILD_CORE' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Machine-dependent subdirectories\n' Comment
 
@@ -362,9 +362,9 @@
 '='           Operator
 '\t'          Text
 'linux2'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Install prefix for architecture-independent files\n' Comment
 
@@ -372,9 +372,9 @@
 '='           Operator
 '\t\t'        Text
 '/usr/local'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Install prefix for architecture-dependent files\n' Comment
 
@@ -384,9 +384,9 @@
 '${'          Literal.String.Interpol
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Expanded directories\n' Comment
 
@@ -397,7 +397,7 @@
 'exec_prefix' Text
 ')'           Keyword
 '/bin'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBDIR'      Name.Variable
 '='           Operator
@@ -406,7 +406,7 @@
 'exec_prefix' Text
 ')'           Keyword
 '/lib'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MANDIR'      Name.Variable
 '='           Operator
@@ -415,7 +415,7 @@
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
 '/man'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INCLUDEDIR'  Name.Variable
 '='           Operator
@@ -424,7 +424,7 @@
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
 '/include'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CONFINCLUDEDIR' Name.Variable
 '='           Operator
@@ -433,7 +433,7 @@
 'exec_prefix' Text
 ')'           Keyword
 '/include'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SCRIPTDIR'   Name.Variable
 '='           Operator
@@ -442,9 +442,9 @@
 'prefix'      Text
 ')'           Keyword
 '/lib'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Detailed destination directories\n' Comment
 
@@ -458,7 +458,7 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBDEST'     Name.Variable
 '='           Operator
@@ -470,7 +470,7 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INCLUDEPY'   Name.Variable
 '='           Operator
@@ -482,7 +482,7 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CONFINCLUDEPY' Name.Variable
 '='           Operator
@@ -494,7 +494,7 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBP'        Name.Variable
 '='           Operator
@@ -506,9 +506,9 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Symbols used for using shared libraries\n' Comment
 
@@ -516,7 +516,7 @@
 '='           Operator
 '\t\t'        Text
 '.so'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LDSHARED'    Name.Variable
 '='           Operator
@@ -524,9 +524,9 @@
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-shared'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BLDSHARED'   Name.Variable
 '='           Operator
@@ -534,9 +534,9 @@
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-shared'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DESTSHARED'  Name.Variable
 '='           Operator
@@ -545,50 +545,50 @@
 'BINLIBDEST'  Text
 ')'           Keyword
 '/lib-dynload' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Executable suffix (.exe on Windows and Mac OS X)\n' Comment
 
 'EXE'         Name.Variable
 '='           Operator
 '\t\t'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BUILDEXE'    Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Short name and location for Mac OS X Python framework\n' Comment
 
 'UNIVERSALSDK' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHONFRAMEWORK' Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKDIR' Name.Variable
 '='           Operator
 '\t'          Text
 'no-framework' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKPREFIX' Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKINSTALLDIR' Name.Variable
 '='           Operator
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Deployment target selected during configure, to be checked\n' Comment
 
@@ -598,28 +598,28 @@
 
 'MACOSX_DEPLOYMENT_TARGET' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#export MACOSX_DEPLOYMENT_TARGET\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Options to enable prebinding (for fast startup prior to Mac OS X 10.3)\n' Comment
 
 'OTHER_LIBTOOL_OPT' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Environment to run shared python without installed libraries\n' Comment
 
 'RUNSHARED'   Name.Variable
 '='           Operator
 '       '     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Modes for directories, executables and data files created by the\n' Comment
 
@@ -629,21 +629,21 @@
 '='           Operator
 '\t'          Text
 '755'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'EXEMODE'     Name.Variable
 '='           Operator
 '\t'          Text
 '755'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'FILEMODE'    Name.Variable
 '='           Operator
 '\t'          Text
 '644'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# configure script arguments\n' Comment
 
@@ -651,9 +651,9 @@
 '='           Operator
 '\t'          Text
 "'--with-pydebug'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Subdirectories with code\n' Comment
 
@@ -661,19 +661,19 @@
 '='           Operator
 ' \t'         Text
 'Parser'      Text
-' '           Text
+' '           Text.Whitespace
 'Grammar'     Text
-' '           Text
+' '           Text.Whitespace
 'Objects'     Text
-' '           Text
+' '           Text.Whitespace
 'Python'      Text
-' '           Text
+' '           Text.Whitespace
 'Modules'     Text
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Other subdirectories\n' Comment
 
@@ -681,15 +681,15 @@
 '='           Operator
 '\t'          Text
 'Include'     Text
-' '           Text
+' '           Text.Whitespace
 'Lib'         Text
-' '           Text
+' '           Text.Whitespace
 'Misc'        Text
-' '           Text
+' '           Text.Whitespace
 'Demo'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Files and directories to be distributed\n' Comment
 
@@ -697,27 +697,27 @@
 '='           Operator
 '\t'          Text
 'configure'   Text
-' '           Text
+' '           Text.Whitespace
 'configure.in' Text
-' '           Text
+' '           Text.Whitespace
 'acconfig.h'  Text
-' '           Text
+' '           Text.Whitespace
 'pyconfig.h.in' Text
-' '           Text
+' '           Text.Whitespace
 'Makefile.pre.in' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DISTFILES'   Name.Variable
 '='           Operator
 '\t'          Text
 'README'      Text
-' '           Text
+' '           Text.Whitespace
 'ChangeLog'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CONFIGFILES' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DISTDIRS'    Name.Variable
 '='           Operator
@@ -725,13 +725,13 @@
 '$('          Keyword
 'SUBDIRS'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SUBDIRSTOO'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Ext-dummy'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DIST'        Name.Variable
 '='           Operator
@@ -739,13 +739,13 @@
 '$('          Keyword
 'DISTFILES'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DISTDIRS'    Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'LIBRARY'     Name.Variable
 '='           Operator
@@ -755,7 +755,7 @@
 'VERSION'     Text
 ')'           Keyword
 '.a'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LDLIBRARY'   Name.Variable
 '='           Operator
@@ -765,7 +765,7 @@
 'VERSION'     Text
 ')'           Keyword
 '.a'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BLDLIBRARY'  Name.Variable
 '='           Operator
@@ -773,17 +773,17 @@
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DLLLIBRARY'  Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LDLIBRARYDIR' Name.Variable
 '='           Operator
 '   '         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'INSTSONAME'  Name.Variable
 '='           Operator
@@ -791,30 +791,30 @@
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'LIBS'        Name.Variable
 '='           Operator
 '\t\t'        Text
 '-lpthread'   Text
-' '           Text
+' '           Text.Whitespace
 '-ldl'        Text
-'  '          Text
+'  '          Text.Whitespace
 '-lutil'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBM'        Name.Variable
 '='           Operator
 '\t\t'        Text
 '-lm'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBC'        Name.Variable
 '='           Operator
 '\t\t'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SYSLIBS'     Name.Variable
 '='           Operator
@@ -822,11 +822,11 @@
 '$('          Keyword
 'LIBM'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBC'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SHLIBS'      Name.Variable
 '='           Operator
@@ -834,42 +834,42 @@
 '$('          Keyword
 'LIBS'        Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'THREADOBJ'   Name.Variable
 '='           Operator
 '\t'          Text
 'Python/thread.o' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DLINCLDIR'   Name.Variable
 '='           Operator
 '\t'          Text
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DYNLOADFILE' Name.Variable
 '='           Operator
 '\t'          Text
 'dynload_shlib.o' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACHDEP_OBJS' Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'UNICODE_OBJS' Name.Variable
 '='           Operator
 '   '         Text
 'Objects/unicodeobject.o' Text
-' '           Text
+' '           Text.Whitespace
 'Objects/unicodectype.o' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHON'      Name.Variable
 '='           Operator
@@ -878,7 +878,7 @@
 '$('          Keyword
 'EXE'         Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BUILDPYTHON' Name.Variable
 '='           Operator
@@ -887,36 +887,36 @@
 '$('          Keyword
 'BUILDEXE'    Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# === Definitions added by makesetup ===\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LOCALMODLIBS' Name.Variable
 '='           Operator
 '          '  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BASEMODLIBS' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GLHACK'      Name.Variable
 '='           Operator
 '-Dclear'     Text
 '='           Operator
 '__GLclear'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHONPATH'  Name.Variable
 '='           Operator
 '$('          Keyword
 'COREPYTHONPATH' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'COREPYTHONPATH' Name.Variable
 '='           Operator
@@ -938,16 +938,16 @@
 '$('          Keyword
 'TKPATH'      Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TKPATH'      Name.Variable
 '='           Operator
 ':lib-tk'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'EXTRAMACHDEPPATH' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACHDEPPATH' Name.Variable
 '='           Operator
@@ -955,35 +955,35 @@
 '$('          Keyword
 'MACHDEP'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TESTPATH'    Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SITEPATH'    Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DESTPATH'    Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACHDESTLIB' Name.Variable
 '='           Operator
 '$('          Keyword
 'BINLIBDEST'  Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DESTLIB'     Name.Variable
 '='           Operator
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -994,33 +994,33 @@
 '\t'          Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/config.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/getpath.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/main.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/gcmodule.o' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Used of signalmodule.o is not available\n' Comment
 
 'SIGNAL_OBJS' Name.Variable
 '='           Operator
 '\t'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1033,7 +1033,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Include/graminit.h' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GRAMMAR_C'   Name.Variable
 '='           Operator
@@ -1042,7 +1042,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Python/graminit.c' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GRAMMAR_INPUT' Name.Variable
 '='           Operator
@@ -1051,9 +1051,9 @@
 'srcdir'      Text
 ')'           Keyword
 '/Grammar/Grammar' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1066,68 +1066,68 @@
 '$('          Keyword
 'EXE'         Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'POBJS'       Name.Variable
 '='           Operator
 '\t\t'        Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/acceler.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/grammar1.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/listnode.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/node.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/parser.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/parsetok.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/bitset.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/metagrammar.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/firstsets.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/grammar.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/pgen.o' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'PARSER_OBJS' Name.Variable
 '='           Operator
@@ -1135,42 +1135,42 @@
 '$('          Keyword
 'POBJS'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Parser/myreadline.o' Text
-' '           Text
+' '           Text.Whitespace
 'Parser/tokenizer.o' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PGOBJS'      Name.Variable
 '='           Operator
 '\t\t'        Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/obmalloc.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/mysnprintf.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/tokenizer_pgen.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/printgrammar.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/pgenmain.o' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'PGENOBJS'    Name.Variable
 '='           Operator
@@ -1178,17 +1178,17 @@
 '$('          Keyword
 'PGENMAIN'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'POBJS'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PGOBJS'      Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1201,7 +1201,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Include'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AST_H'       Name.Variable
 '='           Operator
@@ -1210,7 +1210,7 @@
 'AST_H_DIR'   Text
 ')'           Keyword
 '/Python-ast.h' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AST_C_DIR'   Name.Variable
 '='           Operator
@@ -1219,7 +1219,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Python'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AST_C'       Name.Variable
 '='           Operator
@@ -1228,7 +1228,7 @@
 'AST_C_DIR'   Text
 ')'           Keyword
 '/Python-ast.c' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'AST_ASDL'    Name.Variable
 '='           Operator
@@ -1237,9 +1237,9 @@
 'srcdir'      Text
 ')'           Keyword
 '/Parser/Python.asdl' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ASDLGEN_FILES' Name.Variable
 '='           Operator
@@ -1248,12 +1248,12 @@
 'srcdir'      Text
 ')'           Keyword
 '/Parser/asdl.py' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Parser/asdl_c.py' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# XXX Note that a build now requires Python exist before the build starts\n' Comment
 
@@ -1264,9 +1264,9 @@
 'srcdir'      Text
 ')'           Keyword
 '/Parser/asdl_c.py' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1277,201 +1277,201 @@
 '\t'          Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/Python-ast.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/asdl.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/ast.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/bltinmodule.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/ceval.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/compile.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/codecs.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/errors.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/frozen.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/frozenmain.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/future.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getargs.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getcompiler.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getcopyright.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getmtime.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getplatform.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getversion.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/graminit.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/import.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/importdl.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/marshal.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/modsupport.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/mystrtoul.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/mysnprintf.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/peephole.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/pyarena.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/pyfpe.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/pystate.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/pythonrun.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/structmember.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/symtable.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/sysmodule.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/traceback.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/getopt.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/pystrtod.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Python/'     Text
 '$('          Keyword
 'DYNLOADFILE' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'MACHDEP_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'THREADOBJ'   Text
 ')'           Keyword
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1482,176 +1482,176 @@
 '\t'          Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/abstract.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/boolobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/bufferobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/cellobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/classobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/cobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/codeobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/complexobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/descrobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/enumobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/exceptions.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/genobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/fileobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/floatobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/frameobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/funcobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/intobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/iterobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/listobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/longobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/dictobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/methodobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/moduleobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/object.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/obmalloc.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/rangeobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'                ' Text
+'                ' Text.Whitespace
 'Objects/setobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/sliceobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/stringobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/structseq.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/tupleobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/typeobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Objects/weakrefobject.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'UNICODE_OBJS' Text
 ')'           Keyword
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '##########################################################################\n' Comment
 
@@ -1662,62 +1662,62 @@
 '\t'          Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/_typesmodule.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/getbuildinfo.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PARSER_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'OBJECT_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PYTHON_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'MODULE_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'SIGNAL_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'MODOBJS'     Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#########################################################################\n' Comment
 
 '# Rules\n'   Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Default target\n' Comment
 
@@ -1733,7 +1733,7 @@
 'sharedmods'  Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Build the interpreter\n' Comment
 
@@ -1755,51 +1755,51 @@
 ')'           Keyword
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'LINKCC'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDFLAGS'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LINKFORSHARED' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Modules/python.o' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '$('          Keyword
 'BLDLIBRARY'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBS'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MODLIBS'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SYSLIBS'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDLAST'      Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'platform'    Name.Function
 ':'           Operator
@@ -1809,24 +1809,24 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '\'import sys ; from distutils.util import get_platform ; print get_platform()+"-"+sys.version[0:3]\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '>platform'   Text
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '# Build the shared modules\n' Comment
 
@@ -1838,97 +1838,97 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@case'       Text
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'MAKEFLAGS'   Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '*-s*'        Text
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'CC'          Name.Variable
 '='           Operator
 "'$(CC)'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'LDSHARED'    Name.Variable
 '='           Operator
 "'$(BLDSHARED)'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'OPT'         Name.Variable
 '='           Operator
 "'$(OPT)'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/setup.py'   Text
-' '           Text
+' '           Text.Whitespace
 '-q'          Text
-' '           Text
+' '           Text.Whitespace
 'build'       Text
 ';'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '*'           Text
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'CC'          Name.Variable
 '='           Operator
 "'$(CC)'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'LDSHARED'    Name.Variable
 '='           Operator
 "'$(BLDSHARED)'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'OPT'         Name.Variable
 '='           Operator
 "'$(OPT)'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/setup.py'   Text
-' '           Text
+' '           Text.Whitespace
 'build'       Text
 ';'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'esac'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Build static library\n' Comment
 
@@ -1942,103 +1942,103 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Modules/getbuildinfo.o' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Modules/_typesmodule.o' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PARSER_OBJS' Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'OBJECT_OBJS' Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHON_OBJS' Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MODULE_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SIGNAL_OBJS' Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'AR'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'cr'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MODOBJS'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'RANLIB'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'libpython$(VERSION).so' Name.Function
 ':'           Operator
@@ -2060,7 +2060,7 @@
 
 '\tfi\n'      Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'libpython$(VERSION).sl' Name.Function
 ':'           Operator
@@ -2070,31 +2070,31 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LDSHARED'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY_OBJS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SHLIBS'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBC'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBM'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary\n' Comment
 
@@ -2108,7 +2108,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Mac/Resources/framework' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)' Name.Function
 ':'           Operator
@@ -2190,19 +2190,19 @@
 'strings'     Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '-m'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIRMODE'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2210,7 +2210,7 @@
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\tif test "${UNIVERSALSDK}"; then \\\n' Comment.Preproc
 
@@ -2234,22 +2234,22 @@
 
 '\tfi\n'      Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '-m'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DIRMODE'     Text
 ')'           Keyword
-'  '          Text
+'  '          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2258,19 +2258,19 @@
 'VERSION'     Text
 ')'           Keyword
 '/Resources/English.lproj' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/Info.plist' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2279,19 +2279,19 @@
 'VERSION'     Text
 ')'           Keyword
 '/Resources/Info.plist' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/version.plist' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2300,19 +2300,19 @@
 'VERSION'     Text
 ')'           Keyword
 '/Resources/version.plist' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/English.lproj/InfoPlist.strings' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2321,33 +2321,33 @@
 'VERSION'     Text
 ')'           Keyword
 '/Resources/English.lproj/InfoPlist.strings' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
 '/Versions/Current' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/' Text
 '$('          Keyword
 'PYTHONFRAMEWORK' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
@@ -2355,33 +2355,33 @@
 '$('          Keyword
 'PYTHONFRAMEWORK' Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/Headers' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
 '/Headers'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/Resources' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
 '/Resources'  Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This rule builds the Cygwin Python DLL and import library if configured\n' Comment
 
@@ -2405,7 +2405,7 @@
 
 '\tfi\n'      Comment.Preproc
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'oldsharedmods' Name.Function
 ':'           Operator
@@ -2415,7 +2415,7 @@
 ')'           Keyword
 '\n'          Text
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Makefile Modules/config.c' Name.Function
 ':'           Operator
@@ -2487,54 +2487,54 @@
 'local'       Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'SHELL'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAKESETUP'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/config.c.in' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '-s'          Text
-' '           Text
+' '           Text.Whitespace
 'Modules'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'Modules/Setup.config' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'Modules/Setup.local' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'Modules/Setup' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@mv'         Text
-' '           Text
+' '           Text.Whitespace
 'config.c'    Text
-' '           Text
+' '           Text.Whitespace
 'Modules'     Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@echo'       Text
-' '           Text
+' '           Text.Whitespace
 '"The Makefile was updated, you may need to re-run make."' Literal.String.Double
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 'Modules/Setup' Name.Function
 ':'           Operator
@@ -2550,77 +2550,77 @@
 'dist'        Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@if'         Text
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"-----------------------------------------------"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Modules/Setup.dist is newer than Modules/Setup;"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"check to make sure you have all the updates you"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"need in your Modules/Setup file."' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Usually, copying Setup.dist to Setup will work."' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"-----------------------------------------------"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'fi'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '############################################################################\n' Comment
 
 '# Special rules for object files\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/getbuildinfo.o' Name.Function
 ':'           Operator
@@ -2684,17 +2684,17 @@
 'c'           Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-DSVNVERSION' Text
 '='           Operator
 '\\"'         Literal.String.Escape
@@ -2702,22 +2702,22 @@
 'LC_ALL'      Name.Variable
 '='           Operator
 'C'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SVNVERSION'  Text
 ')'           Keyword
 '`'           Literal.String.Backtick
 '\\"'         Literal.String.Escape
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/getbuildinfo.c' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Modules/getpath.o' Name.Function
 ':'           Operator
@@ -2735,61 +2735,61 @@
 'Makefile'    Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-DPYTHONPATH' Text
 '='           Operator
 '\'"$(PYTHONPATH)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DPREFIX'    Text
 '='           Operator
 '\'"$(prefix)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DEXEC_PREFIX' Text
 '='           Operator
 '\'"$(exec_prefix)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DVERSION'   Text
 '='           Operator
 '\'"$(VERSION)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DVPATH'     Text
 '='           Operator
 '\'"$(VPATH)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/getpath.c' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Modules/python.o' Name.Function
 ':'           Operator
@@ -2805,26 +2805,26 @@
 'c'           Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'MAINCC'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/python.c' Text
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '$(GRAMMAR_H) $(GRAMMAR_C)' Name.Function
 ':'           Operator
@@ -2838,24 +2838,24 @@
 ')'           Keyword
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-'           Text
 '$('          Keyword
 'PGEN'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'GRAMMAR_INPUT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'GRAMMAR_H'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'GRAMMAR_C'   Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$(PGEN)'     Name.Function
 ':'           Operator
@@ -2865,33 +2865,33 @@
 ')'           Keyword
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'OPT'         Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDFLAGS'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PGENOBJS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBS'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PGEN'        Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Parser/grammar.o' Name.Function
 ':'           Operator
@@ -2953,7 +2953,7 @@
 'c'           Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Parser/tokenizer_pgen.o' Name.Function
 ':'           Operator
@@ -2969,7 +2969,7 @@
 'c'           Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Parser/pgenmain.o' Name.Function
 ':'           Operator
@@ -2985,7 +2985,7 @@
 'h'           Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$(AST_H)'    Name.Function
 ':'           Operator
@@ -2999,21 +2999,21 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'ASDLGEN'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-h'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_H_DIR'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_ASDL'    Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$(AST_C)'    Name.Function
 ':'           Operator
@@ -3027,21 +3027,21 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'ASDLGEN'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_C_DIR'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_ASDL'    Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Python/compile.o Python/symtable.o' Name.Function
 ':'           Operator
@@ -3055,7 +3055,7 @@
 ')'           Keyword
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python/getplatform.o' Name.Function
 ':'           Operator
@@ -3071,30 +3071,30 @@
 'c'           Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-DPLATFORM'  Text
 '='           Operator
 '\'"$(MACHDEP)"\'' Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Python/getplatform.c' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Python/importdl.o' Name.Function
 ':'           Operator
@@ -3110,31 +3110,31 @@
 'c'           Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-I'          Text
 '$('          Keyword
 'DLINCLDIR'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Python/importdl.c' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Objects/unicodectype.o' Name.Function
 ':'           Operator
@@ -3166,287 +3166,287 @@
 'h'           Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '############################################################################\n' Comment
 
 '# Header files\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PYTHON_HEADERS' Name.Variable
 '='           Operator
 ' '           Text
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/Python.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/Python-ast.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/asdl.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/abstract.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/boolobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/bufferobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/ceval.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/classobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/cobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/code.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/codecs.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/compile.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/complexobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/descrobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/dictobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/enumobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/genobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/fileobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/floatobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/funcobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/import.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/intobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/intrcheck.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/iterobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/listobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/longobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/methodobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/modsupport.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/moduleobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/object.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/objimpl.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/parsetok.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/patchlevel.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pyarena.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pydebug.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pyerrors.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pyfpe.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pymem.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pyport.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pystate.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/pythonrun.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/rangeobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'                ' Text
+'                ' Text.Whitespace
 'Include/setobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/sliceobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/stringobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/structseq.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/structmember.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/symtable.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/sysmodule.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/traceback.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/tupleobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/unicodeobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Include/weakrefobject.h' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'pyconfig.h'  Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$(LIBRARY_OBJS) $(MODOBJS) Modules/python.o' Name.Function
 ':'           Operator
@@ -3456,11 +3456,11 @@
 ')'           Keyword
 '\n'          Text
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '######################################################################\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Test the interpreter (twice, once without .pyc files, once with)\n' Comment
 
@@ -3476,17 +3476,17 @@
 
 '# sample data.\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TESTOPTS'    Name.Variable
 '='           Operator
 '\t'          Text
 '-l'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'EXTRATESTOPTS' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TESTPROG'    Name.Variable
 '='           Operator
@@ -3495,7 +3495,7 @@
 'srcdir'      Text
 ')'           Keyword
 '/Lib/test/regrtest.py' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TESTPYTHON'  Name.Variable
 '='           Operator
@@ -3503,16 +3503,16 @@
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '-tt'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'test'        Name.Function
 ':'           Operator
@@ -3522,53 +3522,53 @@
 'platform'    Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-find'       Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib'        Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py[co]'"  Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-print'      Text
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-'           Text
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'testall'     Name.Function
 ':'           Operator
@@ -3578,57 +3578,57 @@
 'platform'    Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-find'       Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib'        Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py[co]'"  Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-print'      Text
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-'           Text
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#  Run the unitests for both architectures in a Universal build on OSX\n' Comment
 
@@ -3650,82 +3650,82 @@
 
 '\t\tfi\n'    Comment.Preproc
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-find'       Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib'        Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py[co]'"  Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-print'      Text
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-'           Text
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '/usr/libexec/oah/translate' Text
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '-tt'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '# Like testall, but with a single pass only\n' Comment
 
@@ -3737,23 +3737,23 @@
 'platform'    Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-uall'       Text
-' '           Text
+' '           Text.Whitespace
 '-rw'         Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'QUICKTESTOPTS' Name.Variable
 '='           Operator
@@ -3761,39 +3761,39 @@
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 'test_thread' Text
-' '           Text
+' '           Text.Whitespace
 'test_signal' Text
-' '           Text
+' '           Text.Whitespace
 'test_strftime' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'test_unicodedata' Text
-' '           Text
+' '           Text.Whitespace
 'test_re'     Text
-' '           Text
+' '           Text.Whitespace
 'test_sre'    Text
-' '           Text
+' '           Text.Whitespace
 'test_select' Text
-' '           Text
+' '           Text.Whitespace
 'test_poll'   Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'test_linuxaudiodev' Text
-' '           Text
+' '           Text.Whitespace
 'test_struct' Text
-' '           Text
+' '           Text.Whitespace
 'test_sunaudiodev' Text
-' '           Text
+' '           Text.Whitespace
 'test_zlib'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'quicktest'   Name.Function
 ':'           Operator
@@ -3803,53 +3803,53 @@
 'platform'    Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-find'       Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib'        Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py[co]'"  Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-print'      Text
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xargs'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-'           Text
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'QUICKTESTOPTS' Text
 ')'           Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'QUICKTESTOPTS' Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MEMTESTOPTS' Name.Variable
 '='           Operator
@@ -3857,20 +3857,20 @@
 '$('          Keyword
 'QUICKTESTOPTS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 'test_dl'     Text
-' '           Text
+' '           Text.Whitespace
 'test___all__' Text
-' '           Text
+' '           Text.Whitespace
 'test_fork1'  Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'test_longexp' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'memtest'     Name.Function
 ':'           Operator
@@ -3880,11 +3880,11 @@
 'platform'    Name
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -3892,32 +3892,32 @@
 '['           Operator
 'co'          Text
 ']'           Operator
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-'           Text
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MEMTESTOPTS' Text
 ')'           Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '$('          Keyword
 'TESTPYTHON'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'TESTPROG'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MEMTESTOPTS' Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install everything\n' Comment
 
@@ -3932,7 +3932,7 @@
 ' '           Text
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Install almost everything without disturbing previous versions\n' Comment
 
@@ -3971,7 +3971,7 @@
 ' '           Text
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Install shared libraries enabled by Setup\n' Comment
 
@@ -3981,21 +3981,21 @@
 '$('          Keyword
 'exec_prefix' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BINLIBDEST'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTSHARED'  Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'oldsharedinstall' Name.Function
 ':'           Operator
@@ -4009,22 +4009,22 @@
 ')'           Keyword
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'X'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SHAREDMODS'  Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t  if test $$i != X; then \\\n' Comment.Preproc
@@ -4037,29 +4037,29 @@
 
 '\t\tdone\n'  Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$(DESTSHARED)' Name.Function
 ':'           Operator
 '\n'          Text
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIRS'    Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -4074,7 +4074,7 @@
 
 '\t\tdone\n'  Comment.Preproc
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the interpreter (by creating a hard link to python$(VERSION))\n' Comment
 
@@ -4084,13 +4084,13 @@
 'altbininstall' Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-if'         Text
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4101,11 +4101,11 @@
 '$('          Keyword
 'PYTHON'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-h'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4117,16 +4117,16 @@
 'PYTHON'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4138,17 +4138,17 @@
 'PYTHON'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\telse true; \\\n' Comment.Preproc
 
 '\tfi\n'      Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '('           Operator
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4156,11 +4156,11 @@
 'BINDIR'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'python'      Text
 '$('          Keyword
 'VERSION'     Text
@@ -4168,15 +4168,15 @@
 '$('          Keyword
 'EXE'         Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHON'      Text
 ')'           Keyword
 ')'           Operator
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '('           Operator
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4184,22 +4184,22 @@
 'BINDIR'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-sf'         Text
-' '           Text
+' '           Text.Whitespace
 'python'      Text
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
 '-config'     Text
-' '           Text
+' '           Text.Whitespace
 'python-config' Text
 ')'           Operator
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the interpreter with $(VERSION) affixed\n' Comment
 
@@ -4213,27 +4213,27 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BINDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDIR'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -4248,15 +4248,15 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL_PROGRAM' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4270,7 +4270,7 @@
 '$('          Keyword
 'EXE'         Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\tif test -f libpython$(VERSION)$(SO); then \\\n' Comment.Preproc
 
@@ -4294,7 +4294,7 @@
 
 '\tfi\n'      Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Install the manual page\n' Comment
 
@@ -4302,28 +4302,28 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MANDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MANDIR'      Text
 ')'           Keyword
 '/man1'       Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -4338,19 +4338,19 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Misc/python.man' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4358,7 +4358,7 @@
 'MANDIR'      Text
 ')'           Keyword
 '/man1/python.1' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the library\n' Comment
 
@@ -4369,16 +4369,16 @@
 '$('          Keyword
 'MACHDEP'     Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'EXTRAPLATDIR' Name.Variable
 '='           Operator
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'EXTRAMACHDEPPATH' Name.Variable
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACHDEPS'    Name.Variable
 '='           Operator
@@ -4386,185 +4386,185 @@
 '$('          Keyword
 'PLATDIR'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'EXTRAPLATDIR' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'XMLLIBSUBDIRS' Name.Variable
 '='           Operator
 '  '          Text
 'xml'         Text
-' '           Text
+' '           Text.Whitespace
 'xml/dom'     Text
-' '           Text
+' '           Text.Whitespace
 'xml/etree'   Text
-' '           Text
+' '           Text.Whitespace
 'xml/parsers' Text
-' '           Text
+' '           Text.Whitespace
 'xml/sax'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PLATMACDIRS' Name.Variable
 '='           Operator
 ' '           Text
 'plat-mac'    Text
-' '           Text
+' '           Text.Whitespace
 'plat-mac/Carbon' Text
-' '           Text
+' '           Text.Whitespace
 'plat-mac/lib-scriptpackages' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/_builtinSuites' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/CodeWarrior' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/Explorer' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/Finder' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/Netscape' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/StdSuites' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/SystemEvents' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-mac/lib-scriptpackages/Terminal' Text
-' \n'         Text
+' \n'         Text.Whitespace
 
 'PLATMACPATH' Name.Variable
 '='           Operator
 ':plat-mac:plat-mac/lib-scriptpackages' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LIBSUBDIRS'  Name.Variable
 '='           Operator
 '\t'          Text
 'lib-tk'      Text
-' '           Text
+' '           Text.Whitespace
 'site-packages' Text
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'test/output' Text
-' '           Text
+' '           Text.Whitespace
 'test/data'   Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'test/decimaltestdata' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'encodings'   Text
-' '           Text
+' '           Text.Whitespace
 'compiler'    Text
-' '           Text
+' '           Text.Whitespace
 'hotshot'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'email'       Text
-' '           Text
+' '           Text.Whitespace
 'email/mime'  Text
-' '           Text
+' '           Text.Whitespace
 'email/test'  Text
-' '           Text
+' '           Text.Whitespace
 'email/test/data' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'sqlite3'     Text
-' '           Text
+' '           Text.Whitespace
 'sqlite3/test' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'logging'     Text
-' '           Text
+' '           Text.Whitespace
 'bsddb'       Text
-' '           Text
+' '           Text.Whitespace
 'bsddb/test'  Text
-' '           Text
+' '           Text.Whitespace
 'csv'         Text
-' '           Text
+' '           Text.Whitespace
 'wsgiref'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ctypes'      Text
-' '           Text
+' '           Text.Whitespace
 'ctypes/test' Text
-' '           Text
+' '           Text.Whitespace
 'ctypes/macholib' Text
-' '           Text
+' '           Text.Whitespace
 'idlelib'     Text
-' '           Text
+' '           Text.Whitespace
 'idlelib/Icons' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'distutils'   Text
-' '           Text
+' '           Text.Whitespace
 'distutils/command' Text
-' '           Text
+' '           Text.Whitespace
 'distutils/tests' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'XMLLIBSUBDIRS' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'setuptools'  Text
-' '           Text
+' '           Text.Whitespace
 'setuptools/command' Text
-' '           Text
+' '           Text.Whitespace
 'setuptools/tests' Text
-' '           Text
+' '           Text.Whitespace
 'setuptools.egg-info' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'curses'      Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MACHDEPS'    Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'libinstall'  Name.Function
 ':'           Operator
@@ -4584,27 +4584,27 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SCRIPTDIR'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -4619,26 +4619,26 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBSUBDIRS'  Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'a'           Name.Variable
 '='           Operator
 '$('          Keyword
@@ -4648,7 +4648,7 @@
 '$$'          Name.Variable
 'd'           Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $$a; then continue; else true; fi; \\\n' Comment.Preproc
@@ -4667,35 +4667,35 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib/*.py'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib/*.doc'  Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib/*.egg-info' Text
-' '           Text
+' '           Text.Whitespace
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test -x $$i; then \\\n' Comment.Preproc
@@ -4714,26 +4714,26 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBSUBDIRS'  Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'a'           Name.Variable
 '='           Operator
 '$('          Keyword
@@ -4743,7 +4743,7 @@
 '$$'          Name.Variable
 'd'           Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $$a; then continue; else true; fi; \\\n' Comment.Preproc
@@ -4790,16 +4790,16 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/LICENSE'    Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4807,7 +4807,7 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/LICENSE.txt' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'PYTHONPATH'  Name.Variable
 '='           Operator
 '$('          Keyword
@@ -4816,23 +4816,23 @@
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-'  '          Text
+'  '          Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-Wi'         Text
-' '           Text
+' '           Text.Whitespace
 '-tt'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4840,32 +4840,32 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/compileall.py' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 "'bad_coding|badsyntax|site-packages'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'PYTHONPATH'  Name.Variable
 '='           Operator
 '$('          Keyword
@@ -4874,25 +4874,25 @@
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-Wi'         Text
-' '           Text
+' '           Text.Whitespace
 '-tt'         Text
-' '           Text
+' '           Text.Whitespace
 '-O'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4900,32 +4900,32 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/compileall.py' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 "'bad_coding|badsyntax|site-packages'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-PYTHONPATH' Text
 '='           Operator
 '$('          Keyword
@@ -4934,23 +4934,23 @@
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-'  '          Text
+'  '          Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-Wi'         Text
-' '           Text
+' '           Text.Whitespace
 '-t'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4958,26 +4958,26 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/compileall.py' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
 '/site-packages' Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 'badsyntax'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -4985,7 +4985,7 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/site-packages' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-PYTHONPATH' Text
 '='           Operator
 '$('          Keyword
@@ -4994,25 +4994,25 @@
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-Wi'         Text
-' '           Text
+' '           Text.Whitespace
 '-t'          Text
-' '           Text
+' '           Text.Whitespace
 '-O'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5020,26 +5020,26 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/compileall.py' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDEST'     Text
 ')'           Keyword
 '/site-packages' Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-x'          Text
-' '           Text
+' '           Text.Whitespace
 'badsyntax'   Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5047,7 +5047,7 @@
 'LIBDEST'     Text
 ')'           Keyword
 '/site-packages' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# Create the PLATDIR source directory, if one wasn't distributed..\n" Comment
 
@@ -5055,9 +5055,9 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'mkdir'       Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -5065,14 +5065,14 @@
 '$('          Keyword
 'PLATDIR'     Text
 ')'           Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cp'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib/plat-generic/regen' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -5081,12 +5081,12 @@
 'PLATDIR'     Text
 ')'           Keyword
 '/regen'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'PATH'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'PATH'        Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -5095,41 +5095,41 @@
 'PATH'        Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'PYTHONPATH'  Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'PYTHONPATH'  Name.Variable
 '='           Operator
 '"`pwd`/Lib"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'DYLD_FRAMEWORK_PATH' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'DYLD_FRAMEWORK_PATH' Name.Variable
 '='           Operator
 '"`pwd`"'     Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'export'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'EXE'         Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EXE'         Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -5138,12 +5138,12 @@
 ')'           Keyword
 '"'           Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -5152,9 +5152,9 @@
 'PLATDIR'     Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 './regen'     Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the include files\n' Comment
 
@@ -5163,41 +5163,41 @@
 '$('          Keyword
 'INCLUDEDIR'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CONFINCLUDEDIR' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'INCLUDEPY'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CONFINCLUDEPY' Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'inclinstall' Name.Function
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'INCLDIRSTOMAKE' Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -5212,51 +5212,51 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Include/*.h' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'INCLUDEPY'   Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5264,18 +5264,18 @@
 'INCLUDEPY'   Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'done'        Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'pyconfig.h'  Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5283,7 +5283,7 @@
 'CONFINCLUDEPY' Text
 ')'           Keyword
 '/pyconfig.h' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the library and miscellaneous stuff needed for extending/embedding\n' Comment
 
@@ -5296,7 +5296,7 @@
 'LIBP'        Text
 ')'           Keyword
 '/config'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'libainstall' Name.Function
 ':'           Operator
@@ -5304,31 +5304,31 @@
 'all'         Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBP'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBPL'       Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
@@ -5343,25 +5343,25 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@if'         Text
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '-d'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY'     Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 ':'           Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\tif test "$(PYTHONFRAMEWORKDIR)" = no-framework; then \\\n' Comment.Preproc
@@ -5386,13 +5386,13 @@
 
 '\tfi\n'      Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/config.c' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5400,13 +5400,13 @@
 'LIBPL'       Text
 ')'           Keyword
 '/config.c'   Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/python.o' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5414,16 +5414,16 @@
 'LIBPL'       Text
 ')'           Keyword
 '/python.o'   Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/config.c.in' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5431,13 +5431,13 @@
 'LIBPL'       Text
 ')'           Keyword
 '/config.c.in' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5445,13 +5445,13 @@
 'LIBPL'       Text
 ')'           Keyword
 '/Makefile'   Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5459,13 +5459,13 @@
 'LIBPL'       Text
 ')'           Keyword
 '/Setup'      Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup.local' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5473,13 +5473,13 @@
 'LIBPL'       Text
 ')'           Keyword
 '/Setup.local' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup.config' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5487,16 +5487,16 @@
 'LIBPL'       Text
 ')'           Keyword
 '/Setup.config' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/makesetup' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5504,16 +5504,16 @@
 'LIBPL'       Text
 ')'           Keyword
 '/makesetup'  Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/install-sh' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5521,17 +5521,17 @@
 'LIBPL'       Text
 ')'           Keyword
 '/install-sh' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t# Substitution happens here, as the completely-expanded BINDIR\n' Comment
 
 '\t# is not available in configure\n' Comment
 
-'\t'          Text
+'\t'          Text.Whitespace
 'sed'         Text
-' '           Text
+' '           Text.Whitespace
 '-e'          Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 's,@EXENAME@,' Literal.String.Double
 '$('          Keyword
@@ -5546,22 +5546,22 @@
 ')'           Keyword
 ','           Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '<'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Misc/python-config.in' Text
-' '           Text
+' '           Text.Whitespace
 '>python-config' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'python-config' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5573,24 +5573,24 @@
 'VERSION'     Text
 ')'           Keyword
 '-config'     Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 'python-config' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '@if'         Text
-' '           Text
+' '           Text.Whitespace
 '['           Operator
-' '           Text
+' '           Text.Whitespace
 '-s'          Text
-' '           Text
+' '           Text.Whitespace
 'Modules/python.exp' Text
-' '           Text
+' '           Text.Whitespace
 '-a'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '"'           Literal.String.Double
 '`echo '      Literal.String.Double
 '$('          Keyword
@@ -5598,39 +5598,39 @@
 ')'           Keyword
 " | sed 's/^\\(...\\).*/\\1/'`" Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"aix"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ']'           Operator
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Installing support files for building shared extension modules on AIX:"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/python.exp' Text
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5639,15 +5639,15 @@
 ')'           Keyword
 '/python.exp' Text
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5655,22 +5655,22 @@
 '/python.exp' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/makexp_aix' Text
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5679,12 +5679,12 @@
 ')'           Keyword
 '/makexp_aix' Text
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5692,22 +5692,22 @@
 '/makexp_aix' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Modules/ld_so_aix' Text
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5716,12 +5716,12 @@
 ')'           Keyword
 '/ld_so_aix'  Text
 ';'           Punctuation
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5729,58 +5729,58 @@
 '/ld_so_aix'  Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"See Misc/AIX-NOTES for details."' Literal.String.Double
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\telse true; \\\n' Comment.Preproc
 
 '\tfi\n'      Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@case'       Text
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'MACHDEP'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'beos*'       Text
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Installing support files for building shared extension modules on BeOS:"' Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Misc/BeOS-NOTES' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5789,15 +5789,15 @@
 ')'           Keyword
 '/README'     Text
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5805,16 +5805,16 @@
 '/README'     Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/ar_beos' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5823,12 +5823,12 @@
 ')'           Keyword
 '/ar_beos'    Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5836,16 +5836,16 @@
 '/ar_beos'    Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SCRIPT' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Modules/ld_so_beos' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -5854,12 +5854,12 @@
 ')'           Keyword
 '/ld_so_beos' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'LIBPL'       Text
@@ -5867,29 +5867,29 @@
 '/ld_so_beos' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"See Misc/BeOS-NOTES for details."' Literal.String.Double
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'esac'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Install the dynamically loadable modules\n' Comment
 
@@ -5899,62 +5899,62 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-E'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/setup.py'   Text
-' '           Text
+' '           Text.Whitespace
 'install'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t   \t'     Text
+'\t   \t'     Text.Whitespace
 '--prefix'    Text
 '='           Operator
 '$('          Keyword
 'prefix'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '--install-scripts' Text
 '='           Operator
 '$('          Keyword
 'BINDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '--install-platlib' Text
 '='           Operator
 '$('          Keyword
 'DESTSHARED'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '--root'      Text
 '='           Operator
 '/'           Text
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Here are a couple of targets for MacOSX again, to install a full\n' Comment
 
@@ -5978,7 +5978,7 @@
 'install'     Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# On install, we re-make the framework\n' Comment
 
@@ -5990,7 +5990,7 @@
 
 '# only have to cater for the structural bits of the framework.\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'frameworkinstallframework' Name.Function
 ':'           Operator
@@ -6002,7 +6002,7 @@
 'frameworkinstallmaclib' Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'frameworkinstallstructure' Name.Function
 ':'           Operator
@@ -6012,70 +6012,70 @@
 ')'           Keyword
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@if'         Text
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'no-framework' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Not'         Text
-' '           Text
+' '           Text.Whitespace
 'configured'  Text
-' '           Text
+' '           Text.Whitespace
 'with'        Text
-' '           Text
+' '           Text.Whitespace
 '--enable-framework' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'exit'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\telse true; \\\n' Comment.Preproc
 
 '\tfi\n'      Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '@for'        Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'prefix'      Text
 ')'           Keyword
 '/Resources/English.lproj' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'prefix'      Text
 ')'           Keyword
 '/lib'        Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
 '\\\n'        Literal.String.Escape
 
@@ -6091,18 +6091,18 @@
 
 '\tdone\n'    Comment.Preproc
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'include/python' Text
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6110,16 +6110,16 @@
 'prefix'      Text
 ')'           Keyword
 '/Headers'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/Info.plist' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6127,16 +6127,16 @@
 'prefix'      Text
 ')'           Keyword
 '/Resources/Info.plist' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/version.plist' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6144,19 +6144,19 @@
 'prefix'      Text
 ')'           Keyword
 '/Resources/version.plist' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_DATA' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RESSRCDIR'   Text
 ')'           Keyword
 '/English.lproj/InfoPlist.strings' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6164,17 +6164,17 @@
 'prefix'      Text
 ')'           Keyword
 '/Resources/English.lproj/InfoPlist.strings' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'VERSION'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6182,15 +6182,15 @@
 'PYTHONFRAMEWORKINSTALLDIR' Text
 ')'           Keyword
 '/Versions/Current' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/Python' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6198,15 +6198,15 @@
 'PYTHONFRAMEWORKINSTALLDIR' Text
 ')'           Keyword
 '/Python'     Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/Headers' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6214,15 +6214,15 @@
 'PYTHONFRAMEWORKINSTALLDIR' Text
 ')'           Keyword
 '/Headers'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'LN'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-fsn'        Text
-' '           Text
+' '           Text.Whitespace
 'Versions/Current/Resources' Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6230,15 +6230,15 @@
 'PYTHONFRAMEWORKINSTALLDIR' Text
 ')'           Keyword
 '/Resources'  Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'INSTALL_SHARED' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
@@ -6249,7 +6249,7 @@
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This installs Mac/Lib into the framework\n' Comment
 
@@ -6261,13 +6261,13 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ln'          Text
-' '           Text
+' '           Text.Whitespace
 '-fs'         Text
-' '           Text
+' '           Text.Whitespace
 '"../../../Python"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$('          Keyword
 'DESTDIR'     Text
@@ -6285,19 +6285,19 @@
 ')'           Keyword
 '.a'          Literal.String.Double
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'installmacsubtree' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -6305,7 +6305,7 @@
 'DESTDIR'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This installs the IDE, the Launcher and other apps into /Applications\n' Comment
 
@@ -6313,19 +6313,19 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'installapps' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -6333,7 +6333,7 @@
 'DESTDIR'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This install the unix python and pythonw tools in /usr/local/bin\n' Comment
 
@@ -6341,19 +6341,19 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'installunixtools' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -6361,25 +6361,25 @@
 'DESTDIR'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'frameworkaltinstallunixtools' Name.Function
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'altinstallunixtools' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -6387,7 +6387,7 @@
 'DESTDIR'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This installs the Demos and Tools into the applications directory.\n' Comment
 
@@ -6397,17 +6397,17 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Mac'         Text
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'Make'        Text
-' '           Text
+' '           Text.Whitespace
 'installextras' Text
-' '           Text
+' '           Text.Whitespace
 'DESTDIR'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -6415,7 +6415,7 @@
 'DESTDIR'     Text
 ')'           Keyword
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This installs a few of the useful scripts in Tools/scripts\n' Comment
 
@@ -6423,60 +6423,60 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'SRCDIR'      Name.Variable
 '='           Operator
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 './'          Text
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Tools/scripts/setup.py' Text
-' '           Text
+' '           Text.Whitespace
 'install'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '--prefix'    Text
 '='           Operator
 '$('          Keyword
 'prefix'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '--install-scripts' Text
 '='           Operator
 '$('          Keyword
 'BINDIR'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '--root'      Text
 '='           Operator
 '/'           Text
 '$('          Keyword
 'DESTDIR'     Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Build the toplevel Makefile\n' Comment
 
@@ -6494,30 +6494,30 @@
 'status'      Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'CONFIG_FILES' Name.Variable
 '='           Operator
 'Makefile.pre' Text
-' '           Text
+' '           Text.Whitespace
 'CONFIG_HEADERS' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SHELL'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'config.status' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'MAKE'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'Makefile.pre' Text
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Run the configure script.\n' Comment
 
@@ -6531,20 +6531,20 @@
 'configure'   Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'SHELL'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/configure'  Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CONFIG_ARGS' Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.PRECIOUS'   Name.Function
 ':'           Operator
@@ -6564,7 +6564,7 @@
 'pre'         Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Some make's put the object file in the current directory\n" Comment
 
@@ -6572,24 +6572,24 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PY_CFLAGS'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$'           Text
 '<'           Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Run reindent on the library\n' Comment
 
@@ -6597,24 +6597,24 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 './python'    Text
 '$('          Keyword
 'EXEEXT'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Tools/scripts/reindent.py' Text
-' '           Text
+' '           Text.Whitespace
 '-r'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/Lib'        Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Rerun configure with the same options as it was run last time,\n' Comment
 
@@ -6624,21 +6624,21 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'SHELL'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'config.status' Text
-' '           Text
+' '           Text.Whitespace
 '--recheck'   Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$('          Keyword
 'SHELL'       Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 'config.status' Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Rebuild the configure script from configure.in; also rebuild pyconfig.h.in\n' Comment
 
@@ -6646,29 +6646,29 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '('           Operator
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'autoconf'    Text
 ')'           Operator
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '('           Operator
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'autoheader'  Text
 ')'           Operator
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Create a tags file for vi\n' Comment
 
@@ -6676,74 +6676,74 @@
 '::'          Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ctags'       Text
-' '           Text
+' '           Text.Whitespace
 '-w'          Text
-' '           Text
+' '           Text.Whitespace
 '-t'          Text
-' '           Text
+' '           Text.Whitespace
 'Include/*.h' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SRCDIRS'     Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 'ctags'       Text
-' '           Text
+' '           Text.Whitespace
 '-w'          Text
-' '           Text
+' '           Text.Whitespace
 '-t'          Text
-' '           Text
+' '           Text.Whitespace
 '-a'          Text
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'i/*.'        Text
 '['           Operator
 'ch'          Text
 ']'           Operator
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'done'        Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'sort'        Text
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 'tags'        Text
-' '           Text
+' '           Text.Whitespace
 'tags'        Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Create a tags file for GNU Emacs\n' Comment
 
@@ -6751,51 +6751,51 @@
 '::'          Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'etags'       Text
-' '           Text
+' '           Text.Whitespace
 'Include/*.h' Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SRCDIRS'     Text
 ')'           Keyword
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 'etags'       Text
-' '           Text
+' '           Text.Whitespace
 '-a'          Text
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable
 'i/*.'        Text
 '['           Operator
 'ch'          Text
 ']'           Operator
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'done'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Sanitation targets -- clean leaves libraries, executables and tags\n' Comment
 
@@ -6805,28 +6805,28 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py[co]'"  Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'clean'       Name.Function
 ':'           Operator
@@ -6834,97 +6834,97 @@
 'pycremoval'  Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.o'"       Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.s[ol]'"   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/build'      Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'fficonfig.h'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
 '/build'      Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'fficonfig.py'" Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'clobber'     Name.Function
 ':'           Operator
@@ -6932,65 +6932,65 @@
 'clean'       Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PGEN'        Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DLLLIBRARY'  Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'tags'        Text
-' '           Text
+' '           Text.Whitespace
 'TAGS'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'config.cache' Text
-' '           Text
+' '           Text.Whitespace
 'config.log'  Text
-' '           Text
+' '           Text.Whitespace
 'pyconfig.h'  Text
-' '           Text
+' '           Text.Whitespace
 'Modules/config.c' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-rf'         Text
-' '           Text
+' '           Text.Whitespace
 'build'       Text
-' '           Text
+' '           Text.Whitespace
 'platform'    Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-rf'         Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHONFRAMEWORKDIR' Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Make things extra clean, before making a distribution:\n' Comment
 
@@ -7004,101 +7004,101 @@
 'clobber'     Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-rm'         Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'core'        Text
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Text
-' '           Text
+' '           Text.Whitespace
 'Makefile.pre' Text
-' '           Text
+' '           Text.Whitespace
 'config.status' Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Modules/Setup' Text
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup.local' Text
-' '           Text
+' '           Text.Whitespace
 'Modules/Setup.config' Text
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 "'('"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.fdc'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*~'"        Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t   '   Text
+'\t\t\t   '   Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'[@,#]*'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.old'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t   '   Text
+'\t\t\t   '   Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.orig'"    Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.rej'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t   '   Text
+'\t\t\t   '   Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.bak'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 "')'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t\t   '   Text
+'\t\t\t   '   Text.Whitespace
 '-exec'       Text
-' '           Text
+' '           Text.Whitespace
 'rm'          Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 "';'"         Literal.String.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Check for smelly exported symbols (not starting with Py/_Py)\n' Comment
 
@@ -7108,44 +7108,44 @@
 'all'         Name
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'nm'          Text
-' '           Text
+' '           Text.Whitespace
 '-p'          Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY'     Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'sed'         Text
-' '           Text
+' '           Text.Whitespace
 '-n'          Text
-' '           Text
+' '           Text.Whitespace
 '"/ [TDB] /s/.* //p"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'grep'        Text
-' '           Text
+' '           Text.Whitespace
 '-v'          Text
-' '           Text
+' '           Text.Whitespace
 '"^_*Py"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sort'        Text
-' '           Text
+' '           Text.Whitespace
 '-u'          Text
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Find files with funny names\n' Comment
 
@@ -7153,244 +7153,244 @@
 ':'           Operator
 '\n'          Text
 
-'\t'          Text
+'\t'          Text.Whitespace
 'find'        Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DISTDIRS'    Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-type'       Text
-' '           Text
+' '           Text.Whitespace
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.[chs]'"   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.py'"      Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.doc'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.sty'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.bib'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.dat'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.el'"      Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.fd'"      Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.in'"      Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*.tex'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'*,[vpt]'"   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'Setup'"     Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 "'Setup.*'"   Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'README'      Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'ChangeLog'   Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'Repository'  Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'Root'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'Entries'     Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'Tag'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'tags'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'TAGS'        Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 '.cvsignore'  Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-name'       Text
-' '           Text
+' '           Text.Whitespace
 'MANIFEST'    Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '-print'      Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Dependencies\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python/thread.o' Name.Function
 ':'           Operator
@@ -7517,7 +7517,7 @@
 'h'           Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Declare targets that aren't real files\n" Comment
 
@@ -7610,15 +7610,15 @@
 'funny'       Name
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# IF YOU PUT ANYTHING HERE IT WILL GO AWAY\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Rules appended by makedepend\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/threadmodule.o' Name.Function
 ':'           Operator
