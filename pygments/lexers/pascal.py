@@ -13,7 +13,7 @@ import re
 from pygments.lexer import Lexer
 from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation, Error, Whitespace
 from pygments.scanner import Scanner
 
 # compatibility import
@@ -326,7 +326,7 @@ class DelphiLexer(Lexer):
 
             if stack[-1] == 'initial':
                 if scanner.scan(r'\s+'):
-                    token = Text
+                    token = Whitespace
                 elif scanner.scan(r'\{.*?\}|\(\*.*?\*\)'):
                     if scanner.match.startswith('$'):
                         token = Comment.Preproc
@@ -462,7 +462,7 @@ class DelphiLexer(Lexer):
 
             elif stack[-1] == 'asm':
                 if scanner.scan(r'\s+'):
-                    token = Text
+                    token = Whitespace
                 elif scanner.scan(r'end'):
                     token = Keyword
                     stack.pop()
