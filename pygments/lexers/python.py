@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
     default, words, combined, do_insertions, this, line_re
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Other, Error
+    Number, Punctuation, Generic, Other, Error, Whitespace
 from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
@@ -753,24 +753,24 @@ class PythonTracebackLexer(RegexLexer):
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Whitespace)),
             (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Whitespace)),
             (r'^(    )(.+)(\n)',
-             bygroups(Text, using(PythonLexer), Text), 'markers'),
+             bygroups(Whitespace, using(PythonLexer), Whitespace), 'markers'),
             (r'^([ \t]*)(\.\.\.)(\n)',
-             bygroups(Text, Comment, Text)),  # for doctests...
+             bygroups(Whitespace, Comment, Whitespace)),  # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
-             bygroups(Generic.Error, Text, Name, Text), '#pop'),
+             bygroups(Generic.Error, Text, Name, Whitespace), '#pop'),
             (r'^([a-zA-Z_][\w.]*)(:?\n)',
-             bygroups(Generic.Error, Text), '#pop')
+             bygroups(Generic.Error, Whitespace), '#pop')
         ],
         'markers': [
             # Either `PEP 657 <https://www.python.org/dev/peps/pep-0657/>`
             # error locations in Python 3.11+, or single-caret markers
             # for syntax errors before that.
             (r'^( {4,})([~^]+)(\n)',
-             bygroups(Text, Punctuation.Marker, Text),
+             bygroups(Whitespace, Punctuation.Marker, Whitespace),
              '#pop'),
             default('#pop'),
         ],

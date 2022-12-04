@@ -93,10 +93,10 @@
 '5'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Exception'   Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>>\n'       Generic.Output
 
@@ -222,12 +222,12 @@
 '3'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '__main__.A'  Generic.Error
 ': '          Text
 'first'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -243,12 +243,12 @@
 '5'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '__main__.B'  Generic.Error
 ': '          Text
 'second'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -263,22 +263,22 @@
 '"<stdin>"'   Name.Builtin
 ', line '     Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'x'           Name
 ' '           Text
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'       '     Text
+'       '     Text.Whitespace
 '^'           Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SyntaxError' Generic.Error
 ': '          Text
 'invalid syntax' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>>\n'       Generic.Output
 
@@ -358,7 +358,7 @@
 ' .123\nValueError' Generic.Error
 ': '          Text
 'multi'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    line\n'  Generic.Output
 
@@ -383,16 +383,16 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'    '        Text
+'    '        Text.Whitespace
 '.'           Operator
 '.'           Operator
 '.'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ValueError'  Generic.Error
 ': '          Text
 'multi'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    line\n'  Generic.Output
 
@@ -417,17 +417,17 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'    '        Text
+'    '        Text.Whitespace
 '.'           Operator
 '.'           Operator
 '.'           Operator
 '.'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ValueError'  Generic.Error
 ': '          Text
 'multi'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    line\n'  Generic.Output
 
@@ -452,18 +452,18 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'    '        Text
+'    '        Text.Whitespace
 ' '           Text
 '.'           Operator
 '.'           Operator
 '.'           Operator
 '.'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ValueError'  Generic.Error
 ': '          Text
 'multi'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    line\n'  Generic.Output
 
@@ -488,14 +488,14 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'  '          Text
+'  '          Text.Whitespace
 '...'         Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ValueError'  Generic.Error
 ': '          Text
 'multi'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    line\n'  Generic.Output
 
@@ -517,10 +517,10 @@
 '1'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Exception'   Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'import'      Keyword.Namespace
@@ -544,7 +544,7 @@
 '1'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/path/to/stuff/somemodule/blah.py"' Name.Builtin
@@ -552,9 +552,9 @@
 '658'         Literal.Number
 ', in '       Text
 'blah'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'raise'       Keyword
 ' '           Text
 'Exception'   Name.Exception
@@ -563,9 +563,9 @@
 'Hi.'         Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Exception'   Generic.Error
 ': '          Text
 'Hi.'         Name
-'\n'          Text
+'\n'          Text.Whitespace

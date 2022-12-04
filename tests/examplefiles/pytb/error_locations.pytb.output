@@ -6,17 +6,17 @@
 '13'          Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'in_Python_3_11' Name
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '^^^^^^^^^^^^^^^^' Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/home/tb.py"' Name.Builtin
@@ -24,19 +24,19 @@
 '2'           Literal.Number
 ', in '       Text
 'in_Python_3_11' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 'error_locations' Name
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '^^^^^^^^^^^^^^^^^' Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/home/tb.py"' Name.Builtin
@@ -44,9 +44,9 @@
 '5'           Literal.Number
 ', in '       Text
 'error_locations' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 'are_provided' Name
@@ -56,11 +56,11 @@
 'is'          Operator.Word
 ' '           Text
 'True'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '^^^^^^^^^^^^^^' Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/home/tb.py"' Name.Builtin
@@ -68,19 +68,19 @@
 '8'           Literal.Number
 ', in '       Text
 'are_provided' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 'in_tracebacks' Name
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '^^^^^^^^^^^^^^^' Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/home/tb.py"' Name.Builtin
@@ -88,21 +88,21 @@
 '11'          Literal.Number
 ', in '       Text
 'in_tracebacks' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 '1'           Literal.Number.Integer
 '/'           Operator
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '~^~'         Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ZeroDivisionError' Generic.Error
 ': '          Text
 'division by zero' Name
-'\n'          Text
+'\n'          Text.Whitespace

@@ -7,20 +7,20 @@
 '"<stdin>"'   Name.Builtin
 ', line '     Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '^'           Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SyntaxError' Generic.Error
 ': '          Text
 'invalid syntax' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 '\n'          Text
@@ -39,12 +39,12 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'   '         Text
+'   '         Text.Whitespace
 '...'         Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ZeroDivisionError' Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -58,6 +58,6 @@
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'   '         Text
+'   '         Text.Whitespace
 '...'         Comment
-'\n'          Text
+'\n'          Text.Whitespace
