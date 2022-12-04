@@ -10,7 +10,7 @@ label: implicit comment
 '//c1'        Comment.Single
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '//c2'        Comment.Single
 '\n'          Text.Whitespace
 
@@ -19,7 +19,7 @@ label: implicit comment
 '\n'          Text
 
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '// c4'       Comment.Single
 '\n'          Text
 

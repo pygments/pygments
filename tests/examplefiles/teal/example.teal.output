@@ -8,12 +8,12 @@
 '\n'          Text.Whitespace
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Fee'         Keyword
 '\n'          Text
 
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '10000'       Literal.Number.Integer
 '\n'          Text
 
@@ -26,16 +26,16 @@
 '\n'          Text.Whitespace
 
 'arg'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n'          Text
 
 'len'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '\n'          Text
 
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '73'          Literal.Number.Integer
 '\n'          Text
 
@@ -51,7 +51,7 @@
 '\n'          Text.Whitespace
 
 'arg'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n'          Text
 
@@ -59,7 +59,7 @@
 '\n'          Text
 
 'byte'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'base64 '     Literal.String.Affix
 '30AT2gOReDBdJmLBO/DgvjC6hIXgACecTpFDcP1bJHU=' Literal.String.Other
 '\n'          Text
@@ -76,14 +76,14 @@
 '\n'          Text.Whitespace
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'CloseRemainderTo' Keyword
 '\n'          Text
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Receiver'    Keyword
-' '           Text
+' '           Text.Whitespace
 '\n'          Text
 
 '=='          Name.Function
