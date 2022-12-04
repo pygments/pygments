@@ -46,7 +46,7 @@
 
 'MODOBJS'     Name.Variable
 '='           Operator
-'          '  Text
+'          '  Text.Whitespace
 'Modules/threadmodule.o' Text
 '  '          Text.Whitespace
 'Modules/signalmodule.o' Text
@@ -70,7 +70,7 @@
 
 'MODLIBS'     Name.Variable
 '='           Operator
-'        '    Text
+'        '    Text.Whitespace
 '$('          Keyword
 'LOCALMODLIBS' Text
 ')'           Keyword
@@ -86,14 +86,14 @@
 
 'VERSION'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '2'           Literal.Number
 '.6'          Text
 '\n'          Text.Whitespace
 
 'srcdir'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '.'           Text
 '\n'          Text.Whitespace
 
@@ -101,7 +101,7 @@
 
 'CC'          Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'gcc'         Text
 ' '           Text.Whitespace
 '-pthread'    Text
@@ -109,7 +109,7 @@
 
 'CXX'         Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'g++'         Text
 ' '           Text.Whitespace
 '-pthread'    Text
@@ -117,7 +117,7 @@
 
 'MAINCC'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
@@ -125,7 +125,7 @@
 
 'LINKCC'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'PURIFY'      Text
 ')'           Keyword
@@ -137,19 +137,19 @@
 
 'AR'          Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ar'          Text
 '\n'          Text.Whitespace
 
 'RANLIB'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ranlib'      Text
 '\n'          Text.Whitespace
 
 'SVNVERSION'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'svnversion'  Text
 ' '           Text.Whitespace
 '$('          Keyword
@@ -163,7 +163,7 @@
 
 'SHELL'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '/bin/sh'     Text
 '\n'          Text.Whitespace
 
@@ -173,7 +173,7 @@
 
 'LN'          Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ln'          Text
 '\n'          Text.Whitespace
 
@@ -183,7 +183,7 @@
 
 'INSTALL'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '/usr/bin/install' Text
 ' '           Text.Whitespace
 '-c'          Text
@@ -198,7 +198,7 @@
 
 'INSTALL_SCRIPT' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
@@ -206,7 +206,7 @@
 
 'INSTALL_DATA' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
@@ -224,7 +224,7 @@
 
 'INSTALL_SHARED' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '${'          Literal.String.Interpol
 'INSTALL'     Name.Variable
 '}'           Literal.String.Interpol
@@ -238,7 +238,7 @@
 
 'MAKESETUP'   Name.Variable
 '='           Operator
-'      '      Text
+'      '      Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -251,7 +251,7 @@
 
 'OPT'         Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-g'          Text
 ' '           Text.Whitespace
 '-Wall'       Text
@@ -261,13 +261,13 @@
 
 'BASECFLAGS'  Name.Variable
 '='           Operator
-'\t '         Text
+'\t '         Text.Whitespace
 '-fno-strict-aliasing' Text
 '\n'          Text.Whitespace
 
 'CFLAGS'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'BASECFLAGS'  Text
 ')'           Keyword
@@ -289,7 +289,7 @@
 
 'CPPFLAGS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-I.'         Text
 ' '           Text.Whitespace
 '-I'          Text
@@ -301,28 +301,28 @@
 
 'LDFLAGS'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'LDLAST'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\n'          Text.Whitespace
 
 'SGI_ABI'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'CCSHARED'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-fPIC'       Text
 '\n'          Text.Whitespace
 
 'LINKFORSHARED' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-Xlinker'    Text
 ' '           Text.Whitespace
 '-export-dynamic' Text
@@ -338,7 +338,7 @@
 
 'PY_CFLAGS'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CFLAGS'      Text
 ')'           Keyword
@@ -360,7 +360,7 @@
 
 'MACHDEP'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'linux2'      Text
 '\n'          Text.Whitespace
 
@@ -370,7 +370,7 @@
 
 'prefix'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '/usr/local'  Text
 '\n'          Text.Whitespace
 
@@ -380,7 +380,7 @@
 
 'exec_prefix' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
@@ -392,7 +392,7 @@
 
 'BINDIR'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'exec_prefix' Text
 ')'           Keyword
@@ -401,7 +401,7 @@
 
 'LIBDIR'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'exec_prefix' Text
 ')'           Keyword
@@ -410,7 +410,7 @@
 
 'MANDIR'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
@@ -419,7 +419,7 @@
 
 'INCLUDEDIR'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'prefix'      Name.Variable
 '}'           Literal.String.Interpol
@@ -428,7 +428,7 @@
 
 'CONFINCLUDEDIR' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'exec_prefix' Text
 ')'           Keyword
@@ -437,7 +437,7 @@
 
 'SCRIPTDIR'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'prefix'      Text
 ')'           Keyword
@@ -450,7 +450,7 @@
 
 'BINLIBDEST'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LIBDIR'      Text
 ')'           Keyword
@@ -462,7 +462,7 @@
 
 'LIBDEST'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'SCRIPTDIR'   Text
 ')'           Keyword
@@ -474,7 +474,7 @@
 
 'INCLUDEPY'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'INCLUDEDIR'  Text
 ')'           Keyword
@@ -486,7 +486,7 @@
 
 'CONFINCLUDEPY' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CONFINCLUDEDIR' Text
 ')'           Keyword
@@ -498,7 +498,7 @@
 
 'LIBP'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'LIBDIR'      Text
 ')'           Keyword
@@ -514,13 +514,13 @@
 
 'SO'          Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '.so'         Text
 '\n'          Text.Whitespace
 
 'LDSHARED'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
@@ -530,7 +530,7 @@
 
 'BLDSHARED'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
@@ -540,7 +540,7 @@
 
 'DESTSHARED'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'BINLIBDEST'  Text
 ')'           Keyword
@@ -553,12 +553,12 @@
 
 'EXE'         Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\n'          Text.Whitespace
 
 'BUILDEXE'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -571,23 +571,23 @@
 
 'PYTHONFRAMEWORK' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKDIR' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'no-framework' Text
 '\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKPREFIX' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'PYTHONFRAMEWORKINSTALLDIR' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\n'          Text.Whitespace
 
 '# Deployment target selected during configure, to be checked\n' Comment
@@ -616,7 +616,7 @@
 
 'RUNSHARED'   Name.Variable
 '='           Operator
-'       '     Text
+'       '     Text.Whitespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -627,19 +627,19 @@
 
 'DIRMODE'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '755'         Literal.Number
 '\n'          Text.Whitespace
 
 'EXEMODE'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '755'         Literal.Number
 '\n'          Text.Whitespace
 
 'FILEMODE'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '644'         Literal.Number
 '\n'          Text.Whitespace
 
@@ -649,7 +649,7 @@
 
 'CONFIG_ARGS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 "'--with-pydebug'" Literal.String.Single
 '\n'          Text.Whitespace
 
@@ -659,7 +659,7 @@
 
 'SRCDIRS'     Name.Variable
 '='           Operator
-' \t'         Text
+' \t'         Text.Whitespace
 'Parser'      Text
 ' '           Text.Whitespace
 'Grammar'     Text
@@ -679,7 +679,7 @@
 
 'SUBDIRSTOO'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'Include'     Text
 ' '           Text.Whitespace
 'Lib'         Text
@@ -695,7 +695,7 @@
 
 'CONFIGFILES' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'configure'   Text
 ' '           Text.Whitespace
 'configure.in' Text
@@ -709,7 +709,7 @@
 
 'DISTFILES'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'README'      Text
 ' '           Text.Whitespace
 'ChangeLog'   Text
@@ -721,7 +721,7 @@
 
 'DISTDIRS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'SUBDIRS'     Text
 ')'           Keyword
@@ -735,7 +735,7 @@
 
 'DIST'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'DISTFILES'   Text
 ')'           Keyword
@@ -749,7 +749,7 @@
 
 'LIBRARY'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'libpython'   Text
 '$('          Keyword
 'VERSION'     Text
@@ -759,7 +759,7 @@
 
 'LDLIBRARY'   Name.Variable
 '='           Operator
-'      '      Text
+'      '      Text.Whitespace
 'libpython'   Text
 '$('          Keyword
 'VERSION'     Text
@@ -769,7 +769,7 @@
 
 'BLDLIBRARY'  Name.Variable
 '='           Operator
-'     '       Text
+'     '       Text.Whitespace
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
@@ -777,17 +777,17 @@
 
 'DLLLIBRARY'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'LDLIBRARYDIR' Name.Variable
 '='           Operator
-'   '         Text
+'   '         Text.Whitespace
 '\n'          Text.Whitespace
 
 'INSTSONAME'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LDLIBRARY'   Text
 ')'           Keyword
@@ -797,7 +797,7 @@
 
 'LIBS'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-lpthread'   Text
 ' '           Text.Whitespace
 '-ldl'        Text
@@ -807,18 +807,18 @@
 
 'LIBM'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-lm'         Text
 '\n'          Text.Whitespace
 
 'LIBC'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\n'          Text.Whitespace
 
 'SYSLIBS'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LIBM'        Text
 ')'           Keyword
@@ -830,7 +830,7 @@
 
 'SHLIBS'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'LIBS'        Text
 ')'           Keyword
@@ -840,30 +840,30 @@
 
 'THREADOBJ'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'Python/thread.o' Text
 '\n'          Text.Whitespace
 
 'DLINCLDIR'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '.'           Text
 '\n'          Text.Whitespace
 
 'DYNLOADFILE' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'dynload_shlib.o' Text
 '\n'          Text.Whitespace
 
 'MACHDEP_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 'UNICODE_OBJS' Name.Variable
 '='           Operator
-'   '         Text
+'   '         Text.Whitespace
 'Objects/unicodeobject.o' Text
 ' '           Text.Whitespace
 'Objects/unicodectype.o' Text
@@ -873,7 +873,7 @@
 
 'PYTHON'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'python'      Text
 '$('          Keyword
 'EXE'         Text
@@ -882,7 +882,7 @@
 
 'BUILDPYTHON' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'python'      Text
 '$('          Keyword
 'BUILDEXE'    Text
@@ -897,7 +897,7 @@
 
 'LOCALMODLIBS' Name.Variable
 '='           Operator
-'          '  Text
+'          '  Text.Whitespace
 '\n'          Text.Whitespace
 
 'BASEMODLIBS' Name.Variable
@@ -991,7 +991,7 @@
 
 'MODULE_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1017,7 +1017,7 @@
 
 'SIGNAL_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\n'          Text.Whitespace
 
 '\n\n'        Text.Whitespace
@@ -1028,7 +1028,7 @@
 
 'GRAMMAR_H'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1037,7 +1037,7 @@
 
 'GRAMMAR_C'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1046,7 +1046,7 @@
 
 'GRAMMAR_INPUT' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1061,7 +1061,7 @@
 
 'PGEN'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Parser/pgen' Text
 '$('          Keyword
 'EXE'         Text
@@ -1072,7 +1072,7 @@
 
 'POBJS'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1131,7 +1131,7 @@
 
 'PARSER_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'POBJS'       Text
 ')'           Keyword
@@ -1145,7 +1145,7 @@
 
 'PGOBJS'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1174,7 +1174,7 @@
 
 'PGENOBJS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'PGENMAIN'    Text
 ')'           Keyword
@@ -1196,7 +1196,7 @@
 
 'AST_H_DIR'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1205,7 +1205,7 @@
 
 'AST_H'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'AST_H_DIR'   Text
 ')'           Keyword
@@ -1214,7 +1214,7 @@
 
 'AST_C_DIR'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1223,7 +1223,7 @@
 
 'AST_C'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'AST_C_DIR'   Text
 ')'           Keyword
@@ -1232,7 +1232,7 @@
 
 'AST_ASDL'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1243,7 +1243,7 @@
 
 'ASDLGEN_FILES' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1259,7 +1259,7 @@
 
 'ASDLGEN'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -1274,7 +1274,7 @@
 
 'PYTHON_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1479,7 +1479,7 @@
 
 'OBJECT_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1659,7 +1659,7 @@
 
 'LIBRARY_OBJS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1723,7 +1723,7 @@
 
 'all'         Name.Function
 ':'           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Name.Variable
 ')'           Keyword
@@ -1731,7 +1731,7 @@
 'oldsharedmods' Name
 ' '           Text
 'sharedmods'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1739,7 +1739,7 @@
 
 '$(BUILDPYTHON)' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'python'      Name
@@ -1753,7 +1753,7 @@
 '$('          Keyword
 'LDLIBRARY'   Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '$('          Keyword
@@ -1803,11 +1803,11 @@
 
 'platform'    Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -1832,11 +1832,11 @@
 
 'sharedmods'  Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@case'       Text
@@ -1936,11 +1936,11 @@
 
 '$(LIBRARY)'  Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY_OBJS' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '-rm'         Text
@@ -2042,11 +2042,11 @@
 
 'libpython$(VERSION).so' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY_OBJS' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\tif test $(INSTSONAME) != $(LDLIBRARY); then \\\n' Comment.Preproc
 
@@ -2064,11 +2064,11 @@
 
 'libpython$(VERSION).sl' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY_OBJS' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2112,7 +2112,7 @@
 
 '$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Text
 
 '\t'          Text
@@ -2188,7 +2188,7 @@
 'InfoPlist'   Name
 '.'           Text
 'strings'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2389,11 +2389,11 @@
 
 '$(DLLLIBRARY) libpython$(VERSION).dll.a' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LIBRARY_OBJS' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\tif test -n "$(DLLLIBRARY)"; then \\\n' Comment.Preproc
 
@@ -2409,17 +2409,17 @@
 
 'oldsharedmods' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SHAREDMODS'  Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\n'        Text.Whitespace
 
 'Makefile Modules/config.c' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Name
 '.'           Text
 'pre'         Name
@@ -2485,7 +2485,7 @@
 'Setup'       Name
 '.'           Text
 'local'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2538,7 +2538,7 @@
 
 'Modules/Setup' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2548,7 +2548,7 @@
 'Setup'       Name
 '.'           Text
 'dist'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@if'         Text
@@ -2624,7 +2624,7 @@
 
 'Modules/getbuildinfo.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PARSER_OBJS' Name.Variable
 ')'           Keyword
@@ -2682,7 +2682,7 @@
 'getbuildinfo' Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2721,7 +2721,7 @@
 
 'Modules/getpath.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2733,7 +2733,7 @@
 'c'           Name
 ' '           Text
 'Makefile'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2793,7 +2793,7 @@
 
 'Modules/python.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2803,7 +2803,7 @@
 'python'      Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -2828,7 +2828,7 @@
 
 '$(GRAMMAR_H) $(GRAMMAR_C)' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PGEN'        Name.Variable
 ')'           Keyword
@@ -2836,7 +2836,7 @@
 '$('          Keyword
 'GRAMMAR_INPUT' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '-'           Text
@@ -2859,11 +2859,11 @@
 
 '$(PGEN)'     Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'PGENOBJS'    Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '$('          Keyword
@@ -2895,7 +2895,7 @@
 
 'Parser/grammar.o' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2937,11 +2937,11 @@
 'grammar'     Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Parser/metagrammar.o' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2951,13 +2951,13 @@
 'metagrammar' Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'Parser/tokenizer_pgen.o' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2967,13 +2967,13 @@
 'tokenizer'   Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'Parser/pgenmain.o' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -2983,13 +2983,13 @@
 'parsetok'    Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 '$(AST_H)'    Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_ASDL'    Name.Variable
 ')'           Keyword
@@ -2997,7 +2997,7 @@
 '$('          Keyword
 'ASDLGEN_FILES' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -3017,7 +3017,7 @@
 
 '$(AST_C)'    Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'AST_ASDL'    Name.Variable
 ')'           Keyword
@@ -3025,7 +3025,7 @@
 '$('          Keyword
 'ASDLGEN_FILES' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -3045,7 +3045,7 @@
 
 'Python/compile.o Python/symtable.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'GRAMMAR_H'   Name.Variable
 ')'           Keyword
@@ -3053,13 +3053,13 @@
 '$('          Keyword
 'AST_H'       Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'Python/getplatform.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -3069,7 +3069,7 @@
 'getplatform' Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '$('          Keyword
@@ -3098,7 +3098,7 @@
 
 'Python/importdl.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -3108,7 +3108,7 @@
 'importdl'    Name
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '$('          Keyword
@@ -3138,7 +3138,7 @@
 
 'Objects/unicodectype.o' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -3164,7 +3164,7 @@
 'unicodetype_db' Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3176,7 +3176,7 @@
 
 'PYTHON_HEADERS' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -3450,11 +3450,11 @@
 
 '$(LIBRARY_OBJS) $(MODOBJS) Modules/python.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'PYTHON_HEADERS' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\n'        Text.Whitespace
 
@@ -3480,7 +3480,7 @@
 
 'TESTOPTS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-l'          Text
 ' '           Text.Whitespace
 '$('          Keyword
@@ -3490,7 +3490,7 @@
 
 'TESTPROG'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Text
 ')'           Keyword
@@ -3499,7 +3499,7 @@
 
 'TESTPYTHON'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'RUNSHARED'   Text
 ')'           Keyword
@@ -3516,11 +3516,11 @@
 
 'test'        Name.Function
 ':'           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '-find'       Text
@@ -3572,11 +3572,11 @@
 
 'testall'     Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '-find'       Text
@@ -3636,11 +3636,11 @@
 
 'testuniversal' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 "\t\tif [ `arch` != 'i386' ];then \\\n" Comment.Preproc
 
@@ -3731,11 +3731,11 @@
 
 'buildbottest' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '$('          Keyword
@@ -3757,7 +3757,7 @@
 
 'QUICKTESTOPTS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'TESTOPTS'    Text
 ')'           Keyword
@@ -3797,11 +3797,11 @@
 
 'quicktest'   Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '-find'       Text
@@ -3853,7 +3853,7 @@
 
 'MEMTESTOPTS' Name.Variable
 '='           Operator
-'    '        Text
+'    '        Text.Whitespace
 '$('          Keyword
 'QUICKTESTOPTS' Text
 ')'           Keyword
@@ -3874,11 +3874,11 @@
 
 'memtest'     Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
 ' '           Text
 'platform'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '-rm'         Text
@@ -3923,14 +3923,14 @@
 
 'install'     Name.Function
 ':'           Operator
-'\t '         Text
+'\t '         Text.Whitespace
 'altinstall'  Name
 ' '           Text
 'bininstall'  Name
 ' '           Text
 'maninstall'  Name
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3938,7 +3938,7 @@
 
 'altinstall'  Name.Function
 ':'           Operator
-'\t '         Text
+'\t '         Text.Whitespace
 'altbininstall' Name
 ' '           Text
 'libinstall'  Name
@@ -3969,7 +3969,7 @@
 ' '           Text
 'oldsharedinstall' Name
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3977,7 +3977,7 @@
 
 'DESTDIRS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'exec_prefix' Text
 ')'           Keyword
@@ -3999,7 +3999,7 @@
 
 'oldsharedinstall' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'DESTSHARED'  Name.Variable
 ')'           Keyword
@@ -4007,7 +4007,7 @@
 '$('          Keyword
 'SHAREDMODS'  Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '@for'        Text
@@ -4041,7 +4041,7 @@
 
 '$(DESTSHARED)' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
 '@for'        Text
@@ -4080,9 +4080,9 @@
 
 'bininstall'  Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'altbininstall' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '-if'         Text
@@ -4207,11 +4207,11 @@
 
 'altbininstall' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@for'        Text
@@ -4300,7 +4300,7 @@
 
 'maninstall'  Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@for'        Text
@@ -4364,7 +4364,7 @@
 
 'PLATDIR'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'plat-'       Text
 '$('          Keyword
 'MACHDEP'     Text
@@ -4373,7 +4373,7 @@
 
 'EXTRAPLATDIR' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\n'          Text.Whitespace
 
 'EXTRAMACHDEPPATH' Name.Variable
@@ -4382,7 +4382,7 @@
 
 'MACHDEPS'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'PLATDIR'     Text
 ')'           Keyword
@@ -4394,7 +4394,7 @@
 
 'XMLLIBSUBDIRS' Name.Variable
 '='           Operator
-'  '          Text
+'  '          Text.Whitespace
 'xml'         Text
 ' '           Text.Whitespace
 'xml/dom'     Text
@@ -4408,7 +4408,7 @@
 
 'PLATMACDIRS' Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'plat-mac'    Text
 ' '           Text.Whitespace
 'plat-mac/Carbon' Text
@@ -4463,7 +4463,7 @@
 
 'LIBSUBDIRS'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'lib-tk'      Text
 ' '           Text.Whitespace
 'site-packages' Text
@@ -4568,7 +4568,7 @@
 
 'libinstall'  Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'BUILDPYTHON' Name.Variable
 ')'           Keyword
@@ -4582,7 +4582,7 @@
 '$('          Keyword
 'PLATDIR'     Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@for'        Text
@@ -5053,7 +5053,7 @@
 
 '$(srcdir)/Lib/$(PLATDIR)' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'mkdir'       Text
@@ -5179,7 +5179,7 @@
 
 'inclinstall' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@for'        Text
@@ -5291,7 +5291,7 @@
 
 'LIBPL'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '$('          Keyword
 'LIBP'        Text
 ')'           Keyword
@@ -5300,9 +5300,9 @@
 
 'libainstall' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'all'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@for'        Text
@@ -5897,7 +5897,7 @@
 
 'sharedinstall' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -5974,9 +5974,9 @@
 
 'frameworkinstall' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'install'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -5994,23 +5994,23 @@
 
 'frameworkinstallframework' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'frameworkinstallstructure' Name
 ' '           Text
 'install'     Name
 ' '           Text
 'frameworkinstallmaclib' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'frameworkinstallstructure' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'LDLIBRARY'   Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@if'         Text
@@ -6259,7 +6259,7 @@
 
 'frameworkinstallmaclib' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'ln'          Text
@@ -6311,7 +6311,7 @@
 
 'frameworkinstallapps' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6339,7 +6339,7 @@
 
 'frameworkinstallunixtools' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6365,7 +6365,7 @@
 
 'frameworkaltinstallunixtools' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6395,7 +6395,7 @@
 
 'frameworkinstallextras' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6421,7 +6421,7 @@
 
 'scriptsinstall' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'SRCDIR'      Name.Variable
@@ -6482,7 +6482,7 @@
 
 'Makefile.pre' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Makefile'    Name
 '.'           Text
 'pre'         Name
@@ -6492,7 +6492,7 @@
 'config'      Name
 '.'           Text
 'status'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'CONFIG_FILES' Name.Variable
@@ -6523,13 +6523,13 @@
 
 'config.status' Name.Function
 ':'           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
 '/'           Text
 'configure'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -6548,7 +6548,7 @@
 
 '.PRECIOUS'   Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'config'      Name
 '.'           Text
 'status'      Name
@@ -6562,7 +6562,7 @@
 'Makefile'    Name
 '.'           Text
 'pre'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -6570,7 +6570,7 @@
 
 '.c.o'        Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -6595,7 +6595,7 @@
 
 'reindent'    Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 './python'    Text
@@ -6622,7 +6622,7 @@
 
 'recheck'     Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -6644,7 +6644,7 @@
 
 'autoconf'    Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '('           Operator
@@ -6674,7 +6674,7 @@
 
 'tags'        Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6749,7 +6749,7 @@
 
 'TAGS'        Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -6803,7 +6803,7 @@
 
 'pycremoval'  Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'find'        Text
@@ -6830,9 +6830,9 @@
 
 'clean'       Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'pycremoval'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'find'        Text
@@ -6928,9 +6928,9 @@
 
 'clobber'     Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'clean'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '-rm'         Text
@@ -7000,9 +7000,9 @@
 
 'distclean'   Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'clobber'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '-rm'         Text
@@ -7104,9 +7104,9 @@
 
 'smelly'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'all'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'nm'          Text
@@ -7151,7 +7151,7 @@
 
 'funny'       Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'find'        Text
@@ -7394,7 +7394,7 @@
 
 'Python/thread.o' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7515,7 +7515,7 @@
 'thread_wince' Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -7523,7 +7523,7 @@
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'all'         Name
 ' '           Text
 'sharedmods'  Name
@@ -7535,11 +7535,11 @@
 'quicktest'   Name
 ' '           Text
 'memtest'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'install'     Name
 ' '           Text
 'altinstall'  Name
@@ -7549,11 +7549,11 @@
 'bininstall'  Name
 ' '           Text
 'altbininstall' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'maninstall'  Name
 ' '           Text
 'libinstall'  Name
@@ -7563,31 +7563,31 @@
 'libainstall' Name
 ' '           Text
 'sharedinstall' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'frameworkinstall' Name
 ' '           Text
 'frameworkinstallframework' Name
 ' '           Text
 'frameworkinstallstructure' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'frameworkinstallmaclib' Name
 ' '           Text
 'frameworkinstallapps' Name
 ' '           Text
 'frameworkinstallunixtools' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'frameworkaltinstallunixtools' Name
 ' '           Text
 'recheck'     Name
@@ -7600,15 +7600,15 @@
 ' '           Text
 'distclean'   Name
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.PHONY'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'smelly'      Name
 ' '           Text
 'funny'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -7622,7 +7622,7 @@
 
 'Modules/threadmodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7664,11 +7664,11 @@
 'threadmodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/threadmodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'threadmodule' Name
@@ -7698,11 +7698,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/signalmodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7744,11 +7744,11 @@
 'signalmodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/signalmodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'signalmodule' Name
@@ -7778,11 +7778,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/posixmodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7824,11 +7824,11 @@
 'posixmodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/posixmodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'posixmodule' Name
@@ -7858,11 +7858,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/errnomodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7904,11 +7904,11 @@
 'errnomodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/errnomodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'errnomodule' Name
@@ -7938,11 +7938,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/pwdmodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -7984,11 +7984,11 @@
 'pwdmodule'   Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/pwdmodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'pwdmodule'   Name
@@ -8018,11 +8018,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/_sre.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -8064,11 +8064,11 @@
 '_sre'        Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/_sre$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 '_sre'        Name
@@ -8098,11 +8098,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/_codecsmodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -8144,11 +8144,11 @@
 '_codecsmodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/_codecsmodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 '_codecsmodule' Name
@@ -8178,11 +8178,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/zipimport.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -8224,11 +8224,11 @@
 'zipimport'   Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/zipimport$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'zipimport'   Name
@@ -8258,11 +8258,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/symtablemodule.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -8304,11 +8304,11 @@
 'symtablemodule' Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/_symtablemodule$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'symtablemodule' Name
@@ -8338,11 +8338,11 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/xxsubtype.o' Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'srcdir'      Name.Variable
 ')'           Keyword
@@ -8384,11 +8384,11 @@
 'xxsubtype'   Name
 '.'           Text
 'o'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modules/xxsubtype$(SO)' Name.Function
 ':'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'Modules'     Name
 '/'           Text
 'xxsubtype'   Name
@@ -8418,4 +8418,4 @@
 '$('          Keyword
 'SO'          Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace

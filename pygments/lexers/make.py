@@ -85,16 +85,19 @@ class BaseMakefileLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'#.*?\n', Comment),
             (r'((?:un)?export)(\s+)(?=[\w${}\t -]+\n)',
-             bygroups(Keyword, Text), 'export'),
+             bygroups(Keyword, Whitespace), 'export'),
             (r'(?:un)?export\s+', Keyword),
             # assignment
             (r'([\w${}().-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
-             bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
+             bygroups(
+                Name.Variable, Whitespace, Operator, Whitespace,
+                using(BashLexer))),
             # strings
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             # targets
-            (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
+            (r'([^\n:]+)(:+)([ \t]*)', bygroups(
+                Name.Function, Operator, Whitespace),
              'block-header'),
             # expansions
             (r'\$\(', Keyword, 'expansion'),
@@ -117,7 +120,7 @@ class BaseMakefileLexer(RegexLexer):
             (r'\\\n', Text),  # line continuation
             (r'\$\(', Keyword, 'expansion'),
             (r'[a-zA-Z_]+', Name),
-            (r'\n', Text, '#pop'),
+            (r'\n', Whitespace, '#pop'),
             (r'.', Text),
         ],
     }

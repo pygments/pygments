@@ -9,7 +9,7 @@
 
 'SRC'         Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'hello.c'     Text
 ' '           Text.Whitespace
 'main.c'      Text
@@ -17,7 +17,7 @@
 
 'OBJ'         Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SRC:.c'      Text
 '='           Operator
@@ -29,21 +29,21 @@
 
 'all'         Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'EXEC'        Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'hello'       Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'OBJ'         Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 '$('          Keyword
@@ -64,21 +64,21 @@
 
 'main.o'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'hello'       Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 '%.o'         Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '%'           Text
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 '$('          Keyword

@@ -73,30 +73,30 @@
 '\n'          Text.Whitespace
 
 'DEPTH'       Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '.'           Text
 '\n'          Text.Whitespace
 
 'topsrcdir'   Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@top_srcdir@' Text
 '\n'          Text.Whitespace
 
 'srcdir'      Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@srcdir@'    Text
 '\n'          Text.Whitespace
 
 'VPATH'       Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@srcdir@'    Text
 '\n'          Text.Whitespace
 
@@ -123,9 +123,9 @@
 '#\n'         Comment
 
 'SUPPRESS_DEFAULT_RULES' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 '\n'          Text.Whitespace
 
@@ -133,11 +133,11 @@
 
 'default alldep all' Name.Function
 '::'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SUBMAKEFILES' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -224,9 +224,9 @@
 '# Make sure that the existing rulesets work\n' Comment
 
 'DIRS'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t'          Text.Whitespace
@@ -273,9 +273,9 @@
 'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
 
 'DIRS'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'gc/boehm'    Text
 '\n'          Text.Whitespace
 
@@ -284,9 +284,9 @@
 '\n'          Text.Whitespace
 
 'DIRS'        Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'tier_99_dirs' Text
 ')'           Keyword
@@ -301,9 +301,9 @@
 '# \n'        Comment
 
 'tier_0_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t'          Text.Whitespace
@@ -329,9 +329,9 @@
 '#\n'         Comment
 
 'tier_1_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'dbm'         Text
 '\n'          Text.Whitespace
 
@@ -340,9 +340,9 @@
 'ifndef MOZ_NATIVE_JPEG\n' Comment.Preproc
 
 'tier_1_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'jpeg'        Text
 '\n'          Text.Whitespace
 
@@ -353,9 +353,9 @@
 'ifndef MOZ_NATIVE_ZLIB\n' Comment.Preproc
 
 'tier_1_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'modules/zlib' Text
 '\n'          Text.Whitespace
 
@@ -368,9 +368,9 @@
 'ifdef MOZ_INSTALLER\n' Comment.Preproc
 
 'tier_1_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'modules/zlib/standalone' Text
 '\n'          Text.Whitespace
 
@@ -381,16 +381,16 @@
 'ifdef MOZ_UPDATER\n' Comment.Preproc
 
 'tier_1_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'modules/libbz2' Text
 '\n'          Text.Whitespace
 
 'tier_1_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'modules/libmar' Text
 '\n'          Text.Whitespace
 
@@ -401,9 +401,9 @@
 'ifdef MOZ_SVG_RENDERER_LIBART\n' Comment.Preproc
 
 'tier_1_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'other-licenses/libart_lgpl' Text
 '\n'          Text.Whitespace
 
@@ -418,9 +418,9 @@
 '# \n'        Comment
 
 'tier_2_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -442,9 +442,9 @@
 'ifndef MOZ_NO_XPCOM_OBSOLETE\n' Comment.Preproc
 
 'tier_2_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'modules/libreg' Text
 ' '           Text.Whitespace
 'xpcom/obsolete' Text
@@ -457,9 +457,9 @@
 'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
 
 'tier_2_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/trace-malloc/lib' Text
 '\n'          Text.Whitespace
 
@@ -476,9 +476,9 @@
 '\n'          Text.Whitespace
 
 'tier_9_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -505,9 +505,9 @@
 'ifdef MOZ_STORAGE\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'storage'     Text
 '\n'          Text.Whitespace
 
@@ -518,9 +518,9 @@
 'ifdef MOZ_ENABLE_XLIB\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'gfx/src/xlibrgb' Text
 ' '           Text.Whitespace
 'widget/src/xlibxtbin' Text
@@ -533,9 +533,9 @@
 'ifdef MOZ_ENABLE_GTK\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'widget/src/gtksuperwin' Text
 ' '           Text.Whitespace
 'widget/src/gtkxtbin' Text
@@ -548,9 +548,9 @@
 'ifdef MOZ_ENABLE_GTK2\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'widget/src/gtkxtbin' Text
 '\n'          Text.Whitespace
 
@@ -561,9 +561,9 @@
 'ifdef MOZ_IPCD\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'ipc/ipcd'    Text
 '\n'          Text.Whitespace
 
@@ -574,9 +574,9 @@
 'ifdef MOZ_JSDEBUGGER\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'js/jsd'      Text
 '\n'          Text.Whitespace
 
@@ -585,9 +585,9 @@
 '\n'          Text.Whitespace
 
 'tier_9_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -729,9 +729,9 @@
 'ifdef MOZ_OJI\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -757,9 +757,9 @@
 'ifdef ACCESSIBILITY\n' Comment.Preproc
 
 'tier_9_dirs' Name.Variable
-'    '        Text
+'    '        Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'accessible'  Text
 '\n'          Text.Whitespace
 
@@ -780,18 +780,18 @@
 'ifdef MOZ_XUL_APP\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'chrome'      Text
 '\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'rdf/chrome'  Text
 '\n'          Text.Whitespace
 
@@ -800,9 +800,9 @@
 'else\n'      Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'embedding/minimo/chromelite' Text
 '\n'          Text.Whitespace
 
@@ -811,9 +811,9 @@
 '\n'          Text.Whitespace
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'profile'     Text
 '\n'          Text.Whitespace
 
@@ -824,9 +824,9 @@
 'ifdef MOZ_JPROF\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'        '    Text
+'        '    Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/jprof' Text
 '\n'          Text.Whitespace
 
@@ -837,9 +837,9 @@
 'ifneq (,$(filter mac cocoa,$(MOZ_WIDGET_TOOLKIT)))\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'xpfe/bootstrap/appleevents' Text
 '\n'          Text.Whitespace
 
@@ -848,9 +848,9 @@
 '\n'          Text.Whitespace
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t'          Text.Whitespace
@@ -872,9 +872,9 @@
 'ifndef MOZ_XUL_APP\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'themes'      Text
 '\n'          Text.Whitespace
 
@@ -885,9 +885,9 @@
 'ifdef MOZ_ENABLE_XREMOTE\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'widget/src/xremoteclient' Text
 '\n'          Text.Whitespace
 
@@ -898,9 +898,9 @@
 'ifdef MOZ_XUL_APP\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'toolkit'     Text
 '\n'          Text.Whitespace
 
@@ -913,9 +913,9 @@
 "#XXXBlake this shell path is a temp hack; toolkit shouldn't depend on browser\n" Comment
 
 'tier_50_dirs' Name.Variable
-'    '        Text
+'    '        Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'browser/components/shell/public' Text
 '\n'          Text.Whitespace
 
@@ -926,9 +926,9 @@
 'ifdef MOZ_XPINSTALL\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '+='          Operator
-'  '          Text
+'  '          Text.Whitespace
 'xpinstall'   Text
 '\n'          Text.Whitespace
 
@@ -941,9 +941,9 @@
 'ifdef MOZ_JAVAXPCOM\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'extensions/java/xpcom/src' Text
 '\n'          Text.Whitespace
 
@@ -954,9 +954,9 @@
 'ifdef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -982,9 +982,9 @@
 'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/trace-malloc' Text
 '\n'          Text.Whitespace
 
@@ -995,18 +995,18 @@
 'ifdef MOZ_PSM\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'security/manager' Text
 '\n'          Text.Whitespace
 
 'else\n'      Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'security/manager/boot/public' Text
 ' '           Text.Whitespace
 'security/manager/ssl/public' Text
@@ -1019,9 +1019,9 @@
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'directory/xpcom' Text
 '\n'          Text.Whitespace
 
@@ -1036,9 +1036,9 @@
 'ifdef MOZ_ENABLE_GTK2\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'    '        Text
+'    '        Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'toolkit/components/gnome' Text
 '\n'          Text.Whitespace
 
@@ -1053,9 +1053,9 @@
 'ifdef MOZ_LEAKY\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'        '    Text
+'        '    Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/leaky' Text
 '\n'          Text.Whitespace
 
@@ -1066,9 +1066,9 @@
 'ifdef MOZ_MAPINFO\n' Comment.Preproc
 
 'tier_50_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/codesighs' Text
 '\n'          Text.Whitespace
 
@@ -1087,9 +1087,9 @@
 'ifdef MOZ_MAIL_NEWS\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'mailnews'    Text
 '\n'          Text.Whitespace
 
@@ -1100,9 +1100,9 @@
 'ifdef MOZ_CALENDAR\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'calendar'    Text
 '\n'          Text.Whitespace
 
@@ -1113,9 +1113,9 @@
 'ifdef MOZ_EXTENSIONS\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'extensions'  Text
 '\n'          Text.Whitespace
 
@@ -1126,9 +1126,9 @@
 'ifdef MOZ_JAVAXPCOM\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'extensions/java' Text
 '\n'          Text.Whitespace
 
@@ -1143,9 +1143,9 @@
 'ifndef MOZ_NO_ACTIVEX_SUPPORT\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t\t'        Text.Whitespace
@@ -1175,9 +1175,9 @@
 'ifneq (,$(filter mac cocoa,$(MOZ_WIDGET_TOOLKIT)))\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'plugin/oji/JEP' Text
 '\n'          Text.Whitespace
 
@@ -1188,9 +1188,9 @@
 'ifneq (,$(filter browser suite,$(MOZ_BUILD_APP)))\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'xpfe/components/search' Text
 '\n'          Text.Whitespace
 
@@ -1201,9 +1201,9 @@
 'ifdef MOZ_BRANDING_DIRECTORY\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'MOZ_BRANDING_DIRECTORY' Text
 ')'           Keyword
@@ -1216,9 +1216,9 @@
 'ifdef MOZ_PHOENIX\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'browser'     Text
 ' '           Text.Whitespace
 'xpfe/bootstrap/init.d' Text
@@ -1231,9 +1231,9 @@
 'ifdef MOZ_XULRUNNER\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'xulrunner'   Text
 '\n'          Text.Whitespace
 
@@ -1244,9 +1244,9 @@
 'ifdef MOZ_COMPOSER\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'editor/ui'   Text
 '\n'          Text.Whitespace
 
@@ -1257,9 +1257,9 @@
 'ifdef MOZ_THUNDERBIRD\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'mail'        Text
 ' '           Text.Whitespace
 'xpfe/bootstrap/init.d' Text
@@ -1272,9 +1272,9 @@
 'ifdef MOZ_STANDALONE_COMPOSER\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'composer'    Text
 '\n'          Text.Whitespace
 
@@ -1285,9 +1285,9 @@
 'ifdef MOZ_SUNBIRD\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'calendar/sunbird' Text
 '\n'          Text.Whitespace
 
@@ -1298,9 +1298,9 @@
 'ifdef MOZ_SUITE\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'suite'       Text
 '\n'          Text.Whitespace
 
@@ -1311,9 +1311,9 @@
 'ifdef MINIMO\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'minimo'      Text
 '\n'          Text.Whitespace
 
@@ -1326,9 +1326,9 @@
 'ifdef MOZ_INSTALLER\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '+='          Operator
-'  '          Text
+'  '          Text.Whitespace
 'toolkit/mozapps/installer' Text
 '\n'          Text.Whitespace
 
@@ -1341,9 +1341,9 @@
 'ifndef MINIMO\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'xpfe/bootstrap' Text
 '\n'          Text.Whitespace
 
@@ -1358,9 +1358,9 @@
 'ifneq (,$(MOZ_ENABLE_GTK)$(MOZ_ENABLE_GTK2))\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'embedding/browser/gtk' Text
 '\n'          Text.Whitespace
 
@@ -1375,9 +1375,9 @@
 'ifndef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'webshell/tests' Text
 '\n'          Text.Whitespace
 
@@ -1394,9 +1394,9 @@
 'ifneq (,$(ENABLE_TESTS)$(MOZILLA_OFFICIAL))\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'embedding/tests' Text
 '\n'          Text.Whitespace
 
@@ -1413,9 +1413,9 @@
 'ifneq (,$(ENABLE_TESTS)$(MOZILLA_OFFICIAL))\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'embedding/tests' Text
 '\n'          Text.Whitespace
 
@@ -1428,9 +1428,9 @@
 'ifeq ($(MOZ_BUILD_APP),macbrowser)\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t'          Text.Whitespace
@@ -1458,9 +1458,9 @@
 'ifdef ENABLE_TESTS\n' Comment.Preproc
 
 'tier_99_dirs' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'tools/test-harness' Text
 '\n'          Text.Whitespace
 
@@ -1477,9 +1477,9 @@
 '\n'          Text.Whitespace
 
 'DIRS'        Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'BUILD_MODULE_DIRS' Text
 ')'           Keyword
@@ -1494,9 +1494,9 @@
 'ifneq (,$(findstring xpcom, $(BUILD_MODULE_DIRS)))\n' Comment.Preproc
 
 'DIRS'        Name.Variable
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'xpcom/typelib' Text
 ' '           Text.Whitespace
 '$('          Keyword
@@ -1505,9 +1505,9 @@
 '\n'          Text.Whitespace
 
 'SUBMAKEFILES' Name.Variable
-'\t'          Text
+'\t'          Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'xpcom/typelib/Makefile' Text
 '\n'          Text.Whitespace
 
@@ -1519,11 +1519,11 @@
 
 'default'     Name.Function
 '::'          Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SUBMAKEFILES' Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -1544,9 +1544,9 @@
 '\n'          Text.Whitespace
 
 'STATIC_MAKEFILES' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'nsprpub'     Text
 ' '           Text.Whitespace
 'directory/c-sdk' Text
@@ -1557,16 +1557,16 @@
 '\n'          Text.Whitespace
 
 'GARBAGE_DIRS' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 'dist'        Text
 '\n'          Text.Whitespace
 
 'DIST_GARBAGE' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'config.cache' Text
 ' '           Text.Whitespace
 'config.log'  Text
@@ -1611,7 +1611,7 @@
 
 'export'      Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '$('          Keyword
@@ -1676,7 +1676,7 @@
 
 'install'     Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
@@ -1818,7 +1818,7 @@
 
 'clean clobber realclean clobber_all distclean' Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
@@ -1860,7 +1860,7 @@
 
 'tier_50'     Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'addsuffix'   Name.Variable
 ' /'          Text
@@ -1883,7 +1883,7 @@
 ')'           Keyword
 ')'           Keyword
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@echo'       Text
@@ -2012,7 +2012,7 @@
 
 'tier_%'      Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '@echo'       Text
@@ -2083,7 +2083,7 @@
 
 'boehm'       Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
 
@@ -2103,9 +2103,9 @@
 
 'nspr'        Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'boehm'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
 
@@ -2125,7 +2125,7 @@
 
 'ldap'        Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
 
@@ -2145,7 +2145,7 @@
 
 'distclean'   Name.Function
 '::'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cat'         Text
@@ -2177,7 +2177,7 @@
 
 'rebase'      Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
 
@@ -2229,7 +2229,7 @@
 
 'splitsymbols' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
 
@@ -2505,7 +2505,7 @@
 
 'signnss'     Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
 
@@ -2556,9 +2556,9 @@
 '\n'          Text.Whitespace
 
 'BUILDID'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'shell'       Text
 ' '           Text.Whitespace
@@ -2573,13 +2573,13 @@
 
 'deliver'     Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'splitsymbols' Name
 ' '           Text
 'rebase'      Name
 ' '           Text
 'signnss'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 

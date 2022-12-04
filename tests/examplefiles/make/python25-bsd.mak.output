@@ -12,20 +12,20 @@
 
 'PORTNAME'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'python25'    Text
 '\n'          Text.Whitespace
 
 'PORTVERSION' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '2'           Literal.Number
 '.5.1'        Text
 '\n'          Text.Whitespace
 
 'CATEGORIES'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'lang'        Text
 ' '           Text.Whitespace
 'python'      Text
@@ -35,7 +35,7 @@
 
 'MASTER_SITES' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_MASTER_SITES' Name.Variable
 '}'           Literal.String.Interpol
@@ -43,7 +43,7 @@
 
 'MASTER_SITE_SUBDIR' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_MASTER_SITE_SUBDIR' Name.Variable
 '}'           Literal.String.Interpol
@@ -51,7 +51,7 @@
 
 'DISTFILES'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_DISTFILE' Name.Variable
 '}'           Literal.String.Interpol
@@ -61,13 +61,13 @@
 
 'MAINTAINER'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'python@FreeBSD.org' Text
 '\n'          Text.Whitespace
 
 'COMMENT'     Name.Variable
 '?='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'An'          Text
 ' '           Text.Whitespace
 'interpreted' Text
@@ -83,13 +83,13 @@
 
 'DIST_SUBDIR' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'python'      Text
 '\n'          Text.Whitespace
 
 'WRKSRC'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_WRKSRC' Name.Variable
 '}'           Literal.String.Interpol
@@ -98,7 +98,7 @@
 
 'PATCH_WRKSRC' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_WRKSRC' Name.Variable
 '}'           Literal.String.Interpol
@@ -106,13 +106,13 @@
 
 'GNU_CONFIGURE' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'yes'         Text
 '\n'          Text.Whitespace
 
 'CONFIGURE_TARGET' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '--build'     Text
 '='           Operator
 '${'          Literal.String.Interpol
@@ -126,14 +126,14 @@
 
 'CONFIGURE_SCRIPT' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '../configure' Text
 ' '           Text.Whitespace
 '# must be relative\n' Comment.Single
 
 'CONFIGURE_ENV' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'OPT'         Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -149,7 +149,7 @@
 
 'MAKE_ENV'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'VPATH'       Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -161,19 +161,19 @@
 
 'INSTALLS_SHLIB' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'yes'         Text
 '\n'          Text.Whitespace
 
 'INSTALL_TARGET' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'altinstall'  Text
 '\n'          Text.Whitespace
 
 'MAN1'        Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_VERSION' Name.Variable
 '}'           Literal.String.Interpol
@@ -184,19 +184,19 @@
 
 'USE_PYTHON'  Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'yes'         Text
 '\n'          Text.Whitespace
 
 'PYTHON_VERSION' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'python2.5'   Text
 '\n'          Text.Whitespace
 
 'PYTHON_NO_DEPENDS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'yes'         Text
 '\n'          Text.Whitespace
 
@@ -204,7 +204,7 @@
 
 'SHARED_WRKSRC' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_WRKSRC' Name.Variable
 '}'           Literal.String.Interpol
@@ -213,7 +213,7 @@
 
 'PLIST'       Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'WRKDIR'      Name.Variable
 '}'           Literal.String.Interpol
@@ -230,7 +230,7 @@
 
 'PLIST_SUB'   Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'PYVER'       Name.Variable
 '='           Operator
 '${'          Literal.String.Interpol
@@ -255,7 +255,7 @@
 
 'DEMODIR'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PREFIX'      Name.Variable
 '}'           Literal.String.Interpol
@@ -267,7 +267,7 @@
 
 'TOOLSDIR'    Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '${'          Literal.String.Interpol
 'PREFIX'      Name.Variable
 '}'           Literal.String.Interpol
@@ -281,7 +281,7 @@
 
 'BIN_SCRIPTS' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'idle'        Text
 ' '           Text.Whitespace
 'pydoc'       Text
@@ -302,7 +302,7 @@
 
 'BINLINKS_SUB' Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-e'          Text
 ' '           Text.Whitespace
 "'s,smtpd,smtpd${PYTHON_VER},'" Literal.String.Single
@@ -317,7 +317,7 @@
 
 'OPTIONS'     Name.Variable
 '='           Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'THREADS'     Text
 ' '           Text.Whitespace
 '"Enable thread support"' Literal.String.Double
@@ -378,7 +378,7 @@
 
 'MLINKS'      Name.Variable
 '='           Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'PYTHON_VERSION' Name.Variable
 '}'           Literal.String.Interpol
@@ -389,7 +389,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'IF_DEFAULT'  Name.Variable
 '='           Operator
 '""'          Literal.String.Double
@@ -399,7 +399,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'IF_DEFAULT'  Name.Variable
 '='           Operator
 '"@comment "' Literal.String.Double
@@ -413,7 +413,7 @@
 
 'CFLAGS'      Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '-D__wchar_t' Text
 '='           Operator
 'wchar_t'     Text
@@ -425,13 +425,13 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '--with-threads' Text
 '\n'          Text.Whitespace
 
 'CFLAGS'      Name.Variable
 '+='          Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '${'          Literal.String.Interpol
 'PTHREAD_CFLAGS' Name.Variable
 '}'           Literal.String.Interpol
@@ -441,7 +441,7 @@
 
 'CFLAGS'      Name.Variable
 '+='          Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DTHREAD_STACK_SIZE' Text
 '='           Operator
 '0x20000'     Text
@@ -451,7 +451,7 @@
 
 'CFLAGS'      Name.Variable
 '+='          Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '-DTHREAD_STACK_SIZE' Text
 '='           Operator
 '0x100000'    Text
@@ -461,7 +461,7 @@
 
 'CONFIGURE_ENV' Name.Variable
 '+='          Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'LDFLAGS'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -479,7 +479,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '--without-threads' Text
 '\n'          Text.Whitespace
 
@@ -487,7 +487,7 @@
 
 'CONFIGURE_ENV' Name.Variable
 '+='          Operator
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'LDFLAGS'     Name.Variable
 '='           Operator
 '"'           Literal.String.Double
@@ -507,7 +507,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 '--enable-unicode' Text
 '='           Operator
 'ucs4'        Text
@@ -521,7 +521,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-'        '    Text
+'        '    Text.Whitespace
 '--without-pymalloc' Text
 '\n'          Text.Whitespace
 
@@ -533,7 +533,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'X86_ONLY'    Name.Variable
 '='           Operator
 '""'          Literal.String.Double
@@ -543,7 +543,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'X86_ONLY'    Name.Variable
 '='           Operator
 '"@comment "' Literal.String.Double
@@ -555,7 +555,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'     '       Text
+'     '       Text.Whitespace
 '32BIT_ONLY'  Name.Variable
 '='           Operator
 '"@comment "' Literal.String.Double
@@ -565,7 +565,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'     '       Text
+'     '       Text.Whitespace
 '32BIT_ONLY'  Name.Variable
 '='           Operator
 '""'          Literal.String.Double
@@ -577,7 +577,7 @@
 
 'CFLAGS'      Name.Variable
 '+='          Operator
-'        '    Text
+'        '    Text.Whitespace
 '-DPYTHON_DEFAULT_RECURSION_LIMIT' Text
 '='           Operator
 '900'         Literal.Number
@@ -591,7 +591,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'NO_NIS'      Name.Variable
 '='           Operator
 '"@comment "' Literal.String.Double
@@ -601,7 +601,7 @@
 
 'PLIST_SUB'   Name.Variable
 '+='          Operator
-'\t'          Text
+'\t'          Text.Whitespace
 'NO_NIS'      Name.Variable
 '='           Operator
 '""'          Literal.String.Double
@@ -615,7 +615,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '--enable-ipv6' Text
 '\n'          Text.Whitespace
 
@@ -623,7 +623,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '--disable-ipv6' Text
 '\n'          Text.Whitespace
 
@@ -635,7 +635,7 @@
 
 'CONFIGURE_ARGS' Name.Variable
 '+='          Operator
-' '           Text
+' '           Text.Whitespace
 '--with-fpectl' Text
 '\n'          Text.Whitespace
 
@@ -682,7 +682,7 @@
 
 'pre-patch'   Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '${'          Literal.String.Interpol
@@ -933,7 +933,7 @@
 
 'post-configure' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '${'          Literal.String.Interpol
@@ -1045,7 +1045,7 @@
 
 'pre-build'   Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'cd'          Name.Builtin
@@ -1122,7 +1122,7 @@
 
 'pre-su-install' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.for platform in ${PLATFORMS}\n' Comment.Preproc
 
@@ -1180,7 +1180,7 @@
 
 'pre-install' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 '${'          Literal.String.Interpol
@@ -1275,7 +1275,7 @@
 
 'post-install' Name.Function
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t@# install config providers\n' Comment
 
