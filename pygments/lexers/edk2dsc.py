@@ -18,7 +18,7 @@ class Edk2DscLexer(RegexLexer):
     """
 
     name = 'DSC'
-    aliases = ['DSC', 'dsc']
+    aliases = ['dsc']
     filenames = ['*.dsc']
     url = 'https://edk2-docs.gitbook.io/edk-ii-dsc-specification/'
 
