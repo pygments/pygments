@@ -4,7 +4,7 @@
 '<window'     Name.Tag
 '\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'xmlns='      Name.Attribute
 '"http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"' Literal.String
 '>'           Name.Tag
@@ -20,10 +20,10 @@
 '\n'          Text
 
 '<description' Name.Tag
-' '           Text
+' '           Text.Whitespace
 'value='      Name.Attribute
 '"Text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '/>'          Name.Tag
 '\n'          Text.Whitespace
 

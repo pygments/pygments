@@ -19,7 +19,7 @@
 ' '           Text.Whitespace
 '%>'          Keyword
 ' -->'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%='         Keyword
 ' '           Text.Whitespace
@@ -34,7 +34,7 @@
 '\n'          Text.Whitespace
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text.Whitespace
@@ -48,7 +48,7 @@
 ';'           Punctuation
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text.Whitespace
@@ -64,7 +64,7 @@
 ';'           Punctuation
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%!'         Keyword
 ' '           Text.Whitespace
@@ -83,7 +83,7 @@
 ';'           Punctuation
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<%'          Keyword
 '\n'          Text.Whitespace
@@ -122,7 +122,7 @@
 '\n'          Text.Whitespace
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%@'         Keyword
 ' '           Text.Whitespace
@@ -135,7 +135,7 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 '\n'          Text.Whitespace
@@ -215,16 +215,21 @@
 '\n'          Text.Whitespace
 
 '%>'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<jsp:useBean id="calendar" scope="page" class="employee.Calendar" />' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<h2'         Name.Tag
 '>'           Name.Tag
-'\nCalendar of ' Text
+'\n'          Text.Whitespace
+
+'Calendar'    Text
+' '           Text.Whitespace
+'of'          Text
+' '           Text.Whitespace
 '<jsp:getProperty name="calendar" property="username" />' Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</h2>'       Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
