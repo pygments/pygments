@@ -4,13 +4,13 @@ printline string
 
 ---tokens---
 'printline'   Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Literal.String
 '\n'          Text
 
 '...'         Punctuation
-' '           Text
+' '           Text.Whitespace
 "'interpolated'" Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 'string'      Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
