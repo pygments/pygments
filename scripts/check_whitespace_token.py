@@ -19,7 +19,14 @@ def check_file(path):
     whitespace_re = re.compile('\s+')
 
     for value, token, linenumber in unpack_output_file(path):
-        if whitespace_re.fullmatch(value) and 'Whitespace' not in token:
+        if whitespace_re.fullmatch(value):
+            # We allow " " if it's inside a Literal.String for example
+            if 'Literal' in token:
+                continue
+
+            if 'Whitespace' in token:
+                continue
+
             print(f'{path}:{linenumber}')
             return False
 
