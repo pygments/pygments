@@ -37,35 +37,35 @@
 '?'           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'requires'    Name
 '.'           Operator
 'text_value'  Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'text_value'  Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'module_or_grammar' Name
 '.'           Operator
 'compile'     Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'suffix'      Name
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -155,33 +155,33 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'text_value'  Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'module_contents' Name
 '.'           Operator
 'compile'     Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'suffix'      Name
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n\t  '    Text
+'\n\n\t  '    Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'parser_name' Name.Function
-'\n\t    '    Text
+'\n\t    '    Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'name'        Name
@@ -195,9 +195,9 @@
 'module_contents' Name
 '.'           Operator
 'parser_name' Name
-'\n\t  '      Text
+'\n\t  '      Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -269,45 +269,45 @@
 '>'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'declarations' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 'head'        Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'tail'        Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'tail'        Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super'       Keyword
 '.'           Operator
 'elements'    Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
 'elt'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'elt'         Name
 '.'           Operator
 'declaration' Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -315,16 +315,16 @@
 "''"          Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'builder'     Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -361,22 +361,22 @@
 '*'           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'builder'     Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'builder'     Name
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
-' '           Text
+' '           Text.Whitespace
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -456,68 +456,68 @@
 '>'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'alternatives' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 'head'        Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'tail'        Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'tail'        Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super'       Keyword
 '.'           Operator
 'elements'    Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '|'           Operator
 'elt'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'elt'         Name
 '.'           Operator
 'alternative' Name
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'alternatives' Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '|'           Operator
 'alt'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'alt'         Name
 '.'           Operator
 'inline_modules' Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
 '.'           Operator
 'flatten'     Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -546,58 +546,58 @@
 '>'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'sequence_elements' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 'head'        Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'tail'        Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'tail'        Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super'       Keyword
 '.'           Operator
 'elements'    Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '|'           Operator
 'elt'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'elt'         Name
 '.'           Operator
 'labeled_sequence_primary' Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'sequence_elements' Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '|'           Operator
 'elt'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'elt'         Name
 '.'           Operator
 'inline_modules' Name
@@ -605,31 +605,31 @@
 ')'           Punctuation
 '.'           Operator
 'flatten'     Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 'sequence_element_accessor_module' Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_module_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -655,63 +655,63 @@
 'atomic'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parent_expression' Name
 '='           Operator
 'nil'         Keyword.Pseudo
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'prefixed_expression' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -724,54 +724,54 @@
 'predicate_block' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parent_expression' Name
 '='           Operator
 'nil'         Keyword.Pseudo
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'prefixed_expression' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'predicate_block' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 ']'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -783,81 +783,81 @@
 'node_class_declarations' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parent_expression' Name
 '='           Operator
 'nil'         Keyword.Pseudo
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'suffix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'optional_expression' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'node_class_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'inline_modules' Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_module_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -867,73 +867,73 @@
 'node_class_declarations' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parent_expression' Name
 '='           Operator
 'nil'         Keyword.Pseudo
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'node_class_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'inline_modules' Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_declarations' Name
 '.'           Operator
 'inline_module_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -947,74 +947,74 @@
 'sequence_primary' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'sequence_primary' Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'sequence_primary' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'label_name'  Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'label'       Name
 '.'           Operator
 'name'        Name
-'\n              ' Text
+'\n              ' Text.Whitespace
 'label'       Name
 '.'           Operator
 'name'        Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 'sequence_primary' Name
 '.'           Operator
 'instance_of?' Name
 '('           Punctuation
 'Nonterminal' Name.Constant
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 'sequence_primary' Name
 '.'           Operator
 'text_value'  Name
-'\n            ' Text
+'\n            ' Text.Whitespace
 'else'        Keyword
-'\n              ' Text
+'\n              ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n            ' Text
+'\n            ' Text.Whitespace
 'end'         Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1033,20 +1033,20 @@
 "':'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'elements'    Name
 '['           Operator
 '0'           Literal.Number.Integer
 ']'           Operator
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1054,15 +1054,15 @@
 "''"          Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1076,61 +1076,61 @@
 'atomic'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'prefixed_expression' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'elements'    Name
 '['           Operator
 '1'           Literal.Number.Integer
 ']'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1143,54 +1143,54 @@
 'predicate_block' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'parent_expression' Name
 '='           Operator
 'nil'         Keyword.Pseudo
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'prefix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'address'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'prefixed_expression' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'predicate_block' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 ']'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1200,58 +1200,58 @@
 'suffix'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'compile'     Name.Function
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'suffix'      Name
 '.'           Operator
 'compile'     Name
 '('           Punctuation
 'lexical_address' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'builder'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Builtin
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'atomic'      Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1293,51 +1293,51 @@
 'trailing_inline_module' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'node_class_expression' Name
 '.'           Operator
 'node_class_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'trailing_inline_module' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'trailing_inline_module' Name
 '.'           Operator
 'inline_module' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'inline_module' Name
 '.'           Operator
 'module_name' Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1460,17 +1460,17 @@
 '>'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'parsing_expression' Name
 '.'           Operator
 'inline_modules' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1524,17 +1524,17 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super'       Keyword
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1645,17 +1645,17 @@
 '>'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'characters'  Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super'       Keyword
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1758,20 +1758,20 @@
 "'>'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'elements'    Name
 '['           Operator
 '2'           Literal.Number.Integer
 ']'           Operator
 '.'           Operator
 'text_value'  Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1779,15 +1779,15 @@
 "''"          Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'node_class_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
@@ -1801,27 +1801,27 @@
 'inline_module' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 'inline_module' Name
 ']'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'inline_module' Name
 '.'           Operator
 'module_name' Name
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n        '  Text.Whitespace
 '/'           Operator
@@ -1829,32 +1829,32 @@
 "''"          Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_modules' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '['           Operator
 ']'           Operator
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n\n          ' Text
+'\n\n          ' Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'inline_module_name' Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n          ' Text
+'\n          ' Text.Whitespace
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
 '\n      '    Text.Whitespace
 'end'         Keyword
