@@ -33,7 +33,7 @@ class IniLexer(RegexLexer):
     name = 'INI'
     aliases = ['ini', 'cfg', 'dosini']
     filenames = [
-        '*.ini', '*.cfg', '*.inf', '.editorconfig',
+        '*.ini', '*.cfg', '*.inf', '.editorconfig', '*.dsc', '*.dec',
         # systemd unit files
         # https://www.freedesktop.org/software/systemd/man/systemd.unit.html
         '*.service', '*.socket', '*.device', '*.mount', '*.automount',
