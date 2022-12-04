@@ -19,11 +19,13 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     make_analysator, Future, guess_decode
 from pygments.regexopt import regex_opt
 
+
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
            'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
            'default', 'words', 'line_re']
 
 line_re = re.compile('.*?\n')
+whitespace_re = re.compile(r'\s+')
 
 _encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
                  (b'\xff\xfe\0\0', 'utf-32'),
@@ -312,7 +314,12 @@ def bygroups(*args):
                 continue
             elif type(action) is _TokenType:
                 data = match.group(i + 1)
+
                 if data:
+                    if action is not Whitespace and \
+                       whitespace_re.fullmatch(data):
+                        action = Whitespace
+
                     yield match.start(i + 1), action, data
             else:
                 data = match.group(i + 1)

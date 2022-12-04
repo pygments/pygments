@@ -1,10 +1,10 @@
 '%hook'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ABC'         Name.Class
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -36,17 +36,17 @@
 '\n'          Text.Whitespace
 
 '%end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '%subclass'   Keyword
-' '           Text
+' '           Text.Whitespace
 'DEF'         Name.Class
 ': '          Text
 'NSObject'    Name.Builtin.Pseudo
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -78,20 +78,20 @@
 '\n'          Text.Whitespace
 
 '%end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '%group'      Keyword
-' '           Text
+' '           Text.Whitespace
 'OptionalHooks' Name.Class
 '\n'          Text.Whitespace
 
 '%hook'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ABC'         Name.Class
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -118,13 +118,13 @@
 '\n'          Text.Whitespace
 
 '%end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%end'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '%ctor'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 

@@ -7,15 +7,15 @@
 '**bold**'    Generic.Strong
 ' '           Text
 'and'         Text
-' '           Text
+' '           Text.Whitespace
 '*italics*'   Generic.Emph
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*italics*'   Generic.Emph
 ' '           Text
 'and'         Text
-' '           Text
+' '           Text.Whitespace
 '**bold**'    Generic.Strong
 '\n'          Text.Whitespace

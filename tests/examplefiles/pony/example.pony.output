@@ -20,9 +20,9 @@
 '\n'          Text
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'trn'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Foo'         Name.Class
 '['           Punctuation
 'A'           Name.Type
@@ -56,9 +56,9 @@
 
 '  '          Text
 'fun'         Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Keyword
-' '           Text
+' '           Text.Whitespace
 'dofoo'       Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -89,13 +89,13 @@
 '\n'          Text
 
 'actor'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Main'        Name.Class
 '\n'          Text
 
 '  '          Text
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'create'      Name.Function
 '('           Punctuation
 'env'         Name

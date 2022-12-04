@@ -5,7 +5,7 @@
 
 ':'           Punctuation
 'py'          Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
@@ -16,7 +16,7 @@
 ':'           Punctuation
 ':'           Text
 'pyt'         Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Builtin
 ' '           Text
 "'"           Literal.String.Single
@@ -26,7 +26,7 @@
 
 '  '          Text
 'pyth'        Keyword
-'\t'          Text
+'\t'          Text.Whitespace
 'print'       Name.Builtin
 ' '           Text
 "'''"         Literal.String.Single
@@ -38,7 +38,7 @@
 ':'           Text
 ' '           Text
 'pytho'       Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
@@ -47,7 +47,7 @@
 '\n'          Text.Whitespace
 
 'python'      Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Builtin
 ' '           Text
 '"""'         Literal.String.Double
@@ -77,7 +77,7 @@
 '\n'          Text
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'MyFunc'      Name.Function
 '('           Punctuation
 'str'         Name.Builtin
@@ -85,7 +85,7 @@
 ':'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '""" My Function """' Literal.String.Doc
 '\n'          Text
 

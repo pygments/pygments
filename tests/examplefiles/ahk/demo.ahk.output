@@ -64,7 +64,7 @@
 '\n;;;  single line comment2' Comment.Single
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::stopi::'   Name.Label
 'viper_off'   Name
@@ -74,7 +74,7 @@
 ' '           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a::'         Name.Label
 'send'        Name
@@ -106,7 +106,7 @@
 'n::'         Name.Label
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'send'        Name.Builtin
 ','           Punctuation
 ' '           Text
@@ -114,7 +114,7 @@
 'n'           Name
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Name.Builtin
 '\n'          Text.Whitespace
 
@@ -261,7 +261,7 @@
 '\n\n; viper' Comment.Single
 '\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'i::'         Name.Label
 'viper_off'   Name
@@ -293,7 +293,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'p::'         Name.Label
 '\n'          Text.Whitespace
@@ -380,7 +380,7 @@
 '  ;; kill next word or sexp' Comment.Single
 '\n'          Text.Whitespace
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#IfWinActive' Name.Builtin
 '\n'          Text.Whitespace
@@ -388,7 +388,7 @@
 '#Persistent' Name.Builtin
 '\n'          Text.Whitespace
 
-'  \n'        Text
+'  \n'        Text.Whitespace
 
 'F2::'        Name.Label
 '     ;; hotkey' Comment.Single
@@ -447,7 +447,7 @@
 ' '           Text
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'msgbox'      Name.Builtin
 ' '           Text
 '%'           Operator
@@ -491,7 +491,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'msgbox'      Name.Builtin
 ' '           Text
 '%'           Operator
@@ -508,12 +508,12 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'ListVars'    Name.Builtin
 '  ; command' Comment.Single
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'msgbox'      Name.Builtin
 ' '           Text
 '%'           Operator
@@ -521,7 +521,7 @@
 'ppm'         Name
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Name.Builtin
 '\n'          Text.Whitespace
 
@@ -546,7 +546,7 @@
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'fileread'    Name.Builtin
 ','           Punctuation
 ' '           Text
@@ -558,7 +558,7 @@
 'file'        Name
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'return'      Name.Builtin
 ' '           Text
 'ppm'         Name
@@ -567,7 +567,7 @@
 '}'           Punctuation
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::hotstring::' Name.Label
 '\n'          Text.Whitespace
@@ -603,7 +603,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'return'      Name.Builtin
 ' '           Text
 'dim1'        Name
@@ -636,7 +636,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Name.Builtin
 ' '           Text
 'dim2'        Name
@@ -884,7 +884,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'loop'        Name.Builtin
 ','           Punctuation
 ' '           Text
@@ -904,7 +904,7 @@
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if '         Name.Builtin
 'r'           Name
 '\n'          Text.Whitespace
@@ -939,7 +939,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'if '         Name.Builtin
 'g'           Name
 '\n'          Text.Whitespace
@@ -978,7 +978,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'if '         Name.Builtin
 'b'           Name
 '\n'          Text.Whitespace
@@ -1172,7 +1172,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Name.Builtin
 ' '           Text
 'ppm'         Name
@@ -1248,7 +1248,7 @@
 '\n\n; Example: Simple image viewer:' Comment.Single
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Gui'         Name.Builtin
 ','           Punctuation
@@ -1358,7 +1358,7 @@
 'return'      Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ButtonLoadNewImage:' Name.Label
 '\n'          Text.Whitespace
@@ -1439,7 +1439,7 @@
 '='           Operator
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Name.Builtin
 '\n'          Text.Whitespace
 
@@ -1568,7 +1568,7 @@
 'return'      Name.Builtin
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'GuiClose:'   Name.Label
 '\n'          Text.Whitespace

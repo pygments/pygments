@@ -22,9 +22,9 @@ def test_correct_output():
     assert '\x0302lambda\x03 x: \x0302123\x03\n' == houtfile.getvalue()
 
 def test_linecount_output():
-    hfmt = IRCFormatter(linenos = True)
+    hfmt = IRCFormatter(linenos=True)
     houtfile = StringIO()
     hfmt.format(newlinetokensource, houtfile)
 
-    expected_out = '0001: \x0302from\x03 \\\n0002: \\\n0003:     \x1d\x0310os\x03\x1d \x0302import\x03  path\n0004: '
+    expected_out = '0001: \x0302from\x03 \\\n0002: \\\n0003:     \x1d\x0310os\x03\x1d\x0315 \x03\x0302import\x03  path\n0004: '
     assert expected_out == houtfile.getvalue()

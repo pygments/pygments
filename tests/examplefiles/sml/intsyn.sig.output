@@ -756,7 +756,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Maybe'       Name.Class
 '                               ' Text
 '(*'          Comment.Multiline
@@ -791,7 +791,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Meta'        Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -913,7 +913,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Type'        Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -1023,7 +1023,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Pi'          Name.Class
 '    '        Text
 'of'          Keyword.Reserved
@@ -1072,7 +1072,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Root'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1115,7 +1115,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Redex'       Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -1158,7 +1158,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Lam'         Name.Class
 '   '         Text
 'of'          Keyword.Reserved
@@ -1201,7 +1201,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EVar'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1266,7 +1266,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EClo'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1309,7 +1309,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AVar'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1352,7 +1352,7 @@
 '*)'          Comment.Multiline
 '\n\n  '      Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FgnExp'      Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -1395,7 +1395,7 @@
 '*)'          Comment.Multiline
 '\n\n  '      Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NVar'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1641,7 +1641,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Const'       Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -1680,7 +1680,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Proj'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1723,7 +1723,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Skonst'      Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -1762,7 +1762,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Def'         Name.Class
 '   '         Text
 'of'          Keyword.Reserved
@@ -1801,7 +1801,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSDef'       Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -1840,7 +1840,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FVar'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -1887,7 +1887,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FgnConst'    Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2000,7 +2000,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'App'         Name.Class
 '   '         Text
 'of'          Keyword.Reserved
@@ -2043,7 +2043,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SClo'        Name.Class
 '  '          Text
 'of'          Keyword.Reserved
@@ -2160,7 +2160,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Dot'         Name.Class
 '   '         Text
 'of'          Keyword.Reserved
@@ -2277,7 +2277,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Exp'         Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2316,7 +2316,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Axp'         Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2355,7 +2355,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Block'       Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2394,7 +2394,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Undef'       Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -2509,7 +2509,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'BDec'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2560,7 +2560,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ADec'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2605,7 +2605,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NDec'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2689,7 +2689,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LVar'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -2746,7 +2746,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Inst'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3207,7 +3207,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Eqn'         Name.Class
 '      '      Text
 'of'          Keyword.Reserved
@@ -3256,7 +3256,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FgnCnstr'    Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3369,7 +3369,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Constraint'  Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3430,7 +3430,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Foreign'     Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3571,7 +3571,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Fail'        Name.Class
 '\n\n  '      Text
 'and'         Keyword.Reserved
@@ -3644,7 +3644,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Delay'       Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3869,7 +3869,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ConDef'      Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -3996,7 +3996,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AbbrevDef'   Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -4088,7 +4088,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'BlockDec'    Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -4145,7 +4145,7 @@
 'list'        Name
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'BlockDef'    Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -4196,7 +4196,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SkoDec'      Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -4544,7 +4544,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ordinary'    Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -4573,7 +4573,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Clause'      Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline

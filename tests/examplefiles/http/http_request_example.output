@@ -1,11 +1,11 @@
 'POST'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '/demo/submit/' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'HTTP'        Keyword.Reserved
 '/'           Operator
 '1.1'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Host'        Name.Attribute
 ''            Text

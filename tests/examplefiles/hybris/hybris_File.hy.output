@@ -2,7 +2,7 @@
 '\n'          Text
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'std.io.file' Name.Namespace
 ';'           Operator
 '\n'          Text
@@ -10,7 +10,7 @@
 '\n'          Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'File'        Name.Class
 ' '           Text
 '{'           Operator

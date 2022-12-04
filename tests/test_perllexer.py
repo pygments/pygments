@@ -10,7 +10,7 @@ import time
 
 import pytest
 
-from pygments.token import Keyword, Name, String, Text
+from pygments.token import Keyword, Name, String, Whitespace, Text
 from pygments.lexers.perl import PerlLexer
 
 
@@ -161,21 +161,21 @@ def test_substitution_with_parenthesis(lexer):
 # Namespaces/modules
 
 def test_package_statement(lexer):
-    assert_tokens(lexer, ['package', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
-    assert_tokens(lexer, ['package', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+    assert_tokens(lexer, ['package', ' ', 'Foo'], [Keyword, Whitespace, Name.Namespace])
+    assert_tokens(lexer, ['package', '  ', 'Foo::Bar'], [Keyword, Whitespace, Name.Namespace])
 
 
 def test_use_statement(lexer):
-    assert_tokens(lexer, ['use', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
-    assert_tokens(lexer, ['use', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+    assert_tokens(lexer, ['use', ' ', 'Foo'], [Keyword, Whitespace, Name.Namespace])
+    assert_tokens(lexer, ['use', '  ', 'Foo::Bar'], [Keyword, Whitespace, Name.Namespace])
 
 
 def test_no_statement(lexer):
-    assert_tokens(lexer, ['no', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
-    assert_tokens(lexer, ['no', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+    assert_tokens(lexer, ['no', ' ', 'Foo'], [Keyword, Whitespace, Name.Namespace])
+    assert_tokens(lexer, ['no', '  ', 'Foo::Bar'], [Keyword, Whitespace, Name.Namespace])
 
 
 def test_require_statement(lexer):
-    assert_tokens(lexer, ['require', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
-    assert_tokens(lexer, ['require', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+    assert_tokens(lexer, ['require', ' ', 'Foo'], [Keyword, Whitespace, Name.Namespace])
+    assert_tokens(lexer, ['require', '  ', 'Foo::Bar'], [Keyword, Whitespace, Name.Namespace])
     assert_tokens(lexer, ['require', ' ', '"Foo/Bar.pm"'], [Keyword, Text, String])

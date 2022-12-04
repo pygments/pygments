@@ -64,7 +64,7 @@
 '\n\n'        Text
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Zip\\Zippಠ_ಠ_' Name.Class
 ' '           Text
 '{'           Punctuation
@@ -77,7 +77,7 @@
 '\n'          Text
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Zip'         Name.Class
 ' '           Text
 'extends'     Keyword
@@ -89,7 +89,7 @@
 "/**\n  *  Outputs the zip file\n  *\n  *  This function creates the zip file with the dirs and files given.\n  *  If the optional parameter $file is given, the zip file is will be\n  *  saved at that location. Otherwise the function returns the zip file's content.\n  *\n  *  @access                   public\n  *\n  *  @link                     http://www.pkware.com/business_and_developers/developer/popups/appnote.txt\n  *  @param  string $filename  The path where the zip file will be saved\n  *\n  *  @return bool|string       Returns either true if the fil is sucessfully created or the content of the zip file\n  */" Literal.String.Doc
 '\n  '        Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'out'         Name.Function
 '('           Punctuation
 '$filename'   Name.Variable
@@ -1950,7 +1950,7 @@
 "/**\n  *  Load a zip file\n  *\n  *  This function loads the files and dirs from a zip file from the harddrive.\n  *\n  *  @access                public\n  *\n  *  @param  string $file   The path to the zip file\n  *  @param  bool   $reset  Reset the files and dirs before adding the zip file's content?\n  *\n  *  @return bool           Returns true if the file was loaded sucessfully\n  */" Literal.String.Doc
 '\n  '        Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'load_file'   Name.Function
 '('           Punctuation
 '$file'       Name.Variable
@@ -2028,7 +2028,7 @@
 "/**\n  *  Load a zip string\n  *\n  *  This function loads the files and dirs from a string\n  *\n  *  @access                 public\n  *\n  *  @param  string $string  The string the zip is generated from\n  *  @param  bool   $reset   Reset the files and dirs before adding the zip file's content?\n  *\n  *  @return bool            Returns true if the string was loaded sucessfully\n  */" Literal.String.Doc
 '\n  '        Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'load_string' Name.Function
 '('           Punctuation
 '$string'     Name.Variable
@@ -2937,7 +2937,7 @@
 '\n\n'        Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 'byref'       Name.Function
 '()'          Punctuation
@@ -2963,7 +2963,7 @@
 '// Test highlighting of magic methods and variables\n' Comment.Single
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'MagicClass'  Name.Class
 ' '           Text
 '{'           Punctuation
@@ -2981,7 +2981,7 @@
 'public'      Keyword
 ' '           Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__construct' Name.Function.Magic
 '('           Punctuation
 '$some_var'   Name.Variable
@@ -3012,7 +3012,7 @@
 'public'      Keyword
 ' '           Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__toString'  Name.Function.Magic
 '()'          Punctuation
 ' '           Text
@@ -3030,7 +3030,7 @@
 'public'      Keyword
 ' '           Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'nonMagic'    Name.Function
 '()'          Punctuation
 ' '           Text
@@ -3083,7 +3083,7 @@
 '\n\n     Test the heredocs...\n\n     ' Literal.String
 'EOF'         Literal.String.Delimiter
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -3096,7 +3096,7 @@
 
 'some_delimiter' Literal.String.Delimiter
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 

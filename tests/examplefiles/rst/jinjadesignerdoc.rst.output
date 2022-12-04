@@ -1,11 +1,11 @@
 '======================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Designer Documentation' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -15,10 +15,10 @@
 '\n'          Text.Whitespace
 
 'Basics'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -123,7 +123,7 @@
 '    '        Text
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -177,7 +177,7 @@
 '    '        Text
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -391,10 +391,10 @@
 '\n\n'        Other
 
 'Filters'     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======='     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -476,10 +476,10 @@
 '\n'          Text.Whitespace
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'admonition'  Operator.Word
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'note'        Text
 '\n'          Text.Whitespace
 
@@ -582,10 +582,10 @@
 '\n\n'        Other
 
 'Tests'       Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '====='       Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -612,7 +612,7 @@
 '2'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'numeric'     Name.Function
 ' '           Text
 '}}'          Comment.Preproc
@@ -624,7 +624,7 @@
 '"foobar"'    Literal.String.Double
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'numeric'     Name.Function
 ' '           Text
 '}}'          Comment.Preproc
@@ -636,7 +636,7 @@
 "'FOO'"       Literal.String.Single
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'upper'       Name.Function
 ' '           Text
 '}}'          Comment.Preproc
@@ -657,10 +657,10 @@
 '\n'          Text.Whitespace
 
 'Global Functions' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -710,10 +710,10 @@
 '\n'          Text.Whitespace
 
 'Loops'       Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '====='       Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -757,7 +757,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'user'        Name.Variable
@@ -804,7 +804,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -831,7 +831,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1014,7 +1014,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -1066,7 +1066,7 @@
 '    '        Text
 '  '          Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'item'        Name.Variable
@@ -1090,7 +1090,7 @@
 'ul'          Name.Tag
 '>'           Punctuation
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1102,7 +1102,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1141,10 +1141,10 @@
 '\n'          Text.Whitespace
 
 'Cycling'     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======='     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1183,7 +1183,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'message'     Name.Variable
@@ -1204,7 +1204,7 @@
 '='           Operator
 '"'           Literal.String
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'cycle'       Keyword
 ' '           Text
 "'row1'"      Literal.String.Single
@@ -1230,7 +1230,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1273,7 +1273,7 @@
 '='           Operator
 '"color: '    Literal.String
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'cycle'       Keyword
 ' '           Text
 'rowcolors'   Name.Variable
@@ -1289,10 +1289,10 @@
 '\n\n'        Text
 
 'Conditions'  Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '=========='  Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1318,7 +1318,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'user'        Name.Variable
@@ -1341,7 +1341,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'elif'        Keyword
 ' '           Text
 'user'        Name.Variable
@@ -1364,7 +1364,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1384,7 +1384,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1414,7 +1414,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'amount'      Name.Variable
@@ -1448,7 +1448,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1476,17 +1476,17 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Text
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'admonition'  Operator.Word
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Note'        Text
 '\n'          Text.Whitespace
 
@@ -1514,10 +1514,10 @@
 '\n'          Text.Whitespace
 
 'Operators'   Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '========='   Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1714,7 +1714,7 @@
 'Note that there is no support for any bit operations or something similar.' Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' special note regarding ' Text
@@ -1762,10 +1762,10 @@
 '\n'          Text.Whitespace
 
 'Boolean Values' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '==============' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1822,7 +1822,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 '['           Operator
@@ -1836,7 +1836,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 '{'           Operator
@@ -1850,7 +1850,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 '['           Operator
@@ -1865,7 +1865,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 '"foobar"'    Literal.String.Double
@@ -1877,10 +1877,10 @@
 '    this is also true because the string is not empty.\n\n' Other
 
 'Slicing'     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======='     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1900,7 +1900,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -1921,7 +1921,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -1944,7 +1944,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -1979,10 +1979,10 @@
 '\n'          Text.Whitespace
 
 'Macros'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2005,7 +2005,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'show_user'   Name.Variable
@@ -2065,7 +2065,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2087,7 +2087,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'user'        Name.Variable
@@ -2113,7 +2113,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2135,7 +2135,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'show_dialog' Name.Variable
@@ -2209,7 +2209,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2230,10 +2230,10 @@
 '\n\n'        Text
 
 'Inheritance' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '===========' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2259,10 +2259,10 @@
 '\n'          Text.Whitespace
 
 'Base Template' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2336,14 +2336,14 @@
 'title'       Name.Tag
 '>'           Punctuation
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'title'       Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2357,14 +2357,14 @@
 '    '        Text
 '  '          Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'html_head'   Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2397,14 +2397,14 @@
 '    '        Text
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2432,7 +2432,7 @@
 '    '        Text
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'footer'      Name.Variable
@@ -2461,7 +2461,7 @@
 '    '        Text
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2500,10 +2500,10 @@
 '\n'          Text.Whitespace
 
 'Child Template' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2523,7 +2523,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.html"' Literal.String.Double
@@ -2533,7 +2533,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'title'       Name.Variable
@@ -2541,7 +2541,7 @@
 '%}'          Comment.Preproc
 'Index'       Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2549,7 +2549,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'html_head'   Name.Variable
@@ -2561,7 +2561,7 @@
 '  '          Text
 '<'           Punctuation
 'style'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text/css"'  Literal.String
@@ -2600,7 +2600,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2611,7 +2611,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -2655,7 +2655,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2701,7 +2701,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"layout/default.html"' Literal.String.Double
@@ -2727,10 +2727,10 @@
 '\n'          Text.Whitespace
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'admonition'  Operator.Word
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Note'        Text
 '\n'          Text.Whitespace
 
@@ -2767,10 +2767,10 @@
 '\n'          Text.Whitespace
 
 'Template Inclusion' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '==================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2803,7 +2803,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"myhelpers.html"' Literal.String.Double
@@ -2839,10 +2839,10 @@
 '\n'          Text.Whitespace
 
 'Filtering Blocks' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2865,9 +2865,9 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'escape'      Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -2884,7 +2884,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2906,9 +2906,9 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lower'       Name.Function
 '|'           Operator
 'escape'      Name.Function
@@ -2921,7 +2921,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -2937,10 +2937,10 @@
 '\n'          Text.Whitespace
 
 'Defining Variables' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '==================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2964,7 +2964,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -2994,10 +2994,10 @@
 '\n'          Text.Whitespace
 
 'Scopes'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '======'      Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3043,7 +3043,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'angryhello'  Name.Variable
@@ -3056,7 +3056,7 @@
 '    '        Text
 '  '          Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'angryname'   Name.Variable
@@ -3096,7 +3096,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3142,10 +3142,10 @@
 '\n'          Text.Whitespace
 
 'Undefined Variables' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '===================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3218,9 +3218,9 @@
 'undefined'   Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '}}'          Comment.Preproc
@@ -3337,10 +3337,10 @@
 '    still returns `undefined`.\n\n' Other
 
 'Escaping'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '========'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3394,9 +3394,9 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'raw'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n'          Text
 
@@ -3420,17 +3420,17 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endraw'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 'Reserved Keywords' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '=================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3537,7 +3537,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'macro_'      Name.Variable
@@ -3563,7 +3563,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3584,10 +3584,10 @@
 '\n'          Text.Whitespace
 
 'Internationalization' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '====================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3612,7 +3612,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3623,7 +3623,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endtrans'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3631,7 +3631,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"This is a translatable string"' Literal.String.Double
@@ -3673,7 +3673,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 'users'       Name.Variable
@@ -3688,7 +3688,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'pluralize'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3705,7 +3705,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endtrans'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3713,7 +3713,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 'first'       Name.Variable
@@ -3748,7 +3748,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'pluralize'   Keyword
 ' '           Text
 'users'       Name.Variable
@@ -3773,7 +3773,7 @@
 
 '    '        Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endtrans'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3821,10 +3821,10 @@
 '\n'          Text.Whitespace
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'admonition'  Operator.Word
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'note'        Text
 '\n'          Text.Whitespace
 
@@ -3855,7 +3855,7 @@
 
 '        '    Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'count'       Name.Variable
@@ -3878,7 +3878,7 @@
 
 '        '    Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3889,14 +3889,14 @@
 
 '        '    Text
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '_slicing chapter:' Name.Tag
 ' http'       Text
 ':'           Text
@@ -3904,7 +3904,7 @@
 '\n'          Text.Whitespace
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '_range function:' Name.Tag
 ' http'       Text
 ':'           Text

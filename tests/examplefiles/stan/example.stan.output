@@ -8,7 +8,7 @@
 '\n'          Text
 
 'functions'   Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 'void'        Keyword.Type
@@ -79,7 +79,7 @@
 '\n'          Text
 
 'data'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 '// valid name' Comment.Single
@@ -258,7 +258,7 @@
 '\n'          Text
 
 'transformed data' Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 'real'        Keyword.Type
@@ -380,7 +380,7 @@
 '\n'          Text
 
 'parameters'  Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 'real'        Keyword.Type
@@ -398,7 +398,7 @@
 '\n'          Text
 
 'transformed parameters' Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
@@ -406,7 +406,7 @@
 '\n'          Text
 
 'model'       Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 '// ~, <- are operators,' Comment.Single
@@ -757,7 +757,7 @@
 '\n'          Text
 
 'generated quantities' Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 'real'        Keyword.Type

@@ -29,9 +29,9 @@
 '\n'          Text
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'string'      Name
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Namespace
 ' '           Text
 'whiley'      Name
@@ -42,9 +42,9 @@
 '\n'          Text
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'char'        Name
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword.Namespace
 ' '           Text
 'whiley'      Name
@@ -64,36 +64,36 @@
 '\n\n'        Text
 
 'constant'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ADD'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '0'           Literal.Number.Integer
 '\n'          Text
 
 'constant'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SUB'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '1'           Literal.Number.Integer
 '\n'          Text
 
 'constant'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'MUL'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '2'           Literal.Number.Integer
 '\n'          Text
 
 'constant'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'DIV'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '3'           Literal.Number.Integer
@@ -103,9 +103,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'BOp'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
@@ -135,9 +135,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'BinOp'       Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -163,9 +163,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Var'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -181,9 +181,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ListAccess'  Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -205,9 +205,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Expr'        Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 'int'         Keyword.Type
@@ -245,9 +245,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Value'       Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 'int'         Keyword.Type
@@ -263,9 +263,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Print'       Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -278,9 +278,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Set'         Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -298,9 +298,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Stmt'        Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 'Print'       Name
@@ -320,9 +320,9 @@
 '\n\n'        Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'RuntimeError' Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -335,9 +335,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Environment' Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '['           Punctuation
@@ -813,9 +813,9 @@
 '\n\n'        Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation
@@ -833,9 +833,9 @@
 '\n'          Text
 
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SyntaxError' Name
-' '           Text
+' '           Text.Whitespace
 'is'          Keyword.Reserved
 ' '           Text
 '{'           Punctuation

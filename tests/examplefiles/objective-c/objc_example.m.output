@@ -81,7 +81,7 @@
 '// Class forward declaration\n' Comment.Single
 
 '@class'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MyClass'     Name.Builtin.Pseudo
 ';'           Text
 '\n'          Text.Whitespace
@@ -91,7 +91,7 @@
 '// Empty classes\n' Comment.Single
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'EmptyClass'  Name.Class
 '\n'          Text.Whitespace
 
@@ -99,9 +99,9 @@
 '\n'          Text.Whitespace
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'EmptyClass2' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -113,11 +113,11 @@
 '\n'          Text.Whitespace
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'EmptyClass3' Name.Class
 ' : '         Text
 'EmptyClass2' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -133,11 +133,11 @@
 '// Custom class inheriting from built-in\n' Comment.Single
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MyClass'     Name.Builtin.Pseudo
 ' : '         Text
 'NSObject'    Name.Builtin.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -247,7 +247,7 @@
 '// Class methods\n' Comment.Single
 
 '+'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -262,7 +262,7 @@
 '\n'          Text.Whitespace
 
 '+'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -272,7 +272,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'arg'         Name.Variable
 ';'           Punctuation
 ' '           Text.Whitespace
@@ -306,7 +306,7 @@
 '// Class extension to declare private property\n' Comment.Single
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MyClass'     Name.Builtin.Pseudo
 ' '           Text.Whitespace
 '('           Punctuation
@@ -326,7 +326,7 @@
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -342,9 +342,9 @@
 '// Special category\n' Comment.Single
 
 '@interface'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MyClass'     Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '(Special)'   Name.Label
 '\n'          Text.Whitespace
 
@@ -366,7 +366,7 @@
 '\n'          Text.Whitespace
 
 '@implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 'MyClass'     Name.Builtin.Pseudo
 '\n'          Text.Whitespace
 
@@ -385,7 +385,7 @@
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Keyword.Type
 ')'           Punctuation
@@ -1121,7 +1121,7 @@
 '\n'          Text.Whitespace
 
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1170,7 +1170,7 @@
 '\n'          Text.Whitespace
 
 '+'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1187,7 +1187,7 @@
 '\n'          Text.Whitespace
 
 '+'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -1197,7 +1197,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'arg'         Name.Variable
 '\n'          Text.Whitespace
 

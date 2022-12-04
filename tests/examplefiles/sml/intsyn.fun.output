@@ -365,7 +365,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Decl'        Name.Class
 ' '           Text
 'of'          Keyword.Reserved
@@ -4780,7 +4780,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ordinary'    Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -4809,7 +4809,7 @@
 '*)'          Comment.Multiline
 '\n  '        Text
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Clause'      Name.Class
 '\t\t\t\t'    Text
 '(*'          Comment.Multiline
@@ -5255,7 +5255,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'r'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'ref'         Name
@@ -7035,7 +7035,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'maxCid'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Global'      Name.Namespace
@@ -7045,7 +7045,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'dummyEntry'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'ConDec'      Name
@@ -7076,7 +7076,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'sgnArray'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Array'       Name.Namespace
@@ -7103,7 +7103,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'nextCid'     Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '='           Punctuation
 ' '           Text
 'ref'         Name
@@ -7114,7 +7114,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'maxMid'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Global'      Name.Namespace
@@ -7124,7 +7124,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'sgnStructArray' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Array'       Name.Namespace
@@ -7158,7 +7158,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'nextMid'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'ref'         Name
@@ -7636,7 +7636,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'cid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '!'           Name
@@ -7869,7 +7869,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'mid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '!'           Name
@@ -8080,7 +8080,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'newConDec'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'case'        Keyword.Reserved
@@ -8585,7 +8585,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'id'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Shift'       Name
@@ -8673,7 +8673,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'shift'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Shift'       Name
@@ -8770,7 +8770,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'invShift'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'Dot'         Name

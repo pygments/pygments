@@ -50,16 +50,16 @@
 
 '    '        Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Namespace
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 're'          Name.Namespace
 '\n'          Text
 
 '    '        Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'highlight'   Name.Namespace
 '\n'          Text
 
@@ -321,7 +321,7 @@
 '</h3>\n'     Other
 
 '%'           Name.Tag
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\n    '      Text
 '<div class="sectiontext">\n    ' Other
@@ -349,7 +349,7 @@
 ' '           Text
 '1'           Literal.Number.Integer
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '%'           Name.Tag
 '   '         Text
@@ -376,7 +376,7 @@
 'depth'       Name
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '    '        Text
 '<a href="#'  Other
@@ -394,13 +394,13 @@
 '" class="toclink">back to section top</a>\n' Other
 
 '%'           Name.Tag
-'\n'          Other
+'\n'          Text.Whitespace
 
 '%'           Name.Tag
 ' '           Text
 'else'        Keyword
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '    '        Text
 '<a href="#'  Other
@@ -434,7 +434,7 @@
 
 '%'           Name.Tag
 ' '           Text
-'\n'          Other
+'\n'          Text.Whitespace
 
 '</div>\n\n'  Other
 
@@ -456,7 +456,7 @@
 
 '        '    Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 're'          Name.Namespace
 '\n'          Text
 
@@ -652,7 +652,7 @@
 
 '    '        Text
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fix_indent'  Name.Function
 '('           Punctuation
 'f'           Name
@@ -913,7 +913,7 @@
 
 '    '        Text
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'hlight'      Name.Function
 '('           Punctuation
 'match'       Name
@@ -1037,7 +1037,7 @@
 ' '           Text
 'None'        Keyword.Constant
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '    '        Text
 '<div class="codetitle">' Other
@@ -1049,7 +1049,7 @@
 '</div>\n'    Other
 
 '%'           Name.Tag
-'\n'          Other
+'\n'          Text.Whitespace
 
 '<%'          Name.Tag
 ' '           Text
@@ -1413,7 +1413,7 @@
 '>'           Operator
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '\'\'\'PYESC<& nav.myt:link, href=href, text=link, class_="codepoplink" &>PYESC\'\'\'' Literal.String.Doc
 '\n'          Text
 

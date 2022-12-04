@@ -3,55 +3,55 @@
 '--  COL Gene Ressler, 1 December 2007\n' Comment.Single
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Text_IO' Name
 ';'           Punctuation
 '\n\n'        Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Characters.Latin_1' Name
 ';'           Punctuation
 '\n'          Text
 
 'use'         Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'Ada.Characters.Latin_1' Name
 ';'           Punctuation
 '\n\n'        Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Strings.Fixed' Name
 ';'           Punctuation
 '\n'          Text
 
 'use'         Keyword.Namespace
-'  '          Text
+'  '          Text.Whitespace
 'Ada.Strings.Fixed' Name
 ';'           Punctuation
 '\n\n'        Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Strings' Name
 ';'           Punctuation
 '\n'          Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Strings.Bounded' Name
 ';'           Punctuation
 '\n\n'        Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Binary_Search' Name
 ';'           Punctuation
 '\n\n'        Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Containers.Generic_Array_Sort' Name
 ';'           Punctuation
 '\n\n'        Text
@@ -70,9 +70,9 @@
 
 '   '         Text
 'Constant_123' Name.Constant
-'   '         Text
+'   '         Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 'Character'   Keyword.Type
@@ -91,9 +91,9 @@
 
 '   '         Text
 'MAX_KEYWORD_LENGTH_C' Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 'Natural'     Keyword.Type
@@ -109,9 +109,9 @@
 
 '   '         Text
 'New_Constant' Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 'New_Type'    Name
@@ -129,9 +129,9 @@
 
 '   '         Text
 'KEYWORDS_C'  Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 'Keyword_Array_T' Name
@@ -188,7 +188,7 @@
 '      '      Text
 'Declaration' Name.Label
 ':'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'declare'     Keyword.Reserved
 '\n'          Text
 
@@ -216,7 +216,7 @@
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Declaration' Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -224,7 +224,7 @@
 '      '      Text
 'Loop_ID'     Name.Label
 ':'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'loop'        Keyword.Reserved
 '\n'          Text
 
@@ -246,7 +246,7 @@
 
 '         '   Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'loop'        Keyword.Reserved
 ' '           Text
 'Loop'        Keyword.Reserved
@@ -303,14 +303,14 @@
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'blah'        Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -370,7 +370,7 @@
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"*"'         Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -438,7 +438,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'New_Float'   Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -469,7 +469,7 @@
 '     '       Text
 '('           Punctuation
 'Max'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
 ' '           Text
 'M'           Text
@@ -498,7 +498,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Array_Decl12' Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -507,7 +507,7 @@
 ' '           Text
 '('           Punctuation
 'Positive'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'range'       Keyword.Reserved
 ' '           Text
 '<>'          Punctuation
@@ -523,7 +523,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Array_Decl3' Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -532,7 +532,7 @@
 ' '           Text
 '('           Punctuation
 'New_Type'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'range'       Keyword.Reserved
 ' '           Text
 'Thing_1'     Name
@@ -553,7 +553,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Boring_Type' Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -573,7 +573,7 @@
 
 '   '         Text
 'subtype'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Sub_Type_check' Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -600,9 +600,9 @@
 
 '   '         Text
 'Initialized_Array' Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 'Transistion_Array_T' Name
@@ -683,7 +683,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Recorder'    Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -723,7 +723,7 @@
 'Recorder'    Name
 ' '           Text
 'use'         Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '8'           Name
 ';'           Punctuation
 '\n'          Text
@@ -733,7 +733,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Null_Record' Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -747,7 +747,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Discriminated_Record' Keyword.Type
 ' '           Text
 '('           Punctuation
@@ -793,7 +793,7 @@
 
 '   '         Text
 'pragma'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Unchecked_Union' Comment.Preproc
 ' '           Text
 '('           Punctuation
@@ -804,7 +804,7 @@
 
 '   '         Text
 'pragma'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Convention'  Comment.Preproc
 ' '           Text
 '('           Punctuation
@@ -821,7 +821,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Person'      Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -871,7 +871,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Programmer'  Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -915,7 +915,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Programmer'  Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -1024,7 +1024,7 @@
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Cyclic_Buffer_Task_Type' Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1044,9 +1044,9 @@
 
 '      '      Text
 'Q_Size'      Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'constant'    Keyword.Reserved
 ' '           Text
 ':='          Punctuation
@@ -1057,7 +1057,7 @@
 
 '      '      Text
 'subtype'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Q_Range'     Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -1186,7 +1186,7 @@
 
 '               ' Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Insert'      Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1269,7 +1269,7 @@
 
 '               ' Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Remove'      Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1306,21 +1306,21 @@
 
 '         '   Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'select'      Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'loop'        Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Cyclic_Buffer_Task_Type' Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1477,7 +1477,7 @@
 '      '      Text
 'Scanner_Loop' Name.Label
 ':'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'loop'        Keyword.Reserved
 '\n'          Text
 
@@ -1502,7 +1502,7 @@
 
 '         '   Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword.Reserved
 ';'           Punctuation
 '\n\n'        Text
@@ -1539,14 +1539,14 @@
 
 '         '   Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'loop'        Keyword.Reserved
 ' '           Text
 'Scanner_Loop' Name.Function
@@ -1555,7 +1555,7 @@
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Scan_Next_Token' Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1590,7 +1590,7 @@
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Advance'     Name.Function
 ';'           Punctuation
 '\n'          Text
@@ -1680,7 +1680,7 @@
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
@@ -1694,13 +1694,13 @@
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Image'       Name.Function
 ';'           Punctuation
 '\n\n'        Text
 
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Scanner'     Name.Function
 ';'           Punctuation
 '\n'          Text

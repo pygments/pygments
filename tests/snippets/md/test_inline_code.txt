@@ -9,13 +9,13 @@ code (`in brackets`)
 
 ---tokens---
 'code:'       Text
-' '           Text
+' '           Text.Whitespace
 '`code`'      Literal.String.Backtick
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '`**code**`'  Literal.String.Backtick
 '\n'          Text.Whitespace
 

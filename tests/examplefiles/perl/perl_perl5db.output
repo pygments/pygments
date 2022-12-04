@@ -23,7 +23,7 @@
 '\n\n'        Text
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Function
 ' '           Text
 '{'           Punctuation
@@ -533,12 +533,12 @@
 '{'           Punctuation
 '\n\t'        Text
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'threads'     Name.Namespace
 ';'           Punctuation
 '\n\t'        Text
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'threads::shared' Name.Namespace
 ';'           Punctuation
 '\n\t'        Text
@@ -1722,7 +1722,7 @@
 '{'           Punctuation
 ' '           Text
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Config'      Name.Namespace
 ' '           Text
 '}'           Punctuation
@@ -2078,7 +2078,7 @@
 '\n'          Text
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'safe_do'     Name.Function
 ' '           Text
 '{'           Punctuation
@@ -2137,7 +2137,7 @@
 ';\nperldb: Must not source insecure rcfile $file.\n        You or the superuser must be the owner, and it must not \n        be writable by anyone but its owner.\n' Literal.String
 
 'EO_GRIPE'    Literal.String.Delimiter
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
@@ -2196,7 +2196,7 @@
 '\n'          Text
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'is_safe_file' Name.Function
 ' '           Text
 '{'           Punctuation
@@ -3445,7 +3445,7 @@
 '# to the socket.' Comment.Single
 '\n        '  Text
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'IO::Socket'  Name.Namespace
 ';'           Punctuation
 '\n        '  Text

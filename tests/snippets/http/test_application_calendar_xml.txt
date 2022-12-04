@@ -6,13 +6,13 @@ Content-Type: application/calendar+xml
 
 ---tokens---
 'GET'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '/'           Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'HTTP'        Keyword.Reserved
 '/'           Operator
 '1.0'         Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Content-Type' Name.Attribute
 ''            Text

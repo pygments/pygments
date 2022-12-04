@@ -1,8 +1,8 @@
 'Functional Programming HOWTO' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '================================' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -53,7 +53,7 @@
 '\n'          Text.Whitespace
 
 '..'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'contents'    Operator.Word
 '::'          Punctuation
 '\n'          Text.Whitespace
@@ -61,10 +61,10 @@
 '\n'          Text.Whitespace
 
 'Introduction' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '----------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -86,7 +86,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Most programming languages are ' Text
@@ -104,7 +104,7 @@
 '  C, Pascal, and even Unix shells are procedural languages.' Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' In '        Text
@@ -130,7 +130,7 @@
 '  etc.'      Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' '           Text
@@ -153,7 +153,7 @@
 '  of object-oriented features.' Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' '           Text
@@ -333,7 +333,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Formal provability.' Text
@@ -354,10 +354,10 @@
 '\n'          Text.Whitespace
 
 'Formal provability' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -463,10 +463,10 @@
 '\n'          Text.Whitespace
 
 'Modularity'  Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -493,10 +493,10 @@
 '\n'          Text.Whitespace
 
 'Ease of debugging and testing ' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -541,10 +541,10 @@
 '\n'          Text.Whitespace
 
 'Composability' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -590,10 +590,10 @@
 '\n'          Text.Whitespace
 
 'Iterators'   Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-----------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -674,11 +674,11 @@
 
 'You can experiment with the iteration interface manually' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '>>> L = [1,2,3]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> it = iter(L)\n    >>> print it\n    <iterator object at 0x8116870>\n    >>> it.next()\n    1\n    >>> it.next()\n    2\n    >>> it.next()\n    3\n    >>> it.next()\n    Traceback (most recent call last):\n      File "<stdin>", line 1, in ?\n    StopIteration\n    >>>      \n\n' Literal.String
 
@@ -705,11 +705,11 @@
 
 'an iterator.  These two statements are equivalent' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'for i in iter(obj):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            print i\n\n        for i in obj:\n            print i\n\n' Literal.String
 
@@ -725,11 +725,11 @@
 '``'          Literal.String
 ' constructor functions' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '>>> L = [1,2,3]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> iterator = iter(L)\n    >>> t = tuple(iterator)\n    >>> t\n    (1, 2, 3)\n\n' Literal.String
 
@@ -740,11 +740,11 @@
 
 'will return N elements, you can unpack them into an N-tuple' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '>>> L = [1,2,3]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> iterator = iter(L)\n    >>> a,b,c = iterator\n    >>> a,b,c\n    (1, 2, 3)\n\n' Literal.String
 
@@ -841,10 +841,10 @@
 '\n'          Text.Whitespace
 
 'Data Types That Support Iterators' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -868,11 +868,11 @@
 
 "over the dictionary's keys" Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 ">>> m = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6," Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    ...      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}\n    >>> for key in m:\n    ...     print key, m[key]\n    Mar 3\n    Feb 2\n    Aug 8\n    Sep 9\n    May 5\n    Jun 6\n    Jul 7\n    Jan 1\n    Apr 4\n    Nov 11\n    Dec 12\n    Oct 10\n\n" Literal.String
 
@@ -930,11 +930,11 @@
 '``'          Literal.String
 ' tuples'     Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 ">>> L = [('Italy', 'Rome'), ('France', 'Paris'), ('US', 'Washington DC')]" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    >>> dict(iter(L))\n    {'Italy': 'Rome', 'US': 'Washington DC', 'France': 'Paris'}\n\n" Literal.String
 
@@ -949,11 +949,11 @@
 
 'read each line of a file like this' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'for line in file:' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        # do something for each line\n        ...\n\n' Literal.String
 
@@ -962,19 +962,19 @@
 
 "the set's elements" Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'S = set((2, 3, 5, 7, 11, 13))' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    for i in S:\n        print i\n\n\n\n' Literal.String
 
 'Generator expressions and list comprehensions' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '----------------------------------------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1013,11 +1013,11 @@
 
 'stream of strings with the following code' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 "line_list = ['  line 1\\n', 'line 2  \\n', ...]" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n        # Generator expression -- returns iterator\n        stripped_iter = (line.strip() for line in line_list)\n\n        # List comprehension -- returns list\n        stripped_list = [line.strip() for line in line_list]\n\n' Literal.String
 
@@ -1027,11 +1027,11 @@
 '``'          Literal.String
 ' condition'  Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'stripped_list = [line.strip() for line in line_list' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                         if line != ""]\n\n' Literal.String
 
@@ -1074,11 +1074,11 @@
 
 'expressions have the form' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '( expression for expr in sequence1 ' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                 if condition1\n                 for expr2 in sequence2\n                 if condition2\n                 for expr3 in sequence3 ...\n                 if condition3\n                 for exprN in sequenceN\n                 if conditionN )\n\n' Literal.String
 
@@ -1128,13 +1128,13 @@
 
 'function you can write' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'obj_total = sum(obj.count for obj in list_all_objects())' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
@@ -1187,11 +1187,11 @@
 
 'equivalent to the following Python code' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'for expr1 in sequence1:' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        if not (condition1):\n            continue   # Skip this element\n        for expr2 in sequence2:\n            if not (condition2):\n                continue    # Skip this element\n            ...\n            for exprN in sequenceN:\n                 if not (conditionN):\n                     continue   # Skip this element\n\n                 # Output the value of \n                 # the expression.\n\n' Literal.String
 
@@ -1213,11 +1213,11 @@
 
 'lists of length 3, the output list is 9 elements long' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "seq1 = 'abc'" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    seq2 = (1,2,3)\n    >>> [ (x,y) for x in seq1 for y in seq2]\n    [('a', 1), ('a', 2), ('a', 3), \n     ('b', 1), ('b', 2), ('b', 3), \n     ('c', 1), ('c', 2), ('c', 3)]\n\n" Literal.String
 
@@ -1235,19 +1235,19 @@
 
 'while the second one is correct' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '# Syntax error' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    [ x,y for x in seq1 for y in seq2]\n    # Correct\n    [ (x,y) for x in seq1 for y in seq2]\n\n\n' Literal.String
 
 'Generators'  Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-----------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1299,11 +1299,11 @@
 
 "Here's the simplest example of a generator function" Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def generate_ints(N):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        for i in range(N):\n            yield i\n\n' Literal.String
 
@@ -1383,11 +1383,11 @@
 '``'          Literal.String
 ' generator'  Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '>>> gen = generate_ints(3)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> gen\n    <generator object at 0x8117f90>\n    >>> gen.next()\n    0\n    >>> gen.next()\n    1\n    >>> gen.next()\n    2\n    >>> gen.next()\n    Traceback (most recent call last):\n      File "stdin", line 1, in ?\n      File "stdin", line 2, in generate_ints\n    StopIteration\n\n' Literal.String
 
@@ -1505,11 +1505,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '# A recursive generator that generates Tree leaves in in-order.' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    def inorder(t):\n        if t:\n            for x in inorder(t.left):\n                yield x\n\n            yield t.label\n\n            for x in inorder(t.right):\n                yield x\n\n' Literal.String
 
@@ -1539,10 +1539,10 @@
 '\n'          Text.Whitespace
 
 'Passing values into a generator' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1577,13 +1577,13 @@
 
 'to a variable or otherwise operated on' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'val = (yield i)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'I recommend that you ' Text
 '**always**'  Generic.Strong
@@ -1679,11 +1679,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def counter (maximum):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        i = 0\n        while i < maximum:\n            val = (yield i)\n            # If value provided, change counter\n            if val is not None:\n                i = val\n            else:\n                i += 1\n\n' Literal.String
 
@@ -1767,7 +1767,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' '           Text
@@ -1787,7 +1787,7 @@
 "  where the generator's execution is paused." Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' '           Text
@@ -1899,10 +1899,10 @@
 '\n'          Text.Whitespace
 
 'Built-in functions' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '----------------------------------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -1943,11 +1943,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def upper(s):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "        return s.upper()\n    map(upper, ['sentence', 'fragment']) =>\n      ['SENTENCE', 'FRAGMENT']\n\n    [upper(s) for s in ['sentence', 'fragment']] =>\n      ['SENTENCE', 'FRAGMENT']\n\n" Literal.String
 
@@ -2003,21 +2003,21 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def is_even(x):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        return (x % 2) == 0\n\n    filter(is_even, range(10)) =>\n      [0, 2, 4, 6, 8]\n\n' Literal.String
 
 'This can also be written as a list comprehension' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '>>> [x for x in range(10) if is_even(x)]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    [0, 2, 4, 6, 8]\n\n' Literal.String
 
@@ -2112,11 +2112,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'import operator' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    reduce(operator.concat, ['A', 'BB', 'C']) =>\n      'ABBC'\n    reduce(operator.concat, []) =>\n      TypeError: reduce() of empty sequence with no initial value\n    reduce(operator.mul, [1,2,3], 1) =>\n      6\n    reduce(operator.mul, [], 1) =>\n      1\n\n" Literal.String
 
@@ -2140,11 +2140,11 @@
 '``'          Literal.String
 ' to compute it' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'reduce(operator.add, [1,2,3,4], 0) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      10\n    sum([1,2,3,4]) =>\n      10\n    sum([]) =>\n      0\n\n' Literal.String
 
@@ -2161,11 +2161,11 @@
 '``'          Literal.String
 ' loop'       Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 '# Instead of:' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    product = reduce(operator.mul, [1,2,3], 1)\n\n    # You can write:\n    product = 1\n    for i in [1,2,3]:\n        product *= i\n\n\n' Literal.String
 
@@ -2181,11 +2181,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "enumerate(['subject', 'verb', 'object']) =>" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "      (0, 'subject'), (1, 'verb'), (2, 'object')\n\n" Literal.String
 
@@ -2197,11 +2197,11 @@
 
 'and recording the indexes at which certain conditions are met' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "f = open('data.txt', 'r')" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    for i, line in enumerate(f):\n        if line.strip() == '':\n            print 'Blank line at line #%i' % i\n\n" Literal.String
 
@@ -2242,11 +2242,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'import random' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    # Generate 8 random numbers between [0, 10000)\n    rand_list = random.sample(range(10000), 8)\n    rand_list =>\n      [769, 7953, 9828, 6431, 8442, 9878, 6213, 2207]\n    sorted(rand_list) =>\n      [769, 2207, 6213, 6431, 7953, 8442, 9828, 9878]\n    sorted(rand_list, reverse=True) =>\n      [9878, 9828, 8442, 7953, 6431, 6213, 2207, 769]\n\n' Literal.String
 
@@ -2287,19 +2287,19 @@
 
 'returns True if all of the elements are true values' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'any([0,1,0]) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      True\n    any([0,0,0]) =>\n      False\n    any([1,1,1]) =>\n      True\n    all([0,1,0]) =>\n      False\n    all([0,0,0]) => \n      False\n    all([1,1,1]) =>\n      True\n\n\n' Literal.String
 
 'Small functions and the lambda statement' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '----------------------------------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2316,11 +2316,11 @@
 
 "don't need to define a new function at all" Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'stripped_lines = [line.strip() for line in lines]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        existing_files = filter(os.path.exists, file_list)\n\n' Literal.String
 
@@ -2342,11 +2342,11 @@
 
 'and creates a small function that returns the value of the expression' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'lowercase = lambda x: x.lower()' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "\n        print_assign = lambda name, value: name + '=' + str(value)\n\n        adder = lambda x, y: x+y\n\n" Literal.String
 
@@ -2359,11 +2359,11 @@
 
 'function in the usual way' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'def lowercase(x):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "            return x.lower()\n\n        def print_assign(name, value):\n            return name + '=' + str(value)\n\n        def adder(x,y):\n            return x + y\n\n" Literal.String
 
@@ -2418,13 +2418,13 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'total = reduce(lambda a, b: (0, a[1] + b[1]), items)[1]' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'You can figure it out, but it takes time to disentangle the expression' Text
 '\n'          Text.Whitespace
@@ -2437,11 +2437,11 @@
 '``'          Literal.String
 ' statements makes things a little bit better' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def combine (a, b):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        return 0, a[1] + b[1]\n\n    total = reduce(combine, items)[1]\n\n' Literal.String
 
@@ -2451,11 +2451,11 @@
 '``'          Literal.String
 ' loop'       Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'     '       Literal.String
+'     '       Text.Whitespace
 'total = 0'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     for a, b in items:\n         total += b\n\n' Literal.String
 
@@ -2465,13 +2465,13 @@
 '``'          Literal.String
 ' built-in and a generator expression' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'     '       Literal.String
+'     '       Text.Whitespace
 'total = sum(b for a,b in items)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'Many uses of ' Text
 '``'          Literal.String
@@ -2496,7 +2496,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1)'          Literal.Number
 ' Write a lambda function.' Text
@@ -2534,10 +2534,10 @@
 '\n'          Text.Whitespace
 
 'The itertools module' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-----------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2560,7 +2560,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Functions that create a new iterator based on an existing iterator.' Text
@@ -2581,10 +2581,10 @@
 '\n'          Text.Whitespace
 
 'Creating new iterators' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2599,11 +2599,11 @@
 
 'starting number, which defaults to 0' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'itertools.count() =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...\n        itertools.count(10) =>\n          10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ...\n\n' Literal.String
 
@@ -2622,11 +2622,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'itertools.cycle([1,2,3,4,5]) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '          1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...\n\n' Literal.String
 
@@ -2649,11 +2649,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "itertools.repeat('abc') =>" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "      abc, abc, abc, abc, abc, abc, abc, abc, abc, abc, ...\n    itertools.repeat('abc', 5) =>\n      abc, abc, abc, abc, abc\n\n" Literal.String
 
@@ -2675,11 +2675,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "itertools.chain(['a', 'b', 'c'], (1, 2, 3)) =>" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      a, b, c, 1, 2, 3\n\n' Literal.String
 
@@ -2691,11 +2691,11 @@
 
 'and returns them in a tuple' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "itertools.izip(['a', 'b', 'c'], (1, 2, 3)) =>" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "      ('a', 1), ('b', 2), ('c', 3)\n\n" Literal.String
 
@@ -2735,11 +2735,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "itertools.izip(['a', 'b'], (1, 2, 3)) =>" Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "      ('a', 1), ('b', 2)\n\n" Literal.String
 
@@ -2810,11 +2810,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'itertools.islice(range(10), 8) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      0, 1, 2, 3, 4, 5, 6, 7\n    itertools.islice(range(10), 2, 8) =>\n      2, 3, 4, 5, 6, 7\n    itertools.islice(range(10), 2, 8, 2) =>\n      2, 4, 6\n\n' Literal.String
 
@@ -2849,19 +2849,19 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'itertools.tee( itertools.count() ) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '           iterA, iterB\n\n        where iterA ->\n           0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...\n\n        and   iterB ->\n           0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...\n\n\n' Literal.String
 
 'Calling functions on elements' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2884,11 +2884,11 @@
 'f(iterA[0], iterB[0]), f(iterA[1], iterB[1]),\nf(iterA[2], iterB[2]), ...' Literal.String
 '``'          Literal.String
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'itertools.imap(operator.add, [5, 6, 5], [1, 2, 3]) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      6, 8, 8\n\n' Literal.String
 
@@ -2951,19 +2951,19 @@
 
 'arguments'   Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'itertools.starmap(os.path.join, ' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "                      [('/usr', 'bin', 'java'), ('/bin', 'python'),\n                       ('/usr', 'bin', 'perl'),('/usr', 'bin', 'ruby')])\n    =>\n      /usr/bin/java, /bin/python, /usr/bin/perl, /usr/bin/ruby\n\n\n" Literal.String
 
 'Selecting elements' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -2983,11 +2983,11 @@
 
 'which the predicate returns true' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def is_even(x):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        return (x % 2) == 0\n\n    itertools.ifilter(is_even, itertools.count()) =>\n      0, 2, 4, 6, 8, 10, 12, 14, ...\n\n' Literal.String
 
@@ -2999,11 +2999,11 @@
 
 'returning all elements for which the predicate returns false' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'itertools.ifilterfalse(is_even, itertools.count()) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      1, 3, 5, 7, 9, 11, 13, 15, ...\n\n' Literal.String
 
@@ -3022,11 +3022,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'def less_than_10(x):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        return (x < 10)\n\n    itertools.takewhile(less_than_10, itertools.count()) =>\n      0, 1, 2, 3, 4, 5, 6, 7, 8, 9\n\n    itertools.takewhile(is_even, itertools.count()) =>\n      0\n\n' Literal.String
 
@@ -3045,19 +3045,19 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'itertools.dropwhile(less_than_10, itertools.count()) =>' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ...\n\n    itertools.dropwhile(is_even, itertools.count()) =>\n      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...\n\n\n' Literal.String
 
 'Grouping elements' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3101,11 +3101,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 "city_list = [('Decatur', 'AL'), ('Huntsville', 'AL'), ('Selma', 'AL'), " Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "                 ('Anchorage', 'AK'), ('Nome', 'AK'),\n                 ('Flagstaff', 'AZ'), ('Phoenix', 'AZ'), ('Tucson', 'AZ'), \n                 ...\n                ]\n\n    def get_state ((city, state)):\n        return state\n\n    itertools.groupby(city_list, get_state) =>\n      ('AL', iterator-1),\n      ('AK', iterator-2),\n      ('AZ', iterator-3), ...\n\n    where\n    iterator-1 =>\n      ('Decatur', 'AL'), ('Huntsville', 'AL'), ('Selma', 'AL')\n    iterator-2 => \n      ('Anchorage', 'AK'), ('Nome', 'AK')\n    iterator-3 =>\n      ('Flagstaff', 'AZ'), ('Phoenix', 'AZ'), ('Tucson', 'AZ')\n\n" Literal.String
 
@@ -3129,10 +3129,10 @@
 '\n'          Text.Whitespace
 
 'The functools module' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '----------------------------------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3220,19 +3220,19 @@
 
 "Here's a small but realistic example" Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'    '        Literal.String
+'    '        Text.Whitespace
 'import functools' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n    def log (message, subsystem):\n        "Write the contents of \'message\' to the specified subsystem."\n        print \'%s: %s\' % (subsystem, message)\n        ...\n\n    server_log = functools.partial(log, subsystem=\'server\')\n    server_log(\'Unable to open socket\')\n\n\n' Literal.String
 
 'The operator module' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3258,7 +3258,7 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Math operations' Text
@@ -3388,10 +3388,10 @@
 '\n'          Text.Whitespace
 
 'The functional module' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '---------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3476,11 +3476,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 '>>> def add(a, b):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        ...     return a + b\n        ...\n        >>> def double(a):\n        ...     return 2 * a\n        ...\n        >>> compose(double, add)(5, 6)\n        22\n\n' Literal.String
 
@@ -3490,11 +3490,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 '>>> double(add(5, 6))' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        22\n                    \n' Literal.String
 
@@ -3546,23 +3546,23 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'compose(f, g)(5, 6)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                    \n' Literal.String
+'                    \n' Text.Whitespace
 
 'is equivalent to' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'f(g(5, 6))'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                    \n' Literal.String
+'                    \n' Text.Whitespace
 
 'while'       Text
 '\n'          Text.Whitespace
@@ -3570,23 +3570,23 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'compose(f, g, unpack=True)(5, 6)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                    \n' Literal.String
+'                    \n' Text.Whitespace
 
 'is equivalent to' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'f(*g(5, 6))' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'Even though ' Text
 '``'          Literal.String
@@ -3627,11 +3627,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'from functional import compose, partial' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        \n        multi_compose = partial(reduce, compose)\n        \n' Literal.String
 
@@ -3659,11 +3659,11 @@
 '``'          Literal.String
 ' that converts its arguments to string' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'from functional import compose, partial' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        \n        join = compose("".join, partial(map, str))\n\n\n' Literal.String
 
@@ -3691,11 +3691,11 @@
 '\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 '>>> def triple(a, b, c):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        ...     return (a, b, c)\n        ...\n        >>> triple(5, 6, 7)\n        (5, 6, 7)\n        >>>\n        >>> flipped_triple = flip(triple)\n        >>> flipped_triple(5, 6, 7)\n        (7, 6, 5)\n\n' Literal.String
 
@@ -3726,23 +3726,23 @@
 
 'This means that a call such as' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'foldl(f, 0, [1, 2, 3])' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 'is equivalent to' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'f(f(f(0, 1), 2), 3)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 '    '        Text
 '\n'          Text.Whitespace
@@ -3752,11 +3752,11 @@
 '``'          Literal.String
 ' is roughly equivalent to the following recursive function' Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'def foldl(func, start, seq):' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            if len(seq) == 0:\n                return start\n\n            return foldl(func, func(start, seq[0]), seq[1:])\n\n' Literal.String
 
@@ -3773,13 +3773,13 @@
 
 'so'          Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'reduce(f, [1, 2, 3], 0)' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n\n'        Literal.String
+'\n\n'        Text.Whitespace
 
 'We can use ' Text
 '``'          Literal.String
@@ -3804,19 +3804,19 @@
 '``'          Literal.String
 ' idiom'      Text
 '::'          Literal.String.Escape
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'        '    Literal.String
+'        '    Text.Whitespace
 'from functional import foldl, partial' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        from operator import concat\n        \n        join = partial(foldl, concat, "")\n\n\n' Literal.String
 
 'Revision History and Acknowledgements' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '------------------------------------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3890,18 +3890,18 @@
 '\n'          Text.Whitespace
 
 'References'  Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--------------------' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'General'     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -3983,10 +3983,10 @@
 '\n'          Text.Whitespace
 
 'Python-specific' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -4039,10 +4039,10 @@
 '\n'          Text.Whitespace
 
 'Python documentation' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'''''''''''''''''''''''''''" Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 

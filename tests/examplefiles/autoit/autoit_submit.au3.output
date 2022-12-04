@@ -31,7 +31,7 @@
 'url'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If'          Name.Builtin
 ' '           Text
@@ -40,7 +40,7 @@
 '='           Operator
 ' '           Text
 '$_IEStatus_NoMatch' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Then'        Name.Builtin
 '\n'          Text.Whitespace
 
@@ -60,7 +60,7 @@
 'sample.html' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endIf'       Name.Builtin
 '\n'          Text.Whitespace

@@ -404,7 +404,7 @@
 'METHOD_NAME' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' '           Literal.String.Regex
 '#{'          Literal.String.Interpol
@@ -416,7 +416,7 @@
 'METHOD_NAME_EX' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '\n\t '       Literal.String.Regex
 '#{'          Literal.String.Interpol
@@ -454,7 +454,7 @@
 'GLOBAL_VARIABLE' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' '           Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -474,7 +474,7 @@
 'DOUBLEQ'     Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' "  [^"'     Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -501,7 +501,7 @@
 'SINGLEQ'     Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 " '  [^'"     Literal.String.Regex
 '\\\\'        Literal.String.Regex
@@ -515,7 +515,7 @@
 'STRING'      Name.Constant
 '  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' '           Literal.String.Regex
 '#{'          Literal.String.Interpol
@@ -531,7 +531,7 @@
 'SHELL'       Name.Constant
 '   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' `  [^`'     Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -558,7 +558,7 @@
 'REGEXP'      Name.Constant
 '  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' '           Literal.String.Regex
 '\\/'         Literal.String.Regex
@@ -593,7 +593,7 @@
 'DECIMAL'     Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '\\'          Literal.String.Regex
 'd+(?:_'      Literal.String.Regex
@@ -606,7 +606,7 @@
 'OCTAL'       Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '0_?[0-7]+(?:_[0-7]+)*' Literal.String.Regex
 '/'           Literal.String.Regex
@@ -614,7 +614,7 @@
 'HEXADECIMAL' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '0x[0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*' Literal.String.Regex
 '/'           Literal.String.Regex
@@ -622,7 +622,7 @@
 'BINARY'      Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '0b[01]+(?:_[01]+)*' Literal.String.Regex
 '/'           Literal.String.Regex
@@ -630,7 +630,7 @@
 'EXPONENT'    Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' [eE] [+-]? ' Literal.String.Regex
 '#{'          Literal.String.Interpol
@@ -642,7 +642,7 @@
 'FLOAT'       Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 ' '           Literal.String.Regex
 '#{'          Literal.String.Interpol
@@ -668,7 +668,7 @@
 'INTEGER'     Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '#{'          Literal.String.Interpol
 'OCTAL'       Name.Constant
@@ -1047,7 +1047,7 @@
 'matched'     Name
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^[A-Z]'      Literal.String.Regex
 '/'           Literal.String.Regex
@@ -1557,7 +1557,7 @@
 ']'           Operator
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '[~=!<>|&^,'  Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -4690,7 +4690,7 @@
 ']'           Operator
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^Microsoft-IIS' Literal.String.Regex
 '/i'          Literal.String.Regex
@@ -4958,7 +4958,7 @@
 'pattern'     Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^(.+)'       Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -5414,7 +5414,7 @@
 'pattern'     Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^(.+)'       Literal.String.Regex
 '\\'          Literal.String.Regex
@@ -6222,7 +6222,7 @@
 'str'         Name
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^HTTP'       Literal.String.Regex
 '\\/'         Literal.String.Regex
@@ -6239,7 +6239,7 @@
 'pattern'     Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^HTTP'       Literal.String.Regex
 '\\/'         Literal.String.Regex
@@ -6279,7 +6279,7 @@
 'str'         Name
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^status: [0-9]{3} ?.*$' Literal.String.Regex
 '/i'          Literal.String.Regex
@@ -6292,7 +6292,7 @@
 'pattern'     Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^status: ([0-9]{3}) ?(.*)$' Literal.String.Regex
 '/i'          Literal.String.Regex
@@ -6455,7 +6455,7 @@
 'p1'          Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^([0-9]{3}) ?(.*)$' Literal.String.Regex
 '/'           Literal.String.Regex
@@ -6463,7 +6463,7 @@
 'p2'          Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^HTTP'       Literal.String.Regex
 '\\/'         Literal.String.Regex
@@ -6475,7 +6475,7 @@
 'p3'          Name
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^status: ([0-9]{3}) ?(.*)$' Literal.String.Regex
 '/i'          Literal.String.Regex
@@ -6840,7 +6840,7 @@
 ']'           Operator
 ' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '^text'       Literal.String.Regex
 '\\/'         Literal.String.Regex
@@ -9754,7 +9754,7 @@
 'ATTRIBUTE_SCAN' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '\n\t\t\t\t(?!$)  ' Literal.String.Regex
 '#'           Literal.String.Regex

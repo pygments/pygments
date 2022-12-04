@@ -2,7 +2,7 @@
 
 '>>> '        Generic.Prompt
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'os'          Name.Namespace
 '\n'          Text
 
@@ -125,7 +125,7 @@
 
 '>>> '        Generic.Prompt
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Class
 '('           Punctuation
 'Exception'   Name.Exception
@@ -139,7 +139,7 @@
 
 '>>> '        Generic.Prompt
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Class
 '('           Punctuation
 'Exception'   Name.Exception
@@ -524,7 +524,7 @@
 
 '>>> '        Generic.Prompt
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'somemodule'  Name.Namespace
 '\n'          Text
 

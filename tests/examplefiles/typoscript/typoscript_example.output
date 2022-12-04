@@ -3292,7 +3292,7 @@
 '='           Operator
 ' '           Text
 'uploads/pics/' Literal.String
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '# Single image rendering' Comment
@@ -6837,7 +6837,7 @@
 '='           Operator
 ' '           Text
 'uploads/media/' Literal.String
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 '\t'          Text
 '20'          Literal.Number.Integer
@@ -9463,7 +9463,7 @@
 '='           Operator
 ' '           Text
 'uploads/pics/' Literal.String
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 '\t\t\t'      Text
 'import'      Text
@@ -9724,7 +9724,7 @@
 '='           Operator
 ' '           Text
 'uploads/pics/' Literal.String
-'\n'          Literal.String
+'\n'          Text.Whitespace
 
 '\t\t'        Text
 'import'      Text
@@ -11603,7 +11603,7 @@
 'tx_cssstyledcontent' Text
 '.'           Punctuation
 '_CSS_DEFAULT_STYLE' Name.Class
-' '           Text
+' '           Text.Whitespace
 '('           Literal.String.Symbol
 '\n\t'        Text
 '/* Captions */' Comment

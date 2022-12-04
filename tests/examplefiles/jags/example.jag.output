@@ -88,7 +88,7 @@
 '\n'          Text
 
 'data'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n   '       Text
 'for'         Keyword.Reserved
@@ -197,7 +197,7 @@
 '\n'          Text
 
 'model'       Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text
 '# 2-parameter Rasch model' Comment.Single

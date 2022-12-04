@@ -79,7 +79,7 @@
 '\n'          Text
 
 'beep:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'soundName'   Name.Variable
 '\n\t'        Text
 '"Make the given sound, unless the making of sound is disabled in Preferences."' Comment
@@ -117,7 +117,7 @@
 '\n'          Text
 
 'contentsGetz:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -143,7 +143,7 @@
 '\n'          Text
 
 'deprecatedExplanation:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n     '     Text
 '"This method is OBSOLETE.  Use #deprecated: instead."' Comment
@@ -196,11 +196,11 @@
 '\n'          Text
 
 'deprecated:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' '           Text
 'explanation:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t '      Text
 '"This method is OBSOLETE.  Use #deprecated:block: instead."' Comment
@@ -263,7 +263,7 @@
 '\n'          Text
 
 'doIfNotNil:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -293,11 +293,11 @@
 '\n'          Text
 
 'ifKindOf:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aClass'      Name.Variable
 ' '           Text
 'thenDo:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -337,7 +337,7 @@
 '\n'          Text
 
 'playSoundNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'soundName'   Name.Variable
 '\n\t'        Text
 '"Deprecated.\n\tPlay the sound with the given name."' Comment
@@ -469,7 +469,7 @@
 '\n'          Text
 
 'contentType' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '"Janko Mivsek, apr98"' Comment
@@ -489,7 +489,7 @@
 '\n'          Text
 
 'deepSearchOfClass:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aClassName'  Name.Variable
 '\n\t'        Text
 '"finf all objects of that class down in object hierarchy"' Comment
@@ -778,7 +778,7 @@
 '\n'          Text
 
 'forLanguage:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aLanguageCodeSymbol' Name.Variable
 '\n\t'        Text
 '"for multilingual support: returns an apropriate instance of itself for that language. \n\tLangage is defined by ISO 639 2-letter language code, see \n\thttp://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"' Comment
@@ -888,7 +888,7 @@
 '\n'          Text
 
 'printWebAppNotFoundFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSession'    Name.Variable
 ' \n\t'       Text
 '|'           Operator
@@ -931,7 +931,7 @@
 '\n'          Text
 
 'printWebPageFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSession'    Name.Variable
 ' \n\t'       Text
 '"find appropriate web application to represent self as web page"' Comment
@@ -984,7 +984,7 @@
 '\n'          Text
 
 'sendOver:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 ' \n\t'       Text
 '"from Wiki rendering"' Comment
@@ -1005,7 +1005,7 @@
 '\n'          Text
 
 'webAppFor:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSession'    Name.Variable
 '\n\t'        Text
 '|'           Operator
@@ -1120,7 +1120,7 @@
 '\n'          Text
 
 'binding:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Set the dynamic binding for the receiver, if anObject is nil, then \n\tremove the receiver\'s dynamic binding (if any)"' Comment
@@ -1205,7 +1205,7 @@
 '\n'          Text
 
 'asHtmlDocumentForRequest:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aNetworkRequest' Name.Variable
 '\n\n\t'      Text
 'self'        Name.Builtin.Pseudo
@@ -1234,7 +1234,7 @@
 '\n'          Text
 
 'asHttpResponseTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anHttpRequest' Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -1262,7 +1262,7 @@
 '\n'          Text
 
 'isComancheModule' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -1278,7 +1278,7 @@
 '\n'          Text
 
 'mimeType'    Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -1315,22 +1315,22 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'exclusive:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValueHolder' Name.Variable
 '\n \n\t'     Text
 'self'        Name.Builtin.Pseudo
@@ -1369,27 +1369,27 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArg'       Name.Variable
 '\n'          Text
 
 'exclusive:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValueHolder' Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -1438,27 +1438,27 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArgArray'  Name.Variable
 '\n'          Text
 
 'exclusive:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValueHolder' Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -1501,17 +1501,17 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'sendOnce:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -1544,22 +1544,22 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'sendOnce:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArg'       Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -1602,22 +1602,22 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'sendOnce:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArgArray'  Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -1741,7 +1741,7 @@
 '\n'          Text
 
 'exploreWithLabel:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'label'       Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -1803,7 +1803,7 @@
 '\n'          Text
 
 'askFor:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' \n\n    '   Text
 '"returns true or false"' Comment
@@ -1836,11 +1836,11 @@
 '\n'          Text
 
 'askFor:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' '           Text
 'ifAbsent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\n   '     Text
 '"enables a default value to be specified in order to be tolerant of potentially missing methods\n\t\n\te.g.\n\t(myPoint askFor: #originOffset) ifAbsent: [ 0@0 ].\n\t"' Comment
@@ -1974,7 +1974,7 @@
 '\n'          Text
 
 'readUsing:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aDescription' Name.Variable
 '\n\t'        Text
 '"Dispatch the read-access to the receiver using the accessor of aDescription."' Comment
@@ -1999,11 +1999,11 @@
 '\n'          Text
 
 'write:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 ' '           Text
 'using:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'aDescription' Name.Variable
 '\n\t'        Text
 '"Dispatch the write-access to the receiver of anObject using the accessor of aDescription."' Comment
@@ -2101,7 +2101,7 @@
 '\n'          Text
 
 'ifNull:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -2118,7 +2118,7 @@
 '\n'          Text
 
 'isNull'      Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -2135,7 +2135,7 @@
 '\n'          Text
 
 'orNull'      Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -2387,7 +2387,7 @@
 '\n'          Text
 
 'accept:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVisitor'    Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -2404,7 +2404,7 @@
 '\n'          Text
 
 'acceptDecorated:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVisitor'    Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -2423,7 +2423,7 @@
 '\n'          Text
 
 'isRio'       Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -2460,7 +2460,7 @@
 '\n'          Text
 
 'asFunction:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCollection' Name.Variable
 '\n\t'        Text
 '^'           Operator
@@ -2520,7 +2520,7 @@
 '\n'          Text
 
 'javascriptOn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -2560,7 +2560,7 @@
 '\n'          Text
 
 'deprecatedApi:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 'WADeprecatedApi' Name.Class
@@ -2696,7 +2696,7 @@
 '\n'          Text
 
 'labelForSelector:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 '\n\t'        Text
 '^'           Operator
@@ -2715,7 +2715,7 @@
 '\n'          Text
 
 'renderOn:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aRenderer'   Name.Variable
 '\n\t'        Text
 '"Override this method to customize how objects (not components) are rendered when passed as an argument to #render:. The default is the return value of #displayString.\n\tJust remember that you can not use #callback:, #on:of:, or #call:"' Comment
@@ -2736,7 +2736,7 @@
 '\n'          Text
 
 'restoreFromSnapshot:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -2772,7 +2772,7 @@
 '\n'          Text
 
 'validationError:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'message'     Name.Variable
 '\n\t'        Text
 '^'           Operator
@@ -2792,7 +2792,7 @@
 '\n'          Text
 
 'encodeOn:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aDocument'   Name.Variable
 '\n\t'        Text
 'aDocument'   Name.Variable
@@ -2866,7 +2866,7 @@
 '\n'          Text
 
 'systemNavigation' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -2955,11 +2955,11 @@
 '\n'          Text
 
 'addInstanceVarNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aName'       Name.Variable
 ' '           Text
 'withValue:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValue'      Name.Variable
 '\n\t'        Text
 '"Add an instance variable named aName and give it value aValue"' Comment
@@ -2999,7 +2999,7 @@
 '\n'          Text
 
 'at:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' \n\t'       Text
 '"Primitive. Assumes receiver is indexable. Answer the value of an \n\tindexable element in the receiver. Fail if the argument index is not an \n\tInteger or is out of bounds. Essential. See Object documentation \n\twhatIsAPrimitive."' Comment
@@ -3077,11 +3077,11 @@
 '\n'          Text
 
 'at:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' '           Text
 'modify:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '"Replace the element of the collection with itself transformed by the block"' Comment
@@ -3120,11 +3120,11 @@
 '\n'          Text
 
 'at:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' '           Text
 'put:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Variable
 ' \n\t'       Text
 '"Primitive. Assumes receiver is indexable. Store the argument value in \n\tthe indexable element of the receiver indicated by index. Fail if the \n\tindex is not an Integer or is out of bounds. Or fail if the value is not of \n\tthe right type for this kind of collection. Answer the value that was \n\tstored. Essential. See Object documentation whatIsAPrimitive."' Comment
@@ -3238,11 +3238,11 @@
 '\n'          Text
 
 'basicAddInstanceVarNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aName'       Name.Variable
 ' '           Text
 'withValue:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValue'      Name.Variable
 '\n\t'        Text
 '"Add an instance variable named aName and give it value aValue"' Comment
@@ -3282,7 +3282,7 @@
 '\n'          Text
 
 'basicAt:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' \n\t'       Text
 '"Primitive. Assumes receiver is indexable. Answer the value of an \n\tindexable element in the receiver. Fail if the argument index is not an \n\tInteger or is out of bounds. Essential. Do not override in a subclass. See \n\tObject documentation whatIsAPrimitive."' Comment
@@ -3342,11 +3342,11 @@
 '\n'          Text
 
 'basicAt:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' '           Text
 'put:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Variable
 ' \n\t'       Text
 '"Primitive. Assumes receiver is indexable. Store the second argument \n\tvalue in the indexable element of the receiver indicated by index. Fail \n\tif the index is not an Integer or is out of bounds. Or fail if the value is \n\tnot of the right type for this kind of collection. Answer the value that \n\twas stored. Essential. Do not override in a subclass. See Object \n\tdocumentation whatIsAPrimitive."' Comment
@@ -3466,7 +3466,7 @@
 '\n'          Text
 
 'bindWithTemp:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '^'           Operator
@@ -3491,11 +3491,11 @@
 '\n'          Text
 
 'ifNil:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'nilBlock'    Name.Variable
 ' '           Text
 'ifNotNilDo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' \n\t'       Text
 '"Evaluate aBlock with the receiver as its argument."' Comment
@@ -3520,7 +3520,7 @@
 '\n'          Text
 
 'ifNotNilDo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '"Evaluate the given block with the receiver as its argument."' Comment
@@ -3545,11 +3545,11 @@
 '\n'          Text
 
 'ifNotNilDo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' '           Text
 'ifNil:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'nilBlock'    Name.Variable
 '\n\t'        Text
 '"Evaluate aBlock with the receiver as its argument."' Comment
@@ -3574,7 +3574,7 @@
 '\n'          Text
 
 'in:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '"Evaluate the given block with the receiver as its argument."' Comment
@@ -3620,7 +3620,7 @@
 '\n'          Text
 
 'readFromString:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '"Create an object based on the contents of aString."' Comment
@@ -3701,7 +3701,7 @@
 '\n'          Text
 
 '->'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Answer an Association between self and anObject"' Comment
@@ -3729,7 +3729,7 @@
 '\n'          Text
 
 'bindingOf:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '^'           Operator
@@ -3765,7 +3765,7 @@
 '\n'          Text
 
 'caseOf:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlockAssociationCollection' Name.Variable
 '\n\t'        Text
 '"The elements of aBlockAssociationCollection are associations between blocks.\n\t Answer the evaluated value of the first association in aBlockAssociationCollection\n\t whose evaluated key equals the receiver.  If no match is found, report an error."' Comment
@@ -3811,11 +3811,11 @@
 '\n'          Text
 
 'caseOf:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlockAssociationCollection' Name.Variable
 ' '           Text
 'otherwise:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '"The elements of aBlockAssociationCollection are associations between blocks.\n\t Answer the evaluated value of the first association in aBlockAssociationCollection\n\t whose evaluated key equals the receiver.  If no match is found, answer the result\n\t of evaluating aBlock."' Comment
@@ -3908,7 +3908,7 @@
 '\n'          Text
 
 'inheritsFromAnyIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aList'       Name.Variable
 '\n\t'        Text
 '"Answer whether the receiver inherits from any class represented by any element in the list.  The elements of the list can be classes, class name symbols, or strings representing possible class names.  This allows speculative membership tests to be made even when some of the classes may not be known to the current image, and even when their names are not interned symbols."' Comment
@@ -4007,7 +4007,7 @@
 '\n'          Text
 
 'isKindOf:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aClass'      Name.Variable
 ' \n\t'       Text
 '"Answer whether the class, aClass, is a superclass or class of the receiver."' Comment
@@ -4050,11 +4050,11 @@
 '\n'          Text
 
 'isKindOf:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aClass'      Name.Variable
 ' '           Text
 'orOf:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anotherClass' Name.Variable
 '\n\t'        Text
 '"Answer whether either of the classes, aClass or anotherClass,, is a superclass or class of the receiver.  A convenience; could be somewhat optimized"' Comment
@@ -4089,7 +4089,7 @@
 '\n'          Text
 
 'isMemberOf:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aClass'      Name.Variable
 ' \n\t'       Text
 '"Answer whether the receiver is an instance of the class, aClass."' Comment
@@ -4113,7 +4113,7 @@
 '\n'          Text
 
 'respondsTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' \n\t'       Text
 '"Answer whether the method dictionary of the receiver\'s class contains \n\taSymbol as a message selector."' Comment
@@ -4156,7 +4156,7 @@
 '\n'          Text
 
 'closeTo:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Answer whether the receiver and the argument represent the same\n\tobject. If = is redefined in any subclass, consider also redefining the\n\tmessage hash."' Comment
@@ -4227,7 +4227,7 @@
 '\n'          Text
 
 'hashMappedBy:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'map'         Name.Variable
 '\n\t'        Text
 '"Answer what my hash would be if oops changed according to map."' Comment
@@ -4249,7 +4249,7 @@
 '\n'          Text
 
 'identityHashMappedBy:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'map'         Name.Variable
 '\n\t'        Text
 '"Answer what my hash would be if oops changed according to map."' Comment
@@ -4298,7 +4298,7 @@
 '\n'          Text
 
 'literalEqual:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'other'       Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -4333,9 +4333,9 @@
 '\n'          Text
 
 '='           Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '\n\t'        Text
 '"Answer whether the receiver and the argument represent the same \n\tobject. If = is redefined in any subclass, consider also redefining the \n\tmessage hash."' Comment
 '\n\n\t'      Text
@@ -4356,9 +4356,9 @@
 '\n'          Text
 
 '~='          Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '\n\t'        Text
 '"Answer whether the receiver and the argument do not represent the \n\tsame object."' Comment
 '\n\n\t'      Text
@@ -4383,11 +4383,11 @@
 '\n'          Text
 
 'adaptToFloat:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rcvr'        Name.Variable
 ' '           Text
 'andSend:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 '\n\t'        Text
 '"If no method has been provided for adapting an object to a Float,\n\tthen it may be adequate to simply adapt it to a number."' Comment
@@ -4414,11 +4414,11 @@
 '\n'          Text
 
 'adaptToFraction:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rcvr'        Name.Variable
 ' '           Text
 'andSend:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 '\n\t'        Text
 '"If no method has been provided for adapting an object to a Fraction,\n\tthen it may be adequate to simply adapt it to a number."' Comment
@@ -4445,11 +4445,11 @@
 '\n'          Text
 
 'adaptToInteger:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rcvr'        Name.Variable
 ' '           Text
 'andSend:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 '\n\t'        Text
 '"If no method has been provided for adapting an object to a Integer,\n\tthen it may be adequate to simply adapt it to a number."' Comment
@@ -4476,7 +4476,7 @@
 '\n'          Text
 
 'asActionSequence' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -4496,7 +4496,7 @@
 '\n'          Text
 
 'asActionSequenceTrappingErrors' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -4608,7 +4608,7 @@
 '\n'          Text
 
 'as:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSimilarClass' Name.Variable
 '\n\t'        Text
 '"Create an object of class aSimilarClass that has similar contents to the receiver."' Comment
@@ -4631,7 +4631,7 @@
 '\n'          Text
 
 'complexContents' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -4670,7 +4670,7 @@
 '\n'          Text
 
 'mustBeBooleanIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'context'     Name.Variable
 '\n\t'        Text
 '"context is the where the non-boolean error occurred. Rewind context to before jump then raise error."' Comment
@@ -4746,7 +4746,7 @@
 '\n'          Text
 
 'withoutListWrapper' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -4762,7 +4762,7 @@
 '\n'          Text
 
 'clone'       Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '<'           Text
@@ -4804,7 +4804,7 @@
 '\n'          Text
 
 'copyAddedStateFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anotherObject' Name.Variable
 '\n\t'        Text
 '"Copy over the values of instance variables added by the receiver\'s class from anotherObject to the receiver.  These will be remapped in mapUniClasses, if needed."' Comment
@@ -4864,7 +4864,7 @@
 '\n'          Text
 
 'copyFrom:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anotherObject' Name.Variable
 '\n\t'        Text
 '"Copy to myself all instance variables I have in common with anotherObject.  This is dangerous because it ignores an object\'s control over its own inst vars.  "' Comment
@@ -5036,7 +5036,7 @@
 '\n'          Text
 
 'copySameFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'otherObject' Name.Variable
 '\n\t'        Text
 '"Copy to myself all instance variables named the same in otherObject.\n\tThis ignores otherObject\'s control over its own inst vars."' Comment
@@ -5875,7 +5875,7 @@
 '\n'          Text
 
 'veryDeepCopyUsing:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'copier'      Name.Variable
 '\n\t'        Text
 '"Do a complete tree copy using a dictionary.  An object in the tree twice is only copied once.  All references to the object in the copy of the tree will point to the new copy.\n\tSame as veryDeepCopy except copier (with dictionary) is supplied.\n\t** do not delete this method, even if it has no callers **"' Comment
@@ -6022,7 +6022,7 @@
 '\n'          Text
 
 'veryDeepCopyWith:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'deepCopier'  Name.Variable
 '\n\t'        Text
 '"Copy me and the entire tree of objects I point to.  An object in the tree twice is copied once, and both references point to him.  deepCopier holds a dictionary of objects we have seen.  Some classes refuse to be copied.  Some classes are picky about which fields get deep copied."' Comment
@@ -6570,7 +6570,7 @@
 '\n'          Text
 
 'veryDeepFixupWith:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'deepCopier'  Name.Variable
 '\n\t'        Text
 '"I have no fields and no superclass.  Catch the super call."' Comment
@@ -6587,7 +6587,7 @@
 '\n'          Text
 
 'veryDeepInner:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'deepCopier'  Name.Variable
 '\n\t'        Text
 '"No special treatment for inst vars of my superclasses.  Override when some need to be weakly copied.  Object>>veryDeepCopyWith: will veryDeepCopy any inst var whose class does not actually define veryDeepInner:"' Comment
@@ -6678,7 +6678,7 @@
 '\n'          Text
 
 'haltIf:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'condition'   Name.Variable
 '\n\t'        Text
 '"This is the typical message to use for inserting breakpoints during \n\tdebugging.  Param can be a block or expression, halt if true.\n\tIf the Block has one arg, the receiver is bound to that.\n \tIf the condition is a selector, we look up in the callchain. Halt if\n      any method\'s selector equals selector."' Comment
@@ -6976,7 +6976,7 @@
 '\n'          Text
 
 'doExpiredHaltCount:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -7030,7 +7030,7 @@
 '\n'          Text
 
 'haltOnCount:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Variable
 ' \n\t'       Text
 'self'        Name.Builtin.Pseudo
@@ -7160,7 +7160,7 @@
 '\n'          Text
 
 'haltOnce:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"Halt unless we have already done it once."' Comment
@@ -7196,11 +7196,11 @@
 '\n'          Text
 
 'halt:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' '           Text
 'onCount:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Variable
 ' \n\t'       Text
 'self'        Name.Builtin.Pseudo
@@ -7295,7 +7295,7 @@
 '\n'          Text
 
 'inspectOnCount:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Variable
 ' \n\t'       Text
 'self'        Name.Builtin.Pseudo
@@ -7400,7 +7400,7 @@
 '\n'          Text
 
 'inspectUntilCount:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Variable
 ' \n\t'       Text
 'self'        Name.Builtin.Pseudo
@@ -7511,7 +7511,7 @@
 '\n'          Text
 
 'setHaltCountTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'int'         Name.Variable
 '\n\t'        Text
 'Smalltalk'   Name.Class
@@ -7588,7 +7588,7 @@
 '\n'          Text
 
 'addDependent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Make the given object one of the receiver\'s dependents."' Comment
@@ -7737,11 +7737,11 @@
 '\n'          Text
 
 'evaluate:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'actionBlock' Name.Variable
 ' '           Text
 'wheneverChangeIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aspectBlock' Name.Variable
 '\n\t'        Text
 '|'           Operator
@@ -7872,7 +7872,7 @@
 '\n'          Text
 
 'myDependents:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCollectionOrNil' Name.Variable
 '\n\t'        Text
 '"Private. Set (or remove) the receiver\'s dependents list."' Comment
@@ -7935,7 +7935,7 @@
 '\n'          Text
 
 'removeDependent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Remove the given object as one of the receiver\'s dependents."' Comment
@@ -7999,15 +7999,15 @@
 '\n'          Text
 
 'acceptDroppingMorph:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'transferMorph' Name.Variable
 ' '           Text
 'event:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'evt'         Name.Variable
 ' '           Text
 'inMorph:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'dstListMorph' Name.Variable
 ' \n\t\n\t'   Text
 '^'           Operator
@@ -8024,11 +8024,11 @@
 '\n'          Text
 
 'dragAnimationFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'item'        Name.Variable
 ' '           Text
 'transferMorph:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'transferMorph' Name.Variable
 ' \n\t'       Text
 '"Default do nothing"' Comment
@@ -8043,11 +8043,11 @@
 '\n'          Text
 
 'dragPassengerFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'item'        Name.Variable
 ' '           Text
 'inMorph:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'dragSource'  Name.Variable
 ' \n\t'       Text
 '^'           Operator
@@ -8077,7 +8077,7 @@
 '\n'          Text
 
 'dragTransferTypeForMorph:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'dragSource'  Name.Variable
 ' \n\t'       Text
 '^'           Operator
@@ -8093,15 +8093,15 @@
 '\n'          Text
 
 'wantsDroppedMorph:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMorph'      Name.Variable
 ' '           Text
 'event:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEvent'     Name.Variable
 ' '           Text
 'inMorph:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'destinationLM' Name.Variable
 ' \n\t'       Text
 '^'           Operator
@@ -8117,7 +8117,7 @@
 '\n'          Text
 
 'assert:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\t'        Text
 '"Throw an assertion error if aBlock does not evaluates to true."' Comment
@@ -8146,11 +8146,11 @@
 '\n'          Text
 
 'assert:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' '           Text
 'descriptionBlock:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'descriptionBlock' Name.Variable
 '\n\t'        Text
 '"Throw an assertion error if aBlock does not evaluate to true."' Comment
@@ -8184,11 +8184,11 @@
 '\n'          Text
 
 'assert:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' '           Text
 'description:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '"Throw an assertion error if aBlock does not evaluates to true."' Comment
@@ -8218,7 +8218,7 @@
 '\n'          Text
 
 'backwardCompatibilityOnly:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExplanationString' Name.Variable
 '\n\t'        Text
 '"Warn that the sending method has been deprecated. Methods that are tagt with #backwardCompatibility:\n\t are kept for compatibility."' Comment
@@ -8276,7 +8276,7 @@
 '\n'          Text
 
 'confirm:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'queryString' Name.Variable
 '\n\t'        Text
 '"Put up a yes/no menu with caption queryString. Answer true if the \n\tresponse is yes, false if no. This is a modal question--the user must \n\trespond yes or no."' Comment
@@ -8303,11 +8303,11 @@
 '\n'          Text
 
 'confirm:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' '           Text
 'orCancel:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'cancelBlock' Name.Variable
 '\n\t'        Text
 '"Put up a yes/no/cancel menu with caption aString. Answer true if  \n\tthe response is yes, false if no. If cancel is chosen, evaluate  \n\tcancelBlock. This is a modal question--the user must respond yes or no."' Comment
@@ -8336,7 +8336,7 @@
 '\n'          Text
 
 'deprecated:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExplanationString' Name.Variable
 '\n\t'        Text
 '"Warn that the sending method has been deprecated."' Comment
@@ -8375,11 +8375,11 @@
 '\n'          Text
 
 'deprecated:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExplanationString' Name.Variable
 ' '           Text
 'block:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 ' \n\t '      Text
 '"Warn that the sender has been deprecated.  Answer the value of aBlock on resumption.  (Note that #deprecated: is usually the preferred method.)"' Comment
@@ -8428,7 +8428,7 @@
 '\n'          Text
 
 'doesNotUnderstand:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessage'    Name.Variable
 ' \n\t '      Text
 '"Handle the fact that there was an attempt to send the given message to the receiver but the receiver does not understand this message (typically sent from the machine when a message is sent to the receiver and no method is defined for that selector)."' Comment
@@ -8473,7 +8473,7 @@
 '\n'          Text
 
 'dpsTrace:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'reportObject' Name.Variable
 '  \n\t'      Text
 'Transcript'  Name.Class
@@ -8517,11 +8517,11 @@
 '\n'          Text
 
 'dpsTrace:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'reportObject' Name.Variable
 ' '           Text
 'levels:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'anInt'       Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -8551,15 +8551,15 @@
 '\n'          Text
 
 'dpsTrace:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'reportObject' Name.Variable
 ' '           Text
 'levels:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'anInt'       Name.Variable
 ' '           Text
 'withContext:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'currentContext' Name.Variable
 '\n\t'        Text
 '|'           Operator
@@ -8828,7 +8828,7 @@
 '\n'          Text
 
 'error:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"Throw a generic Error exception."' Comment
@@ -8886,7 +8886,7 @@
 '\n'          Text
 
 'halt:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"This is the typical message to use for inserting breakpoints during \n\tdebugging. It creates and schedules a Notifier with the argument, \n\taString, as the label."' Comment
@@ -8909,7 +8909,7 @@
 '\n'          Text
 
 'handles:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'exception'   Name.Variable
 '\n\t'        Text
 '"This method exists in case a non exception class is the first arg in an on:do: (for instance using a exception class that is not loaded). We prefer this to raising an error during error handling itself. Also, semantically it makes sense that the exception handler is not active if its exception class is not loaded"' Comment
@@ -8928,7 +8928,7 @@
 '\n'          Text
 
 'notifyWithLabel:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"Create and schedule a Notifier with aString as the window label as well as the contents of the window, in  order to request confirmation before a process can proceed."' Comment
@@ -8959,7 +8959,7 @@
 '\n'          Text
 
 'notify:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"Create and schedule a Notifier with the argument as the message in \n\torder to request confirmation before a process can proceed."' Comment
@@ -8982,11 +8982,11 @@
 '\n'          Text
 
 'notify:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' '           Text
 'at:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'location'    Name.Variable
 '\n\t'        Text
 '"Create and schedule a Notifier with the argument as the message in \n\torder to request confirmation before a process can proceed. Subclasses can\n\toverride this and insert an error message at location within aString."' Comment
@@ -9128,7 +9128,7 @@
 '\n'          Text
 
 'value'       Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -9144,7 +9144,7 @@
 '\n'          Text
 
 'valueWithArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSequenceOfArguments' Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -9160,11 +9160,11 @@
 '\n'          Text
 
 'actionsWithReceiver:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 ' '           Text
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -9204,15 +9204,15 @@
 '\n'          Text
 
 'renameActionsWithReceiver:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 ' '           Text
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 ' '           Text
 'toEvent:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'newEvent'    Name.Variable
 '\n\n\t'      Text
 '|'           Operator
@@ -9339,7 +9339,7 @@
 '\n'          Text
 
 'actionForEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n    '      Text
 '"Answer the action to be evaluated when <anEventSelector> has been triggered."' Comment
@@ -9395,12 +9395,12 @@
 '\n'          Text
 
 'actionForEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'ifAbsent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExceptionBlock' Name.Variable
 '\n    '      Text
 '"Answer the action to be evaluated when <anEventSelector> has been triggered."' Comment
@@ -9458,7 +9458,7 @@
 '\n'          Text
 
 'actionMap'   Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -9478,7 +9478,7 @@
 '\n'          Text
 
 'actionSequenceForEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 '^'           Operator
@@ -9515,7 +9515,7 @@
 '\n'          Text
 
 'actionsDo:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\n\t'      Text
 'self'        Name.Builtin.Pseudo
@@ -9536,7 +9536,7 @@
 '\n'          Text
 
 'createActionMap' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -9554,7 +9554,7 @@
 '\n'          Text
 
 'hasActionForEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n    '      Text
 '"Answer true if there is an action associated with anEventSelector"' Comment
@@ -9580,12 +9580,12 @@
 '\n'          Text
 
 'setActionSequence:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'actionSequence' Name.Variable
 '\n'          Text
 
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 '|'           Operator
@@ -9645,7 +9645,7 @@
 '\n'          Text
 
 'updateableActionMap' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -9665,11 +9665,11 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 ' '           Text
 'evaluate:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anAction'    Name.Variable
 ' \n\n\t'     Text
 '|'           Operator
@@ -9730,17 +9730,17 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -9773,22 +9773,22 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArgArray'  Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -9825,22 +9825,22 @@
 '\n'          Text
 
 'when:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'send:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMessageSelector' Name.Variable
 '\n'          Text
 
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArg'       Name.Variable
 '\n \n    '   Text
 'self'        Name.Builtin.Pseudo
@@ -9883,7 +9883,7 @@
 '\n'          Text
 
 'releaseActionMap' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 'EventManager' Name.Class
@@ -9902,7 +9902,7 @@
 '\n'          Text
 
 'removeActionsForEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 '|'           Operator
@@ -9954,7 +9954,7 @@
 '\n'          Text
 
 'removeActionsSatisfying:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aBlock'      Name.Variable
 '\n\n\t'      Text
 'self'        Name.Builtin.Pseudo
@@ -9993,12 +9993,12 @@
 '\n'          Text
 
 'removeActionsSatisfying:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aOneArgBlock' Name.Variable
 ' \n'         Text
 
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 'self'        Name.Builtin.Pseudo
@@ -10044,7 +10044,7 @@
 '\n'          Text
 
 'removeActionsWithReceiver:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\n\t'      Text
 'self'        Name.Builtin.Pseudo
@@ -10096,12 +10096,12 @@
 '\n'          Text
 
 'removeActionsWithReceiver:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 'self'        Name.Builtin.Pseudo
@@ -10137,12 +10137,12 @@
 '\n'          Text
 
 'removeAction:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anAction'    Name.Variable
 '\n'          Text
 
 'forEvent:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\n    '    Text
 'self'        Name.Builtin.Pseudo
@@ -10176,7 +10176,7 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n\t'        Text
 '"Evaluate all actions registered for <anEventSelector>. Return the value of the last registered action."' Comment
@@ -10202,12 +10202,12 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'ifNotHandled:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExceptionBlock' Name.Variable
 '\n\t'        Text
 '"Evaluate all actions registered for <anEventSelector>. Return the value of the last registered action."' Comment
@@ -10244,12 +10244,12 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArgumentList' Name.Variable
 '\n\n    '    Text
 '^'           Operator
@@ -10275,17 +10275,17 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArgumentList' Name.Variable
 '\n'          Text
 
 'ifNotHandled:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExceptionBlock' Name.Variable
 '\n\n    '    Text
 '^'           Operator
@@ -10320,12 +10320,12 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\n    '    Text
 '^'           Operator
@@ -10355,17 +10355,17 @@
 '\n'          Text
 
 'triggerEvent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEventSelector' Name.Variable
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n'          Text
 
 'ifNotHandled:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anExceptionBlock' Name.Variable
 '\n\n    '    Text
 '^'           Operator
@@ -10664,11 +10664,11 @@
 '\n'          Text
 
 'retryWithGC:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'execBlock'   Name.Variable
 ' '           Text
 'until:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'testBlock'   Name.Variable
 '\n\t'        Text
 '"Retry execBlock as long as testBlock returns false. Do an incremental GC after the first try, a full GC after the second try."' Comment
@@ -10751,15 +10751,15 @@
 '\n'          Text
 
 'toFinalizeSend:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSelector'   Name.Variable
 ' '           Text
 'to:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'aFinalizer'  Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aResourceHandle' Name.Variable
 '\n\t'        Text
 '"When I am finalized (e.g., garbage collected) close the associated resource handle by sending aSelector to the appropriate finalizer (the guy who knows how to get rid of the resource).\n\tWARNING: Neither the finalizer nor the resource handle are allowed to reference me. If they do, then I will NEVER be garbage collected. Since this cannot be validated here, it is up to the client to make sure this invariant is not broken."' Comment
@@ -10858,7 +10858,7 @@
 '\n'          Text
 
 'isThisEverCalled:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'msg'         Name.Variable
 '\n\t'        Text
 '"Send this message, with some useful printable argument, from methods or branches of methods which you believe are never reached.  2/5/96 sw"' Comment
@@ -10884,7 +10884,7 @@
 '\n'          Text
 
 'logEntry'    Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 'Transcript'  Name.Class
@@ -10916,7 +10916,7 @@
 '\n'          Text
 
 'logExecution' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 'Transcript'  Name.Class
@@ -10948,7 +10948,7 @@
 '\n'          Text
 
 'logExit'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 'Transcript'  Name.Class
@@ -10980,15 +10980,15 @@
 '\n'          Text
 
 'addModelYellowButtonMenuItemsTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCustomMenu' Name.Variable
 ' '           Text
 'forMorph:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMorph'      Name.Variable
 ' '           Text
 'hand:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aHandMorph'  Name.Variable
 ' \n\t'       Text
 '"The receiver serves as the model for aMorph; a menu is being constructed for the morph, and here the receiver is able to add its own items"' Comment
@@ -11125,7 +11125,7 @@
 '\n'          Text
 
 'codeStrippedOut:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'messageString' Name.Variable
 '\n\t'        Text
 '"When a method is stripped out for external release, it is replaced by a method that calls this"' Comment
@@ -11505,7 +11505,7 @@
 '\n'          Text
 
 'scriptPerformer' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -11543,7 +11543,7 @@
 '\n'          Text
 
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver with no args"' Comment
@@ -11575,7 +11575,7 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' \n\t'       Text
 '"Send the unary selector, aSymbol, to the receiver.\n\tFail if the number of arguments expected by the selector is not zero.\n\tPrimitive. Optional. See Object documentation whatIsAPrimitive."' Comment
@@ -11613,11 +11613,11 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' '           Text
 'orSendTo:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'otherTarget' Name.Variable
 '\n\t'        Text
 '"If I wish to intercept and handle selector myself, do it; else send it to otherTarget"' Comment
@@ -11662,11 +11662,11 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' '           Text
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'argArray'    Name.Variable
 ' \n\t'       Text
 '"Send the selector, aSymbol, to the receiver with arguments in argArray.\n\tFail if the number of arguments expected by the selector \n\tdoes not match the size of argArray.\n\tPrimitive. Optional. See Object documentation whatIsAPrimitive."' Comment
@@ -11704,15 +11704,15 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' '           Text
 'withArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'argArray'    Name.Variable
 ' '           Text
 'inSuperclass:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'lookupClass' Name.Variable
 '\n\t'        Text
 '"NOTE:  This is just like perform:withArguments:, except that\n\tthe message lookup process begins, not with the receivers\'s class,\n\tbut with the supplied superclass instead.  It will fail if lookupClass\n\tcannot be found among the receiver\'s superclasses.\n\tPrimitive. Essential. See Object documentation whatIsAPrimitive."' Comment
@@ -11815,11 +11815,11 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'selector'    Name.Variable
 ' '           Text
 'withEnoughArguments:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anArray'     Name.Variable
 '\n\t'        Text
 '"Send the selector, aSymbol, to the receiver with arguments in argArray.\n\tOnly use enough arguments for the arity of the selector; supply nils for missing ones."' Comment
@@ -11927,11 +11927,11 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 ' \n\t'       Text
 '"Send the selector, aSymbol, to the receiver with anObject as its argument.\n\tFail if the number of arguments expected by the selector is not one.\n\tPrimitive. Optional. See Object documentation whatIsAPrimitive."' Comment
@@ -11969,15 +11969,15 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'firstObject' Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'secondObject' Name.Variable
 ' \n\t'       Text
 '"Send the selector, aSymbol, to the receiver with the given arguments.\n\tFail if the number of arguments expected by the selector is not two.\n\tPrimitive. Optional. See Object documentation whatIsAPrimitive."' Comment
@@ -12019,19 +12019,19 @@
 '\n'          Text
 
 'perform:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'firstObject' Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'secondObject' Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'thirdObject' Name.Variable
 ' \n\t'       Text
 '"Send the selector, aSymbol, to the receiver with the given arguments.\n\tFail if the number of arguments expected by the selector is not three.\n\tPrimitive. Optional. See Object documentation whatIsAPrimitive."' Comment
@@ -12077,11 +12077,11 @@
 '\n'          Text
 
 'withArgs:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'argArray'    Name.Variable
 ' '           Text
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver and args in argArray"' Comment
@@ -12153,11 +12153,11 @@
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg1'        Name.Variable
 ' '           Text
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver and arg1"' Comment
@@ -12190,15 +12190,15 @@
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg1'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg2'        Name.Variable
 ' '           Text
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver and arg1 & arg2"' Comment
@@ -12234,19 +12234,19 @@
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg1'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg2'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg3'        Name.Variable
 ' '           Text
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver and arg1, arg2, & arg3"' Comment
@@ -12285,23 +12285,23 @@
 '\n'          Text
 
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg1'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg2'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg3'        Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'arg4'        Name.Variable
 ' '           Text
 'executeMethod:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'compiledMethod' Name.Variable
 '\n\t'        Text
 '"Execute compiledMethod against the receiver and arg1, arg2, arg3, & arg4"' Comment
@@ -12343,7 +12343,7 @@
 '\n'          Text
 
 'comeFullyUpOnReload:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'smartRefStream' Name.Variable
 '\n\t'        Text
 '"Normally this read-in object is exactly what we want to store. 7/26/96 tk"' Comment
@@ -12362,11 +12362,11 @@
 '\n'          Text
 
 'convertToCurrentVersion:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'varDict'     Name.Variable
 ' '           Text
 'refStream:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'smartRefStrm' Name.Variable
 '\n\n\t'      Text
 '"subclasses should implement if they wish to convert old instances to modern ones"' Comment
@@ -12381,11 +12381,11 @@
 '\n'          Text
 
 'fixUponLoad:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aProject'    Name.Variable
 ' '           Text
 'seg:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'anImageSegment' Name.Variable
 '\n\t'        Text
 '"change the object due to conventions that have changed on\nthe project level.  (sent to all objects in the incoming project).\nSpecific classes should reimplement this."' Comment
@@ -12400,7 +12400,7 @@
 '\n'          Text
 
 'indexIfCompact' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -12418,7 +12418,7 @@
 '\n'          Text
 
 'objectForDataStream:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'refStrm'     Name.Variable
 '\n    '      Text
 '"Return an object to store on an external data stream."' Comment
@@ -12437,11 +12437,11 @@
 '\n'          Text
 
 'readDataFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aDataStream' Name.Variable
 ' '           Text
 'size:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'varsOnDisk'  Name.Variable
 '\n\t'        Text
 '"Fill in the fields of self based on the contents of aDataStream.  Return self.\n\t Read in the instance-variables written by Object>>storeDataOn:.\n\t NOTE: This method must send beginReference: before reading any objects from aDataStream that might reference it.\n\t Allow aDataStream to have fewer inst vars.  See SmartRefStream."' Comment
@@ -12694,7 +12694,7 @@
 '\n'          Text
 
 'storeDataOn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aDataStream' Name.Variable
 '\n\t'        Text
 '"Store myself on a DataStream.  Answer self.  This is a low-level DataStream/ReferenceStream method. See also objectToStoreOnDataStream.  NOTE: This method must send \'aDataStream beginInstance:size:\' and then (nextPut:/nextPutWeak:) its subobjects.  readDataFrom:size: reads back what we write here."' Comment
@@ -12928,7 +12928,7 @@
 '\n'          Text
 
 'longPrintOn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 '\n\t'        Text
 '"Append to the argument, aStream, the names and values of all \n\tof the receiver\'s instance variables."' Comment
@@ -12992,15 +12992,15 @@
 '\n'          Text
 
 'longPrintOn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 ' '           Text
 'limitedTo:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'sizeLimit'   Name.Variable
 ' '           Text
 'indent:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'indent'      Name.Variable
 '\n\t'        Text
 '"Append to the argument, aStream, the names and values of all of the receiver\'s instance variables.  Limit is the length limit for each inst var."' Comment
@@ -13161,7 +13161,7 @@
 '\n'          Text
 
 'longPrintStringLimitedTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aLimitValue' Name.Variable
 '\n\t'        Text
 '"Answer a String whose characters are a description of the receiver."' Comment
@@ -13237,7 +13237,7 @@
 '\n'          Text
 
 'nominallyUnsent:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSelectorSymbol' Name.Variable
 '\n\t'        Text
 '"From within the body of a method which is not formally sent within the system, but which you intend to have remain in the system (for potential manual invocation, or for documentation, or perhaps because it\'s sent by commented-out-code that you anticipate uncommenting out someday, send this message, with the selector itself as the argument.\n\nThis will serve two purposes:\n\n\t(1)  The method will not be returned by searches for unsent selectors (because it, in a manner of speaking, sends itself).\n\t(2)\tYou can locate all such methods by browsing senders of #nominallyUnsent:"' Comment
@@ -13268,7 +13268,7 @@
 '\n'          Text
 
 'printOn:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 '\n\t'        Text
 '"Append to the argument, aStream, a sequence of characters that  \n\tidentifies the receiver."' Comment
@@ -13348,7 +13348,7 @@
 '\n'          Text
 
 'printStringLimitedTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'limit'       Name.Variable
 '\n\t'        Text
 '"Answer a String whose characters are a description of the receiver.\n\tIf you want to print without a character limit, use fullPrintString."' Comment
@@ -13472,7 +13472,7 @@
 '\n'          Text
 
 'storeOn:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStream'     Name.Variable
 ' \n\t'       Text
 '"Append to the argument aStream a sequence of characters that is an \n\texpression whose evaluation creates an object similar to the receiver."' Comment
@@ -13729,7 +13729,7 @@
 '\n'          Text
 
 'adaptedToWorld:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWorld'      Name.Variable
 '\n\t'        Text
 '"If I refer to a world or a hand, return the corresponding items in the new world."' Comment
@@ -13747,7 +13747,7 @@
 '\n'          Text
 
 'defaultFloatPrecisionFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aGetSelector' Name.Variable
 '\n\t'        Text
 '"Answer a number indicating the default float precision to be used in a numeric readout for which the receiver is the model."' Comment
@@ -13766,7 +13766,7 @@
 '\n'          Text
 
 'evaluateUnloggedForSelf:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCodeString' Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -13794,15 +13794,15 @@
 '\n'          Text
 
 'methodInterfacesForCategory:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCategorySymbol' Name.Variable
 ' '           Text
 'inVocabulary:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 ' '           Text
 'limitClass:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aLimitClass' Name.Variable
 '\n\t'        Text
 '"Return a list of methodInterfaces for the receiver in the given category, given a vocabulary.  aCategorySymbol is the inherent category symbol, not necessarily the wording as expressed in the vocabulary."' Comment
@@ -13914,7 +13914,7 @@
 '\n'          Text
 
 'methodInterfacesForInstanceVariablesCategoryIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 '\n\t'        Text
 '"Return a collection of methodInterfaces for the instance-variables category.  The vocabulary parameter, at present anyway, is not used.  And for non-players, the method is at present vacuous in any case"' Comment
@@ -13935,7 +13935,7 @@
 '\n'          Text
 
 'methodInterfacesForScriptsCategoryIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 '\n\t'        Text
 '"Answer a list of method interfaces for the category #scripts, as seen in a viewer or other tool.  The vocabulary argument is not presently used.  Also, at present, only Players really do anyting interesting here."' Comment
@@ -13956,7 +13956,7 @@
 '\n'          Text
 
 'selfWrittenAsIll' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -13972,7 +13972,7 @@
 '\n'          Text
 
 'selfWrittenAsIm' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -13988,7 +13988,7 @@
 '\n'          Text
 
 'selfWrittenAsMe' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -14004,7 +14004,7 @@
 '\n'          Text
 
 'selfWrittenAsMy' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -14020,7 +14020,7 @@
 '\n'          Text
 
 'selfWrittenAsThis' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -14036,7 +14036,7 @@
 '\n'          Text
 
 'universalTilesForGetterOf:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMethodInterface' Name.Variable
 '\n\t'        Text
 '"Return universal tiles for a getter on the given method interface."' Comment
@@ -14245,7 +14245,7 @@
 '\n'          Text
 
 'universalTilesForInterface:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMethodInterface' Name.Variable
 '\n\t'        Text
 '"Return universal tiles for the given method interface.  Record who self is."' Comment
@@ -14437,7 +14437,7 @@
 '\n'          Text
 
 'becomeForward:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'otherObject' Name.Variable
 ' \n\t'       Text
 '"Primitive. All variables in the entire system that used to point\n\tto the receiver now point to the argument.\n\tFails if either argument is a SmallInteger."' Comment
@@ -14470,11 +14470,11 @@
 '\n'          Text
 
 'becomeForward:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'otherObject' Name.Variable
 ' '           Text
 'copyHash:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'copyHash'    Name.Variable
 '\n\t'        Text
 '"Primitive. All variables in the entire system that used to point to the receiver now point to the argument.\n\tIf copyHash is true, the argument\'s identity hash bits will be set to those of the receiver.\n\tFails if either argument is a SmallInteger."' Comment
@@ -14551,7 +14551,7 @@
 '\n'          Text
 
 'instVarAt:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' \n\t'       Text
 '"Primitive. Answer a fixed variable in an object. The numbering of the \n\tvariables corresponds to the named instance variables. Fail if the index \n\tis not an Integer or is not the index of a fixed variable. Essential. See \n\tObject documentation whatIsAPrimitive."' Comment
@@ -14589,11 +14589,11 @@
 '\n'          Text
 
 'instVarAt:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'anInteger'   Name.Variable
 ' '           Text
 'put:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 ' \n\t'       Text
 '"Primitive. Store a value into a fixed variable in the receiver. The \n\tnumbering of the variables corresponds to the named instance variables. \n\tFail if the index is not an Integer or is not the index of a fixed variable. \n\tAnswer the value stored as the result. Using this message violates the \n\tprinciple that each object has sovereign control over the storing of \n\tvalues into its instance variables. Essential. See Object documentation \n\twhatIsAPrimitive."' Comment
@@ -14634,7 +14634,7 @@
 '\n'          Text
 
 'instVarNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '"Return the value of the instance variable in me with that name.  Slow and unclean, but very useful. "' Comment
@@ -14671,11 +14671,11 @@
 '\n'          Text
 
 'instVarNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' '           Text
 'put:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'aValue'      Name.Variable
 '\n\t'        Text
 '"Store into the value of the instance variable in me of that name.  Slow and unclean, but very useful. "' Comment
@@ -14737,7 +14737,7 @@
 '\n'          Text
 
 'primitiveChangeClassTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Primitive. Change the class of the receiver into the class of the argument given that the format of the receiver matches the format of the argument\'s class. Fail if receiver or argument are SmallIntegers, or the receiver is an instance of a compact class and the argument isn\'t, or when the argument\'s class is compact and the receiver isn\'t, or when the format of the receiver is different from the format of the argument\'s class, or when the arguments class is fixed and the receiver\'s size differs from the size that an instance of the argument\'s class should have.\n\tNote: The primitive will fail in most cases that you think might work. This is mostly because of a) the difference between compact and non-compact classes, and b) because of differences in the format. As an example, \'(Array new: 3) primitiveChangeClassTo: Morph basicNew\' would fail for three of the reasons mentioned above. Array is compact, Morph is not (failure #1). Array is variable and Morph is fixed (different format - failure #2). Morph is a fixed-field-only object and the array is too short (failure #3).\n\tThe facility is really provided for certain, very specific applications (mostly related to classes changing shape) and not for casual use."' Comment
@@ -14761,7 +14761,7 @@
 '\n'          Text
 
 'rootStubInImageSegment:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'imageSegment' Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -14888,7 +14888,7 @@
 '\n'          Text
 
 'hasLiteralSuchThat:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'testBlock'   Name.Variable
 '\n\t'        Text
 '"This is the end of the imbedded structure path so return false."' Comment
@@ -14907,7 +14907,7 @@
 '\n'          Text
 
 'hasLiteralThorough:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'literal'     Name.Variable
 '\n\t'        Text
 '"Answer true if literal is identical to any literal in this array, even if imbedded in further structures.  This is the end of the imbedded structure path so return false."' Comment
@@ -14951,7 +14951,7 @@
 '\n'          Text
 
 'haveFullProtocolBrowsedShowingSelector:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSelector'   Name.Variable
 '\n\t'        Text
 '"Open up a Lexicon on the receiver, having it open up showing aSelector, which may be nil"' Comment
@@ -15043,7 +15043,7 @@
 '\n'          Text
 
 'isBlock'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15060,7 +15060,7 @@
 '\n'          Text
 
 'isBlockClosure' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15077,7 +15077,7 @@
 '\n'          Text
 
 'isCharacter' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15146,7 +15146,7 @@
 '\n'          Text
 
 'isCompiledMethod' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15244,7 +15244,7 @@
 '\n'          Text
 
 'isHeap'      Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15278,7 +15278,7 @@
 '\n'          Text
 
 'isInterval'  Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15325,7 +15325,7 @@
 '\n'          Text
 
 'isMorph'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -15853,7 +15853,7 @@
 '\n'          Text
 
 'renameInternal:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'newName'     Name.Variable
 ' \n\t'       Text
 '"Change the internal name (because of a conflict) but leave the external name unchanged.  Change Player class name, but do not change the names that appear in tiles.  Any object that might be pointed to in the References dictionary might get this message sent to it upon reload"' Comment
@@ -15874,7 +15874,7 @@
 '\n'          Text
 
 'renameTo:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'newName'     Name.Variable
 '\n\t'        Text
 '"If the receiver has an inherent idea about its own name, it should take action here.  Any object that might be pointed to in the References dictionary might get this message sent to it upon reload"' Comment
@@ -15906,11 +15906,11 @@
 '\n'          Text
 
 'stepAt:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'millisecondClockValue' Name.Variable
 ' '           Text
 'in:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWindow'     Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -15931,7 +15931,7 @@
 '\n'          Text
 
 'stepIn:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWindow'     Name.Variable
 '\n\n\t'      Text
 '^'           Operator
@@ -15950,7 +15950,7 @@
 '\n'          Text
 
 'stepTime'    Name.Function
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '\n\t'        Text
 '^'           Operator
 ' '           Text
@@ -15968,7 +15968,7 @@
 '\n'          Text
 
 'stepTimeIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSystemWindow' Name.Variable
 '\n\t\n\t'    Text
 '^'           Operator
@@ -16038,7 +16038,7 @@
 '\n'          Text
 
 'wantsStepsIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSystemWindow' Name.Variable
 '\n\t\n\t'    Text
 '^'           Operator
@@ -16057,7 +16057,7 @@
 '\n'          Text
 
 'iconOrThumbnailOfSize:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aNumberOrPoint' Name.Variable
 ' \n\t'       Text
 '"Answer an appropiate form to represent the receiver"' Comment
@@ -16076,7 +16076,7 @@
 '\n'          Text
 
 'inline:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'inlineFlag'  Name.Variable
 '\n\t'        Text
 '"For translation only; noop when running in Smalltalk."' Comment
@@ -16091,11 +16091,11 @@
 '\n'          Text
 
 'var:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'varSymbol'   Name.Variable
 ' '           Text
 'declareC:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'declString'  Name.Variable
 '\n\t'        Text
 '"For translation only; noop when running in Smalltalk."' Comment
@@ -16230,7 +16230,7 @@
 '\n'          Text
 
 'redoFromCapturedState:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'st'          Name.Variable
 ' \n\t'       Text
 '"May be overridden in subclasses.  See also capturedState"' Comment
@@ -16255,19 +16255,19 @@
 '\n'          Text
 
 'refineRedoTarget:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'target'      Name.Variable
 ' '           Text
 'selector:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' '           Text
 'arguments:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'arguments'   Name.Variable
 ' '           Text
 'in:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'refineBlock' Name.Variable
 ' \n\t'       Text
 '"Any object can override this method to refine its redo specification"' Comment
@@ -16298,19 +16298,19 @@
 '\n'          Text
 
 'refineUndoTarget:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'target'      Name.Variable
 ' '           Text
 'selector:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 ' '           Text
 'arguments:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'arguments'   Name.Variable
 ' '           Text
 'in:'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'refineBlock' Name.Variable
 ' \n\t'       Text
 '"Any object can override this method to refine its undo specification"' Comment
@@ -16341,7 +16341,7 @@
 '\n'          Text
 
 'rememberCommand:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCommand'    Name.Variable
 '\n\t'        Text
 '"Remember the given command for undo"' Comment
@@ -16381,11 +16381,11 @@
 '\n'          Text
 
 'rememberUndoableAction:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'actionBlock' Name.Variable
 ' '           Text
 'named:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'caption'     Name.Variable
 '\n\t'        Text
 '|'           Operator
@@ -16469,7 +16469,7 @@
 '\n'          Text
 
 'undoFromCapturedState:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'st'          Name.Variable
 ' \n\t'       Text
 '"May be overridden in subclasses.  See also capturedState"' Comment
@@ -16511,7 +16511,7 @@
 '\n'          Text
 
 'changed:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aParameter'  Name.Variable
 ' \n\t'       Text
 '"Receiver changed. The change is denoted by the argument aParameter. \n\tUsually the argument is a Symbol that is part of the dependent\'s change \n\tprotocol. Inform all of the dependents."' Comment
@@ -16545,11 +16545,11 @@
 '\n'          Text
 
 'changed:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'anAspect'    Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Receiver changed. The change is denoted by the argument anAspect. \n\tUsually the argument is a Symbol that is part of the dependent\'s change \n\tprotocol. Inform all of the dependents. Also pass anObject for additional information."' Comment
@@ -16604,11 +16604,11 @@
 '\n'          Text
 
 'noteSelectionIndex:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anInteger'   Name.Variable
 ' '           Text
 'for:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSymbol'     Name.Variable
 '\n\t'        Text
 '"backstop"'  Comment
@@ -16640,7 +16640,7 @@
 '\n'          Text
 
 'updateListsAndCodeIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWindow'     Name.Variable
 '\n\t'        Text
 'self'        Name.Builtin.Pseudo
@@ -16683,7 +16683,7 @@
 '\n'          Text
 
 'update:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aParameter'  Name.Variable
 ' \n\t'       Text
 '"Receive a change notice from an object of whom the receiver is a \n\tdependent. The default behavior is to do nothing; a subclass might want \n\tto change itself in some way."' Comment
@@ -16702,11 +16702,11 @@
 '\n'          Text
 
 'update:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'anAspect'    Name.Variable
 ' '           Text
 'with:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'anObject'    Name.Variable
 '\n\t'        Text
 '"Receive a change notice from an object of whom the receiver is a \n\tdependent. The default behavior is to call update:,\n\twhich by default does nothing; a subclass might want \n\tto change itself in some way."' Comment
@@ -16744,7 +16744,7 @@
 '\n'          Text
 
 'addModelItemsToWindowMenu:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMenu'       Name.Variable
 '\n\t'        Text
 '"aMenu is being constructed to be presented to the user in response to the user\'s pressing on the menu widget in the title bar of a morphic window.  Here, the model is given the opportunity to add any model-specific items to the menu, whose default target is the SystemWindow itself."' Comment
@@ -16759,15 +16759,15 @@
 '\n'          Text
 
 'addModelMenuItemsTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCustomMenu' Name.Variable
 ' '           Text
 'forMorph:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMorph'      Name.Variable
 ' '           Text
 'hand:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'aHandMorph'  Name.Variable
 ' \n\t'       Text
 '"The receiver serves as the model for aMorph; a menu is being constructed for the morph, and here the receiver is able to add its own items"' Comment
@@ -16847,7 +16847,7 @@
 '\n'          Text
 
 'eToyStreamedRepresentationNotifying:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWidget'     Name.Variable
 '\n\n\t'      Text
 '|'           Operator
@@ -17006,7 +17006,7 @@
 '\n'          Text
 
 'hasContentsInExplorer' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n\t'        Text
 '^'           Operator
@@ -17044,7 +17044,7 @@
 '\n'          Text
 
 'inform:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '"Display a message for the user to read and then dismiss. 6/9/96 sw"' Comment
@@ -17094,7 +17094,7 @@
 '\n'          Text
 
 'inspectWithLabel:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aLabel'      Name.Variable
 '\n\t'        Text
 '"Create and schedule an Inspector in which the user can examine the receiver\'s variables."' Comment
@@ -17120,7 +17120,7 @@
 '\n'          Text
 
 'launchPartVia:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSelector'   Name.Variable
 '\n\t'        Text
 '"Obtain a morph by sending aSelector to self, and attach it to the morphic hand.  This provides a general protocol for parts bins"' Comment
@@ -17165,11 +17165,11 @@
 '\n'          Text
 
 'launchPartVia:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSelector'   Name.Variable
 ' '           Text
 'label:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 '\n\t'        Text
 '"Obtain a morph by sending aSelector to self, and attach it to the morphic hand.  This provides a general protocol for parts bins"' Comment
@@ -17278,7 +17278,7 @@
 '\n'          Text
 
 'modelWakeUpIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aWindow'     Name.Variable
 '\n\t'        Text
 '"A window with me as model is being entered or expanded.  Default response is no-op"' Comment
@@ -17297,7 +17297,7 @@
 '\n'          Text
 
 'mouseUpBalk:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'evt'         Name.Variable
 '\n\t'        Text
 '"A button I own got a mouseDown, but the user moved out before letting up.  Certain kinds of objects (so-called \'radio buttons\', for example, and other structures that must always have some selection, e.g. PaintBoxMorph) wish to take special action in this case; this default does nothing."' Comment
@@ -17362,7 +17362,7 @@
 '\n'          Text
 
 'windowReqNewLabel:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'labelString' Name.Variable
 '\n\t'        Text
 '"My window\'s title has been edited.\n\tReturn true if this is OK, and override for further behavior."' Comment
@@ -17487,7 +17487,7 @@
 '\n'          Text
 
 'categoriesForViewer:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 '\n\t'        Text
 '"Answer a list of categories to offer in the given viewer"' Comment
@@ -17524,11 +17524,11 @@
 '\n'          Text
 
 'categoriesForVocabulary:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 ' '           Text
 'limitClass:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aLimitClass' Name.Variable
 '\n\t'        Text
 '"Answer a list of categories of methods for the receiver when using the given vocabulary, given that one considers only methods that are implemented not further away than aLimitClass"' Comment
@@ -17752,7 +17752,7 @@
 '\n'          Text
 
 'defaultLimitClassForVocabulary:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 '\n\t'        Text
 '"Answer the class to use, by default, as the limit class on a protocol browser or viewer opened up on the receiver, within the purview of the Vocabulary provided"' Comment
@@ -17836,11 +17836,11 @@
 '\n'          Text
 
 'elementTypeFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aStringOrSymbol' Name.Variable
 ' '           Text
 'vocabulary:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aVocabulary' Name.Variable
 '\n\t'        Text
 '"Answer a symbol characterizing what kind of element aStringOrSymbol represents.  Realistically, at present, this always just returns #systemScript; a prototyped but not-incorporated architecture supported use of a leading colon to characterize an inst var of a system class, and for the moment we still see its remnant here."' Comment
@@ -17925,11 +17925,11 @@
 '\n'          Text
 
 'infoFor:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'anElement'   Name.Variable
 ' '           Text
 'inViewer:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 '\n\t'        Text
 '"The user made a gesture asking for info/menu relating to me.  Some of the messages dispatched here are not yet available in this image"' Comment
@@ -18263,7 +18263,7 @@
 '\n'          Text
 
 'initialTypeForSlotNamed:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aName'       Name.Variable
 '\n\t'        Text
 '"Answer the initial type to be ascribed to the given instance variable"' Comment
@@ -18298,11 +18298,11 @@
 '\n'          Text
 
 'methodInterfacesInPresentationOrderFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'interfaceList' Name.Variable
 ' '           Text
 'forCategory:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCategory'   Name.Variable
 ' \n\t'       Text
 '"Answer the interface list sorted in desired presentation order, using a \n\tstatic master-ordering list, q.v. The category parameter allows an \n\tescape in case one wants to apply different order strategies in different \n\tcategories, but for now a single master-priority-ordering is used -- see \n\tthe comment in method EToyVocabulary.masterOrderingOfPhraseSymbols"' Comment
@@ -18482,7 +18482,7 @@
 '\n'          Text
 
 'newScriptorAround:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aPhraseTileMorph' Name.Variable
 '\n\t'        Text
 '"Sprout a scriptor around aPhraseTileMorph, thus making a new script.  This is where generalized scriptors will be threaded in"' Comment
@@ -18501,11 +18501,11 @@
 '\n'          Text
 
 'offerViewerMenuForEvt:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'anEvent'     Name.Variable
 ' '           Text
 'morph:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'aMorph'      Name.Variable
 '\n\t'        Text
 '"Offer the viewer\'s primary menu to the user.  aMorph is some morph within the viewer itself, the one within which a mousedown triggered the need for this menu, and it is used only to retrieve the Viewer itself"' Comment
@@ -18536,11 +18536,11 @@
 '\n'          Text
 
 'offerViewerMenuFor:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 ' '           Text
 'event:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'evt'         Name.Variable
 '\n\t'        Text
 '"Offer the primary Viewer menu to the user.  Copied up from Player code, but most of the functions suggested here don\'t work for non-Player objects, many aren\'t even defined, some relate to exploratory sw work not yet reflected in the current corpus.  We are early in the life cycle of this method..."' Comment
@@ -18870,7 +18870,7 @@
 '\n'          Text
 
 'renameScript:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'oldSelector' Name.Variable
 '\n\t'        Text
 '"prompt the user for a new selector and apply it.  Presently only works for players"' Comment
@@ -18889,11 +18889,11 @@
 '\n'          Text
 
 'tilePhrasesForCategory:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aCategorySymbol' Name.Variable
 ' '           Text
 'inViewer:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 '\n\t'        Text
 '"Return a collection of phrases for the category."' Comment
@@ -18962,11 +18962,11 @@
 '\n'          Text
 
 'tilePhrasesForMethodInterfaces:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'methodInterfaceList' Name.Variable
 ' '           Text
 'inViewer:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 '\n\t'        Text
 '"Return a collection of ViewerLine objects corresponding to the method-interface list provided.   The resulting list will be in the same order as the incoming list, but may be smaller if the viewer\'s vocbulary suppresses some of the methods, or if, in classic tiles mode, the selector requires more arguments than can be handled."' Comment
@@ -19134,11 +19134,11 @@
 '\n'          Text
 
 'tilePhrasesForSelectorList:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aList'       Name.Variable
 ' '           Text
 'inViewer:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'aViewer'     Name.Variable
 '\n\t'        Text
 '"Particular to the search facility in viewers.  Answer a list, in appropriate order, of ViewerLine objects to put into the viewer."' Comment
@@ -19239,11 +19239,11 @@
 '\n'          Text
 
 'uniqueInstanceVariableNameLike:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' '           Text
 'excluding:'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'takenNames'  Name.Variable
 '\n\t'        Text
 '"Answer a nice instance-variable name to be added to the receiver which resembles aString, making sure it does not coincide with any element in takenNames"' Comment
@@ -19574,7 +19574,7 @@
 '\n'          Text
 
 'uniqueNameForReferenceFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'proposedName' Name.Variable
 '\n\t'        Text
 '"Answer a satisfactory symbol, similar to the proposedName but obeying the rules, to represent the receiver"' Comment
@@ -19800,7 +19800,7 @@
 '\n'          Text
 
 'usableMethodInterfacesIn:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aListOfMethodInterfaces' Name.Variable
 '\n\t'        Text
 '"Filter aList, returning a subset list of apt phrases"' Comment
@@ -19821,7 +19821,7 @@
 '\n'          Text
 
 'couldOpenInMorphic' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n        '  Text
 '"is there an obvious morphic world in which to open a new morph?"' Comment
@@ -19920,7 +19920,7 @@
 '\n'          Text
 
 'errorSubscriptBounds:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Variable
 ' \n\t'       Text
 '"Create an error notification that an improper integer was used as an index."' Comment
@@ -19947,7 +19947,7 @@
 '\n'          Text
 
 'primitiveError:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aString'     Name.Variable
 ' \n\t'       Text
 '"This method is called when the error handling results in a recursion in \n\tcalling on error: or halt or halt:."' Comment
@@ -20147,11 +20147,11 @@
 '\n'          Text
 
 'storeAt:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'offset'      Name.Variable
 ' '           Text
 'inTempFrame:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aContext'    Name.Variable
 '\n\t'        Text
 '"This message had to get sent to an expression already on the stack\n\tas a Block argument being accessed by the debugger.\n\tJust re-route it to the temp frame."' Comment
@@ -20431,7 +20431,7 @@
 '\n'          Text
 
 'fileReaderServicesForDirectory:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aFileDirectory' Name.Variable
 '\n\t'        Text
 '"Backstop"'  Comment
@@ -20450,11 +20450,11 @@
 '\n'          Text
 
 'fileReaderServicesForFile:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'fullName'    Name.Variable
 ' '           Text
 'suffix:'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'suffix'      Name.Variable
 '\n\t'        Text
 '"Backstop"'  Comment
@@ -20640,11 +20640,11 @@
 '\n'          Text
 
 'instanceOfUniqueClassWithInstVarString:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'instVarString' Name.Variable
 ' '           Text
 'andClassInstVarString:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'classInstVarString' Name.Variable
 '\n\t'        Text
 '"Create a unique class for the receiver, and answer an instance of it"' Comment
@@ -20690,7 +20690,7 @@
 '\n'          Text
 
 'newFrom:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSimilarObject' Name.Variable
 '\n\t'        Text
 '"Create an object that has similar contents to aSimilarObject.\n\tIf the classes have any instance varaibles with the same names, copy them across.\n\tIf this is bad for a class, override this method."' Comment
@@ -20738,11 +20738,11 @@
 '\n'          Text
 
 'newUniqueClassInstVars:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'instVarString' Name.Variable
 ' '           Text
 'classInstVars:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'classInstVarString' Name.Variable
 '\n\t'        Text
 '"Create a unique class for the receiver"' Comment
@@ -20864,7 +20864,7 @@
 '\n'          Text
 
 'readCarefullyFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'textStringOrStream' Name.Variable
 '\n\t'        Text
 '"Create an object based on the contents of textStringOrStream.  Return an error instead of putting up a SyntaxError window."' Comment
@@ -20956,7 +20956,7 @@
 '\n'          Text
 
 'readFrom:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'textStringOrStream' Name.Variable
 '\n\t'        Text
 '"Create an object based on the contents of textStringOrStream."' Comment
@@ -21034,15 +21034,15 @@
 '\n'          Text
 
 'createFrom:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'aSmartRefStream' Name.Variable
 ' '           Text
 'size:'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'varsOnDisk'  Name.Variable
 ' '           Text
 'version:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'instVarList' Name.Variable
 '\n\t'        Text
 '"Create an instance of me so objects on the disk can be read in.  Tricky part is computing the size if variable.  Inst vars will be filled in later.  "' Comment

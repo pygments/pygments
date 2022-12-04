@@ -1,4 +1,4 @@
-'   '         Text
+'   '         Text.Whitespace
 '## a comment' Comment
 '\n'          Other
 
@@ -15,7 +15,7 @@
 'comment'     Other
 '\n'          Other
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'if'          Keyword
@@ -47,10 +47,10 @@
 'choose'      Keyword
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ' '           Text
 '=='          Operator
@@ -65,15 +65,15 @@
 '0'           Other
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'end'         Keyword
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text
 '=='          Operator
@@ -88,12 +88,12 @@
 '1'           Other
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'end'         Keyword
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'otherwise'   Keyword
 '\n'          Other
@@ -105,18 +105,18 @@
 '2'           Other
 '\n'          Other
 
-'  '          Text
+'  '          Text.Whitespace
 '#'           Comment.Preproc
 'end'         Keyword
 '\n'          Other
 
 '#'           Comment.Preproc
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-- comment about choose' Comment
 '\n'          Other
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'for'         Keyword
@@ -141,11 +141,11 @@
 'end'         Keyword
 '\n'          Other
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Function
 '('           Punctuation
 'name'        Name
@@ -176,11 +176,11 @@
 '}'           Comment.Preproc
 '\n'          Other
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'with'        Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '='           Operator
 '7'           Literal.Number.Integer

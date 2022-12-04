@@ -8,7 +8,7 @@ class TestClass():
 
 ---tokens---
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'TestClass'   Name.Class
 '('           Punctuation
 ')'           Punctuation
@@ -21,7 +21,7 @@ class TestClass():
 
 '    '        Text
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'hello'       Name.Function
 '('           Punctuation
 'cls'         Name.Builtin.Pseudo

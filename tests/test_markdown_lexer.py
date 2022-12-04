@@ -60,7 +60,7 @@ def test_atx_heading(lexer):
     for fragment in fragments:
         tokens = [
             (Generic.Heading, fragment),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -95,7 +95,7 @@ def test_atx_subheading(lexer):
     for fragment in fragments:
         tokens = [
             (Generic.Subheading, fragment),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -126,9 +126,9 @@ def test_setext_heading(lexer):
     for fragment in fragments:
         tokens = [
             (Generic.Heading, fragment.split('\n')[0]),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
             (Generic.Heading, fragment.split('\n')[1]),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -159,9 +159,9 @@ def test_setext_subheading(lexer):
     for fragment in fragments:
         tokens = [
             (Generic.Subheading, fragment.split('\n')[0]),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
             (Generic.Subheading, fragment.split('\n')[1]),
-            (Token.Text, '\n'),
+            (Token.Text.Whitespace, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 

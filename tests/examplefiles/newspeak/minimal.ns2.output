@@ -1,7 +1,7 @@
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -9,7 +9,7 @@
 '|'           Operator
 ' '           Text
 'a'           Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'self'        Keyword
@@ -24,7 +24,7 @@
 '('           Punctuation
 '\n    '      Text
 'm'           Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -51,9 +51,9 @@
 '\n'          Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'C'           Name.Variable
@@ -63,13 +63,13 @@
 '|'           Operator
 ' '           Text
 'b0'          Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '0.'          Literal.Number.Float
 ' '           Text
 'b1'          Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'b0'          Name.Variable

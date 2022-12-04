@@ -146,7 +146,7 @@
 
 '>>> '        Generic.Prompt
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Baz'         Name.Class
 ' '           Text
 '{'           Punctuation
@@ -157,7 +157,7 @@
 'public'      Keyword
 ' '           Text
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'getBaz'      Name.Function
 '()'          Punctuation
 ':'           Operator

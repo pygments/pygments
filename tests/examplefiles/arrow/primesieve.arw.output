@@ -17,7 +17,7 @@
 '| '          Punctuation
 'bool'        Keyword.Type
 '[]'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'primes'      Name.Variable
 '['           Punctuation
 'max'         Name.Variable
@@ -48,7 +48,7 @@
 
 '| \n| '      Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 '\n'          Text.Whitespace
 
@@ -99,7 +99,7 @@
 
 '|\n| '       Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'firstPrime'  Name.Variable
 '\n'          Text.Whitespace
 
@@ -117,7 +117,7 @@
 
 '| | '        Punctuation
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'firstIsComposite' Name.Variable
 '\n'          Text.Whitespace
 
@@ -219,7 +219,7 @@
 
 '| | | '      Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'composite'   Name.Variable
 '\n'          Text.Whitespace
 
@@ -313,7 +313,7 @@
 '\n'          Text.Whitespace
 
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'max'         Name.Variable
 '\n'          Text.Whitespace
 
@@ -326,7 +326,7 @@
 
 'bool'        Keyword.Type
 '[]'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'primes'      Name.Variable
 '\n'          Text.Whitespace
 

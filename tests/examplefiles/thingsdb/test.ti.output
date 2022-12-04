@@ -48,7 +48,7 @@
 '\n'          Text.Whitespace
 
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
@@ -284,7 +284,7 @@
 '\n'          Text.Whitespace
 
 '.iris'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -313,7 +313,7 @@
 '\n'          Text.Whitespace
 
 '.arr'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '['           Punctuation
@@ -331,7 +331,7 @@
 '\n'          Text.Whitespace
 
 'cato'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -341,7 +341,7 @@
 '\n'          Text.Whitespace
 
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -367,7 +367,7 @@
 '\n'          Text.Whitespace
 
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
 ' '           Text.Whitespace
@@ -387,12 +387,12 @@
 '\n'          Text.Whitespace
 
 'bool'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
 ' '           Text.Whitespace
@@ -403,7 +403,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
 ' '           Text.Whitespace

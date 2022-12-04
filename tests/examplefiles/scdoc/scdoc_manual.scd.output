@@ -75,7 +75,7 @@
 
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '*name*'      Generic.Strong
 '('           Text
 '_section_)'  Text
@@ -89,10 +89,10 @@
 'header"]]'   Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*name*'      Generic.Strong
-' '           Text
+' '           Text.Whitespace
 'is'          Text
 ' '           Text
 'the'         Text
@@ -114,9 +114,9 @@
 'writing,'    Text
 ' '           Text
 'and'         Text
-' '           Text
+' '           Text.Whitespace
 '_section_'   Generic.Emph
-' '           Text
+' '           Text.Whitespace
 'is'          Text
 ' '           Text
 'the'         Text
@@ -131,7 +131,7 @@
 'for'         Text
 ' '           Text
 '(see'        Text
-' '           Text
+' '           Text.Whitespace
 '*man*'       Generic.Strong
 '('           Text
 '1)'          Text
@@ -193,9 +193,9 @@
 'page,'       Text
 ' '           Text
 'and'         Text
-' '           Text
+' '           Text.Whitespace
 '*must*'      Generic.Strong
-' '           Text
+' '           Text.Whitespace
 'be'          Text
 '\n'          Text.Whitespace
 
@@ -379,13 +379,13 @@
 'be'          Text
 ' '           Text
 'made'        Text
-' '           Text
+' '           Text.Whitespace
 '*bold*'      Generic.Strong
-' '           Text
+' '           Text.Whitespace
 'or'          Text
-' '           Text
+' '           Text.Whitespace
 '_underlined_' Generic.Emph
-' '           Text
+' '           Text.Whitespace
 'with'        Text
 ' '           Text
 'asterisks'   Text
@@ -508,7 +508,7 @@
 'and'         Text
 ' '           Text
 'most'        Text
-' '           Text
+' '           Text.Whitespace
 '_formatting_' Generic.Emph
 '.'           Text
 '\n'          Text.Whitespace
@@ -593,40 +593,40 @@
 'this:'       Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Item'        Text
 ' '           Text
 '1'           Text
 '\n'          Text.Whitespace
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Item'        Text
 ' '           Text
 '2'           Text
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Subitem'     Text
 ' '           Text
 '1'           Text
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Subitem'     Text
 ' '           Text
 '2'           Text
 '\n'          Text.Whitespace
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Item'        Text
 ' '           Text
 '3'           Text
@@ -701,10 +701,10 @@
 '```'         Literal.String
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Item'        Text
 ' '           Text
 '1'           Text
@@ -736,7 +736,7 @@
 '\n'          Text.Whitespace
 
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'Item'        Text
 ' '           Text
 '2'           Text
@@ -746,9 +746,9 @@
 'shorter'     Text
 '\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-'           Keyword
-' '           Text
+' '           Text.Whitespace
 'But'         Text
 ' '           Text
 'its'         Text
@@ -1196,23 +1196,23 @@
 '\n'          Text.Whitespace
 
 '[['          Text
-' '           Text
+' '           Text.Whitespace
 '*Foo*'       Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':-'          Text
-' '           Text
+' '           Text.Whitespace
 '_Bar_'       Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':-'          Text
 '\n'          Text.Whitespace
 
 '|'           Text
 ' '           Text
-' '           Text
+' '           Text.Whitespace
 '*Row 1*'     Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Text
 ' '           Text
@@ -1227,9 +1227,9 @@
 
 '|'           Text
 ' '           Text
-' '           Text
+' '           Text.Whitespace
 '*Row 2*'     Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Text
 ' '           Text
@@ -1561,7 +1561,7 @@
 '#'           Generic.Heading
 ' SEE ALSO\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*scdoc*'     Generic.Strong
 '('           Text

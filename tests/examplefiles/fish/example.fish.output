@@ -58,7 +58,7 @@
 '# Powerline glyphs\n' Comment
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_branch_glyph' Text
 '            ' Text
 '\\u'         Literal.String.Escape
@@ -66,7 +66,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_ln_glyph' Text
 '                ' Text
 '\\u'         Literal.String.Escape
@@ -74,7 +74,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_padlock_glyph' Text
 '           ' Text
 '\\u'         Literal.String.Escape
@@ -82,7 +82,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_right_black_arrow_glyph' Text
 ' '           Text
 '\\u'         Literal.String.Escape
@@ -90,7 +90,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_right_arrow_glyph' Text
 '       '     Text
 '\\u'         Literal.String.Escape
@@ -98,7 +98,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_left_black_arrow_glyph' Text
 '  '          Text
 '\\u'         Literal.String.Escape
@@ -106,7 +106,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_left_arrow_glyph' Text
 '        '    Text
 '\\u'         Literal.String.Escape
@@ -116,7 +116,7 @@
 '# Additional glyphs\n' Comment
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_detached_glyph' Text
 '          '  Text
 '\\u'         Literal.String.Escape
@@ -124,28 +124,28 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_nonzero_exit_glyph' Text
 '      '      Text
 "'! '"        Literal.String.Single
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_superuser_glyph' Text
 '         '   Text
 "'$ '"        Literal.String.Single
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_bg_job_glyph' Text
 '            ' Text
 "'% '"        Literal.String.Single
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_hg_glyph' Text
 '                ' Text
 '\\u'         Literal.String.Escape
@@ -155,7 +155,7 @@
 '# Python glyphs\n' Comment
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_superscript_glyph' Text
 '       '     Text
 '\\u'         Literal.String.Escape
@@ -169,7 +169,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_virtualenv_glyph' Text
 '        '    Text
 '\\u'         Literal.String.Escape
@@ -177,7 +177,7 @@
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_pypy_glyph' Text
 '              ' Text
 '\\u'         Literal.String.Escape
@@ -187,126 +187,126 @@
 '# Colors\n'  Comment
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_green' Text
 '   '         Text
 'addc10'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_med_green' Text
 '  '          Text
 '189303'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_green' Text
 '   '         Text
 '0c4801'      Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_red' Text
 '     '       Text
 'C99'         Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_med_red' Text
 '    '        Text
 'ce000f'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_red' Text
 '     '       Text
 '600'         Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_slate_blue' Text
 ' '           Text
 '255e87'      Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_orange' Text
 '  '          Text
 'f6b117'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_orange' Text
 '  '          Text
 '3a2a03'      Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_grey' Text
 '    '        Text
 '333'         Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_med_grey' Text
 '   '         Text
 '999'         Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_grey' Text
 '    '        Text
 'ccc'         Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_brown' Text
 '   '         Text
 '4d2600'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_med_brown' Text
 '  '          Text
 '803F00'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_brown' Text
 '   '         Text
 'BF5E00'      Text
 '\n\n'        Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_dk_blue' Text
 '    '        Text
 '1E2933'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_med_blue' Text
 '   '         Text
 '275379'      Text
 '\n'          Text
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_lt_blue' Text
 '    '        Text
 '326D9E'      Text
@@ -321,7 +321,7 @@
 '\n'          Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_git' Text
 ' '           Text
 '-d'          Text
@@ -343,7 +343,7 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'command '    Name.Builtin
 'git'         Text
 ' '           Text
@@ -360,10 +360,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_hg' Text
 ' '           Text
 '-d'          Text
@@ -385,7 +385,7 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'command '    Name.Builtin
 'hg'          Text
 ' '           Text
@@ -401,10 +401,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_git_branch' Text
 ' '           Text
 '-d'          Text
@@ -471,7 +471,7 @@
 ')'           Operator
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ref'         Text
 ' '           Text
 '"'           Literal.String.Double
@@ -481,7 +481,7 @@
 '"'           Literal.String.Double
 '\n  '        Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '$ref'        Name.Variable
@@ -498,10 +498,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_hg_branch' Text
 ' '           Text
 '-d'          Text
@@ -562,10 +562,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_pretty_parent' Text
 ' '           Text
 '-d'          Text
@@ -611,10 +611,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_git_project_dir' Text
 ' '           Text
 '-d'          Text
@@ -632,10 +632,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_hg_project_dir' Text
 ' '           Text
 '-d'          Text
@@ -651,10 +651,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_project_pwd' Text
 ' '           Text
 '-d'          Text
@@ -696,7 +696,7 @@
 '\n'          Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_start_segment' Text
 ' '           Text
 '-d'          Text
@@ -802,11 +802,11 @@
 ']'           Operator
 '\n    '      Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_current_bg' Text
 ' '           Text
 '$argv'       Name.Variable
@@ -816,10 +816,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_path_segment' Text
 ' '           Text
 '-d'          Text
@@ -827,7 +827,7 @@
 "'Display a shortened form of a directory'" Literal.String.Single
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-w'          Text
@@ -844,7 +844,7 @@
 '$__bobthefish_med_grey' Name.Variable
 '\n  '        Text
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '__bobthefish_start_segment' Text
 ' '           Text
 '$__bobthefish_dk_red' Name.Variable
@@ -852,7 +852,7 @@
 '$__bobthefish_lt_red' Name.Variable
 '\n  '        Text
 'end'         Keyword
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -877,7 +877,7 @@
 '/'           Text
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'directory'   Text
 ' '           Text
 "'/'"         Literal.String.Single
@@ -889,7 +889,7 @@
 '"'           Literal.String.Double
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'directory'   Text
 ' '           Text
 "'~'"         Literal.String.Single
@@ -899,7 +899,7 @@
 "'*'"         Literal.String.Single
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'parent'      Text
 '    '        Text
 '('           Operator
@@ -912,7 +912,7 @@
 ')'           Operator
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'parent'      Text
 '    '        Text
 '"'           Literal.String.Double
@@ -921,7 +921,7 @@
 '"'           Literal.String.Double
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'directory'   Text
 ' '           Text
 '('           Operator
@@ -934,7 +934,7 @@
 ')'           Operator
 '\n  '        Text
 'end'         Keyword
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -943,7 +943,7 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -973,10 +973,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_finish_segments' Text
 ' '           Text
 '-d'          Text
@@ -1025,7 +1025,7 @@
 'normal'      Text
 '\n  '        Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-g'          Text
@@ -1047,7 +1047,7 @@
 '\n'          Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_status' Text
 ' '           Text
 '-d'          Text
@@ -1088,7 +1088,7 @@
 ']'           Operator
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'nonzero'     Text
 ' '           Text
 '$__bobthefish_nonzero_exit_glyph' Name.Variable
@@ -1125,7 +1125,7 @@
 ']'           Operator
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'superuser'   Text
 ' '           Text
 '$__bobthefish_superuser_glyph' Name.Variable
@@ -1158,13 +1158,13 @@
 ']'           Operator
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'bg_jobs'     Text
 ' '           Text
 '$__bobthefish_bg_job_glyph' Name.Variable
 '\n  '        Text
 'end'         Keyword
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -1178,7 +1178,7 @@
 '"'           Literal.String.Double
 '\n\n  '      Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1226,7 +1226,7 @@
 '$__bobthefish_nonzero_exit_glyph' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 ' '           Text
 '['           Operator
@@ -1250,7 +1250,7 @@
 '$__bobthefish_superuser_glyph' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
 ' '           Text
 '['           Operator
@@ -1274,18 +1274,18 @@
 '$__bobthefish_bg_job_glyph' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'set_color '  Name.Builtin
 'normal'      Text
 '\n  '        Text
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_user' Text
 ' '           Text
 '-d'          Text
@@ -1368,15 +1368,15 @@
 "' '"         Literal.String.Single
 '\n    '      Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_hg' Text
 ' '           Text
 '-d'          Text
@@ -1397,7 +1397,7 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1423,9 +1423,9 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flags'       Text
 ' '           Text
 '""'          Literal.String.Double
@@ -1447,7 +1447,7 @@
 '$__bobthefish_dk_green' Name.Variable
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1455,19 +1455,19 @@
 '"'           Literal.String.Double
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_bg'     Text
 ' '           Text
 '$__bobthefish_med_red' Name.Variable
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_fg'     Text
 ' '           Text
 'fff'         Text
 '\n  '        Text
 'end'         Keyword
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '__bobthefish_path_segment' Text
 ' '           Text
 '('           Operator
@@ -1534,7 +1534,7 @@
 ')'           Operator
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1542,7 +1542,7 @@
 '"'           Literal.String.Double
 '\n    '      Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-w'          Text
@@ -1558,7 +1558,7 @@
 '999'         Text
 '\n    '      Text
 'else'        Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 '__bobthefish_start_segment' Text
 ' '           Text
 '$__bobthefish_med_red' Name.Variable
@@ -1566,7 +1566,7 @@
 '$__bobthefish_lt_red' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1578,7 +1578,7 @@
 "' '"         Literal.String.Single
 '\n  '        Text
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 '\n\n'        Text
@@ -1586,7 +1586,7 @@
 '# TODO: clean up the fugly $ahead business\n' Comment
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_git' Text
 ' '           Text
 '-d'          Text
@@ -1613,7 +1613,7 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1643,7 +1643,7 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1677,7 +1677,7 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1760,9 +1760,9 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Text
 ' '           Text
 "'…'"         Literal.String.Single
@@ -1789,9 +1789,9 @@
 ';'           Punctuation
 ' '           Text
 'and'         Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flags'       Text
 ' '           Text
 '"'           Literal.String.Double
@@ -1816,7 +1816,7 @@
 '$__bobthefish_dk_green' Name.Variable
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1830,21 +1830,21 @@
 '"'           Literal.String.Double
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_bg'     Text
 ' '           Text
 '$__bobthefish_med_red' Name.Variable
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_fg'     Text
 ' '           Text
 'fff'         Text
 '\n  '        Text
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1852,21 +1852,21 @@
 '"'           Literal.String.Double
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_bg'     Text
 ' '           Text
 '$__bobthefish_lt_orange' Name.Variable
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_fg'     Text
 ' '           Text
 '$__bobthefish_dk_orange' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '__bobthefish_path_segment' Text
 ' '           Text
 '('           Operator
@@ -1917,7 +1917,7 @@
 ')'           Operator
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -1925,7 +1925,7 @@
 '"'           Literal.String.Double
 '\n    '      Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-w'          Text
@@ -1941,7 +1941,7 @@
 '999'         Text
 '\n    '      Text
 'else'        Keyword
-'\n      '    Text
+'\n      '    Text.Whitespace
 '__bobthefish_start_segment' Text
 ' '           Text
 '$__bobthefish_med_red' Name.Variable
@@ -1949,7 +1949,7 @@
 '$__bobthefish_lt_red' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '-n'          Text
@@ -1961,13 +1961,13 @@
 "' '"         Literal.String.Single
 '\n  '        Text
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_dir' Text
 ' '           Text
 '-d'          Text
@@ -1982,10 +1982,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_virtualfish_virtualenv' Text
 '\n  '        Text
 'set'         Keyword
@@ -1996,10 +1996,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_virtualenv_python_version' Text
 ' '           Text
 '-d'          Text
@@ -2019,7 +2019,7 @@
 ')'           Operator
 '\n    '      Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'python2'     Text
 '\n      '    Text
 'echo'        Keyword
@@ -2030,7 +2030,7 @@
 ']'           Operator
 '\n    '      Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'python3'     Text
 '\n      '    Text
 'echo'        Keyword
@@ -2041,7 +2041,7 @@
 ']'           Operator
 '\n    '      Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'pypy'        Text
 '\n      '    Text
 'echo'        Keyword
@@ -2049,13 +2049,13 @@
 '$__bobthefish_pypy_glyph' Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_virtualenv' Text
 ' '           Text
 '-d'          Text
@@ -2079,10 +2079,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_prompt_virtualfish' Text
 ' '           Text
 '-d'          Text
@@ -2090,13 +2090,13 @@
 '"Display activated virtual environment (only for virtualfish, virtualenv\'s activate.fish changes prompt by itself)"' Literal.String.Double
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_bg'     Text
 ' '           Text
 '$__bobthefish_lt_blue' Name.Variable
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'flag_fg'     Text
 ' '           Text
 '$__bobthefish_dk_blue' Name.Variable
@@ -2143,7 +2143,7 @@
 '\n'          Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_prompt' Name.Builtin
 ' '           Text
 '-d'          Text
@@ -2155,15 +2155,15 @@
 '__bobthefish_prompt_user' Text
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_virtualfish_virtualenv' Text
 '\n    '      Text
 '__bobthefish_prompt_virtualfish' Text
 '\n  '        Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_git' Text
 '       '     Text
 '# TODO: do this right.\n' Comment
@@ -2175,9 +2175,9 @@
 
 '  '          Text
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '__bobthefish_in_hg' Text
 '   '         Text
 '# __bobthefish_git_project_dir vs __bobthefish_hg_project_dir\n' Comment
@@ -2189,11 +2189,11 @@
 
 '  '          Text
 'else'        Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '__bobthefish_prompt_dir' Text
 '\n  '        Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '__bobthefish_finish_segments' Text
 '\n'          Text
 
@@ -2225,7 +2225,7 @@
 '\n'          Text
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'funced'      Name.Builtin
 ' '           Text
 '--description' Text
@@ -2253,7 +2253,7 @@
 'funcname'    Text
 '\n    '      Text
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-q'          Text
@@ -2280,7 +2280,7 @@
 ' '           Text
 'funced\n                ' Name.Builtin
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Text
 '\n\n            ' Text
 'case'        Keyword
@@ -2290,7 +2290,7 @@
 '--editor'    Text
 '\n                ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'editor'      Text
 ' '           Text
 '$argv'       Name.Variable
@@ -2314,7 +2314,7 @@
 '--interactive' Text
 '\n                ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'interactive' Text
 ' '           Text
 '1'           Text
@@ -2324,7 +2324,7 @@
 '--'          Text
 '\n                ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'funcname'    Text
 ' '           Text
 '$funcname'   Name.Variable
@@ -2369,7 +2369,7 @@
 'normal'      Text
 '\n                ' Text
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
 '\n\n            ' Text
 'case'        Keyword
@@ -2379,7 +2379,7 @@
 "'.*'"        Literal.String.Single
 '\n                ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'funcname'    Text
 ' '           Text
 '$funcname'   Name.Variable
@@ -2390,7 +2390,7 @@
 ']'           Operator
 '\n        '  Text
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-e'          Text
@@ -2401,9 +2401,9 @@
 ']'           Operator
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'begin'       Keyword
 ';'           Punctuation
 ' '           Text
@@ -2418,9 +2418,9 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -2430,7 +2430,7 @@
 ';'           Punctuation
 ' '           Text
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'set_color '  Name.Builtin
 'red'         Text
 '\n        '  Text
@@ -2442,11 +2442,11 @@
 'normal'      Text
 '\n        '  Text
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -2462,7 +2462,7 @@
 "'-*'"        Literal.String.Single
 '\n        '  Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'init'        Text
 ' '           Text
 'function'    Keyword
@@ -2479,7 +2479,7 @@
 "'*'"         Literal.String.Single
 '\n        '  Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'init'        Text
 ' '           Text
 'function'    Keyword
@@ -2495,7 +2495,7 @@
 
 '    '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-n'          Text
@@ -2512,15 +2512,15 @@
 '\n        '  Text
 'eval '       Name.Builtin
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'editor_cmd'  Text
 ' '           Text
 '$editor'     Name.Variable
 '\n        '  Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Builtin
 ' '           Text
 '-f'          Text
@@ -2544,19 +2544,19 @@
 '"'           Literal.String.Double
 '\n            ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'editor'      Text
 ' '           Text
 'fish\n        ' Name.Builtin
 'end'         Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'end'         Keyword
 '\n\n    '    Text
 '# If no editor is specified, use fish\n' Comment
 
 '    '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-z'          Text
@@ -2566,14 +2566,14 @@
 '"'           Literal.String.Double
 '\n        '  Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'editor'      Text
 ' '           Text
 'fish\n    '  Name.Builtin
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'begin'       Keyword
 ';'           Punctuation
 ' '           Text
@@ -2588,7 +2588,7 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '"'           Literal.String.Double
@@ -2601,7 +2601,7 @@
 ';'           Punctuation
 ' '           Text
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -2609,7 +2609,7 @@
 'IFS'         Text
 '\n        '  Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'functions'   Name.Builtin
 ' '           Text
 '-q'          Text
@@ -2622,7 +2622,7 @@
 
 '            ' Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'init'        Text
 ' '           Text
 '('           Operator
@@ -2640,7 +2640,7 @@
 ')'           Operator
 '\n        '  Text
 'end'         Keyword
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -2661,7 +2661,7 @@
 'IFS'         Text
 '\n        '  Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'read'        Name.Builtin
 ' '           Text
 '-p'          Text
@@ -2702,13 +2702,13 @@
 ')'           Operator
 '\n        '  Text
 'end'         Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Text
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-q'          Text
@@ -2717,7 +2717,7 @@
 ';'           Punctuation
 ' '           Text
 'or'          Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -2748,7 +2748,7 @@
 ')'           Operator
 '\n    '      Text
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-f'          Text
@@ -2756,7 +2756,7 @@
 '$tmpname'    Name.Variable
 '\n        '  Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'tmpname'     Text
 ' '           Text
 '('           Operator
@@ -2775,9 +2775,9 @@
 ')'           Operator
 '\n    '      Text
 'end'         Keyword
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'functions'   Name.Builtin
 ' '           Text
 '-q'          Text
@@ -2797,7 +2797,7 @@
 '$tmpname'    Name.Variable
 '\n    '      Text
 'else'        Keyword
-'\n        '  Text
+'\n        '  Text.Whitespace
 'echo'        Keyword
 ' '           Text
 '$init'       Name.Variable
@@ -2807,9 +2807,9 @@
 '$tmpname'    Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Builtin
 ' '           Text
 '$editor'     Name.Variable
@@ -2821,7 +2821,7 @@
 '$tmpname'    Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-l'          Text
@@ -2898,7 +2898,7 @@
 '\n\n'        Text
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-q'          Text
@@ -2906,7 +2906,7 @@
 'XDG_CONFIG_HOME' Text
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'configdir'   Text
 ' '           Text
 '$XDG_CONFIG_HOME' Name.Variable
@@ -2928,9 +2928,9 @@
 '\n'          Text
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-q'          Text
@@ -2938,7 +2938,7 @@
 'fish_function_path' Text
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_function_path' Text
 ' '           Text
 '$configdir'  Name.Variable
@@ -2952,12 +2952,12 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'contains'    Name.Builtin
 ' '           Text
 '$__fish_datadir' Name.Variable
@@ -2966,7 +2966,7 @@
 '$fish_function_path' Name.Variable
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_function_path' Text
 '['           Operator
 '-1'          Text
@@ -2977,12 +2977,12 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 '-q'          Text
@@ -2990,7 +2990,7 @@
 'fish_complete_path' Text
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_complete_path' Text
 ' '           Text
 '$configdir'  Name.Variable
@@ -3004,12 +3004,12 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'contains'    Name.Builtin
 ' '           Text
 '$__fish_datadir' Name.Variable
@@ -3018,7 +3018,7 @@
 '$fish_complete_path' Name.Variable
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_complete_path' Text
 '['           Operator
 '-1'          Text
@@ -3048,7 +3048,7 @@
 '\n'          Text
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-d'          Text
@@ -3056,9 +3056,9 @@
 '/usr/xpg4/bin' Text
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'contains'    Name.Builtin
 ' '           Text
 '/usr/xpg4/bin' Text
@@ -3066,7 +3066,7 @@
 '$PATH'       Name.Variable
 '\n    '      Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PATH'        Text
 ' '           Text
 '/usr/xpg4/bin' Text
@@ -3074,7 +3074,7 @@
 '$PATH'       Name.Variable
 '\n  '        Text
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 '\n\n'        Text
@@ -3115,11 +3115,11 @@
 '$USER'       Name.Variable
 '\n  '        Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'root'        Text
 '\n  '        Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'path_list'   Text
 ' '           Text
 '$path_list'  Name.Variable
@@ -3132,10 +3132,10 @@
 '\n'          Text
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 ' '           Text
 'in'          Keyword
@@ -3143,9 +3143,9 @@
 '$path_list'  Name.Variable
 '\n  '        Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'contains'    Name.Builtin
 ' '           Text
 '$i'          Name.Variable
@@ -3153,7 +3153,7 @@
 '$PATH'       Name.Variable
 '\n    '      Text
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'test'        Keyword
 ' '           Text
 '-d'          Text
@@ -3161,7 +3161,7 @@
 '$i'          Name.Variable
 '\n      '    Text
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PATH'        Text
 ' '           Text
 '$PATH'       Name.Variable
@@ -3169,9 +3169,9 @@
 '$i'          Name.Variable
 '\n    '      Text
 'end'         Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 '\n\n'        Text
@@ -3183,7 +3183,7 @@
 '#\n'         Comment
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 'fish_sigtrap_handler' Text
 ' '           Text
 '--on-signal' Text
@@ -3212,7 +3212,7 @@
 '#\n'         Comment
 
 'function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '__fish_on_interactive' Text
 ' '           Text
 '--on-event'  Text

@@ -18,30 +18,30 @@
 '\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
-' '           Comment.Multiline
+' '           Text.Whitespace
 '"imx6q.dtsi"' Comment.PreprocFile
 '\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
-' '           Comment.Multiline
+' '           Text.Whitespace
 '<dt-bindings/pwm/pwm.h>' Comment.PreprocFile
 '\n'          Text.Whitespace
 
 '/include/'   Comment.Preproc
-' '           Comment.Multiline
+' '           Text.Whitespace
 '"tps65217.dtsi"' Comment.PreprocFile
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 '/'           Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
 'aliases'     Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -96,7 +96,7 @@
 'memory'      Name.Function
 '@'           Operator
 '10000000'    Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -133,7 +133,7 @@
 
 '        '    Text.Whitespace
 '/delete-property/' Comment.Preproc
-' '           Comment.Multiline
+' '           Text.Whitespace
 'uart'        Comment.Preproc
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -145,7 +145,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'regulator-usb-otg-vbus' Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -206,7 +206,7 @@
 
 '&'           Operator
 'can1'        Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -252,7 +252,7 @@
 
 '&'           Operator
 'ecspi1'      Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -322,7 +322,7 @@
 'flash'       Name.Function
 '@'           Operator
 '0'           Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\t'          Text.Whitespace
 '/* S25FL116K */' Comment.Multiline
@@ -403,7 +403,7 @@
 
 '&'           Operator
 'fec'         Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -468,7 +468,7 @@
 
 '\t'          Text.Whitespace
 'mdio'        Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -503,7 +503,7 @@
 'ethernet-phy' Name.Function
 '@'           Operator
 '0'           Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\t'          Text.Whitespace
 '/* SMSC LAN8710Ai */' Comment.Multiline
@@ -587,7 +587,7 @@
 
 '&'           Operator
 'i2c3'        Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -645,7 +645,7 @@
 'pmic'        Name.Function
 '@'           Operator
 '3c'          Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -723,7 +723,7 @@
 
 '\t\t'        Text.Whitespace
 'regulators'  Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -732,7 +732,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'sw1'         Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -828,7 +828,7 @@
 'touchscreen' Name.Function
 '@'           Operator
 '49'          Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\t'          Text.Whitespace
 '/* TSC2004 */' Comment.Multiline
@@ -933,7 +933,7 @@
 
 '&'           Operator
 'iomuxc'      Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -967,7 +967,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'hog-base-grp' Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1028,7 +1028,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'enet-100M-grp' Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1140,7 +1140,7 @@
 
 '&'           Operator
 'usdhc4'      Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1211,7 +1211,7 @@
 '\n'          Text.Whitespace
 
 '/'           Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1334,7 +1334,7 @@
 
 '\t'          Text.Whitespace
 'soc'         Name.Function
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1375,7 +1375,7 @@
 'qcom,rpm-rbcpr-stats' Name.Function
 '@'           Operator
 '0x200000'    Literal.Number.Integer
-' '           Comment.Multiline
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 

@@ -181,10 +181,10 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Keyword
-' '           Text
+' '           Text.Whitespace
 '<code>'      Name.Tag
 '&#96;'       Literal.String.Regex
 'backticks'   Text
@@ -197,7 +197,7 @@
 '\n'          Text.Whitespace
 
 '**'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Alternatively' Text
 ','           Text
 ' '           Text
@@ -220,13 +220,13 @@
 '</code>'     Name.Tag
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '*'           Keyword
-' '           Text
+' '           Text.Whitespace
 "`''bold''`"  Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 "''bold text''" Generic.Strong
 '\n'          Text.Whitespace
 
@@ -234,7 +234,7 @@
 '`//italic//`' Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 '//italic text//' Generic.Emph
 ' '           Text
 '('           Text
@@ -245,11 +245,11 @@
 '\n'          Text.Whitespace
 
 '*#'          Keyword
-' '           Text
+' '           Text.Whitespace
 '`__underscore__`' Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 '__underscored text__' Generic.Strong
 '\n'          Text.Whitespace
 
@@ -261,14 +261,14 @@
 ':'           Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Keyword
-' '           Text
+' '           Text.Whitespace
 '`^^superscript^^`' Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 '^^superscripted^^' Generic.Emph
 ' '           Text
 'text'        Text
@@ -281,11 +281,11 @@
 '\n'          Text.Whitespace
 
 '#'           Keyword
-' '           Text
+' '           Text.Whitespace
 '`,,subscript,,`' Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 ',,subscripted,,' Generic.Emph
 ' '           Text
 'text'        Text
@@ -298,11 +298,11 @@
 '\n'          Text.Whitespace
 
 '#*'          Keyword
-' '           Text
+' '           Text.Whitespace
 '`~~strikethrough~~`' Literal.String.Backtick
 ' '           Text
 'for'         Text
-' '           Text
+' '           Text.Whitespace
 '~~strikethrough~~' Generic.Deleted
 ' '           Text
 'text'        Text

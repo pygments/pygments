@@ -1657,7 +1657,7 @@
 '\n\n    '    Text
 'set '        Name.Builtin
 'folders'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Operator
@@ -1668,7 +1668,7 @@
 '\n    '      Text
 'set '        Name.Builtin
 'mha'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Operator
@@ -2267,7 +2267,7 @@
 '\n    '      Text
 'set '        Name.Builtin
 '_elispdir'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '/usr/lib/emacs/19.34/lisp' Text
@@ -2276,7 +2276,7 @@
 '\n    '      Text
 'set '        Name.Builtin
 '_maildir'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '/var/spool/mail' Text
@@ -2285,7 +2285,7 @@
 '\n    '      Text
 'set '        Name.Builtin
 '_ypdir'      Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 ' '           Text
 '/var/yp'     Text
@@ -2294,7 +2294,7 @@
 '\n    '      Text
 'set '        Name.Builtin
 '_domain'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '"`dnsdomainname`"' Literal.String.Double

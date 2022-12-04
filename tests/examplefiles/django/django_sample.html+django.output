@@ -1,5 +1,5 @@
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"admin/base_site.html"' Literal.String.Double
@@ -8,7 +8,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'load'        Keyword
 ' '           Text
 'i18n'        Name.Variable
@@ -21,7 +21,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'extrahead'   Name.Variable
@@ -36,7 +36,7 @@
 '\n<script type="text/javascript" src="../../../jsi18n/"></script>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'js'          Name.Variable
@@ -47,55 +47,55 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include_admin_script' Keyword
 ' '           Text
 'js'          Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'stylesheet'  Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'admin_media_prefix' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 'css/forms.css' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'coltype'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'ordered_objects' Name.Variable
@@ -103,25 +103,25 @@
 '%}'          Comment.Preproc
 'colMS'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 'colM'        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bodyclass'   Name.Variable
@@ -143,14 +143,14 @@
 '}}'          Comment.Preproc
 ' change-form' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'userlinks'   Name.Variable
@@ -158,7 +158,7 @@
 '%}'          Comment.Preproc
 '<a href="../../../doc/">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 "'Documentation'" Literal.String.Single
@@ -166,7 +166,7 @@
 '%}'          Comment.Preproc
 '</a> / <a href="../../../password_change/">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 "'Change password'" Literal.String.Single
@@ -174,7 +174,7 @@
 '%}'          Comment.Preproc
 '</a> / <a href="../../../logout/">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 "'Log out'"   Literal.String.Single
@@ -182,21 +182,21 @@
 '%}'          Comment.Preproc
 '</a>'        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'breadcrumbs' Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'not'         Keyword
@@ -206,7 +206,7 @@
 '%}'          Comment.Preproc
 '\n<div class="breadcrumbs">\n     <a href="../../../">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"Home"'      Literal.String.Double
@@ -225,14 +225,14 @@
 '}}'          Comment.Preproc
 '</a> &rsaquo;\n     ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'add'         Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"Add"'       Literal.String.Double
@@ -248,7 +248,7 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -263,26 +263,26 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n</div>\n'  Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -291,14 +291,14 @@
 '<div id="content-main">\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'change'      Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'not'         Keyword
@@ -308,7 +308,7 @@
 '%}'          Comment.Preproc
 '\n  <ul class="object-tools"><li><a href="history/" class="historylink">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"History"'   Literal.String.Double
@@ -316,7 +316,7 @@
 '%}'          Comment.Preproc
 '</a></li>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'has_absolute_url' Name.Variable
@@ -336,7 +336,7 @@
 '}}'          Comment.Preproc
 '/" class="viewsitelink">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"View on site"' Literal.String.Double
@@ -344,24 +344,24 @@
 '%}'          Comment.Preproc
 '</a></li>'   Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 '%}'          Comment.Preproc
 '\n  </ul>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n<form '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'has_file_field' Name.Variable
@@ -369,7 +369,7 @@
 '%}'          Comment.Preproc
 'enctype="multipart/form-data" ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -388,21 +388,21 @@
 '}}'          Comment.Preproc
 '_form">'     Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'form_top'    Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n<div>\n'   Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'is_popup'    Name.Variable
@@ -410,14 +410,14 @@
 '%}'          Comment.Preproc
 '<input type="hidden" name="_popup" value="1" />' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'opts'        Name.Variable
@@ -426,19 +426,19 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'submit_row'  Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'form'        Name.Variable
@@ -447,7 +447,7 @@
 '%}'          Comment.Preproc
 '\n    <p class="errornote">\n    ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'blocktrans'  Keyword
 ' '           Text
 'count'       Name.Variable
@@ -465,27 +465,27 @@
 '%}'          Comment.Preproc
 'Please correct the error below.' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'plural'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 'Please correct the errors below.' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblocktrans' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    </p>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'bound_field_set' Name.Variable
@@ -504,7 +504,7 @@
 '}}'          Comment.Preproc
 '">\n    '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'bound_field_set' Name.Variable
@@ -520,13 +520,13 @@
 '}}'          Comment.Preproc
 '</h2>'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'bound_field_set' Name.Variable
@@ -542,13 +542,13 @@
 '}}'          Comment.Preproc
 '</div>'      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'bound_field_line' Name.Variable
@@ -560,7 +560,7 @@
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'admin_field_line' Keyword
 ' '           Text
 'bound_field_line' Name.Variable
@@ -568,7 +568,7 @@
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'bound_field' Name.Variable
@@ -580,7 +580,7 @@
 '%}'          Comment.Preproc
 '\n            ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter_interface_script_maybe' Keyword
 ' '           Text
 'bound_field' Name.Variable
@@ -588,41 +588,41 @@
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n   </fieldset>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'after_field_sets' Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'change'      Name.Variable
@@ -630,7 +630,7 @@
 '%}'          Comment.Preproc
 '\n   '       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'ordered_objects' Name.Variable
@@ -638,7 +638,7 @@
 '%}'          Comment.Preproc
 '\n   <fieldset class="module"><h2>' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"Ordering"'  Literal.String.Double
@@ -646,7 +646,7 @@
 '%}'          Comment.Preproc
 '</h2>\n   <div class="form-row' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'form'        Name.Variable
@@ -656,13 +656,13 @@
 '%}'          Comment.Preproc
 ' error'      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 ' ">\n   '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'form'        Name.Variable
@@ -678,13 +678,13 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n   <p><label for="id_order_">' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'trans'       Keyword
 ' '           Text
 '"Order:"'    Literal.String.Double
@@ -699,21 +699,21 @@
 '}}'          Comment.Preproc
 '</p>\n   </div></fieldset>\n   ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'related_object' Name.Variable
@@ -724,42 +724,42 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'edit_inline' Keyword
 ' '           Text
 'related_object' Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'after_related_objects' Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'submit_row'  Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'add'         Name.Variable
@@ -774,14 +774,14 @@
 '").focus();</script>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'auto_populated_fields' Name.Variable
@@ -789,7 +789,7 @@
 '%}'          Comment.Preproc
 '\n   <script type="text/javascript">\n   ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'auto_populated_field_script' Keyword
 ' '           Text
 'auto_populated_fields' Name.Variable
@@ -800,14 +800,14 @@
 '\n   </script>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n</div>\n</form></div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc

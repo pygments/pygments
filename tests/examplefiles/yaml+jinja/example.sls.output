@@ -9,7 +9,7 @@
 '\n\n'        Text.Whitespace
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'mnt'         Name.Variable
@@ -128,7 +128,7 @@
 '\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -312,7 +312,7 @@
 '\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'mnt'         Name.Variable
@@ -367,7 +367,7 @@
 '\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc

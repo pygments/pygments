@@ -8,7 +8,7 @@
 'A plan only supports directives so this text is wrong.\n' Generic.Error
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text
 'A'           Text
@@ -27,7 +27,7 @@
 '\n'          Text
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'But'         Text
 ' '           Text
 'a'           Text
@@ -60,7 +60,7 @@
 '\n'          Text
 
 'not ok'      Generic.Error
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ' '           Text
 'This'        Text
@@ -85,7 +85,7 @@
 '\n'          Text
 
 'not ok'      Generic.Error
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ' '           Text
 'There'       Text
@@ -116,7 +116,7 @@
 '\n'          Comment
 
 'not ok'      Generic.Error
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ' '           Text
 '#'           Comment
@@ -148,7 +148,7 @@
 '\n'          Comment
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
 ' '           Text
 '-'           Text
@@ -175,7 +175,7 @@
 '\n'          Text
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ' '           Text
 'A'           Text
@@ -194,7 +194,7 @@
 '\n'          Comment
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number.Integer
 ' '           Text
 'Tests'       Text
@@ -227,7 +227,7 @@
 '\n'          Comment
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '9'           Literal.Number.Integer
 ' '           Text
 'The'         Text
@@ -289,7 +289,7 @@
 '\n'          Text
 
 'not ok'      Generic.Error
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ' '           Text
 'Having'      Text
@@ -324,7 +324,7 @@
 '\n'          Text
 
 'not ok'      Generic.Error
-' '           Text
+' '           Text.Whitespace
 '11'          Literal.Number.Integer
 ' '           Text
 'Having'      Text
@@ -359,7 +359,7 @@
 '\n'          Text
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '12'          Literal.Number.Integer
 ' '           Text
 'Here'        Text
@@ -388,7 +388,7 @@
 '\n'          Text
 
 'ok'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '15'          Literal.Number.Integer
 ' '           Text
 'Only'        Text

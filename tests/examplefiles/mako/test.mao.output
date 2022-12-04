@@ -38,7 +38,7 @@
 '/'           Literal.String.Single
 "'"           Literal.String.Single
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\t\t\t/ '    Other
 '${'          Comment.Preproc
@@ -49,7 +49,7 @@
 '\n\t\t'      Text.Whitespace
 '%'           Comment.Preproc
 ' endif'      Keyword
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\t</title>\n\t<link type="text/css" rel="stylesheet" href="/style.css" />\n</head>\n<body>\n\t<div class="header-wrapper">\n\t    <header>\n\t        <nav>\n\t            <ul>\n' Other
 
@@ -71,7 +71,7 @@
 "'"           Literal.String.Single
 ']'           Punctuation
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\t\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href="' Other
 '${'          Comment.Preproc
@@ -97,7 +97,7 @@
 ' '           Text
 'item'        Name
 ':'           Punctuation
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\t\t\t\t\t\t\t<img src="' Other
 '${'          Comment.Preproc
@@ -113,9 +113,9 @@
 '\t\t\t\t\t\t\t' Text.Whitespace
 '%'           Comment.Preproc
 ' endif'      Keyword
-'\n'          Other
+'\n'          Text.Whitespace
 
-'\t\t\t\t\t\t\t' Other
+'\t\t\t\t\t\t\t' Text.Whitespace
 '${'          Comment.Preproc
 'item'        Name
 '['           Punctuation
@@ -129,7 +129,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 '%'           Comment.Preproc
 ' endfor'     Keyword
-'\n'          Other
+'\n'          Text.Whitespace
 
 '\t\t\t\t</ul>\n\t    \t</nav>\n\t    </header>\n\t</div>\n\t<div id="container">\n\t\t<section id="content">\n\t\t' Other
 '${'          Comment.Preproc

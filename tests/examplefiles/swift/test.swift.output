@@ -185,7 +185,7 @@
 '\n'          Text
 
 'extension'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SKNode'      Name.Builtin.Pseudo
 ' '           Text
 '{'           Punctuation
@@ -193,7 +193,7 @@
 
 '    '        Text
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'func'        Name.Class
 ' '           Text
 'unarchiveFromFile' Name
@@ -215,7 +215,7 @@
 
 '        \n        ' Text
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'path'        Name.Variable
 ' '           Text
 '='           Punctuation
@@ -242,7 +242,7 @@
 
 '        \n        ' Text
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'sceneData'   Name.Variable
 ' '           Text
 '='           Punctuation
@@ -270,7 +270,7 @@
 
 '        '    Text
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'archiver'    Name.Variable
 ' '           Text
 '='           Punctuation
@@ -307,7 +307,7 @@
 
 '        '    Text
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'scene'       Name.Variable
 ' '           Text
 '='           Punctuation
@@ -348,7 +348,7 @@
 '\n'          Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'GameViewController' Name.Class
 ':'           Punctuation
 ' '           Text
@@ -363,7 +363,7 @@
 'override'    Keyword.Reserved
 ' '           Text
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'viewDidLoad' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -385,7 +385,7 @@
 'if'          Keyword
 ' '           Text
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'scene'       Name.Variable
 ' '           Text
 '='           Punctuation
@@ -433,7 +433,7 @@
 
 '            ' Text
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'skView'      Name.Variable
 ' '           Text
 '='           Punctuation
@@ -646,7 +646,7 @@
 'override'    Keyword.Reserved
 ' '           Text
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'shouldAutorotate' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -674,7 +674,7 @@
 'override'    Keyword.Reserved
 ' '           Text
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'supportedInterfaceOrientations' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -758,7 +758,7 @@
 'override'    Keyword.Reserved
 ' '           Text
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'didReceiveMemoryWarning' Name.Function
 '('           Punctuation
 ')'           Punctuation

@@ -1,11 +1,11 @@
 'HTTP'        Keyword.Reserved
 '/'           Operator
 '1.1'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 '200'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 'OK'          Name.Exception
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Date'        Name.Attribute
 ''            Text

@@ -5,11 +5,11 @@
 '\n\n'        Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ShapesExperiment' Name.Class
-' '           Text
+' '           Text.Whitespace
 'usingLib:'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'platform'    Name.Variable
 ' '           Text
 '='           Operator
@@ -23,7 +23,7 @@
 '|'           Operator
 '\n\t'        Text
 'CanvasDependent' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'platform'    Name.Variable
@@ -32,7 +32,7 @@
 '.'           Punctuation
 '\n\t'        Text
 'Presenter'   Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'platform'    Name.Variable
@@ -41,7 +41,7 @@
 '.'           Punctuation
 '\n\t'        Text
 'Subject'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'platform'    Name.Variable
@@ -50,7 +50,7 @@
 '.'           Punctuation
 '\n\t'        Text
 'EllipseShape' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'platform'    Name.Variable
@@ -59,7 +59,7 @@
 '.'           Punctuation
 '\n\t'        Text
 'Color'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'platform'    Name.Variable
@@ -78,9 +78,9 @@
 '\n\n'        Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ShapesExperimentSubject' Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'Subject'     Name.Variable
@@ -104,7 +104,7 @@
 '\n'          Text
 
 'createPresenter' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -115,7 +115,7 @@
 'new'         Name.Variable
 ' '           Text
 'subject:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'self'        Name.Variable
 '.'           Punctuation
 '\n'          Text
@@ -127,9 +127,9 @@
 '\n\n'        Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ShapesExperimentPresenter' Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'Presenter'   Name.Variable
@@ -154,7 +154,7 @@
 '\n'          Text
 
 'controlPoint' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -170,7 +170,7 @@
 '\n\n'        Text
 
 'definition'  Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -194,7 +194,7 @@
 '10'          Literal.Number.Integer
 ' '           Text
 'display:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'controlPoint' Name.Variable
 '.'           Punctuation
 ' \n               ' Text
@@ -207,7 +207,7 @@
 '10'          Literal.Number.Integer
 ' '           Text
 'display:'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'controlPoint' Name.Variable
 '.'           Punctuation
 '\n          ' Text
@@ -223,9 +223,9 @@
 '\n\n'        Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ControlPoint' Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 'CanvasDependent' Name.Variable
@@ -249,7 +249,7 @@
 '\n'          Text
 
 'addVisualsTo:' Name.Function
-' '           Text
+' '           Text.Whitespace
 'container'   Name.Variable
 ' '           Text
 '='           Operator
@@ -259,7 +259,7 @@
 'container'   Name.Variable
 ' '           Text
 'add:'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'visual'      Name.Variable
 '.'           Punctuation
 '\n      '    Text
@@ -271,7 +271,7 @@
 '\n\n'        Text
 
 'createVisual' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '('           Punctuation
@@ -300,7 +300,7 @@
 's'           Name.Variable
 ' '           Text
 'color:'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'Color'       Name.Variable
 ' '           Text
 'red'         Name.Variable

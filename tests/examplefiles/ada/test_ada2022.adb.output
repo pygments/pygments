@@ -1,16 +1,16 @@
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Text_IO' Name
 ';'           Punctuation
 '            ' Text
 'use'         Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Text_IO' Name
 ';'           Punctuation
 '\n'          Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Ada.Containers.Vectors' Name
 ';'           Punctuation
 '\n\n'        Text
@@ -37,7 +37,7 @@
 '       '     Text
 '('           Punctuation
 'Index_Type'  Name.Variable
-'   '         Text
+'   '         Text.Whitespace
 '=>'          Punctuation
 ' '           Text
 'N'           Text
@@ -52,7 +52,7 @@
 
 '        '    Text
 'Element_Type' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
 ' '           Text
 'I'           Text
@@ -68,7 +68,7 @@
 
 '   '         Text
 'use'         Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Integer_Vectors' Name
 ';'           Punctuation
 '\n\n'        Text
@@ -123,14 +123,14 @@
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'loop'        Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
 
 '   '         Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Increment_All' Name.Function
 ';'           Punctuation
 '\n\n'        Text
@@ -180,7 +180,7 @@
 '\n\n'        Text
 
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Test_Ada2022' Name.Function
 ';'           Punctuation
 '\n'          Text

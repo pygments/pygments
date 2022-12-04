@@ -1,11 +1,11 @@
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
 '>'           Keyword
 '\n\n'        Text
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
 ' '           Text
 'PUBLIC'      Keyword.Constant
@@ -18,7 +18,7 @@
 '\n\n\n'      Text
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'html'        Name.Tag
 ' '           Text
 'PUBLIC'      Keyword.Constant
@@ -40,7 +40,7 @@
 '\n\n'        Text
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
 ' '           Text
 'SYSTEM'      Keyword.Constant
@@ -50,13 +50,13 @@
 '\n\n'        Text
 
 '<!DOCTYPE'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
 ' '           Text
 '['           Keyword
 '\n  '        Text
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'greeting'    Name.Tag
 ' '           Text
 '('           Operator
@@ -71,7 +71,7 @@
 '\n\n'        Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'br'          Name.Tag
 ' '           Text
 'EMPTY'       Keyword.Constant
@@ -79,7 +79,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
 ' '           Text
 '('           Operator
@@ -93,7 +93,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 '%name.para;' Name.Tag
 ' '           Text
 '%content.para;' Name.Entity
@@ -102,7 +102,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'container'   Name.Tag
 ' '           Text
 'ANY'         Keyword.Constant
@@ -110,7 +110,7 @@
 '\n\n'        Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'spec'        Name.Tag
 ' '           Text
 '('           Operator
@@ -127,7 +127,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'div1'        Name.Tag
 ' '           Text
 '('           Operator
@@ -155,7 +155,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'dictionary-body' Name.Tag
 ' '           Text
 '('           Operator
@@ -170,7 +170,7 @@
 '\n\n'        Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
 ' '           Text
 '('           Operator
@@ -191,7 +191,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Tag
 ' '           Text
 '('           Operator
@@ -219,7 +219,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Tag
 ' '           Text
 '('           Operator
@@ -229,7 +229,7 @@
 '\n\n'        Text
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'termdef'     Name.Tag
 '\n          ' Text
 'id'          Name.Attribute
@@ -247,7 +247,7 @@
 '\n'          Text
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'list'        Name.Tag
 '\n          ' Text
 'type'        Name.Attribute
@@ -265,7 +265,7 @@
 '\n'          Text
 
 '<!ATTLIST'   Keyword
-' '           Text
+' '           Text.Whitespace
 'form'        Name.Tag
 '\n          ' Text
 'method'      Name.Attribute
@@ -279,7 +279,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Entity
 ' '           Text
 '"&#xD;"'     Literal.String.Double
@@ -287,7 +287,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Entity
 ' '           Text
 '"&#xA;"'     Literal.String.Double
@@ -295,7 +295,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'da'          Name.Entity
 ' '           Text
 '"&#xD;&#xA;"' Literal.String.Double
@@ -303,7 +303,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
 ' '           Text
 'ISOLat2'     Name.Entity
@@ -316,14 +316,14 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Pub-Status'  Name.Entity
 ' '           Text
 '"This is a pre-release of the\n specification."' Literal.String.Double
 '>'           Keyword
 '\n \n '      Text
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'open-hatch'  Name.Entity
 '\n         ' Text
 'SYSTEM'      Keyword.Constant
@@ -333,7 +333,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'open-hatch'  Name.Entity
 '\n         ' Text
 'PUBLIC'      Keyword.Constant
@@ -345,7 +345,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'hatch-pic'   Name.Entity
 '\n         ' Text
 'SYSTEM'      Keyword.Constant
@@ -360,7 +360,7 @@
 '\n         \n' Text
 
 '<!NOTATION'  Keyword
-' '           Text
+' '           Text.Whitespace
 'gif'         Name.Tag
 ' '           Text
 'PUBLIC'      Keyword.Constant
@@ -370,7 +370,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
 ' '           Text
 'YN'          Name.Entity
@@ -381,7 +381,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'WhatHeSaid'  Name.Entity
 ' '           Text
 '"He said %YN;"' Literal.String.Double
@@ -390,7 +390,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'EndAttr'     Name.Entity
 ' '           Text
 '"27\'"'      Literal.String.Double
@@ -399,7 +399,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
 ' '           Text
 'pub'         Name.Entity
@@ -410,7 +410,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-'   '         Text
+'   '         Text.Whitespace
 'rights'      Name.Entity
 ' '           Text
 '"All rights reserved"' Literal.String.Double
@@ -419,7 +419,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-'   '         Text
+'   '         Text.Whitespace
 'book'        Name.Entity
 '   '         Text
 '"La Peste: Albert Camus,\n&#xA9; 1947 %pub;. &rights;"' Literal.String.Double
@@ -428,7 +428,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'lt'          Name.Entity
 '     '       Text
 '"&#38;#60;"' Literal.String.Double
@@ -436,7 +436,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'gt'          Name.Entity
 '     '       Text
 '"&#62;"'     Literal.String.Double
@@ -444,7 +444,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'amp'         Name.Entity
 '    '        Text
 '"&#38;#38;"' Literal.String.Double
@@ -452,7 +452,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'apos'        Name.Entity
 '   '         Text
 '"&#39;"'     Literal.String.Double
@@ -460,7 +460,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 'quot'        Name.Entity
 '   '         Text
 '"&#34;"'     Literal.String.Double
@@ -468,7 +468,7 @@
 '\n\n'        Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
 ' '           Text
 'draft'       Name.Entity
@@ -479,7 +479,7 @@
 '\n'          Text
 
 '<!ENTITY'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Entity
 ' '           Text
 'final'       Name.Entity
@@ -495,7 +495,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'book'        Name.Tag
 ' '           Text
 '('           Operator
@@ -526,7 +526,7 @@
 '\n'          Text
 
 '<!ELEMENT'   Keyword
-' '           Text
+' '           Text.Whitespace
 'book'        Name.Tag
 ' '           Text
 '('           Operator

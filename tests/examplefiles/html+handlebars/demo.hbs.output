@@ -86,14 +86,14 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 'myPartial'   Name.Variable
 '}}'          Comment.Preproc
 '\n'          Text
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 'myPartial'   Name.Variable
 ' '           Text
 'var'         Name.Attribute
@@ -105,7 +105,7 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 'myPartial'   Name.Variable
 ' '           Text
 'var'         Name.Attribute
@@ -116,7 +116,7 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'myPartial'   Name.Function
 ')'           Punctuation
@@ -125,7 +125,7 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'myPartial'   Name.Function
 ')'           Punctuation
@@ -138,12 +138,12 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '.'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"myPartial"' Literal.String.Double
 ')'           Punctuation
 '}}'          Comment.Preproc
@@ -151,13 +151,13 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ' '           Text
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '.'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"myPartial"' Literal.String.Double
 ' '           Text
 ')'           Punctuation
@@ -171,10 +171,10 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Keyword
-' '           Text
+' '           Text.Whitespace
 '../foo'      Name.Variable
 ' '           Text
 '"myPartial"' Literal.String.Double
@@ -189,7 +189,7 @@
 
 '{{'          Comment.Preproc
 '>'           Keyword
-' '           Text
+' '           Text.Whitespace
 '@partial-block' Keyword
 '}}'          Comment.Preproc
 '\n\n'        Text

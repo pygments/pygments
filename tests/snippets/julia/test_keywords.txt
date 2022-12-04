@@ -15,14 +15,14 @@ mutable     struct MutableType end
 'mutable'     Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MutableType' Keyword.Type
 ' '           Text.Whitespace
 'end'         Keyword
 '\n'          Text.Whitespace
 
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ImmutableType' Keyword.Type
 ' '           Text.Whitespace
 'end'         Keyword
@@ -31,7 +31,7 @@ mutable     struct MutableType end
 'abstract'    Keyword
 ' '           Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'AbstractMyType' Keyword.Type
 ' '           Text.Whitespace
 'end'         Keyword
@@ -40,7 +40,7 @@ mutable     struct MutableType end
 'primitive'   Keyword
 ' '           Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'MyPrimitive' Keyword.Type
 ' '           Text.Whitespace
 '32'          Literal.Number.Integer
@@ -74,7 +74,7 @@ mutable     struct MutableType end
 'abstract'    Keyword
 '    '        Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'AbstractMyType' Keyword.Type
 ' '           Text.Whitespace
 'end'         Keyword
@@ -83,7 +83,7 @@ mutable     struct MutableType end
 'primitive'   Keyword
 ' \t'         Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'MyPrimitive' Keyword.Type
 ' '           Text.Whitespace
 '32'          Literal.Number.Integer
@@ -94,7 +94,7 @@ mutable     struct MutableType end
 'mutable'     Keyword
 '     '       Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MutableType' Keyword.Type
 ' '           Text.Whitespace
 'end'         Keyword

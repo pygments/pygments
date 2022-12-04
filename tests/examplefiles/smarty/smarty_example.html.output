@@ -36,7 +36,7 @@
 '\n<!-- ENTRIES START -->\n    ' Other
 '{'           Comment.Preproc
 'serendipity_hookPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 'hook'        Name.Attribute
 '='           Operator
 '"entries_header"' Literal.String.Double
@@ -48,7 +48,7 @@
 '\n\n    '    Other
 '{'           Comment.Preproc
 'foreach'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'from'        Name.Attribute
 '='           Operator
 '$entries'    Name.Variable
@@ -60,7 +60,7 @@
 '\n    <div class="serendipity_Entry_Date">\n        ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$dategroup.is_sticky' Name.Variable
 '}'           Comment.Preproc
 '\n        <h3 class="serendipity_date">' Other
@@ -87,7 +87,7 @@
 '\n\n        ' Other
 '{'           Comment.Preproc
 'foreach'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'from'        Name.Attribute
 '='           Operator
 '$dategroup.entries' Name.Variable
@@ -114,7 +114,7 @@
 ' '           Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.is_entry_owner' Name.Variable
 '}'           Comment.Preproc
 'serendipity_entry_author_self' Other
@@ -124,13 +124,13 @@
 '">\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.categories' Name.Variable
 '}'           Comment.Preproc
 '\n            <span class="serendipity_entryIcon">\n            ' Other
 '{'           Comment.Preproc
 'foreach'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'from'        Name.Attribute
 '='           Operator
 '$entry.categories' Name.Variable
@@ -142,7 +142,7 @@
 '\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$category.category_icon' Name.Variable
 '}'           Comment.Preproc
 '\n                    <a href="' Other
@@ -192,7 +192,7 @@
 '\n            </div>\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.is_extended' Name.Variable
 '}'           Comment.Preproc
 '\n            <div class="serendipity_entry_extended"><a id="extended"></a>' Other
@@ -206,7 +206,7 @@
 '\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.has_extended' Name.Variable
 ' '           Text
 'and'         Name.Attribute
@@ -253,7 +253,7 @@
 '</a>\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.categories' Name.Variable
 '}'           Comment.Preproc
 '\n                   ' Other
@@ -263,7 +263,7 @@
 ' '           Other
 '{'           Comment.Preproc
 'foreach'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'from'        Name.Attribute
 '='           Operator
 '$entry.categories' Name.Variable
@@ -290,7 +290,7 @@
 '</a>'        Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Attribute
 ' '           Text
 '$smarty.foreach.categories.last' Name.Variable
@@ -309,13 +309,13 @@
 '\n\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.has_comments' Name.Variable
 '}'           Comment.Preproc
 '\n                    ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$use_popups' Name.Variable
 '}'           Comment.Preproc
 '\n                        | <a href="' Other
@@ -357,13 +357,13 @@
 '\n\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.has_trackbacks' Name.Variable
 '}'           Comment.Preproc
 '\n                    ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$use_popups' Name.Variable
 '}'           Comment.Preproc
 '\n                        | <a href="' Other
@@ -405,7 +405,7 @@
 '\n\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.is_entry_owner' Name.Variable
 ' '           Text
 'and'         Name.Attribute
@@ -453,7 +453,7 @@
 '\n\n        ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$is_single_entry' Name.Variable
 ' '           Text
 'and'         Name.Attribute
@@ -471,7 +471,7 @@
 '\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$CONST.DATA_UNSUBSCRIBED' Name.Variable
 '}'           Comment.Preproc
 '\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
@@ -490,7 +490,7 @@
 '\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$CONST.DATA_TRACKBACK_DELETED' Name.Variable
 '}'           Comment.Preproc
 '\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
@@ -509,7 +509,7 @@
 '\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$CONST.DATA_TRACKBACK_APPROVED' Name.Variable
 '}'           Comment.Preproc
 '\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
@@ -528,7 +528,7 @@
 '\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$CONST.DATA_COMMENT_DELETED' Name.Variable
 '}'           Comment.Preproc
 '\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
@@ -547,7 +547,7 @@
 '\n\n            ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$CONST.DATA_COMMENT_APPROVED' Name.Variable
 '}'           Comment.Preproc
 '\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
@@ -570,7 +570,7 @@
 '\n\n        ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$is_single_entry' Name.Variable
 ' '           Text
 'and'         Name.Attribute
@@ -610,7 +610,7 @@
 '</a>\n                    </div>\n                    <br />\n                        ' Other
 '{'           Comment.Preproc
 'serendipity_printTrackbacks' Name.Function
-' '           Text
+' '           Text.Whitespace
 'entry'       Name.Attribute
 '='           Operator
 '$entry.id'   Name.Variable
@@ -626,7 +626,7 @@
 '\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.viewmode' Name.Variable
 ' '           Text
 'eq'          Name.Attribute
@@ -668,7 +668,7 @@
 '\n                </div>\n                <br />\n                    ' Other
 '{'           Comment.Preproc
 'serendipity_printComments' Name.Function
-' '           Text
+' '           Text.Whitespace
 'entry'       Name.Attribute
 '='           Operator
 '$entry.id'   Name.Variable
@@ -680,13 +680,13 @@
 '\n\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.is_entry_owner' Name.Variable
 '}'           Comment.Preproc
 '\n                    ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$entry.allow_comments' Name.Variable
 '}'           Comment.Preproc
 '\n                    <div class="serendipity_center">(<a href="' Other
@@ -720,7 +720,7 @@
 '\n                <a id="feedback"></a>\n\n                ' Other
 '{'           Comment.Preproc
 'foreach'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'from'        Name.Attribute
 '='           Operator
 '$comments_messagestack' Name.Variable
@@ -740,7 +740,7 @@
 '\n\n                ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$is_comment_added' Name.Variable
 '}'           Comment.Preproc
 '\n\n                <br />\n                <div class="serendipity_center serendipity_msg_notice">' Other
@@ -750,7 +750,7 @@
 '</div>\n\n                ' Other
 '{'           Comment.Preproc
 'elseif'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '$is_comment_moderate' Name.Variable
 '}'           Comment.Preproc
 '\n\n                <br />\n                <div class="serendipity_center serendipity_msg_notice">' Other
@@ -764,7 +764,7 @@
 '</div>\n\n                ' Other
 '{'           Comment.Preproc
 'elseif'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Attribute
 ' '           Text
 '$entry.allow_comments' Name.Variable
@@ -808,7 +808,7 @@
 '\n    '      Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Attribute
 ' '           Text
 '$plugin_clean_page' Name.Variable
@@ -829,19 +829,19 @@
 
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_info' Name.Variable
 '}'           Comment.Preproc
 '\n    <div class="serendipity_pageFooter">\n    ' Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_info' Name.Variable
 '}'           Comment.Preproc
 '\n        '  Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_prev_page' Name.Variable
 '}'           Comment.Preproc
 '\n        <span class="previous"><a href="' Other
@@ -871,7 +871,7 @@
 '\n\n    '    Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_info' Name.Variable
 '}'           Comment.Preproc
 '\n        <span class="entries_info">(' Other
@@ -885,13 +885,13 @@
 '\n\n    '    Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_info' Name.Variable
 '}'           Comment.Preproc
 '\n        '  Other
 '{'           Comment.Preproc
 'if'          Name.Function
-' '           Text
+' '           Text.Whitespace
 '$footer_next_page' Name.Variable
 '}'           Comment.Preproc
 '\n        <span class="next"><a href="' Other
@@ -925,7 +925,7 @@
 '\n    '      Other
 '{'           Comment.Preproc
 'serendipity_hookPlugin' Name.Function
-' '           Text
+' '           Text.Whitespace
 'hook'        Name.Attribute
 '='           Operator
 '"entries_footer"' Literal.String.Double

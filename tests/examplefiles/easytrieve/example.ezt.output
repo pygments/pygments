@@ -5,7 +5,7 @@
 '* Environtment section.\n' Comment.Single
 
 'PARM'        Keyword.Declaration
-' '           Operator
+' '           Text.Whitespace
 'DEBUG'       Name
 '('           Operator
 'FLOW'        Name
@@ -99,7 +99,7 @@
 '* Activity Section.\n' Comment.Single
 
 'JOB'         Keyword.Declaration
-' '           Operator
+' '           Text.Whitespace
 'INPUT'       Name
 ' '           Text.Whitespace
 'PERSNL'      Name
@@ -119,7 +119,7 @@
 
 '  '          Text.Whitespace
 'PRINT'       Keyword.Reserved
-' '           Operator
+' '           Text.Whitespace
 'PAY-RPT'     Name
 '\n'          Text.Whitespace
 
@@ -134,7 +134,7 @@
 
 '  '          Text.Whitespace
 'TITLE'       Keyword.Reserved
-' '           Operator
+' '           Text.Whitespace
 '01'          Literal.Number.Integer
 ' '           Text.Whitespace
 "'PERSONNEL REPORT EXAMPLE-1'" Literal.String
@@ -142,7 +142,7 @@
 
 '  '          Text.Whitespace
 'LINE'        Keyword.Reserved
-' '           Operator
+' '           Text.Whitespace
 '01'          Literal.Number.Integer
 ' '           Text.Whitespace
 'DEPT'        Name
@@ -164,12 +164,12 @@
 
 '  '          Text.Whitespace
 'DISPLAY'     Keyword.Reserved
-' '           Operator
+' '           Text.Whitespace
 "'PROCESSING...'" Literal.String
 '\n'          Text.Whitespace
 
 'END-PROC'    Keyword.Reserved
-'\n'          Operator
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -181,9 +181,9 @@
 
 '  '          Text.Whitespace
 'DISPLAY'     Keyword.Reserved
-' '           Operator
+' '           Text.Whitespace
 "'DONE.'"     Literal.String
 '\n'          Text.Whitespace
 
 'END-PROC'    Keyword.Reserved
-'\n'          Operator
+'\n'          Text.Whitespace

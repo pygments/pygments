@@ -1,7 +1,7 @@
 'From the Twig test suite, https://github.com/fabpot/Twig, available under BSD license.\n\n--TEST--\nException for an unclosed tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -9,7 +9,7 @@
 '%}'          Comment.Preproc
 '\n     '     Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -17,7 +17,7 @@
 '%}'          Comment.Preproc
 '\n\n\n\n\n         ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -29,21 +29,21 @@
 '%}'          Comment.Preproc
 '\n\n\n\n         ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n\n\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--EXCEPTION--\nTwig_Error_Syntax: Unexpected tag name "endblock" (expecting closing tag for the "if" tag defined near line 4) in "index.twig" at line 16\n--TEST--\nException for an undefined trait\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'foo'"       Literal.String.Single
@@ -60,7 +60,7 @@
 '\n--TEMPLATE(foo)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -69,7 +69,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -266,7 +266,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'a'           Name.Variable
@@ -416,7 +416,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'a'           Name.Variable
@@ -429,7 +429,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'b'           Name.Variable
@@ -442,7 +442,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'ary'         Name.Variable
@@ -793,7 +793,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -951,7 +951,7 @@
 '8'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'divisible'   Name.Function
 ' '           Text
 'by'          Name.Variable
@@ -971,9 +971,9 @@
 '8'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'divisible'   Name.Function
 ' '           Text
 'by'          Name.Variable
@@ -993,7 +993,7 @@
 '8'           Literal.Number
 ' '           Text
 'is'          Keyword
-'    '        Text
+'    '        Text.Whitespace
 'divisible'   Name.Function
 '   '         Text
 'by'          Name.Variable
@@ -1014,9 +1014,9 @@
 '8'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-'\n   '       Text
+'\n   '       Text.Whitespace
 'divisible'   Name.Function
 '\n   '       Text
 'by'          Name.Variable
@@ -1033,7 +1033,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nOK\nOK\nOK\nOK\n--TEST--\nTwig supports the .. operator\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -1051,14 +1051,14 @@
 '}}'          Comment.Preproc
 ' '           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'letter'      Name.Variable
@@ -1077,14 +1077,14 @@
 '}}'          Comment.Preproc
 ' '           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'letter'      Name.Variable
@@ -1107,14 +1107,14 @@
 '}}'          Comment.Preproc
 ' '           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -1139,14 +1139,14 @@
 '}}'          Comment.Preproc
 ' '           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -1176,7 +1176,7 @@
 '}}'          Comment.Preproc
 ' '           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1626,7 +1626,7 @@
 "\n--DATA--\nreturn array('foo' => 'bar', 'items' => array('foo' => new TwigTestFoo(), 'bar' => 'foo'))\n--CONFIG--\nreturn array('strict_variables' => false)\n--EXPECT--\nfoo\nfoo\nbar\n\nbar_a-43\nbar_bar\nfoo\nis\nin\nnot\n--TEST--\nTwig allows to use named operators as variable names\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'match'       Name.Variable
@@ -1646,7 +1646,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1667,7 +1667,7 @@
 "\n--DATA--\nreturn array('matches' => array(1, 2, 3), 'in' => 'in', 'is' => 'is')\n--EXPECT--\n1\n2\n3\nin\nis\n--TEST--\nTwig parses postfix expressions\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -1680,7 +1680,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -1690,7 +1690,7 @@
 '%}'          Comment.Preproc
 'foo'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -1760,7 +1760,7 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -1780,9 +1780,9 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -1802,7 +1802,7 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -1822,9 +1822,9 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -1844,7 +1844,7 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-'   '         Text
+'   '         Text.Whitespace
 'same'        Name.Function
 '    '        Text
 'as'          Name.Variable
@@ -1865,9 +1865,9 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 'same'        Name.Function
 '\n    '      Text
 'as'          Name.Variable
@@ -2490,7 +2490,7 @@
 '\n--DATA--\nreturn array(\'number1\' => -5.5, \'number2\' => -5, \'number3\' => -0, \'number4\' => 0, \'number5\' => 5, \'number6\' => 5.5)\n--EXPECT--\n5.5\n5\n0\n0\n5\n5.5\n5.5\n5\n0\n0\n5\n5.5\n--TEST--\n"batch" filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'row'         Name.Variable
@@ -2507,7 +2507,7 @@
 '%}'          Comment.Preproc
 '\n  <div class=row>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'column'      Name.Variable
@@ -2525,21 +2525,21 @@
 '}}'          Comment.Preproc
 '</div>\n  '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  </div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\', \'c\', \'d\', \'e\', \'f\', \'g\', \'h\', \'i\', \'j\'))\n--EXPECT--\n<div class=row>\n      <div class=item>a</div>\n      <div class=item>b</div>\n      <div class=item>c</div>\n      <div class=item>d</div>\n    </div>\n  <div class=row>\n      <div class=item>e</div>\n      <div class=item>f</div>\n      <div class=item>g</div>\n      <div class=item>h</div>\n    </div>\n  <div class=row>\n      <div class=item>i</div>\n      <div class=item>j</div>\n    </div>\n--TEST--\n"batch" filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'row'         Name.Variable
@@ -2556,7 +2556,7 @@
 '%}'          Comment.Preproc
 '\n  <div class=row>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'column'      Name.Variable
@@ -2574,21 +2574,21 @@
 '}}'          Comment.Preproc
 '</div>\n  '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  </div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\', \'c\', \'d\', \'e\', \'f\', \'g\', \'h\', \'i\', \'j\'))\n--EXPECT--\n<div class=row>\n      <div class=item>a</div>\n      <div class=item>b</div>\n      <div class=item>c</div>\n    </div>\n  <div class=row>\n      <div class=item>d</div>\n      <div class=item>e</div>\n      <div class=item>f</div>\n    </div>\n  <div class=row>\n      <div class=item>g</div>\n      <div class=item>h</div>\n      <div class=item>i</div>\n    </div>\n  <div class=row>\n      <div class=item>j</div>\n    </div>\n--TEST--\n"batch" filter\n--TEMPLATE--\n<table>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'row'         Name.Variable
@@ -2608,7 +2608,7 @@
 '%}'          Comment.Preproc
 '\n  <tr>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'column'      Name.Variable
@@ -2626,21 +2626,21 @@
 '}}'          Comment.Preproc
 '</td>\n  '   Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  </tr>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n</table>\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\', \'c\', \'d\', \'e\', \'f\', \'g\', \'h\', \'i\', \'j\'))\n--EXPECT--\n<table>\n  <tr>\n      <td>a</td>\n      <td>b</td>\n      <td>c</td>\n    </tr>\n  <tr>\n      <td>d</td>\n      <td>e</td>\n      <td>f</td>\n    </tr>\n  <tr>\n      <td>g</td>\n      <td>h</td>\n      <td>i</td>\n    </tr>\n  <tr>\n      <td>j</td>\n      <td></td>\n      <td></td>\n    </tr>\n</table>\n--TEST--\n"batch" filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'row'         Name.Variable
@@ -2660,7 +2660,7 @@
 '%}'          Comment.Preproc
 '\n  <div class=row>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'column'      Name.Variable
@@ -2678,21 +2678,21 @@
 '}}'          Comment.Preproc
 '</div>\n  '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  </div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\', \'c\', \'d\', \'e\', \'f\', \'g\', \'h\', \'i\', \'j\', \'k\', \'l\'))\n--EXPECT--\n<div class=row>\n      <div class=item>a</div>\n      <div class=item>b</div>\n      <div class=item>c</div>\n    </div>\n  <div class=row>\n      <div class=item>d</div>\n      <div class=item>e</div>\n      <div class=item>f</div>\n    </div>\n  <div class=row>\n      <div class=item>g</div>\n      <div class=item>h</div>\n      <div class=item>i</div>\n    </div>\n  <div class=row>\n      <div class=item>j</div>\n      <div class=item>k</div>\n      <div class=item>l</div>\n    </div>\n--TEST--\n"batch" filter\n--TEMPLATE--\n<table>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'row'         Name.Variable
@@ -2712,7 +2712,7 @@
 '%}'          Comment.Preproc
 '\n  <tr>\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'column'      Name.Variable
@@ -2730,14 +2730,14 @@
 '}}'          Comment.Preproc
 '</td>\n  '   Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  </tr>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -3382,7 +3382,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3412,7 +3412,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3442,7 +3442,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3472,7 +3472,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3502,7 +3502,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3533,7 +3533,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3566,7 +3566,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3597,7 +3597,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3628,7 +3628,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3659,7 +3659,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3690,7 +3690,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3723,7 +3723,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3754,7 +3754,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3784,7 +3784,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3814,7 +3814,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3844,7 +3844,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3874,7 +3874,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3940,7 +3940,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -3971,7 +3971,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4004,7 +4004,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4038,7 +4038,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4071,7 +4071,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4105,7 +4105,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4138,7 +4138,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4170,7 +4170,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4206,7 +4206,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4238,7 +4238,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4270,7 +4270,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4302,7 +4302,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'same'        Name.Function
 ' '           Text
 'as'          Name.Variable
@@ -4458,7 +4458,7 @@
 '\n--DATA--\nreturn array(\'arr\' => new ArrayObject(array(1, 2, 3, 4)))\n--EXPECT--\n1\n1\n1\n1\nÄ\n--TEST--\n"escape" filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -4467,7 +4467,7 @@
 '\n    foo<br />\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endset'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -4499,7 +4499,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'true'        Keyword.Pseudo
@@ -4514,7 +4514,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -6174,7 +6174,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -6199,7 +6199,7 @@
 ')'           Operator
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -6214,7 +6214,7 @@
 '\n--DATA--\nreturn array(\'obj\' => new TwigTestFoo(), \'method\' => \'foo\', \'array\' => array(\'foo\' => \'bar\'), \'item\' => \'foo\', \'nonmethod\' => \'xxx\', \'arguments\' => array(\'a\', \'b\'))\n--EXPECT--\nfoo\nbar\nbar_a-b\nbar_a-b\nok\nko\n--TEST--\n"block" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 "'base.twig'" Literal.String.Single
@@ -6223,7 +6223,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -6231,14 +6231,14 @@
 '%}'          Comment.Preproc
 'BAR'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -6253,14 +6253,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -6268,7 +6268,7 @@
 '%}'          Comment.Preproc
 'BAR_BASE'    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -6310,7 +6310,7 @@
 '\n--DATA--\nreturn array(\'expect\' => DATE_W3C, \'object\' => new ArrayObject(array(\'hi\')));\n--EXPECT--\ntrue\n2\n--TEST--\n"cycle" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -6349,7 +6349,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -6603,7 +6603,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo/bar\na/b/bar\n--TEST--\n"include" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'tmp'         Name.Variable
@@ -6751,7 +6751,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\n--TEST--\n"include" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -6760,7 +6760,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -6777,14 +6777,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -6802,7 +6802,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -6959,7 +6959,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'k'           Name.Variable
@@ -6979,7 +6979,7 @@
 '}}'          Comment.Preproc
 ','           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7207,7 +7207,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\n1,3,5,7,9\n--TEST--\n"block" function recursively called in a parent template\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"ordered_menu.twig"' Literal.String.Double
@@ -7216,7 +7216,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'label'       Name.Variable
@@ -7232,21 +7232,21 @@
 '}}'          Comment.Preproc
 '"'           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'list'        Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'class'       Name.Variable
@@ -7264,14 +7264,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(ordered_menu.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"menu.twig"' Literal.String.Double
@@ -7280,14 +7280,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'list'        Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'class'       Name.Variable
@@ -7319,14 +7319,14 @@
 '}}'          Comment.Preproc
 '</ol>'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(menu.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -7335,7 +7335,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'list'        Name.Variable
@@ -7352,21 +7352,21 @@
 '}}'          Comment.Preproc
 '</ul>'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'children'    Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'currentItem' Name.Variable
@@ -7377,7 +7377,7 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -7396,12 +7396,12 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -7412,14 +7412,14 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'item'        Name.Variable
@@ -7427,15 +7427,15 @@
 '%}'          Comment.Preproc
 '<li>'        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'item'        Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'iterable'    Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -7448,7 +7448,7 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7461,20 +7461,20 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '</li>'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'label'       Name.Variable
@@ -7494,7 +7494,7 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7535,7 +7535,7 @@
 '<br />\n\nBAR\n--TEST--\n"template_from_string" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 'template_from_string' Name.Variable
@@ -7547,7 +7547,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 'template_from_string' Name.Variable
@@ -7559,7 +7559,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 'template_from_string' Name.Variable
@@ -7571,14 +7571,14 @@
 '\n--TEMPLATE(parent.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7591,7 +7591,7 @@
 '")\n--EXPECT--\nHello Fabien\nHello Fabien\nHello Fabien\n--TEST--\nmacro\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7604,7 +7604,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'test'        Name.Variable
@@ -7666,7 +7666,7 @@
 '\n--DATA--\nreturn array();\n--EXPECT--\nfoobar\nbarfoo\n--TEST--\nmacro\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7679,7 +7679,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -7697,14 +7697,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -7715,7 +7715,7 @@
 '\n    <br />\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7736,7 +7736,7 @@
 '\n--DATA--\nreturn array();\n--EXPECT--\n<br />\n--TEST--\nmacro\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7749,7 +7749,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'test'        Name.Variable
@@ -7785,7 +7785,7 @@
 "\n--DATA--\nreturn array('this' => 'foo');\n--EXPECT--\nfoo\n--TEST--\nmacro\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7798,7 +7798,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7811,7 +7811,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'test'        Name.Variable
@@ -7903,7 +7903,7 @@
 '\n--DATA--\nreturn array();\n--EXPECT--\na<br />b<br />\na<br />b<br />\n1<br />c<br />\n1<br />c<br />\n--TEST--\nmacro with a filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -7916,7 +7916,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'test'        Name.Variable
@@ -7926,22 +7926,22 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'escape'      Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 'foo<br />'   Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -7976,9 +7976,9 @@
 '.region'     Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'null'        Name.Function
 ' '           Text
 '?'           Operator
@@ -8029,7 +8029,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'image'       Name.Variable
@@ -8049,7 +8049,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8066,7 +8066,7 @@
 '\n--DATA--\nreturn array(\'hash\' => array(\'2e2\' => \'works\'))\n--EXPECT--\nworks\n--TEST--\n"autoescape" tag applies escaping on its children\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8080,14 +8080,14 @@
 '<br />\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8103,14 +8103,14 @@
 '<br />\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8126,14 +8126,14 @@
 '<br />\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'true'        Keyword.Pseudo
@@ -8149,14 +8149,14 @@
 '<br />\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8172,14 +8172,14 @@
 '<br />\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'<br />\')\n--EXPECT--\n&lt;br /&gt;<br />\n&lt;br /&gt;<br />\n<br /><br />\n&lt;br /&gt;<br />\n<br /><br />\n--TEST--\n"autoescape" tag applies escaping on embedded blocks\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8187,7 +8187,7 @@
 '%}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -8201,21 +8201,21 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'<br />\')\n--EXPECT--\n&lt;br /&gt;\n--TEST--\n"autoescape" tag does not double-escape\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8233,14 +8233,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'<br />\')\n--EXPECT--\n&lt;br /&gt;\n--TEST--\n"autoescape" tag applies escaping after calling functions\n--TEMPLATE--\n\nautoescape false\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8267,14 +8267,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n\nautoescape 'html'\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8353,14 +8353,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\nautoescape js\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'js'"        Literal.String.Single
@@ -8378,14 +8378,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n\nautoescape false\n\nsafe_br\n<br />\n\nunsafe_br\n<br />\n\n\nautoescape \'html\'\n\nsafe_br\n<br />\n\nunsafe_br\n&lt;br /&gt;\n\nunsafe_br()|raw\n<br />\n\nsafe_br()|escape\n&lt;br /&gt;\n\nsafe_br()|raw\n<br />\n\nunsafe_br()|escape\n&lt;br /&gt;\n\n\nautoescape js\n\nsafe_br\n\\x3Cbr\\x20\\x2F\\x3E\n--TEST--\n"autoescape" tag does not apply escaping on literals\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8508,7 +8508,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8522,7 +8522,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8536,7 +8536,7 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8550,7 +8550,7 @@
 '}}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8564,7 +8564,7 @@
 '}}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8576,7 +8576,7 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8589,7 +8589,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -8603,7 +8603,7 @@
 '\n--DATA--\nreturn array(\'var\' => \'<br />\')\n--EXPECT--\n&lt;br /&gt;\n  &lt;br /&gt;\n      <br />\n          &lt;br /&gt;\n        <br />\n    &lt;br /&gt;\n&lt;br /&gt;\n--TEST--\n"autoescape" tag applies escaping to object method calls\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8637,14 +8637,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--EXPECT--\nFabien&lt;br /&gt;\nfabien&lt;br /&gt;\nFabien&lt;br /&gt;\n--TEST--\n"autoescape" tag does not escape when raw is used as a filter\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8662,14 +8662,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'<br />\')\n--EXPECT--\n<br />\n--TEST--\n"autoescape" tag accepts an escaping strategy\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'true'        Keyword.Pseudo
@@ -8683,14 +8683,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'true'        Keyword.Pseudo
@@ -8704,14 +8704,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'js'"        Literal.String.Single
@@ -8723,14 +8723,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8742,14 +8742,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'<br />"\')\n--EXPECT--\n\\x3Cbr\\x20\\x2F\\x3E\\x22\n&lt;br /&gt;&quot;\n\\x3Cbr\\x20\\x2F\\x3E\\x22\n&lt;br /&gt;&quot;\n--TEST--\nescape types\n--TEMPLATE--\n\n1. autoescape \'html\' |escape(\'js\')\n\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8769,14 +8769,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n\n2. autoescape 'html' |escape('js')\n\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8796,14 +8796,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n\n3. autoescape 'js' |escape('js')\n\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'js'"        Literal.String.Single
@@ -8823,14 +8823,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n4. no escape\n\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8845,14 +8845,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n\n5. |escape('js')|escape('html')\n\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 'false'       Keyword.Pseudo
@@ -8877,14 +8877,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n\n6. autoescape 'html' |escape('js')|escape('html')\n\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8909,14 +8909,14 @@
 '&quot;)"></a>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n--DATA--\nreturn array(\'msg\' => "<>\\n\'\\"")\n--EXPECT--\n\n1. autoescape \'html\' |escape(\'js\')\n\n<a onclick="alert(&quot;\\x3C\\x3E\\x0A\\x27\\x22&quot;)"></a>\n\n2. autoescape \'html\' |escape(\'js\')\n\n<a onclick="alert(&quot;\\x3C\\x3E\\x0A\\x27\\x22&quot;)"></a>\n\n3. autoescape \'js\' |escape(\'js\')\n\n<a onclick="alert(&quot;\\x3C\\x3E\\x0A\\x27\\x22&quot;)"></a>\n\n4. no escape\n\n<a onclick="alert(&quot;<>\n\'"&quot;)"></a>\n\n5. |escape(\'js\')|escape(\'html\')\n\n<a onclick="alert(&quot;\\x3C\\x3E\\x0A\\x27\\x22&quot;)"></a>\n\n6. autoescape \'html\' |escape(\'js\')|escape(\'html\')\n\n<a onclick="alert(&quot;\\x3C\\x3E\\x0A\\x27\\x22&quot;)"></a>\n\n--TEST--\n"autoescape" tag do not applies escaping on filter arguments\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -8991,14 +8991,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => "<Fabien>\\nTwig", \'sep\' => \'<br />\')\n--EXPECT--\n&lt;Fabien&gt;<br />\nTwig\n&lt;Fabien&gt;&lt;br /&gt;\nTwig\n&lt;Fabien&gt;<br />\nTwig\n&lt;Fabien&gt;<br />\nTwig\n&lt;Fabien&gt;&lt;br /&gt;\nTwig\n--TEST--\n"autoescape" tag applies escaping after calling filters\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -9125,14 +9125,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => "<Fabien>\\nTwig")\n--EXPECT--\n\n(escape_and_nl2br is an escaper filter)\n\n1. Don\'t escape escaper filter output\n( var is escaped by |escape_and_nl2br, line-breaks are added, \n  the output is not escaped )\n&lt;Fabien&gt;<br />\nTwig\n\n2. Don\'t escape escaper filter output\n( var is escaped by |escape_and_nl2br, line-breaks are added, \n  the output is not escaped, |raw is redundant )\n&lt;Fabien&gt;<br />\nTwig\n\n3. Explicit escape\n( var is escaped by |escape_and_nl2br, line-breaks are added,\n  the output is explicitly escaped by |escape )\n&amp;lt;Fabien&amp;gt;&lt;br /&gt;\nTwig\n\n4. Escape non-escaper filter output\n( var is upper-cased by |upper,\n  the output is auto-escaped )\n&lt;FABIEN&gt;\nTWIG\n\n5. Escape if last filter is not an escaper\n( var is escaped by |escape_and_nl2br, line-breaks are added,\n  the output is upper-cased by |upper,\n  the output is auto-escaped as |upper is not an escaper )\n&amp;LT;FABIEN&amp;GT;&lt;BR /&gt;\nTWIG\n\n6. Don\'t escape escaper filter output\n( var is upper cased by upper,\n  the output is escaped by |escape_and_nl2br, line-breaks are added,\n  the output is not escaped as |escape_and_nl2br is an escaper )\n&lt;FABIEN&gt;<br />\nTWIG\n\n7. Escape if last filter is not an escaper\n( the output of |format is "<b>" ~ var ~ "</b>",\n  the output is auto-escaped )\n&lt;b&gt;&lt;Fabien&gt;\nTwig&lt;/b&gt;\n\n8. Escape if last filter is not an escaper\n( the output of |format is "<b>" ~ var ~ "</b>",\n  |raw is redundant,\n  the output is auto-escaped )\n&lt;b&gt;&lt;Fabien&gt;\nTwig&lt;/b&gt;\n\n9. Don\'t escape escaper filter output\n( the output of |format is "<b>" ~ var ~ "</b>",\n  the output is not escaped due to |raw filter at the end )\n<b><Fabien>\nTwig</b>\n\n10. Don\'t escape escaper filter output\n( the output of |format is "<b>" ~ var ~ "</b>",\n  the output is not escaped due to |raw filter at the end,\n  the |raw filter on var is redundant )\n<b><Fabien>\nTwig</b>\n--TEST--\n"autoescape" tag applies escaping after calling filters, and before calling pre_escape filters\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -9205,14 +9205,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => "<Fabien>\\nTwig")\n--EXPECT--\n\n(nl2br is pre_escaped for "html" and declared safe for "html")\n\n1. Pre-escape and don\'t post-escape\n( var|escape|nl2br )\n&lt;Fabien&gt;<br />\nTwig\n\n2. Don\'t double-pre-escape\n( var|escape|nl2br )\n&lt;Fabien&gt;<br />\nTwig\n\n3. Don\'t escape safe values\n( var|raw|nl2br )\n<Fabien><br />\nTwig\n\n4. Don\'t escape safe values\n( var|escape|nl2br|nl2br )\n&lt;Fabien&gt;<br /><br />\nTwig\n\n5. Re-escape values that are escaped for an other contexts\n( var|escape_something|escape|nl2br )\n&lt;FABIEN&gt;<br />\nTWIG\n\n6. Still escape when using filters not declared safe\n( var|escape|nl2br|upper|escape )\n&amp;LT;FABIEN&amp;GT;&lt;BR /&gt;\nTWIG\n\n--TEST--\n"autoescape" tag handles filters preserving the safety\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'autoescape'  Keyword
 ' '           Text
 "'html'"      Literal.String.Single
@@ -9275,7 +9275,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endautoescape' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -9284,7 +9284,7 @@
 '\'FABIEN\': \'FABPOT\'})|escape )\n&amp;LT;FABPOT&amp;GT;\nTWIG\n\n--TEST--\n"block" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'title1'      Name.Variable
@@ -9292,14 +9292,14 @@
 '%}'          Comment.Preproc
 'FOO'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'title2'      Name.Variable
@@ -9312,21 +9312,21 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => \'bar\')\n--EXPECT--\nFOObar\n--TEST--\n"block" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -9334,7 +9334,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -9342,21 +9342,21 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXCEPTION--\nTwig_Error_Syntax: The block \'content\' has already been defined line 2 in "index.twig" at line 3\n--TEST--\n"§" special chars in a block name\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 '§'           Name.Variable
@@ -9365,7 +9365,7 @@
 '\n§\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '§'           Name.Variable
@@ -9374,7 +9374,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\n§\n--TEST--\n"embed" tag\n--TEMPLATE--\nFOO\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9382,7 +9382,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9398,21 +9398,21 @@
 '}}'          Comment.Preproc
 '\n        block1extended\n    ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\nBAR\n--TEMPLATE(foo.twig)--\nA\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9421,14 +9421,14 @@
 '\n    block1\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nB\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9437,14 +9437,14 @@
 '\n    block2\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nC\n--DATA--\nreturn array()\n--EXPECT--\nFOO\n\nA\n            block1\n\n        block1extended\n    B\n    block2\nC\nBAR\n--TEST--\n"embed" tag\n--TEMPLATE(index.twig)--\nFOO\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9452,7 +9452,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9466,35 +9466,35 @@
 '}}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nBAR\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXCEPTION--\nTwig_Error_Runtime: Variable "nothing" does not exist in "index.twig" at line 5\n--TEST--\n"embed" tag\n--TEMPLATE--\nFOO\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9502,7 +9502,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9518,21 +9518,21 @@
 '}}'          Comment.Preproc
 '\n        block1extended\n    ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9540,7 +9540,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9556,21 +9556,21 @@
 '}}'          Comment.Preproc
 '\n        block1extended\n    ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\nBAR\n--TEMPLATE(foo.twig)--\nA\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9579,14 +9579,14 @@
 '\n    block1\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nB\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9595,14 +9595,14 @@
 '\n    block2\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nC\n--DATA--\nreturn array()\n--EXPECT--\nFOO\n\nA\n            block1\n\n        block1extended\n    B\n    block2\nC\n\nA\n            block1\n\n        block1extended\n    B\n    block2\nC\nBAR\n--TEST--\n"embed" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9610,7 +9610,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9626,7 +9626,7 @@
 '}}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9634,7 +9634,7 @@
 '%}'          Comment.Preproc
 '\n            ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9650,33 +9650,33 @@
 '}}'          Comment.Preproc
 '\n                block1extended\n            ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n    '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\nA\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9685,14 +9685,14 @@
 '\n    block1\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nB\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9701,14 +9701,14 @@
 '\n    block2\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nC\n--DATA--\nreturn array()\n--EXPECT--\nA\n            block1\n\n        \nA\n                    block1\n\n                block1extended\n            B\n    block2\nC\n    B\n    block2\nC\n--TEST--\n"embed" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -9717,7 +9717,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9734,14 +9734,14 @@
 '\n    blockc1baseextended\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9757,7 +9757,7 @@
 '}}'          Comment.Preproc
 '\n\n    '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'embed'       Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -9765,7 +9765,7 @@
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9781,27 +9781,27 @@
 '}}'          Comment.Preproc
 '\n            block1extended\n        ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endembed'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\nA\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9810,14 +9810,14 @@
 '\n    blockc1base\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9826,14 +9826,14 @@
 '\n    blockc2base\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nB\n--TEMPLATE(foo.twig)--\nA\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c1'          Name.Variable
@@ -9842,14 +9842,14 @@
 '\n    block1\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nB\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'c2'          Name.Variable
@@ -9858,16 +9858,16 @@
 '\n    block2\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nC\n--DATA--\nreturn array()\n--EXPECT--\nA\n        blockc1base\n\n    blockc1baseextended\n        blockc2base\n\n\n    \nA\n                block1\n\n            block1extended\n        B\n    block2\nCB--TEST--\n"filter" tag applies a filter on its children\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'upper'       Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -9880,16 +9880,16 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'var\')\n--EXPECT--\nSOME TEXT WITH A VAR\n--TEST--\n"filter" tag applies a filter on its children\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'json_encode' Name.Function
 '|'           Operator
 'raw'         Name.Function
@@ -9897,16 +9897,16 @@
 '%}'          Comment.Preproc
 'test'        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n"test"\n--TEST--\n"filter" tags accept multiple chained filters\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lower'       Name.Function
 '|'           Operator
 'title'       Name.Function
@@ -9921,16 +9921,16 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'VAR\')\n--EXPECT--\n    Var\n--TEST--\n"filter" tags can be nested at will\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lower'       Name.Function
 '|'           Operator
 'title'       Name.Function
@@ -9944,9 +9944,9 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'upper'       Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -9958,7 +9958,7 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -9971,23 +9971,23 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'var\' => \'var\')\n--EXPECT--\n  Var\n      Var\n    Var\n--TEST--\n"filter" tag applies the filter on "for" tags\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'upper'       Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10007,30 +10007,30 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\nA\nB\n--TEST--\n"filter" tag applies the filter on "if" tags\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'filter'      Keyword
-' '           Text
+' '           Text.Whitespace
 'upper'       Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'items'       Name.Variable
@@ -10051,28 +10051,28 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'items'       Name.Variable
 '.3'          Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 '\nFOO\n'     Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -10087,28 +10087,28 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'items'       Name.Variable
 '.3'          Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 '\nFOO\n'     Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'elseif'      Keyword
 ' '           Text
 'items'       Name.Variable
@@ -10126,21 +10126,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfilter'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\nA, B\n\nB\n\nA\n--TEST--\n"for" tag takes a condition\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -10155,7 +10155,7 @@
 'i'           Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'odd'         Name.Function
 ' '           Text
 '-'           Text
@@ -10182,14 +10182,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => array(\'bar\' => \'X\'))\n--CONFIG--\nreturn array(\'strict_variables\' => false)\n--EXPECT--\n1.1X\n2.3X\n3.5X\n--TEST--\n"for" tag keeps the context safe\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10201,7 +10201,7 @@
 '%}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10219,7 +10219,7 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -10232,14 +10232,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\n      * a\n      * b\n    * a\n      * a\n      * b\n    * b\n--TEST--\n"for" tag can use an "else" clause\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10258,21 +10258,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  no item\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\n  * a\n  * b\n--DATA--\nreturn array(\'items\' => array())\n--EXPECT--\n  no item\n--DATA--\nreturn array()\n--CONFIG--\nreturn array(\'strict_variables\' => false)\n--EXPECT--\n  no item\n--TEST--\n"for" tag does not reset inner variables\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -10285,7 +10285,7 @@
 '%}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'j'           Name.Variable
@@ -10301,7 +10301,7 @@
 'k'           Name.Variable
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'k'           Name.Variable
@@ -10324,21 +10324,21 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'k\' => 0)\n--EXPECT--\n      0 1\n      1 1\n      2 1\n        3 2\n      4 2\n      5 2\n--TEST--\n"for" tag can iterate over keys and values\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10366,14 +10366,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\n  * 0/a\n  * 1/b\n--TEST--\n"for" tag can iterate over keys\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10394,14 +10394,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\n  * 0\n  * 1\n--TEST--\n"for" tag adds a loop variable to the context locally\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10414,35 +10414,35 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'loop'        Name.Builtin
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
 'WORKS'       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array())\n--EXPECT--\nWORKS\n--TEST--\n"for" tag adds a loop variable to the context\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10504,14 +10504,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXPECT--\n  * 1/0\n  * 2/1\n  * 1//2\n\n  * 2/1\n  * 1/0\n  * /1/2\n--TEST--\n"for" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -10536,14 +10536,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXCEPTION--\nTwig_Error_Syntax: The "loop" variable cannot be used in a looping condition in "index.twig" at line 2\n--TEST--\n"for" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -10574,14 +10574,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'))\n--EXCEPTION--\nTwig_Error_Syntax: The "loop.last" variable is not defined when looping with a condition in "index.twig" at line 3\n--TEST--\n"for" tag can use an "else" clause\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10593,7 +10593,7 @@
 '%}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10611,7 +10611,7 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -10623,28 +10623,28 @@
 '}}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  no item1\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\', \'b\'), \'items1\' => array())\n--EXPECT--\nno a\n        no b\n--TEST--\n"for" tag iterates over iterable and countable objects\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10712,14 +10712,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10747,14 +10747,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10775,7 +10775,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -10797,7 +10797,7 @@
 ' return count($this->values); }\n}\nreturn array(\'items\' => new ItemsIteratorCountable())\n--EXPECT--\n  * bar\n  * 1/0\n  * 2/1\n  * 1//2\n\n  * foo\n  * 2/1\n  * 1/0\n  * /1/2\n\n\n  * foo/bar\n  * bar/foo\n\n  * foo\n  * bar\n--TEST--\n"for" tag iterates over iterable objects\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -10837,14 +10837,14 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10872,14 +10872,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10900,7 +10900,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -10920,7 +10920,7 @@
 ' return false !== current($this->values); }\n}\nreturn array(\'items\' => new ItemsIterator())\n--EXPECT--\n  * bar\n  * 1/0\n  * 1\n\n  * foo\n  * 2/1\n  * \n\n\n  * foo/bar\n  * bar/foo\n\n  * foo\n  * bar\n--TEST--\n"for" tags can be nested\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -10949,7 +10949,7 @@
 '):\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'value'       Name.Variable
@@ -10975,21 +10975,21 @@
 ')\n'         Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'items\' => array(\'a\' => array(\'a1\', \'a2\', \'a3\'), \'b\' => array(\'b1\')))\n--EXPECT--\n* a (2):\n  * a1 (3)\n  * a2 (3)\n  * a3 (3)\n* b (2):\n  * b1 (1)\n--TEST--\n"for" tag iterates over item values\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'item'        Name.Variable
@@ -11008,14 +11008,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n--DATA--\nreturn array('items' => array('a', 'b'))\n--EXPECT--\n  * a\n  * b\n--TEST--\nglobal variables\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"included.twig"' Literal.String.Double
@@ -11024,7 +11024,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 '"included.twig"' Literal.String.Double
@@ -11046,7 +11046,7 @@
 '\n--TEMPLATE(included.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -11057,20 +11057,20 @@
 '\ncalled foobar\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array();\n--EXPECT--\ncalled foobar\n--TEST--\n"if" creates a condition\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'a'           Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -11083,13 +11083,13 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'elseif'      Keyword
 ' '           Text
 'b'           Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -11102,21 +11102,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  NOTHING\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'a\' => \'a\')\n--EXPECT--\n  a\n--DATA--\nreturn array(\'b\' => \'b\')\n--EXPECT--\n  b\n--DATA--\nreturn array()\n--EXPECT--\n  NOTHING\n--TEST--\n"if" takes an expression as a test\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'a'           Name.Variable
@@ -11129,7 +11129,7 @@
 '\n  A1\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'elseif'      Keyword
 ' '           Text
 'a'           Name.Variable
@@ -11143,21 +11143,21 @@
 '\n  A2\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n  A3\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'a\' => 1)\n--EXPECT--\n  A1\n--DATA--\nreturn array(\'a\' => 12)\n--EXPECT--\n  A2\n--DATA--\nreturn array(\'a\' => 7)\n--EXPECT--\n  A3\n--TEST--\n"include" tag\n--TEMPLATE--\nFOO\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11166,7 +11166,7 @@
 '\n\nBAR\n--TEMPLATE(foo.twig)--\nFOOBAR\n--DATA--\nreturn array()\n--EXPECT--\nFOO\n\nFOOBAR\nBAR\n--TEST--\n"include" tag allows expressions for the template to include\n--TEMPLATE--\nFOO\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -11175,7 +11175,7 @@
 '\n\nBAR\n--TEMPLATE(foo.twig)--\nFOOBAR\n--DATA--\nreturn array(\'foo\' => \'foo.twig\')\n--EXPECT--\nFOO\n\nFOOBAR\nBAR\n--TEST--\n"include" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '['           Operator
@@ -11193,7 +11193,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11206,7 +11206,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11224,7 +11224,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11244,7 +11244,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\n--TEST--\n"include" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -11253,7 +11253,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11270,14 +11270,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11285,7 +11285,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11294,14 +11294,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array();\n--EXCEPTION--\nTwig_Error_Loader: Template "foo.twig" is not defined in "base.twig" at line 3.\n--TEST--\n"include" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11310,7 +11310,7 @@
 '\n--DATA--\nreturn array();\n--EXCEPTION--\nTwig_Error_Loader: Template "foo.twig" is not defined in "index.twig" at line 2.\n--TEST--\n"include" tag accept variables and only\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11319,7 +11319,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11330,7 +11330,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11348,7 +11348,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11368,7 +11368,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'k'           Name.Variable
@@ -11388,14 +11388,14 @@
 '}}'          Comment.Preproc
 ','           Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => \'bar\')\n--EXPECT--\nfoo,global,_parent,\nglobal,_parent,\nfoo,global,foo1,_parent,\nfoo1,global,_parent,\n--TEST--\n"include" tag accepts Twig_Template instance\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -11404,7 +11404,7 @@
 ' FOO\n--TEMPLATE(foo.twig)--\nBAR\n--DATA--\nreturn array(\'foo\' => $twig->loadTemplate(\'foo.twig\'))\n--EXPECT--\nBAR FOO\n--TEST--\n"include" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '['           Operator
@@ -11418,7 +11418,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '['           Operator
@@ -11432,7 +11432,7 @@
 '\n--TEMPLATE(foo.twig)--\nfoo\n--DATA--\nreturn array()\n--EXPECT--\nfoo\nfoo\n--TEST--\n"include" tag accept variables\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11450,7 +11450,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11470,7 +11470,7 @@
 '\n--DATA--\nreturn array(\'vars\' => array(\'foo\' => \'bar\'))\n--EXPECT--\nbar\nbar\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11479,7 +11479,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11488,28 +11488,28 @@
 '\nFOO\n'     Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nFOO\n--TEST--\nblock_expr2\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base2.twig"' Literal.String.Double
@@ -11518,7 +11518,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'element'     Name.Variable
@@ -11538,14 +11538,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base2.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -11554,14 +11554,14 @@
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'spaceless'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'element'     Name.Variable
@@ -11577,7 +11577,7 @@
 '.children'   Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -11607,7 +11607,7 @@
 '}}'          Comment.Preproc
 '\n            ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -11628,14 +11628,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endspaceless' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 "\n--DATA--\nreturn array(\n    'item' => array(\n        'children' => array(\n            null,\n            null,\n        )\n    )\n)\n--EXPECT--\nElement:<div>Element:<div></div>Element:<div></div></div>\n--TEST--\nblock_expr\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -11644,7 +11644,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'element'     Name.Variable
@@ -11664,21 +11664,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'spaceless'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'element'     Name.Variable
@@ -11694,7 +11694,7 @@
 '.children'   Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '%}'          Comment.Preproc
@@ -11724,7 +11724,7 @@
 '}}'          Comment.Preproc
 '\n            ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -11745,14 +11745,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endspaceless' Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\n    \'item\' => array(\n        \'children\' => array(\n            null,\n            null,\n        )\n    )\n)\n--EXPECT--\nElement:<div>Element:<div></div>Element:<div></div></div>\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 'standalone'  Name.Variable
@@ -11769,7 +11769,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11784,14 +11784,14 @@
 '}}'          Comment.Preproc
 'FOO'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11799,14 +11799,14 @@
 '%}'          Comment.Preproc
 'FOO'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(bar.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11814,14 +11814,14 @@
 '%}'          Comment.Preproc
 'BAR'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => \'foo.twig\', \'standalone\' => true)\n--EXPECT--\nFOOFOO\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -11830,7 +11830,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11839,28 +11839,28 @@
 '\nFOO\n'     Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => \'foo.twig\')\n--EXPECT--\nFOO\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -11869,7 +11869,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11877,14 +11877,14 @@
 '%}'          Comment.Preproc
 'FOO'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nFOO\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '['           Operator
@@ -11898,7 +11898,7 @@
 '\n--TEMPLATE(bar.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11907,21 +11907,21 @@
 '\nfoo\n'     Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"layout.twig"' Literal.String.Double
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11936,21 +11936,21 @@
 '}}'          Comment.Preproc
 'index '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(layout.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11965,14 +11965,14 @@
 '}}'          Comment.Preproc
 'layout '     Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -11980,14 +11980,14 @@
 '%}'          Comment.Preproc
 'base '       Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nbase layout index\n--TEST--\n"block" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12012,14 +12012,14 @@
 '\n    ENDCONTENT\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n--DATA--\nreturn array()\n--EXPECT--\nCONTENTSUBCONTENTENDCONTENT\n--TEST--\n"block" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -12028,7 +12028,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12036,7 +12036,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'subcontent'  Name.Variable
@@ -12044,7 +12044,7 @@
 '%}'          Comment.Preproc
 '\n        '  Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'subsubcontent' Name.Variable
@@ -12052,27 +12052,27 @@
 '%}'          Comment.Preproc
 '\n            SUBSUBCONTENT\n        ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12080,7 +12080,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'subcontent'  Name.Variable
@@ -12088,21 +12088,21 @@
 '%}'          Comment.Preproc
 '\n        SUBCONTENT\n    ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nSUBSUBCONTENT\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"layout.twig"' Literal.String.Double
@@ -12111,7 +12111,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'inside'      Name.Variable
@@ -12119,7 +12119,7 @@
 '%}'          Comment.Preproc
 'INSIDE'      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'inside'      Name.Variable
@@ -12128,7 +12128,7 @@
 '\n--TEMPLATE(layout.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -12137,7 +12137,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'body'        Name.Variable
@@ -12145,7 +12145,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'inside'      Name.Variable
@@ -12156,7 +12156,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'body'        Name.Variable
@@ -12165,7 +12165,7 @@
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'body'        Name.Variable
@@ -12176,7 +12176,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nINSIDE\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -12193,7 +12193,7 @@
 '\n--TEMPLATE(foo.twig)--\nFOO\n--TEMPLATE(bar.twig)--\nBAR\n--DATA--\nreturn array(\'foo\' => true)\n--EXPECT--\nFOO\n--DATA--\nreturn array(\'foo\' => false)\n--EXPECT--\nBAR\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12201,7 +12201,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -12210,14 +12210,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--EXCEPTION--\nTwig_Error_Syntax: Cannot extend from a block in "index.twig" at line 3\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -12226,28 +12226,28 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"included.twig"' Literal.String.Double
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'footer'      Name.Variable
@@ -12255,14 +12255,14 @@
 '%}'          Comment.Preproc
 'Footer'      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(included.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"base.twig"' Literal.String.Double
@@ -12271,7 +12271,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12279,14 +12279,14 @@
 '%}'          Comment.Preproc
 'Included Content' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(base.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12294,14 +12294,14 @@
 '%}'          Comment.Preproc
 'Default Content' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'footer'      Name.Variable
@@ -12309,14 +12309,14 @@
 '%}'          Comment.Preproc
 'Default Footer' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nIncluded Content\nDefault Footer\nFooter\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -12325,7 +12325,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12333,7 +12333,7 @@
 '%}'          Comment.Preproc
 '\n  '        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'inside'      Name.Variable
@@ -12341,7 +12341,7 @@
 '%}'          Comment.Preproc
 '\n    INSIDE OVERRIDDEN\n  ' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -12356,14 +12356,14 @@
 '\n  AFTER\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12372,14 +12372,14 @@
 '\n  BAR\n'   Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n\nINSIDE OVERRIDDEN\n  \n  BEFORE\n    BAR\n\n  AFTER\n--TEST--\n"extends" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -12388,7 +12388,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12410,14 +12410,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12425,14 +12425,14 @@
 '%}'          Comment.Preproc
 'BAR'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nBARFOOBAR\n--TEST--\n"parent" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'foo.twig'"  Literal.String.Single
@@ -12441,7 +12441,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12458,14 +12458,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12473,14 +12473,14 @@
 '%}'          Comment.Preproc
 'BAR'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nBAR\n--TEST--\n"parent" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12497,14 +12497,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--EXCEPTION--\nTwig_Error_Syntax: Calling "parent" on a template that does not extend nor "use" another template is forbidden in "index.twig" at line 3\n--TEST--\n"extends" tag accepts Twig_Template instance\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -12513,7 +12513,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12531,14 +12531,14 @@
 'FOO\n'       Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12546,14 +12546,14 @@
 '%}'          Comment.Preproc
 'BAR'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array(\'foo\' => $twig->loadTemplate(\'foo.twig\'))\n--EXPECT--\nBARFOO\n--TEST--\n"parent" function\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
 ' '           Text
 '"parent.twig"' Literal.String.Double
@@ -12562,7 +12562,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"use1.twig"' Literal.String.Double
@@ -12571,7 +12571,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"use2.twig"' Literal.String.Double
@@ -12580,7 +12580,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_parent' Name.Variable
@@ -12597,14 +12597,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use1' Name.Variable
@@ -12621,14 +12621,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use2' Name.Variable
@@ -12645,14 +12645,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12679,14 +12679,14 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(parent.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_parent' Name.Variable
@@ -12697,7 +12697,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use1' Name.Variable
@@ -12708,7 +12708,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use2' Name.Variable
@@ -12719,7 +12719,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -12730,7 +12730,7 @@
 '\n--TEMPLATE(use1.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use1' Name.Variable
@@ -12741,7 +12741,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use2' Name.Variable
@@ -12752,7 +12752,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use1_only' Name.Variable
@@ -12763,7 +12763,7 @@
 '\n--TEMPLATE(use2.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use2' Name.Variable
@@ -12774,7 +12774,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content_use2_only' Name.Variable
@@ -12785,7 +12785,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\n    content_parent\n    content_use1\n    content_use2\n    content_use1_only\n    content_use2_only\n--TEST--\n"macro" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -12829,7 +12829,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'input'       Name.Variable
@@ -12892,14 +12892,14 @@
 '">\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n  <input type="text" name="username" value="" size="20">\n\n  <input type="password" name="password" value="" size="1">\n--TEST--\n"macro" tag supports name for endmacro\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -12932,7 +12932,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -12942,14 +12942,14 @@
 '%}'          Comment.Preproc
 'foo'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -12959,7 +12959,7 @@
 '%}'          Comment.Preproc
 'bar'         Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -12968,7 +12968,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\nbar\n\n--TEST--\n"macro" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 "'forms.twig'" Literal.String.Single
@@ -13012,7 +13012,7 @@
 '\n--TEMPLATE(forms.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'input'       Name.Variable
@@ -13075,14 +13075,14 @@
 '">\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n  <input type="text" name="username" value="" size="20">\n\n  <input type="password" name="password" value="" size="1">\n--TEST--\n"macro" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 "'forms.twig'" Literal.String.Single
@@ -13095,7 +13095,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 "'forms.twig'" Literal.String.Single
@@ -13145,7 +13145,7 @@
 '\n--TEMPLATE(forms.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13161,14 +13161,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -13184,14 +13184,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoofoo\nfoofoo\nbarfoo\n--TEST--\n"macro" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
 ' '           Text
 "'forms.twig'" Literal.String.Single
@@ -13223,7 +13223,7 @@
 '\n--TEMPLATE(forms.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13248,14 +13248,14 @@
 ' '           Text
 '}}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\nfooglobal\nfooglobal\n--TEST--\n"macro" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword
 ' '           Text
 '_self'       Name.Variable
@@ -13299,7 +13299,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'macro'       Keyword
 ' '           Text
 'input'       Name.Variable
@@ -13362,23 +13362,23 @@
 '">\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endmacro'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n  <input type="text" name="username" value="" size="20">\n\n  <input type="password" name="password" value="" size="1">\n--TEST--\n"raw" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'raw'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n{{ foo }}\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endraw'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n' Other
 
@@ -13390,16 +13390,16 @@
 '\n--TEST--\n"raw" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'raw'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n{{ foo }}\n{% endverbatim %}\n--DATA--\nreturn array()\n--EXCEPTION--\nTwig_Error_Syntax: Unexpected end of file: Unclosed "raw" block in "index.twig" at line 2\n--TEST--\n"raw" tag\n--TEMPLATE--\n1***\n\n{%- raw %}\n    {{ \'bla\' }}\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endraw'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n1***\n2***\n\n' Other
 
@@ -13411,9 +13411,9 @@
 "\n    {{ 'bla' }}\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endraw'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n2***\n3***\n\n' Other
 
@@ -13425,7 +13425,7 @@
 "\n    {{ 'bla' }}\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endraw'      Keyword
 ' -'          Text
 '%}'          Comment.Preproc
@@ -13441,7 +13441,7 @@
 '{%'          Comment.Preproc
 '- '          Text
 'endraw'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n4***\n5***\n\n' Other
 
@@ -13526,7 +13526,7 @@
 '%}'          Comment.Preproc
 '\n\n    '    Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 '1'           Literal.Number
@@ -13542,7 +13542,7 @@
 '%}'          Comment.Preproc
 '\n    '      Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -13613,21 +13613,21 @@
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'include'     Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endsandbox'  Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(foo.twig)--\nfoo\n--DATA--\nreturn array()\n--EXPECT--\nfoo\nfoo\nfoo\nfoo\n--TEST--\n"set" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13640,7 +13640,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -13667,7 +13667,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13698,21 +13698,21 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\nfoo&lt;br /&gt;\n\n\nfoobar\n--TEST--\n"set" tag block empty capture\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
 ' '           Text
 '%}'          Comment.Preproc
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endset'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13720,14 +13720,14 @@
 '%}'          Comment.Preproc
 'FAIL'        Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n--TEST--\n"set" tag block capture\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13735,7 +13735,7 @@
 '%}'          Comment.Preproc
 'f<br />o<br />o' Other
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endset'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -13749,7 +13749,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nf<br />o<br />o\n--TEST--\n"set" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -13790,14 +13790,14 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoobar\nbarfoo\n--TEST--\n"spaceless" tag removes whites between HTML tags\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'spaceless'   Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n    <div>   <div>   foo   </div>   </div>\n\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endspaceless' Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -13839,7 +13839,7 @@
 '\n\nTrim on control tag:\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -13872,7 +13872,7 @@
 '\n\n\nTrim on output tag:\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'i'           Name.Variable
@@ -13899,7 +13899,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -13909,7 +13909,7 @@
 '\n       \nAfter the comment.\n\nTrim leading space:\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'leading'     Name.Variable
@@ -13925,7 +13925,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -13955,7 +13955,7 @@
 '\n\n\nTrim trailing space:\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'trailing'    Name.Variable
@@ -13972,7 +13972,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '-'           Text
@@ -14006,7 +14006,7 @@
 '\n\nend\n--DATA--\nreturn array(\'leading\' => \'leading space\', \'trailing\' => \'trailing space\', \'both\' => \'both\')\n--EXPECT--\n15\n18\n\nTrim on control tag:\n123456789\n\nTrim on output tag:\n123456789\n\nTrim comments:After the comment.\n\nTrim leading space:\nleading space\nleading space\n\nTrim trailing space:\ntrailing spaceCombined:<ul>\n\t<li>both</li>\n</ul>end\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"blocks.twig"' Literal.String.Double
@@ -14033,7 +14033,7 @@
 '\n--TEMPLATE(blocks.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14044,7 +14044,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"blocks.twig"' Literal.String.Double
@@ -14063,7 +14063,7 @@
 '\n--TEMPLATE(blocks.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14074,7 +14074,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -14083,7 +14083,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"bar.twig"'  Literal.String.Double
@@ -14092,7 +14092,7 @@
 '\n--TEMPLATE(bar.twig)--\n--DATA--\nreturn array()\n--EXPECT--\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -14131,7 +14131,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"bar.twig"'  Literal.String.Double
@@ -14140,7 +14140,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14151,7 +14151,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14162,7 +14162,7 @@
 '\n--TEMPLATE(bar.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14173,7 +14173,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14184,7 +14184,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nfoo\nfoo\nbar\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"ancestor.twig"' Literal.String.Double
@@ -14193,7 +14193,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"parent.twig"' Literal.String.Double
@@ -14212,7 +14212,7 @@
 '\n--TEMPLATE(parent.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'sub_container' Name.Variable
@@ -14221,14 +14221,14 @@
 '\n    <div class="overriden_sub_container">overriden sub_container</div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(ancestor.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'container'   Name.Variable
@@ -14246,14 +14246,14 @@
 '</div>\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'sub_container' Name.Variable
@@ -14262,14 +14262,14 @@
 '\n    <div class="sub_container">sub_container</div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n<div class="container">    <div class="overriden_sub_container">overriden sub_container</div>\n</div>\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"parent.twig"' Literal.String.Double
@@ -14288,7 +14288,7 @@
 '\n--TEMPLATE(parent.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"ancestor.twig"' Literal.String.Double
@@ -14297,7 +14297,7 @@
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'sub_container' Name.Variable
@@ -14306,14 +14306,14 @@
 '\n    <div class="overriden_sub_container">overriden sub_container</div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--TEMPLATE(ancestor.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'container'   Name.Variable
@@ -14331,14 +14331,14 @@
 '</div>\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n\n'        Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'sub_container' Name.Variable
@@ -14347,14 +14347,14 @@
 '\n    <div class="sub_container">sub_container</div>\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n<div class="container">    <div class="overriden_sub_container">overriden sub_container</div>\n</div>\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -14371,7 +14371,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"bar.twig"'  Literal.String.Double
@@ -14420,7 +14420,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14431,7 +14431,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14442,7 +14442,7 @@
 '\n--TEMPLATE(bar.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14453,7 +14453,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14464,7 +14464,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nbar\nfoo\nbar\nfoo\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"foo.twig"'  Literal.String.Double
@@ -14473,7 +14473,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 '"bar.twig"'  Literal.String.Double
@@ -14512,7 +14512,7 @@
 '\n--TEMPLATE(foo.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14523,7 +14523,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14534,7 +14534,7 @@
 '\n--TEMPLATE(bar.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'content'     Name.Variable
@@ -14545,7 +14545,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14556,7 +14556,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nbar\nfoo\nbar\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file2.html.twig'" Literal.String.Single
@@ -14564,7 +14564,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14583,7 +14583,7 @@
 '\n    Content of block (second override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14592,7 +14592,7 @@
 '\n--TEMPLATE(file2.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file1.html.twig'" Literal.String.Single
@@ -14601,7 +14601,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14620,7 +14620,7 @@
 '\n    Content of block (first override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14629,7 +14629,7 @@
 '\n--TEMPLATE(file1.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14639,7 +14639,7 @@
 '\n    Content of block\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14648,7 +14648,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nContent of block\nContent of block (first override)\nContent of block (second override)\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file2.html.twig'" Literal.String.Single
@@ -14657,7 +14657,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file1.html.twig'" Literal.String.Single
@@ -14670,7 +14670,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14689,7 +14689,7 @@
 '\n    Content of foo (second override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14698,7 +14698,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14717,7 +14717,7 @@
 '\n    Content of bar (second override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14726,7 +14726,7 @@
 '\n--TEMPLATE(file2.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file1.html.twig'" Literal.String.Single
@@ -14735,7 +14735,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14754,7 +14754,7 @@
 '\n    Content of foo (first override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14763,7 +14763,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14782,7 +14782,7 @@
 '\n    Content of bar (first override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14791,7 +14791,7 @@
 '\n--TEMPLATE(file1.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14801,7 +14801,7 @@
 '\n    Content of foo\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foo'         Name.Variable
@@ -14810,7 +14810,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14820,7 +14820,7 @@
 '\n    Content of bar\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -14829,7 +14829,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nContent of foo\nContent of foo (first override)\nContent of foo (second override)\nContent of bar\nContent of bar (second override)\n--TEST--\n"use" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file2.html.twig'" Literal.String.Single
@@ -14846,7 +14846,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14866,7 +14866,7 @@
 '\n    Content of block (second override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14875,7 +14875,7 @@
 '\n--TEMPLATE(file2.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'use'         Keyword
 ' '           Text
 "'file1.html.twig'" Literal.String.Single
@@ -14892,7 +14892,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14912,7 +14912,7 @@
 '\n    Content of block (first override)\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14921,7 +14921,7 @@
 '\n--TEMPLATE(file1.html.twig)--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'block'       Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14931,7 +14931,7 @@
 '\n    Content of block\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endblock'    Keyword
 ' '           Text
 'foobar'      Name.Variable
@@ -14940,16 +14940,16 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nContent of block\nContent of block (first override)\nContent of block (second override)\n--TEST--\n"verbatim" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'verbatim'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n{{ foo }}\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endverbatim' Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n--DATA--\nreturn array()\n--EXPECT--\n' Other
 
@@ -14961,16 +14961,16 @@
 '\n--TEST--\n"verbatim" tag\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'verbatim'    Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n{{ foo }}\n{% endraw %}\n--DATA--\nreturn array()\n--EXCEPTION--\nTwig_Error_Syntax: Unexpected end of file: Unclosed "verbatim" block in "index.twig" at line 2\n--TEST--\n"verbatim" tag\n--TEMPLATE--\n1***\n\n{%- verbatim %}\n    {{ \'bla\' }}\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endverbatim' Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n1***\n2***\n\n' Other
 
@@ -14982,9 +14982,9 @@
 "\n    {{ 'bla' }}\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endverbatim' Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n2***\n3***\n\n' Other
 
@@ -14996,7 +14996,7 @@
 "\n    {{ 'bla' }}\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endverbatim' Keyword
 ' -'          Text
 '%}'          Comment.Preproc
@@ -15012,7 +15012,7 @@
 '{%'          Comment.Preproc
 '- '          Text
 'endverbatim' Keyword
-' '           Text
+' '           Text.Whitespace
 '%}'          Comment.Preproc
 '\n\n4***\n5***\n\n' Other
 
@@ -15061,7 +15061,7 @@
 '5***\n--TEST--\narray index test\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
 ' '           Text
 'key'         Name.Variable
@@ -15084,7 +15084,7 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endfor'      Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -15095,7 +15095,7 @@
 '8'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'constant'    Name.Function
 '('           Operator
 "'E_NOTICE'"  Literal.String.Single
@@ -15117,7 +15117,7 @@
 "'bar'"       Literal.String.Single
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'constant'    Name.Function
 '('           Operator
 "'TwigTestFoo::BAR_NAME'" Literal.String.Single
@@ -15139,7 +15139,7 @@
 'value'       Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'constant'    Name.Function
 '('           Operator
 "'TwigTestFoo::BAR_NAME'" Literal.String.Single
@@ -15161,7 +15161,7 @@
 '2'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'constant'    Name.Function
 '('           Operator
 "'ARRAY_AS_PROPS'" Literal.String.Single
@@ -15186,7 +15186,7 @@
 'definedVar'  Name.Variable
 '                     ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15205,9 +15205,9 @@
 'definedVar'  Name.Variable
 '                     ' Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15226,7 +15226,7 @@
 'undefinedVar' Name.Variable
 '                   ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15245,9 +15245,9 @@
 'undefinedVar' Name.Variable
 '                   ' Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15266,7 +15266,7 @@
 'zeroVar'     Name.Variable
 '                        ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15285,7 +15285,7 @@
 'nullVar'     Name.Variable
 '                        ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15305,7 +15305,7 @@
 '.definedVar' Name.Variable
 '              ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15327,7 +15327,7 @@
 ']'           Operator
 '           ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15347,9 +15347,9 @@
 '.definedVar' Name.Variable
 '              ' Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15369,7 +15369,7 @@
 '.undefinedVar' Name.Variable
 '            ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15391,7 +15391,7 @@
 ']'           Operator
 '         '   Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15411,9 +15411,9 @@
 '.undefinedVar' Name.Variable
 '            ' Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15433,7 +15433,7 @@
 '.zeroVar'    Name.Variable
 '                 ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15453,7 +15453,7 @@
 '.nullVar'    Name.Variable
 '                 ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15474,7 +15474,7 @@
 '.0'          Literal.Number
 '          '  Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15499,7 +15499,7 @@
 ']'           Operator
 '      '      Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15519,7 +15519,7 @@
 '.foo'        Name.Variable
 '                     ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15539,7 +15539,7 @@
 '.undefinedMethod' Name.Variable
 '         '   Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15561,7 +15561,7 @@
 ')'           Operator
 '                ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15584,7 +15584,7 @@
 ')'           Operator
 '             ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15606,7 +15606,7 @@
 ')'           Operator
 '       '     Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15629,7 +15629,7 @@
 ')'           Operator
 '    '        Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15650,7 +15650,7 @@
 '.foo'        Name.Variable
 '                ' Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15671,7 +15671,7 @@
 '.undefinedMethod' Name.Variable
 '    '        Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15692,7 +15692,7 @@
 '.self'       Name.Variable
 '    '        Text
 'is'          Keyword
-'     '       Text
+'     '       Text.Whitespace
 'defined'     Name.Function
 ' '           Text
 '?'           Operator
@@ -15711,7 +15711,7 @@
 'foo'         Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15730,7 +15730,7 @@
 'bar'         Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15749,7 +15749,7 @@
 'foobar'      Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15768,7 +15768,7 @@
 'array'       Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15787,7 +15787,7 @@
 'zero'        Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15806,7 +15806,7 @@
 'string'      Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15825,7 +15825,7 @@
 'countable_empty' Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15844,7 +15844,7 @@
 'countable_not_empty' Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15863,7 +15863,7 @@
 'markup_empty' Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15882,7 +15882,7 @@
 'markup_not_empty' Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'empty'       Name.Function
 ' '           Text
 '?'           Operator
@@ -15908,7 +15908,7 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'even'        Name.Function
 ' '           Text
 '?'           Operator
@@ -15927,7 +15927,7 @@
 '2'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'even'        Name.Function
 ' '           Text
 '?'           Operator
@@ -15946,9 +15946,9 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'even'        Name.Function
 ' '           Text
 '?'           Operator
@@ -15967,9 +15967,9 @@
 '2'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'even'        Name.Function
 ' '           Text
 '?'           Operator
@@ -15984,7 +15984,7 @@
 '\n--DATA--\nreturn array()\n--EXPECT--\nok\nok\nok\nok\n--TEST--\nTwig supports the in operator\n--TEMPLATE--\n' Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -15997,14 +15997,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'not'         Keyword
@@ -16021,21 +16021,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'bar'         Name.Variable
@@ -16050,21 +16050,21 @@
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "'a'"         Literal.String.Single
@@ -16077,14 +16077,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "'c'"         Literal.String.Single
@@ -16099,14 +16099,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "''"          Literal.String.Single
@@ -16121,14 +16121,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "''"          Literal.String.Single
@@ -16141,14 +16141,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "'0'"         Literal.String.Single
@@ -16163,14 +16163,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "'a'"         Literal.String.Single
@@ -16185,14 +16185,14 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
 '\n'          Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 "'0'"         Literal.String.Single
@@ -16205,7 +16205,7 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -16546,7 +16546,7 @@
 "\n--DATA--\nreturn array('bar' => 'bar', 'foo' => array('bar' => 'bar'), 'dir_name' => dirname(__FILE__), 'dir_object' => new SplFileInfo(dirname(__FILE__)))\n--EXPECT--\nTRUE\nTRUE\nTRUE\nTRUE\nTRUE\nTRUE\nTRUE\nTRUE\nTRUE\nFALSE\nFALSE\nFALSE\nFALSE\nFALSE\nTRUE\nFALSE\nFALSE\nFALSE\nFALSE\nFALSE\nFALSE\nTRUE\nFALSE\nFALSE\n--TEST--\nTwig supports the in operator when using objects\n--TEMPLATE--\n" Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
 ' '           Text
 'object'      Name.Variable
@@ -16559,7 +16559,7 @@
 '\nTRUE\n'    Other
 
 '{%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'endif'       Keyword
 ' '           Text
 '%}'          Comment.Preproc
@@ -16570,7 +16570,7 @@
 'foo'         Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'iterable'    Name.Function
 ' '           Text
 '?'           Operator
@@ -16589,7 +16589,7 @@
 'traversable' Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'iterable'    Name.Function
 ' '           Text
 '?'           Operator
@@ -16608,7 +16608,7 @@
 'obj'         Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'iterable'    Name.Function
 ' '           Text
 '?'           Operator
@@ -16627,7 +16627,7 @@
 'val'         Name.Variable
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'iterable'    Name.Function
 ' '           Text
 '?'           Operator
@@ -16646,7 +16646,7 @@
 '1'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'odd'         Name.Function
 ' '           Text
 '?'           Operator
@@ -16665,7 +16665,7 @@
 '2'           Literal.Number
 ' '           Text
 'is'          Keyword
-' '           Text
+' '           Text.Whitespace
 'odd'         Name.Function
 ' '           Text
 '?'           Operator

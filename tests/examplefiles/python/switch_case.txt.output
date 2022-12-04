@@ -8,7 +8,7 @@
 ':'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
 ' '           Text
 '['           Punctuation
@@ -38,7 +38,7 @@
 '1'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
 ' '           Text
 "'"           Literal.String.Single
@@ -59,7 +59,7 @@
 '2'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
 ' '           Text
 "'"           Literal.String.Single
@@ -78,9 +78,9 @@
 '3'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'"           Literal.String.Single
 'to'          Literal.String.Single
@@ -98,7 +98,7 @@
 '4'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
 ' '           Text
 'else_bar'    Name
@@ -111,9 +111,9 @@
 '5'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '_'           Keyword
 ':'           Punctuation
 '\n'          Text
@@ -136,7 +136,7 @@
 ':'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
 ' '           Text
 '_Direction'  Name
@@ -151,9 +151,9 @@
 '1'           Literal.Number.Integer
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '_'           Keyword
 ' '           Text
 'as'          Keyword

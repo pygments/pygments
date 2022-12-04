@@ -1,11 +1,11 @@
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'System'      Name
 ';'           Punctuation
 '\n'          Text
 
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Interfaces.C' Name
 ';'           Punctuation
 '\n\n'        Text
@@ -19,7 +19,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'R'           Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -76,7 +76,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Float_Int_Union' Keyword.Type
 ' '           Text
 '('           Punctuation
@@ -131,7 +131,7 @@
 
 '      '      Text
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'case'        Keyword.Reserved
 ';'           Punctuation
 '\n'          Text
@@ -149,7 +149,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'my_struct'   Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -213,7 +213,7 @@
 
 '     '       Text
 'with'        Keyword.Namespace
-'\n       '   Text
+'\n       '   Text.Whitespace
 'Import'      Name
 '        '    Text
 '=>'          Punctuation
@@ -242,7 +242,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Percentage'  Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -270,7 +270,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'State'       Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -305,7 +305,7 @@
 'State'       Name
 ' '           Text
 'use'         Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Off'         Name
 '     '       Text
@@ -336,7 +336,7 @@
 
 '   '         Text
 'type'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Registers'   Keyword.Type
 ' '           Text
 'is'          Keyword.Reserved
@@ -404,7 +404,7 @@
 'Long_Float'  Keyword.Type
 ' '           Text
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Volatile'    Name
 ';'           Punctuation
 '\n'          Text
@@ -430,7 +430,7 @@
 'Integer'     Keyword.Type
 ' '           Text
 'with'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'Atomic_Components' Name
 ';'           Punctuation
 '\n\n'        Text
@@ -443,7 +443,7 @@
 'Integer'     Keyword.Type
 ' '           Text
 'with'        Keyword.Namespace
-'\n     '     Text
+'\n     '     Text.Whitespace
 'Atomic'      Name
 ','           Punctuation
 '\n'          Text
@@ -464,7 +464,7 @@
 '\n\n'        Text
 
 'end'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Test_Ada_Aspects' Name.Function
 ';'           Punctuation
 '\n'          Text

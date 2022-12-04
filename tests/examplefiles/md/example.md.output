@@ -1,10 +1,10 @@
 '# this is a header' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 '## this is a 2nd level header' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
@@ -98,7 +98,7 @@
 'is'          Text
 ' '           Text
 'italic:'     Text
-' '           Text
+' '           Text.Whitespace
 '*italic*'    Generic.Emph
 '\n'          Text.Whitespace
 
@@ -109,7 +109,7 @@
 'is'          Text
 ' '           Text
 'italic:'     Text
-' '           Text
+' '           Text.Whitespace
 '_italic_'    Generic.Emph
 '\n'          Text.Whitespace
 
@@ -182,9 +182,9 @@
 'is'          Text
 ' '           Text
 'bold:'       Text
-' '           Text
+' '           Text.Whitespace
 '**bold**'    Generic.Strong
-' '           Text
+' '           Text.Whitespace
 '**two or more words**' Generic.Strong
 '\n'          Text.Whitespace
 
@@ -195,9 +195,9 @@
 'is'          Text
 ' '           Text
 'bold:'       Text
-' '           Text
+' '           Text.Whitespace
 '__bold__'    Generic.Strong
-' '           Text
+' '           Text.Whitespace
 '__two or more words__' Generic.Strong
 '\n'          Text.Whitespace
 
@@ -238,7 +238,7 @@
 'is'          Text
 ' '           Text
 'strikethrough:' Text
-' '           Text
+' '           Text.Whitespace
 '~~bold~~'    Generic.Deleted
 '\n'          Text.Whitespace
 
@@ -270,7 +270,7 @@
 'italics'     Text
 ' '           Text
 'inside:'     Text
-' '           Text
+' '           Text.Whitespace
 '**the next _word_ should have been italics**' Generic.Strong
 '\n'          Text.Whitespace
 
@@ -288,7 +288,7 @@
 'this'        Text
 ' '           Text
 'sentence'    Text
-' '           Text
+' '           Text.Whitespace
 '`has monospace`' Literal.String.Backtick
 ' '           Text
 'in'          Text
@@ -366,9 +366,9 @@
 '\n'          Text
 
 'from'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'pygments'    Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Namespace
 ' '           Text
 'token'       Name

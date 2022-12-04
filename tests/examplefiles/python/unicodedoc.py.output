@@ -1,12 +1,12 @@
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'ur'          Literal.String.Affix
 '"""unicode-raw"""' Literal.String.Doc
 '\n'          Text
@@ -14,14 +14,14 @@
 '\n'          Text
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'bar'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'u'           Literal.String.Affix
 '"""unicode"""' Literal.String.Doc
 '\n'          Text
@@ -29,7 +29,7 @@
 '\n'          Text
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'baz'         Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -46,13 +46,13 @@
 '\n'          Text
 
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'zap'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '"""docstring"""' Literal.String.Doc
 '\n'          Text

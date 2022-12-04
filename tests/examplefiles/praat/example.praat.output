@@ -1386,7 +1386,7 @@
 'Previous'    Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '...'         Punctuation
 'if'          Keyword
 ' '           Text.Whitespace
@@ -1410,7 +1410,7 @@
 ' '           Text.Whitespace
 'fi'          Keyword
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '...'         Punctuation
 '3'           Literal.Number
 ','           Punctuation
@@ -1430,7 +1430,7 @@
 'Stop'        Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '...'         Punctuation
 'if'          Keyword
 ' '           Text.Whitespace
@@ -1454,7 +1454,7 @@
 ' '           Text.Whitespace
 'fi'          Keyword
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '...'         Punctuation
 '2'           Literal.Number
 ','           Punctuation
@@ -1581,7 +1581,7 @@
 'no'          Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '...'         Punctuation
 '0.03'        Literal.Number
 ','           Punctuation
@@ -1668,7 +1668,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '...'         Punctuation
 '"'           Literal.String
 'file subject speaker' Literal.String
@@ -1691,7 +1691,7 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '+'           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '...'         Punctuation
 '"'           Literal.String
 'duration response' Literal.String
@@ -2021,17 +2021,17 @@
 'sendpraat'   Keyword
 ' '           Text.Whitespace
 'Praat'       Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 '...'         Punctuation
 "'newline$'"  Literal.String.Interpol
 ' '           Text.Whitespace
 'Create Sound as pure tone... "tone" 1 0 0.4 44100 440 0.2 0.01 0.01' Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 '...'         Punctuation
 "'newline$'"  Literal.String.Interpol
 ' '           Text.Whitespace
 'Play'        Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 '...'         Punctuation
 "'newline$'"  Literal.String.Interpol
 ' '           Text.Whitespace

@@ -9,7 +9,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '12'          Literal.Number.Integer
@@ -158,7 +158,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '('           Punctuation
@@ -212,7 +212,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '('           Punctuation
@@ -234,7 +234,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '#2'          Name.Label
@@ -390,7 +390,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '{'           Punctuation
@@ -424,7 +424,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '#\n            2' Name.Label
@@ -434,7 +434,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 '||'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '12'          Literal.Number.Integer
@@ -465,7 +465,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '('           Punctuation
@@ -547,7 +547,7 @@
 'int'         Name.Class
 ' '           Text
 'and'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'E2'          Name.Class
 '\n  '        Text
 'fun'         Name.Class
@@ -576,7 +576,7 @@
 "'a"          Name.Decorator
 ' '           Text
 'id'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'fn'          Keyword.Reserved
@@ -818,7 +818,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 '!%&$#+-/:<=>?@\\~`^|*' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '3'           Literal.Number.Integer
@@ -892,7 +892,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'foo'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '!%&$#+-/:<=>?@\\~`^|*' Name
@@ -946,7 +946,7 @@
 ''            Text
 'val'         Keyword.Reserved
 '$$$'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'fn'          Keyword.Reserved
@@ -1173,7 +1173,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'w'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '{'           Punctuation
@@ -1220,7 +1220,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '#4'          Name.Label
@@ -1231,7 +1231,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'z'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '# ##='       Name.Label
@@ -1418,7 +1418,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '4'           Literal.Number.Integer
@@ -1427,7 +1427,7 @@
 'and'         Keyword.Reserved
 ' '           Text
 'y'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '5'           Literal.Number.Integer
@@ -1521,7 +1521,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 'ref'         Name
@@ -1900,7 +1900,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '#"'          Literal.String.Char
@@ -1911,7 +1911,7 @@
 'val'         Keyword.Reserved
 ' '           Text
 'st'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 ' '           Text
 '"'           Literal.String.Double

@@ -125,25 +125,25 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "''"          Comment
 'emphasized (italics)' Text
 "''"          Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'''"         Comment
 'boldface'    Text
 "'''"         Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'''"         Comment
 "''"          Comment
 'bold italics' Text
@@ -151,66 +151,66 @@
 "''"          Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 'monospace`'  Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{{{'         Name.Builtin
 'source code' Comment.Preproc
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '__'          Comment
 'underline'   Text
 '__'          Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 ',,'          Comment
 'sub'         Text
 ',,'          Comment
 'script'      Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '^'           Comment
 'super'       Text
 '^'           Comment
 'script'      Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '~'           Text
 '-smaller-'   Text
 '~'           Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '~'           Text
 '+larger+'    Text
 '~'           Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '--(strike through)--' Text
 '\n'          Text
 
@@ -240,78 +240,78 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'FrontPage'   Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '["FrontPage"' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'HelpOnEditing/SubPages' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/SubPage'    Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '../SiblingPage' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[:FrontPage:named' Keyword
 ' link'       Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[#anchorname' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[#anchorname' Keyword
 ' description' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[wiki:Self:PageName#anchorname' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[wiki:Self:PageName#anchorname' Keyword
 ' description' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'attachment:filename.txt' Text
 '\n'          Text
 
@@ -328,86 +328,86 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'http://moinmoin.wikiwikiweb.de/' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[http://moinmoin.wikiwikiweb.de/' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[http://moinmoin.wikiwikiweb.de/' Keyword
 ' MoinMoin Wiki' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Keyword
 ' moinmoin.png' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'MeatBall:InterWiki' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'wiki:MeatBall/InterWiki' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[wiki:MeatBall/InterWiki' Keyword
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[wiki:MeatBall/InterWiki' Keyword
 ' InterWiki page on MeatBall' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '[file://///servername/share/full/path/to/file/filename%20with%20spaces.txt' Keyword
 ' link to file filename with spaces.txt' Literal.String
 ']'           Keyword
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'user@example.com' Text
 '\n'          Text
 
@@ -424,46 +424,46 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Wiki'        Text
 "'''"         Comment
 "'''"         Comment
 'Name'        Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'Wiki``Name'  Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '!'           Keyword
 'WikiName'    Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'WikiName'    Text
 "'''"         Comment
 "'''"         Comment
 's'           Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'WikiName``s' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 'http://www.example.com`' Text
 '\n'          Text
@@ -513,59 +513,59 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 1'      Text
 '\n'          Text
 
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 2 (preceding white space)' Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 2.1'    Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 2.1.1'  Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 3'      Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '.'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 3.1 (bulletless)' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '.'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 4 (bulletless)' Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 4.1'    Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 '.'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 4.1.1 (bulletless)' Text
 '\n'          Text
 
@@ -612,27 +612,27 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 'I.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 1'      Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 'i.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 1.1'    Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 'i.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 1.2'    Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 'I.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item 2'      Text
 '\n'          Text
 
@@ -649,27 +649,27 @@
 '}}}'         Name.Builtin
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 'A.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item A'      Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 'a.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item A. a)'  Text
 '\n'          Text
 
-'   '         Text
+'   '         Text.Whitespace
 'a.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item A. b)'  Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 'A.'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'item B'      Text
 '\n'          Text
 
@@ -974,45 +974,45 @@
 "''"          Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '[[Anchor(anchorname)]]' Keyword
 '`'           Comment
 ' inserts a link anchor `anchorname`' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '[[BR]]'      Keyword
 '`'           Comment
 ' inserts a hard line break' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '[[FootNote(Note)]]' Keyword
 '`'           Comment
 ' inserts a footnote saying `Note`' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '[[Include(HelpOnMacros/Include)]]' Keyword
 '`'           Comment
 ' inserts the contents of the page `HelpOnMacros/Include` inline' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '[[MailTo(user AT example DOT com)]]' Keyword
 '`'           Comment
@@ -1034,16 +1034,16 @@
 "''"          Comment
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '@``SIG``@` inserts your login name and timestamp of modification' Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '`'           Comment
 '@``TIME``@` inserts date and time of modification' Text
 '\n'          Text

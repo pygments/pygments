@@ -109,7 +109,7 @@
 '\n\n'        Text
 
 ''            Text
-'     '       Text
+'     '       Text.Whitespace
 ':'           Punctuation
 ')'           Name.Label
 ''            Text
@@ -454,7 +454,7 @@
 ' '           Text
 '1'           Literal.Number.Integer
 '>&'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '6'           Text
 '9'           Text
@@ -1245,7 +1245,7 @@
 'G'           Literal.String.Backtick
 '%%'          Literal.String.Escape
 'J ``` `\n`  `' Literal.String.Backtick
-'    '        Text
+'    '        Text.Whitespace
 ')'           Punctuation
 ' '           Text
 'do'          Keyword
@@ -1269,7 +1269,7 @@
 "'echo ' "    Literal.String.Single
 '%%'          Literal.String.Escape
 "L0 '\n'  '"  Literal.String.Single
-'      '      Text
+'      '      Text.Whitespace
 ')'           Punctuation
 ' '           Text
 'do'          Keyword
@@ -1911,7 +1911,7 @@
 "'assoc "     Literal.String.Single
 "%+;/p extension'),%" Name.Variable
 "'"           Literal.String.Single
-'\n '         Text
+'\n '         Text.Whitespace
 ')'           Punctuation
 ' '           Text
 'do'          Keyword
