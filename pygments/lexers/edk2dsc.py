@@ -35,5 +35,7 @@ class Edk2DscLexer(RegexLexer):
 
         'comments': [
             (r'^\s*#.*$', Comment),
+            (r'\n', Whitespace),
+            (r'[^\S\n]+', Whitespace),
         ],
     }

@@ -1,8 +1,335 @@
 '## @file'    Comment.Single
-'# comment'   Comment.Single
+'\n'          Text.Whitespace
+
+'# EFI/PI MdePkg Package' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'# Copyright (c) 2007 - 2022, Intel Corporation. All rights reserved.<BR>' Comment.Single
+'\n'          Text.Whitespace
+
+'# Portions copyright (c) 2008 - 2009, Apple Inc. All rights reserved.<BR>' Comment.Single
+'\n'          Text.Whitespace
+
+'# (C) Copyright 2020 Hewlett Packard Enterprise Development LP<BR>' Comment.Single
+'\n'          Text.Whitespace
+
+'# Copyright (c) 2022, Loongson Technology Corporation Limited. All rights reserved.<BR>' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'#    SPDX-License-Identifier: BSD-2-Clause-Patent' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
 '##'          Comment.Single
-'\n\n'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Defines]'   Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'PLATFORM_NAME' Name
+'                  ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'Mde'         Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'PLATFORM_GUID' Name
+'                  ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'082F8BFC-0455-4859-AE3C-ECD64FB81642' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'PLATFORM_VERSION' Name
+'               ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'1.08'        Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'DSC_SPECIFICATION' Name
+'              ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'0x00010005'  Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'OUTPUT_DIRECTORY' Name
+'               ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'Build/Mde'   Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'SUPPORTED_ARCHITECTURES' Name
+'        '    Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'IA32|X64|EBC|ARM|AARCH64|RISCV64|LOONGARCH64' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'BUILD_TARGETS' Name
+'                  ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'DEBUG|RELEASE|NOOPT' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'SKUID_IDENTIFIER' Name
+'               ' Text.Whitespace
+'='           Name
+' '           Text.Whitespace
+'DEFAULT'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'!include'    Name
+' '           Text.Whitespace
+'UnitTestFrameworkPkg/UnitTestFrameworkPkgTarget.dsc.inc' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'!include'    Name
+' '           Text.Whitespace
+'MdePkg/MdeLibs.dsc.inc' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[PcdsFeatureFlag]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'gEfiMdePkgTokenSpaceGuid.PcdUgaConsumeSupport|TRUE' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
 
 '[PcdsFixedAtBuild]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x0f' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xE0000000' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[LibraryClasses]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseCacheMaintenanceLib/BaseCacheMaintenanceLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseCacheMaintenanceLibNull/BaseCacheMaintenanceLibNull.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseCpuLib/BaseCpuLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseCpuLibNull/BaseCpuLibNull.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseLib/BaseLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BasePciExpressLib/BasePciExpressLib.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/SmmCpuRendezvousLibNull/SmmCpuRendezvousLibNull.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components.IA32,' Name
 ' '           Text.Whitespace
-'PcdDebugPropertyMask|0x0f'  Name
+'Components.X64,' Name
+' '           Text.Whitespace
+'Components.ARM,' Name
+' '           Text.Whitespace
+'Components.AARCH64]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# Add UEFI Target Based Unit Tests' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Test/UnitTest/Library/BaseLib/BaseLibUnitTestsUefi.inf' Name
+'\n'          Text.Whitespace
+
+'\n  '        Text.Whitespace
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# Build PEIM, DXE_DRIVER, SMM_DRIVER, UEFI Shell components that test SafeIntLib' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'#'           Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Test/UnitTest/Library/BaseSafeIntLib/TestBaseSafeIntLibPei.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Test/UnitTest/Library/BaseSafeIntLib/TestBaseSafeIntLibDxe.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Test/UnitTest/Library/BaseSafeIntLib/TestBaseSafeIntLibSmm.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Test/UnitTest/Library/BaseSafeIntLib/TestBaseSafeIntLibUefiShell.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components.IA32,' Name
+' '           Text.Whitespace
+'Components.X64,' Name
+' '           Text.Whitespace
+'Components.AARCH64]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseRngLib/BaseRngLib.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components.IA32,' Name
+' '           Text.Whitespace
+'Components.X64]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsicSev.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseMemoryLibMmx/BaseMemoryLibMmx.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components.EBC]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/UefiRuntimeLib/UefiRuntimeLib.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[Components.ARM,' Name
+' '           Text.Whitespace
+'Components.AARCH64]' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsicArmVirt.inf' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'MdePkg/Library/BaseStackCheckLib/BaseStackCheckLib.inf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[BuildOptions]' Name
+'\n'          Text.Whitespace
