@@ -31,6 +31,7 @@ def unpack_output_file(path):
                 continue
             else:
                 skip_until_tokens = False
+                continue
 
         # Line can start with ' or ", so let's check which one it is
         # and find the matching one
