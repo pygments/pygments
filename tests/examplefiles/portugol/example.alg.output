@@ -1,0 +1,1195 @@
+'Algoritmo'   Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'semnome'     Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'// Descrição   : Aqui você descreve o que o programa faz!' Comment.Single
+'\n'          Text.Whitespace
+
+'// Autor(a)    : Lorhan Sohaky' Comment.Single
+'\n'          Text.Whitespace
+
+'// Data atual  : 04/12/2022' Comment.Single
+'\n'          Text.Whitespace
+
+'Var'         Keyword
+'\n'          Text.Whitespace
+
+'// Seção de Declarações das variáveis ' Comment.Single
+'\n\n'        Text.Whitespace
+
+'meu_caractere' Name
+':'           Operator
+' '           Text.Whitespace
+'caractere'   Keyword.Type
+'\n'          Text.Whitespace
+
+'meu_inteiro' Name
+':'           Operator
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+'\n'          Text.Whitespace
+
+'meu_real'    Name
+':'           Operator
+' '           Text.Whitespace
+'real'        Keyword.Type
+'\n'          Text.Whitespace
+
+'meu_vetor'   Name
+':'           Operator
+' '           Text.Whitespace
+'vetor'       Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'10'          Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'de'          Name
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'Inicio'      Keyword
+'\n'          Text.Whitespace
+
+'// Seção de Comandos, procedimento, funções, operadores, etc... ' Comment.Single
+'\n\n    '    Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Digite N1:'  Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'leia'        Keyword
+'('           Punctuation
+'n1'          Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n\n    '    Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Digite N2:'  Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'leia'        Keyword
+'('           Punctuation
+'n2'          Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'"'           Literal.String
+'Valor 1:'    Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n1'          Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Valor 2:'    Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'+'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'*'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'DIV'         Keyword
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'DIV'         Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'resultado'   Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'MOD'         Keyword
+' '           Text.Whitespace
+'n2'          Name
+'\n    '      Text.Whitespace
+'escreval'    Keyword
+'('           Punctuation
+'n1'          Name
+','           Operator
+'"'           Literal.String
+'MOD'         Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'n2'          Name
+','           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'='           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'resultado'   Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'me'          Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'n1'          Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'n2'          Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'n3'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Média:'      Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text.Whitespace
+'me'          Name
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'vq'          Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'sm'          Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'vp'          Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'sm'          Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'qq'          Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'vq'          Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'vpd'         Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'sm'          Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'(('          Punctuation
+'vp'          Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'15'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'n2'          Name
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N1 é maior que N2' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'n2'          Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N2 é maior que N1' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'n2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'n1'          Name
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N2 = N1'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+' \n\n    '   Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'n'           Name
+'  '          Text.Whitespace
+'mod'         Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Impar'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'senao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Par'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N < 10'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'senao'       Keyword
+'\n        '  Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n            ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N = 10'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n        '  Text.Whitespace
+'senao'       Keyword
+'\n            ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'50'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n                ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'10 < N < 50' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n            ' Text.Whitespace
+'senao'       Keyword
+'\n                ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'50'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n                    ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N = 50'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n                ' Text.Whitespace
+'senao'       Keyword
+'\n                    ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'N > 50'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n                ' Text.Whitespace
+'fimse'       Keyword
+'\n            ' Text.Whitespace
+'fimse'       Keyword
+'\n        '  Text.Whitespace
+'fimse'       Keyword
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'M'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'ou'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'masculino'   Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Sexo: masculino' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'senao'       Keyword
+' \n        ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'F'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'ou'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'feminino'    Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n            ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Sexo: feminino' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n        '  Text.Whitespace
+'senao'       Keyword
+'\n            ' Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Digite novamente!' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n        '  Text.Whitespace
+'fimse'       Keyword
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'b'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n        '  Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'a'           Name
+'\n        '  Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'c'           Name
+'\n    '      Text.Whitespace
+'senao'       Keyword
+'\n        '  Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'c'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n            ' Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'a'           Name
+'\n            ' Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n        '  Text.Whitespace
+'senao'       Keyword
+'\n            ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'b'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n                ' Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n                ' Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'c'           Name
+'\n            ' Text.Whitespace
+'senao'       Keyword
+'\n                ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'b'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'c'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n                    ' Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n                    ' Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'a'           Name
+'\n                ' Text.Whitespace
+'senao'       Keyword
+'\n                    ' Text.Whitespace
+'se'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'c'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'e'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'entao'       Keyword
+'\n                        ' Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'c'           Name
+'\n                        ' Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n                    ' Text.Whitespace
+'senao'       Keyword
+'\n                        ' Text.Whitespace
+'maior'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'c'           Name
+'\n                        ' Text.Whitespace
+'menor'       Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'a'           Name
+'\n                    ' Text.Whitespace
+'fimse'       Keyword
+'\n                ' Text.Whitespace
+'fimse'       Keyword
+'\n            ' Text.Whitespace
+'fimse'       Keyword
+'\n        '  Text.Whitespace
+'fimse'       Keyword
+'\n    '      Text.Whitespace
+'fimse'       Keyword
+'\n\n    '    Text.Whitespace
+'escolha'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Janeiro'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Fevereiro'   Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Marco'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Abril'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Maio'        Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Junho'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Julho'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Agosto'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Setembro'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Outubro'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'11'          Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Novembro'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'caso'        Keyword
+' '           Text.Whitespace
+'12'          Literal.Number.Integer
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+'Dezembro'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'outrocaso'   Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'"'           Literal.String
+"'Numero invalido'" Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimescolha'  Keyword
+'\n\n    '    Text.Whitespace
+'enquanto'    Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'<'           Operator
+'11'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'faca'        Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+'\n        '  Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'fimenquanto' Keyword
+'\n\n    '    Text.Whitespace
+'para'        Keyword
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'de'          Name
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'ate'         Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'faca'        Keyword
+'\n        '  Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'fimpara'     Keyword
+'\n\n    '    Text.Whitespace
+'funcao'      Keyword
+' '           Text.Whitespace
+'soma'        Name.Function
+':'           Operator
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+'\n        '  Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'aux'         Name
+':'           Operator
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+'\n        '  Text.Whitespace
+'inicio'      Keyword
+'\n        '  Text.Whitespace
+'// n, m e res são variáveis globais' Comment.Single
+'\n        '  Text.Whitespace
+'aux'         Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'m'           Name
+'\n        '  Text.Whitespace
+'retorne'     Keyword
+' '           Text.Whitespace
+'aux'         Name
+'\n    '      Text.Whitespace
+'fimfuncao'   Keyword
+'\n\n    '    Text.Whitespace
+'res'         Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'soma'        Name.Label
+'\n    '      Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+'\n\n     '   Text.Whitespace
+'funcao'      Keyword
+' '           Text.Whitespace
+'soma'        Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'x'           Name
+','           Operator
+'y'           Name
+':'           Operator
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text.Whitespace
+'inteiro'     Keyword.Type
+'\n        '  Text.Whitespace
+'inicio'      Keyword
+'\n        '  Text.Whitespace
+'retorne'     Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'y'           Name
+'\n    '      Text.Whitespace
+'fimfuncao'   Keyword
+'\n\n    '    Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'-'           Operator
+'9'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'res'         Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'soma'        Name.Label
+'('           Punctuation
+'n'           Name
+','           Operator
+'m'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'Pi'          Keyword
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'escreva'     Keyword
+'('           Punctuation
+'res'         Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'Pi'          Keyword
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'exp'         Name
+'('           Punctuation
+'10'          Literal.Number.Integer
+'))'          Punctuation
+'\n'          Text.Whitespace
+
+'Fimalgoritmo' Keyword
+'\n'          Text.Whitespace
