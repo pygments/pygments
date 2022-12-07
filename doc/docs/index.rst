@@ -39,6 +39,7 @@ Pygments documentation
    formatterdevelopment
    filterdevelopment
    styledevelopment
+   contributing
    plugins
 
 **Hints and tricks**
