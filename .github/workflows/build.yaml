@@ -12,12 +12,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
-        # Only run Python 3.11 tests on Ubuntu for now because lxml
-        # doesn't provide Windows wheels at the time of this writing
-        # (https://bugs.launchpad.net/lxml/+bug/1977998).
-        exclude:
-          - os: windows-latest
-            python-version: "3.11"
       max-parallel: 4
 
     steps:
