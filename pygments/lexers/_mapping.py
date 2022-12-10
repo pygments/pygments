@@ -365,6 +365,7 @@ LEXERS = {
     'PlPgsqlLexer': ('pygments.lexers.sql', 'PL/pgSQL', ('plpgsql',), (), ('text/x-plpgsql',)),
     'PointlessLexer': ('pygments.lexers.pointless', 'Pointless', ('pointless',), ('*.ptls',), ()),
     'PonyLexer': ('pygments.lexers.pony', 'Pony', ('pony',), ('*.pony',), ()),
+    'PortugolLexer': ('pygments.lexers.pascal', 'Portugol', ('portugol',), ('*.alg', '*.portugol'), ()),
     'PostScriptLexer': ('pygments.lexers.graphics', 'PostScript', ('postscript', 'postscr'), ('*.ps', '*.eps'), ('application/postscript',)),
     'PostgresConsoleLexer': ('pygments.lexers.sql', 'PostgreSQL console (psql)', ('psql', 'postgresql-console', 'postgres-console'), (), ('text/x-postgresql-psql',)),
     'PostgresLexer': ('pygments.lexers.sql', 'PostgreSQL SQL dialect', ('postgresql', 'postgres'), (), ('text/x-postgresql',)),
