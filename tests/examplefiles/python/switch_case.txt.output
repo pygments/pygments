@@ -6,7 +6,7 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
@@ -30,13 +30,13 @@
 '.'           Operator
 'route'       Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
@@ -51,13 +51,13 @@
 'bar'         Literal.String.Single
 "'"           Literal.String.Single
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
@@ -70,17 +70,17 @@
 ' '           Text
 'name'        Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 "'"           Literal.String.Single
 'to'          Literal.String.Single
@@ -90,41 +90,41 @@
 '_'           Keyword
 ']'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
 ' '           Text
 'else_bar'    Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '5'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '_'           Keyword
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '6'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'match'       Keyword
 ' '           Text
@@ -134,7 +134,7 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
@@ -143,46 +143,46 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '_'           Keyword
 ' '           Text
 'as'          Keyword
 ' '           Text
 'default'     Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'return'      Keyword
 ' '           Text
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'case'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'match'       Name
 ' '           Text
 '='           Operator
 ' '           Text
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'match'       Name
 ' '           Text
@@ -193,4 +193,4 @@
 'else'        Keyword
 ' '           Text
 'bar'         Name
-'\n'          Text
+'\n'          Text.Whitespace

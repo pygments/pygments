@@ -100,11 +100,11 @@ class PythonLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
-             bygroups(Text, String.Affix, String.Doc)),
+             bygroups(Whitespace, String.Affix, String.Doc)),
             (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
-             bygroups(Text, String.Affix, String.Doc)),
+             bygroups(Whitespace, String.Affix, String.Doc)),
             (r'\A#!.+$', Comment.Hashbang),
             (r'#.*$', Comment.Single),
             (r'\\\n', Text),
@@ -192,13 +192,13 @@ class PythonLexer(RegexLexer):
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
              r':', String.Interpol, '#pop'),
-            (r'\s+', Text),  # allow new lines
+            (r'\s+', Whitespace),  # allow new lines
             include('expr'),
         ],
         'expr-inside-fstring-inner': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             (r'[])}]', Punctuation, '#pop'),
-            (r'\s+', Text),  # allow new lines
+            (r'\s+', Whitespace),  # allow new lines
             include('expr'),
         ],
         'expr-keywords': [
@@ -229,7 +229,7 @@ class PythonLexer(RegexLexer):
         ],
         'soft-keywords-inner': [
             # optional `_` keyword
-            (r'(\s+)([^\n_]*)(_\b)', bygroups(Text, using(this), Keyword)),
+            (r'(\s+)([^\n_]*)(_\b)', bygroups(Whitespace, using(this), Keyword)),
             default('#pop')
         ],
         'builtins': [
@@ -445,11 +445,11 @@ class Python2Lexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
-             bygroups(Text, String.Affix, String.Doc)),
+             bygroups(Whitespace, String.Affix, String.Doc)),
             (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
-             bygroups(Text, String.Affix, String.Doc)),
+             bygroups(Whitespace, String.Affix, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'\A#!.+$', Comment.Hashbang),
             (r'#.*$', Comment.Single),
@@ -742,7 +742,7 @@ class PythonTracebackLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
             (r'^During handling of the above exception, another '
              r'exception occurred:\n\n', Generic.Traceback),
@@ -808,17 +808,17 @@ class Python2TracebackLexer(RegexLexer):
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Whitespace)),
             (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Whitespace)),
             (r'^(    )(.+)(\n)',
-             bygroups(Text, using(Python2Lexer), Text), 'marker'),
+             bygroups(Text, using(Python2Lexer), Whitespace), 'marker'),
             (r'^([ \t]*)(\.\.\.)(\n)',
-             bygroups(Text, Comment, Text)),  # for doctests...
+             bygroups(Text, Comment, Whitespace)),  # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
-             bygroups(Generic.Error, Text, Name, Text), '#pop'),
+             bygroups(Generic.Error, Text, Name, Whitespace), '#pop'),
             (r'^([a-zA-Z_]\w*)(:?\n)',
-             bygroups(Generic.Error, Text), '#pop')
+             bygroups(Generic.Error, Whitespace), '#pop')
         ],
         'marker': [
             # For syntax errors.
@@ -843,13 +843,13 @@ class CythonLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
-            (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
-            (r"^(\s*)('''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
+            (r'\n', Whitespace),
+            (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Whitespace, String.Doc)),
+            (r"^(\s*)('''(?:.|\n)*?''')", bygroups(Whitespace, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'#.*$', Comment),
             (r'[]{}:(),;[]', Punctuation),
-            (r'\\\n', Text),
+            (r'\\\n', Whitespace),
             (r'\\', Text),
             (r'(in|is|and|or|not)\b', Operator.Word),
             (r'(<)([a-zA-Z0-9.?]+)(>)',

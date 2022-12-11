@@ -83,7 +83,7 @@ def test_embedded_lexer():
         (Token.Operator, '='),
         (Token.Text, ' '),
         (Token.Literal.Number.Integer, '1'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Generic.Prompt, '>>> '),
         (Token.Name, 'y'),
         (Token.Text, ' '),
@@ -98,10 +98,10 @@ def test_embedded_lexer():
         (Token.Punctuation, ')'),
         (Token.Text, '  '),
         (Token.Comment.Single, '# these |pipes| are untouched'),  # note: not Token.Escape
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Generic.Prompt, '>>> '),
         (Token.Name, 'y'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Escape, '$1 + z^2$'),
         (Token.Generic.Output, '\n'),
     ]

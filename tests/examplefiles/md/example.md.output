@@ -372,10 +372,10 @@
 'import'      Keyword.Namespace
 ' '           Text
 'token'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# comment'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```\n'       Literal.String.Backtick
 

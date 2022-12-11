@@ -760,7 +760,7 @@
 "'"           Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                                              ' Text
 'for'         Keyword
@@ -1057,7 +1057,7 @@
 'field_name'  Name
 '}'           Comment.Preproc
 '${'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                          ' Text
 'field'       Name
@@ -1214,7 +1214,7 @@
 "'"           Literal.String.Single
 ' '           Text
 'and'         Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                                         ' Text
 'constraints' Name
@@ -1223,7 +1223,7 @@
 ']'           Punctuation
 ' '           Text
 'and'         Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                                         ' Text
 'len'         Name.Builtin

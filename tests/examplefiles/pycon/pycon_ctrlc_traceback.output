@@ -4,13 +4,13 @@
 'import'      Keyword.Namespace
 ' '           Text
 'os'          Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'print'       Name.Builtin
 ' '           Text
 'os'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 "<module 'os' from '/file/path.py'>\n" Generic.Output
 
@@ -26,7 +26,7 @@
 '10'          Literal.Number.Integer
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
@@ -39,7 +39,7 @@
 '+'           Operator
 ' '           Text
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
@@ -47,7 +47,7 @@
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
@@ -59,17 +59,17 @@
 ' '           Text
 '5'           Literal.Number.Integer
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '        '    Text
 'raise'       Keyword
 ' '           Text
 'Exception'   Name.Exception
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0\n'         Generic.Output
 
@@ -105,15 +105,15 @@
 ' '           Text
 'True'        Keyword.Constant
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
 'pass'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 '^CTraceback (most recent call last):\n' Generic.Output
 
@@ -132,10 +132,10 @@
 ')'           Punctuation
 ':'           Punctuation
 'pass'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'class'       Keyword
@@ -146,21 +146,21 @@
 ')'           Punctuation
 ':'           Punctuation
 'pass'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'try'         Keyword
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
 'try'         Keyword
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '        '    Text
@@ -172,13 +172,13 @@
 'first'       Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
 'finally'     Keyword
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '        '    Text
@@ -190,7 +190,7 @@
 'second'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 'except'      Keyword
@@ -201,7 +201,7 @@
 ' '           Text
 'c'           Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '    '        Text
@@ -209,10 +209,10 @@
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -256,7 +256,7 @@
 'x'           Name
 ' '           Text
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Generic.Traceback
 '  File '     Text
@@ -290,7 +290,7 @@
 '='           Operator
 ' '           Text
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'with'        Keyword
@@ -301,7 +301,7 @@
 ' '           Text
 'y'           Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '... '        Generic.Prompt
 '   '         Text
@@ -313,10 +313,10 @@
 ' '           Text
 'y'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
 '8\n'         Generic.Output
 
@@ -351,7 +351,7 @@
 'detail'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -379,7 +379,7 @@
 'detail'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -413,7 +413,7 @@
 'detail'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -448,7 +448,7 @@
 'detail'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -484,7 +484,7 @@
 'detail'      Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -507,7 +507,7 @@
 'raise'       Keyword
 ' '           Text
 'Exception'   Name.Exception
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -526,7 +526,7 @@
 'import'      Keyword.Namespace
 ' '           Text
 'somemodule'  Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'somemodule'  Name
@@ -534,7 +534,7 @@
 'blah'        Name
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
