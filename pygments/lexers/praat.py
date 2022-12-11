@@ -161,8 +161,9 @@ class PraatLexer(RegexLexer):
         ],
         'procedure_call': [
             (r'\s+', Whitespace),
-            (r'([\w.]+)(:|\s*\()',
-             bygroups(Name.Function, Text), '#pop'),
+            (r'([\w.]+)(?:(:)|(?:(\s*)(\()))',
+             bygroups(Name.Function, Punctuation,
+                      Text.Whitespace, Punctuation), '#pop'),
             (r'([\w.]+)', Name.Function, ('#pop', 'old_arguments')),
         ],
         'procedure_definition': [
@@ -183,9 +184,10 @@ class PraatLexer(RegexLexer):
             (r'\s*\(', Punctuation, ('#pop', 'comma_list')),
         ],
         'comma_list': [
-            (r'(\s*\n\s*)(\.{3})', bygroups(Text, Punctuation)),
+            (r'(\s*\n\s*)(\.{3})', bygroups(Whitespace, Punctuation)),
 
-            (r'(\s*[])\n])', Text, '#pop'),
+            (r'(\s*)(?:([)\]])|(\n))', bygroups(
+                Whitespace, Punctuation, Whitespace), '#pop'),
 
             (r'\s+', Whitespace),
             (r'"',   String, 'string'),
@@ -200,7 +202,7 @@ class PraatLexer(RegexLexer):
             (r',', Punctuation),
         ],
         'old_arguments': [
-            (r'\n', Text, '#pop'),
+            (r'\n', Whitespace, '#pop'),
 
             include('variable_name'),
             include('operator'),
@@ -249,7 +251,7 @@ class PraatLexer(RegexLexer):
              String.Interpol),
         ],
         'string_unquoted': [
-            (r'(\n\s*)(\.{3})', bygroups(Text, Punctuation)),
+            (r'(\n\s*)(\.{3})', bygroups(Whitespace, Punctuation)),
 
             (r'\n',       Whitespace,            '#pop'),
             (r'\s',       Whitespace),
@@ -273,17 +275,17 @@ class PraatLexer(RegexLexer):
             (r'(\s+)(#.*?$)',  bygroups(Whitespace, Comment.Single)),
             (r'\s+', Whitespace),
 
-            (r'(optionmenu|choice)([ \t]+\S+:[ \t]+)',
-             bygroups(Keyword, Whitespace), 'number'),
+            (r'(optionmenu|choice)([ \t]+)(\S)+(:)([ \t]+)',
+             bygroups(Keyword, Whitespace, Text, Punctuation, Whitespace), 'number'),
 
             (r'(option|button)([ \t]+)',
              bygroups(Keyword, Whitespace), 'string_unquoted'),
 
-            (r'(sentence|text)([ \t]+\S+)',
-             bygroups(Keyword, Whitespace), 'string_unquoted'),
+            (r'(sentence|text)([ \t]+)(\S+)',
+             bygroups(Keyword, Whitespace, String), 'string_unquoted'),
 
-            (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
-             bygroups(Keyword, Whitespace, String, Whitespace)),
+            (r'(word)([ \t]+)(\S+)([ \t]*)(\S+)?(?:([ \t]+)(.*))?',
+             bygroups(Keyword, Whitespace, Text, Whitespace, Text, Whitespace, Text)),
 
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
              bygroups(Keyword, Whitespace, Name.Variable)),
