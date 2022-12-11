@@ -24,6 +24,11 @@ def check_file(path):
             if 'Literal' in token:
                 continue
 
+            # If whitespace is part of a comment, we accept that as well,
+            # as comments may be similarly highlighted to literals
+            if 'Comment' in token:
+                continue
+
             if 'Whitespace' in token:
                 continue
 
