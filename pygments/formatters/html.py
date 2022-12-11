@@ -879,8 +879,12 @@ class HtmlFormatter(Formatter):
             for part in parts[:-1]:
                 if line:
                     if lspan != cspan:
-                        line.extend(((lspan and '</span>'), cspan, part,
-                                     (cspan and '</span>'), lsep))
+                        # If part is empty (i.e. it was a newline), just close
+                        if part:
+                            line.extend(((lspan and '</span>'), cspan, part,
+                                        (cspan and '</span>'), lsep))
+                        else:
+                            line.extend(((lspan and '</span>'), lsep))
                     else:  # both are the same
                         line.extend((part, (lspan and '</span>'), lsep))
                     yield 1, ''.join(line)
