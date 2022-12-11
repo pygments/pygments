@@ -275,7 +275,7 @@ class PraatLexer(RegexLexer):
             (r'(\s+)(#.*?$)',  bygroups(Whitespace, Comment.Single)),
             (r'\s+', Whitespace),
 
-            (r'(optionmenu|choice)([ \t]+)(\S)+(:)([ \t]+)',
+            (r'(optionmenu|choice)([ \t]+)(\S+)(:)([ \t]+)',
              bygroups(Keyword, Whitespace, Text, Punctuation, Whitespace), 'number'),
 
             (r'(option|button)([ \t]+)',
