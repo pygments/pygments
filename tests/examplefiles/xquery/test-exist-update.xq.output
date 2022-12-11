@@ -1,5 +1,5 @@
 'xquery'      Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'version'     Keyword.Pseudo
 ' '           Text.Whitespace
 '"3.0"'       Literal.String.Double
@@ -7,7 +7,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:add-log-message' Name.Function
@@ -19,11 +19,11 @@
 ' '           Text.Whitespace
 'xs:string'   Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'empty-sequence' Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 '?'           Punctuation
@@ -32,7 +32,7 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'logfile-collection' Name
 ' '           Text.Whitespace
@@ -41,7 +41,7 @@
 '"/db/apps/exist101/log"' Literal.String.Double
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'logfile-name' Name
 ' '           Text.Whitespace
@@ -50,7 +50,7 @@
 '"exist101-log.xml"' Literal.String.Double
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'logfile-full' Name
 ' '           Text.Whitespace
@@ -70,7 +70,7 @@
 ')'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'logfile-created' Name
 ' '           Text.Whitespace
@@ -109,7 +109,7 @@
 'return'      Keyword
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 '\n\t\t\t'    Text.Whitespace
 '<'           Name.Tag
@@ -149,7 +149,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:insert-attributes' Name.Function
@@ -159,14 +159,14 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'elm'         Name
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'element'     Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -184,7 +184,7 @@
 '('           Punctuation
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '<'           Name.Tag
@@ -198,11 +198,11 @@
 ','           Punctuation
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 'attribute'   Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -225,11 +225,11 @@
 ','           Punctuation
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 'attribute'   Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -258,7 +258,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:insert-elem' Name.Function
@@ -268,14 +268,14 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'elm'         Name
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'element'     Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -291,7 +291,7 @@
 'return'      Keyword
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '<'           Name.Tag
@@ -321,7 +321,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:insert-elem2' Name.Function
@@ -331,14 +331,14 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'elm'         Name
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'element'     Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -352,14 +352,14 @@
 '*'           Name.Tag
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'new-element' Name
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'element'     Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -384,7 +384,7 @@
 'return'      Keyword
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
@@ -401,7 +401,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:insert-single' Name.Function
@@ -411,7 +411,7 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '<'           Name.Tag
@@ -457,7 +457,7 @@
 '\n\n\n'      Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:trim-insert' Name.Function
@@ -467,7 +467,7 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'document'    Name
 ' '           Text.Whitespace
@@ -479,7 +479,7 @@
 ')'           Punctuation
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'newentry'    Name
 ' '           Text.Whitespace
@@ -516,7 +516,7 @@
 'return'      Keyword
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'delete'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
@@ -554,7 +554,7 @@
 'then'        Keyword
 '\n\t\t\t'    Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
@@ -575,7 +575,7 @@
 'else'        Keyword
 '\n\t\t\t'    Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
@@ -594,7 +594,7 @@
 '\n\n\n'      Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:attempt-document-node-insert' Name.Function
@@ -610,14 +610,14 @@
 ':)'          Comment
 '\n\t'        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'document'    Name
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
 'document-node' Name.Tag
-''            Text
+''            Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -636,7 +636,7 @@
 'return'      Keyword
 '\n\t\t'      Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '<'           Name.Tag
@@ -656,7 +656,7 @@
 '\n\n'        Text.Whitespace
 
 'declare'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'local:attempt-attr-update-with-node' Name.Function
@@ -666,7 +666,7 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'replace'     Keyword
 ' '           Text.Whitespace
 'doc'         Name.Function
@@ -705,7 +705,7 @@
 '\n\n\n'      Text.Whitespace
 
 '(#'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'exist:batch-transaction' Name.Variable
 ' '           Literal
 '#)'          Punctuation
@@ -713,7 +713,7 @@
 '{'           Punctuation
 '\n\t'        Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'delete'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
@@ -734,7 +734,7 @@
 ','           Punctuation
 '\n\t'        Text.Whitespace
 'update'      Keyword
-' '           Text
+' '           Text.Whitespace
 'insert'      Keyword
 ' '           Text.Whitespace
 '$'           Name.Variable
