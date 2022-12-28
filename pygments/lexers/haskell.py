@@ -163,7 +163,7 @@ class HspecLexer(HaskellLexer):
 
     name = 'Hspec'
     aliases = ['hspec']
-    filenames = []
+    filenames = ['*Spec.hs']
     mimetypes = []
 
     tokens = {
