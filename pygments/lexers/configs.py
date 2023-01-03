@@ -746,6 +746,13 @@ class TerraformLexer(ExtendedRegexLexer):
             # here-doc style delimited strings
             (r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)', heredoc_callback),
         ],
+        'blockname': [
+            # e.g. resource "aws_security_group" "allow_tls" {
+            # e.g. backend "consul" {
+            (r'(\s*)("[0-9a-zA-Z-_]+")?(\s*)("[0-9a-zA-Z-_]+")',
+             bygroups(Whitespace, Name.Class, Whitespace, Name.Variable)),
+             default('#pop'),
+        ],
         'identifier': [
             (r'\b(var\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
             (r'\b([0-9a-zA-Z-_\[\]]+\.[0-9a-zA-Z-_\.\[\]]+)\b',
