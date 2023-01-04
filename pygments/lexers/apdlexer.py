@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    String, Generic, Punctuation, Whitespace
+    String, Generic, Punctuation, Whitespace, Escape
 
 __all__ = ['apdlexer']
 
@@ -144,7 +144,7 @@ class apdlexer(RegexLexer):
                "CMDELE", "CMDOMEGA", "CMEDIT", "CMGRP", "CMLIST",
                "CMMOD", "CMOMEGA", "CMPLOT", "CMROTATE", "CMSEL",
                "CMSFILE", "CMSOPT", "CMWRITE", "CNCHECK", "CNKMOD",
-               "CNTR", "CNVTOL", "/COLOR", "/COM", "*COMP", "COMBINE",
+               "CNTR", "CNVTOL", "/COLOR", "*COMP", "COMBINE",
                "COMPRESS", "CON4", "CONE", "/CONFIG", "CONJUG",
                "/CONTOUR", "/COPY", "CORIOLIS", "COUPLE", "COVAL",
                "CP", "CPCYC", "CPDELE", "CPINTF", "/CPLANE", "CPLGEN",
@@ -158,7 +158,7 @@ class apdlexer(RegexLexer):
                "DADELE", "DALIST", "DAMORPH", "DATA", "DATADEF",
                "DCGOMG", "DCUM", "DCVSWP", "DDASPEC", "DDELE",
                "DDOPTION", "DEACT", "DEFINE", "*DEL", "DELETE",
-               "/DELETE", "DELTIM", "DEMORPH", "DERIV", "DESIZE",
+               "/DELETE", "DELTIM", "DELTIME", "DEMORPH", "DERIV", "DESIZE",
                "DESOL", "DETAB", "/DEVDISP", "/DEVICE", "/DFLAB",
                "DFLX", "DFSWAVE", "DIG", "DIGIT", "*DIM",
                "/DIRECTORY", "DISPLAY", "/DIST", "DJ", "DJDELE",
@@ -350,7 +350,7 @@ class apdlexer(RegexLexer):
                "SSBT", "/SSCALE", "SSLN", "SSMT", "SSPA", "SSPB",
                "SSPD", "SSPE", "SSPM", "SSUM", "SSTATE", "STABILIZE",
                "STAOPT", "STAT", "*STATUS", "/STATUS", "STEF",
-               "/STITLE", "STORE", "SUBOPT", "SUBSET", "SUCALC",
+               "STORE", "SUBOPT", "SUBSET", "SUCALC",
                "SUCR", "SUDEL", "SUEVAL", "SUGET", "SUMAP", "SUMTYPE",
                "SUPL", "SUPR", "SURESU", "SUSAVE", "SUSEL", "SUVECT",
                "SV", "SVPLOT", "SVTYP", "SWADD", "SWDEL", "SWGEN",
@@ -359,13 +359,13 @@ class apdlexer(RegexLexer):
                "TBEO", "TBIN", "TBFIELD", "TBFT", "TBLE", "TBLIST",
                "TBMODIF", "TBPLOT", "TBPT", "TBTEMP", "TCHG", "/TEE",
                "TERM", "THEXPAND", "THOPT", "TIFF", "TIME",
-               "TIMERANGE", "TIMINT", "TIMP", "TINTP", "/TITLE",
+               "TIMERANGE", "TIMINT", "TIMP", "TINTP",
                "/TLABEL", "TOFFST", "*TOPER", "TORQ2D", "TORQC2D",
                "TORQSUM", "TORUS", "TRANS", "TRANSFER", "*TREAD",
                "TREF", "/TRIAD", "/TRLCY", "TRNOPT", "TRPDEL",
                "TRPLIS", "TRPOIN", "TRTIME", "TSHAP", "/TSPEC",
                "TSRES", "TUNIF", "TVAR", "/TXTRE", "/TYPE", "TYPE",
-               "/UCMD", "/UDOC", "/UI", "UIMP", "/UIS", "*ULIB",
+               "/UCMD", "/UDOC", "/UI", "UIMP", "/UIS", "*ULIB", "/UPF",
                "UNDELETE", "UNDO", "/UNITS", "UNPAUSE", "UPCOORD",
                "UPGEOM", "*USE", "/USER", "USRCAL", "USRDOF",
                "USRELEM", "V", "V2DOPT", "VA", "*VABS", "VADD",
@@ -416,14 +416,19 @@ class apdlexer(RegexLexer):
                "/ANNOT", "ANORM", "ANPRES", "ANSOL", "ANSTOAQWA",
                "ANSTOASAS", "ANTIME", "ANTYPE")
 
+    special_ = ("/COM", "/TITLE", "STITLE")
+
     tokens = {
         'root': [
             (r'!.*\n', Comment),
+            # (r'/com.*\n', Comment),
+            (r'%.*%', Escape),
             include('strings'),
-            include('core'),
             include('nums'),
-            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b'), Keyword),
+            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b', prefix=r'\s*'), Keyword),
+            (words((special_), prefix=r'\s*', suffix=r'\b'), Keyword),
             (words((elafunf+elafung), suffix=r'\b'), Name.Builtin),
+            include('core'),
             (r'AR[0-9]+', Name.Variable.Instance),
             (r'[a-z][a-z0-9_]*', Name.Variable),
             (r'[\s]+', Whitespace),
@@ -432,7 +437,7 @@ class apdlexer(RegexLexer):
             # Operators
             (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
             (r'/EOF', Generic.Emph),
-            (r'[(),:&;]', Punctuation),
+            (r'[\.(),:&;]', Punctuation),
         ],
         'strings': [
             (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
