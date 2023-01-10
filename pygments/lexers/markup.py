@@ -540,13 +540,17 @@ class MarkdownLexer(RegexLexer):
     tokens = {
         'root': [
             # heading with '#' prefix (atx-style)
-            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
+            (r'(^#[^#].+?)(<!--.*?-->)?(\n)',
+             bygroups(Generic.Heading, Comment, Text)),
             # subheading with '#' prefix (atx-style)
-            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),
+            (r'(^#{2,6}[^#].+?)(<!--.*?-->)?(\n)',
+             bygroups(Generic.Subheading, Comment, Text)),
             # heading with '=' underlines (Setext-style)
-            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),
+            (r'^(.+?)(<!--.*?-->)?(\n)(=+)(<!--.*?-->)?(\n)',
+             bygroups(Generic.Heading, Comment, Text, Generic.Heading, Comment, Text)),
             # subheading with '-' underlines (Setext-style)
-            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),
+            (r'^(.+?)(<!--.*?-->)?(\n)(-+)(<!--.*?-->)?(\n)',
+             bygroups(Generic.Subheading, Comment, Text, Generic.Subheading, Comment, Text)),
             # task list
             (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',
             bygroups(Whitespace, Keyword, Keyword, using(this, state='inline'))),
@@ -594,6 +598,9 @@ class MarkdownLexer(RegexLexer):
              bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
             (r'^(\s*\[)([^]]*)(\]:\s*)(.+)',
              bygroups(Text, Name.Label, Text, Name.Attribute)),
+            # comments (can span multiple lines)
+            (r'(<!--[\s\S]*?-->)',
+             bygroups(Comment)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),
