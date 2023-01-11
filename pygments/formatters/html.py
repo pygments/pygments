@@ -980,7 +980,7 @@ class HtmlFormatter(Formatter):
                 source = self._wrap_lineanchors(source)
             if self.linespans:
                 source = self._wrap_linespans(source)
-            source = self.wrap(source)
+            source = self.wrap(source, outfile)
             if self.linenos == 1:
                 source = self._wrap_tablelinenos(source)
             source = self._wrap_div(source)
