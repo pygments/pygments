@@ -139,7 +139,7 @@
 %% REPEAT TYPES
 
 #(define all-repeat-types
-   '(volta percent unfold segno))
+   '(volta percent tremolo unfold segno))
 
 #(dump-py-list 'repeat_types all-repeat-types)
 
@@ -269,7 +269,9 @@
               (ly:context-def? (cdr entry)))
             layout-alist))
         (context-def-names
-          (map car all-context-defs)))
+          (map car all-context-defs))
+        ;; Timing is added dynamically
+        (context-def-names (cons 'Timing context-def-names)))
    (dump-py-list 'contexts context-def-names))
 
 %% TRANSLATORS

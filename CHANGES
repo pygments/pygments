@@ -7,6 +7,10 @@ Version 2.15.0
 --------------
 (unreleased)
 
+- Updated lexers:
+
+  * LilyPond: minor update of builtins
+
 Version 2.14.0
 --------------
 (released January 1st, 2023)
@@ -31,7 +35,7 @@ Version 2.14.0
   * Abap: Update keywords (#2281)
   * Alloy: Update for Alloy 6 (#1963)
   * C family (C, C++ and many others):
-    
+
     - Fix an issue where a chunk would be wrongly recognized as a function
       definition due to braces in comments (#2210)
     - Improve parantheses handling for function definitions (#2207, #2208)
@@ -57,7 +61,7 @@ Version 2.14.0
   * NASM: Add support for SSE/AVX/AVX-512 registers as well as 'rel'
     and 'abs' address operators (#2212)
   * Powershell:
-  
+
     - Add ``local:`` keyword (#2254)
     - Allow continuations without markers (#2262, #2263)
 
