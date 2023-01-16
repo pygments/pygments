@@ -2,8 +2,7 @@
 
 '!\n'         Comment
 
-'/'           Operator
-'title'       Name.Variable
+'/title'      Keyword
 ','           Punctuation
 ' '           Text.Whitespace
 'Bridge'      Name.Variable
@@ -13,8 +12,7 @@
 'Tutorial'    Name.Variable
 '\n'          Text.Whitespace
 
-'/'           Operator
-'PREP7'       Name.Variable
+'/PREP7'      Keyword
 '                  ' Text.Whitespace
 '! preprocessor phase\n' Comment
 
@@ -245,8 +243,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'20'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'200e3'       Literal.Number.Float
 '          '  Text.Whitespace
 "! material property #1; Young's modulus: 200 GPa\n" Comment
 
@@ -282,8 +279,7 @@
 
 '!\n'         Comment
 
-'/'           Operator
-'SOLU'        Keyword
+'/SOLU'       Keyword
 '                   ' Text.Whitespace
 '! enter solution phase\n' Comment
 
@@ -322,9 +318,7 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'28'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'-280e3'      Literal.Number.Float
 '          '  Text.Whitespace
 '! define a force load to a keypoint\n' Comment
 
@@ -334,9 +328,7 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'21'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'-210e3'      Literal.Number.Float
 '          \n' Text.Whitespace
 
 'FK'          Keyword
@@ -345,9 +337,7 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'28'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'-280e3'      Literal.Number.Float
 '          \n' Text.Whitespace
 
 'FK'          Keyword
@@ -356,9 +346,7 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'36'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'-360e3'      Literal.Number.Float
 '          \n' Text.Whitespace
 
 '!\n'         Comment
@@ -373,8 +361,7 @@
 
 '\n'          Text.Whitespace
 
-'/'           Operator
-'POST1'       Name.Variable
+'/POST1'      Keyword
 '\n'          Text.Whitespace
 
 'PRRSOL'      Keyword
