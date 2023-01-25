@@ -2,6 +2,9 @@ name: Pygments
 
 on: [push, pull_request]
 
+env:
+  FORCE_COLOR: 1
+
 permissions:
   contents: read # to fetch code (actions/checkout)
 
@@ -10,15 +13,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
-        exclude:
-          - os: ubuntu-latest
-            python-version: "3.6"
-        include:
-          - os: ubuntu-20.04
-            python-version: "3.6"
-      max-parallel: 4
+        os: [windows-latest, ubuntu-latest]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12-dev"]
 
     steps:
     - uses: actions/checkout@v3
@@ -39,6 +35,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
     - name: Run make check
       run: make check
     - name: Fail if the basic checks failed
@@ -50,6 +48,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
     - name: Regenerate mapfiles
       run: make mapfiles
     - name: Fail if mapfiles changed
@@ -65,7 +65,7 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
-        python-version: 3.8
+        python-version: "3.x"
     - name: Check out regexlint
       run: git clone https://github.com/pygments/regexlint
     - name: Run regexlint
