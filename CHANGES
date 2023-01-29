@@ -9,7 +9,11 @@ Version 2.15.0
 
 - Updated lexers:
 
+  * diff: support normal diff syntax, as opposed to unified diff syntax (#2321)
   * LilyPond: minor update of builtins
+
+- Declare support for Python 3.11 and drop support for Python 3.6 (#2324).
+- Update ``native`` style to improve contrast (#2325).
 
 Version 2.14.0
 --------------
