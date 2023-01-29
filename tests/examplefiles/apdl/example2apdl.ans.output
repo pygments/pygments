@@ -2,6 +2,7 @@
 
 '!\n'         Comment
 
+' '           Text.Whitespace
 '/title'      Keyword
 ','           Punctuation
 ' '           Text.Whitespace
@@ -36,7 +37,7 @@
 
 '!\n'         Comment
 
-'! define keypoints \n' Comment
+'! define keypoints\n' Comment
 
 '!\n'         Comment
 
@@ -62,7 +63,7 @@
 '2'           Literal.Number.Integer
 ','           Punctuation
 'height'      Name.Variable
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 'K'           Keyword
 ','           Punctuation
@@ -101,7 +102,7 @@
 ','           Punctuation
 '   '         Text.Whitespace
 '0'           Literal.Number.Integer
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 'K'           Keyword
 ','           Punctuation
@@ -213,7 +214,7 @@
 '6'           Literal.Number.Integer
 ','           Punctuation
 '7'           Literal.Number.Integer
-'\n \n'       Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '!\n'         Comment
 
@@ -225,7 +226,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'LINK1'       Keyword
+'LINK1'       Name.Variable
 '              ' Text.Whitespace
 '! element type      #1; spring element\n' Comment
 
@@ -304,7 +305,7 @@
 'UY'          Name.Variable
 ','           Punctuation
 '0'           Literal.Number.Integer
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 '!\n'         Comment
 
@@ -329,7 +330,7 @@
 'FY'          Name.Variable
 ','           Punctuation
 '-210e3'      Literal.Number.Float
-'          \n' Text.Whitespace
+'\n'          Text.Whitespace
 
 'FK'          Keyword
 ','           Punctuation
@@ -338,7 +339,7 @@
 'FY'          Name.Variable
 ','           Punctuation
 '-280e3'      Literal.Number.Float
-'          \n' Text.Whitespace
+'\n'          Text.Whitespace
 
 'FK'          Keyword
 ','           Punctuation
@@ -347,7 +348,7 @@
 'FY'          Name.Variable
 ','           Punctuation
 '-360e3'      Literal.Number.Float
-'          \n' Text.Whitespace
+'\n'          Text.Whitespace
 
 '!\n'         Comment
 
@@ -366,7 +367,7 @@
 
 'PRRSOL'      Keyword
 ','           Punctuation
-'F'           Keyword
+'F'           Name.Variable
 '                ' Text.Whitespace
 '! List Reaction Forces\n' Comment
 

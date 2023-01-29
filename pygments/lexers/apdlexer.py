@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, words
+from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     String, Generic, Punctuation, Whitespace, Escape
 
@@ -417,7 +417,7 @@ class apdlexer(RegexLexer):
                "ANSTOASAS", "ANTIME", "ANTYPE")
 
     special = ("/COM", "/TITLE", "STITLE")
-    
+
     elements = ("SOLID5",
                 "LINK11",
                 "PLANE13",
@@ -556,17 +556,22 @@ class apdlexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'!.*\n', Comment),
+            (r'[^\S\n]+', Whitespace),
+            (words((elafunb+elafunc+elafund+elafune+elafunh+special), suffix=r'\b'), Keyword, 'non-keyword'),
+            default('non-keyword'),
+        ],
+        'non-keyword': [
+            (r'!.*\n', Comment, '#pop'),
             (r'%.*?%', Escape),
             include('strings'),
             include('nums'),
-            (words((elafunb+elafunc+elafund+elafune+elafunh+special), suffix=r'\b'), Keyword),
             (words((elafunf+elafung), suffix=r'\b'), Name.Builtin),
             (words((elements), suffix=r'\b'), Name.Property),
             include('core'),
             (r'AR[0-9]+', Name.Variable.Instance),
             (r'[a-z_][a-z0-9_]*', Name.Variable),
-            (r'[\s]+', Whitespace),
+            (r'\n+', Whitespace, '#pop'),
+            (r'[^\S\n]+', Whitespace),
         ],
         'core': [
             # Operators
