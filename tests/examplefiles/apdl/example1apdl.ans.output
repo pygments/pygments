@@ -1,12 +1,10 @@
 'finish'      Keyword
 '\n'          Text.Whitespace
 
-'/'           Operator
-'clear'       Name.Variable
+'/clear'      Keyword
 '\n\n'        Text.Whitespace
 
-'/'           Operator
-'title'       Name.Variable
+'/title'      Keyword
 ','           Punctuation
 ' '           Text.Whitespace
 'Thermal'     Name.Variable
@@ -16,13 +14,11 @@
 'Example'     Name.Variable
 '\n'          Text.Whitespace
 
-'/'           Operator
-'prep7'       Name.Variable
+'/prep7'      Keyword
 '\t\t\t\t\t'  Text.Whitespace
 '! Enter preprocessor\n' Comment
 
-'*'           Operator
-'VOPER'       Name.Variable
+'*VOPER'      Keyword
 ','           Punctuation
 'test'        Name.Variable
 '\n\n'        Text.Whitespace
@@ -60,7 +56,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'link33'      Name.Variable
+'link33'      Name.Property
 '\t\t\t\t'    Text.Whitespace
 '! Element type\n' Comment
 
@@ -79,8 +75,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'6'           Literal.Number.Integer
-'0.5'         Literal.Number.Float
+'60.5'        Literal.Number.Float
 '\t\t\t\t'    Text.Whitespace
 '! Thermal conductivity\n' Comment
 
@@ -100,7 +95,7 @@
 
 'physics'     Keyword
 ','           Punctuation
-'write'       Keyword
+'write'       Name.Variable
 ','           Punctuation
 'thermal'     Name.Variable
 '\t\t\t'      Text.Whitespace
@@ -126,8 +121,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'20'          Literal.Number.Integer
-'0e9'         Literal.Number.Float
+'200e9'       Literal.Number.Float
 '\t\t\t\t'    Text.Whitespace
 "! Young's modulus\n" Comment
 
@@ -147,14 +141,13 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'1'           Literal.Number.Integer
-'2e-6'        Literal.Number.Float
+'12e-6'       Literal.Number.Float
 '\t\t\t\t'    Text.Whitespace
 '! Expansion coefficient\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'write'       Keyword
+'write'       Name.Variable
 ','           Punctuation
 'struct'      Name.Variable
 '\t\t\t'      Text.Whitespace
@@ -168,8 +161,7 @@
 'finish'      Keyword
 '\n\n'        Text.Whitespace
 
-'/'           Operator
-'solu'        Keyword
+'/solu'       Keyword
 '\t\t\t\t\t'  Text.Whitespace
 '! Enter the solution phase\n' Comment
 
@@ -181,7 +173,7 @@
 
 'physics'     Keyword
 ','           Punctuation
-'read'        Keyword
+'read'        Name.Variable
 ','           Punctuation
 'thermal'     Name.Variable
 '\t\t\t'      Text.Whitespace
@@ -205,14 +197,13 @@
 'finish'      Keyword
 '\n\n'        Text.Whitespace
 
-'/'           Operator
-'solu'        Keyword
+'/solu'       Keyword
 '\t\t\t\t\t'  Text.Whitespace
 '! Re-enter the solution phase\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'read'        Keyword
+'read'        Name.Variable
 ','           Punctuation
 'struct'      Name.Variable
 '\t\t\t'      Text.Whitespace
@@ -263,8 +254,7 @@
 'finish'      Keyword
 '\n\n'        Text.Whitespace
 
-'/'           Operator
-'post1'       Name.Variable
+'/post1'      Keyword
 '\t\t\t\t\t'  Text.Whitespace
 '! Enter postprocessor\n' Comment
 
