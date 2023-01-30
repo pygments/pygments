@@ -156,8 +156,8 @@ Contribution checklist
 
     To add a new test, create a file with just your code snippet under a
     subdirectory based on your lexer's main alias. Then run
-    ``pytest --update-goldens <filename.txt>`` to auto-populate the currently
-    expected tokens. Check that they look good and check in the file.
+    ``tox -- --update-goldens <filename.txt>`` to auto-populate the
+    currently expected tokens. Check that they look good and check in the file.
 
     Also run the same command whenever you need to update the test if the
     actual produced tokens change (assuming the change is expected).
