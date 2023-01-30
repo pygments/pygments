@@ -28,6 +28,6 @@ if __name__ == "__main__":
     data = json.load(data_request)
     names = set([p['property'] for p in data if p['property'] != '--*'])
 
-    with open('../pygments/lexers/_css_builtins.py', 'w') as builtin_file:
+    with open('../pygments/lexers/_css_builtins.py', 'w', encoding='utf-8') as builtin_file:
         builtin_file.write(HEADER)
         builtin_file.write(format_lines('_css_properties', sorted(names)))

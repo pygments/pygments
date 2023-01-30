@@ -21,7 +21,7 @@ def unpack_output_file(path):
 
     skip_until_tokens = path.endswith('.txt')
 
-    for linenumber, line in enumerate(open(path).readlines()):
+    for linenumber, line in enumerate(open(path, encoding='utf-8').readlines()):
         line = line.strip()
         if not line:
             continue

@@ -236,7 +236,7 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
 
     if pagename in ('styles', 'demo'):
-        with open('examples/example.py') as f:
+        with open('examples/example.py', encoding='utf-8') as f:
             html = f.read()
         lexer = pygments.lexers.get_lexer_for_filename('example.py')
         min_contrasts = test_contrasts.min_contrasts()
@@ -273,7 +273,7 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
 def source_read(app, docname, source):
     # linkify issue / PR numbers in changelog
     if docname == 'docs/changelog':
-        with open('../CHANGES') as f:
+        with open('../CHANGES', encoding='utf-8') as f:
             changelog = f.read()
 
         idx = changelog.find('\nVersion 2.4.2\n')

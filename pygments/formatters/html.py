@@ -635,7 +635,7 @@ class HtmlFormatter(Formatter):
             # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
                 if not os.path.exists(cssfilename) or not self.noclobber_cssfile:
-                    with open(cssfilename, "w") as cf:
+                    with open(cssfilename, "w", encoding="utf-8") as cf:
                         cf.write(CSSFILE_TEMPLATE %
                                  {'styledefs': self.get_style_defs('body')})
             except OSError as err:
@@ -721,7 +721,7 @@ class HtmlFormatter(Formatter):
         yield 0, dummyoutfile.getvalue()
         yield 0, '</div>'
         yield 0, '</td></tr></table>'
-        
+
 
     def _wrap_inlinelinenos(self, inner):
         # need a list of lines since we need the width of a single number :(
@@ -946,9 +946,9 @@ class HtmlFormatter(Formatter):
         output = source
         if self.wrapcode:
             output = self._wrap_code(output)
-        
+
         output = self._wrap_pre(output)
-    
+
         return output
 
     def format_unencoded(self, tokensource, outfile):
