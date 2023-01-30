@@ -249,14 +249,14 @@ if __name__ == '__main__':  # pragma: no cover
             return 'basic'
 
     def regenerate(filename, modules):
-        with open(filename) as fp:
+        with open(filename, encoding='utf-8') as fp:
             content = fp.read()
 
         header = content[:content.find('MODULES = {')]
         footer = content[content.find("if __name__ == '__main__':"):]
 
 
-        with open(filename, 'w') as fp:
+        with open(filename, 'w', encoding='utf-8') as fp:
             fp.write(header)
             fp.write('MODULES = %s\n\n' % pprint.pformat(modules))
             fp.write(footer)

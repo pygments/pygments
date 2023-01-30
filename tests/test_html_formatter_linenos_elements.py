@@ -57,7 +57,8 @@ def test_linenos_elements(
     #     import bs4 as BeautifulSoup
     #     f.write(str(BeautifulSoup.BeautifulSoup(html, 'html.parser')))
 
-    with open(os.path.join(EXPECTED_OUTPUT_DIR, expected_html_filename)) as f:
+    with open(os.path.join(EXPECTED_OUTPUT_DIR, expected_html_filename),
+              encoding="utf-8") as f:
         expected_html = f.read()
 
     structural_diff.structural_diff(html, expected_html)

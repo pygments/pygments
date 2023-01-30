@@ -24,7 +24,7 @@ TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
 
 
 def test_correct_output():
-    with open(TESTFILE) as fp:
+    with open(TESTFILE, encoding='utf-8') as fp:
         tokensource = list(PythonLexer().get_tokens(fp.read()))
     hfmt = LatexFormatter(nowrap=True)
     houtfile = StringIO()
@@ -35,7 +35,7 @@ def test_correct_output():
 
 
 def test_valid_output():
-    with open(TESTFILE) as fp:
+    with open(TESTFILE, encoding='utf-8') as fp:
         tokensource = list(PythonLexer().get_tokens(fp.read()))
     fmt = LatexFormatter(full=True, encoding='latin1')
 

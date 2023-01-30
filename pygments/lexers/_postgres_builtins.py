@@ -665,7 +665,7 @@ if __name__ == '__main__':  # pragma: no cover
         return dt
 
     def update_consts(filename, constname, content):
-        with open(filename) as f:
+        with open(filename, encoding='utf-8') as f:
             data = f.read()
 
         # Line to start/end inserting
@@ -678,7 +678,7 @@ if __name__ == '__main__':  # pragma: no cover
         new_block = format_lines(constname, content)
         data = data[:m.start()] + new_block + data[m.end():]
 
-        with open(filename, 'w', newline='\n') as f:
+        with open(filename, 'w', encoding='utf-8', newline='\n') as f:
             f.write(data)
 
     update_myself()
