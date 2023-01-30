@@ -32,6 +32,42 @@
 '0x00'        Literal.Number.Integer
 '\n'          Text.Whitespace
 
+'scratch_load_dwordx3' Keyword.Reserved
+' '           Text.Whitespace
+'v'           Name.Variable
+'['           Text
+'2:5'         Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'off'         Name.Attribute
+'\n'          Text.Whitespace
+
+'v_interp_p1_f32_e32' Keyword
+' '           Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'attr0.x'     Name.Attribute
+'\n'          Text.Whitespace
+
+'v_interp_p1_f32_e32' Keyword
+' '           Text.Whitespace
+'v3'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'attr0.y'     Name.Attribute
+'\n'          Text.Whitespace
+
 'v_lshlrev_b32' Keyword
 '  '          Text.Whitespace
 'v0'          Name.Variable
