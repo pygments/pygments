@@ -19,6 +19,8 @@ Version 2.15.0
 - Update ``native`` style to improve contrast (#2325).
 - Revert a change that made guessing lexers based on file names slower
   on Python 3.10 and older (#2328).
+- Fix some places where a locale-dependent encoding could unintentionally
+  be used instead of UTF-8 (#2326).
 
 Version 2.14.0
 --------------
