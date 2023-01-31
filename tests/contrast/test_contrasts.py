@@ -11,7 +11,6 @@
 
 import json
 import os
-import sys
 
 import pygments.styles
 import pygments.token

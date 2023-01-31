@@ -10,7 +10,6 @@
 
 from importlib import import_module
 from pathlib import Path
-import re
 import sys
 
 top_src_dir = Path(__file__).parent.parent

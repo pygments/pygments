@@ -2,7 +2,6 @@
 
 """Test that syntax highlighting for USD files works correctly."""
 
-import textwrap
 import unittest
 
 from pygments.lexers import UsdLexer

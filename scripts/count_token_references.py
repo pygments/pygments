@@ -52,15 +52,15 @@ def lookup_all_lexers():
     count = 0
     for (name, aliases, patterns, mimetypes) in lexers.get_all_lexers():
         for a in aliases:
-            l = lexers.get_lexer_by_name(a)
+            lexers.get_lexer_by_name(a)
             break
         else:
             for p in patterns:
-                l = lexers.get_lexer_for_filename(p)
+                lexers.get_lexer_for_filename(p)
                 break
             else:
                 for m in mimetypes:
-                    l = lexers.get_lexer_for_mimetype(m)
+                    lexers.get_lexer_for_mimetype(m)
                     break
         count += 1
     return count
@@ -196,10 +196,10 @@ def print_result(token_references, args):
     def key(item):
         return (item[1].count_files(), item[1].count_lines())
 
-    for (token, locations) in sorted(token_references.items(), key=key):
+    for (tok, locations) in sorted(token_references.items(), key=key):
         if args.minfiles <= locations.count_files() <= args.maxfiles and \
            args.minlines <= locations.count_lines() <= args.maxlines:
-            print(f"{token}: {locations}")
+            print(f"{tok}: {locations}")
 
 
 def main(args=None):
