@@ -1,9 +1,7 @@
 name: Docs
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
+
 
 env:
   FORCE_COLOR: 1
@@ -28,11 +26,11 @@ jobs:
         touch doc/_build/dirhtml/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > doc/_build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > doc/_build/dirhtml/README
-    - name: Deploy to repo
-      if: github.repository_owner == 'pygments'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        external_repository: pygments/pygments.github.io
-        publish_branch: master
-        publish_dir: ./doc/_build/dirhtml
+#    - name: Deploy to repo
+#      if: github.repository_owner == 'pygments'
+#      uses: peaceiris/actions-gh-pages@v3
+#      with:
+#        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+#        external_repository: pygments/pygments.github.io
+#        publish_branch: master
+#        publish_dir: ./doc/_build/dirhtml
