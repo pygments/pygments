@@ -234,7 +234,7 @@ class PythonLexer(RegexLexer):
         ],
         'builtins': [
             (words((
-                '__import__', 'abs', 'all', 'any', 'bin', 'bool', 'bytearray',
+                '__import__', 'abs', 'aiter', 'all', 'any', 'bin', 'bool', 'bytearray',
                 'breakpoint', 'bytes', 'callable', 'chr', 'classmethod', 'compile',
                 'complex', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval',
                 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals',
