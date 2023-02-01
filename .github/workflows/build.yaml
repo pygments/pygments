@@ -57,7 +57,7 @@ jobs:
     - name: Fail if mapfiles changed
       run: |
         if git ls-files -m | grep mapping; then
-          echo 'Please run tox -e mapfiles" and add the changes to a commit.'
+          echo 'Please run "tox -e mapfiles" and add the changes to a commit.'
           exit 1
         fi
 
