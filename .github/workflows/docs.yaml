@@ -21,13 +21,13 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install tox
-      run: pip install tox
+      run: pip install -r requirements.txt
     - name: Sphinx build
       run: |
-        tox -e web-doc -- -b dirhtml
-        touch _build/dirhtml/.nojekyll
-        echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
-        echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
+        tox -e web-doc -- dirhtml
+        touch doc/_build/dirhtml/.nojekyll
+        echo -e 'pygments.org\nwww.pygments.org' > doc/_build/dirhtml/CNAME
+        echo 'Automated deployment of docs for GitHub pages.' > doc/_build/dirhtml/README
     - name: Deploy to repo
       if: github.repository_owner == 'pygments'
       uses: peaceiris/actions-gh-pages@v3
