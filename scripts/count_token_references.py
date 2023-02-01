@@ -197,10 +197,10 @@ def print_result(token_references, args):
     def key(item):
         return (item[1].count_files(), item[1].count_lines())
 
-    for (token, locations) in sorted(token_references.items(), key=key):
+    for (tok, locations) in sorted(token_references.items(), key=key):
         if args.minfiles <= locations.count_files() <= args.maxfiles and \
            args.minlines <= locations.count_lines() <= args.maxlines:
-            print(f"{token}: {locations}")
+            print(f"{tok}: {locations}")
 
 
 def main(args=None):

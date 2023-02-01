@@ -231,7 +231,7 @@ def test_unicode_options():
 
 def test_ctags():
     try:
-        import ctags
+        import ctags # noqa: F401
     except ImportError:
         # we can't check without the ctags module, but at least check the exception
         assert pytest.raises(

@@ -8,7 +8,7 @@
 
 import pytest
 
-from pygments.token import Text, String, Number, Punctuation, Error, Whitespace
+from pygments.token import String, Number, Punctuation, Error, Whitespace
 from pygments.lexers import CrystalLexer
 
 

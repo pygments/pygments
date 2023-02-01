@@ -358,7 +358,6 @@ class MySecondLexer(RegexLexer):
 
 
 def test_bracket_escape():
-    s = "whatever"
     # This used to emit a FutureWarning.
     assert list(MySecondLexer().get_tokens("x")) == [
         (Token.Name, "x"),
