@@ -55,16 +55,7 @@ def check_file(path, threshold, single_only):
     return True
 
 
-def main(args):
-    def check_file_callback(path):
-        return check_file(path, args.threshold, args.single)
-
-    if process_output_files(args.TEST_ROOT, check_file_callback) > 0:
-        return 1
-    return 0
-
-
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('TEST_ROOT',
                         help='Root directory containing the tests')
@@ -74,4 +65,14 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--single', action='store_true', default=False,
                         help='Only look at tokens matching a single character')
     args = parser.parse_args()
-    sys.exit(main(args))
+
+    def check_file_callback(path):
+        return check_file(path, args.threshold, args.single)
+
+    if process_output_files(args.TEST_ROOT, check_file_callback) > 0:
+        return 1
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -50,17 +50,17 @@ def lookup_all_lexers():
     This should create all tokens that any of the lexers produce.
     """
     count = 0
-    for (name, aliases, patterns, mimetypes) in lexers.get_all_lexers():
-        for a in aliases:
-            l = lexers.get_lexer_by_name(a)
+    for (_, aliases, patterns, mimetypes) in lexers.get_all_lexers():
+        for alias in aliases:
+            _ = lexers.get_lexer_by_name(alias)
             break
         else:
-            for p in patterns:
-                l = lexers.get_lexer_for_filename(p)
+            for pattern in patterns:
+                _ = lexers.get_lexer_for_filename(pattern)
                 break
             else:
-                for m in mimetypes:
-                    l = lexers.get_lexer_for_mimetype(m)
+                for mimetype in mimetypes:
+                    _ = lexers.get_lexer_for_mimetype(mimetype)
                     break
         count += 1
     return count
@@ -71,7 +71,8 @@ def fetch_lexer_sources():
     Return the source code of all lexers as a dictionary, mapping filenames
     to a list of lines.
     """
-    lexer_dir = (pathlib.Path(__file__).parent / "../pygments/lexers").resolve()
+    lexer_dir = pathlib.Path(__file__).parent / "../pygments/lexers"
+    lexer_dir = lexer_dir.resolve()
     lexer_sources = {
         fn: fn.read_text(encoding='utf-8').splitlines(keepends=False)
         for fn in lexer_dir.glob("*.py")
