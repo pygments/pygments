@@ -35,7 +35,6 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-        cache: 'pip'
     - name: Install tox
       run: pip install -r requirements.txt
     - name: Perform basic checks
@@ -49,7 +48,6 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-        cache: 'pip'
     - name: Install tox
       run: pip install -r requirements.txt
     - name: Regenerate mapfiles
@@ -68,7 +66,6 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-        cache: 'pip'
     - name: Install tox
       run: pip install -r requirements.txt
     - name: Run regexlint
