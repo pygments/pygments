@@ -42,13 +42,11 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html:
-	$(if $(WEBSITE_BUILD), $(MAKE) pyodide)
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
 dirhtml:
-	$(if $(WEBSITE_BUILD), $(MAKE) pyodide)
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."
