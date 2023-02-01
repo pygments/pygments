@@ -29,9 +29,8 @@ def unpack_output_file(path):
         if skip_until_tokens:
             if line != '---tokens---':
                 continue
-            else:
-                skip_until_tokens = False
-                continue
+
+            skip_until_tokens = False
 
         # Line can start with ' or ", so let's check which one it is
         # and find the matching one
@@ -55,14 +54,14 @@ def process_output_files(root_directory, callback):
     ``False``.
     """
     errors = 0
-    for dir, _, files in os.walk(root_directory):
+    for directory, _, files in os.walk(root_directory):
         for file in files:
             _, ext = os.path.splitext(file)
 
             if ext not in {'.txt', '.output'}:
                 continue
 
-            path = os.path.join(dir, file)
+            path = os.path.join(directory, file)
             if not callback(path):
                 errors += 1
 

@@ -37,7 +37,7 @@ copyright_re = re.compile(r'^    :copyright: Copyright 2006-2022 by '
                           r'the Pygments team, see AUTHORS\.$')
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re))
-is_const_re  = re.compile(r'if.*?==\s+(None|False|True)\b')
+is_const_re = re.compile(r'if.*?==\s+(None|False|True)\b')
 
 misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
                 "informations", "unlexer"]               # ALLOW-MISSPELLING
