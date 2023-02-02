@@ -23,20 +23,19 @@ class DaxLexer(RegexLexer):
             (r"--.*\n?", Comment.Single),	# Comment: #39A03B, Double dash comment
             (r"//.*\n?", Comment.Single),	# Comment: #39A03B Double backslash comment
             (r"/\*", Comment.Multiline, 'multiline-comments'),
-            (words(FUNCTIONS, suffix = r'\b'), Name.Function), #Functions
-            (words(KEYWORDS , suffix=r'\b'), Name.Builtin), # Keyword
-            (words(functions_upper, suffix = r'\b'), Name.Function), #Functions
-            (words(keywords_upper , suffix=r'\b'), Name.Builtin), # Keyword
-            (r':=|[-+*\/=^]|\b(?:IN|NOT)\b', Operator.Word),# Operator
+            (words(FUNCTIONS, prefix=r'(?i), suffix=r'\b'), Name.Function), #Functions
+            (words(KEYWORDS , prefix=r'(?i)', suffix=r'\b'), Name.Builtin), # Keyword
+            (r':=|[-+*\/=^]', Operator),
+            (r'\b(IN|NOT)\b', Operator.Word),
             (r'\"(?:[^\"]|\"\")*\"(?!\")', String.Single), #StringLiteral
             (r"'(?:[^']|'')*'(?!')(?:\[[ \w\xA0-\uFFFF]+\])?|\w+\[[ \w\xA0-\uFFFF]+\]"
                 , Name.Attribute),	# Column reference
             (r"\[[ \w\xA0-\uFFFF]+\]", Name.Attribute), #Measure reference
             (r'\b\d+\.?\d*|\B\.\d+\b', Number),# Number
             (r'[\[\](){}`,.]', Punctuation), #Parenthesis
-                ],
+        ],
         'multiline-comments': [
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[^/*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
