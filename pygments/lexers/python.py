@@ -679,15 +679,15 @@ class PythonConsoleLexer(Lexer):
         insertions = []
         curtb = ''
         tbindex = 0
-        tb = 0
+        in_tb = False
         for match in line_re.finditer(text):
             line = match.group()
             if line.startswith('>>> ') or line.startswith('... '):
-                tb = 0
+                in_tb = False
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
-            elif line.rstrip() == '...' and not tb:
+            elif line.rstrip() == '...' and not in_tb:
                 # only a new >>> prompt can end an exception block
                 # otherwise an ellipsis in place of the traceback frames
                 # will be mishandled
@@ -700,20 +700,20 @@ class PythonConsoleLexer(Lexer):
                         insertions, pylexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
-                if (line.startswith('Traceback (most recent call last):') or
+                if in_tb:
+                    curtb += line
+                    if not (line.startswith(' ') or line.strip() == '...'):
+                        in_tb = False
+                        for i, t, v in tblexer.get_tokens_unprocessed(curtb):
+                            yield tbindex+i, t, v
+                        curtb = ''
+                elif (line.startswith('Traceback (most recent call last):') or
                         re.match('  File "[^"]+", line \\d+\\n$', line)):
-                    tb = 1
+                    in_tb = True
                     curtb = line
                     tbindex = match.start()
                 elif line == 'KeyboardInterrupt\n':
                     yield match.start(), Name.Class, line
-                elif tb:
-                    curtb += line
-                    if not (line.startswith(' ') or line.strip() == '...'):
-                        tb = 0
-                        for i, t, v in tblexer.get_tokens_unprocessed(curtb):
-                            yield tbindex+i, t, v
-                        curtb = ''
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:
