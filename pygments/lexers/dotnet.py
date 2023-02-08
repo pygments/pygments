@@ -19,7 +19,7 @@ from pygments import unistring as uni
 from pygments.lexers.html import XmlLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
-           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
+           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'XppLexer']
 
 
 class CSharpLexer(RegexLexer):
@@ -727,3 +727,108 @@ class FSharpLexer(RegexLexer):
             result += 0.05
 
         return result
+
+class XppLexer(RegexLexer):
+
+    """
+    For X++ source code. this is based loosely on the CSharpLexer
+    Additional options accepted:
+    `unicodelevel`
+      Determines which Unicode characters this lexer allows for identifiers.
+      The possible values are:
+      * ``none`` -- only the ASCII letters and numbers are allowed. This
+        is the fastest selection.
+      * ``basic`` -- all Unicode characters from the specification except
+        category ``Lo`` are allowed.
+      * ``full`` -- all Unicode characters as specified in the C# specs
+        are allowed.  Note that this means a considerable slowdown since the
+        ``Lo`` category has more than 40,000 characters in it!
+      The default value is ``basic``.
+      .. versionadded:: 0.8
+    """
+
+    name = 'X++'
+    url = 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-language-reference'
+    aliases = ['xpp', 'x++']
+    filenames = ['*.xpp']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    # for the range of allowed unicode characters in identifiers, see
+    # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
+
+    levels = {
+        'none': r'@?[_a-zA-Z]\w*',
+        'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
+                  '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
+                                    'Cf', 'Mn', 'Mc') + ']*'),
+        'full': ('@?(?:_|[^' +
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])' +
+                 '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                      'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
+    }
+
+    tokens = {}
+    token_variants = True
+
+    for levelname, cs_ident in levels.items():
+        tokens[levelname] = {
+            'root': [
+                # method names
+                (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
+                 r'(' + cs_ident + ')'                            # method name
+                 r'(\s*)(\()',                               # signature start
+                 bygroups(Whitespace, using(this), Name.Function, Whitespace,
+                          Punctuation)),
+                (r'^(\s*)(\[)(.*?)(\])', bygroups(Whitespace, Name.Attribute, Name.Variable.Class, Name.Attribute)),
+                (r'[^\S\n]+', Whitespace),
+                (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
+                (r'//.*?\n', Comment.Single),
+                (r'/[*].*?[*]/', Comment.Multiline),
+                (r'\n', Whitespace),
+                (words((
+                    '<=', '>=', '+=', '-=', '*=', '/=', '!=', '==',
+                    '&&', '||', '>>', '<<', '++', '--', '+', '-', '*',
+                    '/', '%', '&', '|', '^', '<', '>', '?', '!', '~', '=',
+                )), Operator),
+                (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
+                (r'[()\[\];:,.#@]', Punctuation),
+                (r'[{}]', Punctuation),
+                (r'@"(""|[^"])*"', String),
+                (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
+                (r"'\\.'|'[^\\]'", String.Char),
+                (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
+                 r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
+                (r'(abstract|anytype|as|async|asc|at|avg|break|breakpoint|by|byref|case|catch|'
+                 r'changecompany|client|container|continue|count|crossCompany|date|default|delegate|'
+                 r'delete_from|desc|display|div|do|edit|else|element|eventHandler|exists|false|final|'
+                 r'firstFast|firstOnly|firstOnly10|firstOnly100|firstOnly1000|flush|for|forceLiterals|'
+                 r'forceNestedLoop|forcePlaceholders|forceSelectOrder|forUpdate|from|group|if|insert_recordset|'
+                 r'interface|is|join|like|maxof|minof|mod|new|next|noFetch|notExists|null|optimisticLock|order|'
+                 r'outer|pause|pessimisticLock|print|private|protected|public|real|repeatableRead|retry|return|'
+                 r'reverse|select|server|setting|static|sum|super|switch|tableLock|this|throw|true|try|ttsAbort|ttsBegin|'
+                 r'ttsCommit|update_recordset|validTimeState|void|where|while|window)\b', Keyword),
+                (r'(boolean|int|int64|str)\b\??', Keyword.Type),
+                (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
+                (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
+                (cs_ident, Name),
+            ],
+            'class': [
+                (cs_ident, Name.Class, '#pop'),
+                default('#pop'),
+            ],
+            'namespace': [
+                (r'(?=\()', Text, '#pop'),  # using (resource)
+                ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop'),
+            ]
+        }
+
+    def __init__(self, **options):
+        level = get_choice_opt(options, 'unicodelevel', list(self.tokens), 'basic')
+        if level not in self._all_tokens:
+            # compile the regexes now
+            self._tokens = self.__class__.process_tokendef(level)
+        else:
+            self._tokens = self._all_tokens[level]
+
+        RegexLexer.__init__(self, **options)
