@@ -767,6 +767,42 @@ class XppLexer(RegexLexer):
                  '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
+    OPERATORS = (
+                    '<=', '>=', '+=', '-=', '*=', '/=', '!=', '==',
+                    '&&', '||', '>>', '<<', '++', '--', '+', '-', '*',
+                    '/', '%', '&', '|', '^', '<', '>', '?', '!', '~', '=',
+                )
+    KEYWORDS = ('abstract','anytype','as','async','asc','at','avg','break','breakpoint','by','byref','case','catch',
+                 'changecompany','client','container','continue','count','crossCompany','default','delegate',
+                 'delete_from','desc','display','div','do','edit','else','element','eventHandler','exists','false','final',
+                 'firstFast','firstOnly','firstOnly10','firstOnly100','firstOnly1000','flush','for','forceLiterals',
+                 'forceNestedLoop','forcePlaceholders','forceSelectOrder','forUpdate','from','group','if','insert_recordset',
+                 'interface','is','join','like','maxof','minof','mod','new','next','noFetch','notExists','null','optimisticLock','order',
+                 'outer','pause','pessimisticLock','print','private','protected','public','repeatableRead','retry','return',
+                 'reverse','select','server','setting','static','sum','super','switch','tableLock','this','throw','true','try','ttsAbort','ttsBegin',
+                 'ttsCommit','update_recordset','validTimeState','void','where','while','window')
+    RUNTIME_FUNCTIONS = ('_duration','abs','acos','any2Date','any2Enum','any2Guid','any2Int','any2Int64','any2Real','any2Str','anytodate',
+                 'anytoenum','anytoguid','anytoint','anytoint64','anytoreal','anytostr','asin','atan','beep','cTerm','char2Num','classIdGet',
+                 'corrFlagGet','corrFlagSet','cos','cosh','curExt','curUserId','date2Num','date2Str','datetime2Str','dayName','dayOfMth',
+                 'dayOfWk','dayOfYr','ddb','decRound','dg','dimOf','endMth','enum2str','exp','exp10','fV','fieldId2Name','fieldId2PName',
+                 'fieldName2Id','frac','funcName','getCurrentPartition','getCurrentPartitionRecId','getPrefix','guid2Str','idg','indexId2Name',
+                 'indexName2Id','int2Str','int642Str','intvMax','intvName','intvNo','intvNorm','log10','logN','match','max','min','mkDate','mthName',
+                 'mthOfYr','newGuid','nextMth','nextQtr','nextYr','num2Char','num2Date','num2Str','pmt','power','prevMth','prevQtr','prevYr',
+                 'prmIsDefault','pt','pv','rate','refPrintAll','round','runAs','sessionId','setPrefix','sin','sinh','sleep','sln','str2Date',
+                 'str2Datetime','str2Enum','str2Guid','str2Int','str2Int64','str2Num','str2Time','strAlpha','strCmp','strColSeq','strDel',
+                 'strFind','strFmt','strIns','strKeep','strLTrim','strLen','strLine','strLwr','strNFind','strPoke','strPrompt','strRTrim',
+                 'strRem','strRep','strScan','strUpr','subStr','syd','systemDateGet','systemDateSet','tableId2Name',
+                 'tableId2PName','tableName2Id','tan','tanh','term','time2Str','timeNow','today','trunc','typeOf','uint2Str','wkOfYr','year')
+    COMPILE_FUNCTIONS = ('attributeStr','classNum','classStr','configurationKeyNum','configurationKeyStr','dataEntityDataSourceStr','delegateStr',
+                 'dimensionHierarchyLevelStr','dimensionHierarchyStr','dimensionReferenceStr','dutyStr','enumCnt','enumLiteralStr','enumNum','enumStr',
+                 'extendedTypeNum','extendedTypeStr','fieldNum','fieldPName','fieldStr','formControlStr','formDataFieldStr','formDataSourceStr',
+                 'formMethodStr','formStr','identifierStr','indexNum','indexStr','licenseCodeNum','licenseCodeStr','literalStr','maxDate','maxInt',
+                 'measureStr','measurementStr','menuItemActionStr','menuItemDisplayStr','menuItemOutputStr','menuStr','methodStr','minInt','privilegeStr',
+                 'queryDatasourceStr','queryMethodStr','queryStr','reportStr','resourceStr','roleStr','ssrsReportStr','staticDelegateStr','staticMethodStr',
+                 'tableCollectionStr','tableFieldGroupStr','tableMethodStr','tableNum','tablePName','tableStaticMethodStr','tableStr','tileStr','varStr',
+                 'webActionItemStr','webDisplayContentItemStr','webFormStr','webMenuStr','webOutputContentItemStr','webReportStr','webSiteTempStr',
+                 'webStaticFileStr','webUrlItemStr','webWebPartStr','webletItemStr','webpageDefStr','websiteDefStr','workflowApprovalStr',
+                 'workflowCategoryStr','workflowTaskStr','workflowTypeStr')
 
     tokens = {}
     token_variants = True
@@ -787,11 +823,7 @@ class XppLexer(RegexLexer):
                 (r'//.*?\n', Comment.Single),
                 (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Whitespace),
-                (words((
-                    '<=', '>=', '+=', '-=', '*=', '/=', '!=', '==',
-                    '&&', '||', '>>', '<<', '++', '--', '+', '-', '*',
-                    '/', '%', '&', '|', '^', '<', '>', '?', '!', '~', '=',
-                )), Operator),
+                (words(OPERATORS), Operator),
                 (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
                 (r'[()\[\];:,.#@]', Punctuation),
                 (r'[{}]', Punctuation),
@@ -800,19 +832,15 @@ class XppLexer(RegexLexer):
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
-                (words(('abstract','anytype','as','async','asc','at','avg','break','breakpoint','by','byref','case','catch',
-                 'changecompany','client','container','continue','count','crossCompany','default','delegate',
-                 'delete_from','desc','display','div','do','edit','else','element','eventHandler','exists','false','final',
-                 'firstFast','firstOnly','firstOnly10','firstOnly100','firstOnly1000','flush','for','forceLiterals',
-                 'forceNestedLoop','forcePlaceholders','forceSelectOrder','forUpdate','from','group','if','insert_recordset',
-                 'interface','is','join','like','maxof','minof','mod','new','next','noFetch','notExists','null','optimisticLock','order',
-                 'outer','pause','pessimisticLock','print','private','protected','public','repeatableRead','retry','return',
-                 'reverse','select','server','setting','static','sum','super','switch','tableLock','this','throw','true','try','ttsAbort','ttsBegin',
-                 'ttsCommit','update_recordset','validTimeState','void','where','while','window'), '', '(?!\w)'), Keyword),
+                (words(KEYWORDS, '', '(?!\w)'), Keyword),
                 (r'(boolean|int|int64|str|real|guid|date)\b\??', Keyword.Type),
                 (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
                 (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
                 (r'(\s*)(\w+)(\s+\w+(,|=)?.*;)', bygroups(Whitespace, Name.Variable.Class, using(this))), # declaration
+                (r'(fieldNum\()('+cs_ident+')(\s*,\s*)('+cs_ident+')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this), Name.Property, using(this))), # x++ specific function to get field should highlight the classname
+                (r'(tableNum\()('+cs_ident+')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this))), # x++ specific function to get table should highlight the classname
+                (words(RUNTIME_FUNCTIONS, '', '(?=\()'), Name.Function.Magic),
+                (words(COMPILE_FUNCTIONS, '', '(?=\()'), Name.Function.Magic),
                 (cs_ident, Name),
             ],
             'class': [
