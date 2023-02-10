@@ -775,6 +775,7 @@ class XppLexer(RegexLexer):
         tokens[levelname] = {
             'root': [
                 # method names
+                (r'(\s*)\b(else|if)\b(.*)', bygroups(Whitespace, Keyword, using(this))), # ensure that if is not treated like a function
                 (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
@@ -807,11 +808,11 @@ class XppLexer(RegexLexer):
                  'interface','is','join','like','maxof','minof','mod','new','next','noFetch','notExists','null','optimisticLock','order',
                  'outer','pause','pessimisticLock','print','private','protected','public','repeatableRead','retry','return',
                  'reverse','select','server','setting','static','sum','super','switch','tableLock','this','throw','true','try','ttsAbort','ttsBegin',
-                 'ttsCommit','update_recordset','validTimeState','void','where','while','window')), Keyword),
+                 'ttsCommit','update_recordset','validTimeState','void','where','while','window'), '', '(?!\w)'), Keyword),
                 (r'(boolean|int|int64|str|real|guid|date)\b\??', Keyword.Type),
                 (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
                 (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
-                (r'\s*(\w+)(\s+\w+(,|=)?.*;)', bygroups(Name.Variable.Class, using(this))), # declaration
+                (r'(\s*)(\w+)(\s+\w+(,|=)?.*;)', bygroups(Whitespace, Name.Variable.Class, using(this))), # declaration
                 (cs_ident, Name),
             ],
             'class': [
