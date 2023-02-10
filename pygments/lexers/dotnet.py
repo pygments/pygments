@@ -799,18 +799,19 @@ class XppLexer(RegexLexer):
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
-                (r'(abstract|anytype|as|async|asc|at|avg|break|breakpoint|by|byref|case|catch|'
-                 r'changecompany|client|container|continue|count|crossCompany|date|default|delegate|'
-                 r'delete_from|desc|display|div|do|edit|else|element|eventHandler|exists|false|final|'
-                 r'firstFast|firstOnly|firstOnly10|firstOnly100|firstOnly1000|flush|for|forceLiterals|'
-                 r'forceNestedLoop|forcePlaceholders|forceSelectOrder|forUpdate|from|group|if|insert_recordset|'
-                 r'interface|is|join|like|maxof|minof|mod|new|next|noFetch|notExists|null|optimisticLock|order|'
-                 r'outer|pause|pessimisticLock|print|private|protected|public|real|repeatableRead|retry|return|'
-                 r'reverse|select|server|setting|static|sum|super|switch|tableLock|this|throw|true|try|ttsAbort|ttsBegin|'
-                 r'ttsCommit|update_recordset|validTimeState|void|where|while|window)\b', Keyword),
-                (r'(boolean|int|int64|str)\b\??', Keyword.Type),
+                (words(('abstract','anytype','as','async','asc','at','avg','break','breakpoint','by','byref','case','catch',
+                 'changecompany','client','container','continue','count','crossCompany','default','delegate',
+                 'delete_from','desc','display','div','do','edit','else','element','eventHandler','exists','false','final',
+                 'firstFast','firstOnly','firstOnly10','firstOnly100','firstOnly1000','flush','for','forceLiterals',
+                 'forceNestedLoop','forcePlaceholders','forceSelectOrder','forUpdate','from','group','if','insert_recordset',
+                 'interface','is','join','like','maxof','minof','mod','new','next','noFetch','notExists','null','optimisticLock','order',
+                 'outer','pause','pessimisticLock','print','private','protected','public','repeatableRead','retry','return',
+                 'reverse','select','server','setting','static','sum','super','switch','tableLock','this','throw','true','try','ttsAbort','ttsBegin',
+                 'ttsCommit','update_recordset','validTimeState','void','where','while','window')), Keyword),
+                (r'(boolean|int|int64|str|real|guid|date)\b\??', Keyword.Type),
                 (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
                 (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
+                (r'\s*(\w+)(\s+\w+(,|=)?.*;)', bygroups(Name.Variable.Class, using(this))), # declaration
                 (cs_ident, Name),
             ],
             'class': [
