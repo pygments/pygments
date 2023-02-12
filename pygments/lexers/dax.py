@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.dax
+    ~~~~~~~~~~~~~~~~~~~
+
+    Lexer for LilyPond.
+
+    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Punctuation, Whitespace,\
     Name, Operator, String, Number, Text
@@ -75,20 +85,20 @@ class DaxLexer(RegexLexer):
             (words(('at','asc','boolean','both','by','create','currency',
                 'datetime','day','define','desc','double',
                 'evaluate','false','integer','measure',
-                'month','none','order','return','single','start','string'
-                ,'table','true','var','year'), 
+                'month','none','order','return','single','start','string',
+                'table','true','var','year'),
                 prefix=r'(?i)', suffix=r'\b'), Name.Builtin), # Keyword
 
             (r':=|[-+*\/=^]', Operator),
             (r'\b(IN|NOT)\b', Operator.Word),
             (r'"', String, 'string'), #StringLiteral
-            (r"'(?:[^']|'')*'(?!')(?:\[[ \w]+\])?|\w+\[[ \w]+\]"
-                , Name.Attribute),	# Column reference
+            (r"'(?:[^']|'')*'(?!')(?:\[[ \w]+\])?|\w+\[[ \w]+\]",
+                Name.Attribute),	# Column reference
             (r"\[[ \w]+\]", Name.Attribute), #Measure reference
             (r'\b\d+\.?\d*|\B\.\d+\b', Number),# Number
             (r'[\[\](){}`,.]', Punctuation), #Parenthesis
             (r'.*\n', Text),
-            
+
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
