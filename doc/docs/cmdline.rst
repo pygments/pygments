@@ -96,7 +96,7 @@ the "colorful" style prepending a ".syntax" selector to all style rules.
 
 For an explanation what ``-a`` means for :doc:`a particular formatter
 <formatters>`, look for the `arg` argument for the formatter's
-:meth:`.get_style_defs()` method.
+:meth:`.get_style_defs() <pygments.formatter.Formatter.get_style_defs()>` method.
 
 
 Getting lexer names

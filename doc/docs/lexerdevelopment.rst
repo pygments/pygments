@@ -24,7 +24,7 @@ RegexLexer
 ==========
 
 The lexer base class used by almost all of Pygments' lexers is the
-:class:`RegexLexer`.  This class allows you to define lexing rules in terms of
+:class:`RegexLexer <pygments.lexer.RegexLexer>`.  This class allows you to define lexing rules in terms of
 *regular expressions* for different *states*.
 
 States are groups of regular expressions that are matched against the input
@@ -131,7 +131,7 @@ If you only want to use your lexer with the Pygments API, you can import and
 instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
 
 Use the ``-f`` flag to select a different output format than terminal
-escape sequences. The :class:`pygments.formatters.html.HtmlFormatter` helps
+escape sequences. The :class:`.HtmlFormatter` helps
 you with debugging your lexer. You can use the ``debug_token_types`` option
 to display the token types assigned to each part of your input file:
 

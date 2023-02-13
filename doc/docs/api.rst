@@ -1,6 +1,3 @@
-.. -*- mode: rst -*-
-
-=====================
 The full Pygments API
 =====================
 
@@ -70,7 +67,7 @@ Functions from :mod:`pygments.lexers`:
     the input, because this method is equivalent to running eval on the input file.
     The lexer is given the `options` at its instantiation.
 
-    :exc:`ClassNotFound` is raised if there are any errors loading the Lexer
+    :exc:`pygments.util.ClassNotFound` is raised if there are any errors loading the Lexer
 
     .. versionadded:: 2.2
 
@@ -145,7 +142,7 @@ Functions from :mod:`pygments.formatters`:
     careful with the input, because this method is equivalent to running eval
     on the input file. The formatter is given the `options` at its instantiation.
 
-    :exc:`ClassNotFound` is raised if there are any errors loading the Formatter
+    :exc:`pygments.util.ClassNotFound` is raised if there are any errors loading the Formatter
 
     .. versionadded:: 2.2
 
@@ -256,6 +253,12 @@ The base lexer class from which all lexers are derived is:
 
         A list of MIME types for content that can be lexed with this
         lexer.
+
+There are several base class derived from ``Lexer`` you can use to build your lexer from:
+
+.. autoclass:: pygments.lexer.DelegatingLexer
+.. autoclass:: pygments.lexer.RegexLexer
+.. autoclass:: pygments.lexer.ExtendedRegexLexer
 
 
 .. module:: pygments.formatter
