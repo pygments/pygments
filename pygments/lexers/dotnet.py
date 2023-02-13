@@ -837,8 +837,8 @@ class XppLexer(RegexLexer):
                 (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
                 (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
                 (r'(\s*)(\w+)(\s+\w+(,|=)?.*;)', bygroups(Whitespace, Name.Variable.Class, using(this))), # declaration
-                (r'(fieldNum\()('+cs_ident+')(\s*,\s*)('+cs_ident+')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this), Name.Property, using(this))), # x++ specific function to get field should highlight the classname
-                (r'(tableNum\()('+cs_ident+')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this))), # x++ specific function to get table should highlight the classname
+                (r'(fieldNum\()('+cs_ident+r')(\s*,\s*)('+cs_ident+r')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this), Name.Property, using(this))), # x++ specific function to get field should highlight the classname
+                (r'(tableNum\()('+cs_ident+r')(\s*\))', bygroups(using(this), Name.Variable.Class, using(this))), # x++ specific function to get table should highlight the classname
                 (words(RUNTIME_FUNCTIONS, r'', r'(?=\()'), Name.Function.Magic),
                 (words(COMPILE_FUNCTIONS, r'', r'(?=\()'), Name.Function.Magic),
                 (cs_ident, Name),
