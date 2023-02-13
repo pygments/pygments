@@ -733,18 +733,22 @@ class XppLexer(RegexLexer):
     """
     For X++ source code. this is based loosely on the CSharpLexer
     Additional options accepted:
-    `unicodelevel`
-      Determines which Unicode characters this lexer allows for identifiers.
-      The possible values are:
-      * ``none`` -- only the ASCII letters and numbers are allowed. This
-        is the fastest selection.
-      * ``basic`` -- all Unicode characters from the specification except
-        category ``Lo`` are allowed.
-      * ``full`` -- all Unicode characters as specified in the C# specs
-        are allowed.  Note that this means a considerable slowdown since the
-        ``Lo`` category has more than 40,000 characters in it!
-      The default value is ``basic``.
-      .. versionadded:: 0.8
+
+    ``unicodelevel``
+       Determines which Unicode characters this lexer allows for identifiers.
+       The possible values are:
+
+       * ``none`` -- only the ASCII letters and numbers are allowed. This
+         is the fastest selection.
+       * ``basic`` -- all Unicode characters from the specification except
+         category ``Lo`` are allowed.
+       * ``full`` -- all Unicode characters as specified in the C# specs
+         are allowed.  Note that this means a considerable slowdown since the
+         ``Lo`` category has more than 40,000 characters in it!
+
+       The default value is ``basic``.
+
+    .. versionadded:: 0.8
     """
 
     name = 'X++'
