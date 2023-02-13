@@ -94,7 +94,7 @@ class DaxLexer(RegexLexer):
             (r"'(?:[^']|'')*'(?!')(?:\[[ \w]+\])?|\w+\[[ \w]+\]",
                 Name.Attribute),	# Column reference
             (r"\[[ \w]+\]", Name.Attribute), #Measure reference
-            (r'\b\d+\.?\d*|\B\.\d+\b', Number),# Number
+            (r'(?<!\w)(\d+\.?\d*|\.\d+\b)', Number),# Number
             (r'[\[\](){}`,.]', Punctuation), #Parenthesis
             (r'.*\n', Text),
 
