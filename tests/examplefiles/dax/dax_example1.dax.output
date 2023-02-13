@@ -1,0 +1,45 @@
+'/*'          Comment.Multiline
+' This calculation sums sales divided\nby days in the month \nmultiplied by current MTD\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'Total Sales Spread = (\n' Text
+
+'    '        Text.Whitespace
+'--This line does a calculate\n' Comment.Single
+
+'    '        Text.Whitespace
+'CALCULATE'   Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'SUM'         Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'TABLE1[SALES]' Name.Attribute
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'PBCS_PLAN_FCST[Scenario]' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'Plan'        Literal.String
+'"'           Literal.String
+'\n    '      Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'Days in Month'[Days in Month Value]" Name.Attribute
+'\n'          Text.Whitespace
+
+')'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+"'Current MTD'[Current MTD Value]" Name.Attribute
+'\n'          Text.Whitespace
