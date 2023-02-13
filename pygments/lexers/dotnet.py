@@ -731,24 +731,9 @@ class FSharpLexer(RegexLexer):
 class XppLexer(RegexLexer):
 
     """
-    For X++ source code. this is based loosely on the CSharpLexer
-    Additional options accepted:
+    For X++ source code. This is based loosely on the CSharpLexer
 
-    ``unicodelevel``
-       Determines which Unicode characters this lexer allows for identifiers.
-       The possible values are:
-
-       * ``none`` -- only the ASCII letters and numbers are allowed. This
-         is the fastest selection.
-       * ``basic`` -- all Unicode characters from the specification except
-         category ``Lo`` are allowed.
-       * ``full`` -- all Unicode characters as specified in the C# specs
-         are allowed.  Note that this means a considerable slowdown since the
-         ``Lo`` category has more than 40,000 characters in it!
-
-       The default value is ``basic``.
-
-    .. versionadded:: 0.8
+    .. versionadded:: 0.1
     """
 
     name = 'X++'
@@ -756,21 +741,12 @@ class XppLexer(RegexLexer):
     aliases = ['xpp', 'x++']
     filenames = ['*.xpp']
 
-    flags = re.MULTILINE | re.DOTALL
+    flags = re.MULTILINE
 
-    # for the range of allowed unicode characters in identifiers, see
-    # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
-
-    levels = {
-        'none': r'@?[_a-zA-Z]\w*',
-        'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
-                  '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
-                                    'Cf', 'Mn', 'Mc') + ']*'),
-        'full': ('@?(?:_|[^' +
+    XPP_CHARS = ('@?(?:_|[^' +
                  uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])' +
                  '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
-                                      'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
-    }
+                                      'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*');
     OPERATORS = (
                     '<=', '>=', '+=', '-=', '*=', '/=', '!=', '==',
                     '&&', '||', '>>', '<<', '++', '--', '+', '-', '*',
@@ -809,64 +785,52 @@ class XppLexer(RegexLexer):
                  'workflowCategoryStr','workflowTaskStr','workflowTypeStr')
 
     tokens = {}
-    token_variants = True
 
-    for levelname, cs_ident in levels.items():
-        tokens[levelname] = {
-            'root': [
-                # method names
-                (r'(\s*)\b(else|if)\b(.*)', bygroups(Whitespace, Keyword, using(this))), # ensure that if is not treated like a function
-                (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
-                 r'(' + cs_ident + ')'                            # method name
-                 r'(\s*)(\()',                               # signature start
-                 bygroups(Whitespace, using(this), Name.Function, Whitespace,
-                          Punctuation)),
-                (r'^(\s*)(\[)(.*?)(\])', bygroups(Whitespace, Name.Attribute, Name.Variable.Class, Name.Attribute)),
-                (r'[^\S\n]+', Whitespace),
-                (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
-                (r'//.*?\n', Comment.Single),
-                (r'/[*].*?[*]/', Comment.Multiline),
-                (r'\n', Whitespace),
-                (words(OPERATORS), Operator),
-                (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
-                (r'[()\[\];:,.#@]', Punctuation),
-                (r'[{}]', Punctuation),
-                (r'@"(""|[^"])*"', String),
-                (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
-                (r"'\\.'|'[^\\]'", String.Char),
-                (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
-                 r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
-                (words(KEYWORDS, suffix=r'\b'), Keyword),
-                (r'(boolean|int|int64|str|real|guid|date)\b\??', Keyword.Type),
-                (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
-                (r'('+cs_ident+')(::)', bygroups(Name.Variable.Class, Punctuation)),
-                (r'(\s*)(\w+)(\s+\w+(,|=)?.*;)', bygroups(Whitespace, Name.Variable.Class, using(this))), # declaration
-                # x++ specific function to get field should highlight the classname
-                (r'(fieldNum\()('+cs_ident+r')(\s*,\s*)('+cs_ident+r')(\s*\))',
-                 bygroups(using(this), Name.Variable.Class, using(this), Name.Property, using(this))),
-                # x++ specific function to get table should highlight the classname
-                (r'(tableNum\()('+cs_ident+r')(\s*\))',
-                 bygroups(using(this), Name.Variable.Class, using(this))),
-                (words(RUNTIME_FUNCTIONS, suffix=r'(?=\()'), Name.Function.Magic),
-                (words(COMPILE_FUNCTIONS, suffix=r'(?=\()'), Name.Function.Magic),
-                (cs_ident, Name),
-            ],
-            'class': [
-                (cs_ident, Name.Class, '#pop'),
-                default('#pop'),
-            ],
-            'namespace': [
-                (r'(?=\()', Text, '#pop'),  # using (resource)
-                ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop'),
-            ]
-        }
-
-    def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', list(self.tokens), 'basic')
-        if level not in self._all_tokens:
-            # compile the regexes now
-            self._tokens = self.__class__.process_tokendef(level)
-        else:
-            self._tokens = self._all_tokens[level]
-
-        RegexLexer.__init__(self, **options)
+    tokens = {
+        'root': [
+            # method names
+            (r'(\s*)\b(else|if)\b([^\n])', bygroups(Whitespace, Keyword, using(this))), # ensure that if is not treated like a function
+            (r'^([ \t]*)((?:' + XPP_CHARS + r'(?:\[\])?\s+)+?)'  # return type
+                r'(' + XPP_CHARS + ')'                            # method name
+                r'(\s*)(\()',                               # signature start
+                bygroups(Whitespace, using(this), Name.Function, Whitespace,
+                        Punctuation)),
+            (r'^(\s*)(\[)([^\n]*?)(\])', bygroups(Whitespace, Name.Attribute, Name.Variable.Class, Name.Attribute)),
+            (r'[^\S\n]+', Whitespace),
+            (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
+            (r'//[^\n]*?\n', Comment.Single),
+            (r'/[*][^\n]*?[*]/', Comment.Multiline),
+            (r'\n', Whitespace),
+            (words(OPERATORS), Operator),
+            (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
+            (r'[()\[\];:,.#@]', Punctuation),
+            (r'[{}]', Punctuation),
+            (r'@"(""|[^"])*"', String),
+            (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
+            (r"'\\.'|'[^\\]'", String.Char),
+            (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
+                r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
+            (words(KEYWORDS, suffix=r'\b'), Keyword),
+            (r'(boolean|int|int64|str|real|guid|date)\b\??', Keyword.Type),
+            (r'(class|struct|extends|implements)(\s+)', bygroups(Keyword, Whitespace), 'class'),
+            (r'('+XPP_CHARS+')(::)', bygroups(Name.Variable.Class, Punctuation)),
+            (r'(\s*)(\w+)(\s+\w+(,|=)?[^\n]*;)', bygroups(Whitespace, Name.Variable.Class, using(this))), # declaration
+            # x++ specific function to get field should highlight the classname
+            (r'(fieldNum\()('+XPP_CHARS+r')(\s*,\s*)('+XPP_CHARS+r')(\s*\))',
+                bygroups(using(this), Name.Variable.Class, using(this), Name.Property, using(this))),
+            # x++ specific function to get table should highlight the classname
+            (r'(tableNum\()('+XPP_CHARS+r')(\s*\))',
+                bygroups(using(this), Name.Variable.Class, using(this))),
+            (words(RUNTIME_FUNCTIONS, suffix=r'(?=\()'), Name.Function.Magic),
+            (words(COMPILE_FUNCTIONS, suffix=r'(?=\()'), Name.Function.Magic),
+            (XPP_CHARS, Name),
+        ],
+        'class': [
+            (XPP_CHARS, Name.Class, '#pop'),
+            default('#pop'),
+        ],
+        'namespace': [
+            (r'(?=\()', Text, '#pop'),  # using (resource)
+            ('(' + XPP_CHARS + r'|\.)+', Name.Namespace, '#pop'),
+        ]
+    }
