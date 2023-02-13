@@ -753,14 +753,14 @@ class XppLexer(RegexLexer):
                     '/', '%', '&', '|', '^', '<', '>', '?', '!', '~', '=',
                 )
     KEYWORDS = ('abstract','anytype','as','async','asc','at','avg','break','breakpoint','by','byref','case','catch',
-                 'changecompany','client','container','continue','count','crossCompany','default','delegate',
-                 'delete_from','desc','display','div','do','edit','else','element','eventHandler','exists','false','final',
-                 'firstFast','firstOnly','firstOnly10','firstOnly100','firstOnly1000','flush','for','forceLiterals',
-                 'forceNestedLoop','forcePlaceholders','forceSelectOrder','forUpdate','from','group','if','insert_recordset',
-                 'interface','is','join','like','maxof','minof','mod','new','next','noFetch','notExists','null','optimisticLock','order',
-                 'outer','pause','pessimisticLock','print','private','protected','public','repeatableRead','retry','return',
-                 'reverse','select','server','setting','static','sum','super','switch','tableLock','this','throw','true','try','ttsAbort','ttsBegin',
-                 'ttsCommit','update_recordset','validTimeState','void','where','while','window')
+                 'changecompany','client','container','continue','count','crosscompany','default','delegate',
+                 'delete_from','desc','display','div','do','edit','else','element','eventhandler','exists','false','final',
+                 'firstfast','firstonly','firstonly10','firstonly100','firstonly1000','flush','for','forceliterals',
+                 'forcenestedloop','forceplaceholders','forceselectorder','forupdate','from','group','if','insert_recordset',
+                 'interface','is','join','like','maxof','minof','mod','new','next','nofetch','notexists','null','optimisticlock','order',
+                 'outer','pause','pessimisticlock','print','private','protected','public','repeatableread','retry','return',
+                 'reverse','select','server','setting','static','sum','super','switch','tablelock','this','throw','true','try','ttsabort','ttsbegin',
+                 'ttscommit','update_recordset','validtimestate','void','where','while','window')
     RUNTIME_FUNCTIONS = ('_duration','abs','acos','any2Date','any2Enum','any2Guid','any2Int','any2Int64','any2Real','any2Str','anytodate',
                  'anytoenum','anytoguid','anytoint','anytoint64','anytoreal','anytostr','asin','atan','beep','cTerm','char2Num','classIdGet',
                  'corrFlagGet','corrFlagSet','cos','cosh','curExt','curUserId','date2Num','date2Str','datetime2Str','dayName','dayOfMth',
