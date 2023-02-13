@@ -29,7 +29,6 @@ class DaxLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r' .*\n', Text),
             (r"--.*\n?", Comment.Single),	# Comment: Double dash comment
             (r"//.*\n?", Comment.Single),	# Comment: Double backslash comment
             (r'/\*', Comment.Multiline, 'multiline-comments'),
