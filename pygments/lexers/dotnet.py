@@ -733,7 +733,7 @@ class XppLexer(RegexLexer):
     """
     For X++ source code. This is based loosely on the CSharpLexer
 
-    .. versionadded:: 0.1
+    .. versionadded:: 2.15.0
     """
 
     name = 'X++'
