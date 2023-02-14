@@ -84,7 +84,7 @@ class GroffFormatter(Formatter):
             if ndef['color'] is not None:
                 colors.add(ndef['color'])
 
-        for color in colors:
+        for color in sorted(colors):
             outfile.write('.defcolor ' + color + ' rgb #' + color + '\n')
 
 
