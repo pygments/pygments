@@ -747,6 +747,10 @@ class XppLexer(RegexLexer):
                  uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])' +
                  '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*');
+    # Temporary, see
+    # https://github.com/thatch/regexlint/pull/49
+    XPP_CHARS = XPP_CHARS.replace('\x00', '\x01')
+
     OPERATORS = (
                     '<=', '>=', '+=', '-=', '*=', '/=', '!=', '==',
                     '&&', '||', '>>', '<<', '++', '--', '+', '-', '*',
