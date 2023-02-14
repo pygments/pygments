@@ -6,7 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments import highlight, lex
+from pygments import highlight
 from pygments.lexer import RegexLexer
 from pygments.lexers import PythonLexer
 from pygments.style import Style
