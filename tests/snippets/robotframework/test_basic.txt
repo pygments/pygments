@@ -1,0 +1,40 @@
+---input---
+*** Variables ***
+${test}[]
+
+*** Variables ***
+@{test}[]
+
+*** Variables ***
+&{test}[]
+
+---tokens---
+'*** Variables ***' Generic.Heading
+'\n'          Punctuation
+
+'${test}[]'   Error
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'*** Variables ***' Generic.Heading
+'\n'          Punctuation
+
+'@{'          Punctuation
+'test'        Name.Variable
+'}'           Punctuation
+'['           Punctuation
+']'           Punctuation
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'*** Variables ***' Generic.Heading
+'\n'          Punctuation
+
+'&{'          Punctuation
+'test'        Name.Variable
+'}'           Punctuation
+'['           Punctuation
+']'           Punctuation
+'\n'          Punctuation

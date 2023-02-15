@@ -1,0 +1,72 @@
+---input---
+nodelabel: node@0 { foo = "bar"; };
+nodelabel: node { foo = "bar"; };
+nodelabel0: nodelabel1: node@0 { foo = "bar"; };
+
+---tokens---
+'nodelabel'   Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'node'        Name.Function
+'@'           Operator
+'0'           Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'nodelabel'   Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'node'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'nodelabel0'  Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'nodelabel1'  Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'node'        Name.Function
+'@'           Operator
+'0'           Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

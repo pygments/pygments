@@ -1,0 +1,60 @@
+---input---
+// Test text that should **not** be tokenized as float literals.
+.୪
+.
+1..
+1n
+1ee
+1e
+1e-
+1e--1
+1e++1
+1e1.0
+
+---tokens---
+''            Text
+'// Test text that should **not** be tokenized as float literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'୪'           Error
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+'1n'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'ee'          Name.Other
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'e'           Name.Other
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'e'           Name.Other
+'-'           Operator
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'e'           Name.Other
+'--'          Operator
+'1'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'e'           Name.Other
+'++'          Operator
+'1'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e1'         Literal.Number.Float
+'.0'          Literal.Number.Float
+'\n'          Text.Whitespace

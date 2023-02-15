@@ -1,0 +1,115 @@
+---input---
+Subheadings:
+
+##Subheading
+
+## Subheading
+
+### Subheading
+
+#### Subheading
+
+##### Subheading
+
+## Another subheading
+
+## Another ## subheading
+
+##### Subheading #
+
+##### Subheading #####
+
+
+These are NOT subheadings:
+
+##
+
+a ##
+
+*##
+
+###### too many hashes
+
+---tokens---
+'Subheadings:' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'##Subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'## Subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'### Subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'#### Subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'##### Subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'## Another subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'## Another ## subheading' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'##### Subheading #' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'##### Subheading #####' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'These'       Text
+' '           Text
+'are'         Text
+' '           Text
+'NOT'         Text
+' '           Text
+'subheadings:' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'##'          Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a'           Text
+' '           Text
+'##'          Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'*##'         Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'###### too many hashes' Generic.Subheading
+'\n'          Text

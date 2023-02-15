@@ -1,0 +1,40 @@
+---input---
+// Test text that should **not** be tokenized as octal literals.
+01N
+089
+098
+0o
+0OO
+0o88
+0O88n
+
+---tokens---
+''            Text
+'// Test text that should **not** be tokenized as octal literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'01'          Literal.Number.Oct
+'N'           Name.Other
+'\n'          Text.Whitespace
+
+'089'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'098'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'o'           Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'OO'          Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'o88'         Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'O88n'        Name.Other
+'\n'          Text.Whitespace
