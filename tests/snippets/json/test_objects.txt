@@ -1,0 +1,15 @@
+---input---
+{}
+{"a": "b"}
+
+---tokens---
+'{}'          Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"a"'         Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
