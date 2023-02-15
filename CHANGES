@@ -29,6 +29,9 @@ Version 2.15.0
 - Fix some places where a locale-dependent encoding could unintentionally
   be used instead of UTF-8 (#2326).
 - Fix Python traceback handling (#2226, #2329).
+- Groff formatter: sort color definitions for reproducibility (#2343)
+- Move project metadata to ``pyproject.toml``, remove ``setup.py``
+  and ``setup.cfg`` (#2342)
 
 Version 2.14.0
 --------------
