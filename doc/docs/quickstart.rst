@@ -58,7 +58,7 @@ can be produced by:
 
     print(HtmlFormatter().get_style_defs('.highlight'))
 
-The argument to :func:`get_style_defs` is used as an additional CSS selector:
+The argument to :meth:`get_style_defs() <pygments.formatter.Formatter.get_style_defs()>` is used as an additional CSS selector:
 the output may look like this:
 
 .. sourcecode:: css
@@ -71,7 +71,7 @@ the output may look like this:
 Options
 =======
 
-The :func:`highlight()` function supports a fourth argument called *outfile*, it
+The :func:`highlight() <pygments.highlight>` function supports a fourth argument called *outfile*, it
 must be a file object if given. The formatted output will then be written to
 this file instead of being returned as a string.
 
@@ -153,8 +153,8 @@ or some template tags), use these functions:
     >>> guess_lexer_for_filename('test.py', 'print "Hello World!"')
     <pygments.lexers.PythonLexer>
 
-:func:`.guess_lexer()` passes the given content to the lexer classes'
-:meth:`analyse_text()` method and returns the one for which it returns the
+:func:`.guess_lexer() <pygments.lexers.guess_lexer>` passes the given content to the lexer classes'
+:meth:`analyse_text() <pygments.lexer.Lexer.analyse_text>` method and returns the one for which it returns the
 highest number.
 
 All lexers have two different filename pattern lists: the primary and the
