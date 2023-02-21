@@ -542,3 +542,7 @@ some_delimiter;
 
 ?>
 
+<?php
+#[Attribute]
+class Extra {}
+?>

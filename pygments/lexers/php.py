@@ -192,6 +192,7 @@ class PhpLexer(RegexLexer):
              bygroups(String, String, String.Delimiter, String, String.Delimiter,
                       Punctuation, Text)),
             (r'\s+', Text),
+            (r'#\[', Punctuation),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
             # put the empty comment here, it is otherwise seen as

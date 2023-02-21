@@ -3101,4 +3101,22 @@
 '\n'          Text
 
 '?>'          Comment.Preproc
+'\n\n'        Other
+
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'#['          Punctuation
+'Attribute'   Name.Other
+']'           Punctuation
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Extra'       Name.Class
+' '           Text
+'{}'          Punctuation
+'\n'          Text
+
+'?>'          Comment.Preproc
 '\n'          Other
