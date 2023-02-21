@@ -4,7 +4,7 @@
 
     Lexers for the REBOL and related languages.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -118,12 +118,14 @@ class RebolLexer(RegexLexer):
             yield match.start(), Name.Variable, word
 
     tokens = {
+# Don't look for the header: https://github.com/pygments/pygments/issues/2348
+#        'root': [
+#            (r'[^R]+', Comment),
+#            (r'REBOL\s+\[', Generic.Strong, 'script'),
+#            (r'R', Comment),
+#        ],
+#        'script': [
         'root': [
-            (r'[^R]+', Comment),
-            (r'REBOL\s+\[', Generic.Strong, 'script'),
-            (r'R', Comment)
-        ],
-        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#\{[0-9a-f]*\}', Number.Hex),
@@ -313,13 +315,15 @@ class RedLexer(RegexLexer):
             yield match.start(), Name.Variable, word
 
     tokens = {
+# Don't look for the header: https://github.com/pygments/pygments/issues/2348
+#        'root': [
+#            (r'[^R]+', Comment),
+#            (r'Red/System\s+\[', Generic.Strong, 'script'),
+#            (r'Red\s+\[', Generic.Strong, 'script'),
+#            (r'R', Comment)
+#        ],
+#        'script': [
         'root': [
-            (r'[^R]+', Comment),
-            (r'Red/System\s+\[', Generic.Strong, 'script'),
-            (r'Red\s+\[', Generic.Strong, 'script'),
-            (r'R', Comment)
-        ],
-        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#\{[0-9a-f\s]*\}', Number.Hex),
