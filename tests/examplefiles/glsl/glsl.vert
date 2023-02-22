@@ -1,4 +1,12 @@
 /* Vertex shader */
+
+#define SINGLELINE_MACRO 10.0
+
+#define MULTILINE_MACRO(a, b) vec2( \
+    a, \
+    b \
+)
+
 uniform float waveTime;
 uniform float waveWidth;
 uniform float waveHeight;

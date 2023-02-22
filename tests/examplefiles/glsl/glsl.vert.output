@@ -1,5 +1,11 @@
 '/* Vertex shader */' Comment.Multiline
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
+
+'#define SINGLELINE_MACRO 10.0' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'#define MULTILINE_MACRO(a, b) vec2( \\\n    a, \\\n    b \\\n)' Comment.Preproc
+'\n\n'        Text.Whitespace
 
 'uniform'     Keyword
 ' '           Text.Whitespace

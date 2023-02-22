@@ -1,4 +1,12 @@
 /* Fragment shader */
+
+#define SINGLELINE_MACRO 10.0
+
+#define MULTILINE_MACRO(a, b) vec2( \
+    a, \
+    b \
+)
+
 void main()
 {
     gl_FragColor[0] = gl_FragCoord[0] / 400.0;

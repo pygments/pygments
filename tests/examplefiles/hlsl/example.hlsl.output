@@ -1,6 +1,12 @@
 '// A few random snippets of HLSL shader code I gathered...' Comment.Single
 '\n\n'        Text.Whitespace
 
+'#define SINGLELINE_MACRO 10.0' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'#define MULTILINE_MACRO(a, b) float2( \\\n\ta, \\\n\tb \\\n)' Comment.Preproc
+'\n\n'        Text.Whitespace
+
 '['           Punctuation
 'numthreads'  Name.Decorator
 '('           Punctuation

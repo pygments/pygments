@@ -1,5 +1,12 @@
 // A few random snippets of HLSL shader code I gathered...
 
+#define SINGLELINE_MACRO 10.0
+
+#define MULTILINE_MACRO(a, b) float2( \
+	a, \
+	b \
+)
+
 [numthreads(256, 1, 1)]
 void cs_main(uint3 threadId : SV_DispatchThreadID)
 {
