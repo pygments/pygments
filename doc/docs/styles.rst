@@ -39,7 +39,7 @@ Or you can also import your own style (which must be a subclass of
 Creating Own Styles
 ===================
 
-See :ref:`creating-own-styles`.
+See :doc:`styledevelopment`.
 
 
 Builtin Styles

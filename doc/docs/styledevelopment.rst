@@ -1,9 +1,8 @@
 .. -*- mode: rst -*-
 
-.. _creating-own-styles:
-
-Creating Own Styles
-===================
+====================
+Write your own style
+====================
 
 So, how to create a style? All you have to do is to subclass `Style` and
 define some styles:
@@ -43,9 +42,9 @@ To make the style usable for Pygments, you must
 
   * add ``your.py`` file
   * register the new style by adding a line to the ``__init__.py`` file:
-  
+
   .. sourcecode:: python
-  
+
       STYLE_MAP = {
           ...
           'your':  'your::YourStyle',
