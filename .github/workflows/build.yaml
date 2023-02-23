@@ -23,12 +23,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
-    - name: Install package
-      run: |
-        pip install -r requirements.txt
-        pip install .
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Test package
-      run: pytest -W error
+      run: tox -- -W error
 
   check:
     runs-on: ubuntu-latest
@@ -37,10 +35,10 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-    - name: Run make check
-      run: make check
-    - name: Fail if the basic checks failed
-      run: make check
+    - name: Install tox
+      run: pip install -r requirements.txt
+    - name: Perform basic checks
+      run: tox -e check
       if: runner.os == 'Linux'
 
   check-mapfiles:
@@ -50,12 +48,14 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Regenerate mapfiles
-      run: make mapfiles
+      run: tox -e mapfiles
     - name: Fail if mapfiles changed
       run: |
         if git ls-files -m | grep mapping; then
-          echo 'Please run "make mapfiles" and add the changes to a commit.'
+          echo 'Please run "tox -e mapfiles" and add the changes to a commit.'
           exit 1
         fi
 
@@ -66,7 +66,7 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-    - name: Check out regexlint
-      run: git clone https://github.com/pygments/regexlint
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Run regexlint
-      run: make regexlint REGEXLINT=`pwd`/regexlint
+      run: tox -e regexlint

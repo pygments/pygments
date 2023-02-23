@@ -171,17 +171,17 @@ Add the name of your lexer class to this list (or create the list if your lexer
 is the only class in the module).
 
 Finally the lexer can be made publicly known by rebuilding the lexer mapping.
-In the root directory of the source (where the ``Makefile`` is located), run:
+In the root directory of the source (where the ``tox.ini`` file is located), run:
 
 .. code-block:: console
 
-    $ make mapfiles
+    $ tox -e mapfiles
 
 To test the new lexer, store an example file in
 ``tests/examplefiles/<alias>``.  For example, to test your
 ``DiffLexer``, add a ``tests/examplefiles/diff/example.diff`` containing a
 sample diff output.  To (re)generate the lexer output which the file is checked
-against, use the command ``pytest tests/examplefiles/diff --update-goldens``.
+against, use the command ``tox -- tests/examplefiles/diff --update-goldens``.
 
 Now you can use ``python -m pygments`` from the current root of the checkout to
 render your example to HTML:
@@ -201,7 +201,7 @@ Once the example renders as expected, you should run the complete test suite:
 
 .. code-block:: console
 
-    $ make test
+    $ tox
 
 It also tests that your lexer fulfills the lexer API and certain invariants,
 such as that the concatenation of all token text is the same as the input text.

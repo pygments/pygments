@@ -35,6 +35,10 @@ Version 2.15.0
 - Move project metadata to ``pyproject.toml``, remove ``setup.py``
   and ``setup.cfg`` (#2342)
 
+- The top-level ``Makefile`` has been removed. Instead, all shortcuts
+  for developing are now defined and run through tox.  The ``doc`` folder
+  still contains a ``Makefile`` as an alternative to ``tox -e doc``.
+
 Version 2.14.0
 --------------
 (released January 1st, 2023)
