@@ -719,7 +719,7 @@ contribute a new lexer, but you might find it useful in any case.
   this case to stop early. The ``?`` tries to match *as few times* as possible.
 
 * Beware of so-called "catastrophic backtracking".  As a first example, consider
-  the regular expression ``(A+)*C``.  This is equivalent to ``A*B`` regarding
+  the regular expression ``(A+)*B``.  This is equivalent to ``A*B`` regarding
   what it matches, but *non*-matches will take very long.  This is because
   of the way the regular expression engine works.  Suppose you feed it 50
   'A's, and a 'C' at the end.  It first matches the 'A's greedily in ``A+``,
