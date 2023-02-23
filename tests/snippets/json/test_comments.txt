@@ -1,0 +1,65 @@
+---input---
+{"a//b"//C1
+:123/////C2
+}
+
+/** / **/{"a /**/ b"/*
+*/: 123}
+
+// Invalid comments
+/
+1/
+/1
+""/
+
+// Unclosed
+
+""/**
+
+---tokens---
+'{'           Punctuation
+'"a//b"'      Name.Tag
+'//C1'        Comment.Single
+'\n'          Text.Whitespace
+
+':'           Punctuation
+'123'         Literal.Number.Integer
+'/////C2'     Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** / **/'   Comment.Multiline
+'{'           Punctuation
+'"a /**/ b"'  Name.Tag
+'/*\n*/'      Comment.Multiline
+':'           Punctuation
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Invalid comments' Comment.Single
+'\n'          Text.Whitespace
+
+'/'           Error
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+'/'           Error
+'\n'          Text.Whitespace
+
+'/'           Error
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'""'          Literal.String.Double
+'/'           Error
+'\n\n'        Text.Whitespace
+
+'// Unclosed' Comment.Single
+'\n\n'        Text.Whitespace
+
+'""'          Literal.String.Double
+'/**\n'       Error

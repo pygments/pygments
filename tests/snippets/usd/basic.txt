@@ -1,0 +1,52 @@
+---input---
+# Regular file paths
+
+@./some/path/to/a/file/foo.usda@
+@/some/path/to/a/file/foo.usda@
+@some/path/to/a/file/foo.usda@
+@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary#)(%*&)\characters.tar.gz@
+
+# SdfPath syntax
+</some/another_one/here>
+</some/path/here.property_name>
+</some/path/here>
+<../some/another_one/here>
+<../some/path/here.property_name>
+<../some/path/here>
+
+---tokens---
+'# Regular file paths' Comment.Single
+'\n\n'        Text.Whitespace
+
+'@./some/path/to/a/file/foo.usda@' Literal.String.Interpol
+'\n'          Text.Whitespace
+
+'@/some/path/to/a/file/foo.usda@' Literal.String.Interpol
+'\n'          Text.Whitespace
+
+'@some/path/to/a/file/foo.usda@' Literal.String.Interpol
+'\n'          Text.Whitespace
+
+'@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary#)(%*&)\\characters.tar.gz@' Literal.String.Interpol
+'\n\n'        Text.Whitespace
+
+'# SdfPath syntax' Comment.Single
+'\n'          Text.Whitespace
+
+'</some/another_one/here>' Name.Namespace
+'\n'          Text.Whitespace
+
+'</some/path/here.property_name>' Name.Namespace
+'\n'          Text.Whitespace
+
+'</some/path/here>' Name.Namespace
+'\n'          Text.Whitespace
+
+'<../some/another_one/here>' Name.Namespace
+'\n'          Text.Whitespace
+
+'<../some/path/here.property_name>' Name.Namespace
+'\n'          Text.Whitespace
+
+'<../some/path/here>' Name.Namespace
+'\n'          Text.Whitespace

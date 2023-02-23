@@ -1,0 +1,27 @@
+---input---
+%()
+%[]
+%{}
+%<>
+%||
+
+---tokens---
+'%('          Literal.String.Other
+')'           Literal.String.Other
+'\n'          Text.Whitespace
+
+'%['          Literal.String.Other
+']'           Literal.String.Other
+'\n'          Text.Whitespace
+
+'%{'          Literal.String.Other
+'}'           Literal.String.Other
+'\n'          Text.Whitespace
+
+'%<'          Literal.String.Other
+'>'           Literal.String.Other
+'\n'          Text.Whitespace
+
+'%|'          Literal.String.Other
+'|'           Literal.String.Other
+'\n'          Text.Whitespace

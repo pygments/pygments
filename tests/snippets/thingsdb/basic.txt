@@ -1,0 +1,10 @@
+---input---
+42
+#42
+
+---tokens---
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'#42'         Comment.Preproc
+'\n'          Text.Whitespace

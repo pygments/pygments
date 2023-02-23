@@ -1,0 +1,251 @@
+---input---
+// JSON-LD keywords
+{"@base": ""}
+{"@container": ""}
+{"@context": ""}
+{"@direction": ""}
+{"@graph": ""}
+{"@id": ""}
+{"@import": ""}
+{"@included": ""}
+{"@index": ""}
+{"@json": ""}
+{"@language": ""}
+{"@list": ""}
+{"@nest": ""}
+{"@none": ""}
+{"@prefix": ""}
+{"@propagate": ""}
+{"@protected": ""}
+{"@reverse": ""}
+{"@set": ""}
+{"@type": ""}
+{"@value": ""}
+{"@version": ""}
+{"@vocab": ""}
+
+// Not keywords
+{"@bogus": ""} // "@" does not guarantee a keyword match
+{"@bases": ""} // keyword is "base"
+{"container": ""} // no leading "@"
+
+---tokens---
+'// JSON-LD keywords' Comment.Single
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@base"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@container"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@context"'  Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@direction"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@graph"'    Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@id"'       Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@import"'   Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@included"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@index"'    Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@json"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@language"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@list"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@nest"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@none"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@prefix"'   Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@propagate"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@protected"' Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@reverse"'  Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@set"'      Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@type"'     Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@value"'    Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@version"'  Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@vocab"'    Name.Decorator
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Not keywords' Comment.Single
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@bogus"'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+' '           Text.Whitespace
+'// "@" does not guarantee a keyword match' Comment.Single
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"@bases"'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+' '           Text.Whitespace
+'// keyword is "base"' Comment.Single
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"container"' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'""'          Literal.String.Double
+'}'           Punctuation
+' '           Text.Whitespace
+'// no leading "@"' Comment.Single
+'\n'          Text.Whitespace
