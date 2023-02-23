@@ -16,16 +16,13 @@ source code.  Highlights are:
 Read more in the :doc:`FAQ list <faq>` or the :doc:`documentation <docs/index>`,
 or `download the latest release <https://pypi.python.org/pypi/Pygments>`_.
 
-.. _contribute:
-
 Contribute
 ----------
 
 Like every open-source project, we are always looking for volunteers to help us
 with programming. Python knowledge is required, but don't fear: Python is a very
-clear and easy to learn language.
-
-Development takes place on `GitHub <https://github.com/pygments/pygments>`_.
+clear and easy to learn language. Read our :doc:`contribution guidelines
+<docs/contributing>` for more information.
 
 If you found a bug, just open a ticket in the GitHub tracker. Be sure to log
 in to be notified when the issue is fixed -- development is not fast-paced as
