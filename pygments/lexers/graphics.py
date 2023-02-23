@@ -30,7 +30,7 @@ class GLShaderLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^#.*$', Comment.Preproc),
+            (r'^#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
@@ -161,7 +161,7 @@ class HLSLShaderLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^#.*$', Comment.Preproc),
+            (r'^#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
