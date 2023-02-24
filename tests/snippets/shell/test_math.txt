@@ -1,0 +1,672 @@
+---input---
+# TODO: Find git dir; global options
+# TODO: LIBEXECDIR or something
+GIT_DIR="${GIT_DIR:-.git}"
+
+INDEX_VERSION=2
+
+gitsort() (
+	# This will still often be wrong
+	LANG=C sort
+)
+
+# Is it hacky? Hell yes. Is it POSIX? HELL YES.
+write_hex() {
+	hex="$1"
+	while [ -n "$hex" ]
+	do
+		cur=$(printf "%s" "$hex" | cut -c1-2)
+		next=$(printf "%s" "$hex" | cut -c3-)
+		printf "\\x$(printf "%s" "$cur")"
+		hex="$next"
+	done
+}
+
+# Prints an integer to stdout in binary, big-endian
+write_int32() (
+	n="$1"
+	hex=$(printf "%08X" "$n")
+	write_hex "$hex"
+)
+
+write_int16() (
+	n="$1"
+	hex=$(printf "%04X" "$n")
+	write_hex "$hex"
+)
+
+read_text() (
+	path="$1"
+	offs="$2"
+	len="$3"
+	for oct in $(od -An -txC -N"$len" -j"$offs" "$index")
+	do
+		printf "\x$oct"
+	done
+)
+
+read_int16() (
+	path="$1"
+	offs="$2"
+	i16=$(od -An -tdS -j"$offs" -N2 "$path" | tr -d ' ')
+	i16=$((((i16>>8)&0xff) | ((i16<<8)&0xff00)))
+	echo "$i16"
+)
+
+read_int32() (
+	path="$1"
+	offs="$2"
+	i32=$(od -An -tdI -j"$offs" -N4 "$path" | tr -d ' ')
+	i32=$((((i32>>24)&0xff) |
+		((i32<<8)&0xff0000) |
+		((i32>>8)&0xff00) |
+		((i32<<24)&0xff000000)))
+	echo "$i32"
+)
+
+read_hex() (
+	path="$1"
+	offs="$2"
+	len="$3"
+	od -An -txC -N"$len" -j"$offs" "$path" | tr -d ' \n'
+)
+
+normalize_path() (
+	path="$1"
+	path="${path#./}"
+	# TODO: Remove the leading / if fully qualified
+	if [ "${path#.git}" != "$path" ]
+	then
+		printf '%s' 'Invalid path %s\n' "$path"
+		exit 1
+	fi
+	printf "%s" "$path"
+)
+
+---tokens---
+'# TODO: Find git dir; global options\n' Comment.Single
+
+'# TODO: LIBEXECDIR or something\n' Comment.Single
+
+'GIT_DIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'GIT_DIR'     Name.Variable
+':-'          Keyword
+'.git'        Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'INDEX_VERSION' Name.Variable
+'='           Operator
+'2'           Literal.Number
+'\n\n'        Text.Whitespace
+
+'gitsort'     Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'# This will still often be wrong\n' Comment.Single
+
+'\t'          Text.Whitespace
+'LANG'        Name.Variable
+'='           Operator
+'C'           Text
+' '           Text.Whitespace
+'sort'        Text
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'# Is it hacky? Hell yes. Is it POSIX? HELL YES.\n' Comment.Single
+
+'write_hex'   Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'{'           Operator
+'\n\t'        Text.Whitespace
+'hex'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'while'       Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'-n'          Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$hex'        Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+']'           Operator
+'\n\t'        Text.Whitespace
+'do'          Keyword
+'\n\t\t'      Text.Whitespace
+'cur'         Name.Variable
+'='           Operator
+'$('          Keyword
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%s"'        Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$hex'        Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'cut'         Text
+' '           Text.Whitespace
+'-c1-2'       Text
+')'           Keyword
+'\n\t\t'      Text.Whitespace
+'next'        Name.Variable
+'='           Operator
+'$('          Keyword
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%s"'        Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$hex'        Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'cut'         Text
+' '           Text.Whitespace
+'-c3-'        Text
+')'           Keyword
+'\n\t\t'      Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\\\x'       Literal.String.Double
+'$('          Keyword
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%s"'        Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$cur'        Name.Variable
+'"'           Literal.String.Double
+')'           Keyword
+'"'           Literal.String.Double
+'\n\t\t'      Text.Whitespace
+'hex'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$next'       Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'done'        Keyword
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'# Prints an integer to stdout in binary, big-endian\n' Comment.Single
+
+'write_int32' Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'n'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'hex'         Name.Variable
+'='           Operator
+'$('          Keyword
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%08X"'      Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$n'          Name.Variable
+'"'           Literal.String.Double
+')'           Keyword
+'\n\t'        Text.Whitespace
+'write_hex'   Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$hex'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'write_int16' Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'n'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'hex'         Name.Variable
+'='           Operator
+'$('          Keyword
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%04X"'      Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$n'          Name.Variable
+'"'           Literal.String.Double
+')'           Keyword
+'\n\t'        Text.Whitespace
+'write_hex'   Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$hex'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'read_text'   Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'offs'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$2'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'len'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$3'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'oct'         Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'$('          Keyword
+'od'          Text
+' '           Text.Whitespace
+'-An'         Text
+' '           Text.Whitespace
+'-txC'        Text
+' '           Text.Whitespace
+'-N'          Text
+'"'           Literal.String.Double
+'$len'        Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'-j'          Text
+'"'           Literal.String.Double
+'$offs'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$index'      Name.Variable
+'"'           Literal.String.Double
+')'           Keyword
+'\n\t'        Text.Whitespace
+'do'          Keyword
+'\n\t\t'      Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\x'         Literal.String.Double
+'$oct'        Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'done'        Keyword
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'read_int16'  Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'offs'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$2'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'i16'         Name.Variable
+'='           Operator
+'$('          Keyword
+'od'          Text
+' '           Text.Whitespace
+'-An'         Text
+' '           Text.Whitespace
+'-tdS'        Text
+' '           Text.Whitespace
+'-j'          Text
+'"'           Literal.String.Double
+'$offs'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'-N2'         Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'tr'          Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+"' '"         Literal.String.Single
+')'           Keyword
+'\n\t'        Text.Whitespace
+'i16'         Name.Variable
+'='           Operator
+'$(('         Keyword
+'('           Operator
+'('           Operator
+'i16'         Name.Variable
+'>>'          Operator
+'8'           Literal.Number
+')'           Operator
+'&'           Operator
+'0xff'        Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'('           Operator
+'('           Operator
+'i16'         Name.Variable
+'<<'          Operator
+'8'           Literal.Number
+')'           Operator
+'&'           Operator
+'0xff00'      Literal.Number
+'))'          Keyword
+')'           Operator
+'\n\t'        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$i16'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'read_int32'  Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'offs'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$2'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'i32'         Name.Variable
+'='           Operator
+'$('          Keyword
+'od'          Text
+' '           Text.Whitespace
+'-An'         Text
+' '           Text.Whitespace
+'-tdI'        Text
+' '           Text.Whitespace
+'-j'          Text
+'"'           Literal.String.Double
+'$offs'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'-N4'         Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'tr'          Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+"' '"         Literal.String.Single
+')'           Keyword
+'\n\t'        Text.Whitespace
+'i32'         Name.Variable
+'='           Operator
+'$(('         Keyword
+'('           Operator
+'('           Operator
+'i32'         Name.Variable
+'>>'          Operator
+'24'          Literal.Number
+')'           Operator
+'&'           Operator
+'0xff'        Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'('           Operator
+'i32'         Name.Variable
+'<<'          Operator
+'8'           Literal.Number
+')'           Operator
+'&'           Operator
+'0xff0000'    Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'('           Operator
+'i32'         Name.Variable
+'>>'          Operator
+'8'           Literal.Number
+')'           Operator
+'&'           Operator
+'0xff00'      Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'('           Operator
+'i32'         Name.Variable
+'<<'          Operator
+'24'          Literal.Number
+')'           Operator
+'&'           Operator
+'0xff000000'  Literal.Number
+'))'          Keyword
+')'           Operator
+'\n\t'        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$i32'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'read_hex'    Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'offs'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$2'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'len'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$3'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'od'          Text
+' '           Text.Whitespace
+'-An'         Text
+' '           Text.Whitespace
+'-txC'        Text
+' '           Text.Whitespace
+'-N'          Text
+'"'           Literal.String.Double
+'$len'        Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'-j'          Text
+'"'           Literal.String.Double
+'$offs'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'tr'          Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+"' \\n'"      Literal.String.Single
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'normalize_path' Text
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$1'          Name.Variable
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'path'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'path'        Name.Variable
+'#./'         Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'# TODO: Remove the leading / if fully qualified\n' Comment.Single
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'path'        Name.Variable
+'#.git'       Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'!'           Text
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+']'           Operator
+'\n\t'        Text.Whitespace
+'then'        Keyword
+'\n\t\t'      Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+"'%s'"        Literal.String.Single
+' '           Text.Whitespace
+"'Invalid path %s\\n'" Literal.String.Single
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+'\n\t\t'      Text.Whitespace
+'exit'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n\t'        Text.Whitespace
+'fi'          Keyword
+'\n\t'        Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"%s"'        Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$path'       Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n'          Text.Whitespace

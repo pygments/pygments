@@ -105,10 +105,12 @@ class BashLexer(RegexLexer):
         ],
         'math': [
             (r'\)\)', Keyword, '#pop'),
-            (r'[-+*/%^|&]|\*\*|\|\|', Operator),
-            (r'\d+#\d+', Number),
+            (r'\*\*|\|\||<<|>>|[-+*/%^|&<>]', Operator),
+            (r'\d+#[\da-zA-Z]+', Number),
             (r'\d+#(?! )', Number),
+            (r'0[xX][\da-fA-F]+', Number),
             (r'\d+', Number),
+            (r'[a-zA-Z_]\w*', Name.Variable),  # user variable
             include('root'),
         ],
         'backticks': [
