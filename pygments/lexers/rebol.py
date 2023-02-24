@@ -119,11 +119,6 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^R]+', Comment),
-            (r'REBOL\s+\[', Generic.Strong, 'script'),
-            (r'R', Comment)
-        ],
-        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#\{[0-9a-f]*\}', Number.Hex),
@@ -314,12 +309,6 @@ class RedLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^R]+', Comment),
-            (r'Red/System\s+\[', Generic.Strong, 'script'),
-            (r'Red\s+\[', Generic.Strong, 'script'),
-            (r'R', Comment)
-        ],
-        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#\{[0-9a-f\s]*\}', Number.Hex),
