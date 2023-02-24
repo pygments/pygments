@@ -193,6 +193,7 @@ class CMakeLexer(RegexLexer):
         ],
         'ws': [
             (r'[ \t]+', Whitespace),
+            (r'#\[(?P<level>=*)\[[\w\W]*?\](?P=level)\]', Comment),
             (r'#.*\n', Comment),
         ]
     }
