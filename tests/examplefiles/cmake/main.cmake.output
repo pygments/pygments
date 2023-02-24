@@ -405,3 +405,18 @@
 ' '           Text.Whitespace
 ')'           Punctuation
 '\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#[[ multiline\nCMake comment\n]]' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#[==[ another multiline\nCMake comment\n]==]' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#[==[ #[[ A "nested" comment ]] ]==]' Comment
+'\n'          Text.Whitespace
