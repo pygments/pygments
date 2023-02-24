@@ -118,13 +118,6 @@ class RebolLexer(RegexLexer):
             yield match.start(), Name.Variable, word
 
     tokens = {
-# Don't look for the header: https://github.com/pygments/pygments/issues/2348
-#        'root': [
-#            (r'[^R]+', Comment),
-#            (r'REBOL\s+\[', Generic.Strong, 'script'),
-#            (r'R', Comment),
-#        ],
-#        'script': [
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
@@ -315,14 +308,6 @@ class RedLexer(RegexLexer):
             yield match.start(), Name.Variable, word
 
     tokens = {
-# Don't look for the header: https://github.com/pygments/pygments/issues/2348
-#        'root': [
-#            (r'[^R]+', Comment),
-#            (r'Red/System\s+\[', Generic.Strong, 'script'),
-#            (r'Red\s+\[', Generic.Strong, 'script'),
-#            (r'R', Comment)
-#        ],
-#        'script': [
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
