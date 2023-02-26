@@ -1,5 +1,11 @@
 // A few random snippets of HLSL shader code I gathered...
 
+// Macro inside a single-line comment: #define COMMENT_MACRO 1
+
+/* Macro inside a block comment: #define COMMENT_MACRO 2 */
+
+	# define INDENTED_MACRO 5.0
+
 #define SINGLELINE_MACRO 10.0
 
 #define MULTILINE_MACRO(a, b) float2( \

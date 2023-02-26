@@ -1,6 +1,14 @@
 '// A few random snippets of HLSL shader code I gathered...' Comment.Single
 '\n\n'        Text.Whitespace
 
+'// Macro inside a single-line comment: #define COMMENT_MACRO 1' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/* Macro inside a block comment: #define COMMENT_MACRO 2 */' Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'# define INDENTED_MACRO 5.0' Comment.Preproc
+'\n\n'        Text.Whitespace
+
 '#define SINGLELINE_MACRO 10.0' Comment.Preproc
 '\n\n'        Text.Whitespace
 
