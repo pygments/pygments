@@ -224,7 +224,7 @@ class PhpLexer(RegexLexer):
              r'finally|match)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             include('magicconstants'),
-            (r'\$\{\$+' + _ident_inner + r'\}', Name.Variable),
+            (r'\$\{', Name.Variable, 'variablevariable'),
             (r'\$+' + _ident_inner, Name.Variable),
             (_ident_inner, Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)(e[+-]?[0-9]+)?', Number.Float),
@@ -236,6 +236,10 @@ class PhpLexer(RegexLexer):
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
+        ],
+        'variablevariable': [
+            (r'\}', Name.Variable, '#pop'),
+            include('php')
         ],
         'magicfuncs': [
             # source: http://php.net/manual/en/language.oop5.magic.php
