@@ -192,7 +192,7 @@ class PhpLexer(RegexLexer):
              bygroups(String, String, String.Delimiter, String, String.Delimiter,
                       Punctuation, Text)),
             (r'\s+', Text),
-            (r'#\[', Punctuation),
+            (r'#\[', Punctuation, 'attribute'),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
             # put the empty comment here, it is otherwise seen as
@@ -276,6 +276,16 @@ class PhpLexer(RegexLexer):
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
             (r'[${\\]', String.Double)
+        ],
+        'attribute': [
+            (r'\]', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'attributeparams'),
+            (_ident_inner, Name.Decorator),
+            include('php')
+        ],
+        'attributeparams': [
+            (r'\)', Punctuation, '#pop'),
+            include('php')
         ],
     }
 

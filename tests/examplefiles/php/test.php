@@ -541,8 +541,3 @@ continues on this line
 some_delimiter;
 
 ?>
-
-<?php
-#[Attribute]
-class Extra {}
-?>
