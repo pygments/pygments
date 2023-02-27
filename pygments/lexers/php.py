@@ -205,6 +205,7 @@ class PhpLexer(RegexLexer):
             (r'[~!%^&*+=|:.<>/@-]+', Operator),
             (r'\?', Operator),  # don't add to the charclass above!
             (r'[\[\]{}();,]+', Punctuation),
+            (r'(new)(\s+)(class)\b', bygroups(Keyword, Text, Keyword)),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
             (r'(function)(\s+)(&?)(\s*)',
