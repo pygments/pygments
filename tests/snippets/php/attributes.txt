@@ -1,0 +1,38 @@
+---input---
+<?php
+#[Attribute]
+#[Attribute(true)]
+#[Attribute, Attribute]
+class Extra {}
+
+---tokens---
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'#['          Punctuation
+'Attribute'   Name.Decorator
+']'           Punctuation
+'\n'          Text
+
+'#['          Punctuation
+'Attribute'   Name.Decorator
+'('           Punctuation
+'true'        Keyword
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'#['          Punctuation
+'Attribute'   Name.Decorator
+','           Punctuation
+' '           Text
+'Attribute'   Name.Decorator
+']'           Punctuation
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Extra'       Name.Class
+' '           Text
+'{}'          Punctuation
+'\n'          Text
