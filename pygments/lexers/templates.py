@@ -2291,10 +2291,6 @@ class SqlJinjaLexer(DelegatingLexer):
         if re.search(r'\{\{\s*source\(.*\)\s*\}\}', text):
             rv += 0.25
         # Jinja macro
-        if re.search(
-            r'\{%-?\s*macro \w+\(.*\)\s*-?%\}\s+.*\s+\{%-?\s*endmacro\s*-?%\}',
-            text,
-            re.S,
-        ):
+        if re.search(r'\{%-?\s*macro \w+\(.*\)\s*-?%\}', text):
             rv += 0.15
         return rv
