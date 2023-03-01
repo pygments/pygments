@@ -1,6 +1,6 @@
 """
     pygments.lexers.carbon
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Carbon programming language.
 
@@ -53,8 +53,8 @@ class CarbonLexer(RegexLexer):
              r'f8|f16|f32|f64)\b', Keyword.Type),
             # numeric literals
             (r'[0-9]*[.][0-9]+', Number.Double),
-            (r'0[b][01]+[sl]?', Number.Bin),
-            (r'0[o][0-7]+[sl]?', Number.Oct),
+            (r'0b[01]+[sl]?', Number.Bin),
+            (r'0o[0-7]+[sl]?', Number.Oct),
             (r'[0-9]+', Number.Integer),
             # string literal
             (r'"(\\.|[^"\\])*"', String),
