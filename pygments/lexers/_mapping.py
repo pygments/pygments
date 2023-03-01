@@ -71,6 +71,7 @@ LEXERS = {
     'CadlLexer': ('pygments.lexers.archetype', 'cADL', ('cadl',), ('*.cadl',), ()),
     'CapDLLexer': ('pygments.lexers.esoteric', 'CapDL', ('capdl',), ('*.cdl',), ()),
     'CapnProtoLexer': ('pygments.lexers.capnproto', "Cap'n Proto", ('capnp',), ('*.capnp',), ()),
+    'CarbonLexer': ('pygments.lexers.carbon', 'Carbon', ('carbon',), ('*.carbon',), ('text/x-carbon',)),
     'CbmBasicV2Lexer': ('pygments.lexers.basic', 'CBM BASIC V2', ('cbmbas',), ('*.bas',), ()),
     'CddlLexer': ('pygments.lexers.cddl', 'CDDL', ('cddl',), ('*.cddl',), ('text/x-cddl',)),
     'CeylonLexer': ('pygments.lexers.jvm', 'Ceylon', ('ceylon',), ('*.ceylon',), ('text/x-ceylon',)),
