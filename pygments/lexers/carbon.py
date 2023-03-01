@@ -20,7 +20,7 @@ class CarbonLexer(RegexLexer):
     """
     For Carbon source.
 
-    .. versionadded:: 0.0
+    .. versionadded:: 2.15.0
     """
     name = 'Carbon'
     url = 'https://github.com/carbon-language/carbon-lang'
@@ -43,9 +43,10 @@ class CarbonLexer(RegexLexer):
             (r'(abstract|alias|fn|class|interface|let|var|virtual|external|'
              r'base|addr|extends)\b', Keyword.Declaration),
             # Keywords
-            (r'(as|or|not|and|break|continue|case|default|'
-             r'if|else|destructor|for|forall|while|where|then|'
-             r'in|is|return|returned)\b', Keyword),
+            (words(('as', 'or', 'not', 'and', 'break', 'continue', 'case',
+                    'default', 'if', 'else', 'destructor', 'for', 'forall',
+                    'while', 'where', 'then', 'in', 'is', 'return',
+                    'returned'), suffix=r'\b'), Keyword),
             (r'(self)\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'(auto|bool|string|i8|i16|i32|i64|u8|u16|u32|u64|'
@@ -56,9 +57,9 @@ class CarbonLexer(RegexLexer):
             (r'0[o][0-7]+[sl]?', Number.Oct),
             (r'[0-9]+', Number.Integer),
             # string literal
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
+            (r'"(\\.|[^"\\])*"', String),
             # char literal
-            (r'\'(\\\\|\\[^\\]|[^\'\\])\'', String.Char),
+            (r'\'(\\.|[^\'\\])\'', String.Char),
             # tokens
             (r'<<=|>>=|<<|>>|<=|>=|\+=|-=|\*=|/=|\%=|\|=|&=|\^=|&&|\|\||&|\||'
              r'\+\+|--|\%|\^|\~|==|!=|::|[.]{3}|[+\-*/&]|->|=>', Operator),
