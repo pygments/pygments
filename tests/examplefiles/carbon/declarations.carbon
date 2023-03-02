@@ -28,3 +28,10 @@ class Pal {
 abstract class MyAbstractClass {
   protected fn Create() -> partial Self { }
 }
+
+constraint DrawVectorLegoFish {
+  impl as VectorLegoFish;
+  impl as Drawable;
+}
+
+impl JustX as X {}
