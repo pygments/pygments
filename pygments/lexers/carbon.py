@@ -41,7 +41,7 @@ class CarbonLexer(RegexLexer):
             # Declaration
             (r'(package|import|api|namespace|library)\b', Keyword.Namespace),
             (r'(abstract|alias|fn|class|interface|let|var|virtual|external|'
-             r'base|addr|extends|choice)\b', Keyword.Declaration),
+             r'base|addr|extends|choice|constraint|impl)\b', Keyword.Declaration),
             # Keywords
             (words(('as', 'or', 'not', 'and', 'break', 'continue', 'case',
                     'default', 'if', 'else', 'destructor', 'for', 'forall',
