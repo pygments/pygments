@@ -9,7 +9,7 @@ fn Partition[T: !Comparable & Movable](s : Slice(T)) -> i64 {
    return i;
 }
 
-fb QuickSort[T: !Comparable & Movable](s : Slice(T)) {
+fn QuickSort[T: !Comparable & Movable](s : Slice(T)) {
    if (s.Size() <= 1) {
        return;
    }
