@@ -46,8 +46,8 @@ class CarbonLexer(RegexLexer):
             (words(('as', 'or', 'not', 'and', 'break', 'continue', 'case',
                     'default', 'if', 'else', 'destructor', 'for', 'forall',
                     'while', 'where', 'then', 'in', 'is', 'return', 'returned',
-                    'friend', 'partial', 'private', 'protected', 'observe',
-                    'override', 'Self'), suffix=r'\b'), Keyword),
+                    'friend', 'partial', 'private', 'protected', 'observe', 'Self',
+                    'override', 'final', 'match', 'type', 'like'), suffix=r'\b'), Keyword),
             (r'(self)\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'(auto|bool|string|i8|i16|i32|i64|u8|u16|u32|u64|'
