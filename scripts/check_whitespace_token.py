@@ -35,6 +35,10 @@ def check_file(path):
             print(f'{path}:{linenumber}')
             return False
 
+        if 'Whitespace' in token and value != '':
+            print(f'{path}:{linenumber} - '
+                  'Incorrectly marked as whitespace')
+            return False
     return True
 
 
