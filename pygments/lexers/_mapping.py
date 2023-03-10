@@ -531,6 +531,7 @@ LEXERS = {
     'WatLexer': ('pygments.lexers.webassembly', 'WebAssembly', ('wast', 'wat'), ('*.wat', '*.wast'), ()),
     'WebIDLLexer': ('pygments.lexers.webidl', 'Web IDL', ('webidl',), ('*.webidl',), ()),
     'WhileyLexer': ('pygments.lexers.whiley', 'Whiley', ('whiley',), ('*.whiley',), ('text/x-whiley',)),
+    'WikitextLexer': ('pygments.lexers.markup', 'Wikitext', ('wikitext', 'mediawiki'), (), ('text/x-wiki',)),
     'WoWTocLexer': ('pygments.lexers.wowtoc', 'World of Warcraft TOC', ('wowtoc',), ('*.toc',), ()),
     'WrenLexer': ('pygments.lexers.wren', 'Wren', ('wren',), ('*.wren',), ()),
     'X10Lexer': ('pygments.lexers.x10', 'X10', ('x10', 'xten'), ('*.x10',), ('text/x-x10',)),
