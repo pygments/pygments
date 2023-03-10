@@ -20,10 +20,13 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Whitespace
 from pygments.util import get_bool_opt, ClassNotFound
 
+from pygments.lexers.lisp import SchemeLexer
+
 __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
            'MozPreprocHashLexer', 'MozPreprocPercentLexer',
            'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'TiddlyWiki5Lexer']
+           'MozPreprocCssLexer', 'MarkdownLexer', 'TiddlyWiki5Lexer',
+           'TexinfoLexer']
 
 
 class BBCodeLexer(RegexLexer):
@@ -763,3 +766,69 @@ class TiddlyWiki5Lexer(RegexLexer):
     def __init__(self, **options):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
+
+class TexinfoLexer(RegexLexer):
+    """
+    For `Texinfo <https://gnu.org/software/texinfo>`_ source code.
+
+    .. versionadded:: 2.10
+    """
+
+    name = 'Texinfo'
+    aliases = ['texi', 'texinfo']
+    filenames = ['*.texi']
+    mimetypes = ['text/x-texi']
+
+    tokens = {
+        'base': [
+            (r'\s+', Text),
+            (r'@$', Keyword),
+            (r'@[@:{}*]', Keyword),
+            (r'(?s)``.*?''', String),
+        ],
+        'commands': [
+            (r'(@[a-z]+)(\{)',
+             bygroups(Keyword, Punctuation), 'command'),
+            (r'@[a-z]+', Keyword)
+        ],
+        'root': [
+            (r'@c\s.*?$', Comment),
+            (r'@ignore.*?@end ignore', Comment),
+            include('base'),
+            (r'(@)(node|section|subsection|subsubsection|part|chapter|centerchap|unnumbered|unnumberedsec|unnumberedsubsec|unnumberedsubsection|unnumberedsubsubsec|unnumberedsubsubsection|chapheading|majorheading|heading|subheading|subsubheading|appendix|appendixsec|appendixsection|appendixsubsec|appendixsubsection|appendixsubsubsec|appendixsubsubsection|[cfvkpt]index|printindex|syncodeindex)(\s)',
+             bygroups(Keyword, Keyword, Text.Whitespace), 'label'),
+            (r'(@include)(\s)(.*)$',
+             bygroups(Keyword, Text.Whitespace, String)),
+            (r'(?s)(@p?x?ref)(\{)([^}]+)(\})',
+             bygroups(Keyword, Punctuation, Name.Label, Punctuation)),
+            (r'(@end)(\s)([a-z]+)',
+             bygroups(Keyword, Text.Whitespace, Name.Builtin)),
+            (r'(@)(example|smallexample|menu)(\s|$)',
+             bygroups(Keyword, Keyword, Text.Whitespace), 'verbatim'),
+            (r'(@lisp)(\s|$)',
+             bygroups(Keyword, Text.Whitespace), 'lisp'),
+            include('commands')
+        ],
+        'label': [
+            include('base'),
+            (r'[^@]*?$', Name.Label, '#pop'),
+            include('commands')
+        ],
+        'command': [
+            include('base'),
+            (r'\}', Punctuation, '#pop'),
+            include('commands'),
+            (r'[^@{}]+', Name.Attribute)
+        ],
+        'verbatim': [
+            include('base'),
+            (r'(@end)(\s)([a-z]+)',
+             bygroups(Keyword, Text.Whitespace, Name.Builtin), '#pop'),
+            (r'([^@]+|.)', String)
+        ],
+        'lisp': [
+            (r'(?s)(.+?)(@end)(\s)(lisp)',
+             bygroups(using(SchemeLexer), Keyword, Text.Whitespace, Name.Builtin),
+             '#pop'),
+        ]
+    }
