@@ -1,0 +1,976 @@
+<!-- #region Headings -->
+
+= Heading 1 =
+== Heading 2 ==
+=== Heading 3 ===
+==== Heading 4 ====
+===== Heading 5 =====
+====== Heading 6 ======
+
+== [[Heading|''Heading'']] ==
+
+<!-- #endregion -->
+<!-- #region hr -->
+
+-
+--
+---
+----
+-----
+------
+-------
+--------
+--------Abcdefg
+
+<!-- #endregion -->
+<!-- #region Signuratures -->
+
+~~
+~~~
+~~~~
+~~~~~
+~~~~~~ <!-- only highlight first 5 -->
+
+<!-- #endregion -->
+<!-- #region Bold & italics -->
+
+To ''italicize text'', put two consecutive apostrophes on each side of it.
+
+Three apostrophes each side will '''bold the text'''.
+
+Five consecutive apostrophes on each side (two for italics plus three for bold) produces '''''bold italics'''''.
+
+'''''Italic and bold formatting''''' works correctly only within a single line.
+
+''''''foo''''''
+
+L''''''Étranger'''''
+
+'' a ''' a ''' a ''
+
+'' a ''' a '' a '''
+
+''''' a '' a '''
+''''' a ''' a ''
+
+''''' a
+a
+
+''a[[b|c]]d <!-- d should be italicized -->
+a[[b|''c]]d <!-- d should not be italicized -->
+''a{{b|c}}d <!-- c & d should not be italicized -->
+a{{b|''c}}d <!-- d should not be italicized -->
+
+<!-- #endregion -->
+<!-- #region HTML entities -->
+
+Mr.&nbsp;Smith or 400&nbsp;km/h
+
+&Agrave; &Aacute; &Acirc; &Atilde; &Auml; &Aring; &AElig;
+
+&Ccedil; &Egrave; &Eacute; &Ecirc; &Euml;
+
+&Igrave; &Iacute; &Icirc; &Iuml; &Ntilde;
+
+&Ograve; &Oacute; &Ocirc; &Otilde; &Ouml; &Oslash; &OElig;
+
+&Ugrave; &Uacute; &Ucirc; &Uuml; &Yuml; &szlig;
+
+&agrave; &aacute; &acirc; &atilde; &auml; &aring; &aelig; &ccedil;
+
+&egrave; &eacute; &ecirc; &euml;
+
+&igrave; &iacute; &icirc; &iuml; &ntilde;
+
+&ograve; &oacute; &ocirc; &otilde; &ouml; &oslash; &oelig;
+
+&ugrave; &uacute; &ucirc; &uuml; &yuml;
+
+<!-- #endregion -->
+<!-- #region Magic links -->
+
+RFC 1 
+RFC 2
+RFC 3f <!-- No highlight -->
+rfc 4 <!-- No highlight -->
+PMID&nbsp;&#160;   &#x0a0;114514
+ISBN 978-3-16-148410-0
+ISBN 978&nbsp;3 16-148410&#160;0
+https://example.com
+irc://example.com
+nolink://example.com <!-- No highlight -->
+
+<!-- #endregion -->
+<!-- #region Internal links -->
+
+[[a|
+b''b''
+]]
+
+[[维基百科:关于|关于]]
+
+[[Edge case#]]
+
+[[Edge case#|another]]
+
+[[ pagename | https://www.example.com ]]
+
+[[| this is legal! ]]
+
+[[ | this is illegal! ]]
+
+[[public transport#sth]]
+
+[[:public transport#sth]]
+
+[[:public transport]]
+
+[[a:public transport]]
+
+[[a:public transport#sth]]
+
+[[a:public transport#sth|<code>a</code> b ''c'' '''d''' ~~~~ <nowiki>[[a]]</nowiki>]]
+
+London has [[public transport]].
+
+Link to this page: "[[Help:Wikitext]]" will appear only as bold text.
+
+New York also has [[public transport|public transportation]].
+
+[[kingdom (biology)|]]
+
+[[Seattle, Washington|]]
+
+[[Wikipedia:Manual of Style#Links|]]
+
+[[:Category:Character sets|]]
+
+[[commons:category:Wikimedia]]
+
+[[Wiktionary:fr:bonjour]]
+
+[[Wiktionary:fr:bonjour|]]
+
+[[Wiktionary:fr:bonjour|bonjour]]
+
+[[ wp:pagename | page name[[ wp:pagename | page name ]] [[ wp:pagename | page name ]]  [[ wp:pagename[[ wp:pagename | page name ]] | page name ]]  [[ wp:pagename | page nam[[ wp:pagename | page name ]]e ]]]]
+
+[[ wp:pagename | page name ]]
+
+[<nowiki />[ wp:pagename | page name ]]
+
+[[<nowiki /> wp:pagename | page name ]]
+
+[[ wp:pagename <nowiki />| page name ]]
+
+[[ wp:pagename | page name ]<nowiki />]
+
+[[a|]]]]
+
+[[foo|[https://example.com]]]
+
+[[a|[[]]]]
+
+[[Hindenburg disaster|''Hindenburg'' disaster]]
+
+[[Special:Diff/330349143/330350877|Diff between revisions 330349143 and 330350877]]
+
+[[Special:Diff/330350877|Diff between revisions 330349143 and 330350877]]
+
+[[Special:Permalink/330350877|Revision 330350877]]
+
+[[Special:Contributions/2001:0db8:0000:0000:0000:ff00:0042:8329]]
+
+[[Special:Contributions/UserName]]
+
+[[File:wiki.png|thumb|left|alt={{User sandbox notice}}|Wikipedia ''logo'']]
+
+[[A|[//example.com a b c]]]
+
+<!-- #endregion -->
+<!-- #region Media (image) links -->
+
+The image name, the word thumb then the caption: 
+[[File:wiki.png|thumb|Wikipedia logo]]
+
+A picture: [[File:wiki.png]]
+
+[[File:wiki.png|alt=Puzzle globe logo]]
+
+[[File:wiki.png|link=Wikipedia]]
+
+[[File:wiki.png|frame|centre|alt=Puzzle globe|Wikipedia logo]]
+
+Forced to the left side of the page
+using the ''thumb'' attribute, the ''left'' attribute and a caption: 
+[[File:wiki.png|thumb|left|alt=Puzzle globe|Wikipedia logo]]
+
+A picture resized to 50 pixels... 
+[[File:wiki.png|50 px|Wikipedia encyclopedia]]
+
+[[File:wiki.png|thumb|[[a|b]]]]
+[[File:wiki.png|thumb|[https://www.google.com]]]
+
+Linking directly to an image without displaying it: 
+[[Media:wiki.png|Image of jigsaw globe]]
+
+[[media:Classical guitar scale.ogg|Sound]]
+
+<!-- #endregion -->
+<!-- #region External links -->
+
+[https://www.wikipedia.org Wikipedia]
+
+[https://www.wikipedia.org]
+
+https://www.wikipedia.org
+
+<span class="plainlinks">[https://www.wikipedia.org Wikipedia]</span>
+
+Single square brackets holding
+[text without a HTTP URL] are
+preserved, but single square
+brackets containing a URL are
+treated as being an external
+[https://example.com/ Web link].
+
+[https://www.wikipedia.org ''Wiki'''''pedi'''a]
+
+tel:1145141919810
+
+[tel:1145141919810 telephone me]
+
+[https://www.google.com [[a]]]
+
+https://www.example.com
+
+[https://www.exampke.com]
+
+[//example.com]
+
+[//example.com a b c]
+
+[//example.com a ''b'' c <nowiki>[//example.com a ''b'' c]</nowiki><includeonly/><div class="a"/> d]
+
+[{{fullurl:Help:Wiki markup|action=edit}} edit]
+
+<!-- #endregion -->
+<!-- #region Magic words (double slashes) -->
+
+__NOTOC__
+__FORCETOC__
+__TOC__
+__NOEDITSECTION__
+__NEWSECTIONLINK__
+__NONEWSECTIONLINK__
+__NOGALLERY__
+__HIDDENCAT__
+__EXPECTUNUSEDCATEGORY__
+__NOCONTENTCONVERT__
+__NOCC__
+__NOTITLECONVERT__
+__NOTC__
+__INDEX__ 
+__NOINDEX__
+__STATICREDIRECT__
+__NOGLOBAL__
+__DISAMBIG__
+__EXPECTED_UNCONNECTED_PAGE__
+
+__notoc__
+__forcetoc__
+__toc__
+__noeditsection__
+__newsectionlink__ <!-- No highlight -->
+__nonewsectionlink__ <!-- No highlight -->
+__nogallery__
+__hiddencat__ <!-- No highlight -->
+__expectunusedcategory__ <!-- No highlight -->
+__nocontentconvert__
+__nocc__
+__notitleconvert__
+__notc__
+__index__ <!-- No highlight -->
+__noindex__ <!-- No highlight -->
+__staticredirect__ <!-- No highlight -->
+__noglobal__ <!-- No highlight -->
+__disambig__ <!-- No highlight -->
+__expected_unconnected_page__ <!-- No highlight -->
+
+<!-- #endregion -->
+<!-- #region Description lists -->
+
+; Term : Definition1
+: Definition2
+
+; '''Term'''
+: Definition1
+: Definition2
+: Definition3
+: Definition4
+
+; [[Wikipedia:Term#123|Blah]] : Definition1
+
+; [[Wikipedia:Term#123|Blah]] 
+: Definition1
+
+
+<!-- #endregion -->
+<!-- #region Ordered lists -->
+
+# Item1
+# ''Item2''
+# Item3
+# [[Item4]]
+## Sub-item 1
+### Sub-sub-item
+#### Sub-sub-sub-item
+## Sub-item 2
+# Item5
+
+
+<!-- #endregion -->
+<!-- #region Unordered lists -->
+
+* Item1
+* '''Item2'''
+* Item3
+* [[Item4]]
+** Sub-item 4 a)
+*** Sub-item 4 a) 1.
+**** Sub-item 4 a) 1. i)
+**** Sub-item 4 a) 1. ii)
+** Sub-item 4 b)
+* Item5
+
+<!-- #endregion -->
+<!-- #region Indents -->
+
+Indentation as used on talk pages:
+:[[Each]] ''colon'' at the '''start''' of a line
+::causes the line to be indented by three more character positions.
+:::(The indentation persists
+so long as no carriage return or line break is used.)
+:::Repeat the indentation at any line break.
+::::Use an extra colon for each response.
+:::::And so forth ...
+::::::And so on ...
+{{Outdent|::::::}}The outdent template can give a visual indicator that we're deliberately cancelling the indent (6 levels here)
+
+<!-- #endregion -->
+<!-- #region LanguageConverter markups -->
+-{H|zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格}- 
+-{H|zh-cn:博客; zh-hk:網誌; zh-tw:部落格;}-
+-{H|zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格;  }- 
+
+-{zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格}- 
+-{zh-cn:博客; zh-hk:網誌; zh-tw:部落格;}-
+-{zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格;  }- 
+
+-{zh-tw=>zh-cn:[[博客]];zh-hk=>zh-cn:[[博客]]; }-
+
+-{部落格}- -{[[部落格]]}-
+
+-{zh-cn:-{[[博客]]}-; zh-invalid:網誌; zh-tw:部落格}-
+
+-{zh-invalid:''a''[[博客]];;;zh-cn:a}-
+-{zh:''a''[[博客]]}-
+
+-{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
+<span style="font-size:120%;">yyy</span>;}-
+
+<!-- #endregion -->
+<!-- #region Templates -->
+
+{{payoff matrix | UL = 5 | UR = 7 | DL = 2 | DR = 9 | Name = Example usage }}
+{{payoff matrix 
+| UL = 5 
+| UR = 7 
+| DL = 2 
+| DR = 9 
+| Name = Example usage 
+}}
+
+{{Wikipedia:foo|1=1}}
+{{Wikipe{{void}}dia:foo|1=1}}
+{{:foo|1=1}}
+
+{{short description|Wikipedia help page}}
+{{pp-move-indef|small=yes}}
+{{pp-vandalism|small=yes}}
+{{for|the '''encyclopedic''' section on wikitext|Wiki#Editing}}
+{{redirect|H:WT|the welcoming templates|Wikipedia:Welcoming committee/Welcome templates}}
+{{Locutions pages header}}
+{{Wikipedia how to|H:WT|H:MARKUP|H:WIKICODE}}
+{{Wikitext navbox}}
+
+{{Template|1={{{1}}}}}
+
+{{vo{{void|void}}id|param1=1|par{{void}}am2=2}}
+
+{{math|2''x'' &times; 4''y'' &divide; 6''z'' + 8 &minus; {{sfrac|''y''|''z''<sup>2</sup>}} {{=}} 0}}
+
+{{math|sin 2&pi;''x'' + ln ''e''}}
+It follows that {{math|''x''<sup>2</sup> &ge; 0}} for real {{mvar|x}}.
+
+{{Help:Transclusion demo}}
+
+{{Tooltip|Hover your mouse over this text
+|This is the hover text}}
+
+Go to this page to see the Tooltip
+template itself: {{tl|Tooltip}}
+
+This is how to {{Font color||yellow|highlight part of a sentence}}.
+
+{{#speciale:userlogin}}
+
+{{#if: 1==2 | yes | no }}
+{{#if:{{{1|}}}|You entered text in variable 1|There is no text in variable 1}}
+
+{{#ifeq: {{#expr:10^3}} | 1000 | equal | not equal}}
+
+{{#iferror: <strong class="error">a</strong> | error | correct }}
+
+{{#ifeq:{{{1}}}|condition1
+ |<!--then-->branch1t{{
+  #ifeq:{{{1}}}|condition2
+   |<!--then-->branch1t2t{{#ifeq:{{{1}}}|condition4|<!--then-->branch1t2t4t|<!--else-->branch1t2t4e}}
+   |<!--else-->branch1t2e{{#ifeq:{{{1}}}|condition5|<!--then-->branch1t2e5t|<!--else-->branch1t2e5e}}
+  }}
+ |<!--else-->branch1e{{#ifeq:{{{1}}}|condition3
+   |<!--then-->branch1e3t{{#ifeq:{{{1}}}|condition6|branch1e3t6t|branch1e3t6e}}
+   |<!--else-->branch1e3e{{
+    #ifeq:{{{1}}}|condition7
+     |branch1e3e7t
+     |branch1e3e7t
+    }}
+  }}
+}}
+
+{{subst:PAGENAME}}
+
+<!-- #endregion -->
+<!-- #region Template parameters -->
+
+{{{}}}
+
+{{{|}}}
+
+{{{1}}}
+
+{{{1|}}}
+
+{{{1
+2|}}}
+
+{{{1
+2|3
+4}}}
+
+{{{1|}}}}
+
+{{{1| }}}}
+
+{{{variable|default }}}
+
+<!-- #endregion -->
+<!-- #region Tables -->
+
+{| class="wikitable"
+|+ Caption text
+|-
+! Header texta !! Header text !! Header text
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|}
+
+{| class=wikitable style="text-align: center;"
+|+ Multiplication table
+|-
+! ×
+! 1
+! 2
+! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+
+{| class=wikitable
+|+ style="text-align: left;" | Data reported for 2014–2015, by region<ref name="Garcia 2005"/>
+|-
+! scope=col | Year !! scope=col | Africa !! scope=col | Americas !! scope=col | Asia & Pacific !! scope=col | Europe
+|-
+! scope=row | 2014
+| 2,300 || 8,950 || ''9,325'' || 4,200
+|-
+! scope=row | 2015
+| 2,725 || ''9,200'' || 8,850 || 4,775
+|}
+
+<!-- || can be used in headers as well -->
+{| class="wikitable"
+|+ Caption text
+|-
+! Header text !! Header text || Header text 
+|-
+  |} 
+
+Text before centered table...
+{| style="border: 1px solid black; border-spacing: 0; margin: 1em auto;"
+|+ '''An example table'''
+|-
+! style="border: 1px solid black; padding: 5px; background: #efefef;" | First header
+! colspan="2" style="border: 1px solid black; padding: 5px; background: #ffdead;" | Second header
+|-
+| style="border: 1px solid black; padding: 5px;" | Upper left
+| style="border: 1px solid black; padding: 5px;" | Upper middle
+| rowspan="2" style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px; vertical-align: top;" |
+Right side
+|-
+| style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px;" | Lower left
+| style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px;" | Lower middle
+|-
+| colspan="3" style="border: 1px solid black; text-align: center;" |
+Text before a nested table...
+{|
+|+ ''A table in a table''
+|-
+| style="text-align: center; width: 150px;" | [[File:Wiki.png]]
+| style="text-align: center; width: 150px;" | [[File:Wiki.png]]
+|-
+| colspan="2" style="text-align:center; border-top: 1px solid red;<!--
+  --> border-right: 1px solid red; border-bottom: 2px solid red;<!--
+  --> border-left: 1px solid red;" |
+Two Wikipedia logos
+|}
+...text after a nested table
+|}
+...text after centered table
+
+{| class="wikitable"
+|+ a=1 | Caption text
+|- a=1 b=2
+! a=1 | Header text !! b=2 | Header text !! c="sdfsd f" | Header text
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|}
+
+{| class=wikitable
+|-
+|class=1|P|i|p|e|
+|C|e|l|l|2|
+|-
+|class=1|P|i|p|e||class=1|C|e|l|l|2|
+|-
+||P|i|p|e|s||C|e|l|l|2|
+|}
+
+{| class=wikitable
+|-
+|<nowiki>|</nowiki>Pipes34:<nowiki>||</nowiki>
+|-
+|&#124;Pipes34:&#124;&#x7C;
+|}
+
+{| style="border: 1px solid black;"
+| style="border: 1px solid black;" | &alpha;
+| style="border: 1px solid black; text-align:center;" | cell2
+{| style="border: 2px solid black; background: #ffffcc;" <!-- The nested table must be on a new line -->
+| style="border: 2px solid darkgray;" | NESTED
+|-
+| style="border: 2px solid darkgray;" | TABLE
+|}
+| style="border: 1px solid black; vertical-align: bottom;" | the original table again
+| style="border: 1px solid black; width:100px" |
+{| style="border: 2px solid black; background: #ffffcc"
+| style="border: 2px solid darkgray;" | A
+|}
+{| style="border: 2px solid black; background: #ffffcc"
+| style="border: 2px solid darkgray;" | B
+| style="border: 2px solid darkgray;" | B
+|}
+| style="border: 1px solid black; width: 50px" |
+{| style="border: 2px solid black; background:#ffffcc; float:left"
+| style="border: 2px solid darkgray;" | C
+|}
+{| style="border: 2px solid black; background:#ffffcc; float:right"
+| style="border: 2px solid darkgray;" | D
+|}
+|}
+
+{| style="border-spacing: 2px; border: 1px solid darkgray;"
+! style="width: 140px;" | Left
+! style="width: 150px;" | Center
+! style="width: 130px;" | Right
+|- style="text-align: center;"
+| style="border: 1px solid blue;"|
+[[File:StarIconBronze.png|120px|Bronze star icon]]
+| style="border: 1px solid #777777;"|
+[[File:StarIconGold.png|120px|Gold star icon]]
+| style="border: 1px solid #22AA55;"|<!-- greenish border -->
+[[File:StarIconGreen.png|120px|Green star icon]]
+|- style="text-align: center;"
+|Bronze star || Gold star || Green star
+|}
+
+{| class=wikitable
+ <!--
+  Row one is shown because the '1' evaluates
+  to TRUE.
+ -->
+ {{ #if:1|{{!}}-
+  ! scope=row {{!}} row one, column one
+  <!--
+   Any {{!}}'s are evaluated to the pipe
+   character '|' since the template '!' just
+   contains '|'.
+  -->
+  {{!}}row one, column two}}
+ <!--
+  Row two is NOT shown because the space
+  between the ':' and the '|' evaluates to FALSE.
+ -->
+ {{ #if: |{{!}}-
+  ! scope=row {{!}} row two, column one
+  {{!}}row two, column two}}
+ <!--
+  Row three is shown.
+ -->
+ |-
+  ! scope=row {{!}} row three, column one
+  | row three, column two
+|}
+
+<!-- #endregion -->
+<!-- #region HTML tags -->
+
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">Centered text</div>
+
+<blockquote>
+The '''blockquote''' tag will indent both margins when needed instead of the left margin only as the colon does.
+</blockquote>
+
+<div>
+#123
+:456
+----
+</div>
+
+Use <small>small text</small> only 
+when necessary.
+
+To match, for example, the font-size used in an [[Help:Visual file markup#Caption|image caption]], the "small" tag can also be used to 
+<small style="font-size:87%;">reduce a text's font-size to 87%</small>.
+
+Better not use <big>big text</big>, unless <small>it's <big>within</big> small</small> text.
+
+x<sub>1</sub> x<sub>2</sub> x<sub>3</sub>
+
+function <code>int m2()</code> is nice.
+
+You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
+
+<div       ></div        >
+
+<a></a> <!-- not highlighted -->
+
+<!-- #endregion -->
+<!-- #region Commonly used parser tags -->
+
+<pre>The &lt;pre&gt; tag ignores [[wiki]]
+''markup'' as does the &lt;nowiki&gt;
+tag. Additionally, &lt;pre&gt; displays
+in a mono-spaced font, and does
+not  reformat    text    spaces.
+It still interprets special
+characters: &rarr;</pre>
+
+<pre class="blah">Ola
+Oi
+</pre>
+
+<nowiki>
+The <nowiki> tag ignores [[wiki]]
+''markup''. It reformats text by
+removing newlines and    multiple
+spaces.       It still interprets
+characters specified by
+&amp;name;: &rarr;
+</nowiki>
+
+<nowiki /># Ordered list
+'<nowiki />'Italics' markup'<nowiki />'
+<nowiki>[[Example]]</nowiki>
+<nowiki><!-- revealed --></nowiki>
+<nowiki>
+~~~~</nowiki>
+
+<chem>Y^{99+}</chem>
+<chem>CaSO4.1/2H2O + 1\!1/2 H2O -> CaSO4.2H2O</chem>
+<chem>{C_\mathit{x}H_\mathit{y}} + \mathit{z}O2 -> {\mathit{x}CO2} + \frac{\mathit{y}}{2}H2O</chem>
+<ce>{C_\mathit{x}H_\mathit{y}} + \mathit{z}O2 -> {\mathit{x}CO2} + \frac{\mathit{y}}{2}H2O</ce>
+
+<hiero>P2</hiero>
+
+<imagemap>
+# sjfhasdkjfhsadlkjahl
+
+File:The Last Supper - Leonardo Da Vinci - High Resolution 32x16.jpg|thumb|center|500px|alt=''The Last Supper'' by Leonardo da Vinci - Clickable Image|Image map example. Clicking on a person in the picture causes the browser to load the appropriate article.
+poly 550 2550 750 2400 1150 2300 1150 2150 1200 2075 1500 2125 1525 2300 1350 2800 1450 3000 1700 3300 1300 3475 650 3500 550 3300 450 3000 [[w:Bartholomew the Apostle|Bartholomew]] 
+poly 1575 2300 1625 2150 1900 2150 1925 2500 1875 2600 1800 2750 1600 3250 1425 3100 1400 2800 1375 2600 [[w:James, son of Alphaeus|James Minor]]
+poly 1960 2150 2200 2150 2350 2500 2450 2575 2375 2725 2375 2900 2225 3100 2225 3225 1600 3225 1825 2700 1975 2450 1925 2300 [[w:Saint Andrew|Andrew]]
+poly 2450 2575 2775 2500 2700 2650 2800 2700 2600 3000 2600 3250 2300 3250 2200 3200 2300 3000 [[w:Saint Peter|Peter]]
+poly 2750 2500 2950 2400 3125 2600 3175 2700 3300 2850 3700 3200 3750 3200 3650 3350 3400 3200 3000 3350 2600 3325 2750 2800 2900 2700 2700 2650 [[w:Judas Iscariot|Judas]]
+poly 3000 2350 3300 2350 3350 2660 3560 2600 3565 2690 3250 2800 3125 2575 [[w:Saint Peter|Peter]]                                     
+poly 3332 2338 3528 2240 4284 3024 4074 3332 3864 3290 3780 3150 3668 3192 3598 3024 3374 2870 3388 2772 3542 2800 3668 2702 3542 2590 3430 2604 3350 2600 3300 2500[[w:John the Apostle|John]]
+poly 4775 2184 4915 2128 5055 2212 5083 2352 5111 2464 5181 2604 5307 2744 5573 3052 5615 3192 5657 3290 5573 3402 5461 3332 5335 3248 4495 3248 4439 3388 4243 3388 4075 3360 4173 3136 4327 3010 4509 2730 4663 2520 4733 2394 [[w:Jesus]]
+poly 5900 2100 5900 2150 5800 2400 5800 2500 5675 2589 5480 2671 5438 2507 5425 2301 5589 2452 5630 2301 5650 2100 [[w:Thomas the Apostle|Thomas]]
+poly 5918 2150 6041 2109 6137 2246 6192 2411 6110 2589 6110 2726 6192 2822 6302 2740 6589 3109 5658 3178 5575 2918 5300 2698 5233 2589 5274 2438 5370 2507 5521 2685 5617 2671 5712 2575 5822 2507 5808 2287 5822 2175 [[w:James, son of Zebedee|James Greater]]
+poly 6137 2013 6439 2013 6863 2260 7110 2515 6726 2675 6507 2548 6425 2630 6356 2753 6548 2849 6699 2781 7082 2794 7178 3109 6699 3178 6548 2986 6397 2835 6165 2775 6110 2589 6233 2438 6302 2383 6151 2287 6096 2164 [[w:Philip the Apostle|Philip]]
+poly 7635 2123 7800 2013 8000 2055 8025 2287 7950 2438 8000 2698 8055 2918 7959 3164 7233 3164 7124 2972 7124 2794 6548 2794 6384 2781 6384 2671 6493 2575 6750 2650 7075 2550 7219 2400 7625 2300 [[w:Matthew the Apostle|Matthew]]
+poly 8325 2096 8600 2109 8635 2493 8615 2726 8439 2781 8274 2740 8125 2835 8151 2931 8400 2975 8411 3068 8589 3041 8617 3205 7987 3260 8124 3027 7987 2644 7904 2493 7959 2425 8096 2356 [[w:Judas Thaddaeus|Jude]]
+poly 8800 2150 8900 2125 9055 2150 9125 2397 9400 2475 9550 2931 9625 3301 9151 3397 8535 3219 8726 3014 8466 3068 8411 2918 8178 2931 8124 2835 8329 2753 8535 2794 8726 2603 8725 2342 [[w:Simon the Zealot|Simon]]
+rect 269 140 344 305 [[Claude Martin]]
+rect 124 147 181 298 [[Antoine Polier|Antoine-Louis Polier]]
+desc none
+</imagemap>
+
+<rss max=4 highlight="community wiki foundation">https://wikimediafoundation.org/news/feed/</rss>
+
+<inputbox>
+type=create
+break=no
+</inputbox>
+<inputbox>
+type=
+bgcolor=
+width=
+page=
+default=
+preload=
+editintro=
+buttonlabel=
+hidden=
+searchbuttonlabel=
+fulltextbutton=
+labeltext=
+break=
+namespaces=
+prefix=
+placeholder=
+minor=
+nosummary=
+summary=
+id=
+inline=
+dir=
+preloadparams[]=
+searchfilter=
+useve=
+arialabel=
+</inputbox>
+
+<gallery>
+File:Example.jpg
+File:Example.jpg
+</gallery>
+<gallery mode=packed heights=150px style="text-align:left">
+a|1
+Detroit Publishing Co. - A Yeoman of the Guard (N.B. actually a Yeoman Warder), full restoration.jpg|A Yeoman Warder, from a Victorian-era [[photochrom]]
+Official_program_-_Woman_suffrage_procession_March_3,_1913_-_crop.jpg|The Official program of the 1913 Woman Suffrage Procession held in Washington, D.C.
+Joseph Ferdinand Keppler - The Pirate Publisher - Puck Magazine - Restoration by Adam Cuerden.jpg|"The Pirate Publisher", a satire of copyright infringement from the magazine ''[[Puck (magazine)|Puck]]''.
+</gallery>
+<gallery caption="Sample gallery" widths="180px" heights="120px" >
+Wiki.png|Captioned
+Wiki.png|alt=The Wikipedia logo|Captioned with alt text
+Wiki.png|[[Help:Contents/Links|Links]] can be put in captions.
+Wiki.png|Full [[MediaWiki]]<br/>[[syntax]] may now be used...
+</gallery>
+<gallery>
+
+Detroit Publishing Co. - A Yeoman of the Guard (N.B. actually a Yeoman Warder), full restoration.jpg|1
+Official_program_-_Woman_suffrage_procession_March_3,_1913_-_crop.jpg|2
+Thurston, the famous magician - East Indian Rope Trick.jpg|3
+Joseph Ferdinand Keppler - The Pirate Publisher - Puck Magazine - Restoration by Adam Cuerden.jpg|4
+</gallery>
+
+<charinsert>“+” ‘+’ «+» ‹+› „+“ ‚+‘ [[+]] {{+}}</charinsert>
+
+<templatestyles src="Example/styles.css" wrapper="div.example" />
+
+<DynamicPageList>
+category=foo
+count=20
+namespace=file
+addfirstcategorydate=ymd
+imagewidth=70
+galleryshowfilesize=yes
+galleryshowfilename=yes
+imagesperrow=7
+gallerycaption=Galleries!
+ordermethod=sortkey
+order=ascending
+mode=gallery
+offset=12
+</DynamicPageList>
+
+<references />
+
+<poem>
+In [[Wikipedia:Xanadu|Xanadu]] did Kubla Khan
+A stately pleasure-dome decree:
+Where Alph, the sacred river, ran
+Through caverns measureless to man
+Down to a sunless sea.
+
+So twice five miles of fertile ground
+With walls and towers were girdled round:
+And there were gardens bright with sinuous rills,
+Where blossomed many an incense-bearing tree;
+And here were forests ancient as the hills,
+Enfolding sunny spots of greenery.
+</poem>
+
+<categorytree mode="categories">Manual</categorytree>
+<categorytree namespaces="Category">Manual</categorytree>
+<categorytree>Manual</categorytree>
+<categorytree>''Manual''[[a]]&amp;</categorytree>
+
+<onlyinclude>My content</onlyinclude>
+<includeonly>My content</includeonly>
+<noinclude>My content</noinclude>
+
+<syntaxhighlight lang="cpp">
+#include <iostream>
+int m2 (int ax, char *p_ax) {
+  std::cout <<"Hello World!";
+  return 0;
+}</syntaxhighlight>
+<source lang="cpp">
+#include <iostream>
+int m2 (int ax, char *p_ax) {
+  std::cout <<"Hello World!";
+  return 0;
+}</source>
+<syntaxhighlight lang="non-exist">
+#include <iostream>
+int m2 (int ax, char *p_ax) {
+  std::cout <<"Hello World!";
+  return 0;
+}</syntaxhighlight>
+<syntaxhighlight lang=cpp>
+#include <iostream>
+</syntaxhighlight>
+<syntaxhighlight lang=cpppp p>
+#include <iostream>
+</syntaxhighlight>
+<syntaxhighlight lang='cpp'>
+#include <iostream>
+</syntaxhighlight>
+<syntaxhighlight>
+#include <iostream>
+</syntaxhighlight>
+<syntaxhighlight/>
+<syntaxhighlight lang="js" lang='cpp' aalang=typescript>
+#include <iostream>
+</syntaxhighlight>
+<syntaxhighlight  />
+
+<math>2x \times 4y \div 6z + 8 - \frac {y}{z^2} = 0</math>
+<math>\sin 2\pi x + \ln e</math>
+<math display=block>\sum_{n=0}^\infty \frac{x^n}{n!}</math>
+
+<score>\relative c' { fis d fis a d f e d c cis d e a g f ees }</score>
+<score lang="lilypond">\relative c' { fis d fis a d f e d c cis d e a g f ees }</score>
+<score lang="ABC">
+X:1
+M:C
+L:1/4
+K:C
+C, D, E, F,|G, A, B, C|D E F G|A B c d|
+e f g a|b c' d' e'|f' g' a' b'|]
+</score>
+<score lang=not-exist>\relative c' { fis d fis a d f e d c cis d e a g f ees }</score>
+
+<ref name="reference name">add_template_name_here</ref>
+
+<templatedata>
+{
+    "description": "Label unsigned comments in a conversation.",
+    "params": {
+        "user": {
+            "label": "User's name",
+            "type": "wiki-user-name",
+            "required": true,
+            "description": "User name of person who forgot to sign their comment.",
+            "aliases": ["1"]
+        },
+        "date": {
+            "label": "Date",
+            "suggested": true,
+            "description": {
+                "en": "Timestamp of when the comment was posted, in YYYY-MM-DD format."
+            },
+            "aliases": ["2"],
+            "autovalue": "{{subst:#time:Y-m-d}}"
+        },
+        "year": {
+            "label": "Year",
+            "type": "number"
+        },
+        "month": {
+            "label": "Month",
+            "inherits": "year"
+        },
+        "day": {
+            "label": "Day",
+            "inherits": "year"
+        },
+        "comment": {
+            "required": false
+        }
+    },
+    "sets": [
+        {
+            "label": "Date",
+            "params": ["year", "month", "day"]
+        }
+    ],
+    "maps": {
+        "ExampleConsumer": {
+            "foo": "user",
+            "bar": ["year", "month", "day"],
+            "quux": [
+                "date",
+                ["day", "month"],
+                ["month", "year"],
+                "year"
+            ]
+        }
+    }
+}
+</templatedata>
+
+<!-- #endregion -->
