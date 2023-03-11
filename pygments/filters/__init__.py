@@ -19,9 +19,9 @@ from pygments.util import get_list_opt, get_int_opt, get_bool_opt, \
 from pygments.plugin import find_plugin_filters
 
 
-def find_filter_class(filtername):
+def find_filter_class(filtername, disabledbuiltin=[]):
     """Lookup a filter by name. Return None if not found."""
-    if filtername in FILTERS:
+    if filtername not in disabledbuiltin and filtername in FILTERS:
         return FILTERS[filtername]
     for name, cls in find_plugin_filters():
         if name == filtername:
@@ -35,18 +35,23 @@ def get_filter_by_name(filtername, **options):
     Options are passed to the filter initializer if wanted.
     Raise a ClassNotFound if not found.
     """
-    cls = find_filter_class(filtername)
+    disabledbuiltin = options.get('disable_builtin_filters', '').lower().split(';')
+    cls = find_filter_class(filtername, disabledbuiltin)
     if cls:
         return cls(**options)
     else:
         raise ClassNotFound('filter %r not found' % filtername)
 
 
-def get_all_filters():
+def get_all_filters(plugins=True, disabledbuiltin=[]):
     """Return a generator of all filter names."""
-    yield from FILTERS
-    for name, _ in find_plugin_filters():
-        yield name
+    for filtername in FILTERS:
+        if filtername in disabledbuiltin:
+            continue
+        yield filtername
+    if plugins:
+        for name, _ in find_plugin_filters():
+            yield name
 
 
 def _replace_special(ttype, value, regex, specialttype,

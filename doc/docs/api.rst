@@ -89,19 +89,26 @@ Functions from :mod:`pygments.lexers`:
     :exc:`pygments.util.ClassNotFound` is raised if no lexer thinks it can
     handle the content.
 
-.. function:: get_all_lexers()
+.. function:: get_all_lexers(plugins=True, disabledbuiltin=[])
 
     Return an iterable over all registered lexers, yielding tuples in the
     format::
 
     	(longname, tuple of aliases, tuple of filename patterns, tuple of mimetypes)
 
+    `plugins` indicates whether lexers from plugins should be included.
+    `disabledbuiltin` allows specifying which built-in lexers should be excluded.
+    This allows for plugin lexers to override specified built-in lexers.
+
     .. versionadded:: 0.6
 
-.. function:: find_lexer_class_by_name(alias)
+.. function:: find_lexer_class_by_name(alias, disabledbuiltin=[])
 
     Return the `Lexer` subclass that has `alias` in its aliases list, without
     instantiating it.
+
+    `disabledbuiltin` allows specifying which built-in lexers should be excluded.
+    This allows for plugin lexers to override specified built-in lexers.
 
     Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias is
     found.
@@ -150,17 +157,24 @@ Functions from :mod:`pygments.formatters`:
 
 Functions from :mod:`pygments.styles`:
 
-.. function:: get_style_by_name(name)
+.. function:: get_style_by_name(name, disabledbuiltin=[])
 
     Return a style class by its short name. The names of the builtin styles
     are listed in :data:`pygments.styles.STYLE_MAP`.
 
+    `disabledbuiltin` allows specifying which built-in styles should be excluded.
+    This allows for plugin styles to override specified built-in styles.
+
     Will raise :exc:`pygments.util.ClassNotFound` if no style of that name is
     found.
 
-.. function:: get_all_styles()
+.. function:: get_all_styles(plugins=True, disabledbuiltin=[])
 
     Return an iterable over all registered styles, yielding their names.
+
+    `plugins` indicates whether styles from plugins should be included.
+    `disabledbuiltin` allows specifying which built-in styles should be excluded.
+    This allows for plugin styles to override specified built-in styles.
 
     .. versionadded:: 0.6
 

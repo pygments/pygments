@@ -56,6 +56,18 @@ To get a list of known styles you can use this snippet:
     ['default', 'emacs', 'friendly', 'colorful']
 
 
+Common options
+==============
+
+All styles support these options:
+
+`disable_builtin_styles`
+    Allows for a semicolon-delimited (`;`) list of style names, in order
+    to specify which built-in styles should be disabled. This allows for
+    styles from plugins to override built-in styles.
+
+    .. versionadded:: 2.12.0
+
 Getting a list of available styles
 ==================================
 

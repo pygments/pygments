@@ -65,8 +65,8 @@ STYLE_MAP = {
 }
 
 
-def get_style_by_name(name):
-    if name in STYLE_MAP:
+def get_style_by_name(name, disabledbuiltin=[]):
+    if name not in disabledbuiltin and name in STYLE_MAP:
         mod, cls = STYLE_MAP[name].split('::')
         builtin = "yes"
     else:
@@ -89,9 +89,13 @@ def get_style_by_name(name):
         raise ClassNotFound("Could not find style class %r in style module." % cls)
 
 
-def get_all_styles():
+def get_all_styles(plugins=True, disabledbuiltin=[]):
     """Return a generator for all styles by name,
     both builtin and plugin."""
-    yield from STYLE_MAP
-    for name, _ in find_plugin_styles():
-        yield name
+    for stylename in STYLE_MAP:
+        if stylename in disabledbuiltin:
+            continue
+        yield stylename
+    if plugins:
+        for name, _ in find_plugin_styles():
+            yield name

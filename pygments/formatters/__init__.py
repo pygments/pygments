@@ -41,23 +41,28 @@ def _load_formatters(module_name):
         _formatter_cache[cls.name] = cls
 
 
-def get_all_formatters():
+def get_all_formatters(plugins=True, disabledbuiltin=[]):
     """Return a generator for all formatter classes."""
     # NB: this returns formatter classes, not info like get_all_lexers().
     for info in FORMATTERS.values():
+        if any(i in info[2] for i in disabledbuiltin):
+            continue
         if info[1] not in _formatter_cache:
             _load_formatters(info[0])
         yield _formatter_cache[info[1]]
-    for _, formatter in find_plugin_formatters():
-        yield formatter
+    if plugins:
+        for _, formatter in find_plugin_formatters():
+            yield formatter
 
 
-def find_formatter_class(alias):
+def find_formatter_class(alias, disabledbuiltin=[]):
     """Lookup a formatter by alias.
 
     Returns None if not found.
     """
     for module_name, name, aliases, _, _ in FORMATTERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         if alias in aliases:
             if name not in _formatter_cache:
                 _load_formatters(module_name)
@@ -72,7 +77,8 @@ def get_formatter_by_name(_alias, **options):
 
     Raises ClassNotFound if not found.
     """
-    cls = find_formatter_class(_alias)
+    disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
+    cls = find_formatter_class(_alias, disabledbuiltin)
     if cls is None:
         raise ClassNotFound("no formatter found for name %r" % _alias)
     return cls(**options)
@@ -119,8 +125,11 @@ def get_formatter_for_filename(fn, **options):
 
     Raises ClassNotFound if not found.
     """
+    disabledbuiltin = options.get('disable_builtin_formatters', '').lower().split(';')
     fn = basename(fn)
-    for modname, name, _, filenames, _ in FORMATTERS.values():
+    for modname, name, aliases, filenames, _ in FORMATTERS.values():
+        if any(i in aliases for i in disabledbuiltin):
+            continue
         for filename in filenames:
             if _fn_matches(fn, filename):
                 if name not in _formatter_cache:

@@ -36,6 +36,12 @@ Currently, **all lexers** support these options:
 
     .. versionadded:: 0.6
 
+`disable_builtin_lexers`
+    Allows for a semicolon-delimited (`;`) list of lexer aliases, in order
+    to specify which built-in lexers should be disabled. This allows for
+    lexers from plugins to override built-in lexers.
+
+    .. versionadded:: 2.12.0
 
 The "Short Names" field lists the identifiers that can be used with the
 `get_lexer_by_name()` function.

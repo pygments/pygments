@@ -120,3 +120,19 @@ Extending The Core
 If you have written a Pygments plugin that is open source, please inform us
 about that. There is a high chance that we'll add it to the Pygments
 distribution.
+
+
+Overriding Built-Ins
+====================
+
+If you intend to create a plugin that overrides/replaces built-in lexers, styles,
+formatters, or filters, you can do so using a few options:
+
+- `disable_builtin_lexers` - a semicolon-delimited (`;`) list of lexer aliases
+- `disable_builtin_styles` - a semicolon-delimited (`;`) list of style names
+- `disable_builtin_formatters` - a semicolon-delimited (`;`) list of formatter names
+- `disable_builtin_filters` - a semicolon-delimited (`;`) list of filter names
+
+Some API functions contain a `disabledbuiltin` parameter which allows a list of
+lexer aliases, style names, formatter names, or filter names (depending on the
+function) to be passed in to disable built-ins.

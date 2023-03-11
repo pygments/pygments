@@ -16,9 +16,9 @@ from pygments.styles import get_style_by_name
 __all__ = ['Formatter']
 
 
-def _lookup_style(style):
+def _lookup_style(style, disabledbuiltin=[]):
     if isinstance(style, str):
-        return get_style_by_name(style)
+        return get_style_by_name(style, disabledbuiltin)
     return style
 
 
@@ -63,7 +63,7 @@ class Formatter:
     unicodeoutput = True
 
     def __init__(self, **options):
-        self.style = _lookup_style(options.get('style', 'default'))
+        self.style = _lookup_style(options.get('style', 'default'), options.get('disable_builtin_styles', '').lower().split(';'))
         self.full = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
         self.encoding = options.get('encoding', None) or None
