@@ -562,13 +562,14 @@ class GnuplotLexer(RegexLexer):
              Keyword, 'noargs'),
             (r'([a-zA-Z_]\w*)(\s*)(=)',
              bygroups(Name.Variable, Whitespace, Operator), 'genericargs'),
-            (r'([a-zA-Z_]\w*)(\s*\(.*?\)\s*)(=)',
-             bygroups(Name.Function, Whitespace, Operator), 'genericargs'),
+            (r'([a-zA-Z_]\w*)(\s*)(\()(.*?)(\))(\s*)(=)',
+             bygroups(Name.Function, Whitespace, Punctuation,
+                      Text, Punctuation, Whitespace, Operator), 'genericargs'),
             (r'@[a-zA-Z_]\w*', Name.Constant),  # macros
             (r';', Keyword),
         ],
         'comment': [
-            (r'[^\\\n]', Comment),
+            (r'[^\\\n]+', Comment),
             (r'\\\n', Comment),
             (r'\\', Comment),
             # don't add the newline to the Comment token
