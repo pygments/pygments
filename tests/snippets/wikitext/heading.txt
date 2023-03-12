@@ -1,0 +1,59 @@
+---input---
+= Heading 1 =
+== Heading 2 ==
+=== Heading 3 ===
+==== Heading 4 ====
+===== Heading 5 =====
+====== Heading 6 ======
+
+== [[Heading|''Heading'']] ==
+
+---tokens---
+'='           Generic.Heading
+' '           Text.Whitespace
+'Heading 1'   Generic.Heading
+' '           Text.Whitespace
+'='           Generic.Heading
+'\n'          Text.Whitespace
+
+'=='          Generic.Subheading
+' '           Text.Whitespace
+'Heading 2'   Generic.Subheading
+' '           Text.Whitespace
+'=='          Generic.Subheading
+'\n'          Text.Whitespace
+
+'==='         Generic.Subheading
+' '           Text.Whitespace
+'Heading 3'   Generic.Subheading
+' '           Text.Whitespace
+'==='         Generic.Subheading
+'\n'          Text.Whitespace
+
+'===='        Generic.Subheading
+' '           Text.Whitespace
+'Heading 4'   Generic.Subheading
+' '           Text.Whitespace
+'===='        Generic.Subheading
+'\n'          Text.Whitespace
+
+'====='       Generic.Subheading
+' '           Text.Whitespace
+'Heading 5'   Generic.Subheading
+' '           Text.Whitespace
+'====='       Generic.Subheading
+'\n'          Text.Whitespace
+
+'======'      Generic.Subheading
+' '           Text.Whitespace
+'Heading 6'   Generic.Subheading
+' '           Text.Whitespace
+'======'      Generic.Subheading
+'\n\n'        Text.Whitespace
+
+'=='          Generic.Subheading
+' '           Text.Whitespace
+"[[Heading|''Heading'']]" Generic.Subheading
+' '           Text.Whitespace
+'=='          Generic.Subheading
+'\n'          Text.Whitespace
