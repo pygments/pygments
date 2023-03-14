@@ -785,7 +785,7 @@ class WikitextLexer(RegexLexer):
     def text_rules(token):
         return [
             (r'\w+', token),
-            (r'[\r\t\f\v ]+', token),
+            (r'[^\S\n]+', token),
             (r'(?s).', token),
         ]
 
@@ -957,18 +957,18 @@ class WikitextLexer(RegexLexer):
                 (\[\[)
                     ([{}]+?)
                     (?: (\#)([^#]*?) )?
-                    (?: (\|)([^\n]*) )?
+                    (?: (\|)([^\n|]*) )?
                 (\]\])
-                (\s*?$\n)
+                (\s*?\n)
             """.format(title_char),
              bygroups(Whitespace, Keyword, Whitespace, Punctuation, Name.Tag, Punctuation, Name.Label,
                       Punctuation, Text, Punctuation, Whitespace)),
             # Subheadings
-            (r'^(={2,6})([ \t]*)(.+?)([ \t]*)(\1)(\s*$\n)',
-             bygroups(Generic.Subheading, Whitespace, Generic.Subheading, Whitespace, Generic.Subheading, Whitespace)),
+            (r'^(={2,6})(.+?)(\1)(\s*$\n)',
+             bygroups(Generic.Subheading, Generic.Subheading, Generic.Subheading, Whitespace)),
             # Headings
-            (r'^(=)([ \t]*)(.+?)([ \t]*)(=)(\s*$\n)',
-             bygroups(Generic.Heading, Whitespace, Generic.Heading, Whitespace, Generic.Heading, Whitespace)),
+            (r'^(=.+?=)(\s*$\n)',
+             bygroups(Generic.Heading, Whitespace)),
             # Double-slashed magic words
             (words(double_slashes_i), Name.Function.Magic),
             (words(double_slashes, prefix='(?-i:', suffix=')'), Name.Function.Magic),

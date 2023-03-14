@@ -8,52 +8,46 @@
 
 == [[Heading|''Heading'']] ==
 
+==
+===
+
 ---tokens---
-'='           Generic.Heading
-' '           Text.Whitespace
-'Heading 1'   Generic.Heading
-' '           Text.Whitespace
-'='           Generic.Heading
+'= Heading 1 =' Generic.Heading
 '\n'          Text.Whitespace
 
 '=='          Generic.Subheading
-' '           Text.Whitespace
-'Heading 2'   Generic.Subheading
-' '           Text.Whitespace
+' Heading 2 ' Generic.Subheading
 '=='          Generic.Subheading
 '\n'          Text.Whitespace
 
 '==='         Generic.Subheading
-' '           Text.Whitespace
-'Heading 3'   Generic.Subheading
-' '           Text.Whitespace
+' Heading 3 ' Generic.Subheading
 '==='         Generic.Subheading
 '\n'          Text.Whitespace
 
 '===='        Generic.Subheading
-' '           Text.Whitespace
-'Heading 4'   Generic.Subheading
-' '           Text.Whitespace
+' Heading 4 ' Generic.Subheading
 '===='        Generic.Subheading
 '\n'          Text.Whitespace
 
 '====='       Generic.Subheading
-' '           Text.Whitespace
-'Heading 5'   Generic.Subheading
-' '           Text.Whitespace
+' Heading 5 ' Generic.Subheading
 '====='       Generic.Subheading
 '\n'          Text.Whitespace
 
 '======'      Generic.Subheading
-' '           Text.Whitespace
-'Heading 6'   Generic.Subheading
-' '           Text.Whitespace
+' Heading 6 ' Generic.Subheading
 '======'      Generic.Subheading
 '\n\n'        Text.Whitespace
 
 '=='          Generic.Subheading
-' '           Text.Whitespace
-"[[Heading|''Heading'']]" Generic.Subheading
-' '           Text.Whitespace
+" [[Heading|''Heading'']] " Generic.Subheading
 '=='          Generic.Subheading
+'\n\n'        Text.Whitespace
+
+'='           Text
+'='           Text
+'\n'          Text
+
+'==='         Generic.Heading
 '\n'          Text.Whitespace
