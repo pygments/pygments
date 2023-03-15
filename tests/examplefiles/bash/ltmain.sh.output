@@ -1774,7 +1774,7 @@
 '='           Operator
 'CC'          Text
 '\n\t      '  Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 ' '           Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
@@ -1988,7 +1988,7 @@
 '='           Operator
 '$z'          Name.Variable
 '\n\t      '  Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 '\n\t      '  Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
@@ -3656,7 +3656,7 @@
 '$arg'        Name.Variable
 '"'           Literal.String.Double
 '\n    '      Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 '\n    '      Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
@@ -3895,7 +3895,7 @@
 '='           Operator
 'compile'     Text
 '\n\t   '     Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 '\n\t   '     Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
@@ -6989,7 +6989,7 @@
 '='           Operator
 'yes'         Text
 '\n\t'        Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 '\n\t'        Text.Whitespace
 ';'           Punctuation
 ';'           Punctuation
@@ -12680,7 +12680,7 @@
 '\n\t\t'      Text.Whitespace
 'fi'          Keyword
 '\n\t\t'      Text.Whitespace
-'break'       Name.Builtin
+'break'       Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number
 '\n\t      '  Text.Whitespace
