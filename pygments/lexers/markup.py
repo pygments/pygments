@@ -849,7 +849,7 @@ class WikitextLexer(RegexLexer):
     link_char_class = r'[^\0- "<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'
     double_slashes_i = {
         '__FORCETOC__', '__NOCONTENTCONVERT__', '__NOCC__', '__NOEDITSECTION__', '__NOGALLERY__',
-        '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__'
+        '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__',
     }
     double_slashes = {
         '__EXPECTUNUSEDCATEGORY__',  '__HIDDENCAT__', '__INDEX__',  '__NEWSECTIONLINK__',
@@ -860,7 +860,7 @@ class WikitextLexer(RegexLexer):
         'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://',
         'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://',
         'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:',
-        'worldwind://', 'xmpp:', '//'
+        'worldwind://', 'xmpp:', '//',
     }
     non_relative_protocols = protocols - {'//'}
     html_tags = {
@@ -868,14 +868,14 @@ class WikitextLexer(RegexLexer):
         'data', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'font', 'h1', 'h2', 'h3', 'h4', 'h5',
         'h6', 'hr', 'i', 'ins', 'kbd', 'li', 'link', 'mark', 'meta', 'ol', 'p', 'q', 'rb', 'rp',
         'rt', 'rtc', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup',
-        'table', 'td', 'th', 'time', 'tr', 'tt', 'u', 'ul', 'var', 'wbr'
+        'table', 'td', 'th', 'time', 'tr', 'tt', 'u', 'ul', 'var', 'wbr',
     }
     parser_tags = {
         'graph', 'charinsert', 'rss', 'chem', 'categorytree', 'nowiki', 'inputbox', 'math',
         'hiero', 'score', 'pre', 'ref', 'translate', 'imagemap', 'templatestyles', 'languages',
         'noinclude', 'mapframe', 'section', 'poem', 'syntaxhighlight', 'includeonly', 'tvar',
         'onlyinclude', 'templatedata', 'langconvert', 'timeline', 'dynamicpagelist', 'gallery',
-        'maplink', 'ce', 'references'
+        'maplink', 'ce', 'references',
     }
     variant_langs = {
         # ZhConverter.php
@@ -908,7 +908,7 @@ class WikitextLexer(RegexLexer):
         'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku',
     }
     magic_vars_i = {
-        'ARTICLEPATH', 'PAGEID', 'SCRIPTPATH', 'SERVER', 'SERVERNAME', 'STYLEPATH'
+        'ARTICLEPATH', 'INT', 'PAGEID', 'SCRIPTPATH', 'SERVER', 'SERVERNAME', 'STYLEPATH',
     }
     magic_vars = {
         '!', '=', 'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'CONTENTLANGUAGE',
@@ -925,13 +925,13 @@ class WikitextLexer(RegexLexer):
         'REVISIONSIZE', 'REVISIONTIMESTAMP', 'REVISIONUSER', 'REVISIONYEAR', 'ROOTPAGENAME',
         'ROOTPAGENAMEE', 'SITENAME', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SUBJECTPAGENAMEE',
         'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',
-        'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE'
+        'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',
     }
     parser_functions_i = {
         'ANCHORENCODE', 'BIDI', 'CANONICALURL', 'CANONICALURLE', 'FILEPATH', 'FORMATNUM',
-        'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', '\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
+        'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', '\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
         'LOCALURLE', 'NS', 'NSE', 'PADLEFT', 'PADRIGHT', 'PAGEID', 'PLURAL', 'UC', 'UCFIRST',
-        'URLENCODE'
+        'URLENCODE',
     }
     parser_functions = {
         'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'DEFAULTSORT', 'DEFAULTSORTKEY',
@@ -944,7 +944,7 @@ class WikitextLexer(RegexLexer):
         'ROOTPAGENAMEE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SUBJECTPAGENAMEE',
         'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',
         'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',
-        'INT', 'DISPLAYTITLE', 'PAGESINNAMESPACE', 'PAGESINNS'
+        'INT', 'DISPLAYTITLE', 'PAGESINNAMESPACE', 'PAGESINNS',
     }
 
     tokens = {
