@@ -55,9 +55,9 @@ class BashLexer(RegexLexer):
         ],
         'basic': [
             (r'\b(if|fi|else|while|in|do|done|for|then|return|function|case|'
-             r'select|continue|until|esac|elif)(\s*)\b',
+             r'select|break|continue|until|esac|elif)(\s*)\b',
              bygroups(Keyword, Whitespace)),
-            (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
+            (r'\b(alias|bg|bind|builtin|caller|cd|command|compgen|'
              r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
              r'export|false|fc|fg|getopts|hash|help|history|jobs|kill|let|'
              r'local|logout|popd|printf|pushd|pwd|read|readonly|set|shift|'
@@ -591,9 +591,9 @@ class TcshLexer(RegexLexer):
         ],
         'basic': [
             (r'\b(if|endif|else|while|then|foreach|case|default|'
-             r'continue|goto|breaksw|end|switch|endsw)\s*\b',
+             r'break|continue|goto|breaksw|end|switch|endsw)\s*\b',
              Keyword),
-            (r'\b(alias|alloc|bg|bindkey|break|builtins|bye|caller|cd|chdir|'
+            (r'\b(alias|alloc|bg|bindkey|builtins|bye|caller|cd|chdir|'
              r'complete|dirs|echo|echotc|eval|exec|exit|fg|filetest|getxvers|'
              r'glob|getspath|hashstat|history|hup|inlib|jobs|kill|'
              r'limit|log|login|logout|ls-F|migrate|newgrp|nice|nohup|notify|'
