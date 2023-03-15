@@ -1,52 +1,18 @@
 ---input---
-The image name, the word thumb then the caption:
 [[File:wiki.png|thumb|Wikipedia logo]]
-
-A picture: [[File:wiki.png]]
-
+[[File:wiki.png]]
 [[File:wiki.png|alt=Puzzle globe logo]]
-
 [[File:wiki.png|link=Wikipedia]]
-
 [[File:wiki.png|frame|centre|alt=Puzzle globe|Wikipedia logo]]
-
-Forced to the left side of the page
-using the ''thumb'' attribute, the ''left'' attribute and a caption:
 [[File:wiki.png|thumb|left|alt=Puzzle globe|Wikipedia logo]]
-
-A picture resized to 50 pixels...
 [[File:wiki.png|50 px|Wikipedia encyclopedia]]
-
 [[File:wiki.png|thumb|[[a|b]]]]
 [[File:wiki.png|thumb|[https://www.google.com]]]
 
-Linking directly to an image without displaying it:
 [[Media:wiki.png|Image of jigsaw globe]]
-
 [[media:Classical guitar scale.ogg|Sound]]
 
 ---tokens---
-'The'         Text
-' '           Text
-'image'       Text
-' '           Text
-'name'        Text
-','           Text
-' '           Text
-'the'         Text
-' '           Text
-'word'        Text
-' '           Text
-'thumb'       Text
-' '           Text
-'then'        Text
-' '           Text
-'the'         Text
-' '           Text
-'caption'     Text
-':'           Text
-'\n'          Text
-
 '[['          Punctuation
 'File'        Name.Namespace
 ':'           Punctuation
@@ -60,20 +26,11 @@ Linking directly to an image without displaying it:
 ']]'          Punctuation
 '\n'          Text
 
-'\n'          Text
-
-'A'           Text
-' '           Text
-'picture'     Text
-':'           Text
-' '           Text
 '[['          Punctuation
 'File'        Name.Namespace
 ':'           Punctuation
 'wiki.png'    Name.Tag
 ']]'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '[['          Punctuation
@@ -91,8 +48,6 @@ Linking directly to an image without displaying it:
 ']]'          Punctuation
 '\n'          Text
 
-'\n'          Text
-
 '[['          Punctuation
 'File'        Name.Namespace
 ':'           Punctuation
@@ -102,8 +57,6 @@ Linking directly to an image without displaying it:
 '='           Operator
 'Wikipedia'   Text
 ']]'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '[['          Punctuation
@@ -127,52 +80,6 @@ Linking directly to an image without displaying it:
 ']]'          Punctuation
 '\n'          Text
 
-'\n'          Text
-
-'Forced'      Text
-' '           Text
-'to'          Text
-' '           Text
-'the'         Text
-' '           Text
-'left'        Text
-' '           Text
-'side'        Text
-' '           Text
-'of'          Text
-' '           Text
-'the'         Text
-' '           Text
-'page'        Text
-'\n'          Text
-
-'using'       Text
-' '           Text
-'the'         Text
-' '           Text
-"''"          Generic.Emph
-'thumb'       Generic.Emph
-"''"          Generic.Emph
-' '           Text
-'attribute'   Text
-','           Text
-' '           Text
-'the'         Text
-' '           Text
-"''"          Generic.Emph
-'left'        Generic.Emph
-"''"          Generic.Emph
-' '           Text
-'attribute'   Text
-' '           Text
-'and'         Text
-' '           Text
-'a'           Text
-' '           Text
-'caption'     Text
-':'           Text
-'\n'          Text
-
 '[['          Punctuation
 'File'        Name.Namespace
 ':'           Punctuation
@@ -194,24 +101,6 @@ Linking directly to an image without displaying it:
 ']]'          Punctuation
 '\n'          Text
 
-'\n'          Text
-
-'A'           Text
-' '           Text
-'picture'     Text
-' '           Text
-'resized'     Text
-' '           Text
-'to'          Text
-' '           Text
-'50'          Text
-' '           Text
-'pixels'      Text
-'.'           Text
-'.'           Text
-'.'           Text
-'\n'          Text
-
 '[['          Punctuation
 'File'        Name.Namespace
 ':'           Punctuation
@@ -225,8 +114,6 @@ Linking directly to an image without displaying it:
 ' '           Text
 'encyclopedia' Text
 ']]'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '[['          Punctuation
@@ -259,24 +146,6 @@ Linking directly to an image without displaying it:
 
 '\n'          Text
 
-'Linking'     Text
-' '           Text
-'directly'    Text
-' '           Text
-'to'          Text
-' '           Text
-'an'          Text
-' '           Text
-'image'       Text
-' '           Text
-'without'     Text
-' '           Text
-'displaying'  Text
-' '           Text
-'it'          Text
-':'           Text
-'\n'          Text
-
 '[['          Punctuation
 'Media'       Name.Namespace
 ':'           Punctuation
@@ -290,8 +159,6 @@ Linking directly to an image without displaying it:
 ' '           Text
 'globe'       Text
 ']]'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '[['          Punctuation

@@ -40,53 +40,15 @@ template itself: {{tl|Tooltip}}
 
 This is how to {{Font color||yellow|highlight part of a sentence}}.
 
-{{#speciale:userlogin}}
-
-{{#if: 1==2 | yes | no }}
-{{#if:{{{1|}}}|You entered text in variable 1|There is no text in variable 1}}
-
-{{#ifeq: {{#expr:10^3}} | 1000 | equal | not equal}}
-
-{{#iferror: <strong class="error">a</strong> | error | correct }}
-
-{{#ifeq:{{{1}}}|condition1
- |<!--then-->branch1t{{
-  #ifeq:{{{1}}}|condition2
-   |<!--then-->branch1t2t{{#ifeq:{{{1}}}|condition4|<!--then-->branch1t2t4t|<!--else-->branch1t2t4e}}
-   |<!--else-->branch1t2e{{#ifeq:{{{1}}}|condition5|<!--then-->branch1t2e5t|<!--else-->branch1t2e5e}}
-  }}
- |<!--else-->branch1e{{#ifeq:{{{1}}}|condition3
-   |<!--then-->branch1e3t{{#ifeq:{{{1}}}|condition6|branch1e3t6t|branch1e3t6e}}
-   |<!--else-->branch1e3e{{
-    #ifeq:{{{1}}}|condition7
-     |branch1e3e7t
-     |branch1e3e7t
-    }}
-  }}
-}}
-
-{{subst:PAGENAME}}
-
-{{{}}}
-
-{{{|}}}
+{{msg:xyz}}
+{{raw:xyz}}
+{{msgnw:xyz}}
+{{subst:xyz}}
+{{safesubst:xyz}}
 
 {{{1}}}
-
-{{{1|}}}
-
-{{{1
-2|}}}
-
-{{{1
-2|3
-4}}}
-
-{{{1|}}}}
-
-{{{1| }}}}
-
-{{{variable|default }}}
+{{{IncludedWorkURL|}}}
+{{{Citation class|{{{Citation type|}}}}}}
 
 ---tokens---
 '{{'          Punctuation
@@ -597,355 +559,59 @@ This is how to {{Font color||yellow|highlight part of a sentence}}.
 '\n'          Text
 
 '{{'          Punctuation
-'#speciale'   Name.Function
+'msg'         Name.Namespace
 ':'           Punctuation
-'userlogin'   Text
-'}}'          Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{'          Punctuation
-'#if'         Name.Function
-':'           Punctuation
-' '           Text
-'1'           Text
-'='           Text
-'='           Text
-'2'           Text
-' '           Text
-'|'           Punctuation
-' '           Text
-'yes'         Text
-' '           Text
-'|'           Punctuation
-' '           Text
-'no'          Text
-' '           Text
+'xyz'         Name.Tag
 '}}'          Punctuation
 '\n'          Text
 
 '{{'          Punctuation
-'#if'         Name.Function
+'raw'         Name.Namespace
 ':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'|'           Punctuation
-'}}}'         Punctuation
-'|'           Punctuation
-'You'         Text
-' '           Text
-'entered'     Text
-' '           Text
-'text'        Text
-' '           Text
-'in'          Text
-' '           Text
-'variable'    Text
-' '           Text
-'1'           Text
-'|'           Punctuation
-'There'       Text
-' '           Text
-'is'          Text
-' '           Text
-'no'          Text
-' '           Text
-'text'        Text
-' '           Text
-'in'          Text
-' '           Text
-'variable'    Text
-' '           Text
-'1'           Text
+'xyz'         Name.Tag
 '}}'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '{{'          Punctuation
-'#ifeq'       Name.Function
+'msgnw'       Name.Namespace
 ':'           Punctuation
-' '           Text
-'{{'          Punctuation
-'#expr'       Name.Function
-':'           Punctuation
-'10'          Text
-'^'           Text
-'3'           Text
+'xyz'         Name.Tag
 '}}'          Punctuation
-' '           Text
-'|'           Punctuation
-' '           Text
-'1000'        Text
-' '           Text
-'|'           Punctuation
-' '           Text
-'equal'       Text
-' '           Text
-'|'           Punctuation
-' '           Text
-'not'         Text
-' '           Text
-'equal'       Text
-'}}'          Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{'          Punctuation
-'#iferror'    Name.Function
-':'           Punctuation
-' '           Text
-'<'           Punctuation
-'strong'      Name.Tag
-' '           Text.Whitespace
-'class'       Name.Attribute
-'='           Operator
-'"'           Literal.String.Double
-'error'       Literal.String.Double
-'"'           Literal.String.Double
-'>'           Punctuation
-'a'           Text
-'</'          Punctuation
-'strong'      Name.Tag
-'>'           Punctuation
-' '           Text
-'|'           Punctuation
-' '           Text
-'error'       Text
-' '           Text
-'|'           Punctuation
-' '           Text
-'correct'     Text
-' '           Text
-'}}'          Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{'          Punctuation
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition1'  Text
-'\n'          Text
-
-' '           Text
-'|'           Punctuation
-'<!--then-->' Comment.Multiline
-'branch1t'    Text
-'{{'          Punctuation
-'\n  '        Text.Whitespace
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition2'  Text
-'\n'          Text
-
-'   '         Text
-'|'           Punctuation
-'<!--then-->' Comment.Multiline
-'branch1t2t'  Text
-'{{'          Punctuation
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition4'  Text
-'|'           Punctuation
-'<!--then-->' Comment.Multiline
-'branch1t2t4t' Text
-'|'           Punctuation
-'<!--else-->' Comment.Multiline
-'branch1t2t4e' Text
-'}}'          Punctuation
-'\n'          Text
-
-'   '         Text
-'|'           Punctuation
-'<!--else-->' Comment.Multiline
-'branch1t2e'  Text
-'{{'          Punctuation
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition5'  Text
-'|'           Punctuation
-'<!--then-->' Comment.Multiline
-'branch1t2e5t' Text
-'|'           Punctuation
-'<!--else-->' Comment.Multiline
-'branch1t2e5e' Text
-'}}'          Punctuation
-'\n'          Text
-
-'  '          Text
-'}}'          Punctuation
-'\n'          Text
-
-' '           Text
-'|'           Punctuation
-'<!--else-->' Comment.Multiline
-'branch1e'    Text
-'{{'          Punctuation
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition3'  Text
-'\n'          Text
-
-'   '         Text
-'|'           Punctuation
-'<!--then-->' Comment.Multiline
-'branch1e3t'  Text
-'{{'          Punctuation
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition6'  Text
-'|'           Punctuation
-'branch1e3t6t' Text
-'|'           Punctuation
-'branch1e3t6e' Text
-'}}'          Punctuation
-'\n'          Text
-
-'   '         Text
-'|'           Punctuation
-'<!--else-->' Comment.Multiline
-'branch1e3e'  Text
-'{{'          Punctuation
-'\n    '      Text.Whitespace
-'#ifeq'       Name.Function
-':'           Punctuation
-'{{{'         Punctuation
-'1'           Name.Variable
-'}}}'         Punctuation
-'|'           Punctuation
-'condition7'  Text
-'\n'          Text
-
-'     '       Text
-'|'           Punctuation
-'branch1e3e7t' Text
-'\n'          Text
-
-'     '       Text
-'|'           Punctuation
-'branch1e3e7t' Text
-'\n'          Text
-
-'    '        Text
-'}}'          Punctuation
-'\n'          Text
-
-'  '          Text
-'}}'          Punctuation
-'\n'          Text
-
-'}}'          Punctuation
-'\n'          Text
-
 '\n'          Text
 
 '{{'          Punctuation
 'subst'       Name.Namespace
 ':'           Punctuation
-'PAGENAME'    Name.Tag
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'safesubst'   Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
 '}}'          Punctuation
 '\n'          Text
 
 '\n'          Text
 
 '{{{'         Punctuation
-'}}}'         Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
-'|'           Punctuation
-'}}}'         Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
 '1'           Name.Variable
 '}}}'         Punctuation
 '\n'          Text
 
-'\n'          Text
-
 '{{{'         Punctuation
-'1'           Name.Variable
+'IncludedWorkURL' Name.Variable
 '|'           Punctuation
 '}}}'         Punctuation
 '\n'          Text
 
-'\n'          Text
-
 '{{{'         Punctuation
-'1\n2'        Name.Variable
+'Citation class' Name.Variable
+'|'           Punctuation
+'{{{'         Punctuation
+'Citation type' Name.Variable
 '|'           Punctuation
 '}}}'         Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
-'1\n2'        Name.Variable
-'|'           Punctuation
-'3'           Text
-'\n'          Text
-
-'4'           Text
-'}}}'         Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
-'1'           Name.Variable
-'|'           Punctuation
-'}}}'         Punctuation
-'}'           Text
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
-'1'           Name.Variable
-'|'           Punctuation
-' '           Text
-'}}}'         Punctuation
-'}'           Text
-'\n'          Text
-
-'\n'          Text
-
-'{{{'         Punctuation
-'variable'    Name.Variable
-'|'           Punctuation
-'default'     Text
-' '           Text
 '}}}'         Punctuation
 '\n'          Text

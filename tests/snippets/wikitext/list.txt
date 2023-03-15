@@ -45,6 +45,9 @@ so long as no carriage return or line break is used.)
 ::::::And so on ...
 {{Outdent|::::::}}The outdent template can give a visual indicator that we're deliberately cancelling the indent (6 levels here)
 
+:*# Mixed list
+::##:*: Complex mixed list
+
 ---tokens---
 ';'           Keyword
 ' '           Text
@@ -508,4 +511,22 @@ so long as no carriage return or line break is used.)
 ' '           Text
 'here'        Text
 ')'           Text
+'\n'          Text
+
+'\n'          Text
+
+':*#'         Keyword
+' '           Text
+'Mixed'       Text
+' '           Text
+'list'        Text
+'\n'          Text
+
+'::##:*:'     Keyword
+' '           Text
+'Complex'     Text
+' '           Text
+'mixed'       Text
+' '           Text
+'list'        Text
 '\n'          Text

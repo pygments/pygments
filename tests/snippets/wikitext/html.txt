@@ -1,5 +1,4 @@
 ---input---
-
 <div class="center" style="width: auto; margin-left: auto; margin-right: auto;">Centered text</div>
 
 <blockquote>
@@ -12,10 +11,9 @@ The '''blockquote''' tag will indent both margins when needed instead of the lef
 ----
 </div>
 
-Use <small>small text</small> only
-when necessary.
+Use <small >small text</small> only when necessary.
 
-To match, for example, the font-size used in an [[Help:Visual file markup#Caption|image caption]], the "small" tag can also be used to
+To match, for example, the font-size used in an image caption, the "small" tag can also be used to
 <small style="font-size:87%;">reduce a text's font-size to 87%</small>.
 
 Better not use <big>big text</big>, unless <small>it's <big>within</big> small</small> text.
@@ -27,6 +25,10 @@ function <code>int m2()</code> is nice.
 You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
 
 <div       ></div        >
+
+<span <!-- this is a comment --> ></span>
+
+<span class="citation {{{Citation class|{{{Citation type|}}}}}}"></span>
 
 <a></a>
 
@@ -157,7 +159,7 @@ You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
 ' '           Text
 '<'           Punctuation
 'small'       Name.Tag
-'>'           Punctuation
+' >'          Punctuation
 'small'       Text
 ' '           Text
 'text'        Text
@@ -166,8 +168,7 @@ You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
 '>'           Punctuation
 ' '           Text
 'only'        Text
-'\n'          Text
-
+' '           Text
 'when'        Text
 ' '           Text
 'necessary'   Text
@@ -198,17 +199,9 @@ You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
 ' '           Text
 'an'          Text
 ' '           Text
-'[['          Punctuation
-'Help'        Name.Namespace
-':'           Punctuation
-'Visual file markup' Name.Tag
-'#'           Punctuation
-'Caption'     Name.Label
-'|'           Punctuation
 'image'       Text
 ' '           Text
 'caption'     Text
-']]'          Punctuation
 ','           Text
 ' '           Text
 'the'         Text
@@ -404,6 +397,43 @@ You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
 '</'          Punctuation
 'div'         Name.Tag
 '        >'   Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'<!-- this is a comment -->' Comment.Multiline
+' >'          Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'citation'    Literal.String.Double
+' '           Literal.String.Double
+'{{{'         Punctuation
+'Citation class' Name.Variable
+'|'           Punctuation
+'{{{'         Punctuation
+'Citation type' Name.Variable
+'|'           Punctuation
+'}}}'         Punctuation
+'}}}'         Punctuation
+'"'           Literal.String.Double
+'>'           Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
 '\n'          Text
 
 '\n'          Text
