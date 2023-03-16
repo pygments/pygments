@@ -7,7 +7,7 @@
 """
 
 import pytest
-from pygments.token import Generic, Token, String
+from pygments.token import Generic, Token, String, Comment
 
 from pygments.lexers.markup import MarkdownLexer
 
@@ -176,3 +176,33 @@ def test_invalid_code_block(lexer):
     for fragment in fragments:
         for token, _ in lexer.get_tokens(fragment):
             assert token != String.Backtick
+
+
+def test_comment(lexer):
+    fragments = (
+        '<!-- test -->',
+        '<!--test-->',
+        'Some paragraph <!--test-->',
+        '1. Some list item <!--test-->',
+        '# Some heading <!--test-->',
+        '# Some heading <!--- (1) --->',
+        '### Some heading <!--test-->',
+        'Some heading\n=============<!--test-->',
+        'Some heading\n-------------<!--test-->',
+    )
+    heading_equal = 'Heading <!--test-->\n====='
+    heading_hyphen = 'Heading <!--test-->\n-----'
+    paragraph_comment = 'Paragraph <!--test--> interrupted.'
+    paragraph_newline_comment = 'Paragraph <!--test\n--> interrupted.'
+
+    # for each fragment, assert second to last token is a comment
+    for fragment in fragments:
+        assert list(lexer.get_tokens(fragment))[-2][0] == Comment
+
+    # assert second token is a comment for heading examples
+    assert list(lexer.get_tokens(heading_equal))[1][0] == Comment
+    assert list(lexer.get_tokens(heading_hyphen))[1][0] == Comment
+
+    # assert third token is a comment for paragraph examples
+    assert list(lexer.get_tokens(paragraph_comment))[2][0] == Comment
+    assert list(lexer.get_tokens(paragraph_newline_comment))[2][0] == Comment
