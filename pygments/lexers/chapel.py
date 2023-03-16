@@ -73,7 +73,7 @@ class ChapelLexer(RegexLexer):
             (words(known_types, suffix=r'\b'), Keyword.Type),
             (words((*type_modifiers, *other_keywords), suffix=r'\b'), Keyword),
 
-            (r'(@)', Keyword, 'attributename'),
+            (r'@', Keyword, 'attributename'),
             (r'(iter)(\s+)', bygroups(Keyword, Whitespace), 'procname'),
             (r'(proc)(\s+)', bygroups(Keyword, Whitespace), 'procname'),
             (r'(operator)(\s+)', bygroups(Keyword, Whitespace), 'procname'),
