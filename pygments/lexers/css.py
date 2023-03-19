@@ -249,7 +249,7 @@ class CssLexer(RegexLexer):
         ],
         'function-start': [
             (r'\s+', Whitespace),
-            (r'[-]+([\w+]+[-]*)+', Name.Variable),
+            (r'[-]+([A-Za-z][\w+]*[-]*)+', Name.Variable),
             include('urls'),
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
