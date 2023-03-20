@@ -135,6 +135,6 @@ class ChapelLexer(RegexLexer):
             (r'[^()]*', Name.Other, '#pop'),
         ],
         'attributename': [
-            (r'([a-zA-Z_][.\w$]*)', Name.Decorator, '#pop'),
+            (r'[a-zA-Z_][.\w$]*', Name.Decorator, '#pop'),
         ],
     }
