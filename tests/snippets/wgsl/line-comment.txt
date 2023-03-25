@@ -1,0 +1,13 @@
+---input---
+  // this is a line-ending comment
+ //* embed a bock comment start, after a space
+// /* embed a bock comment start, v2
+
+---tokens---
+'  '          Text.Whitespace
+'// this is a line-ending comment\n' Comment.Single
+
+' '           Text.Whitespace
+'//* embed a bock comment start, after a space\n' Comment.Single
+
+'// /* embed a bock comment start, v2\n' Comment.Single

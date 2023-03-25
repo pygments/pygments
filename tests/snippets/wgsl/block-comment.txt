@@ -1,0 +1,34 @@
+---input---
+ /**/
+ /*block with newline
+  */
+ /*block with line
+ ending comment//  */
+ /* nested /*
+  */
+  */
+
+---tokens---
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+'*/'          Comment.Multiline
+'\n '         Text.Whitespace
+'/*'          Comment.Multiline
+'block with newline\n  ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n '         Text.Whitespace
+'/*'          Comment.Multiline
+'block with line\n ending comment' Comment.Multiline
+'/'           Comment.Multiline
+'/'           Comment.Multiline
+'  '          Comment.Multiline
+'*/'          Comment.Multiline
+'\n '         Text.Whitespace
+'/*'          Comment.Multiline
+' nested '    Comment.Multiline
+'/*'          Comment.Multiline
+'\n  '        Comment.Multiline
+'*/'          Comment.Multiline
+'\n  '        Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace

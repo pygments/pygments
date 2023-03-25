@@ -530,6 +530,7 @@ LEXERS = {
     'WDiffLexer': ('pygments.lexers.diff', 'WDiff', ('wdiff',), ('*.wdiff',), ()),
     'WatLexer': ('pygments.lexers.webassembly', 'WebAssembly', ('wast', 'wat'), ('*.wat', '*.wast'), ()),
     'WebIDLLexer': ('pygments.lexers.webidl', 'Web IDL', ('webidl',), ('*.webidl',), ()),
+    'WgslLexer': ('pygments.lexers.wgsl', 'WebGPU Shading Language', ('wgsl',), ('*.wgsl',), ('text/wgsl',)),
     'WhileyLexer': ('pygments.lexers.whiley', 'Whiley', ('whiley',), ('*.whiley',), ('text/x-whiley',)),
     'WoWTocLexer': ('pygments.lexers.wowtoc', 'World of Warcraft TOC', ('wowtoc',), ('*.toc',), ()),
     'WrenLexer': ('pygments.lexers.wren', 'Wren', ('wren',), ('*.wren',), ()),

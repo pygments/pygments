@@ -1,0 +1,105 @@
+---input---
+@vertex
+fn vmain(@location(0) v: vec4<f32>) -> @builtin(position) vec4f {
+  return v;
+}
+
+@fragment
+fn fmain(@builtin(position) pos: vec4f) -> @location(0) vec4f {
+  return vec4f(0.25,0.25,1.0,1.0);
+}
+
+---tokens---
+'@'           Name.Decorator
+'vertex'      Name.Decorator
+'\n'          Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'vmain'       Name
+'('           Punctuation
+'@'           Name.Decorator
+'location'    Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'v'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'vec4'        Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'builtin'     Name.Decorator
+'('           Punctuation
+'position'    Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'vec4f'       Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'v'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@'           Name.Decorator
+'fragment'    Name.Decorator
+'\n'          Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'fmain'       Name
+'('           Punctuation
+'@'           Name.Decorator
+'builtin'     Name.Decorator
+'('           Punctuation
+'position'    Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'pos'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'vec4f'       Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'location'    Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'vec4f'       Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'vec4f'       Name.Builtin
+'('           Punctuation
+'0.25'        Literal.Number.Float
+','           Punctuation
+'0.25'        Literal.Number.Float
+','           Punctuation
+'1.0'         Literal.Number.Float
+','           Punctuation
+'1.0'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
