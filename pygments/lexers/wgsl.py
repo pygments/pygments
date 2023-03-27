@@ -243,7 +243,7 @@ class WgslLexer(RegexLexer):
           rgba8sint
           rgba16uint
           rgba16sint
-          rgba16flot
+          rgba16float
           r32uint
           r32sint
           r32float
