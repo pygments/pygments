@@ -557,7 +557,7 @@ class MarkdownLexer(RegexLexer):
             (r'^(\s*)([0-9]+\.)( .+\n)',
             bygroups(Whitespace, Keyword, using(this, state='inline'))),
             # quote
-            (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
+            (r'^(\s*[> ]+\s)(.+\n)', bygroups(Keyword, using(this, state='inline'))),
             # code block fenced by 3 backticks
             (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
             # code block with language
@@ -573,13 +573,17 @@ class MarkdownLexer(RegexLexer):
             # warning: the following rules eat outer tags.
             # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
             # bold fenced by '**'
-            (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),
+            (r'(?<!\*)(\*\*[^* \n]([^*\n]+\n?)*(?<![ \n])\*\*)(?!\*)',
+             bygroups(Generic.Strong)),
             # bold fenced by '__'
-            (r'([^_]?)(__[^_ \n][^_\n]*__)', bygroups(Text, Generic.Strong)),
+            (r'(?<!_)(__[^_ \n]([^_\n]+\n?)*(?<![ \n])__)(?!_)',
+             bygroups(Generic.Strong)),
             # italics fenced by '*'
-            (r'([^\*]?)(\*[^* \n][^*\n]*\*)', bygroups(Text, Generic.Emph)),
+            (r'(?<!\*)(\*[^* \n]([^*\n]+\n?)*(?<![ \n])\*)(?!\*)',
+             bygroups(Generic.Emph)),
             # italics fenced by '_'
-            (r'([^_]?)(_[^_ \n][^_\n]*_)', bygroups(Text, Generic.Emph)),
+            (r'(?<!_)(_[^_ \n]([^_\n]+\n?)*(?<![ \n])_)(?!_)',
+             bygroups(Generic.Emph)),
             # strikethrough
             (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
