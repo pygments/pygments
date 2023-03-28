@@ -1,0 +1,47 @@
+---input---
+alias boolean=bool;
+alias bvec2=vec2<bool>;
+alias bvec3=vec3<bool>;
+alias bvec4=vec4<bool>;
+
+---tokens---
+'alias'       Keyword
+' '           Text.Whitespace
+'boolean'     Name
+'='           Operator
+'bool'        Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'bvec2'       Name
+'='           Operator
+'vec2'        Name.Builtin
+'<'           Operator
+'bool'        Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'bvec3'       Name
+'='           Operator
+'vec3'        Name.Builtin
+'<'           Operator
+'bool'        Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'bvec4'       Name
+'='           Operator
+'vec4'        Name.Builtin
+'<'           Operator
+'bool'        Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
