@@ -29,17 +29,6 @@ LineEndRE = '[' + "".join(LineEndCodePoints) + ']'
 # https://www.w3.org/TR/WGSL/#syntax-ident_pattern_token
 ident_pattern_token = '([_{}][{}]+)|[{}]'.format(uni.xid_start,uni.xid_continue,uni.xid_start)
 
-def qw(s):
-    """Returns the non-whitespace tokens in a possibly multiline string.
-    Emulate Perl's qw syntax.
-    """
-    result = []
-    for line in s.splitlines():
-      for word in line.split(' '):
-        if len(word) > 0:
-          result.append(word)
-    return result
-
 class WgslLexer(RegexLexer):
     """
     Lexer for the WebGPU Shading Language.
@@ -51,9 +40,9 @@ class WgslLexer(RegexLexer):
     mimetypes = ['text/wgsl']
 
     # https://www.w3.org/TR/WGSL/#var-and-value
-    keyword_decl = (words(qw('var let const override'),suffix=r'\b'), Keyword.Declaration)
+    keyword_decl = (words('var let const override'.split(),suffix=r'\b'), Keyword.Declaration)
     # https://www.w3.org/TR/WGSL/#keyword-summary
-    keywords = (words(qw("""
+    keywords = (words("""
                 alias
                 break
                 case
@@ -76,10 +65,10 @@ class WgslLexer(RegexLexer):
                 switch
                 true
                 while
-                """), suffix=r'\b'), Keyword)
+                """.split(), suffix=r'\b'), Keyword)
 
     # https://www.w3.org/TR/WGSL/#reserved-words
-    keyword_reserved = (words(qw("""
+    keyword_reserved = (words("""
                 NULL
                 Self
                 abstract
@@ -225,10 +214,10 @@ class WgslLexer(RegexLexer):
                 with
                 writeonly
                 yield
-                """), suffix=r'\b'), Keyword.Reserved)
+                """.split(), suffix=r'\b'), Keyword.Reserved)
 
     # https://www.w3.org/TR/WGSL/#predeclared-enumerants
-    predeclared_enums = (words(qw("""
+    predeclared_enums = (words("""
           read write read_write
           function private workgroup uniform storage
           perspective linear flat
@@ -254,10 +243,10 @@ class WgslLexer(RegexLexer):
           rgba32sint
           rgba32float
           bgra8unorm
-          """), suffix=r'\b'), Name.Builtin)
+          """.split(), suffix=r'\b'), Name.Builtin)
 
     # https://www.w3.org/TR/WGSL/#predeclared-types
-    predeclared_types = (words(qw("""
+    predeclared_types = (words("""
           bool
           f16
           f32
@@ -271,10 +260,10 @@ class WgslLexer(RegexLexer):
           texture_external
           texture_external
           u32
-          """), suffix=r'\b'), Name.Builtin)
+          """.split(), suffix=r'\b'), Name.Builtin)
 
     # https://www.w3.org/TR/WGSL/#predeclared-types
-    predeclared_type_generators = (words(qw("""
+    predeclared_type_generators = (words("""
           array
           atomic
           mat2x2
@@ -301,27 +290,27 @@ class WgslLexer(RegexLexer):
           vec2
           vec3
           vec4
-          """), suffix=r'\b'), Name.Builtin)
+          """.split(), suffix=r'\b'), Name.Builtin)
 
     # Predeclared type aliases for vectors
     # https://www.w3.org/TR/WGSL/#vector-types
-    predeclared_type_alias_vectors = (words(qw("""
+    predeclared_type_alias_vectors = (words("""
           vec2i vec3i vec4i
           vec2u vec3u vec4u
           vec2f vec3f vec4f
           vec2h vec3h vec4h
-          """), suffix=r'\b'), Name.Builtin)
+          """.split(), suffix=r'\b'), Name.Builtin)
 
     # Predeclared type aliases for matrices
     # https://www.w3.org/TR/WGSL/#matrix-types
-    predeclared_type_alias_matrices = (words(qw("""
+    predeclared_type_alias_matrices = (words("""
           mat2x2f mat2x3f mat2x4f
           mat3x2f mat3x3f mat3x4f
           mat4x2f mat4x3f mat4x4f
           mat2x2h mat2x3h mat2x4h
           mat3x2h mat3x3h mat3x4h
           mat4x2h mat4x3h mat4x4h
-          """), suffix=r'\b'), Name.Builtin)
+          """.split(), suffix=r'\b'), Name.Builtin)
 
     tokens = {
         'blankspace': [
