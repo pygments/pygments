@@ -1,0 +1,43 @@
+---input---
+// Test predeclared type generators, other than vector, matrix, and texture.
+alias a=array<f32>;
+alias b=atomic<i32>;
+alias c=ptr<function,i32>;
+
+---tokens---
+'// Test predeclared type generators, other than vector, matrix, and texture.\n' Comment.Single
+
+'alias'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Operator
+'array'       Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'b'           Name
+'='           Operator
+'atomic'      Name.Builtin
+'<'           Operator
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'c'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'function'    Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
