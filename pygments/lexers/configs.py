@@ -607,8 +607,8 @@ class TerraformLexer(ExtendedRegexLexer):
 
     name = 'Terraform'
     url = 'https://www.terraform.io/'
-    aliases = ['terraform', 'tf']
-    filenames = ['*.tf']
+    aliases = ['terraform', 'tf', 'hcl']
+    filenames = ['*.tf', '*.hcl']
     mimetypes = ['application/x-tf', 'application/x-terraform']
 
     classes = ('backend', 'data', 'module', 'output', 'provider',

@@ -490,7 +490,7 @@ LEXERS = {
     'TeraTermLexer': ('pygments.lexers.teraterm', 'Tera Term macro', ('teratermmacro', 'teraterm', 'ttl'), ('*.ttl',), ('text/x-teratermmacro',)),
     'TermcapLexer': ('pygments.lexers.configs', 'Termcap', ('termcap',), ('termcap', 'termcap.src'), ()),
     'TerminfoLexer': ('pygments.lexers.configs', 'Terminfo', ('terminfo',), ('terminfo', 'terminfo.src'), ()),
-    'TerraformLexer': ('pygments.lexers.configs', 'Terraform', ('terraform', 'tf'), ('*.tf',), ('application/x-tf', 'application/x-terraform')),
+    'TerraformLexer': ('pygments.lexers.configs', 'Terraform', ('terraform', 'tf', 'hcl'), ('*.tf', '*.hcl'), ('application/x-tf', 'application/x-terraform')),
     'TexLexer': ('pygments.lexers.markup', 'TeX', ('tex', 'latex'), ('*.tex', '*.aux', '*.toc'), ('text/x-tex', 'text/x-latex')),
     'TextLexer': ('pygments.lexers.special', 'Text only', ('text',), ('*.txt',), ('text/plain',)),
     'ThingsDBLexer': ('pygments.lexers.thingsdb', 'ThingsDB', ('ti', 'thingsdb'), ('*.ti',), ()),
