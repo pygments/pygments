@@ -1,0 +1,15 @@
+---input---
+// Test literals that should be tokenized as binary literals.
+0b01
+0B10n
+
+---tokens---
+''            Text
+'// Test literals that should be tokenized as binary literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'0b01'        Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0B10n'       Literal.Number.Bin
+'\n'          Text.Whitespace

@@ -1,0 +1,52 @@
+---input---
+Invalid code blocks:
+
+```code```
+
+prefix not allowed before ```
+code block
+```
+
+   code
+
+---tokens---
+'Invalid'     Text
+' '           Text
+'code'        Text
+' '           Text
+'blocks:'     Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'```code```'  Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'prefix'      Text
+' '           Text
+'not'         Text
+' '           Text
+'allowed'     Text
+' '           Text
+'before'      Text
+' '           Text
+'```'         Text
+'\n'          Text.Whitespace
+
+'code'        Text
+' '           Text
+'block'       Text
+'\n'          Text.Whitespace
+
+'```'         Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+' '           Text
+' '           Text
+' '           Text
+'code'        Text
+'\n'          Text.Whitespace

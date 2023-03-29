@@ -1,0 +1,15 @@
+---input---
+task: executable --options
+$XDG_SESSION_PATH
+
+---tokens---
+'task'        Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'executable'  Text
+' '           Text.Whitespace
+'--options'   Text
+'\n'          Text.Whitespace
+
+'$XDG_SESSION_PATH' Name.Variable
+'\n'          Text.Whitespace

@@ -1,0 +1,15 @@
+---input---
+// Test literals that should be tokenized as integer literals.
+0n
+123n
+
+---tokens---
+''            Text
+'// Test literals that should be tokenized as integer literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'0n'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123n'        Literal.Number.Integer
+'\n'          Text.Whitespace

@@ -1,0 +1,128 @@
+---input---
+Setext subheadings:
+
+Subheading
+-
+
+Subheading
+----------
+
+Subheading
+-----------
+
+
+These are NOT Setext subheadings:
+
+
+Subheading
+
+Subheading
+_
+
+Subheading
+ ---------
+
+Subheading
+a---------
+
+---------
+
+-
+
+Subheading
+----------Text
+
+---tokens---
+'Setext'      Text
+' '           Text
+'subheadings:' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Generic.Subheading
+'\n'          Text
+
+'-'           Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Subheading'  Generic.Subheading
+'\n'          Text
+
+'----------'  Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Subheading'  Generic.Subheading
+'\n'          Text
+
+'-----------' Generic.Subheading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'These'       Text
+' '           Text
+'are'         Text
+' '           Text
+'NOT'         Text
+' '           Text
+'Setext'      Text
+' '           Text
+'subheadings:' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Text
+'\n'          Text.Whitespace
+
+'_'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Text
+'\n'          Text.Whitespace
+
+' '           Text
+'---------'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Text
+'\n'          Text.Whitespace
+
+'a---------'  Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'---------'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'-'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Subheading'  Text
+'\n'          Text.Whitespace
+
+'----------Text' Text
+'\n'          Text.Whitespace

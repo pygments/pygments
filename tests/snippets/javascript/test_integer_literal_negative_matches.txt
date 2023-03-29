@@ -1,0 +1,20 @@
+---input---
+// Test text that should **not** be tokenized as integer literals.
+1N
+1
+1.0
+
+---tokens---
+''            Text
+'// Test text that should **not** be tokenized as integer literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'N'           Name.Other
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.0'         Literal.Number.Float
+'\n'          Text.Whitespace
