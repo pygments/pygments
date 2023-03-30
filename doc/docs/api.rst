@@ -21,85 +21,15 @@ Functions from the :mod:`pygments` module:
 
 Functions from :mod:`pygments.lexers`:
 
-.. function:: get_lexer_by_name(alias, **options)
-
-    Return an instance of a `Lexer` subclass that has `alias` in its
-    aliases list. The lexer is given the `options` at its
-    instantiation.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias is
-    found.
-
-.. function:: get_lexer_for_filename(fn, **options)
-
-    Return a `Lexer` subclass instance that has a filename pattern
-    matching `fn`. The lexer is given the `options` at its
-    instantiation.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no lexer for that filename
-    is found.
-
-.. function:: get_lexer_for_mimetype(mime, **options)
-
-    Return a `Lexer` subclass instance that has `mime` in its mimetype
-    list. The lexer is given the `options` at its instantiation.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if not lexer for that mimetype
-    is found.
-
-.. function:: load_lexer_from_file(filename, lexername="CustomLexer", **options)
-
-    Return a `Lexer` subclass instance loaded from the provided file, relative
-    to the current directory. The file is expected to contain a Lexer class
-    named `lexername` (by default, CustomLexer). Users should be very careful with
-    the input, because this method is equivalent to running eval on the input file.
-    The lexer is given the `options` at its instantiation.
-
-    :exc:`pygments.util.ClassNotFound` is raised if there are any errors loading the Lexer
-
-    .. versionadded:: 2.2
-
-.. function:: guess_lexer(text, **options)
-
-    Return a `Lexer` subclass instance that's guessed from the text in
-    `text`. For that, the :meth:`.analyse_text()` method of every known lexer
-    class is called with the text as argument, and the lexer which returned the
-    highest value will be instantiated and returned.
-
-    :exc:`pygments.util.ClassNotFound` is raised if no lexer thinks it can
-    handle the content.
-
-.. function:: guess_lexer_for_filename(filename, text, **options)
-
-    As :func:`guess_lexer()`, but only lexers which have a pattern in `filenames`
-    or `alias_filenames` that matches `filename` are taken into consideration.
-
-    :exc:`pygments.util.ClassNotFound` is raised if no lexer thinks it can
-    handle the content.
-
-.. function:: get_all_lexers()
-
-    Return an iterable over all registered lexers, yielding tuples in the
-    format::
-
-    	(longname, tuple of aliases, tuple of filename patterns, tuple of mimetypes)
-
-    .. versionadded:: 0.6
-
-.. function:: find_lexer_class_by_name(alias)
-
-    Return the `Lexer` subclass that has `alias` in its aliases list, without
-    instantiating it.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias is
-    found.
-
-    .. versionadded:: 2.2
-
-.. function:: find_lexer_class(name)
-
-    Return the `Lexer` subclass that with the *name* attribute as given by
-    the *name* argument.
+.. autofunction:: get_lexer_by_name
+.. autofunction:: get_lexer_for_filename
+.. autofunction:: get_lexer_for_mimetype
+.. autofunction:: load_lexer_from_file
+.. autofunction:: guess_lexer
+.. autofunction:: guess_lexer_for_filename
+.. autofunction:: get_all_lexers
+.. autofunction:: find_lexer_class_by_name
+.. autofunction:: find_lexer_class
 
 
 .. module:: pygments.formatters
@@ -169,6 +99,7 @@ There are several base class derived from ``Lexer`` you can use to build your le
 .. autoclass:: pygments.lexer.ExtendedRegexLexer
 .. autoclass:: pygments.lexer.DelegatingLexer
 
+
 .. module:: pygments.formatter
 
 Formatters
@@ -179,7 +110,6 @@ A formatter is derived from this class:
 
 .. autoclass:: Formatter
    :members: __init__, get_style_defs, format
-
 
 
 .. module:: pygments.util
