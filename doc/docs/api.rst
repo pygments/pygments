@@ -10,23 +10,11 @@ High-level API
 
 Functions from the :mod:`pygments` module:
 
-.. function:: lex(code, lexer)
+.. autofunction:: lex
 
-    Lex `code` with the `lexer` (must be a `Lexer` instance)
-    and return an iterable of tokens. Currently, this only calls
-    `lexer.get_tokens()`.
+.. autofunction:: format
 
-.. function:: format(tokens, formatter, outfile=None)
-
-    Format a token stream (iterable of tokens) `tokens` with the
-    `formatter` (must be a `Formatter` instance). The result is
-    written to `outfile`, or if that is ``None``, returned as a
-    string.
-
-.. function:: highlight(code, lexer, formatter, outfile=None)
-
-    This is the most high-level highlighting function.
-    It combines `lex` and `format` in one function.
+.. autofunction:: highlight
 
 
 .. module:: pygments.lexers
@@ -172,94 +160,14 @@ Lexers
 
 The base lexer class from which all lexers are derived is:
 
-.. class:: Lexer(**options)
-
-    The constructor takes a \*\*keywords dictionary of options.
-    Every subclass must first process its own options and then call
-    the `Lexer` constructor, since it processes the `stripnl`,
-    `stripall` and `tabsize` options.
-
-    An example looks like this:
-
-    .. sourcecode:: python
-
-        def __init__(self, **options):
-            self.compress = options.get('compress', '')
-            Lexer.__init__(self, **options)
-
-    As these options must all be specifiable as strings (due to the
-    command line usage), there are various utility functions
-    available to help with that, see `Option processing`_.
-
-    .. method:: get_tokens(text)
-
-        This method is the basic interface of a lexer. It is called by
-        the `highlight()` function. It must process the text and return an
-        iterable of ``(tokentype, value)`` pairs from `text`.
-
-        Normally, you don't need to override this method. The default
-        implementation processes the `stripnl`, `stripall` and `tabsize`
-        options and then yields all tokens from `get_tokens_unprocessed()`,
-        with the ``index`` dropped.
-
-    .. method:: get_tokens_unprocessed(text)
-
-        This method should process the text and return an iterable of
-        ``(index, tokentype, value)`` tuples where ``index`` is the starting
-        position of the token within the input text.
-
-        This method must be overridden by subclasses.
-
-    .. staticmethod:: analyse_text(text)
-
-        A static method which is called for lexer guessing. It should analyse
-        the text and return a float in the range from ``0.0`` to ``1.0``.
-        If it returns ``0.0``, the lexer will not be selected as the most
-        probable one, if it returns ``1.0``, it will be selected immediately.
-
-        .. note:: You don't have to add ``@staticmethod`` to the definition of
-                  this method, this will be taken care of by the Lexer's metaclass.
-
-    For a list of known tokens have a look at the :doc:`tokens` page.
-
-    A lexer also can have the following attributes (in fact, they are mandatory
-    except `alias_filenames`) that are used by the builtin lookup mechanism.
-
-    .. attribute:: name
-
-        Full name for the lexer, in human-readable form.
-
-    .. attribute:: aliases
-
-        A list of short, unique identifiers that can be used to lookup
-        the lexer from a list, e.g. using `get_lexer_by_name()`.
-
-    .. attribute:: filenames
-
-        A list of `fnmatch` patterns that match filenames which contain
-        content for this lexer. The patterns in this list should be unique among
-        all lexers.
-
-    .. attribute:: alias_filenames
-
-        A list of `fnmatch` patterns that match filenames which may or may not
-        contain content for this lexer. This list is used by the
-        :func:`.guess_lexer_for_filename()` function, to determine which lexers
-        are then included in guessing the correct one. That means that
-        e.g. every lexer for HTML and a template language should include
-        ``\*.html`` in this list.
-
-    .. attribute:: mimetypes
-
-        A list of MIME types for content that can be lexed with this
-        lexer.
+.. autoclass:: Lexer
+   :members: __init__, get_tokens, get_tokens_unprocessed, analyse_text
 
 There are several base class derived from ``Lexer`` you can use to build your lexer from:
 
-.. autoclass:: pygments.lexer.DelegatingLexer
 .. autoclass:: pygments.lexer.RegexLexer
 .. autoclass:: pygments.lexer.ExtendedRegexLexer
-
+.. autoclass:: pygments.lexer.DelegatingLexer
 
 .. module:: pygments.formatter
 
