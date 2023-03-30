@@ -112,9 +112,9 @@ DOC_FOOTER = '''\
 
 class HtmlFormatter(Formatter):
     r"""
-    Format tokens as HTML 4 ``<span>`` tags within a ``<pre>`` tag, wrapped
-    in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass`
-    option.
+    Format tokens as HTML 4 ``<span>`` tags. By default, the content is enclosed
+    in a ``<pre>`` tag, itself wrapped in a ``<div>`` tag (but see the `nowrap` option).
+    The ``<div>``'s CSS class can be set by the `cssclass` option.
 
     If the `linenos` option is set to ``"table"``, the ``<pre>`` is
     additionally wrapped inside a ``<table>`` which has one row and two
@@ -139,8 +139,6 @@ class HtmlFormatter(Formatter):
         </tr></table></div>
 
     (whitespace added to improve clarity).
-
-    Wrapping can be disabled using the `nowrap` option.
 
     A list of lines can be specified using the `hl_lines` option to make these
     lines highlighted (as of Pygments 0.11).
@@ -187,8 +185,8 @@ class HtmlFormatter(Formatter):
     Additional options accepted:
 
     `nowrap`
-        If set to ``True``, don't wrap the tokens at all, not even inside a ``<pre>``
-        tag. This disables most other options (default: ``False``).
+        If set to ``True``, don't add a ``<pre>`` and a ``<div>`` tag
+        around the tokens. This disables most other options (default: ``False``).
 
     `full`
         Tells the formatter to output a "full" document, i.e. a complete
