@@ -177,53 +177,8 @@ Formatters
 A formatter is derived from this class:
 
 
-.. class:: Formatter(**options)
-
-    As with lexers, this constructor processes options and then must call the
-    base class :meth:`__init__`.
-
-    The :class:`Formatter` class recognizes the options `style`, `full` and
-    `title`.  It is up to the formatter class whether it uses them.
-
-    .. method:: get_style_defs(arg='')
-
-        This method must return statements or declarations suitable to define
-        the current style for subsequent highlighted text (e.g. CSS classes
-        in the `HTMLFormatter`).
-
-        The optional argument `arg` can be used to modify the generation and
-        is formatter dependent (it is standardized because it can be given on
-        the command line).
-
-        This method is called by the ``-S`` :doc:`command-line option <cmdline>`,
-        the `arg` is then given by the ``-a`` option.
-
-    .. method:: format(tokensource, outfile)
-
-        This method must format the tokens from the `tokensource` iterable and
-        write the formatted version to the file object `outfile`.
-
-        Formatter options can control how exactly the tokens are converted.
-
-    .. versionadded:: 0.7
-       A formatter must have the following attributes that are used by the
-       builtin lookup mechanism.
-
-    .. attribute:: name
-
-        Full name for the formatter, in human-readable form.
-
-    .. attribute:: aliases
-
-        A list of short, unique identifiers that can be used to lookup
-        the formatter from a list, e.g. using :func:`.get_formatter_by_name()`.
-
-    .. attribute:: filenames
-
-        A list of :mod:`fnmatch` patterns that match filenames for which this
-        formatter can produce output. The patterns in this list should be unique
-        among all formatters.
-
+.. autoclass:: Formatter
+   :members: __init__, get_style_defs, format
 
 .. module:: pygments.util
 
