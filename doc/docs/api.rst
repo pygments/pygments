@@ -11,9 +11,7 @@ High-level API
 Functions from the :mod:`pygments` module:
 
 .. autofunction:: lex
-
 .. autofunction:: format
-
 .. autofunction:: highlight
 
 
@@ -36,51 +34,16 @@ Functions from :mod:`pygments.lexers`:
 
 Functions from :mod:`pygments.formatters`:
 
-.. function:: get_formatter_by_name(alias, **options)
-
-    Return an instance of a :class:`.Formatter` subclass that has `alias` in its
-    aliases list. The formatter is given the `options` at its instantiation.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no formatter with that
-    alias is found.
-
-.. function:: get_formatter_for_filename(fn, **options)
-
-    Return a :class:`.Formatter` subclass instance that has a filename pattern
-    matching `fn`. The formatter is given the `options` at its instantiation.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no formatter for that filename
-    is found.
-
-.. function:: load_formatter_from_file(filename, formattername="CustomFormatter", **options)
-
-    Return a `Formatter` subclass instance loaded from the provided file, relative
-    to the current directory. The file is expected to contain a Formatter class
-    named ``formattername`` (by default, CustomFormatter). Users should be very
-    careful with the input, because this method is equivalent to running eval
-    on the input file. The formatter is given the `options` at its instantiation.
-
-    :exc:`pygments.util.ClassNotFound` is raised if there are any errors loading the Formatter
-
-    .. versionadded:: 2.2
+.. autofunction:: get_formatter_by_name
+.. autofunction:: get_formatter_for_filename
+.. autofunction:: load_formatter_from_file
 
 .. module:: pygments.styles
 
 Functions from :mod:`pygments.styles`:
 
-.. function:: get_style_by_name(name)
-
-    Return a style class by its short name. The names of the builtin styles
-    are listed in :data:`pygments.styles.STYLE_MAP`.
-
-    Will raise :exc:`pygments.util.ClassNotFound` if no style of that name is
-    found.
-
-.. function:: get_all_styles()
-
-    Return an iterable over all registered styles, yielding their names.
-
-    .. versionadded:: 0.6
+.. autofunction:: get_style_by_name
+.. autofunction:: get_all_styles
 
 
 .. module:: pygments.lexer
