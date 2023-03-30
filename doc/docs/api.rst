@@ -180,6 +180,8 @@ A formatter is derived from this class:
 .. autoclass:: Formatter
    :members: __init__, get_style_defs, format
 
+
+
 .. module:: pygments.util
 
 Option processing
@@ -191,36 +193,8 @@ dictionary of options. If the value is already in the type expected by the
 option, it is returned as-is. Otherwise, if the value is a string, it is first
 converted to the expected type if possible.
 
-.. exception:: OptionError
-
-    This exception will be raised by all option processing functions if
-    the type or value of the argument is not correct.
-
-.. function:: get_bool_opt(options, optname, default=None)
-
-    Intuitively, this is `options.get(optname, default)`, but restricted to
-    Boolean value. The Booleans can be represented as string, in order to accept
-    Boolean value from the command line arguments. If the key `optname` is
-    present in the dictionary `options` and is not associated with a Boolean,
-    raise an `OptionError`. If it is absent, `default` is returned instead.
-
-    The valid string values for ``True`` are ``1``, ``yes``, ``true`` and
-    ``on``, the ones for ``False`` are ``0``, ``no``, ``false`` and ``off``
-    (matched case-insensitively).
-
-.. function:: get_int_opt(options, optname, default=None)
-
-    As :func:`get_bool_opt`, but interpret the value as an integer.
-
-.. function:: get_list_opt(options, optname, default=None)
-
-    If the key `optname` from the dictionary `options` is a string,
-    split it at whitespace and return it. If it is already a list
-    or a tuple, it is returned as a list.
-
-.. function:: get_choice_opt(options, optname, allowed, default=None)
-
-    If the key `optname` from the dictionary is not in the sequence
-    `allowed`, raise an error, otherwise return it.
-
-    .. versionadded:: 0.8
+.. autoexception:: OptionError
+.. autofunction:: get_bool_opt
+.. autofunction:: get_int_opt
+.. autofunction:: get_list_opt
+.. autofunction:: get_choice_opt
