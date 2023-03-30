@@ -4,7 +4,7 @@
 
     Lexer for the WebGPU Shading Language.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -364,7 +364,7 @@ class WgslLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?', Number.Float),
             #    Has at least one digit, and has an exponent.
             (r'[0-9]+[eE][+-]?[0-9]+[fh]?', Number.Float),
-          
+
             # Hex float literals
             # https://www.w3.org/TR/WGSL/#syntax-hex_float_literal
             (r'0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?', Number.Float),
