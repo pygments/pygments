@@ -951,18 +951,10 @@ class WikitextLexer(RegexLexer):
         'root': [
             # Redirects
             (r"""(?x)
-                (\A\s*?)
-                (\#REDIRECT:?) # may contain a colon
-                (\s+)
-                (\[\[)
-                    ([{}]+?)
-                    (?: (\#)([^#]*?) )?
-                    (?: (\|)([^\n|]*) )?
-                (\]\])
-                (\s*?\n)
-            """.format(title_char),
-             bygroups(Whitespace, Keyword, Whitespace, Punctuation, Name.Tag, Punctuation, Name.Label,
-                      Punctuation, Text, Punctuation, Whitespace)),
+                (\A\s*?)(\#REDIRECT:?) # may contain a colon
+                (\s+)(\[\[) (?=[^\]\n]* \]\]$)
+            """,
+             bygroups(Whitespace, Keyword, Whitespace, Punctuation), 'redirect-inner'),
             # Subheadings
             (r'^(={2,6})(.+?)(\1)(\s*$\n)',
              bygroups(Generic.Subheading, Generic.Subheading, Generic.Subheading, Whitespace)),
@@ -976,17 +968,22 @@ class WikitextLexer(RegexLexer):
             (r'\b(?:{}){}{}*'.format('|'.join(protocols),
              link_address, link_char_class), Name.Label),
             # Magic links
+            (r'(?-i:\b(?:RFC|PMID){}+[0-9]+\b)'.format(nbsp_char),
+             Name.Function.Magic),
             (r"""(?x-i:
-                \b(?:RFC|PMID) {nbsp_char}+ [0-9]+\b
-                |
                 \bISBN {nbsp_char}
                 (?: 97[89] {nbsp_dash}? )?
-                (?: [0-9] {nbsp_dash}? ){{9}}
+                (?: [0-9] {nbsp_dash}? ){{9}} # escape format()
                 [0-9Xx]\b
             )""".format(nbsp_char=nbsp_char, nbsp_dash=f'(?:-|{nbsp_char})'), Name.Function.Magic),
             include('list'),
             include('inline'),
             include('text'),
+        ],
+        'redirect-inner': [
+            (r'(\]\])(\s*?\n)', bygroups(Punctuation, Whitespace), '#pop'),
+            (r'(\#)([^#]*?)', bygroups(Punctuation, Name.Label)),
+            (r'[{}]+'.format(title_char), Name.Tag),
         ],
         'list': [
             # Description lists
