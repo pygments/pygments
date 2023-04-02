@@ -403,7 +403,7 @@ class PostgresExplainLexer(RegexLexer):
             (r'(shared|temp|local)', Keyword.Pseudo),
 
             # We move to sort state in order to emphasize specific keywords (especially disk access)
-            (r'(Sort Method)(: )', bygroups(Comment.Prepoc, Punctuation), 'sort'),
+            (r'(Sort Method)(: )', bygroups(Comment.Preproc, Punctuation), 'sort'),
 
             # These keywords can be followed by an object, like a table
             (r'(Sort Key|Group Key|Presorted Key|Hash Key)(: )', bygroups(Comment.Preproc, Punctuation), 'object_name'),
