@@ -797,8 +797,7 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '"'           Literal.String.Double
 '120px'       Literal.String.Double
 '"'           Literal.String.Double
-' '           Text.Whitespace
-'>'           Punctuation
+' >'          Punctuation
 '\nWiki.png|Captioned\nWiki.png|alt=The Wikipedia logo|Captioned with alt text\nWiki.png|[[Help:Contents/Links|Links]] can be put in captions.\nWiki.png|Full [[MediaWiki]]<br/>[[syntax]] may now be used...\n' Text
 
 '</'          Punctuation
@@ -1138,7 +1137,6 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1197,13 +1195,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '}'           Punctuation
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'source'      Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1262,13 +1258,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '}'           Punctuation
 '</'          Punctuation
 'source'      Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1281,13 +1275,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '\n#include <iostream>\nint m2 (int ax, char *p_ax) {\n  std::cout <<"Hello World!";\n  return 0;\n}' Text
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1303,13 +1295,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1321,13 +1311,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1345,19 +1333,16 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 '>'           Punctuation
 '\n#include <iostream>\n' Text
 
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
@@ -1368,7 +1353,6 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '<'           Punctuation
 'syntaxhighlight' Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1396,7 +1380,6 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'syntaxhighlight' Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
@@ -1479,7 +1462,6 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '<'           Punctuation
 'score'       Name.Tag
-''            Text.Whitespace
 '>'           Punctuation
 '\\relative'  Name.Builtin.MusicFunction
 ' '           Text.Whitespace
@@ -1522,13 +1504,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '}'           Punctuation
 '</'          Punctuation
 'score'       Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'score'       Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1577,13 +1557,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '}'           Punctuation
 '</'          Punctuation
 'score'       Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'score'       Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1595,13 +1573,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'score'       Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 
 '<'           Punctuation
 'score'       Name.Tag
-''            Text.Whitespace
 ' '           Text.Whitespace
 'lang'        Name.Attribute
 '='           Operator
@@ -1612,7 +1588,6 @@ e f g a|b c' d' e'|f' g' a' b'|]
 "\\relative c' { fis d fis a d f e d c cis d e a g f ees }" Text
 '</'          Punctuation
 'score'       Name.Tag
-''            Text
 '>'           Punctuation
 '\n'          Text
 

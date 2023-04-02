@@ -782,6 +782,27 @@ class WikitextLexer(RegexLexer):
     mimetypes = ['text/x-wiki']
     flags = re.MULTILINE | re.IGNORECASE
 
+    def nowiki_tag_rules(tag_name):
+        return [
+            (r'(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+             Name.Tag, Whitespace, Punctuation), '#pop'),
+            include('entity'),
+            include('text'),
+        ]
+
+    def plaintext_tag_rules(tag_name):
+        return [
+            (r'(?s)(.*?)(</)({})(\s*)(>)'.format(tag_name), bygroups(Text,
+             Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),
+        ]
+
+    def delegate_tag_rules(tag_name, lexer):
+        return [
+            (r'(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+             Name.Tag, Whitespace, Punctuation), '#pop'),
+            (r'(?s).+?(?=</{}\s*>)'.format(tag_name), using(lexer)),
+        ]
+
     def text_rules(token):
         return [
             (r'\w+', token),
@@ -789,18 +810,30 @@ class WikitextLexer(RegexLexer):
             (r'(?s).', token),
         ]
 
-    def handle_syntaxhighlight(self, match):
+    def handle_syntaxhighlight(self, match, ctx):
         from pygments.lexers import get_lexer_by_name
 
-        yield match.start(1), Punctuation, match.group(1)
-        yield match.start(2), Name.Tag, match.group(2)
-        yield match.start(3), Whitespace, match.group(3)
-        yield from self.get_tokens_unprocessed(match.group(4), stack=['root', 'attr'])
-        yield match.start(5), Punctuation, match.group(5)
+        attr_content = match.group()
+        start = 0
+        index = 0
+        while True:
+            index = attr_content.find('>', start)
+            # Exclude comment end (-->)
+            if attr_content[index-2:index] != '--':
+                break
+            start = index + 1
+
+        if index == -1:
+            # No tag end
+            yield from self.get_tokens_unprocessed(attr_content, stack=['root', 'attr'])
+            return
+        attr = attr_content[:index]
+        yield from self.get_tokens_unprocessed(attr, stack=['root', 'attr'])
+        yield match.start(3) + index, Punctuation, '>'
 
         lexer = None
-        code = match.group(6)
-        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', match.group(4))
+        content = attr_content[index+1:]
+        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', attr)
 
         if len(lang_match) >= 1:
             # Pick the last match in case of multiple matches
@@ -811,37 +844,39 @@ class WikitextLexer(RegexLexer):
                 pass
 
         if lexer is None:
-            yield match.start(6), Text, code
+            yield match.start() + index + 1, Text, content
         else:
-            yield from lexer.get_tokens_unprocessed(code)
+            yield from lexer.get_tokens_unprocessed(content)
 
-        yield match.start(7), Punctuation, match.group(7)
-        yield match.start(8), Name.Tag, match.group(8)
-        yield match.start(9), Text, match.group(9)
-        yield match.start(10), Punctuation, match.group(10)
+    def handle_score(self, match, ctx):
+        attr_content = match.group()
+        start = 0
+        index = 0
+        while True:
+            index = attr_content.find('>', start)
+            # Exclude comment end (-->)
+            if attr_content[index-2:index] != '--':
+                break
+            start = index + 1
 
-    def handle_score(self, match):
-        yield match.start(1), Punctuation, match.group(1)
-        yield match.start(2), Name.Tag, match.group(2)
-        yield match.start(3), Whitespace, match.group(3)
-        yield from self.get_tokens_unprocessed(match.group(4), stack=['root', 'attr'])
-        yield match.start(5), Punctuation, match.group(5)
+        if index == -1:
+            # No tag end
+            yield from self.get_tokens_unprocessed(attr_content, stack=['root', 'attr'])
+            return
+        attr = attr_content[:index]
+        content = attr_content[index+1:]
+        yield from self.get_tokens_unprocessed(attr, stack=['root', 'attr'])
+        yield match.start(3) + index, Punctuation, '>'
 
-        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', match.group(4))
-        score = match.group(6)
+        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', attr)
         # Pick the last match in case of multiple matches
         lang = lang_match[-1][1] if len(lang_match) >= 1 else 'lilypond'
 
         if lang == 'lilypond':  # Case sensitive
-            yield from LilyPondLexer().get_tokens_unprocessed(score)
+            yield from LilyPondLexer().get_tokens_unprocessed(content)
         else:  # ABC
             # FIXME: Use ABC lexer in the future
-            yield match.start(6), Text, score
-
-        yield match.start(7), Punctuation, match.group(7)
-        yield match.start(8), Name.Tag, match.group(8)
-        yield match.start(9), Text, match.group(9)
-        yield match.start(10), Punctuation, match.group(10)
+            yield match.start() + index + 1, Text, content
 
     title_char = r' %!"$&\'()*, \-./0-9:; =?@A-Z\\\^ _`a-z~+\u0080-\uFFFF'
     nbsp_char = r'(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000])'
@@ -1056,85 +1091,83 @@ class WikitextLexer(RegexLexer):
             # Tables
             (r'^(:*)(\s*?)(\{\|)([^\n]*)$', bygroups(Keyword,
              Whitespace, Punctuation, using(this, state=['root', 'attr'])), 'table'),
-            # <pre> & <nowiki>
-            (
-                r"""(?xs)
-                (<)(pre|nowiki)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                bygroups(
-                    Punctuation, Name.Tag, Whitespace, using(
-                        this, state=['root', 'attr']), Punctuation,
-                    using(this, state=['root', 'nowiki-ish']
-                          ), Punctuation, Name.Tag, Text, Punctuation
-                ),
-            ),
-            # <math> & <chem> & <ce>
-            (
-                r"""(?xs)
-                (<)(math|chem|ce)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                bygroups(
-                    Punctuation, Name.Tag, Whitespace, using(
-                        this, state=['root', 'attr']), Punctuation,
-                    using(TexLexer), Punctuation, Name.Tag, Text, Punctuation
-                ),
-            ),
+            # HTML tags
+            (r'(<)({})\b'.format('|'.join(html_tags)),
+             bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),
+            (r'(</)({})\b(\s*)(>)'.format('|'.join(html_tags)),
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
+            # <nowiki>
+            (r'(<)(nowiki)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-nowiki', 'tag-inner')),
+            # <pre>
+            (r'(<)(pre)\b', bygroups(Punctuation, Name.Tag), ('tag-pre', 'tag-inner')),
+            # <categorytree>
+            (r'(<)(categorytree)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-categorytree', 'tag-inner')),
+            # <hiero>
+            (r'(<)(hiero)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-hiero', 'tag-inner')),
+            # <math>
+            (r'(<)(math)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-math', 'tag-inner')),
+            # <chem>
+            (r'(<)(chem)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-chem', 'tag-inner')),
+            # <ce>
+            (r'(<)(ce)\b', bygroups(Punctuation, Name.Tag), ('tag-ce', 'tag-inner')),
+            # <charinsert>
+            (r'(<)(charinsert)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-charinsert', 'tag-inner')),
             # <templatedata>
-            (
-                r"""(?xs)
-                (<)(templatedata)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                bygroups(
-                    Punctuation, Name.Tag, Whitespace, using(
-                        this, state=['root', 'attr']), Punctuation,
-                    using(JsonLexer), Punctuation, Name.Tag, Text, Punctuation
-                ),
-            ),
-            # Tags with plaintext content
-            (
-                r"""(?xs)
-                (<)(categorytree|charinsert|hiero|rss|gallery|graph
-                |dynamicpagelist|imagemap|inputbox)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                bygroups(
-                    Punctuation, Name.Tag, Whitespace, using(
-                        this, state=['root', 'attr']), Punctuation,
-                    Text, Punctuation, Name.Tag, Text, Punctuation
-                ),
-            ),
-            # <syntaxhighlight> & <source>
-            (
-                r"""(?xs)
-                (<)(syntaxhighlight|source)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                handle_syntaxhighlight,
-            ),
+            (r'(<)(templatedata)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-templatedata', 'tag-inner')),
+            # <gallery>
+            (r'(<)(gallery)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-gallery', 'tag-inner')),
+            # <graph>
+            (r'(<)(gallery)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-graph', 'tag-inner')),
+            # <dynamicpagelist>
+            (r'(<)(dynamicpagelist)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-dynamicpagelist', 'tag-inner')),
+            # <inputbox>
+            (r'(<)(inputbox)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-inputbox', 'tag-inner')),
+            # <rss>
+            (r'(<)(rss)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-rss', 'tag-inner')),
+            # <imagemap>
+            (r'(<)(imagemap)\b', bygroups(
+                Punctuation, Name.Tag), ('tag-imagemap', 'tag-inner')),
+            # <syntaxhighlight>
+            (r'(</)(syntaxhighlight)\b(\s*)(>)',
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
+            (r'(?s)(<)(syntaxhighlight)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+             bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),
+            # <syntaxhighlight>: Fallback case for self-closing tags
+            (r'(<)(syntaxhighlight)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
+            # <source>
+            (r'(</)(source)\b(\s*)(>)',
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
+            (r'(?s)(<)(source)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+             bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),
+            # <source>: Fallback case for self-closing tags
+            (r'(<)(source)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
             # <score>
-            (
-                r"""(?xs)
-                (<)(score)\b(\s*?)((?:[^>]|-->)*?)(?<!--)(?<!/)(>)
-                (.*?)
-                (</)(\2)\b([^>]*?)(>)
-                """,
-                handle_score,
-            ),
-            # Tags
-            (
-                r'(</?)({})\b(\s*?)((?:[^>]|-->)*?)(/?\s*?(?<!--)>)'.format(
-                    '|'.join(html_tags | parser_tags)),
-                bygroups(Punctuation, Name.Tag,
-                         Whitespace, using(this, state=['root', 'attr']), Punctuation),
-            ),
+            (r'(</)(score)\b(\s*)(>)',
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
+            (r'(?s)(<)(score)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+             bygroups(Punctuation, Name.Tag, handle_score)),
+            # <score>: Fallback case for self-closing tags
+            (r'(<)(score)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
+            # Other parser tags
+            (r'(<)({})\b'.format('|'.join(parser_tags)),
+             bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),
+            (r'(</)({})\b(\s*)(>)'.format('|'.join(parser_tags)),
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
             # LanguageConverter markups
             (
                 r"""(?x)
@@ -1289,6 +1322,7 @@ class WikitextLexer(RegexLexer):
             include('text'),
         ],
         'table': [
+            # Use [ \t\n\r\0\x0B] instead of \s to follow PHP trim() behavior
             # Endings
             (r'^([ \t\n\r\0\x0B]*?)(\|\})',
              bygroups(Whitespace, Punctuation), '#pop'),
@@ -1387,6 +1421,63 @@ class WikitextLexer(RegexLexer):
             include('replaceable'),
             *text_rules(String.Double),
         ],
+        'tag-inner-ordinary': [
+            (r'/?\s*>', Punctuation, '#pop'),
+            include('tag-attr'),
+        ],
+        'tag-inner': [
+            # Return to root state for self-closing tags
+            (r'/\s*>', Punctuation, '#pop:2'),
+            (r'\s*>', Punctuation, '#pop'),
+            include('tag-attr'),
+        ],
+        # There states below are just like their non-tag variants, the key difference is
+        # they forcibly quit when encountering tag closing markup
+        'tag-attr': [
+            include('replaceable'),
+            (r'\s+', Whitespace),
+            (r'(=)(\s*)(")', bygroups(Operator,
+             Whitespace, String.Double), 'tag-attr-val-2'),
+            (r"(=)(\s*)(')", bygroups(Operator,
+             Whitespace, String.Single), 'tag-attr-val-1'),
+            (r'(=)(\s*)', bygroups(Operator, Whitespace), 'tag-attr-val-0'),
+            (r'[\w:-]+', Name.Attribute),
+
+        ],
+        'tag-attr-val-0': [
+            (r'\s', Whitespace, '#pop'),
+            (r'/?>', Punctuation, '#pop:2'),
+            include('replaceable'),
+            *text_rules(String),
+        ],
+        'tag-attr-val-1': [
+            (r"'", String.Single, '#pop'),
+            (r'/?>', Punctuation, '#pop:2'),
+            include('replaceable'),
+            *text_rules(String.Single),
+        ],
+        'tag-attr-val-2': [
+            (r'"', String.Double, '#pop'),
+            (r'/?>', Punctuation, '#pop:2'),
+            include('replaceable'),
+            *text_rules(String.Double),
+        ],
+        'tag-nowiki': nowiki_tag_rules('nowiki'),
+        'tag-pre': nowiki_tag_rules('pre'),
+        'tag-categorytree': plaintext_tag_rules('categorytree'),
+        'tag-dynamicpagelist': plaintext_tag_rules('dynamicpagelist'),
+        'tag-hiero': plaintext_tag_rules('hiero'),
+        'tag-inputbox': plaintext_tag_rules('inputbox'),
+        'tag-imagemap': plaintext_tag_rules('imagemap'),
+        'tag-charinsert': plaintext_tag_rules('charinsert'),
+        'tag-timeline': plaintext_tag_rules('timeline'),
+        'tag-gallery': plaintext_tag_rules('gallery'),
+        'tag-graph': plaintext_tag_rules('graph'),
+        'tag-rss': plaintext_tag_rules('rss'),
+        'tag-math': delegate_tag_rules('math', TexLexer),
+        'tag-chem': delegate_tag_rules('chem', TexLexer),
+        'tag-ce': delegate_tag_rules('ce', TexLexer),
+        'tag-templatedata': delegate_tag_rules('templatedata', JsonLexer),
         'text-italic': text_rules(Generic.Emph),
         'text-bold': text_rules(Generic.Strong),
         'text': text_rules(Text),
