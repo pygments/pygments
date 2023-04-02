@@ -964,7 +964,7 @@ class WikitextLexer(RegexLexer):
     }
     parser_functions_i = {
         'ANCHORENCODE', 'BIDI', 'CANONICALURL', 'CANONICALURLE', 'FILEPATH', 'FORMATNUM',
-        'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', '\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
+        'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', r'\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
         'LOCALURLE', 'NS', 'NSE', 'PADLEFT', 'PADRIGHT', 'PAGEID', 'PLURAL', 'UC', 'UCFIRST',
         'URLENCODE',
     }
@@ -1067,7 +1067,7 @@ class WikitextLexer(RegexLexer):
             ),
             (
                 r"""(?x)
-                (\[\[)(?!{}) 
+                (\[\[)(?!{})
                     (?: ([{}]*) (:))?
                     ([{}]*?)
                     (?: (\#) ([{}]*?) )?
@@ -1278,7 +1278,7 @@ class WikitextLexer(RegexLexer):
                 r"""(?xs)
                 (\{\{)
                 (\s* <!--.*?(?:-->|\Z))?
-                (\s*) ( \# [%s]*? | %s | (?-i: %s ) ) (:) 
+                (\s*) ( \# [%s]*? | %s | (?-i: %s ) ) (:)
                 """ % (title_char,  '|'.join(parser_functions_i), '|'.join(parser_functions)),
                 bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Function,
                          Punctuation), 'template-inner'
@@ -1296,7 +1296,7 @@ class WikitextLexer(RegexLexer):
         ],
         'parameter-inner': [
             (r'\}{3}', Punctuation, '#pop'),
-            ('\|', Punctuation),
+            (r'\|', Punctuation),
             include('inline'),
             include('text'),
         ],
@@ -1309,7 +1309,7 @@ class WikitextLexer(RegexLexer):
         ],
         'template-inner': [
             (r'\}\}', Punctuation, '#pop'),
-            ('\|', Punctuation),
+            (r'\|', Punctuation),
             (
                 r"""(?x)
                     (?<=\|)
@@ -1334,7 +1334,7 @@ class WikitextLexer(RegexLexer):
                 r"""(?x)
                 ^([ \t\n\r\0\x0B]*?)(\|\+)
                 # Exclude links, template and tags
-                (?: ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )(\|) )? 
+                (?: ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )(\|) )?
                 (.*?)$
                 """,
                 bygroups(Whitespace, Punctuation, using(this, state=[
@@ -1369,7 +1369,7 @@ class WikitextLexer(RegexLexer):
             (
                 r"""(?x)
                 (!!|\|\|)
-                (?: 
+                (?:
                     ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )
                     (\|)(?!\|)
                 )?
