@@ -389,9 +389,9 @@ class PostgresExplainLexer(RegexLexer):
 
 
             # This match estimated cost and effectively measured counters with ANALYZE
-            # Then, w move to instrumentation state
-            (r'(cost|actual )(=)?', bygroups(Name.Class, Punctuation),
-             'instrumentation'),
+            # Then, we move to instrumentation state
+            (r'(cost)(=?)', bygroups(Name.Class, Punctuation), 'instrumentation'),
+            (r'(actual)( )(=?)', bygroups(Name.Class, Whitespace, Punctuation), 'instrumentation'),
 
             # Misc keywords
             (words(('actual', 'Memory Usage', 'Memory', 'Buckets', 'Batches',
