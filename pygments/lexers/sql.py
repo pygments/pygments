@@ -387,7 +387,6 @@ class PostgresExplainLexer(RegexLexer):
             (r'(:|\(|\)|ms|kB|->|\.\.|\,)', Punctuation),
             (r'(\s+)', Whitespace),
 
-
             # This match estimated cost and effectively measured counters with ANALYZE
             # Then, we move to instrumentation state
             (r'(cost)(=?)', bygroups(Name.Class, Punctuation), 'instrumentation'),
@@ -406,8 +405,9 @@ class PostgresExplainLexer(RegexLexer):
             (r'(Sort Method)(: )', bygroups(Comment.Preproc, Punctuation), 'sort'),
 
             # These keywords can be followed by an object, like a table
-            (r'(Sort Key|Group Key|Presorted Key|Hash Key)(: )', bygroups(Comment.Preproc, Punctuation), 'object_name'),
-            (r'(Cache Key|Cache Mode)(: )', bygroups(Comment, Punctuation), 'object_name'),
+            (r'(Sort Key|Group Key|Presorted Key|Hash Key)(:)( )',
+             bygroups(Comment.Preproc, Punctuation, Whitespace), 'object_name'),
+            (r'(Cache Key|Cache Mode)(:)( )', bygroups(Comment, Punctuation, Whitespace), 'object_name'),
 
             # These keywords can be followed by a predicate
             (words(('Join Filter', 'Subplans Removed', 'Filter', 'Merge Cond',
@@ -437,7 +437,7 @@ class PostgresExplainLexer(RegexLexer):
                     'Rows Removed by Index Recheck',
                     'Heap Fetches', 'never executed'),
                    suffix=r'\b'), Name.Exception),
-            (r'(I/O Timings)(: )', bygroups(Name.Exception, Punctuation)),
+            (r'(I/O Timings)(:)( )', bygroups(Name.Exception, Punctuation, Whitespace)),
 
             (words(EXPLAIN_KEYWORDS, suffix=r'\b'), Keyword),
 
@@ -447,11 +447,11 @@ class PostgresExplainLexer(RegexLexer):
             (r'Backward', Comment.Preproc),
             (r'(Intersect|Except|Hash)', Comment.Preproc),
 
-            (r'(CTE )(\w*)?', bygroups(Comment, Name.Variable)),
+            (r'(CTE)( )(\w*)?', bygroups(Comment, Whitespace, Name.Variable)),
 
 
             # Treat "on" and "using" as a punctuation
-            (r'(on |using )', Punctuation, 'object_name'),
+            (r'(on|using)', Punctuation, 'object_name'),
 
 
             # strings
@@ -465,14 +465,14 @@ class PostgresExplainLexer(RegexLexer):
             # explain header
             (r'\s*QUERY PLAN\s*\n\s*-+', Comment.Single),
             # Settings
-            (r'(Settings)(: )', bygroups(Comment.Preproc, Punctuation), 'setting'),
+            (r'(Settings)(:)( )', bygroups(Comment.Preproc, Punctuation, Whitespace), 'setting'),
 
             # Handle JIT counters
             (r'(JIT|Functions|Options|Timing)(:)', bygroups(Comment.Preproc, Punctuation)),
             (r'(Inlining|Optimization|Expressions|Deforming|Generation|Emission|Total)', Keyword.Pseudo),
 
             # Handle Triggers counters
-            (r'(Trigger) (\S*)(: )', bygroups(Comment.Preproc, Name.Variable, Punctuation)),
+            (r'(Trigger) (\S*)(:)( )', bygroups(Comment.Preproc, Name.Variable, Punctuation, Whitespace)),
 
         ],
         'expression': [
@@ -486,7 +486,8 @@ class PostgresExplainLexer(RegexLexer):
         'object_name': [
 
             # This is a cost or analyze measure
-            (r'(\(cost|\(actual )(=)?', bygroups(Name.Class, Punctuation), 'instrumentation'),
+            (r'(\(cost)(=?)', bygroups(Name.Class, Punctuation), 'instrumentation'),
+            (r'(\(actual)( )(=?)', bygroups(Name.Class, Whitespace, Punctuation), 'instrumentation'),
 
             # if object_name is parenthesized, mark opening paren as
             # punctuation, call 'expression', and exit state
@@ -510,7 +511,7 @@ class PostgresExplainLexer(RegexLexer):
             (r'\$\d+', Name.Variable),
             # cast
             (r'::\w+', Name.Variable),
-            (r' ', Whitespace),
+            (r' +', Whitespace),
             (r'"', Punctuation),
             (r'\[\.\.\.\]', Punctuation),
             (r'\)', Punctuation, '#pop'),
@@ -523,7 +524,7 @@ class PostgresExplainLexer(RegexLexer):
         ],
         'instrumentation': [
             (r'=|\.\.', Punctuation),
-            (r' ', Whitespace),
+            (r' +', Whitespace),
             (r'(rows|width|time|loops)', Name.Class),
             (r'\d+\.\d+', Number.Float),
             (r'(\d+)', Number.Integer),
@@ -548,7 +549,7 @@ class PostgresExplainLexer(RegexLexer):
             (r'(quicksort|top-N|heapsort|Average|Memory|Peak)', Comment.Prepoc),
             (r'(external|merge|Disk|sort)', Name.Exception),
             (r'(\d+)', Number.Integer),
-            (r' ', Whitespace),
+            (r' +', Whitespace),
         ],
     }
 
