@@ -31,7 +31,7 @@ PURPLE_2 = "#d2a8ff"
 GRAY_3 = "#8b949e"
 GRAY_4 = "#6e7681"
 FG_SUBTLE = "#6e7681"
-FG_DEFAULT = "#c9d1d9"
+FG_DEFAULT = "#e6edf3"
 BG_DEFAULT = "#0d1117"
 DANGER_FG = "#f85149"
 
