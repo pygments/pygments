@@ -422,8 +422,9 @@ class PostgresExplainLexer(RegexLexer):
             (r'Conflict ', Comment.Preproc, 'conflict'),
 
             # Special keyword for InitPlan or SubPlan
-            (r'(InitPlan|SubPlan)( \d+ )',
-             bygroups(Keyword, Number.Integer), 'init_plan'),
+            (r'(InitPlan|SubPlan)( )(\d+)( )',
+             bygroups(Keyword, Whitespace, Number.Integer, Whitespace),
+             'init_plan'),
 
             (words(('Sort Method', 'Join Filter', 'Planning time',
                     'Planning Time', 'Execution time', 'Execution Time',
@@ -531,9 +532,9 @@ class PostgresExplainLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
         ],
         'conflict': [
-            (r'(Resolution: )(\w+)', bygroups(Comment.Prepoc, Name.Variable)),
-            (r'(Arbiter \w+:)', Comment.Prepoc, 'object_name'),
-            (r'(Filter: )', Comment.Prepoc, 'predicate'),
+            (r'(Resolution: )(\w+)', bygroups(Comment.Preproc, Name.Variable)),
+            (r'(Arbiter \w+:)', Comment.Preproc, 'object_name'),
+            (r'(Filter: )', Comment.Preproc, 'predicate'),
         ],
         'setting': [
             (r'([a-z_]*?)(\s*)(=)(\s*)(\'.*?\')', bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
