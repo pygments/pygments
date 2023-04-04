@@ -571,6 +571,61 @@ PLPGSQL_KEYWORDS = (
     'RETURN', 'REVERSE', 'SQLSTATE', 'WHILE',
 )
 
+# Most of these keywords are from ExplainNode function
+# in src/backend/commands/explain.c
+
+EXPLAIN_KEYWORDS = (
+    'Aggregate',
+    'Append',
+    'Bitmap Heap Scan',
+    'Bitmap Index Scan',
+    'BitmapAnd',
+    'BitmapOr',
+    'CTE Scan',
+    'Custom Scan',
+    'Delete',
+    'Foreign Scan',
+    'Function Scan',
+    'Gather Merge',
+    'Gather',
+    'Group',
+    'GroupAggregate',
+    'Hash Join',
+    'Hash',
+    'HashAggregate',
+    'Incremental Sort',
+    'Index Only Scan',
+    'Index Scan',
+    'Insert',
+    'Limit',
+    'LockRows',
+    'Materialize',
+    'Memoize',
+    'Merge Append',
+    'Merge Join',
+    'Merge',
+    'MixedAggregate',
+    'Named Tuplestore Scan',
+    'Nested Loop',
+    'ProjectSet',
+    'Recursive Union',
+    'Result',
+    'Sample Scan',
+    'Seq Scan',
+    'SetOp',
+    'Sort',
+    'SubPlan',
+    'Subquery Scan',
+    'Table Function Scan',
+    'Tid Range Scan',
+    'Tid Scan',
+    'Unique',
+    'Update',
+    'Values Scan',
+    'WindowAgg',
+    'WorkTable Scan',
+)
+
 
 if __name__ == '__main__':  # pragma: no cover
     import re
