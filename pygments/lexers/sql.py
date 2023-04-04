@@ -473,7 +473,8 @@ class PostgresExplainLexer(RegexLexer):
             (r'(Inlining|Optimization|Expressions|Deforming|Generation|Emission|Total)', Keyword.Pseudo),
 
             # Handle Triggers counters
-            (r'(Trigger) (\S*)(:)( )', bygroups(Comment.Preproc, Name.Variable, Punctuation, Whitespace)),
+            (r'(Trigger)( )(\S*)(:)( )',
+             bygroups(Comment.Preproc, Whitespace, Name.Variable, Punctuation, Whitespace)),
 
         ],
         'expression': [
