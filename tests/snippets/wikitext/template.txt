@@ -1,0 +1,617 @@
+---input---
+{{payoff matrix | UL = 5 | UR = 7 | DL = 2 | DR = 9 | Name = Example usage }}
+{{payoff matrix
+| UL = 5
+| UR = 7
+| DL = 2
+| DR = 9
+| Name = Example usage
+}}
+
+{{Wikipedia:foo|1=1}}
+{{Wikipe{{void}}dia:foo|1=1}}
+{{:foo|1=1}}
+
+{{short description|Wikipedia help page}}
+{{pp-move-indef|small=yes}}
+{{pp-vandalism|small=yes}}
+{{for|the '''encyclopedic''' section on wikitext|Wiki#Editing}}
+{{redirect|H:WT|the welcoming templates|Wikipedia:Welcoming committee/Welcome templates}}
+{{Locutions pages header}}
+{{Wikipedia how to|H:WT|H:MARKUP|H:WIKICODE}}
+{{Wikitext navbox}}
+
+{{Template|1={{{1}}}}}
+
+{{vo{{void|void}}id|param1=1|par{{void}}am2=2}}
+
+{{math|2''x'' &times; 4''y'' &divide; 6''z'' + 8 &minus; {{sfrac|''y''|''z''<sup>2</sup>}} {{=}} 0}}
+
+{{math|sin 2&pi;''x'' + ln ''e''}}
+It follows that {{math|''x''<sup>2</sup> &ge; 0}} for real {{mvar|x}}.
+
+{{Help:Transclusion demo}}
+
+{{Tooltip|Hover your mouse over this text
+|This is the hover text}}
+
+Go to this page to see the Tooltip
+template itself: {{tl|Tooltip}}
+
+This is how to {{Font color||yellow|highlight part of a sentence}}.
+
+{{msg:xyz}}
+{{raw:xyz}}
+{{msgnw:xyz}}
+{{subst:xyz}}
+{{safesubst:xyz}}
+
+{{{1}}}
+{{{IncludedWorkURL|}}}
+{{{Citation class|{{{Citation type|}}}}}}
+
+---tokens---
+'{{'          Punctuation
+'payoff'      Name.Tag
+' '           Name.Tag
+'matrix'      Name.Tag
+' '           Text
+'|'           Punctuation
+' UL '        Name.Label
+'='           Operator
+' '           Text
+'5'           Text
+' '           Text
+'|'           Punctuation
+' UR '        Name.Label
+'='           Operator
+' '           Text
+'7'           Text
+' '           Text
+'|'           Punctuation
+' DL '        Name.Label
+'='           Operator
+' '           Text
+'2'           Text
+' '           Text
+'|'           Punctuation
+' DR '        Name.Label
+'='           Operator
+' '           Text
+'9'           Text
+' '           Text
+'|'           Punctuation
+' Name '      Name.Label
+'='           Operator
+' '           Text
+'Example'     Text
+' '           Text
+'usage'       Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'payoff'      Name.Tag
+' '           Name.Tag
+'matrix'      Name.Tag
+'\n'          Text
+
+'|'           Punctuation
+' UL '        Name.Label
+'='           Operator
+' '           Text
+'5'           Text
+'\n'          Text
+
+'|'           Punctuation
+' UR '        Name.Label
+'='           Operator
+' '           Text
+'7'           Text
+'\n'          Text
+
+'|'           Punctuation
+' DL '        Name.Label
+'='           Operator
+' '           Text
+'2'           Text
+'\n'          Text
+
+'|'           Punctuation
+' DR '        Name.Label
+'='           Operator
+' '           Text
+'9'           Text
+'\n'          Text
+
+'|'           Punctuation
+' Name '      Name.Label
+'='           Operator
+' '           Text
+'Example'     Text
+' '           Text
+'usage'       Text
+'\n'          Text
+
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'Wikipedia'   Name.Namespace
+':'           Punctuation
+'foo'         Name.Tag
+'|'           Punctuation
+'1'           Name.Label
+'='           Operator
+'1'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'Wikipe'      Name.Tag
+'{{'          Punctuation
+'void'        Name.Tag
+'}}'          Punctuation
+'dia'         Name.Tag
+':'           Name.Tag
+'foo'         Name.Tag
+'|'           Punctuation
+'1'           Name.Label
+'='           Operator
+'1'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+':'           Punctuation
+'foo'         Name.Tag
+'|'           Punctuation
+'1'           Name.Label
+'='           Operator
+'1'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'short'       Name.Tag
+' '           Name.Tag
+'description' Name.Tag
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+'help'        Text
+' '           Text
+'page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'pp'          Name.Tag
+'-'           Name.Tag
+'move'        Name.Tag
+'-'           Name.Tag
+'indef'       Name.Tag
+'|'           Punctuation
+'small'       Name.Label
+'='           Operator
+'yes'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'pp'          Name.Tag
+'-'           Name.Tag
+'vandalism'   Name.Tag
+'|'           Punctuation
+'small'       Name.Label
+'='           Operator
+'yes'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'for'         Name.Tag
+'|'           Punctuation
+'the'         Text
+' '           Text
+"'''"         Generic.Strong
+'encyclopedic' Generic.Strong
+"'''"         Generic.Strong
+' '           Text
+'section'     Text
+' '           Text
+'on'          Text
+' '           Text
+'wikitext'    Text
+'|'           Punctuation
+'Wiki'        Text
+'#'           Text
+'Editing'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'redirect'    Name.Tag
+'|'           Punctuation
+'H'           Text
+':'           Text
+'WT'          Text
+'|'           Punctuation
+'the'         Text
+' '           Text
+'welcoming'   Text
+' '           Text
+'templates'   Text
+'|'           Punctuation
+'Wikipedia'   Text
+':'           Text
+'Welcoming'   Text
+' '           Text
+'committee'   Text
+'/'           Text
+'Welcome'     Text
+' '           Text
+'templates'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'Locutions'   Name.Tag
+' '           Name.Tag
+'pages'       Name.Tag
+' '           Name.Tag
+'header'      Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'Wikipedia'   Name.Tag
+' '           Name.Tag
+'how'         Name.Tag
+' '           Name.Tag
+'to'          Name.Tag
+'|'           Punctuation
+'H'           Text
+':'           Text
+'WT'          Text
+'|'           Punctuation
+'H'           Text
+':'           Text
+'MARKUP'      Text
+'|'           Punctuation
+'H'           Text
+':'           Text
+'WIKICODE'    Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'Wikitext'    Name.Tag
+' '           Name.Tag
+'navbox'      Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'Template'    Name.Tag
+'|'           Punctuation
+'1'           Name.Label
+'='           Operator
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'vo'          Name.Tag
+'{{'          Punctuation
+'void'        Name.Tag
+'|'           Punctuation
+'void'        Text
+'}}'          Punctuation
+'id'          Name.Tag
+'|'           Punctuation
+'param1'      Name.Label
+'='           Operator
+'1'           Text
+'|'           Punctuation
+'par'         Text
+'{{'          Punctuation
+'void'        Name.Tag
+'}}'          Punctuation
+'am2'         Text
+'='           Text
+'2'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'math'        Name.Tag
+'|'           Punctuation
+'2'           Text
+"''"          Generic.Emph
+'x'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'&times;'     Name.Entity
+' '           Text
+'4'           Text
+"''"          Generic.Emph
+'y'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'&divide;'    Name.Entity
+' '           Text
+'6'           Text
+"''"          Generic.Emph
+'z'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'+'           Text
+' '           Text
+'8'           Text
+' '           Text
+'&minus;'     Name.Entity
+' '           Text
+'{{'          Punctuation
+'sfrac'       Name.Tag
+'|'           Punctuation
+"''"          Generic.Emph
+'y'           Generic.Emph
+"''"          Generic.Emph
+'|'           Punctuation
+"''"          Generic.Emph
+'z'           Generic.Emph
+"''"          Generic.Emph
+'<'           Punctuation
+'sup'         Name.Tag
+'>'           Punctuation
+'2'           Text
+'</'          Punctuation
+'sup'         Name.Tag
+'>'           Punctuation
+'}}'          Punctuation
+' '           Text
+'{{'          Punctuation
+'='           Name.Function
+'}}'          Punctuation
+' '           Text
+'0'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'math'        Name.Tag
+'|'           Punctuation
+'sin'         Text
+' '           Text
+'2'           Text
+'&pi;'        Name.Entity
+"''"          Generic.Emph
+'x'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'+'           Text
+' '           Text
+'ln'          Text
+' '           Text
+"''"          Generic.Emph
+'e'           Generic.Emph
+"''"          Generic.Emph
+'}}'          Punctuation
+'\n'          Text
+
+'It'          Text
+' '           Text
+'follows'     Text
+' '           Text
+'that'        Text
+' '           Text
+'{{'          Punctuation
+'math'        Name.Tag
+'|'           Punctuation
+"''"          Generic.Emph
+'x'           Generic.Emph
+"''"          Generic.Emph
+'<'           Punctuation
+'sup'         Name.Tag
+'>'           Punctuation
+'2'           Text
+'</'          Punctuation
+'sup'         Name.Tag
+'>'           Punctuation
+' '           Text
+'&ge;'        Name.Entity
+' '           Text
+'0'           Text
+'}}'          Punctuation
+' '           Text
+'for'         Text
+' '           Text
+'real'        Text
+' '           Text
+'{{'          Punctuation
+'mvar'        Name.Tag
+'|'           Punctuation
+'x'           Text
+'}}'          Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'Help'        Name.Namespace
+':'           Punctuation
+'Transclusion' Name.Tag
+' '           Name.Tag
+'demo'        Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'Tooltip'     Name.Tag
+'|'           Punctuation
+'Hover'       Text
+' '           Text
+'your'        Text
+' '           Text
+'mouse'       Text
+' '           Text
+'over'        Text
+' '           Text
+'this'        Text
+' '           Text
+'text'        Text
+'\n'          Text
+
+'|'           Punctuation
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'the'         Text
+' '           Text
+'hover'       Text
+' '           Text
+'text'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Go'          Text
+' '           Text
+'to'          Text
+' '           Text
+'this'        Text
+' '           Text
+'page'        Text
+' '           Text
+'to'          Text
+' '           Text
+'see'         Text
+' '           Text
+'the'         Text
+' '           Text
+'Tooltip'     Text
+'\n'          Text
+
+'template'    Text
+' '           Text
+'itself'      Text
+':'           Text
+' '           Text
+'{{'          Punctuation
+'tl'          Name.Tag
+'|'           Punctuation
+'Tooltip'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'how'         Text
+' '           Text
+'to'          Text
+' '           Text
+'{{'          Punctuation
+'Font'        Name.Tag
+' '           Name.Tag
+'color'       Name.Tag
+'|'           Punctuation
+'|'           Punctuation
+'yellow'      Text
+'|'           Punctuation
+'highlight'   Text
+' '           Text
+'part'        Text
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'sentence'    Text
+'}}'          Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'msg'         Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'raw'         Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'msgnw'       Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'subst'       Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'safesubst'   Name.Namespace
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'\n'          Text
+
+'{{{'         Punctuation
+'IncludedWorkURL' Name.Variable
+'|'           Punctuation
+'}}}'         Punctuation
+'\n'          Text
+
+'{{{'         Punctuation
+'Citation class' Name.Variable
+'|'           Punctuation
+'{{{'         Punctuation
+'Citation type' Name.Variable
+'|'           Punctuation
+'}}}'         Punctuation
+'}}}'         Punctuation
+'\n'          Text

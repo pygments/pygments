@@ -1,0 +1,292 @@
+---input---
+[https://www.wikipedia.org Wikipedia]
+
+[https://www.wikipedia.org]
+
+https://www.wikipedia.org
+
+<span class="plainlinks">[https://www.wikipedia.org Wikipedia]</span>
+
+Single square brackets holding
+[text without a HTTP URL] are
+preserved, but single square
+brackets containing a URL are
+treated as being an external
+[https://example.com/ Web link].
+
+[https://www.wikipedia.org ''Wiki'''''pedi'''a]
+
+tel:1145141919810
+
+[tel:1145141919810 telephone me]
+
+[https://www.google.com [[a]]]
+
+https://www.example.com
+
+[https://www.exampke.com]
+
+[//example.com]
+
+[//example.com a b c]
+
+[//example.com a ''b'' c <nowiki>[//example.com a ''b'' c]</nowiki><includeonly/><div class="a"/> d]
+
+[{{fullurl:Help:Wiki markup|action=edit}} edit]
+
+---tokens---
+'['           Punctuation
+'https://www.wikipedia.org' Name.Label
+' '           Text.Whitespace
+'Wikipedia'   Text
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'https://www.wikipedia.org' Name.Label
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'https://www.wikipedia.org' Name.Label
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'plainlinks'  Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'['           Punctuation
+'https://www.wikipedia.org' Name.Label
+' '           Text.Whitespace
+'Wikipedia'   Text
+']'           Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Single'      Text
+' '           Text
+'square'      Text
+' '           Text
+'brackets'    Text
+' '           Text
+'holding'     Text
+'\n'          Text
+
+'['           Text
+'text'        Text
+' '           Text
+'without'     Text
+' '           Text
+'a'           Text
+' '           Text
+'HTTP'        Text
+' '           Text
+'URL'         Text
+']'           Text
+' '           Text
+'are'         Text
+'\n'          Text
+
+'preserved'   Text
+','           Text
+' '           Text
+'but'         Text
+' '           Text
+'single'      Text
+' '           Text
+'square'      Text
+'\n'          Text
+
+'brackets'    Text
+' '           Text
+'containing'  Text
+' '           Text
+'a'           Text
+' '           Text
+'URL'         Text
+' '           Text
+'are'         Text
+'\n'          Text
+
+'treated'     Text
+' '           Text
+'as'          Text
+' '           Text
+'being'       Text
+' '           Text
+'an'          Text
+' '           Text
+'external'    Text
+'\n'          Text
+
+'['           Punctuation
+'https://example.com/' Name.Label
+' '           Text.Whitespace
+'Web'         Text
+' '           Text
+'link'        Text
+']'           Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'https://www.wikipedia.org' Name.Label
+' '           Text.Whitespace
+"''"          Generic.Emph
+'Wiki'        Generic.Emph
+"''"          Generic.Emph
+"'''"         Generic.Strong
+'pedi'        Generic.Strong
+"'''"         Generic.Strong
+'a'           Text
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'tel:1145141919810' Name.Label
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'tel:1145141919810' Name.Label
+' '           Text.Whitespace
+'telephone'   Text
+' '           Text
+'me'          Text
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'https://www.google.com' Name.Label
+' '           Text.Whitespace
+'[['          Punctuation
+'a'           Name.Tag
+']]'          Punctuation
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'https://www.example.com' Name.Label
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'https://www.exampke.com' Name.Label
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'//example.com' Name.Label
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'//example.com' Name.Label
+' '           Text.Whitespace
+'a'           Text
+' '           Text
+'b'           Text
+' '           Text
+'c'           Text
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'//example.com' Name.Label
+' '           Text.Whitespace
+'a'           Text
+' '           Text
+"''"          Generic.Emph
+'b'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'c'           Text
+' '           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'['           Text
+'/'           Text
+'/'           Text
+'example'     Text
+'.'           Text
+'com'         Text
+' '           Text
+'a'           Text
+' '           Text
+"'"           Text
+"'"           Text
+'b'           Text
+"'"           Text
+"'"           Text
+' '           Text
+'c'           Text
+']'           Text
+'</'          Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'includeonly' Name.Tag
+'/>'          Punctuation
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+'/>'          Punctuation
+' '           Text
+'d'           Text
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'Help'        Text
+':'           Text
+'Wiki'        Text
+' '           Text
+'markup'      Text
+'|'           Punctuation
+'action'      Name.Label
+'='           Operator
+'edit'        Text
+'}}'          Punctuation
+' '           Text
+'edit'        Text
+']'           Text
+'\n'          Text

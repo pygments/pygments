@@ -1,0 +1,273 @@
+---input---
+-{H|zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格}-
+-{H|zh-cn:博客; zh-hk:網誌; zh-tw:部落格;}-
+-{H|zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格;  }-
+
+-{zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格}-
+-{zh-cn:博客; zh-hk:網誌; zh-tw:部落格;}-
+-{zh-cn:[[博客]]; zh-hk:網誌; zh-tw:部落格;  }-
+
+-{zh-tw=>zh-cn:[[博客]];zh-hk=>zh-cn:[[博客]]; }-
+
+-{部落格}- -{[[部落格]]}-
+
+-{zh-cn:-{[[博客]]}-; zh-invalid:網誌; zh-tw:部落格}-
+
+-{zh-invalid:''a''[[博客]];;;zh-cn:a}-
+-{zh:''a''[[博客]]}-
+
+-{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
+<span style="font-size:120%;">yyy</span>;}-
+
+---tokens---
+'-{'          Punctuation
+'H'           Keyword
+'|'           Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+'}-'          Punctuation
+'\n'          Text
+
+'-{'          Punctuation
+'H'           Keyword
+'|'           Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'博客'          Text
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+';}-'         Punctuation
+'\n'          Text
+
+'-{'          Punctuation
+'H'           Keyword
+'|'           Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+';  }-'       Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+'}-'          Punctuation
+'\n'          Text
+
+'-{'          Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'博客'          Text
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+';}-'         Punctuation
+'\n'          Text
+
+'-{'          Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Punctuation
+' zh-hk'      Name.Label
+':'           Punctuation
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+';  }-'       Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'zh-tw'       Name.Label
+'=>'          Operator
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Punctuation
+'zh-hk'       Name.Label
+'=>'          Operator
+'zh-cn'       Name.Label
+':'           Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+'; }-'        Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'部落格'         Text
+'}-'          Punctuation
+' '           Text
+'-{'          Punctuation
+'[['          Punctuation
+'部落格'         Name.Tag
+']]'          Punctuation
+'}-'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'zh-cn'       Name.Label
+':'           Punctuation
+'-{'          Punctuation
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+'}-'          Punctuation
+';'           Text
+' '           Text
+'zh'          Text
+'-'           Text
+'invalid'     Text
+':'           Text
+'網誌'          Text
+';'           Punctuation
+' zh-tw'      Name.Label
+':'           Punctuation
+'部落格'         Text
+'}-'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'zh'          Text
+'-'           Text
+'invalid'     Text
+':'           Text
+"''"          Generic.Emph
+'a'           Generic.Emph
+"''"          Generic.Emph
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+';'           Text
+';'           Text
+';'           Text
+'zh'          Text
+'-'           Text
+'cn'          Text
+':'           Text
+'a'           Text
+'}-'          Punctuation
+'\n'          Text
+
+'-{'          Punctuation
+'zh'          Name.Label
+':'           Punctuation
+"''"          Generic.Emph
+'a'           Generic.Emph
+"''"          Generic.Emph
+'[['          Punctuation
+'博客'          Name.Tag
+']]'          Punctuation
+'}-'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-{'          Punctuation
+'zh-hans'     Name.Label
+':'           Punctuation
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'font'        Literal.String.Double
+'-'           Literal.String.Double
+'size'        Literal.String.Double
+':'           Literal.String.Double
+'120'         Literal.String.Double
+'%'           Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'xxx'         Text
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+';'           Punctuation
+'zh-hant'     Name.Label
+':'           Punctuation
+'\\'          Text
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'font'        Literal.String.Double
+'-'           Literal.String.Double
+'size'        Literal.String.Double
+':'           Literal.String.Double
+'120'         Literal.String.Double
+'%'           Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'yyy'         Text
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+';}-'         Punctuation
+'\n'          Text
