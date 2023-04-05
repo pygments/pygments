@@ -11,8 +11,8 @@
 from pygments.plugin import find_plugin_styles
 from pygments.util import ClassNotFound
 
-
-#: Maps style names to 'submodule::classname'.
+#: A dictionary of built-in styles, mapping style names to
+#: ``'submodule::classname'`` strings.
 STYLE_MAP = {
     'default':  'default::DefaultStyle',
     'emacs':    'emacs::EmacsStyle',

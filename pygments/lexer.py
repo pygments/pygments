@@ -145,7 +145,7 @@ class Lexer(metaclass=LexerMeta):
 
         As these options must all be specifiable as strings (due to the
         command line usage), there are various utility functions
-        available to help with that, see `Option processing`_.
+        available to help with that, see `Utilities`_.
         """
         self.options = options
         self.stripnl = get_bool_opt(options, 'stripnl', True)
