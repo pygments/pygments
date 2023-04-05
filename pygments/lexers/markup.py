@@ -1279,6 +1279,14 @@ class WikitextLexer(RegexLexer):
                 bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
             # Parser functions & templates
             (r'\{\{', Punctuation, 'template-begin-space'),
+            # <tvar> legacy syntax
+            (r'(?i)(<)(tvar)\b(\|)([^>]*?)(>)', bygroups(Punctuation,
+             Name.Tag, Punctuation, String, Punctuation)),
+            (r'</>', Punctuation, '#pop'),
+            # <tvar>
+            (r'(?i)(<)(tvar)\b', bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),
+            (r'(?i)(</)(tvar)\b(\s*)(>)',
+             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
         ],
         'parameter-inner': [
             (r'\}{3}', Punctuation, '#pop'),
