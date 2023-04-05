@@ -780,11 +780,11 @@ class WikitextLexer(RegexLexer):
     aliases = ['wikitext', 'mediawiki']
     filenames = []
     mimetypes = ['text/x-wiki']
-    flags = re.MULTILINE | re.IGNORECASE
+    flags = re.MULTILINE
 
     def nowiki_tag_rules(tag_name):
         return [
-            (r'(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+            (r'(?i)(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
              Name.Tag, Whitespace, Punctuation), '#pop'),
             include('entity'),
             include('text'),
@@ -792,15 +792,15 @@ class WikitextLexer(RegexLexer):
 
     def plaintext_tag_rules(tag_name):
         return [
-            (r'(?s)(.*?)(</)({})(\s*)(>)'.format(tag_name), bygroups(Text,
+            (r'(?si)(.*?)(</)({})(\s*)(>)'.format(tag_name), bygroups(Text,
              Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),
         ]
 
     def delegate_tag_rules(tag_name, lexer):
         return [
-            (r'(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+            (r'(?i)(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
              Name.Tag, Whitespace, Punctuation), '#pop'),
-            (r'(?s).+?(?=</{}\s*>)'.format(tag_name), using(lexer)),
+            (r'(?si).+?(?=</{}\s*>)'.format(tag_name), using(lexer)),
         ]
 
     def text_rules(token):
@@ -878,10 +878,11 @@ class WikitextLexer(RegexLexer):
             # FIXME: Use ABC lexer in the future
             yield match.start() + index + 1, Text, content
 
-    title_char = r' %!"$&\'()*, \-./0-9:; =?@A-Z\\\^ _`a-z~+\u0080-\uFFFF'
+    # a-z removed to prevent linter from complaining, REMEMBER to use (?i)
+    title_char = r' %!"$&\'()*,\-./0-9:;=?@A-Z\\\^_`~+\u0080-\uFFFF'
     nbsp_char = r'(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000])'
-    link_address = r'(?:[0-9.]+|\[[0-9a-f:.]+\]|[^\0- "<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD])'
-    link_char_class = r'[^\0- "<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'
+    link_address = r'(?:[0-9.]+|\[[0-9a-f:.]+\]|[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD])'
+    link_char_class = r'[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'
     double_slashes_i = {
         '__FORCETOC__', '__NOCONTENTCONVERT__', '__NOCC__', '__NOEDITSECTION__', '__NOGALLERY__',
         '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__',
@@ -985,7 +986,7 @@ class WikitextLexer(RegexLexer):
     tokens = {
         'root': [
             # Redirects
-            (r"""(?x)
+            (r"""(?xi)
                 (\A\s*?)(\#REDIRECT:?) # may contain a colon
                 (\s+)(\[\[) (?=[^\]\n]* \]\]$)
             """,
@@ -997,20 +998,20 @@ class WikitextLexer(RegexLexer):
             (r'^(=.+?=)(\s*$\n)',
              bygroups(Generic.Heading, Whitespace)),
             # Double-slashed magic words
-            (words(double_slashes_i), Name.Function.Magic),
-            (words(double_slashes, prefix='(?-i:', suffix=')'), Name.Function.Magic),
+            (words(double_slashes_i, prefix=r'(?i)'), Name.Function.Magic),
+            (words(double_slashes), Name.Function.Magic),
             # Raw URLs
-            (r'\b(?:{}){}{}*'.format('|'.join(protocols),
+            (r'(?i)\b(?:{}){}{}*'.format('|'.join(protocols),
              link_address, link_char_class), Name.Label),
             # Magic links
-            (r'(?-i:\b(?:RFC|PMID){}+[0-9]+\b)'.format(nbsp_char),
+            (r'\b(?:RFC|PMID){}+[0-9]+\b'.format(nbsp_char),
              Name.Function.Magic),
-            (r"""(?x-i:
+            (r"""(?x)
                 \bISBN {nbsp_char}
                 (?: 97[89] {nbsp_dash}? )?
                 (?: [0-9] {nbsp_dash}? ){{9}} # escape format()
                 [0-9Xx]\b
-            )""".format(nbsp_char=nbsp_char, nbsp_dash=f'(?:-|{nbsp_char})'), Name.Function.Magic),
+            """.format(nbsp_char=nbsp_char, nbsp_dash=f'(?:-|{nbsp_char})'), Name.Function.Magic),
             include('list'),
             include('inline'),
             include('text'),
@@ -1018,7 +1019,7 @@ class WikitextLexer(RegexLexer):
         'redirect-inner': [
             (r'(\]\])(\s*?\n)', bygroups(Punctuation, Whitespace), '#pop'),
             (r'(\#)([^#]*?)', bygroups(Punctuation, Name.Label)),
-            (r'[{}]+'.format(title_char), Name.Tag),
+            (r'(?i)[{}]+'.format(title_char), Name.Tag),
         ],
         'list': [
             # Description lists
@@ -1042,45 +1043,45 @@ class WikitextLexer(RegexLexer):
             include('replaceable'),
             # Media links
             (
-                r"""(?x)
+                r"""(?xi)
                 (\[\[)
                     (File|Image) (:)
                     ([{}]*)
                     (?: (\#) ([{}]*?) )?
-                """.format(title_char, f'{title_char}#%'),
+                """.format(title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          Name.Tag, Punctuation, Name.Label),
                 'medialink-inner'
             ),
             # Wikilinks
             (
-                r"""(?x)
+                r"""(?xi)
                 (\[\[)(?!{}) # Should not contain URLs
                     (?: ([{}]*) (:))?
                     ([{}]*?)
                     (?: (\#) ([{}]*?) )?
                 (\]\])
                 """.format('|'.join(protocols), title_char.replace('/', ''),
-                           title_char, f'{title_char}#%'),
+                           title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          Name.Tag, Punctuation, Name.Label, Punctuation)
             ),
             (
-                r"""(?x)
+                r"""(?xi)
                 (\[\[)(?!{})
                     (?: ([{}]*) (:))?
                     ([{}]*?)
                     (?: (\#) ([{}]*?) )?
                     (\|)
                 """.format('|'.join(protocols), title_char.replace('/', ''),
-                           title_char, f'{title_char}#%'),
+                           title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          Name.Tag, Punctuation, Name.Label, Punctuation),
                 'wikilink-inner'
             ),
             # External links
             (
-                r"""(?x)
+                r"""(?xi)
                 (\[)
                     ((?:{}) {} {}*)
                     (\s*)
@@ -1092,85 +1093,87 @@ class WikitextLexer(RegexLexer):
             (r'^(:*)(\s*?)(\{\|)([^\n]*)$', bygroups(Keyword,
              Whitespace, Punctuation, using(this, state=['root', 'attr'])), 'table'),
             # HTML tags
-            (r'(<)({})\b'.format('|'.join(html_tags)),
+            (r'(?i)(<)({})\b'.format('|'.join(html_tags)),
              bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),
-            (r'(</)({})\b(\s*)(>)'.format('|'.join(html_tags)),
+            (r'(?i)(</)({})\b(\s*)(>)'.format('|'.join(html_tags)),
              bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
             # <nowiki>
-            (r'(<)(nowiki)\b', bygroups(Punctuation,
+            (r'(?i)(<)(nowiki)\b', bygroups(Punctuation,
              Name.Tag), ('tag-nowiki', 'tag-inner')),
             # <pre>
-            (r'(<)(pre)\b', bygroups(Punctuation, Name.Tag), ('tag-pre', 'tag-inner')),
+            (r'(?i)(<)(pre)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-pre', 'tag-inner')),
             # <categorytree>
-            (r'(<)(categorytree)\b', bygroups(
+            (r'(?i)(<)(categorytree)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-categorytree', 'tag-inner')),
             # <hiero>
-            (r'(<)(hiero)\b', bygroups(Punctuation,
+            (r'(?i)(<)(hiero)\b', bygroups(Punctuation,
              Name.Tag), ('tag-hiero', 'tag-inner')),
             # <math>
-            (r'(<)(math)\b', bygroups(Punctuation,
+            (r'(?i)(<)(math)\b', bygroups(Punctuation,
              Name.Tag), ('tag-math', 'tag-inner')),
             # <chem>
-            (r'(<)(chem)\b', bygroups(Punctuation,
+            (r'(?i)(<)(chem)\b', bygroups(Punctuation,
              Name.Tag), ('tag-chem', 'tag-inner')),
             # <ce>
-            (r'(<)(ce)\b', bygroups(Punctuation, Name.Tag), ('tag-ce', 'tag-inner')),
+            (r'(?i)(<)(ce)\b', bygroups(Punctuation,
+             Name.Tag), ('tag-ce', 'tag-inner')),
             # <charinsert>
-            (r'(<)(charinsert)\b', bygroups(
+            (r'(?i)(<)(charinsert)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-charinsert', 'tag-inner')),
             # <templatedata>
-            (r'(<)(templatedata)\b', bygroups(
+            (r'(?i)(<)(templatedata)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-templatedata', 'tag-inner')),
             # <gallery>
-            (r'(<)(gallery)\b', bygroups(
+            (r'(?i)(<)(gallery)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-gallery', 'tag-inner')),
             # <graph>
-            (r'(<)(gallery)\b', bygroups(
+            (r'(?i)(<)(gallery)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-graph', 'tag-inner')),
             # <dynamicpagelist>
-            (r'(<)(dynamicpagelist)\b', bygroups(
+            (r'(?i)(<)(dynamicpagelist)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-dynamicpagelist', 'tag-inner')),
             # <inputbox>
-            (r'(<)(inputbox)\b', bygroups(
+            (r'(?i)(<)(inputbox)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-inputbox', 'tag-inner')),
             # <rss>
-            (r'(<)(rss)\b', bygroups(
+            (r'(?i)(<)(rss)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-rss', 'tag-inner')),
             # <imagemap>
-            (r'(<)(imagemap)\b', bygroups(
+            (r'(?i)(<)(imagemap)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-imagemap', 'tag-inner')),
             # <syntaxhighlight>
-            (r'(</)(syntaxhighlight)\b(\s*)(>)',
+            (r'(?i)(</)(syntaxhighlight)\b(\s*)(>)',
              bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
-            (r'(?s)(<)(syntaxhighlight)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+            (r'(?si)(<)(syntaxhighlight)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
              bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),
             # <syntaxhighlight>: Fallback case for self-closing tags
-            (r'(<)(syntaxhighlight)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+            (r'(?i)(<)(syntaxhighlight)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
                 Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
             # <source>
-            (r'(</)(source)\b(\s*)(>)',
+            (r'(?i)(</)(source)\b(\s*)(>)',
              bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
-            (r'(?s)(<)(source)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+            (r'(?si)(<)(source)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
              bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),
             # <source>: Fallback case for self-closing tags
-            (r'(<)(source)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+            (r'(?i)(<)(source)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
                 Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
             # <score>
-            (r'(</)(score)\b(\s*)(>)',
+            (r'(?i)(</)(score)\b(\s*)(>)',
              bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
-            (r'(?s)(<)(score)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
+            (r'(?si)(<)(score)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',
              bygroups(Punctuation, Name.Tag, handle_score)),
             # <score>: Fallback case for self-closing tags
-            (r'(<)(score)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
+            (r'(?i)(<)(score)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups(
                 Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),
             # Other parser tags
-            (r'(<)({})\b'.format('|'.join(parser_tags)),
+            (r'(?i)(<)({})\b'.format('|'.join(parser_tags)),
              bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),
-            (r'(</)({})\b(\s*)(>)'.format('|'.join(parser_tags)),
+            (r'(?i)(</)({})\b(\s*)(>)'.format('|'.join(parser_tags)),
              bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),
             # LanguageConverter markups
             (
-                r"""(?x)
+                r"""(?xi)
                 (-\{{) # Escape format()
                     (?: ([^|]) (\|))?
                     (?: (\s* (?:{variants}) \s*) (=>))?
@@ -1239,7 +1242,7 @@ class WikitextLexer(RegexLexer):
         ],
         'lc-inner': [
             (
-                r"""(?x)
+                r"""(?xi)
                 (;)
                 (?: (\s* (?:{variants}) \s*) (=>))?
                 (\s* (?:{variants}) \s*) (:)
@@ -1258,10 +1261,10 @@ class WikitextLexer(RegexLexer):
         ],
         'replaceable': [
             # Comments
-            (r'(?s)<!--.*?(?:-->|\Z)', Comment.Multiline),
+            (r'<!--[\s\S]*?(?:-->|\Z)', Comment.Multiline),
             # Parameters
             (
-                r"""(?sx)
+                r"""(?x)
                 (\{{3})
                     ([^|]*?)
                     (?=\}{3}|\|)
@@ -1270,24 +1273,34 @@ class WikitextLexer(RegexLexer):
                 'parameter-inner',
             ),
             # Magic variables
-            (r'(\{\{)(\s*)(%s|(?-i:%s))(\s*)(\}\})' %
-             ('|'.join(magic_vars_i), '|'.join(magic_vars)),
+            (r'(?i)(\{\{)(\s*)(%s)(\s*)(\}\})' % '|'.join(magic_vars_i),
              bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
+            (r'(\{\{)(\s*)(%s)(\s*)(\}\})' % '|'.join(magic_vars),
+                bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
             # Parser functions
             (
-                r"""(?xs)
+                r"""(?xi)
                 (\{\{)
-                (\s* <!--.*?(?:-->|\Z))?
-                (\s*) ( \# [%s]*? | %s | (?-i: %s ) ) (:)
-                """ % (title_char,  '|'.join(parser_functions_i), '|'.join(parser_functions)),
+                (\s* <!--[\s\S]*?(?:-->|\Z))?
+                (\s*) ( \# [%s]*? | %s ) (:)
+                """ % (title_char, '|'.join(parser_functions_i)),
+                bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Function,
+                         Punctuation), 'template-inner'
+            ),
+            (
+                r"""(?x)
+                (\{\{)
+                (\s* <!--[\s\S]*?(?:-->|\Z))?
+                (\s*) ( %s ) (:)
+                """ % ('|'.join(parser_functions)),
                 bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Function,
                          Punctuation), 'template-inner'
             ),
             # Templates
             (
-                r"""(?xs)
+                r"""(?xi)
                 (\{\{)
-                (\s* <!--.*?(?:-->|\Z))?
+                (\s* <!--[\s\S]*?(?:-->|\Z))?
                 (\s*) (?: ([%s]*?) (:) )?
                 """ % title_char,
                 bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Namespace,
