@@ -1277,41 +1277,36 @@ class WikitextLexer(RegexLexer):
              bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
             (r'(\{\{)(\s*)(%s)(\s*)(\}\})' % '|'.join(magic_vars),
                 bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
-            # Parser functions
-            (
-                r"""(?xi)
-                (\{\{)
-                (\s* <!--[\s\S]*?(?:-->|\Z))?
-                (\s*) ( \# [%s]*? | %s ) (:)
-                """ % (title_char, '|'.join(parser_functions_i)),
-                bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Function,
-                         Punctuation), 'template-inner'
-            ),
-            (
-                r"""(?x)
-                (\{\{)
-                (\s* <!--[\s\S]*?(?:-->|\Z))?
-                (\s*) ( %s ) (:)
-                """ % ('|'.join(parser_functions)),
-                bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Function,
-                         Punctuation), 'template-inner'
-            ),
-            # Templates
-            (
-                r"""(?xi)
-                (\{\{)
-                (\s* <!--[\s\S]*?(?:-->|\Z))?
-                (\s*) (?: ([%s]*?) (:) )?
-                """ % title_char,
-                bygroups(Punctuation, Comment.Multiline, Whitespace, Name.Namespace,
-                         Punctuation), 'template-name'
-            ),
+            # Parser functions & templates
+            (r'\{\{', Punctuation, 'template-begin-space'),
         ],
         'parameter-inner': [
             (r'\}{3}', Punctuation, '#pop'),
             (r'\|', Punctuation),
             include('inline'),
             include('text'),
+        ],
+        'template-begin-space': [
+            # Templates allow line breaks at the beginning, and due to how MediaWiki handles
+            # comments, an extra state is required to handle things like {{\n<!---->\n name}}
+            (r'<!--[\s\S]*?(?:-->|\Z)', Comment.Multiline),
+            (r'\s+', Whitespace),
+            # Parser functions
+            (
+                r'(?i)(\#[%s]*?|%s)(:)' % (title_char,
+                                           '|'.join(parser_functions_i)),
+                bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')
+            ),
+            (
+                r'(%s)(:)' % ('|'.join(parser_functions)),
+                bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')
+            ),
+            # Templates
+            (
+                r'(?i)([%s]*?)(:)' % title_char,
+                bygroups(Name.Namespace, Punctuation), ('#pop', 'template-name')
+            ),
+            default(('#pop', 'template-name'),),
         ],
         'template-name': [
             (r'(\s*?)(\|)', bygroups(Text, Punctuation), ('#pop', 'template-inner')),
