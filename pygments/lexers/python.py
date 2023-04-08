@@ -341,7 +341,7 @@ class PythonLexer(RegexLexer):
             (r'\.', Name.Namespace),
             # if None occurs here, it's "raise x from None", since None can
             # never be a module name
-            (r'None\b', Name.Builtin.Pseudo, '#pop'),
+            (r'None\b', Keyword.Constant, '#pop'),
             (uni_name, Name.Namespace),
             default('#pop'),
         ],
