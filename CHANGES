@@ -18,9 +18,9 @@ Version 2.15.0
 
 - Updated lexers:
 
-  * AMDGPU: add support for ``scratch_`` instructions, the ``attr*.*`` argument,
+  * AMDGPU: Add support for ``scratch_`` instructions, the ``attr*.*`` argument,
     as well as the ``off`` modifier (#2327).
-  * APDL: miscellaneous improvements (#2314)
+  * APDL: Miscellaneous improvements (#2314)
   * bash/tcsh:
 
     - Move ``break`` to keywords (#2377)
@@ -29,7 +29,7 @@ Version 2.15.0
   * Chapel: Support attributes (#2376)
   * CMake: Implement bracket style comments (#2338, #2354)
   * CSS: Improve lexing of numbers inside function calls (#2382, #2383)
-  * diff: support normal diff syntax, as opposed to unified diff syntax (#2321)
+  * diff: Support normal diff syntax, as opposed to unified diff syntax (#2321)
   * GLSL, HLSL:
 
     - Support line continuations in preprocessor code (#2350)
@@ -38,11 +38,15 @@ Version 2.15.0
   * LilyPond: minor update of builtins
   * PHP: support attributes (#2055, #2347, #2360), fix anonymous classes without
     parameters (#2359), improve lexing of variable variable syntax (#2358)
-  * Python: add missing builtins (#2334)
+  * Python:
+
+    - Add missing builtins (#2334)
+    - Fix inconsistent lexing of ``None`` (#2406)
+
   * Rebol/Red: Don't require script headers (#2348, #2349)
-  * Spice: update keywords (#2336)
-  * SQL+Jinja (``analyse_text`` method): fix catastrophic backtracking (#2355)
-  * Terraform: add ``hcl`` alias (#2375)
+  * Spice: Update keywords (#2336)
+  * SQL+Jinja (``analyse_text`` method): Fix catastrophic backtracking (#2355)
+  * Terraform: Add ``hcl`` alias (#2375)
 
 - Declare support for Python 3.11 and drop support for Python 3.6 (#2324).
 - Update ``native`` style to improve contrast (#2325).
