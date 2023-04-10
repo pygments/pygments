@@ -375,6 +375,7 @@ class PostgresExplainLexer(RegexLexer):
     """
     Handle PostgreSQL EXPLAIN output
 
+    .. versionadded:: 2.15
     """
 
     name = 'PostgreSQL EXPLAIN dialect'

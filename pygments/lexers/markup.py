@@ -771,9 +771,12 @@ class WikitextLexer(RegexLexer):
     """
     For MediaWiki Wikitext.
 
-    Parsing Wikitext is tricky, and results vary between different MediaWiki installations,
-    so we only highlight common syntaxes (built-in or from popular extensions),
-    and also assume templates produce no unbalanced syntaxes.
+    Parsing Wikitext is tricky, and results vary between different MediaWiki
+    installations, so we only highlight common syntaxes (built-in or from
+    popular extensions), and also assume templates produce no unbalanced
+    syntaxes.
+
+    .. versionadded:: 2.15
     """
     name = 'Wikitext'
     url = 'https://www.mediawiki.org/wiki/Wikitext'

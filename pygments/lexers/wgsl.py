@@ -29,9 +29,12 @@ LineEndRE = '[' + "".join(LineEndCodePoints) + ']'
 # https://www.w3.org/TR/WGSL/#syntax-ident_pattern_token
 ident_pattern_token = '([{}][{}]+)|[{}]'.format(uni.xid_start,uni.xid_continue,uni.xid_start)
 
+
 class WgslLexer(RegexLexer):
     """
     Lexer for the WebGPU Shading Language.
+
+    .. versionadded:: 2.15
     """
     name = 'WebGPU Shading Language'
     url = 'https://www.w3.org/TR/WGSL/'

@@ -20,7 +20,7 @@ class CarbonLexer(RegexLexer):
     """
     For Carbon source.
 
-    .. versionadded:: 2.15.0
+    .. versionadded:: 2.15
     """
     name = 'Carbon'
     url = 'https://github.com/carbon-language/carbon-lang'

@@ -2,6 +2,7 @@ Release checklist
 =================
 
 * Check ``git status``
+* Check all lexers have ``versionadded:: `` set correctly.
 * ``tox``
 * ``tox -e check``
 * LATER when configured properly: ``tox -e pylint``

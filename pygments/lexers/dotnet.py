@@ -728,12 +728,13 @@ class FSharpLexer(RegexLexer):
 
         return result
 
+
 class XppLexer(RegexLexer):
 
     """
     For X++ source code. This is based loosely on the CSharpLexer
 
-    .. versionadded:: 2.15.0
+    .. versionadded:: 2.15
     """
 
     name = 'X++'
