@@ -39,13 +39,14 @@ Functions from :mod:`pygments.formatters`:
 .. autofunction:: get_formatter_for_filename
 .. autofunction:: load_formatter_from_file
 
+
 .. module:: pygments.styles
 
 Functions from :mod:`pygments.styles`:
 
 .. autofunction:: get_style_by_name
 .. autofunction:: get_all_styles
-
+.. autodata:: STYLE_MAP
 
 .. module:: pygments.lexer
 
@@ -78,8 +79,8 @@ A formatter is derived from this class:
 
 .. module:: pygments.util
 
-Option processing
-=================
+Utilities
+=========
 
 The :mod:`pygments.util` module has some utility functions usable for processing
 command line options. All of the following functions get values from a
@@ -92,3 +93,7 @@ converted to the expected type if possible.
 .. autofunction:: get_int_opt
 .. autofunction:: get_list_opt
 .. autofunction:: get_choice_opt
+
+It also defines an exception:
+
+.. autoexception:: ClassNotFound

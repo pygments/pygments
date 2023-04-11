@@ -27,7 +27,8 @@ class Formatter:
     Converts a token stream to text.
 
     Formatters should have attributes to help selecting them. These
-    are similar to the corresponding :class:`lexer.Lexer` attributes.
+    are similar to the corresponding :class:`~pygments.lexer.Lexer`
+    attributes.
 
     .. autoattribute:: name
        :no-value:
@@ -70,7 +71,7 @@ class Formatter:
     #: the formatter from a list, e.g. using :func:`.get_formatter_by_name()`.
     aliases = []
 
-    #: A list of :mod:`fnmatch` patterns that match filenames for which this
+    #: A list of fnmatch patterns that match filenames for which this
     #: formatter can produce output. The patterns in this list should be unique
     #: among all formatters.
     filenames = []
