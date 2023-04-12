@@ -11,8 +11,8 @@
 import re
 import keyword
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-    default, words, combined, do_insertions, this, line_re
+from pygments.lexer import DelegatingLexer, Lexer, RegexLexer, include, \
+    bygroups, using, default, words, combined, do_insertions, this, line_re
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace
@@ -635,8 +635,43 @@ class Python2Lexer(RegexLexer):
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?2(\.\d)?')
 
+class _PythonConsoleLexerBase(RegexLexer):
+    name = 'Python console session'
+    aliases = ['pycon']
+    mimetypes = ['text/x-python-doctest']
 
-class PythonConsoleLexer(Lexer):
+    """Auxiliary lexer for `PythonConsoleLexer`.
+
+    Code tokens are output as ``Token.Other.Code``, traceback tokens as
+    ``Token.Other.Traceback``.
+    """
+    tokens = {
+        'root': [
+            (r'(>>> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
+            # This happens, e.g., when tracebacks are embedded in documentation;
+            # trailing whitespaces are often stripped in such contexts.
+            (r'(>>>)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            (r'(\^C)?Traceback \(most recent call last\):\n', Other.Traceback, 'traceback'),
+            # SyntaxError starts with this
+            (r'  File "[^"]+", line \d+', Other.Traceback, 'traceback'),
+            (r'.*\n', Generic.Output),
+        ],
+        'continuations': [
+            (r'(\.\.\. )(.*\n)', bygroups(Generic.Prompt, Other.Code)),
+            # See above.
+            (r'(\.\.\.)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            default('#pop'),
+        ],
+        'traceback': [
+            # As soon as we see a traceback, consume everything until the next
+            # >>> prompt.
+            (r'(?=>>>( |$))', Text, '#pop'),
+            (r'(KeyboardInterrupt)(\n)', bygroups(Name.Class, Whitespace)),
+            (r'.*\n', Other.Traceback),
+        ],
+    }
+
+class PythonConsoleLexer(DelegatingLexer):
     """
     For Python console output or doctests, such as:
 
@@ -659,70 +694,28 @@ class PythonConsoleLexer(Lexer):
         .. versionchanged:: 2.5
            Now defaults to ``True``.
     """
+
     name = 'Python console session'
     aliases = ['pycon']
     mimetypes = ['text/x-python-doctest']
 
     def __init__(self, **options):
-        self.python3 = get_bool_opt(options, 'python3', True)
-        Lexer.__init__(self, **options)
-
-    def get_tokens_unprocessed(self, text):
-        if self.python3:
-            pylexer = PythonLexer(**self.options)
-            tblexer = PythonTracebackLexer(**self.options)
+        python3 = get_bool_opt(options, 'python3', True)
+        if python3:
+            pylexer = PythonLexer
+            tblexer = PythonTracebackLexer
         else:
-            pylexer = Python2Lexer(**self.options)
-            tblexer = Python2TracebackLexer(**self.options)
-
-        curcode = ''
-        insertions = []
-        curtb = ''
-        tbindex = 0
-        in_tb = False
-        for match in line_re.finditer(text):
-            line = match.group()
-            if line.startswith('>>> ') or line.startswith('... '):
-                in_tb = False
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:4])]))
-                curcode += line[4:]
-            elif line.rstrip() == '...' and not in_tb:
-                # only a new >>> prompt can end an exception block
-                # otherwise an ellipsis in place of the traceback frames
-                # will be mishandled
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, '...')]))
-                curcode += line[3:]
-            else:
-                if curcode:
-                    yield from do_insertions(
-                        insertions, pylexer.get_tokens_unprocessed(curcode))
-                    curcode = ''
-                    insertions = []
-                if in_tb:
-                    curtb += line
-                    if not (line.startswith(' ') or line.strip() == '...'):
-                        in_tb = False
-                        for i, t, v in tblexer.get_tokens_unprocessed(curtb):
-                            yield tbindex+i, t, v
-                        curtb = ''
-                elif (line.startswith('Traceback (most recent call last):') or
-                        re.match('  File "[^"]+", line \\d+\\n$', line)):
-                    in_tb = True
-                    curtb = line
-                    tbindex = match.start()
-                elif line == 'KeyboardInterrupt\n':
-                    yield match.start(), Name.Class, line
-                else:
-                    yield match.start(), Generic.Output, line
-        if curcode:
-            yield from do_insertions(insertions,
-                                     pylexer.get_tokens_unprocessed(curcode))
-        if curtb:
-            for i, t, v in tblexer.get_tokens_unprocessed(curtb):
-                yield tbindex+i, t, v
-
+            pylexer = Python2Lexer
+            tblexer = Python2TracebackLexer
+        # We have two auxiliary lexers. Use DelegatingLexer twice with
+        # different tokens.  TODO: DelegatingLexer should support this
+        # directly, by accepting a tuplet of auxiliary lexers and a tuple of
+        # distinguishing tokens. Then we wouldn't need this intermediary
+        # class.
+        class _ReplaceInnerCode(DelegatingLexer):
+            def __init__(self, **options):
+                super().__init__(pylexer, _PythonConsoleLexerBase, Other.Code, **options)
+        super().__init__(tblexer, _ReplaceInnerCode, Other.Traceback, **options)
 
 class PythonTracebackLexer(RegexLexer):
     """
@@ -743,7 +736,7 @@ class PythonTracebackLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Whitespace),
-            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+            (r'^(\^C)?Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
             (r'^During handling of the above exception, another '
              r'exception occurred:\n\n', Generic.Traceback),
             (r'^The above exception was the direct cause of the '

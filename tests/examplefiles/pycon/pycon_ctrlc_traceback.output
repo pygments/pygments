@@ -98,7 +98,9 @@
 'Exception'   Generic.Error
 '\n'          Text.Whitespace
 
-'>>>\n'       Generic.Output
+''            Text
+'>>>'         Generic.Prompt
+'\n'          Text.Whitespace
 
 '>>> '        Generic.Prompt
 'while'       Keyword
@@ -115,14 +117,22 @@
 '...'         Generic.Prompt
 '\n'          Text.Whitespace
 
-'^CTraceback (most recent call last):\n' Generic.Output
+'^CTraceback (most recent call last):\n' Generic.Traceback
 
-'  File "<stdin>", line 1, in <module>\n' Generic.Output
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text.Whitespace
 
-'KeyboardInterrupt\n' Name.Class
+'KeyboardInterrupt' Name.Class
+'\n'          Text.Whitespace
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'class'       Keyword
 ' '           Text
@@ -229,11 +239,9 @@
 'first'       Name
 '\n'          Text.Whitespace
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
-'During handling of the above exception, another exception occurred:\n' Generic.Output
-
-'\n'          Generic.Output
+'During handling of the above exception, another exception occurred:\n\n' Generic.Traceback
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -250,15 +258,15 @@
 'second'      Name
 '\n'          Text.Whitespace
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'x'           Name
 ' '           Text
 '='           Operator
 '\n'          Text.Whitespace
 
-''            Generic.Traceback
 '  File '     Text
 '"<stdin>"'   Name.Builtin
 ', line '     Text
@@ -280,7 +288,9 @@
 'invalid syntax' Name
 '\n'          Text.Whitespace
 
-'>>>\n'       Generic.Output
+''            Text
+'>>>'         Generic.Prompt
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -360,12 +370,13 @@
 'multi'       Name
 '\n'          Text.Whitespace
 
-'    line\n'  Generic.Output
+'    line\n'  Other
 
-'detail\n'    Generic.Output
+'detail\n'    Other
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'raise'       Keyword
 ' '           Text
@@ -394,12 +405,13 @@
 'multi'       Name
 '\n'          Text.Whitespace
 
-'    line\n'  Generic.Output
+'    line\n'  Other
 
-'detail\n'    Generic.Output
+'detail\n'    Other
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'raise'       Keyword
 ' '           Text
@@ -429,12 +441,13 @@
 'multi'       Name
 '\n'          Text.Whitespace
 
-'    line\n'  Generic.Output
+'    line\n'  Other
 
-'detail\n'    Generic.Output
+'detail\n'    Other
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'raise'       Keyword
 ' '           Text
@@ -465,12 +478,13 @@
 'multi'       Name
 '\n'          Text.Whitespace
 
-'    line\n'  Generic.Output
+'    line\n'  Other
 
-'detail\n'    Generic.Output
+'detail\n'    Other
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'raise'       Keyword
 ' '           Text
@@ -497,12 +511,13 @@
 'multi'       Name
 '\n'          Text.Whitespace
 
-'    line\n'  Generic.Output
+'    line\n'  Other
 
-'detail\n'    Generic.Output
+'detail\n'    Other
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'raise'       Keyword
 ' '           Text
@@ -522,6 +537,7 @@
 'Exception'   Generic.Error
 '\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 'import'      Keyword.Namespace
 ' '           Text

@@ -2,7 +2,6 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-''            Generic.Traceback
 '  File '     Text
 '"<stdin>"'   Name.Builtin
 ', line '     Text
@@ -22,12 +21,14 @@
 'invalid syntax' Name
 '\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 '\n'          Text.Whitespace
 
-'KeyboardInterrupt\n' Name.Class
+'KeyboardInterrupt\n' Generic.Output
 
-'>>>\n'       Generic.Output
+'>>>'         Generic.Prompt
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -46,8 +47,9 @@
 'ZeroDivisionError' Generic.Error
 '\n'          Text.Whitespace
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 '1'           Literal.Number.Integer
 '/'           Operator
