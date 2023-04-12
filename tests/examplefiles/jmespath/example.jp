@@ -1,0 +1,16 @@
+'@|&&||`'
+|| [?@ == `[-1.1, 5.4e+3, -5.4E-3]`]
+| `[1, true, -3]`,
+hello('hom\'', 'fds', `false`, `nullandmore` `'6\`.7'`)
+> locations[?state == `null` && foo >= `5.40` || bar < `6`].name."foo.bar"
+| [?@ == &function(a, b)]
+| [?@ == `"foo.bar"`]
+| sort(@)
+| {WashingtonCities: join(', ', @)}
+|[][0][0:2:1][*]|[name, state.name]
+| ![0]
+== &(features[?type=='CDS' && qualifiers.translation])
+|| min_by(people, &age)
+|| max_by(other-people, &"other-age")
+!= foo-bar
+&& &"-foo-b \"a\"r" "other-string"

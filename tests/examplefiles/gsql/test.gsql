@@ -1,0 +1,252 @@
+CREATE QUERY Member_Likeness(VERTEX <motionMember> m1, STRING inDate) FOR GRAPH motionData {
+	# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;
+	MapAccum<VERTEX<motionMember>, MapAccum<STRING, FLOAT>> @@likenessAccum;
+	MapAccum<VERTEX<motionMember>, FLOAT> @@BirthYearAccum;
+	MapAccum<VERTEX<motionMember>, FLOAT> @@HeightAccum;
+	MapAccum<VERTEX<motionMember>, FLOAT> @@WeightAccum;
+	ListAccum<VERTEX<location>> @@MemLocAccum;
+	MapAccum<VERTEX<motionMember>, FLOAT> @@LocAccum;
+	MapAccum<VERTEX<motionMember>, BagAccum<VERTEX<incentive>>> @@DayIncentives;
+	MapAccum<VERTEX<motionMember>, MapAccum<STRING, FLOAT>> @@MemberStats;
+	BagAccum<VERTEX<incentive>> @MemberIncentives;
+	AvgAccum @@StepsAccum;
+	AvgAccum @@BoutsAccum;
+	AvgAccum @@MilesAccum;
+
+	# Universal Vars
+	INT lastMax = 0;
+	INT lastMin = 1000;
+	FLOAT mult;
+
+	# Age Vars
+	INT ageRange;
+	INT birthYear;
+
+	# Height Vars
+	INT heightRange;
+	INT height;
+
+	# Height Vars
+	INT weightRange;
+	INT weight;
+
+	# Location Vars
+	FLOAT locRange;
+	VERTEX memLoc;
+
+	# Activity Vars
+	DATETIME lastRecording;
+
+	# lastRecording = to_datetime("2018-05-19");
+	lastRecording = to_datetime(inDate);
+
+    /*
+
+    test comment block
+
+    */
+
+
+	members = {motionMember.*};
+
+	birthYear = Get_Birth_Year(m1);
+	height = m1.Height;
+	weight = m1.Weight;
+	temp = SELECT loc FROM members:member -(:e) - location: loc
+	  WHERE member == m1
+	    ACCUM
+	      @@MemLocAccum += loc;
+	FOREACH loc in @@MemLocAccum DO
+	  memLoc = loc;
+	  END;
+
+	PRINT memLoc;
+	PRINT birthYear;
+	PRINT height;
+	PRINT weight;
+
+	results = SELECT member FROM members:member
+	  ACCUM
+	    @@BirthYearAccum += (member -> abs(Get_Birth_Year(member) - birthYear));
+
+	FOREACH (member,bys) in @@BirthYearAccum DO
+	  IF bys > lastMax THEN
+	    lastMax = bys;
+	    END;
+	  IF bys < lastMin THEN
+	    lastMin = bys;
+	    END;
+	  END;
+
+	ageRange = lastMax - lastMin;
+	print ageRange;
+	mult = 1.0/ageRange;
+
+
+	FOREACH (member,bys) in @@BirthYearAccum DO
+	  bys = 1 - bys * mult;
+	  @@likenessAccum += (member -> ("age" -> bys));
+	  END;
+
+	lastMax = 0;
+	lastMin = 1000;
+	mult = 0;
+
+	results = SELECT member FROM members:member
+	  ACCUM
+	    @@HeightAccum += (member -> abs(member.Height - height));
+
+	FOREACH (member,heights) in @@HeightAccum DO
+	  IF heights < height THEN
+	    IF heights > lastMax THEN
+	      lastMax = heights;
+	      END;
+	    IF heights < lastMin THEN
+	      lastMin = heights;
+	      END;
+	    END;
+	  END;
+
+	heightRange = lastMax - lastMin;
+	print heightRange;
+	mult = 1.0/heightRange;
+
+
+	FOREACH (member,heights) in @@HeightAccum DO
+	  IF heights < height THEN
+	    heights = 1 - heights * mult;
+	  ELSE
+	    heights = 0;
+	    END;
+	  @@likenessAccum += (member -> ("height" -> heights));
+	  END;
+
+	lastMax = 0;
+	lastMin = 1000;
+	mult = 0;
+
+	results = SELECT member FROM members:member
+	  ACCUM
+	    @@WeightAccum += (member -> abs(member.Weight - weight));
+
+	FOREACH (member,weights) in @@WeightAccum DO
+	  IF weights < weight THEN
+	    IF weights > lastMax THEN
+	      lastMax = weights;
+	      END;
+	    IF weights < lastMin THEN
+	      lastMin = weights;
+	      END;
+	    END;
+	  END;
+
+	weightRange = lastMax - lastMin;
+	print weightRange;
+	mult = 1.0/weightRange;
+
+
+	FOREACH (member,weights) in @@WeightAccum DO
+	  IF weights < weight THEN
+	    weights = 1 - weights * mult;
+	  ELSE
+	    weights = 0;
+	    END;
+	  @@likenessAccum += (member -> ("weight" -> weights));
+	  END;
+
+	lastMax = 0;
+	lastMin = 1000;
+	mult = 0;
+
+	resultsLoc = SELECT loc FROM members:member -(:e) - location: loc
+	  ACCUM
+	    @@LocAccum += (member -> Check_Distance(loc,memLoc));
+	FOREACH (member,loc) in @@LocAccum DO
+	  IF loc < 5800 THEN
+	    IF loc > lastMax THEN
+	      lastMax = ceil(loc);
+	      END;
+	    IF loc < lastMin THEN
+	      lastMin = floor(loc);
+	      END;
+	    END;
+	  END;
+
+	PRINT lastMax;
+	PRINT lastMin;
+
+	locRange = lastMax - lastMin;
+	print locRange;
+	mult = 1.0/locRange;
+
+	FOREACH (member,loc) in @@LocAccum DO
+	  IF loc > 5800 THEN
+	    loc = -1;
+	  ELSE
+	    loc = 1 - loc * mult;
+	    END;
+	  @@likenessAccum += (member -> ("distance" -> loc));
+	  END;
+
+	lastMax = 0;
+	lastMin = 1000;
+	mult = 0;
+
+	incentives = {incentive.*};
+
+	incentives = SELECT incent FROM incentives:incent - (:e) - lookupRule:rule WHERE
+	  rule.RuleName == "Tenacity" AND incent.IncentiveDate > datetime_sub(lastRecording, INTERVAL 1 MONTH) AND incent.IncentiveDate < lastRecording;
+
+	members = SELECT member FROM incentives:incent - (:e) - motionMember:member
+	  ACCUM
+	    @@DayIncentives += (member -> (incent));
+
+	FOREACH (member, incent) IN @@DayIncentives DO
+	  @@StepsAccum = 0;
+	  FOREACH Incentive IN incent DO
+	      @@StepsAccum += Incentive.TotalSteps;
+	      @@BoutsAccum += Incentive.TotalBouts;
+	      @@MilesAccum += Incentive.Miles;
+	    END;
+	  @@MemberStats += (member -> ("stepsAvg" -> @@StepsAccum));
+	  @@MemberStats += (member -> ("stepsSlope" -> Linear_Regression(incent, 1)));
+	  # @@MemberStats += (member -> ("boutsAvg" -> @@BoutsAccum));
+	  # @@MemberStats += (member -> ("boutsSlope" -> Linear_Regression(incent, 2)));
+	  @@MemberStats += (member -> ("milesAvg" -> @@MilesAccum));
+	  @@MemberStats += (member -> ("milesSlope" -> Linear_Regression(incent, 3)));
+	  END;
+
+
+	PRINT @@MemberStats;
+	PRINT @@likenessAccum;
+
+}
+
+# Test end-of-line comments and multiline comments for PR#2002
+USE GLOBAL # end of line comment
+DROP GRAPH Patents
+CREATE GRAPH Patents()
+
+CREATE SCHEMA_CHANGE JOB do_schema_change FOR GRAPH Patents { # add vertex and edge types
+       /*
+       We add vertex and edge types to our empty graph
+       The job will be run then we will drop the job
+       */
+  ADD VERTEX Address(PRIMARY_ID id STRING, line1 STRING, line2 STRING, line3 STRING) WITH PRIMARY_ID_AS_ATTRIBUTE="true"; # ID will be concatenation of several fields
+
+}
+RUN SCHEMA_CHANGE JOB do_schema_change
+DROP JOB do_schema_change
+
+# Tests for PR#2006
+# Test lexer hang with params following SET<STRING> param
+CREATE QUERY tg_astar (VERTEX source_vertex, VERTEX target_vertex, SET<STRING> e_type, STRING wt_type, STRING latitude, STRING longitude,
+STRING wt_attr, BOOL display = False) {
+       # empty body for testing
+}
+
+# Test $(0), $"field", and empty positional parameter _
+CREATE LOADING JOB load_job_supplychain FOR GRAPH SupplyChain {
+  DEFINE FILENAME Inventory="m1:/home/tigergraph/mydata/supplychain/Inventory.csv";
+  LOAD Inventory TO EDGE in_warehouse_inventory VALUES($"warehouse", $1, $2) USING SEPARATOR=",", HEADER="true", EOL="\n";
+}

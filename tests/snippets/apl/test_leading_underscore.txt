@@ -8,19 +8,19 @@ _op_←{_←⍺ ⍵⋄(⍺⍺ ⍺)+⍵⍵ ⍵}
 '_'           Name.Variable
 '←'           Keyword.Declaration
 '⍺'           Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '⍵'           Name.Builtin.Pseudo
 '⋄'           Punctuation
 '('           Punctuation
 '⍺'           Name.Builtin.Pseudo
 '⍺'           Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '⍺'           Name.Builtin.Pseudo
 ')'           Punctuation
 '+'           Operator
 '⍵'           Name.Builtin.Pseudo
 '⍵'           Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '⍵'           Name.Builtin.Pseudo
 '}'           Keyword.Type
-'\n'          Text
+'\n'          Text.Whitespace

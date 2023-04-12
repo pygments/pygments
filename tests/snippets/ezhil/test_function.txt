@@ -11,89 +11,90 @@
 முடி
 
 ---tokens---
-'# (C) முத்தையா அண்ணாமலை 2013, 2015\n' Comment.Single
+'# (C) முத்தையா அண்ணாமலை 2013, 2015' Comment.Single
+'\n'          Text.Whitespace
 
 'நிரல்பாகம்'  Keyword
-'  '          Text
+'  '          Text.Whitespace
 'gcd'         Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'மு'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'max'         Name.Builtin
 '('           Punctuation
 'x'           Name
 ','           Operator
 'y'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 'q'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'min'         Name.Builtin
 '('           Punctuation
 'x'           Name
 ','           Operator
 'y'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@'           Operator
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'q'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ஆனால்'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'       '     Text
+'       '     Text.Whitespace
 'பின்கொடு'    Keyword
-'  '          Text
+'  '          Text.Whitespace
 'மு'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'முடி'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'பின்கொடு'    Keyword
-'  '          Text
+'  '          Text.Whitespace
 'gcd'         Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'மு'          Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'q'           Name
-' '           Text
+' '           Text.Whitespace
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'q'           Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'முடி'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace

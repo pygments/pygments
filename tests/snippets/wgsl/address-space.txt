@@ -1,0 +1,72 @@
+---input---
+alias a=ptr<function,i32>;
+alias b=ptr<private,i32>;
+alias c=ptr<workgroup,i32>;
+alias d=ptr<uniform,i32>;
+alias e=ptr<storage,i32>;
+
+---tokens---
+'alias'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'function'    Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'b'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'private'     Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'c'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'workgroup'   Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'d'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'uniform'     Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'e'           Name
+'='           Operator
+'ptr'         Name.Builtin
+'<'           Operator
+'storage'     Name.Builtin
+','           Punctuation
+'i32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace

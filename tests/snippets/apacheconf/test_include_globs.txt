@@ -3,7 +3,6 @@ Include /etc/httpd/conf.d/*.conf
 
 ---tokens---
 'Include'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/etc/httpd/conf.d/*.conf' Literal.String.Other
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace

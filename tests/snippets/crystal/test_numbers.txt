@@ -1,0 +1,84 @@
+---input---
+# Integers
+0
+1
+1_000_000
+1u8
+11231231231121312i64
+
+# Floats
+0.0
+1.0_f32
+1_f32
+0f64
+1e+4
+1e111
+1_234.567_890
+
+# Error
+01
+0b2
+0x129g2
+0o12358
+
+---tokens---
+'# Integers'  Comment.Single
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1_000_000'   Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1u8'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'11231231231121312i64' Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+'# Floats'    Comment.Single
+'\n'          Text.Whitespace
+
+'0.0'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.0_f32'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1_f32'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0f64'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e+4'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e111'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1_234.567_890' Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'# Error'     Comment.Single
+'\n'          Text.Whitespace
+
+'0'           Error
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0'           Error
+'b2'          Name
+'\n'          Text.Whitespace
+
+'0'           Error
+'x129g2'      Name
+'\n'          Text.Whitespace
+
+'0'           Error
+'o12358'      Name
+'\n'          Text.Whitespace

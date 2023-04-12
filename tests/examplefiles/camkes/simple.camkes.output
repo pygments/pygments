@@ -1,128 +1,139 @@
 '/*\n * Example input for CAmkES lexer.\n */' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'import <std_connector.camkes>;' Comment.Preproc
-'\n\n'        Text
+'import'      Comment.Preproc
+' '           Text.Whitespace
+'<std_connector.camkes>;' Comment.Preproc
+'\n\n'        Text.Whitespace
 
-'// A single-line comment.\n' Comment
+'// A single-line comment.' Comment
+'\n\n'        Text.Whitespace
 
-'\n'          Text
+'import'      Comment.Preproc
+' '           Text.Whitespace
+'"components/Client/Client.camkes";' Comment.Preproc
+'\n'          Text.Whitespace
 
-'import "components/Client/Client.camkes";' Comment.Preproc
-'\n'          Text
-
-'import "components/Echo/Echo.camkes";' Comment.Preproc
-'\n\n'        Text
+'import'      Comment.Preproc
+' '           Text.Whitespace
+'"components/Echo/Echo.camkes";' Comment.Preproc
+'\n\n'        Text.Whitespace
 
 'component'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Foo'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
-'include "proc_defn.h";' Comment.Preproc
-'\n  '        Text
+'\n  '        Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"proc_defn.h";' Comment.Preproc
+'\n  '        Text.Whitespace
 'control'     Keyword
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'dataport'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Buf'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'my_port'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'#ifdef BAR_AVAILABLE\n' Comment.Preproc
+'#ifdef BAR_AVAILABLE' Comment.Preproc
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'component'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Bar'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'provides'    Keyword
-' '           Text
+' '           Text.Whitespace
 'CharAccess'  Name
-' '           Text
+' '           Text.Whitespace
 'ca'          Name
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'#endif\n'    Comment.Preproc
+'#endif'      Comment.Preproc
+'\n'          Text.Whitespace
 
-'\n    #define HASH_DEF_WITH_LEADING_SPACE\n' Comment.Preproc
+'\n    '      Text.Whitespace
+'#define HASH_DEF_WITH_LEADING_SPACE' Comment.Preproc
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assembly'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/* Another multiline comment. */' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'composition' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'component'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Echo'        Name
-' '           Text
+' '           Text.Whitespace
 'echo'        Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'component'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Client'      Name
-' '           Text
+' '           Text.Whitespace
 'client'      Name
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'connection'  Keyword
-' '           Text
+' '           Text.Whitespace
 'seL4RPC'     Name
-' '           Text
+' '           Text.Whitespace
 'simple'      Name
 '('           Punctuation
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'client'      Name
 '.'           Punctuation
 's'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Name
 '.'           Punctuation
 's'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 'configuration' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'echo'        Name
 '.'           Punctuation
 'dma_pool'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4096'        Literal.Number
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -5,8 +5,8 @@
 # also a comment
 
 ---tokens---
-'! a comment' Comment
-'\n'          Text
+'! a comment' Comment.Single
+'\n'          Text.Whitespace
 
-'# also a comment' Comment
-'\n'          Text
+'# also a comment' Comment.Single
+'\n'          Text.Whitespace

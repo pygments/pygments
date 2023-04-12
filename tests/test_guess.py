@@ -2,7 +2,7 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -169,6 +169,22 @@ def test_guess_c_lexer():
     lexer = guess_lexer(code)
     assert lexer.__class__.__name__ == 'CLexer'
 
+def test_guess_carbon_lexer():
+    code = '''
+    package Sorting api;
+
+    abstract class C {
+      var a: i32;
+    }
+
+    base class B {
+      var value_b: i32;
+    }
+
+    impl JustX as X {}
+    '''
+    lexer = guess_lexer(code)
+    assert lexer.__class__.__name__ == 'CarbonLexer'
 
 def test_cbmbasicv2_analyse_text():
     text = "10 PRINT \"PART 1\""

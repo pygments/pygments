@@ -7,7 +7,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,8 +21,7 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
     sys.path.insert(0, srcpath)
 
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
-    ProfilingRegexLexer, ProfilingRegexLexerMeta
+from pygments.lexer import ExtendedRegexLexer, LexerContext
 from pygments.lexers import get_lexer_by_name, find_lexer_class, \
     find_lexer_class_for_filename, guess_lexer
 from pygments.token import Error, Text, _TokenType
@@ -36,7 +35,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
         """
         Split ``text`` into (tokentype, text) pairs.
 
-        ``stack`` is the inital stack (default: ``['root']``)
+        ``stack`` is the initial stack (default: ``['root']``)
         """
         tokendefs = self._tokens
         self.ctx = ctx = LexerContext(text, 0)
@@ -191,7 +190,8 @@ def main(fn, lexer=None, options={}):
         reprs = list(map(repr, tok))
         print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state) if state else '', end=' ')
+            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state)
+                  if state else '', end=' ')
         print()
 
     for type, val in lx.get_tokens(text):
@@ -206,10 +206,10 @@ def main(fn, lexer=None, options={}):
                     else:
                         show_token(tokens[i], None)
             print('Error token:')
-            l = len(repr(val))
+            vlen = len(repr(val))
             print('   ' + repr(val), end=' ')
             if debug_lexer and hasattr(lx, 'ctx'):
-                print(' ' * (60-l) + ' : '.join(lx.ctx.stack), end=' ')
+                print(' ' * (60-vlen) + ' : '.join(lx.ctx.stack), end=' ')
             print()
             print()
             return 1

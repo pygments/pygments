@@ -4,7 +4,7 @@
 
     Lexers for Objective-C family languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -175,12 +175,12 @@ def objective(baselexer):
                 return 0.8
             return 0
 
-        def get_tokens_unprocessed(self, text):
+        def get_tokens_unprocessed(self, text, stack=('root',)):
             from pygments.lexers._cocoa_builtins import COCOA_INTERFACES, \
                 COCOA_PROTOCOLS, COCOA_PRIMITIVES
 
             for index, token, value in \
-                    baselexer.get_tokens_unprocessed(self, text):
+                    baselexer.get_tokens_unprocessed(self, text, stack):
                 if token is Name or token is Name.Class:
                     if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
                        or value in COCOA_PRIMITIVES:
@@ -197,6 +197,7 @@ class ObjectiveCLexer(objective(CLexer)):
     """
 
     name = 'Objective-C'
+    url = 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html'
     aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
     filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
@@ -281,11 +282,12 @@ class LogosLexer(ObjectiveCppLexer):
 
 class SwiftLexer(RegexLexer):
     """
-    For `Swift <https://developer.apple.com/swift/>`_ source.
+    For Swift source.
 
     .. versionadded:: 2.0
     """
     name = 'Swift'
+    url = 'https://www.swift.org/'
     filenames = ['*.swift']
     aliases = ['swift']
     mimetypes = ['text/x-swift']
@@ -412,7 +414,7 @@ class SwiftLexer(RegexLexer):
         ],
         'keywords': [
             (words((
-                'as', 'break', 'case', 'catch', 'continue', 'default', 'defer',
+                'as', 'async', 'await', 'break', 'case', 'catch', 'continue', 'default', 'defer',
                 'do', 'else', 'fallthrough', 'for', 'guard', 'if', 'in', 'is',
                 'repeat', 'return', '#selector', 'switch', 'throw', 'try',
                 'where', 'while'), suffix=r'\b'),
@@ -440,7 +442,7 @@ class SwiftLexer(RegexLexer):
             (r'(var|let)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Text, Name.Variable)),
             (words((
-                'associatedtype', 'class', 'deinit', 'enum', 'extension', 'func', 'import',
+                'actor', 'associatedtype', 'class', 'deinit', 'enum', 'extension', 'func', 'import',
                 'init', 'internal', 'let', 'operator', 'private', 'protocol', 'public',
                 'static', 'struct', 'subscript', 'typealias', 'var'), suffix=r'\b'),
              Keyword.Declaration)

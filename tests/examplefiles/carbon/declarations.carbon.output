@@ -1,0 +1,288 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'ExplorerTest' Name.Other
+' '           Text.Whitespace
+'api'         Keyword.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'choice'      Keyword.Declaration
+' '           Text.Whitespace
+'MyOptionalElement' Name.Other
+'('           Punctuation
+'ZZ'          Name.Other
+':'           Punctuation
+'!'           Punctuation
+' '           Text.Whitespace
+'type'        Keyword
+','           Punctuation
+' '           Text.Whitespace
+'YY'          Name.Other
+':'           Punctuation
+'!'           Punctuation
+' '           Text.Whitespace
+'type'        Keyword
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'None'        Name.Other
+'('           Punctuation
+'YY'          Name.Other
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Element'     Name.Other
+'('           Punctuation
+'ZZ'          Name.Other
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'abstract'    Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'C'           Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'base'        Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'B'           Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'value_b'     Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'interface'   Keyword.Declaration
+' '           Text.Whitespace
+'Vector'      Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Zero'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Self'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Add'         Name.Other
+'['           Punctuation
+'self'        Keyword.Pseudo
+':'           Punctuation
+' '           Text.Whitespace
+'Self'        Keyword
+']'           Punctuation
+'('           Punctuation
+'b'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'Self'        Keyword
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Self'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Scale'       Name.Other
+'['           Punctuation
+'self'        Keyword.Pseudo
+':'           Punctuation
+' '           Text.Whitespace
+'Self'        Keyword
+']'           Punctuation
+'('           Punctuation
+'v'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Self'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Pal'         Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'protected'   Keyword
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'friend'      Keyword
+' '           Text.Whitespace
+'Buddy'       Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'abstract'    Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'MyAbstractClass' Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'protected'   Keyword
+' '           Text.Whitespace
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Create'      Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'partial'     Keyword
+' '           Text.Whitespace
+'Self'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constraint'  Keyword.Declaration
+' '           Text.Whitespace
+'DrawVectorLegoFish' Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'impl'        Keyword.Declaration
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'VectorLegoFish' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'impl'        Keyword.Declaration
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Drawable'    Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'impl'        Keyword.Declaration
+' '           Text.Whitespace
+'JustX'       Name.Other
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'X'           Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace

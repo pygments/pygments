@@ -1,9 +1,7 @@
 '/*'          Comment.Multiline
 ' REXX example. ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Some basic constructs. ' Comment.Multiline
@@ -30,42 +28,22 @@
 '3'           Literal.Number
 ' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n   '       Text.Whitespace
 'say'         Keyword.Reserved
 ' '           Text.Whitespace
 "'"           Literal.String
-'h'           Literal.String
-'u'           Literal.String
-'h'           Literal.String
-'?'           Literal.String
+'huh?'        Literal.String
 "'"           Literal.String
 '\n'          Text.Whitespace
 
 'else'        Keyword.Reserved
 ' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n   '       Text.Whitespace
 'say'         Keyword.Reserved
 ' '           Text.Whitespace
 "'"           Literal.String
-'a'           Literal.String
-'l'           Literal.String
-'m'           Literal.String
-'o'           Literal.String
-'s'           Literal.String
-'t'           Literal.String
-'_'           Literal.String
-'p'           Literal.String
-'i'           Literal.String
-'='           Literal.String
+'almost_pi='  Literal.String
 "'"           Literal.String
 ' '           Text.Whitespace
 'almost_pi'   Text
@@ -109,9 +87,7 @@
 '/*'          Comment.Multiline
 ' quotes '    Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' A comment\n ' Comment.Multiline
@@ -120,9 +96,7 @@
 '*'           Comment.Multiline
 ' / '         Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Built-in functions. ' Comment.Multiline
@@ -134,37 +108,7 @@
 '='           Operator
 ' '           Text.Whitespace
 "'"           Literal.String
-'l'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'c'           Literal.String
-'o'           Literal.String
-'n'           Literal.String
-'t'           Literal.String
-'a'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'i'           Literal.String
-'n'           Literal.String
-'g'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
-' '           Literal.String
-'s'           Literal.String
-'h'           Literal.String
-'o'           Literal.String
-'r'           Literal.String
-'t'           Literal.String
-' '           Literal.String
-'t'           Literal.String
-'e'           Literal.String
-'x'           Literal.String
-'t'           Literal.String
+'line containing some short text' Literal.String
 "'"           Literal.String
 '\n'          Text.Whitespace
 
@@ -176,10 +120,7 @@
 ','           Operator
 ' '           Text.Whitespace
 "'"           Literal.String
-'s'           Literal.String
-'o'           Literal.String
-'m'           Literal.String
-'e'           Literal.String
+'some'        Literal.String
 "'"           Literal.String
 ')'           Operator
 '\n'          Text.Whitespace
@@ -193,9 +134,7 @@
 ' '           Text.Whitespace
 '4'           Literal.Number
 ')'           Operator
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Labels and procedures. ' Comment.Multiline
@@ -205,20 +144,13 @@
 'some_label'  Name.Label
 ' '           Text.Whitespace
 ':'           Operator
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'divide'      Name.Function
 ':'           Operator
 ' '           Text.Whitespace
 'procedure'   Keyword.Declaration
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'parse'       Keyword.Reserved
 ' '           Text.Whitespace
 'arg'         Keyword.Reserved
@@ -226,12 +158,7 @@
 'some'        Text
 ' '           Text.Whitespace
 'other'       Text
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'return'      Keyword.Reserved
 ' '           Text.Whitespace
 'some'        Text
@@ -239,9 +166,7 @@
 '/'           Operator
 ' '           Text.Whitespace
 'other'       Text
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'call'        Keyword.Reserved
 ' '           Text.Whitespace
@@ -252,9 +177,7 @@
 ' '           Text.Whitespace
 '2'           Literal.Number
 ')'           Operator
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Loops '     Comment.Multiline
@@ -272,12 +195,7 @@
 'to'          Keyword.Reserved
 ' '           Text.Whitespace
 '5'           Literal.Number
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'do'          Keyword.Reserved
 ' '           Text.Whitespace
 'j'           Text
@@ -296,16 +214,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 '3'           Literal.Number
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n        '  Text.Whitespace
 'say'         Keyword.Reserved
 ' '           Text.Whitespace
 'i'           Text
@@ -325,12 +234,7 @@
 '+'           Operator
 ' '           Text.Whitespace
 'j'           Text
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'end'         Keyword.Reserved
 ' '           Text.Whitespace
 'j'           Text
@@ -339,24 +243,17 @@
 'end'         Keyword.Reserved
 ' '           Text.Whitespace
 'i'           Text
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'do'          Keyword.Reserved
 ' '           Text.Whitespace
 'forever'     Keyword.Reserved
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n  '        Text.Whitespace
 'leave'       Keyword.Reserved
 '\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' Print a text file on MVS. ' Comment.Multiline
@@ -401,40 +298,23 @@
 'LINES'       Text
 '.'           Operator
 '0'           Literal.Number
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'SAY'         Keyword.Reserved
 ' '           Text.Whitespace
 "'"           Literal.String
-' '           Literal.String
-'L'           Literal.String
-'I'           Literal.String
-'N'           Literal.String
-'E'           Literal.String
-' '           Literal.String
+' LINE '      Literal.String
 "'"           Literal.String
 ' '           Text.Whitespace
 'I'           Text
 ' '           Text.Whitespace
 "'"           Literal.String
-' '           Literal.String
-':'           Literal.String
-' '           Literal.String
+' : '         Literal.String
 "'"           Literal.String
 ' '           Text.Whitespace
 'LINES'       Text
 '.'           Operator
 'I'           Text
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'\n    '      Text.Whitespace
 'I'           Text
 ' '           Text.Whitespace
 '='           Operator

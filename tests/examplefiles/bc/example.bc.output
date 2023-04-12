@@ -3,7 +3,7 @@
 '*'           Comment.Multiline
 ' Calculate the Greatest Common Divisor of a and b.\n ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'define'      Keyword
 ' '           Text
@@ -18,7 +18,7 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -30,9 +30,9 @@
 'm'           Text
 'p'           Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -43,7 +43,7 @@
 '*'           Comment.Multiline
 ' Euclidean algorithm\n     ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -60,7 +60,7 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -82,7 +82,7 @@
 ' '           Text
 'b'           Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -98,7 +98,7 @@
 ' '           Text
 'b'           Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -116,14 +116,14 @@
 'm'           Text
 'p'           Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
 ' '           Text
 ' '           Text
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ' '           Text
@@ -133,10 +133,10 @@
 ' '           Text
 'a'           Text
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"gcd(225, 150) = "' Literal.String
 ' '           Text
@@ -151,93 +151,93 @@
 ' '           Text
 '150'         Literal.Number
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 ' assign operators ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '='           Operator
 ' '           Text
 '10'          Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '+='          Operator
 ' '           Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 '++'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '++'          Operator
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 '--'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Operator
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '+='          Operator
 ' '           Text
 '5'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '-='          Operator
 ' '           Text
 '5'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '*='          Operator
 ' '           Text
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '/='          Operator
 ' '           Text
 '3'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '^='          Operator
 ' '           Text
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
 '%='          Operator
 ' '           Text
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 ' comparison ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -250,10 +250,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -266,10 +266,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -282,10 +282,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -298,10 +298,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -314,10 +314,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
 ' '           Text
@@ -330,12 +330,12 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -360,7 +360,7 @@
 '*'           Comment.Multiline
 ' 2       '   Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -383,7 +383,7 @@
 '/'           Comment.Multiline
 ' 1.5     '   Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -408,7 +408,7 @@
 '*'           Comment.Multiline
 ' 3       '   Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -435,7 +435,7 @@
 '*'           Comment.Multiline
 ' 4   '       Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -461,7 +461,7 @@
 '/'           Comment.Multiline
 ' 0.4 '       Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -486,7 +486,7 @@
 '/'           Comment.Multiline
 ' 1.4 '       Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Text
 ' '           Text
@@ -511,4 +511,4 @@
 '/'           Comment.Multiline
 ' 1.4 '       Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace

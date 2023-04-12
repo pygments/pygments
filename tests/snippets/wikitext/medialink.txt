@@ -1,0 +1,171 @@
+---input---
+[[File:wiki.png|thumb|Wikipedia logo]]
+[[File:wiki.png]]
+[[File:wiki.png|alt=Puzzle globe logo]]
+[[File:wiki.png|link=Wikipedia]]
+[[File:wiki.png|frame|centre|alt=Puzzle globe|Wikipedia logo]]
+[[File:wiki.png|thumb|left|alt=Puzzle globe|Wikipedia logo]]
+[[File:wiki.png|50 px|Wikipedia encyclopedia]]
+[[File:wiki.png|thumb|[[a|b]]]]
+[[File:wiki.png|thumb|[https://www.google.com]]]
+
+[[Media:wiki.png|Image of jigsaw globe]]
+[[media:Classical guitar scale.ogg|Sound]]
+
+---tokens---
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'thumb'       Text
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+'logo'        Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'alt'         Name.Attribute
+'='           Operator
+'Puzzle'      Text
+' '           Text
+'globe'       Text
+' '           Text
+'logo'        Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'link'        Name.Attribute
+'='           Operator
+'Wikipedia'   Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'frame'       Text
+'|'           Punctuation
+'centre'      Text
+'|'           Punctuation
+'alt'         Name.Attribute
+'='           Operator
+'Puzzle'      Text
+' '           Text
+'globe'       Text
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+'logo'        Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'thumb'       Text
+'|'           Punctuation
+'left'        Text
+'|'           Punctuation
+'alt'         Name.Attribute
+'='           Operator
+'Puzzle'      Text
+' '           Text
+'globe'       Text
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+'logo'        Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'50'          Text
+' '           Text
+'px'          Text
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+'encyclopedia' Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'thumb'       Text
+'|'           Punctuation
+'[['          Punctuation
+'a'           Name.Tag
+'|'           Punctuation
+'b'           Text
+']]'          Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'thumb'       Text
+'|'           Punctuation
+'['           Punctuation
+'https://www.google.com' Name.Label
+']'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Media'       Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'Image'       Text
+' '           Text
+'of'          Text
+' '           Text
+'jigsaw'      Text
+' '           Text
+'globe'       Text
+']]'          Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'media'       Name.Namespace
+':'           Punctuation
+'Classical guitar scale.ogg' Name.Tag
+'|'           Punctuation
+'Sound'       Text
+']]'          Punctuation
+'\n'          Text

@@ -16,38 +16,38 @@
 
 '<CsInstruments' Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0dbfs'       Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'prints'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'hello, world' Literal.String
 '\\n'         Literal.String.Escape
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</CsInstruments>' Name.Tag
 '\n'          Text
 
 '<CsScore'    Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</CsScore>'  Name.Tag
 '\n'          Text

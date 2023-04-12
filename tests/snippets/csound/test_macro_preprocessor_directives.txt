@@ -5,16 +5,16 @@
 
 ---tokens---
 '#ifdef'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#ifndef'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#undef'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace

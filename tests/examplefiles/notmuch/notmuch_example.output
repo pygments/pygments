@@ -38,12 +38,12 @@
 
 '#!/bin/sh\n' Comment.Hashbang
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'Hello world!'" Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\x0cpart}\n' Keyword
 

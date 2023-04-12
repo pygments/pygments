@@ -4,20 +4,20 @@
 ---tokens---
 '"foo"'       Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"foo2"'      Name.Tag
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

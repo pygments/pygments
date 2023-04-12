@@ -1,96 +1,96 @@
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 '// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
 
 ''            Text
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// Test comment\n' Comment.Single
 
 ''            Text
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
 
 ''            Text
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '`test-name`' Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'given'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name.Namespace
@@ -98,10 +98,10 @@
 'y'           Name.Namespace
 '.'           Punctuation
 'z'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java'        Name.Namespace
 '.'           Punctuation
 'io'          Name.Namespace
@@ -109,63 +109,63 @@
 '{'           Punctuation
 'File'        Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IOException' Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FileNotFoundException' Name.Class
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'java'        Name.Namespace
 '.'           Punctuation
 'io'          Name.Namespace
 '.'           Punctuation
 'File'        Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'scala'       Name.Namespace
 '.'           Punctuation
 'math'        Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Ordering'    Name.Class
 '['           Punctuation
 'Int'         Name.Class
 ']'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'scala'       Name.Namespace
 '.'           Punctuation
 'math'        Name.Namespace
 '.'           Punctuation
 '{'           Punctuation
 'given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Ordering'    Name.Class
 '['           Punctuation
 '?'           Name
 ']'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'givenSomething' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'givenPackage' Name
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,0 +1,15 @@
+pkgbase = c-intercal
+	pkgdesc = A compiler for the INTERCAL language. INTERCAL is the original esoteric language, a farrago of features that will test the mettle of any programmer and bend the minds of most. Includes a compiler, debugger, and sample code.
+	pkgver = 0.31
+	pkgrel = 1
+	url = https://gitlab.com/esr/intercal
+	arch = x86_64
+	arch = i686
+	license = GPL
+	depends = sh
+	options = staticlibs
+	source = git+https://gitlab.com/esr/intercal#tag=0.31
+	sha256sums = SKIP
+
+pkgname = c-intercal
+

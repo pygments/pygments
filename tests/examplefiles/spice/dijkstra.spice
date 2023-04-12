@@ -1,0 +1,70 @@
+import "std/type/int" as integer;
+
+const int vertexCount = 9;
+
+f<int> minDistance(int[] dist, bool[] sptSet) {
+    int min = integer.MAX_VALUE;
+    int minIndex;
+
+    for int v = 0; v < vertexCount; v++ {
+        if !sptSet[v] && dist[v] <= min {
+            min = dist[v];
+            minIndex = v;
+        }
+    }
+
+    return minIndex;
+}
+
+p printSolution(int[] dist) {
+    printf("Vertex \t\t Distance from source\n");
+    for int i = 0; i < vertexCount; i++ {
+        printf("%d \t\t %d\n", i, dist[i]);
+    }
+}
+
+p dijkstra(int[vertexCount][vertexCount] graph, int src) {
+    int[vertexCount] dist;
+    bool[vertexCount] sptSet;
+
+    // Fill with default values
+    for int i = 0; i < vertexCount; i++ {
+        dist[i] = integer.MAX_VALUE;
+        sptSet[i] = false;
+    }
+
+    // Set distance to starting node to 0
+    dist[src] = 0;
+
+    for int count = 0; count < vertexCount - 1; count++ {
+        int u = minDistance(dist, sptSet);
+        sptSet[u] = true;
+        for int v = 0; v < vertexCount; v++ {
+            if (!sptSet[v] && graph[u][v] != 0 && dist[u] != integer.MAX_VALUE &&
+                dist[u] + graph[u][v] < dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+            }
+        }
+    }
+
+    // Print the solution
+    printSolution(dist);
+}
+
+f<int> main() {
+    int[vertexCount][vertexCount] graph = {
+        { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+        { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+        { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+        { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+        { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+        { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+        { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+        { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+        { 0, 0, 2, 0, 0, 0, 6, 7, 0 }
+    };
+
+    printf("Computing shortest paths with Dijkstra's algorithm ...\n");
+    dijkstra(graph, 0);
+    printf("Done.\n");
+}

@@ -1,0 +1,13 @@
+Comments can precede preprocessor macros
+
+---input---
+/* Comment */ /* Another */ #define FOO 0
+
+---tokens---
+'/* Comment */' Comment.Multiline
+' '           Text.Whitespace
+'/* Another */' Comment.Multiline
+' '           Text.Whitespace
+'#'           Comment.Preproc
+'define FOO 0' Comment.Preproc
+'\n'          Comment.Preproc

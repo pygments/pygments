@@ -4,19 +4,18 @@
 
     Special lexers.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import ast
-import re
 
-from pygments.lexer import Lexer
-from pygments.token import Token, Error, Text
+from pygments.lexer import Lexer, line_re
+from pygments.token import Token, Error, Text, Generic
 from pygments.util import get_choice_opt
 
 
-__all__ = ['TextLexer', 'RawTokenLexer']
+__all__ = ['TextLexer', 'OutputLexer', 'RawTokenLexer']
 
 
 class TextLexer(Lexer):
@@ -36,9 +35,20 @@ class TextLexer(Lexer):
         return TextLexer.priority
 
 
-_ttype_cache = {}
+class OutputLexer(Lexer):
+    """
+    Simple lexer that highlights everything as ``Token.Generic.Output``.
 
-line_re = re.compile('.*?\n')
+    .. versionadded:: 2.10
+    """
+    name = 'Text output'
+    aliases = ['output']
+
+    def get_tokens_unprocessed(self, text):
+        yield 0, Generic.Output, text
+
+
+_ttype_cache = {}
 
 
 class RawTokenLexer(Lexer):

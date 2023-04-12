@@ -4,7 +4,7 @@
 
     Lexers for HTML, XML and related markup.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,7 @@ import re
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Punctuation
+    Punctuation, Whitespace
 from pygments.util import looks_like_xml, html_doctype_matches
 
 from pygments.lexers.javascript import JavascriptLexer
@@ -32,6 +32,7 @@ class HtmlLexer(RegexLexer):
     """
 
     name = 'HTML'
+    url = 'https://html.spec.whatwg.org/'
     aliases = ['html']
     filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
     mimetypes = ['text/html', 'application/xhtml+xml']
@@ -42,7 +43,7 @@ class HtmlLexer(RegexLexer):
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
-            ('<!--', Comment, 'comment'),
+            (r'<!--.*?-->', Comment.Multiline),
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),
             (r'(<)(\s*)(script)(\s*)',
@@ -58,11 +59,6 @@ class HtmlLexer(RegexLexer):
             (r'(<)(\s*)(/)(\s*)([\w:.-]+)(\s*)(>)',
              bygroups(Punctuation, Text, Punctuation, Text, Name.Tag, Text,
                       Punctuation)),
-        ],
-        'comment': [
-            ('[^-]+', Comment),
-            ('-->', Comment, '#pop'),
-            ('-', Comment),
         ],
         'tag': [
             (r'\s+', Text),
@@ -200,7 +196,7 @@ class XmlLexer(RegexLexer):
     Generic lexer for XML (eXtensible Markup Language).
     """
 
-    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+    flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'
     aliases = ['xml']
@@ -211,27 +207,23 @@ class XmlLexer(RegexLexer):
 
     tokens = {
         'root': [
-            ('[^<&]+', Text),
+            (r'[^<&\s]+', Text),
+            (r'[^<&\S]+', Whitespace),
             (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
-            ('<!--', Comment, 'comment'),
+            (r'<!--.*?-->', Comment.Multiline),
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),
             (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
             (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
         ],
-        'comment': [
-            ('[^-]+', Comment),
-            ('-->', Comment, '#pop'),
-            ('-', Comment),
-        ],
         'tag': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[\w.:-]+\s*=', Name.Attribute, 'attr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'attr': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             ('".*?"', String, '#pop'),
             ("'.*?'", String, '#pop'),
             (r'[^\s>]+', String, '#pop'),
@@ -295,7 +287,7 @@ class HamlLexer(ExtendedRegexLexer):
     flags = re.IGNORECASE
     # Haml can include " |\n" anywhere,
     # which is ignored and used to wrap long lines.
-    # To accomodate this, use this custom faux dot instead.
+    # To accommodate this, use this custom faux dot instead.
     _dot = r'(?: \|\n(?=.* \|)|.)'
 
     # In certain places, a comma at the end of the line

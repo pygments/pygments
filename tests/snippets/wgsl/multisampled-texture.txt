@@ -1,0 +1,24 @@
+---input---
+@group(0) @binding(5) var texture_multisampled_2d<f32>;
+
+---tokens---
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_multisampled_2d' Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace

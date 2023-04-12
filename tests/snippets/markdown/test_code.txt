@@ -1,0 +1,72 @@
+---input---
+Code fence:
+
+```
+foo
+```
+
+Code fence with language:
+
+```python
+import this
+```
+
+Code fence with unknown language:
+
+```invalid-lexer
+foo
+```
+
+---tokens---
+'Code'        Text
+' '           Text
+'fence:'      Text
+'\n'          Text.Whitespace
+
+'\n```\nfoo\n```\n' Literal.String.Backtick
+
+'\n'          Text.Whitespace
+
+'Code'        Text
+' '           Text
+'fence'       Text
+' '           Text
+'with'        Text
+' '           Text
+'language:'   Text
+'\n'          Text.Whitespace
+
+'\n```'       Literal.String.Backtick
+'python'      Literal.String.Backtick
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'this'        Name.Namespace
+'\n'          Text.Whitespace
+
+'```\n'       Literal.String.Backtick
+
+'\n'          Text.Whitespace
+
+'Code'        Text
+' '           Text
+'fence'       Text
+' '           Text
+'with'        Text
+' '           Text
+'unknown'     Text
+' '           Text
+'language:'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'```invalid-lexer' Text
+'\n'          Text.Whitespace
+
+'foo'         Text
+'\n'          Text.Whitespace
+
+'```'         Text
+'\n'          Text.Whitespace

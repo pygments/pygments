@@ -1,4 +1,5 @@
-'//test comment\n' Comment.Single
+'//test comment' Comment.Single
+'\n'          Text.Whitespace
 
 'START'       Keyword
 ' '           Text.Whitespace
@@ -1116,7 +1117,7 @@
 
 'CREATE'      Keyword
 ' '           Text.Whitespace
-'UNIQUE'      Name
+'UNIQUE'      Keyword
 ' '           Text.Whitespace
 '('           Punctuation
 'a'           Name

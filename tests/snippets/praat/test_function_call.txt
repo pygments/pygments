@@ -8,13 +8,13 @@ selected("Sound", i+(a*b))
 'Sound'       Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 '+'           Operator
 '('           Text
 'a'           Text
 '*'           Operator
 'b'           Text
-')'           Text
 ')'           Punctuation
-'\n'          Text
+')'           Punctuation
+'\n'          Text.Whitespace

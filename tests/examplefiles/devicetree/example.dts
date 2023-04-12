@@ -162,3 +162,25 @@
 	keep-power-in-suspend;
 	status = "okay";
 };
+
+/ {
+	#size-cells = < 0x01 >;
+	qcom,msm-id = < 0x122 0x10000 0x128 0x10000 0x129 0x10000 0x12a 0x10000 0x12b 0x10000 >;
+	compatible = "qcom,mdm9607-mtp\0qcom,mdm9607\0qcom,mtp";
+	#address-cells = < 0x01 >;
+	model = "Franklin Technologies, Inc. MDM 9607 R717 P1";
+	qcom,board-id = < 0x1a 0x00 >;
+	interrupt-parent = < 0x01 >;
+
+	soc {
+		#size-cells = < 0x01 >;
+		#address-cells = < 0x01 >;
+		ranges;
+
+		qcom,rpm-rbcpr-stats@0x200000 {
+			compatible = "qcom,rpmrbcpr-stats";
+			reg = < 0x200000 0x1000 >;
+			qcom,start-offset = < 0x90010 >;
+		};
+	};
+};

@@ -1,0 +1,178 @@
+'Source'      Keyword
+': '          Text.Whitespace
+'foo'         Literal.String
+'\n'          Text.Whitespace
+
+'Section'     Keyword
+': '          Text.Whitespace
+'misc'        Literal.String
+'\n'          Text.Whitespace
+
+'Priority'    Keyword
+': '          Text.Whitespace
+'optional'    Literal.String
+'\n'          Text.Whitespace
+
+'Maintainer'  Keyword
+': '          Text
+'Debian Python Team ' Text
+'<team+python@domain.tld>' Generic.Strong
+'\n'          Text.Whitespace
+
+'Uploaders'   Keyword
+': '          Text
+'Alice '      Text
+'<alice@domain.tld>' Generic.Strong
+'\n'          Text.Whitespace
+
+'Build-Depends' Keyword
+': '          Text
+'debhelper-compat' Name.Function
+' '           Text
+'('           Text
+'='           Operator
+' '           Text
+'13'          Literal.Number
+')'           Text
+',\n'         Text
+
+' '           Text
+'dh-python'   Name.Function
+',\n'         Text
+
+' '           Text
+'otherbuilddependancies' Name.Function
+'\n'          Text
+
+'Build-Depends-Indep' Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+'\n'          Text
+
+'Build-Depends-Arch' Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+'\n'          Text
+
+'Rules-Requires-Root' Keyword
+': '          Text.Whitespace
+'no'          Literal.String
+'\n'          Text.Whitespace
+
+'Standards-Version' Keyword
+': '          Text.Whitespace
+'4.5.1'       Literal.String
+'\n'          Text.Whitespace
+
+'Vcs-Git'     Keyword
+': '          Text.Whitespace
+'https://salsa.domain.tld/python-team/packages/foo.git' Literal.String
+'\n'          Text.Whitespace
+
+'Vcs-Browser' Keyword
+': '          Text.Whitespace
+'https://salsa.domain.tld/python-team/packages/foo' Literal.String
+'\n'          Text.Whitespace
+
+'Homepage'    Keyword
+': '          Text.Whitespace
+'https://domain.tld/owner/foo' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Package'     Keyword
+': '          Text.Whitespace
+'foo'         Literal.String
+'\n'          Text.Whitespace
+
+'Architecture' Keyword
+': '          Text.Whitespace
+'all'         Literal.String
+'\n'          Text.Whitespace
+
+'Pre-Depends' Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+'\n'          Text
+
+'Depends'     Keyword
+':\n '        Text
+'python3-bar' Name.Function
+',\n'         Text
+
+' '           Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+',\n'         Text
+
+' '           Text
+'otherdependancies' Name.Function
+',\n'         Text
+
+' '           Text
+'$'           Operator
+'{'           Text
+'python3:Depends' Name.Entity
+'}'           Text
+'\n'          Text
+
+'Provides'    Keyword
+': '          Text.Whitespace
+'x-terminal-emulator' Literal.String
+'\n'          Text.Whitespace
+
+'Recommends'  Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+',\n'         Text
+
+' '           Text
+'other-recommends' Name.Function
+'\n'          Text
+
+'Suggests'    Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+'\n'          Text
+
+'Enhances'    Keyword
+':\n '        Text
+'p1'          Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p2'          Name.Function
+'\n'          Text
+
+'Description' Keyword
+': title for this package\n' Generic.Strong
+
+' First paragraph describing the packaged software.\n' Text
+
+' .\n'        Text
+
+' And a second paragraph too.\n' Text

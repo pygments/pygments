@@ -9,7 +9,8 @@ Builtin Tokens
 In the :mod:`pygments.token` module, there is a special object called `Token`
 that is used to create token types.
 
-You can create a new token type by accessing an attribute of `Token`:
+You can create a new token type by accessing an attribute of `Token` whose
+name starts with an uppercase letter:
 
 .. sourcecode:: pycon
 
@@ -22,7 +23,7 @@ You can create a new token type by accessing an attribute of `Token`:
 Note that tokens are singletons so you can use the ``is`` operator for comparing
 token types.
 
-As of Pygments 0.7 you can also use the ``in`` operator to perform set tests:
+You can also use the ``in`` operator to perform set tests:
 
 .. sourcecode:: pycon
 
@@ -61,7 +62,7 @@ Inside the :mod:`pygments.token` module the following aliases are defined:
 
 ============= ============================ ====================================
 `Text`        `Token.Text`                 for any type of text data
-`Whitespace`  `Token.Text.Whitespace`      for specially highlighted whitespace
+`Whitespace`  `Token.Text.Whitespace`      for whitespace
 `Error`       `Token.Error`                represents lexer errors
 `Other`       `Token.Other`                special token for data not
                                            matched by a parser (e.g. HTML
@@ -78,20 +79,11 @@ Inside the :mod:`pygments.token` module the following aliases are defined:
                                            the explanation below)
 ============= ============================ ====================================
 
-The `Whitespace` token type is new in Pygments 0.8. It is used only by the
-`VisibleWhitespaceFilter` currently.
-
 Normally you just create token types using the already defined aliases. For each
 of those token aliases, a number of subtypes exists (excluding the special tokens
 `Token.Text`, `Token.Error` and `Token.Other`)
 
-The `is_token_subtype()` function in the `pygments.token` module can be used to
-test if a token type is a subtype of another (such as `Name.Tag` and `Name`).
-(This is the same as ``Name.Tag in Name``. The overloaded `in` operator was newly
-introduced in Pygments 0.7, the function still exists for backwards
-compatibility.)
-
-With Pygments 0.7, it's also possible to convert strings to token types (for example
+It's also possible to convert strings to token types (for example
 if you want to supply a token from the command line):
 
 .. sourcecode:: pycon
@@ -188,6 +180,9 @@ Name Tokens
 `Name.Other`
     Other names. Normally unused.
 
+`Name.Property`
+    Additional token type occasionally used for class attributes.
+
 `Name.Tag`
     Tag names (in HTML/XML markup or configuration files).
 
@@ -225,7 +220,7 @@ Literals
 
 `String.Affix`
     Token type for affixes that further specify the type of the string they're
-    attached to (e.g. the prefixes ``r`` and ``u8`` in ``r"foo"`` and ``u8"foo"``). 
+    attached to (e.g. the prefixes ``r`` and ``u8`` in ``r"foo"`` and ``u8"foo"``).
 
 `String.Backtick`
     Token type for strings enclosed in backticks.
@@ -306,6 +301,12 @@ Punctuation
 `Punctuation`
     For any punctuation which is not an operator (e.g. ``[``, ``(``...)
 
+`Punctuation.Marker`
+    For markers that point to a location (e.g., carets in Python
+    tracebacks for syntax errors).
+
+    .. versionadded:: 2.10
+
 
 Comments
 ========
@@ -322,6 +323,9 @@ Comments
 
 `Comment.Preproc`
     Token type for preprocessor comments (also ``<?php``/``<%`` constructs).
+
+`Comment.PreprocFile`
+    Token type for filenames in preprocessor comments, such as include files in C/C++.
 
 `Comment.Single`
     Token type for comments that end at the end of a line (e.g. ``# foo``).

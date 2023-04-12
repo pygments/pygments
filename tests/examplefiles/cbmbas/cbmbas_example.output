@@ -1,27 +1,27 @@
 '10'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'rem cbm basic v2 example\n' Comment.Single
 
 '20'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'rem comment with keywords: for, data\n' Comment.Single
 
 '30'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'dim'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a$'          Name
 '('           Punctuation
 '20'          Literal.Number.Float
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '35'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'rem the typical space efficient form of leaving spaces out:\n' Comment.Single
 
 '40'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword.Reserved
 't'           Name
 '='           Operator
@@ -39,10 +39,10 @@
 ';'           Punctuation
 ':'           Punctuation
 'next'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 '50'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'get'         Keyword.Reserved
 'a$'          Name
 ':'           Punctuation
@@ -56,22 +56,22 @@
 ':'           Punctuation
 'goto'        Keyword.Reserved
 '40'          Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '55'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'rem it is legal to omit the closing " on line end\n' Comment.Single
 
 '60'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'print'       Keyword.Reserved
 '"{white}"'   Literal.String
 ':'           Punctuation
 'print'       Keyword.Reserved
 '"bye...'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '70'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace

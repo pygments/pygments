@@ -9,7 +9,7 @@
 'and'         Text
 ' '           Text
 '*italics*'   Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -18,4 +18,4 @@
 'and'         Text
 ' '           Text
 '**bold**'    Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace

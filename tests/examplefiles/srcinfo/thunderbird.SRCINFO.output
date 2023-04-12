@@ -1,0 +1,2182 @@
+'pkgbase'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird' Text
+'\n\t'        Text.Whitespace
+'pkgdesc'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Standalone mail and news reader from mozilla.org' Text
+'\n\t'        Text.Whitespace
+'pkgver'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'91.3.0'      Text
+'\n\t'        Text.Whitespace
+'pkgrel'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Text
+'\n\t'        Text.Whitespace
+'url'         Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://www.mozilla.org/thunderbird/' Text
+'\n\t'        Text.Whitespace
+'arch'        Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x86_64'      Text
+'\n\t'        Text.Whitespace
+'license'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'MPL'         Text
+'\n\t'        Text.Whitespace
+'license'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'GPL'         Text
+'\n\t'        Text.Whitespace
+'license'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LGPL'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'unzip'       Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'zip'         Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'diffutils'   Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'python'      Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'python-setuptools' Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'yasm'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nasm'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'mesa'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'imake'       Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libpulse'    Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'xorg-server-xvfb' Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'autoconf2.13' Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'rust'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'clang'       Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'llvm'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cbindgen'    Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nodejs'      Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gawk'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'perl'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'findutils'   Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libotr'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'glibc'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gtk3'        Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libgdk-3.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libgtk-3.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'mime-types'  Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'dbus'        Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libdbus-1.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'dbus-glib'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'alsa-lib'    Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nss'         Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'hunspell'    Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sqlite'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ttf-font'    Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libvpx'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libvpx.so'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'zlib'        Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bzip2'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libbz2.so'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'botan'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libwebp'     Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libwebp.so'  Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libwebpdemux.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libevent'    Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libjpeg-turbo' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libffi'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libffi.so'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nspr'        Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gcc-libs'    Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libx11'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libxrender'  Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libxfixes'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libxext'     Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libxcomposite' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libxdamage'  Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pango'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libpango-1.0.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cairo'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gdk-pixbuf2' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'icu'         Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libicui18n.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libicuuc.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'freetype2'   Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libfreetype.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'fontconfig'  Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libfontconfig.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'glib2'       Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libglib-2.0.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pixman'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libpixman-1.so' Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gnupg'       Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-af.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ar.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ast.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-be.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-bg.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-br.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ca.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cak.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cs.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cy.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-da.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-de.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-dsb.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-el.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-en-GB.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-en-US.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-es-AR.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-es-ES.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-et.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-eu.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fi.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fr.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fy-NL.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ga-IE.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-gd.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-gl.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-he.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hr.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hsb.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hu.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hy-AM.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-id.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-is.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-it.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ja.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ka.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-kab.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-kk.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ko.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-lt.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ms.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nb-NO.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nl.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nn-NO.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pa-IN.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pl.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pt-BR.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pt-PT.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-rm.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ro.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ru.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sk.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sl.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sq.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sr.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sv-SE.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-th.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-tr.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-uk.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-uz.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-vi.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-zh-CN.xpi' Text
+'\n\t'        Text.Whitespace
+'noextract'   Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-zh-TW.xpi' Text
+'\n\t'        Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'!emptydirs'  Text
+'\n\t'        Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'!makeflags'  Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/source/thunderbird-91.3.0.source.tar.xz' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/source/thunderbird-91.3.0.source.tar.xz.asc' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird.desktop' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'vendor-prefs.js' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'distribution.ini' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'mozconfig.cfg' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'metainfo.patch' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-af.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/af.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ar.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ar.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ast.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ast.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-be.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/be.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-bg.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/bg.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-br.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/br.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ca.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ca.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cak.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/cak.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cs.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/cs.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-cy.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/cy.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-da.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/da.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-de.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/de.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-dsb.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/dsb.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-el.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/el.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-en-GB.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/en-GB.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-en-US.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/en-US.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-es-AR.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/es-AR.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-es-ES.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/es-ES.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-et.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/et.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-eu.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/eu.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fi.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/fi.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fr.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/fr.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-fy-NL.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/fy-NL.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ga-IE.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ga-IE.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-gd.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/gd.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-gl.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/gl.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-he.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/he.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hr.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/hr.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hsb.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/hsb.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hu.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/hu.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-hy-AM.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/hy-AM.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-id.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/id.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-is.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/is.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-it.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/it.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ja.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ja.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ka.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ka.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-kab.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/kab.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-kk.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/kk.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ko.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ko.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-lt.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/lt.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ms.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ms.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nb-NO.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/nb-NO.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nl.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/nl.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-nn-NO.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/nn-NO.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pa-IN.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/pa-IN.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pl.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/pl.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pt-BR.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/pt-BR.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-pt-PT.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/pt-PT.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-rm.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/rm.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ro.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ro.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-ru.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/ru.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sk.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/sk.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sl.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/sl.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sq.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/sq.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sr.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/sr.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-sv-SE.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/sv-SE.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-th.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/th.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-tr.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/tr.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-uk.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/uk.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-uz.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/uz.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-vi.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/vi.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-zh-CN.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/zh-CN.xpi' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-91.3.0-zh-TW.xpi::https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/91.3.0/linux-x86_64/xpi/zh-TW.xpi' Text
+'\n\t'        Text.Whitespace
+'validpgpkeys' Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'14F26682D0916CDD81E37B6D61B7B526D98F0353' Text
+'\n\t'        Text.Whitespace
+'validpgpkeys' Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'4360FE2109C49763186F8E21EBE41E90F6F12F6D' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'938de817ed2cad90f665559da1dfc266f34b6ca2e688ee364112edfdb1167183a8225132ed50b672ceb14402be933be82fd1ef8b46f103cdf1534a403fb472d9' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SKIP'        Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a0061fcb2a7f66061e336a8d95948592f56f4752e56467f14ba63846720ebf845cce7511d1a2637e3b80d5a1ffdaa2fb783fa37195103425ef65222d45372012' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'6918c0de63deeddc6f53b9ba331390556c12e0d649cf54587dfaabb98b32d6a597b63cf02809c7c58b15501720455a724d527375a8fb9d757ccca57460320734' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5cd3ac4c94ef6dcce72fba02bc18b771a2f67906ff795e0e3d71ce7db6d8a41165bd5443908470915bdbdb98dddd9cf3f837c4ba3a36413f55ec570e6efdbb9f' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'328422adac0cfe6af4ecdcd864004b7ada8f8171aa954fecc23a7e883e90a9bb0848372faa1100440dc754922f965e1e7b98c185aa88df190bff1051d2146c85' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'7e43b1f25827ddae615ad43fc1e11c6ba439d6c2049477dfe60e00188a70c0a76160c59a97cc01d1fd99c476f261c7cecb57628b5be48874be7cf991c22db290' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'7f6cefe5d3db2bbf4aa640ab4b68b7b0189d67932821b53eb73a1a2ed274e816e4fce0b6dbf20da4f9ef4d5be8faa58bff40cf9ecdba7322aeb3d22de7c2870c' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b79d8b4479fd5142a6d3428d501143ffd93706abf73dc26692218e937e207fb0dc488041cd57d8064c2f350de1cac5fc4d806b2a72405fb92b2c519422f12256' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'fcfa5b390a42b8b6291ca9857d7d739ca008519f5806fa398abe1adb4e56c31138009cfc601ebc059662c94ea0cc9017333331ec82ea3a635a5ef398b0bf1b70' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bcf93fa2301040b1748a13e4646b97d05bb0c10e9025fd2342174d590b477320af97d86ef6042d8d96657d56c1ec9cbf6090105570622d404719c24e2dbb552e' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ed60f6c43626f95dd93d2faa253c9a2ebde3dbe704029a0d04c74f185724cdfb5c2feea8ff48402804c1028041bcbf9adf17b9d446a31daf52a9aa4bcab5175e' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1571fab57c770d79fbb6988e16c871355c8526d7048c55b456d03ec6b4ee39fe1acd20c2b11396418288e2369aa76cf5bed2f3911a064bc9cb5ee2265aeaa2cc' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2c80e53b5095466a29cb82e4b5bdbc20ac8dd8074cc84aff2331326b763192a9a255b24f9e8c3cdfc99af390524e8c7f4e6e193f5d8f69d677d6f59826ca503e' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'43889478b3570491190228d166a6b7815f944b2d2e77d0ec8f70d00b32665b5c812e5479a027a1a947f151e94da9573f0b8704ccbf30419adeb804d6a4fe200e' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'829b66b45283ca27e6fa941c20e88590c0733d464bb36e770533a480f3697dce4303dfefcba7934b20bb93e7458d948e379f0da0ac9d6b50093f3f75872a51f7' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'d1507df70b85fad42c6fa06fdffa9dd99c5622e458a1032711cf1ffd4b80fd19d42962baa20975dea8115baf85f192b5c5e6a6de8a52a08abefcb21a16b9ada7' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'4a78713f8aa026eb75225c227f707ebc77f4e4ba9135532de5721bb79e6d060b6c7d805ee8ce8da504627efc4e342623ae6b8117ed77058835f1a7da7f925be0' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2c75fac16e2038b698dc07ce92193d458d183f809437a507a61a0c93673e665f6b3e94370f7572252878bba26959c58415a55faa8b2a7aff31a0b0b59e4654c9' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'fb8c4a01f40963af8ce7678143ca47ad8b23e310bdd7d0b667d23b04256144f626d9eb387ee3a3f63ae38cff952058c898d2cd4f97c63f9f0e1260cce98c2c4f' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'29b11326cdb9c1c094142ffe4d6db9e2ca3f1f55357934216f7bf20f2fb3faa651c6307a4f11d96fbb02bf3840f7e6270cab77bca4a63ef98694ff422b667f4b' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a67bd60d6604cfd72c59fc763860166d914d96e5b338368f6072ad1968394173d814516d99e4562a52f7bdbd8f2a5eb0939d4042c58eee22b4c33967e3055bb9' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c0c962e9ad8c54ef2ee1ec853400e74b872e7bce20b6fc0ab875cffc50a2d3ddbcbf2803651e35d0251905c5fb6381e0a81903cdd5e9fdf8379ac2e04b477158' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'934886472adaebe4d7495f73addeeef63be15e20f5c1132373246ff89487713e2b2e39d7570cfe119bc65efdd0325b77b996101c6d0b427006ce7047902b27d7' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'f9c66c33618b106048848a590acf8c13550d47d118fa3c1b71509f46130e95ea9670558fe2f80aba1842a78a06664db4cc1c043780e3b920951086e74e52e5ee' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3e0d2902af192234c0c84407d45c3f7d25bf55a8d02a56d6c016f5381305c599bab74f9f0e859fdf47ff87a458f10479f6e3d0b1d8a97ff1e406e68382e23259' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'009f0fa7d365c3b58dc5aeb36dddfd8ff799abddb015f8e6303673c1ed3a717f3f9f03ceeb6e325675e58d0d3b3bbf430b7e6b7022fadc1fb712c613888b0604' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8bd7aac9c47314870b6c9fc7c655bfc1ffbbbc6652a8052504a3104bbcf7994a0b26c63a65e516027ef3417ebe908fbfb8b583366a499b1550a86d8fe307e30e' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'d10e28b8eeed85da5f8c36c8332e65e1028a9243cec4eba414bc3439a9bc40893618a7e85cfb9746f0c6871402a085c197a4d953329da48e5bef023b047d11aa' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3e63f969f2ad8161d748f53652ab9616fb74b71571e6a655df4b9a5e7ab7dc55d5906d24b875f0b975976da22f7f627284afdea2b2a046a05e6144dc72520872' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b884915a7a363ac8b919ea29581c0a5eee952b42b8446b1e13a21dec218eb7706c172df79f53021934aa831cc2be6bff9017fb6c1c3ead20f9b41061849ecf46' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3d91ff2128d0709da4c46f3fc28807542193b0274cd8e2aaa30ce78afb459cf1f24ed79de4450135396d4f77eb22dee8a8ad719dd6e7b5fa853555d3a69f4045' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'26c84b7e95420772c46bd613505aba7674e698cb7ddb2ca6bfed196f125cdb59ba02d8153d85f68b47168781072793702639b3400c14629b7eb9f730a3afa8e0' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'6d16c298bc14033207bc529cb537745c817193355b73e01b380e2ed218c0152a8bb493087e0a2b46afc36e9415362e59b86731aa098a2461d8a365d089a318a9' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'02f09bc15ab2e83ae612fc7c30a9ccc4724fe53b2178cdf5ffd434a646e72bf2082d6867442b627f97df66b72a337850735e50640fd0db1da9b6775119ab0c18' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'e601fc09ce1b2b6ce899aa2653ed38c6dcee5ba481bbe91f709ac963fadbb8bfce7aa83bbab052484995a0a54d90c18e298df0f09e42d090232f09cc4d8ccfd7' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c3c2525ba759c93ee10d9534a7b6142f11282ce32c9379887a3ab8bce4740c72cf8424ecde67787e8968ff13bd0a2e885b24b97a986a632fa5005d7320b4e5fd' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'80f53c34609fb434af7b3e2af3a00c5233dc85bafc850f97b51fd5aa36761ababecb577a3081ab5825906986d6064870096d90adbab6f6804a99d97d9d102451' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ecd58d868b2c18c8a118b3bf232fc069ac657e868088d94b2c854b9ee30324a33e79e52405aecf70c83673484e07bf2fa0f65ed630471f601dd5467a74505b9b' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'88bffc408815c9a11816b7a95845bbc12f16c8b84d0d1b8513a4712e897e5f1597e95bd7d5531af5a3a2aa70cf3a57e64010139050dd7250a2b4bb57f9d8adec' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'804729f19ad0132c9a6b6167495ee4ee783c0d376f3116ee1f9efe4f65f6f3d63b330133ac089c415cdd7927c786e925adce3c65d2d61050be6bba6a30b27fe0' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5daf35119196264acea64ebd1487cc862edc9dba8992d4ad34f2392b685d595aa186b62a573005753e5fb5b9717ccbe38d38490d5f33229a627d19976ee22b7d' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'16d59413d470ee92d0b6a373df7f243d2e14389fbfbb20b432e4eb9938c11ee276898d00a036c60a2beaa85cbb0c894050ee201aa07074157661fd5d9a23c169' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'34a2efe01cc8d3e39e17ec647fb9ce4fe2caed73cbe890fe5658778a649e7ef6c284ac82961ab163d565f4c02b02b4433c561dde33b60a8dbb6cce9c1a744a61' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'e069c3b5fa2674c8dc3eee46956c829bd2bd60d4611013da8918950447b99b00a55c25ea099c08b61f6851fdb8e33b9a2493bcfca413a813dfe2e253cafb0321' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'72ea1b67ef18144e847059c90e6caef3f7c1e527c458dfc66a56d706cba9f3a6cf185c738c8c5bdc441f9d91cfb94c5a1f3baf618388c519e53843a83237dd36' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'752ef9b1a413fa585672d1e759b77bb0215c913acd1464cc3e1d9471d2e4541aa12ea1e3b697cdb61aa26d090b74cdce901b2029fac83024053b5cce587c7ccd' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cf7ea2e2071d0d26c6b0558723132767facee1ba7c0997d7bc8d35b32ce0197faa3ee0d57776b776b62df4b998042667039511c86d3aac23b67194422d36fbe8' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0dfcac57d8f9bdadabc1d9dbe000a852ab2769825dbddf215cfc9f18252c1c583e94c9867f41f77f7ee24cff9063eeaf91fdf5254e4d1320c98dd950f5554a38' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b0fecbc04f611c43d844b6dcaf671ff254548b9893731124a09cabd90e15f960e23fc1cdefca0c0b337f114e0990d35050ddc6f3a96868803badc14d7e809b74' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ea71f465424cec5347a5dcee6644d80c441e5c7cb4ab51bcaa458a8da108080d99c9bd64e363f72407d6a5feb86fdc67f7296eb115f524bda896fdcc10939b5c' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a24711a523955c3d4e52742c37939a97ad0831bcf6e81bf58626f749867ebe7efc15472698b4fd8290a3b08213aca3e4a45b474a797d3c570e2fbf8a881c5f2d' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'d8f89fac2cc8ebb08e4c5acda4178b07cfcce1d41aa8be2f4a5996186039ed3a84f35e22ef176c43d6781621aabc2665170864f487c9b5ce09215deab163fb0a' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'da831d06ccfcd3493b70d614240e5d8cfa83dc3e93c3b6867ccc0b2354b98929c0f72a2017aa8801cc2b152fa3f87f4fc2178e2625f1419acdbcfbfe391196aa' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2929806aa95834ead922b0adfeff3b16dc155edff0c3479cf9e587b8f6a268bf1aeaaba25c6d415bdba383c7ac346c72c2588f3a2f4b549b455c830de19b92ef' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'97adf81600b9ff067062a4697bd71962a03db9221470c102a61af3e29e4276daa755852ad71a540e4d0fe8f4fd6d82beb06724af7d00214c164cd51122be4c2d' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ded27b8487498fc0ddc5c15b66abe6f27a61b762f2933765e8ae2cf36f7c452b457cd0f5b1531782aad29510261a2e7ea2c7b87a6ed5a2706ed6ecebd3a1d4c3' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'65d4e61e529da7f7e1cffc8413fa10eaf86ffa4efdedbc90bdaf45704bd6761c955698e94b7d2adf03b2ebb608ca5ccdc6d7a0643cec7b2d834ad6766f7937a6' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1f15e7716151f6dee469d8a1f1f5104a77a72b9ff0746d30fa484f5338cdde7679b3141a395715cc649df16e6d5b48fee234a21e31458f724194e587be32b098' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5cce8c69e3e6fafa784aeffba1d0d4515be697a11557ce9a04d814bd32c41e2d4a1ef88867b7f50b5e0b38cc0519bcec054f793ec27d3e159e14ac11f0fea8fd' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1613ed8f74cd721ef497bf8b68e5e6ad07558e46057c3ba4ac40b39b55f45f3e21737c401caa5bb118c560e50c117eee11ad71c01a367cca339c5d3da654f660' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'03fd59e6d3410298458c8131b8f09b7cff8869e82dd2fda935f5ebaf3b517633d1cc0e997bef009714b2f95388ff25cfb5c7f354fd81fa2afe819132b24604d7' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0463dacf3a2c9392243e3716390b2764ff9e0b78a42c5b727740e0696fa008d665f408b9e0d7a72b4b6a91817ff9c2cea2a22fc3044f64dfe83e5b265d809750' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'57f0d36b5d16464ce6bbb634bd1f604c9df3ba7f05d23f92921d8c38e4ad8fde65af25836e9d357d9efb397e3054832a551e869e9494125a7862c2eca5a218f8' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'46802ce4488eea3464656e92b3f7682269647f166c29c76d0ab46e0f31231ad2ff87125b511d232b53718adf7f22dbb20a462838abca83060b93d8045b689e27' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5ff3bcec5e1a47ec0c352ca24da81432823d33e8ccd972cafa78fdcfd6813dabd2628511b3d65ed90e55b6126016d9fc123729f5664a0611c32684cd05e0e8a3' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'dbb5afdcfbdacdf644387626557bc8d88622a3709d454efb1471fc5a7d0a426a32ff1923996d22bd0ed62fb386ca226e82ec7e192f7c47b82e6df8830e51efd1' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'688f34b648974085d70906886a612176ff92e9cc9a7629b5ed23ff2216dc57a41bfb32218113bbf0acc11271b8838aa4fa300673d3cf23614015d82e9a50ada1' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b9b48a34d9606afcdea5a982d545bf516faa8f76659380918a8f05904e38f4a43bfb01ed4ea5b6d36c420fb1a0515acabc253a02fe656d2da63d338aac8de113' Text
+'\n\t'        Text.Whitespace
+'sha512sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b8bc40cfc3cb7dc6fb2206d485ef602b725cb2346f5ef6c5223f9b2bb3a0a93800eae494163018b44bb2e4c9581f90039fba7cdae7ebee849ab68d02cc70d4b7' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird' Text
+'\n\t'        Text.Whitespace
+'optdepends'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libotr: OTR support for active one-to-one chats' Text
+'\n\t'        Text.Whitespace
+'optdepends'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'libnotify: Notification integration' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-af' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ar' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ast' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-be' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-bg' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-br' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ca' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-cak' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-cs' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-cy' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-da' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-de' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-dsb' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-el' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-en-gb' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-en-us' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-es-ar' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-es-es' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-et' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-eu' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-fi' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-fr' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-fy-nl' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ga-ie' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-gd' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-gl' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-he' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-hr' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-hsb' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-hu' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-hy-am' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-id' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-is' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-it' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ja' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ka' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-kab' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-kk' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ko' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-lt' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ms' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-nb-no' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-nl' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-nn-no' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-pa-in' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-pl' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-pt-br' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-pt-pt' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-rm' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ro' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-ru' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-sk' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-sl' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-sq' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-sr' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-sv-se' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-th' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-tr' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-uk' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-uz' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-vi' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-zh-cn' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'thunderbird-i18n-zh-tw' Text
+'\n'          Text.Whitespace

@@ -1,73 +1,73 @@
 '?'           Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '52'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '=> 364\n'    Generic.Output
 
 '?'           Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'variable'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*your-variable*' Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$foo'        Name.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '?'           Generic.Prompt
-' '           Text
+' '           Text.Whitespace
 'begin'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Generic.Prompt
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'yours'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'apple'       Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Generic.Prompt
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'mine'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'yours'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Generic.Prompt
-'  '          Text
+'  '          Text.Whitespace
 'mine'        Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'yours'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Generic.Prompt
 'end'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '=> #t\n'     Generic.Output

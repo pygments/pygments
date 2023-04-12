@@ -62,6 +62,9 @@ explicit const string contains(const char* str) {}
 explicit const string contains(const char * str);
 explicit const string contains(const char * str) {}
 
+unsigned int contains() {}
+unsigned int contains();
+
 // Names with namespaces
 
 string Type::contains(char c) const noexcept;
@@ -85,3 +88,19 @@ class raz {
 else if(flag && func_call()) {}
 new T();
 const operator int() const {} // so int is lexed as type and not function.name
+
+class foo bar : public raz
+{
+  Q_OBJECT
+  /// \cond INCLUDE_QPROPERTIES
+  Q_PROPERTY(arg1 arg2)
+  /// \endcond
+
+public:
+  /*!
+    Lorem ipsum core vanditi.
+  */
+  enum duck { dog, // Comment.
+              cat  // Comment (see \ref replot).
+  };
+};

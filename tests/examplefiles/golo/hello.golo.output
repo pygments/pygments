@@ -1,31 +1,31 @@
 'module'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'hello.World' Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '|'           Punctuation
 'args'        Name
 '|'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'println'     Name.Builtin
 '('           Punctuation
 '"'           Literal.String
 'Hello world!' Literal.String
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

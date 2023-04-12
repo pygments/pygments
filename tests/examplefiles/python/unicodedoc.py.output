@@ -4,14 +4,14 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ur'          Literal.String.Affix
 '"""unicode-raw"""' Literal.String.Doc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
 ' '           Text
@@ -19,14 +19,14 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'u'           Literal.String.Affix
 '"""unicode"""' Literal.String.Doc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
 ' '           Text
@@ -34,16 +34,16 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'r'           Literal.String.Affix
 "'"           Literal.String.Single
 'raw'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
 ' '           Text
@@ -51,8 +51,8 @@
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '"""docstring"""' Literal.String.Doc
-'\n'          Text
+'\n'          Text.Whitespace

@@ -6,10 +6,10 @@ b=2 # comment
 'a'           Name.Variable
 '='           Operator
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name.Variable
 '='           Operator
 '2'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '# comment\n' Comment.Single

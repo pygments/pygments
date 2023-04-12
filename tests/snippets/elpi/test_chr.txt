@@ -1,0 +1,54 @@
+---input---
+constraint foo, bar {
+
+  :name "myrule"
+  rule (odd X) \ (even X) | true <=> fail.
+
+}
+rule. % not a kwd
+
+---tokens---
+'constraint'  Keyword.Declaration
+' '           Text.Whitespace
+'foo, bar '   Name.Function
+'{'           Text
+'\n\n  '      Text.Whitespace
+':name'       Keyword.Mode
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'myrule'      Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Text
+'odd'         Text
+' '           Text.Whitespace
+'X'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'\\'          Keyword.Declaration
+' '           Text.Whitespace
+'('           Text
+'even'        Text
+' '           Text.Whitespace
+'X'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'|'           Keyword.Declaration
+' '           Text.Whitespace
+'true'        Text
+' '           Text.Whitespace
+'<=>'         Keyword.Declaration
+' '           Text.Whitespace
+'fail'        Text
+'.'           Operator
+'\n\n'        Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace
+
+'rule'        Text
+'.'           Operator
+' '           Text.Whitespace
+'% not a kwd\n' Comment

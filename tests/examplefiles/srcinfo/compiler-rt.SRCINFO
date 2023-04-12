@@ -1,0 +1,22 @@
+pkgbase = compiler-rt
+	pkgdesc = Compiler runtime libraries for clang
+	pkgver = 13.0.0
+	pkgrel = 1
+	url = https://compiler-rt.llvm.org/
+	arch = x86_64
+	license = custom:Apache 2.0 with LLVM Exception
+	makedepends = llvm
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = python
+	depends = gcc-libs
+	options = staticlibs
+	source = https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/compiler-rt-13.0.0.src.tar.xz
+	source = https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/compiler-rt-13.0.0.src.tar.xz.sig
+	validpgpkeys = B6C8F98282B944E3B0D5C2530FC3042E345AD05D
+	validpgpkeys = 474E22316ABF4785A88C6E8EA2C794A986419D8A
+	sha256sums = 4c3602d76c7868a96b30c36165c4b7643e2a20173fced7e071b4baeb2d74db3f
+	sha256sums = SKIP
+	makedepends_x86_64 = lib32-gcc-libs
+
+pkgname = compiler-rt

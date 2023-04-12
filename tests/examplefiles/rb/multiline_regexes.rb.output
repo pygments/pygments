@@ -2,30 +2,30 @@
 '\nthis is a\nmultiline\nregex\n' Literal.String.Regex
 
 '/'           Literal.String.Regex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'this'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 'is a\nmultiline regex too' Literal.String.Regex
 '/'           Literal.String.Regex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 ' '           Text
 '/'           Literal.String.Regex
 'is also\none' Literal.String.Regex
 '/'           Literal.String.Regex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'also'        Name
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 '4\nis one'   Literal.String.Regex
 '/'           Literal.String.Regex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'this'        Name
 '('           Punctuation
@@ -34,87 +34,87 @@
 
 '/'           Literal.String.Regex
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# this not'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '4'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'asfsadf'     Name
 '/'           Operator
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# this is also not one' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0x4d'        Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
 '25'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
 '/'           Operator
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '42'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '/'           Literal.String.Regex
 'this\nis also a multiline\nregex' Literal.String.Regex
 '/'           Literal.String.Regex
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '# And here some special string cases' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '% blah '     Literal.String.Other
-'           ' Text
+'           ' Text.Whitespace
 '# comment here to ensure whitespace' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
 '('           Punctuation
 '% blah '     Literal.String.Other
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
-' '           Text
+' '           Text.Whitespace
 '% blah '     Literal.String.Other
-'          '  Text
+'          '  Text.Whitespace
 '# stupid but has to work' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '% blah '     Literal.String.Other
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '% blub '     Literal.String.Other
-'  '          Text
+'  '          Text.Whitespace
 '# wicked'    Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '%q wicked '  Literal.String.Other
-'        '    Text
+'        '    Text.Whitespace
 '# works too' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

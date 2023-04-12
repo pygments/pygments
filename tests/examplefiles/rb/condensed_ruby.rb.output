@@ -1,14 +1,14 @@
 '# Server: ruby p2p.rb password server server-uri merge-servers' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Sample: ruby p2p.rb foobar server druby://localhost:1337 druby://foo.bar:1337' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Client: ruby p2p.rb password client server-uri download-pattern' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Sample: ruby p2p.rb foobar client druby://localhost:1337 *.rb' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'require'     Name.Builtin
 "'"           Literal.String.Single
@@ -40,7 +40,7 @@
 'ARGV'        Name.Constant
 ';'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name.Function
 '('           Punctuation
 'p'           Name.Builtin
@@ -59,13 +59,13 @@
 '['           Operator
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 ']'           Operator
 'end'         Keyword
 ';'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Function
 '('           Punctuation
 'u'           Name
@@ -83,7 +83,7 @@
 'end'         Keyword
 ';'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Function
 '('           Punctuation
 'u'           Name
@@ -111,7 +111,7 @@
 '.'           Operator
 'f'           Name
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name
 '('           Punctuation
@@ -159,7 +159,7 @@
 'f'           Name
 '|'           Operator
 's'           Name
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '}'           Punctuation
 '-'           Operator
@@ -182,7 +182,7 @@
 '('           Punctuation
 'f'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String.Double
 'w'           Literal.String.Double
@@ -212,7 +212,7 @@
 'DRb'         Name.Constant
 '.'           Operator
 'start_service' Name
-' '           Text
+' '           Text.Whitespace
 'U'           Name
 ','           Punctuation
 'C'           Name
@@ -220,7 +220,7 @@
 'new'         Name
 '{'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
 'c'           Name
@@ -242,7 +242,7 @@
 ')'           Punctuation
 '&&'          Operator
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 't'           Name
 '=='          Operator
@@ -278,7 +278,7 @@
 'end'         Keyword
 ';'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -308,7 +308,7 @@
 'u'           Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'p'           Name.Builtin
 '('           Punctuation
@@ -327,7 +327,7 @@
 'private'     Keyword.Pseudo
 ';'           Punctuation
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Function
 '('           Punctuation
 'x'           Name
@@ -357,4 +357,4 @@
 ';'           Punctuation
 'sleep'       Name.Builtin
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

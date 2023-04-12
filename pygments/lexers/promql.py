@@ -4,28 +4,20 @@
 
     Lexer for Prometheus Query Language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, bygroups, default, words
-from pygments.token import (
-    Comment,
-    Keyword,
-    Name,
-    Number,
-    Operator,
-    Punctuation,
-    String,
-    Whitespace,
-)
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    Punctuation, String, Whitespace
 
 __all__ = ["PromQLLexer"]
 
 
 class PromQLLexer(RegexLexer):
     """
-    For `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_ queries.
+    For PromQL queries.
 
     For details about the grammar see:
     https://github.com/prometheus/prometheus/tree/master/promql/parser
@@ -34,6 +26,7 @@ class PromQLLexer(RegexLexer):
     """
 
     name = "PromQL"
+    url = 'https://prometheus.io/docs/prometheus/latest/querying/basics/'
     aliases = ["promql"]
     filenames = ["*.promql"]
 

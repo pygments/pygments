@@ -1,61 +1,61 @@
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'ceylon.language' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-' '           Text
+' '           Text.Whitespace
 'parseInteger' Name
-' '           Text
+' '           Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'doc'         Name.Decorator
-' '           Text
+' '           Text.Whitespace
 '"A top-level function,\n     with multi-line documentation."' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'topLevel'    Name.Function
 '('           Operator
 'String'      Name
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'Integer'     Name
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '='           Operator
 '5'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'seqs'        Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'function'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'nested'      Name.Function
 '('           Operator
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'print'       Name
 '('           Operator
 's'           Name
@@ -67,201 +67,201 @@
 ']'           Operator
 ')'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 's'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'seqs'        Name
 '.'           Operator
 'filter'      Name.Attribute
 '('           Operator
 '('           Operator
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Operator
 'size'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Operator
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'nested'      Name
 '('           Operator
 's'           Name
 ')'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'value'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'uppers'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'seqs'        Name
 '.'           Operator
 'map'         Name.Attribute
 '('           Operator
 '('           Operator
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '.'           Operator
 'uppercased'  Name.Attribute
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
 ')'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'String'      Name
 '|'           Operator
 'Null'        Name
-' '           Text
+' '           Text.Whitespace
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Operator
 'Integer'     Name
 '+'           Operator
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 'ints'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '}'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'value'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'numbers'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '#ffff'       Literal.Number.Hex
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '#ffff_ffff'  Literal.Number.Hex
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '$10101010'   Literal.Number.Bin
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '$1010_1010_1010_1010' Literal.Number.Bin
 ','           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '123_456_789' Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ']'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'value'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'chars'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 "'a'"         Literal.String.Char
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 "'\\{#ffff}'" Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 ']'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Example_1'   Name.Class
 '<'           Operator
 'Element'     Name
@@ -269,12 +269,12 @@
 '('           Operator
 'name'        Name
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 'element'     Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 'satisfies'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Comparable'  Name
 '<'           Operator
 'Example_1'   Name
@@ -282,252 +282,252 @@
 'Element'     Name
 '>'           Operator
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'given'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Element'     Name
-' '           Text
+' '           Text.Whitespace
 'satisfies'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Comparable'  Name
 '<'           Operator
 'Element'     Name
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'Element'     Name
-' '           Text
+' '           Text.Whitespace
 'element'     Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'Integer'     Name
 ','           Operator
 'String'      Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'tuple'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 '1'           Literal.Number.Integer
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"2"'         Literal.String
 ']'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'late'        Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'lastName'    Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'variable'    Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'Integer'     Name
-' '           Text
+' '           Text.Whitespace
 'cnt'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'Integer'     Name
-' '           Text
+' '           Text.Whitespace
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'cnt'         Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'assign'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'assert'      Keyword
 '('           Operator
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'cnt'         Name
 ')'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'cnt'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'actual'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'Comparison'  Name
-' '           Text
+' '           Text.Whitespace
 'compare'     Name.Function
 '('           Operator
 'Example_1'   Name
 '<'           Operator
 'Element'     Name
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'other'       Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'element'     Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'other'       Name
 '.'           Operator
 'element'     Name.Attribute
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'shared'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'actual'      Name.Decorator
-' '           Text
+' '           Text.Whitespace
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'string'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"Example with ``element.string``"' Literal.String
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Example_1'   Name
 '<'           Operator
 'Integer'     Name
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'instance'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Example_1'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'element'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Named args call \\{#0060}"' Literal.String
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'object'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'example1'    Name.Class
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Example_1'   Name
 '<'           Operator
 'Integer'     Name
@@ -535,12 +535,12 @@
 '('           Operator
 '"object"'    Literal.String
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

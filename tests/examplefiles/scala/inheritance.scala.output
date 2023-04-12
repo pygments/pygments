@@ -1,68 +1,68 @@
 '// Extends\n' Comment.Single
 
 'trait'       Keyword
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Class
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'trait'       Keyword
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Class
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'B'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 'B'           Name.Class
 ')'           Punctuation
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'trait'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Color'       Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'object'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Red'         Name.Class
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Color'       Name.Class
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Derives\n' Comment.Single
 
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Tree'        Name.Class
 '['           Punctuation
 'T'           Name.Class
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'derives'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Eq'          Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ordering'    Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Show'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Branch'      Name.Class
 '['           Punctuation
 'T'           Name.Class
@@ -70,24 +70,24 @@
 '('           Punctuation
 'left'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Tree'        Name.Class
 '['           Punctuation
 'T'           Name.Class
 ']'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'right'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Tree'        Name.Class
 '['           Punctuation
 'T'           Name.Class
 ']'           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Leaf'        Name.Class
 '['           Punctuation
 'T'           Name.Class
@@ -95,10 +95,10 @@
 '('           Punctuation
 'elem'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'T'           Name.Class
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

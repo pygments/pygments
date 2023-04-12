@@ -5,20 +5,20 @@
 'StdGeneric'  Name.Class
 '\n\n'        Text.Whitespace
 
-'/*'          Comment.Multi
-'*'           Comment.Multi
-'\n '         Comment.Multi
-'*'           Comment.Multi
-' NOTE: this is a collection of different tricky parts of Clean modules (even\n ' Comment.Multi
-'*'           Comment.Multi
-' though the file is simply called StdGeneric.icl). The code is taken from:\n ' Comment.Multi
-'*'           Comment.Multi
-'\n '         Comment.Multi
-'*'           Comment.Multi
-' - StdGeneric (StdEnv)\n ' Comment.Multi
-'*'           Comment.Multi
-' - Graphics.Scalable.Image (Platform)\n ' Comment.Multi
-'*/'          Comment.Multi
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' NOTE: this is a collection of different tricky parts of Clean modules (even\n ' Comment.Multiline
+'*'           Comment.Multiline
+' though the file is simply called StdGeneric.icl). The code is taken from:\n ' Comment.Multiline
+'*'           Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' - StdGeneric (StdEnv)\n ' Comment.Multiline
+'*'           Comment.Multiline
+' - Graphics.Scalable.Image (Platform)\n ' Comment.Multiline
+'*/'          Comment.Multiline
 '\n\n'        Text.Whitespace
 
 'import'      Keyword

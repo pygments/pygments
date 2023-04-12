@@ -1,50 +1,94 @@
-'foo'         Name.Attribute
-' '           Text
+'#https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.htm' Comment.Single
+'\n'          Text.Whitespace
+
+'# mixing spaces' Comment.Single
+'\n\t'        Text.Whitespace
+'Truth'       Name.Attribute
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'bar'         Literal.String
-'\n'          Text
-
-'foo'         Name.Attribute
+' '           Text.Whitespace
+'Beauty'      Literal.String
+'\n  '        Text.Whitespace
+'Truth'       Name.Attribute
 ':'           Operator
-' '           Text
-'bar'         Literal.String
-'\n'          Text
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
 
-'foo.oof'     Name.Attribute
+'Truth'       Name.Attribute
+'\t'          Text.Whitespace
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
+
+'Truth'       Name.Attribute
+'                    ' Text.Whitespace
 ':'           Operator
-' '           Text
-'\\\n    bar=baz; \\\n    asdf' Literal.String
-'\n'          Text
+'Beauty'      Literal.String
+'\n \n'       Text.Whitespace
 
-'\n'          Text
+'! line continuations and escapes' Comment.Single
+'\n '         Text.Whitespace
+'fruits'      Name.Attribute
+'                           ' Text.Whitespace
+'apple, banana, pear, ' Literal.String
+'\\'          Text
+'\n                                  ' Text.Whitespace
+'cantaloupe, watermelon, ' Literal.String
+'\\'          Text
+'\n                                  ' Text.Whitespace
+'kiwi, mango' Literal.String
+'\n'          Text.Whitespace
 
-'// comment'  Comment
-'\n'          Text
-
-'# comment'   Comment
-'\n'          Text
-
-'; comment'   Comment
-'\n'          Text
-
-'\n'          Text
-
-'x'           Name.Attribute
-':'           Operator
-'a\\\nb'      Literal.String
-'\n'          Text
-
-'x'           Name.Attribute
-':'           Operator
-' '           Text
-'a \\\n  b'   Literal.String
-'\n'          Text
-
-'\n'          Text
-
-'x'           Name.Attribute
-' '           Text
+'key'         Name.Attribute
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'\\\n'        Literal.String
+' '           Text.Whitespace
+'\\'          Text
+'\n    '      Text.Whitespace
+'value1 \\\\' Literal.String
+'\\'          Text
+'\n    '      Text.Whitespace
+'and value2\\\\' Literal.String
+'\n'          Text.Whitespace
+
+'key\\ 2'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\n'          Text.Whitespace
+
+'key\\\\'     Name.Attribute
+' '           Text.Whitespace
+'3 = value3'  Literal.String
+'\n\n'        Text.Whitespace
+
+'! empty keys and edge cases' Comment.Single
+'\n'          Text.Whitespace
+
+'key1'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'key2'        Name.Attribute
+'\n'          Text.Whitespace
+
+'key3'        Name.Attribute
+' '           Text.Whitespace
+'the value3'  Literal.String
+'\n'          Text.Whitespace
+
+'key4'        Name.Attribute
+' '           Text.Whitespace
+'the:value4'  Literal.String
+'\n'          Text.Whitespace
+
+'key5'        Name.Attribute
+' '           Text.Whitespace
+'the=value5'  Literal.String
+'\n'          Text.Whitespace
+
+'key6'        Name.Attribute
+'='           Operator
+'the value6'  Literal.String
+'\n'          Text.Whitespace

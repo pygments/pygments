@@ -1,39 +1,37 @@
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# /etc/pacman.conf' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# This example file has no relation to `pacman.ijs`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# but is of configuration of Arch Linux's package manager `pacman`." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# GENERAL OPTIONS' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '[options]'   Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'RootDir'     Name.Attribute
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Text
 'o'           Text
 'p'           Text
@@ -57,18 +55,18 @@
 'a'           Text
 't'           Text
 'e'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#DBPath      = /var/lib/pacman/' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#CacheDir    = /var/cache/pacman/pkg/' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LogFile'     Name.Attribute
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Text
 'o'           Text
 'p'           Text
@@ -111,30 +109,30 @@
 'l'           Text
 'o'           Text
 'g'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#GPGDir      = /etc/pacman.d/gnupg/' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'HoldPkg'     Name.Attribute
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'a'           Text
 'c'           Text
 'm'           Text
 'a'           Text
 'n'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#XferCommand = /usr/bin/curl -C - -f %u > %o' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'XferCommand' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Text
 'u'           Text
 's'           Text
@@ -154,7 +152,7 @@
 'g'           Text
 'e'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Text
 '-'           Text
 'p'           Text
@@ -168,48 +166,44 @@
 'f'           Text
 't'           Text
 'p'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Text
 'c'           Text
-' '           Text
+' '           Text.Whitespace
 '-'           Text
 'O'           Text
-' '           Text
+' '           Text.Whitespace
 '%o'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '%u'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#CleanMethod = KeepInstalled' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#UseDelta    = 0.7' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Architecture' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Text
 'u'           Text
 't'           Text
 'o'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '#IgnorePkg   =' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#IgnoreGroup =' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'NoUpgrade'   Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 't'           Text
 'c'           Text
@@ -220,7 +214,7 @@
 's'           Text
 'w'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 't'           Text
 'c'           Text
@@ -230,7 +224,7 @@
 'o'           Text
 'u'           Text
 'p'           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 't'           Text
 'c'           Text
@@ -241,12 +235,12 @@
 'd'           Text
 'o'           Text
 'w'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'NoUpgrade'   Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 't'           Text
 'c'           Text
@@ -256,37 +250,33 @@
 't'           Text
 'a'           Text
 'b'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#NoExtract   =' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '#UseSyslog'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Color'       Name.Attribute
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#TotalDownload' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CheckSpace'  Name.Attribute
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#VerbosePkgLists' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '#SigLevel = Never' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SigLevel'    Name.Attribute
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'R'           Text
 'e'           Text
 'q'           Text
@@ -295,7 +285,7 @@
 'r'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'D'           Text
 'a'           Text
 't'           Text
@@ -312,12 +302,12 @@
 'n'           Text
 'a'           Text
 'l'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'LocalFileSigLevel' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'O'           Text
 'p'           Text
 't'           Text
@@ -326,12 +316,12 @@
 'n'           Text
 'a'           Text
 'l'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'RemoteFileSigLevel' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'R'           Text
 'e'           Text
 'q'           Text
@@ -340,14 +330,12 @@
 'r'           Text
 'e'           Text
 'd'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Server'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'f'           Text
 't'           Text
 'p'           Text
@@ -386,15 +374,15 @@
 's'           Text
 '/'           Text
 '$arch'       Name.Variable
-'\n'          Text
+'\n\n'        Text.Whitespace
 
-'\n[fubar32]' Keyword
-'\n'          Text
+'[fubar32]'   Keyword
+'\n'          Text.Whitespace
 
 'Include'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/'           Text
 'e'           Text
 't'           Text
@@ -427,17 +415,15 @@
 'r'           Text
 '3'           Text
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '# comment is allowed here' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '#[custom]'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#SigLevel = Optional TrustAll' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#Server = file:///home/custompkgs' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

@@ -10,9 +10,9 @@
 '('           Text
 'link'        Name.Attribute
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!['          Text
 'Image of foo' Name.Tag
@@ -20,4 +20,4 @@
 '('           Text
 'https://bar.baz' Name.Attribute
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace

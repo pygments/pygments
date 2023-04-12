@@ -43,3 +43,13 @@ ANOTHER_COMMAND() # this command has no arguments
 YET_ANOTHER_COMMAND( these
   arguments are spread         # another comment
   over several lines )
+
+#[[ multiline
+CMake comment
+]]
+
+#[==[ another multiline
+CMake comment
+]==]
+
+#[==[ #[[ A "nested" comment ]] ]==]

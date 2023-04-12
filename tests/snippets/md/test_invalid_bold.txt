@@ -11,21 +11,21 @@ _no bold_
 '**no'        Text
 ' '           Text
 'bold__'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '__no'        Text
 ' '           Text
 'bold**'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '*no bold*'   Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '_no bold_'   Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace

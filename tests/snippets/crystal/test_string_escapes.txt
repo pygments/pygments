@@ -1,0 +1,58 @@
+---input---
+"a\nz"
+"a\az"
+"a\xffz"
+"a\u1234z"
+"a\000z"
+"a\u{0}z"
+"a\u{10AfF9}z"
+
+---tokens---
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\n'         Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\a'         Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\xff'       Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\u1234'     Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\000'       Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\u{0}'      Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'\\u{10AfF9}' Literal.String.Escape
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

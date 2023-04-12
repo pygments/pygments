@@ -1,0 +1,128 @@
+'foo.o'       Name.Label
+':'           Punctuation
+'     file format ' Text
+'elf64-x86-64' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Disassembly of section ' Text
+'.text'       Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'0000000000000000' Literal.Number.Hex
+' '           Text.Whitespace
+'<'           Punctuation
+'foo'         Name.Function
+'>:'          Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'0:'          Name.Label
+'\t'          Text.Whitespace
+'endbr64'     Name.Function
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'4:'          Name.Label
+'\t'          Text.Whitespace
+'push'        Name.Function
+'   '         Text.Whitespace
+'rbp'         Name.Builtin
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'5:'          Name.Label
+'\t'          Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'rbp'         Name.Builtin
+','           Punctuation
+'rsp'         Name.Builtin
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'8:'          Name.Label
+'\t'          Text.Whitespace
+'sub'         Name.Function
+'    '        Text.Whitespace
+'rsp'         Name.Builtin
+','           Punctuation
+'0x10'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'c:'          Name.Label
+'\t'          Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'DWORD'       Keyword.Type
+' '           Text.Whitespace
+'PTR'         Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'rbp'         Name.Builtin
+'-'           Operator
+'0x4'         Literal.Number.Hex
+'],'          Punctuation
+'edi'         Name.Builtin
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'f:'          Name.Label
+'\t'          Text.Whitespace
+'lea'         Name.Function
+'    '        Text.Whitespace
+'rdi'         Name.Builtin
+',['          Punctuation
+'rip'         Name.Variable
+'+'           Operator
+'0x0'         Literal.Number.Hex
+']'           Punctuation
+'        '    Text.Whitespace
+'# 16 <foo+0x16>' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'16:'         Name.Label
+'\t'          Text.Whitespace
+'call'        Name.Function
+'   '         Text.Whitespace
+'1b'          Literal.Number.Bin
+' '           Text.Whitespace
+'<'           Operator
+'foo'         Name.Variable
+'+'           Operator
+'0x1b'        Literal.Number.Hex
+'>'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'1b:'         Name.Label
+'\t'          Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'eax'         Name.Builtin
+','           Punctuation
+'0x0'         Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'20:'         Name.Label
+'\t'          Text.Whitespace
+'leave'       Name.Function
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'21:'         Name.Label
+'\t'          Text.Whitespace
+'ret'         Name.Function
+'   '         Text.Whitespace
+'\n'          Text.Whitespace

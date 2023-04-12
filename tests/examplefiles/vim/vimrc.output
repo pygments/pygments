@@ -1,7 +1,7 @@
 '" A comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Punctuation
 'py'          Keyword
@@ -11,7 +11,7 @@
 '"'           Literal.String.Double
 'py'          Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Punctuation
 ':'           Text
@@ -22,7 +22,7 @@
 "'"           Literal.String.Single
 'pyt'         Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'pyth'        Keyword
@@ -32,7 +32,7 @@
 "'''"         Literal.String.Single
 'pyth'        Literal.String.Single
 "'''"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 ':'           Text
@@ -44,7 +44,7 @@
 '"'           Literal.String.Double
 'pytho'       Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'python'      Keyword
 ' '           Text
@@ -53,9 +53,9 @@
 '"""'         Literal.String.Double
 'python'      Literal.String.Double
 '"""'         Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 ':'           Text
@@ -65,16 +65,16 @@
 'python'      Keyword
 '<<'          Operator
 'E OF'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print'       Name.Builtin
 ' '           Text
 '"""'         Literal.String.Double
 'my script'   Literal.String.Double
 '"""'         Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword
 ' '           Text
@@ -83,22 +83,22 @@
 'str'         Name.Builtin
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '""" My Function """' Literal.String.Doc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'print'       Name.Builtin
 ' '           Text
 'str'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'E OF'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'let'         Keyword
 ' '           Text
@@ -107,14 +107,14 @@
 '='           Punctuation
 ' '           Text
 '42'          Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Text
 ' '           Text
 'py'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'let'         Keyword
 ' '           Text
@@ -123,9 +123,9 @@
 '='           Punctuation
 ' '           Text
 '42'          Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 'echo'        Text
 ' '           Text
 'foo'         Text
-'\n'          Text
+'\n'          Text.Whitespace

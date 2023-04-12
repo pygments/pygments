@@ -1,0 +1,1208 @@
+'$version'    Keyword.Declaration
+':'           Name.Decorator
+' "1.0"'      Name.Class
+'\n\n'        Text.Whitespace
+
+'namespace'   Keyword.Declaration
+' test'       Name.Class
+'\n\n'        Text.Whitespace
+
+'metadata'    Keyword.Declaration
+' '           Text.Whitespace
+'"foo"'       Name.Class
+' '           Text.Whitespace
+'='           Name.Decorator
+' '           Text.Whitespace
+'['           Text
+'"bar"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"baz"'       Literal.String.Double
+']'           Text
+'\n'          Text.Whitespace
+
+'metadata'    Keyword.Declaration
+' '           Text.Whitespace
+'validators'  Name.Class
+' '           Text.Whitespace
+'='           Name.Decorator
+' '           Text.Whitespace
+'['           Text
+'\n    '      Text.Whitespace
+'{'           Text
+'\n        '  Text.Whitespace
+'name:'       Name.Label
+' '           Text.Whitespace
+'"ValidatorName"' Literal.String.Double
+'\n        '  Text.Whitespace
+'id:'         Name.Label
+' '           Text.Whitespace
+'"ValidatorId"' Literal.String.Double
+'\n        '  Text.Whitespace
+'message:'    Name.Label
+' '           Text.Whitespace
+'"Some string"' Literal.String.Double
+'\n        '  Text.Whitespace
+'configuration:' Name.Label
+' '           Text.Whitespace
+'{'           Text
+'\n            ' Text.Whitespace
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"operation"' Literal.String.Double
+'\n        '  Text.Whitespace
+'}'           Text
+'\n    '      Text.Whitespace
+'}'           Text
+'\n'          Text.Whitespace
+
+']'           Text
+'\n\n'        Text.Whitespace
+
+'/// Define how an HTTP request is serialized given a specific protocol,' Comment.Multiline
+'\n'          Text.Whitespace
+
+'/// authentication scheme, and set of input parameters.' Comment.Multiline
+'\n'          Text.Whitespace
+
+'@trait'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"operation"' Literal.String.Double
+')'           Text
+'\n'          Text.Whitespace
+
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n'          Text.Whitespace
+
+'list'        Keyword.Declaration
+' httpRequestTests' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'member:'     Name.Label
+' '           Text.Whitespace
+'HttpRequestTestCase' Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpRequestTestCase' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'/// The identifier of the test case. This identifier can be used by' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// protocol test implementations to filter out unsupported test' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// cases by ID, to generate test case names, etc. The provided `id`' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// MUST match Smithy's `identifier` ABNF. No two `httpRequestTests`" Comment.Multiline
+'\n    '      Text.Whitespace
+'/// test cases can share the same ID.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@pattern'    Name.Decorator
+'('           Text
+'"^[A-Za-z_][A-Za-z0-9_]+$"' Literal.String.Double
+')'           Text
+'\n    '      Text.Whitespace
+'id:'         Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The name of the protocol to test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"[trait|protocolDefinition]"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'protocol:'   Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The expected serialized HTTP request method.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'method:'     Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The request-target of the HTTP request, not including' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the query string (for example, "/foo/bar").' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'uri:'        Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The host / endpoint provided to the client, not including the path' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// or scheme (for example, "example.com").' Comment.Multiline
+'\n    '      Text.Whitespace
+'host:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The host / endpoint that the client should send to, not including' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the path or scheme (for example, "prefix.example.com").' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// This can differ from the host provided to the client if the `hostPrefix`' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// member of the `endpoint` trait is set, for instance.' Comment.Multiline
+'\n    '      Text.Whitespace
+'resolvedHost:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+"/// The optional authentication scheme shape ID to assume. It's" Comment.Multiline
+'\n    '      Text.Whitespace
+'/// possible that specific authentication schemes might influence' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the serialization logic of an HTTP request.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"[trait|authDefinition]"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'authScheme:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of the expected serialized query string parameters.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Each element in the list is a query string key value pair' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// that starts with the query string parameter name optionally' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// followed by "=", optionally followed by the query string' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// parameter value. For example, "foo=bar", "foo=", and "foo"' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// are all valid values. The query string parameter name and' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the value MUST appear in the format in which it is expected' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// to be sent over the wire; if a key or value needs to be' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// percent-encoded, then it MUST appear percent-encoded in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// A serialized HTTP request is not in compliance with the protocol' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// if any query string parameter defined in `queryParams` is not' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// defined in the request or if the value of a query string parameter' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// in the request differs from the expected value.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// `queryParams` applies no constraints on additional query parameters.' Comment.Multiline
+'\n    '      Text.Whitespace
+'queryParams:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of query string parameter names that must not appear in the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// serialized HTTP request.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Each value MUST appear in the format in which it is sent over the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// wire; if a key needs to be percent-encoded, then it MUST appear' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// percent-encoded in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'forbidQueryParams:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of query string parameter names that MUST appear in the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// serialized request URI, but no assertion is made on the value.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Each value MUST appear in the format in which it is sent over the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// wire; if a key needs to be percent-encoded, then it MUST appear' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// percent-encoded in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'requireQueryParams:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines a map of expected HTTP headers.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Headers that are not listed in this map are ignored unless they are' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// explicitly forbidden through `forbidHeaders`.' Comment.Multiline
+'\n    '      Text.Whitespace
+'headers:'    Name.Label
+' '           Text.Whitespace
+'StringMap'   Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of header field names that must not appear in the serialized' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// HTTP request.' Comment.Multiline
+'\n    '      Text.Whitespace
+'forbidHeaders:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of header field names that must appear in the serialized' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// HTTP message, but no assertion is made on the value.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Headers listed in `headers` do not need to appear in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'requireHeaders:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The expected HTTP message body.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If no request body is defined, then no assertions are made about' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the body of the message.' Comment.Multiline
+'\n    '      Text.Whitespace
+'body:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The media type of the `body`.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// This is used to help test runners to parse and validate the expected' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// data against generated data.' Comment.Multiline
+'\n    '      Text.Whitespace
+'bodyMediaType:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines the input parameters used to generated the HTTP request.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// These parameters MUST be compatible with the input of the operation.' Comment.Multiline
+'\n    '      Text.Whitespace
+'params:'     Name.Label
+' '           Text.Whitespace
+'Document'    Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines vendor-specific parameters that are used to influence the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// request. For example, some vendors might utilize environment' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// variables, configuration files on disk, or other means to influence' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the serialization formats used by clients or servers.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If a `vendorParamsShape` is set, these parameters MUST be compatible' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// with that shape's definition." Comment.Multiline
+'\n    '      Text.Whitespace
+'vendorParams:' Name.Label
+' '           Text.Whitespace
+'Document'    Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A shape to be used to validate the `vendorParams` member contents.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If set, the parameters in `vendorParams` MUST be compatible with this' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// shape's definition." Comment.Multiline
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'vendorParamsShape:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A description of the test and what is being asserted.' Comment.Multiline
+'\n    '      Text.Whitespace
+'documentation:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Applies a list of tags to the test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'tags:'       Name.Label
+' '           Text.Whitespace
+'NonEmptyStringList' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Indicates that the test case is only to be implemented by "client" or' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// "server" implementations. This property is useful for identifying and' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// testing edge cases of clients and servers that are impossible or' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// undesirable to test in *both* client and server implementations.' Comment.Multiline
+'\n    '      Text.Whitespace
+'appliesTo:'  Name.Label
+' '           Text.Whitespace
+'AppliesTo'   Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'map'         Keyword.Declaration
+' StringMap'  Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'key:'        Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n    '      Text.Whitespace
+'value:'      Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'list'        Keyword.Declaration
+' StringList' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'member:'     Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'/// Define how an HTTP response is serialized given a specific protocol,' Comment.Multiline
+'\n'          Text.Whitespace
+
+'/// authentication scheme, and set of output or error parameters.' Comment.Multiline
+'\n'          Text.Whitespace
+
+'@trait'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'":test(operation, structure[trait|error])"' Literal.String.Double
+')'           Text
+'\n'          Text.Whitespace
+
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n'          Text.Whitespace
+
+'list'        Keyword.Declaration
+' httpResponseTests' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'member:'     Name.Label
+' '           Text.Whitespace
+'HttpResponseTestCase' Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpResponseTestCase' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'/// The identifier of the test case. This identifier can be used by' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// protocol test implementations to filter out unsupported test' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// cases by ID, to generate test case names, etc. The provided `id`' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// MUST match Smithy's `identifier` ABNF. No two `httpResponseTests`" Comment.Multiline
+'\n    '      Text.Whitespace
+'/// test cases can share the same ID.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@pattern'    Name.Decorator
+'('           Text
+'"^[A-Za-z_][A-Za-z0-9_]+$"' Literal.String.Double
+')'           Text
+'\n    '      Text.Whitespace
+'id:'         Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The shape ID of the protocol to test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"[trait|protocolDefinition]"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'protocol:'   Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines the HTTP response code.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@range'      Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'100'         Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'max:'        Name.Label
+' '           Text.Whitespace
+'599'         Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'code:'       Name.Label
+' '           Text.Whitespace
+'Integer'     Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+"/// The optional authentication scheme shape ID to assume. It's possible" Comment.Multiline
+'\n    '      Text.Whitespace
+'/// that specific authentication schemes might influence the serialization' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// logic of an HTTP response.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"[trait|authDefinition]"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'authScheme:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A map of expected HTTP headers. Each key represents a header field' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// name and each value represents the expected header value. An HTTP' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// response is not in compliance with the protocol if any listed header' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// is missing from the serialized response or if the expected header' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// value differs from the serialized response value.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// `headers` applies no constraints on additional headers.' Comment.Multiline
+'\n    '      Text.Whitespace
+'headers:'    Name.Label
+' '           Text.Whitespace
+'StringMap'   Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of header field names that must not appear.' Comment.Multiline
+'\n    '      Text.Whitespace
+'forbidHeaders:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of header field names that must appear in the serialized' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// HTTP message, but no assertion is made on the value.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Headers listed in `headers` map do not need to appear in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'requireHeaders:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines the HTTP message body.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If no response body is defined, then no assertions are made about' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the body of the message.' Comment.Multiline
+'\n    '      Text.Whitespace
+'body:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The media type of the `body`.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// This is used to help test runners to parse and validate the expected' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// data against generated data. Binary media type formats require that' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the contents of `body` are base64 encoded.' Comment.Multiline
+'\n    '      Text.Whitespace
+'bodyMediaType:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines the output parameters deserialized from the HTTP response.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// These parameters MUST be compatible with the output of the operation.' Comment.Multiline
+'\n    '      Text.Whitespace
+'params:'     Name.Label
+' '           Text.Whitespace
+'Document'    Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines vendor-specific parameters that are used to influence the' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// response. For example, some vendors might utilize environment' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// variables, configuration files on disk, or other means to influence' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the serialization formats used by clients or servers.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If a `vendorParamsShape` is set, these parameters MUST be compatible' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// with that shape's definition." Comment.Multiline
+'\n    '      Text.Whitespace
+'vendorParams:' Name.Label
+' '           Text.Whitespace
+'Document'    Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A shape to be used to validate the `vendorParams` member contents.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// If set, the parameters in `vendorParams` MUST be compatible with this' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// shape's definition." Comment.Multiline
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'vendorParamsShape:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A description of the test and what is being asserted.' Comment.Multiline
+'\n    '      Text.Whitespace
+'documentation:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Applies a list of tags to the test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'tags:'       Name.Label
+' '           Text.Whitespace
+'NonEmptyStringList' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Indicates that the test case is only to be implemented by "client" or' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// "server" implementations. This property is useful for identifying and' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// testing edge cases of clients and servers that are impossible or' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// undesirable to test in *both* client and server implementations.' Comment.Multiline
+'\n    '      Text.Whitespace
+'appliesTo:'  Name.Label
+' '           Text.Whitespace
+'AppliesTo'   Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'list'        Keyword.Declaration
+' NonEmptyStringList' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'member:'     Name.Label
+' '           Text.Whitespace
+'NonEmptyString' Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n'          Text.Whitespace
+
+'string'      Keyword.Declaration
+' NonEmptyString' Name.Class
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'@enum'       Name.Decorator
+'('           Text
+'['           Text
+'\n    '      Text.Whitespace
+'{'           Text
+'\n        '  Text.Whitespace
+'value:'      Name.Label
+' '           Text.Whitespace
+'"client"'    Literal.String.Double
+','           Punctuation
+'\n        '  Text.Whitespace
+'name:'       Name.Label
+' '           Text.Whitespace
+'"CLIENT"'    Literal.String.Double
+','           Punctuation
+'\n        '  Text.Whitespace
+'documentation:' Name.Label
+' '           Text.Whitespace
+'"The test only applies to client implementations."' Literal.String.Double
+'\n    '      Text.Whitespace
+'}'           Text
+','           Punctuation
+'\n    '      Text.Whitespace
+'{'           Text
+'\n        '  Text.Whitespace
+'value:'      Name.Label
+' '           Text.Whitespace
+'"server"'    Literal.String.Double
+','           Punctuation
+'\n        '  Text.Whitespace
+'name:'       Name.Label
+' '           Text.Whitespace
+'"SERVER"'    Literal.String.Double
+','           Punctuation
+'\n        '  Text.Whitespace
+'documentation:' Name.Label
+' '           Text.Whitespace
+'"The test only applies to server implementations."' Literal.String.Double
+'\n    '      Text.Whitespace
+'}'           Text
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'string'      Keyword.Declaration
+' AppliesTo'  Name.Class
+'\n\n'        Text.Whitespace
+
+'/// Define how a malformed HTTP request is rejected by a server given a specific protocol' Comment.Multiline
+'\n'          Text.Whitespace
+
+'@trait'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"operation"' Literal.String.Double
+')'           Text
+'\n'          Text.Whitespace
+
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n'          Text.Whitespace
+
+'@unstable'   Name.Decorator
+'\n'          Text.Whitespace
+
+'list'        Keyword.Declaration
+' httpMalformedRequestTests' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'member:'     Name.Label
+' '           Text.Whitespace
+'HttpMalformedRequestTestCase' Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpMalformedRequestTestCase' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'/// The identifier of the test case. This identifier can be used by' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// protocol test implementations to filter out unsupported test' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// cases by ID, to generate test case names, etc. The provided `id`' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// MUST match Smithy's `identifier` ABNF. No two `httpMalformedRequestTests`" Comment.Multiline
+'\n    '      Text.Whitespace
+'/// test cases can share the same ID.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@pattern'    Name.Decorator
+'('           Text
+'"^[A-Za-z_][A-Za-z0-9_]+$"' Literal.String.Double
+')'           Text
+'\n    '      Text.Whitespace
+'id:'         Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The name of the protocol to test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@idRef'      Name.Decorator
+'('           Text
+'selector:'   Name.Label
+' '           Text.Whitespace
+'"[trait|protocolDefinition]"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'failWhenMissing:' Name.Label
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Text
+'\n    '      Text.Whitespace
+'protocol:'   Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The malformed request to send.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'request:'    Name.Label
+' '           Text.Whitespace
+'HttpMalformedRequestDefinition' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The expected response.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'response:'   Name.Label
+' '           Text.Whitespace
+'HttpMalformedResponseDefinition' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A description of the test and what is being asserted.' Comment.Multiline
+'\n    '      Text.Whitespace
+'documentation:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Applies a list of tags to the test.' Comment.Multiline
+'\n    '      Text.Whitespace
+'tags:'       Name.Label
+' '           Text.Whitespace
+'NonEmptyStringList' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// An optional set of test parameters for parameterized testing.' Comment.Multiline
+'\n    '      Text.Whitespace
+'testParameters:' Name.Label
+' '           Text.Whitespace
+'HttpMalformedRequestTestParametersDefinition' Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpMalformedRequestDefinition' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n\n    '    Text.Whitespace
+'/// The expected serialized HTTP request method.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'method:'     Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The request-target of the HTTP request, not including' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the query string (for example, "/foo/bar").' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@length'     Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'uri:'        Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The host / endpoint provided to the client, not including the path' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// or scheme (for example, "example.com").' Comment.Multiline
+'\n    '      Text.Whitespace
+'host:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A list of the serialized query string parameters to include in the request.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Each element in the list is a query string key value pair' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// that starts with the query string parameter name optionally' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// followed by "=", optionally followed by the query string' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// parameter value. For example, "foo=bar", "foo=", and "foo"' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// are all valid values. The query string parameter name and' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// the value MUST appear in the format in which it is expected' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// to be sent over the wire; if a key or value needs to be' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// percent-encoded, then it MUST appear percent-encoded in this list.' Comment.Multiline
+'\n    '      Text.Whitespace
+'queryParams:' Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines a map HTTP headers to include in the request' Comment.Multiline
+'\n    '      Text.Whitespace
+'headers:'    Name.Label
+' '           Text.Whitespace
+'StringMap'   Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The HTTP message body to include in the request' Comment.Multiline
+'\n    '      Text.Whitespace
+'body:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpMalformedResponseDefinition' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n\n    '    Text.Whitespace
+'/// Defines a map of expected HTTP headers.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// Headers that are not listed in this map are ignored.' Comment.Multiline
+'\n    '      Text.Whitespace
+'headers:'    Name.Label
+' '           Text.Whitespace
+'StringMap'   Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Defines the HTTP response code.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'@range'      Name.Decorator
+'('           Text
+'min:'        Name.Label
+' '           Text.Whitespace
+'100'         Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'max:'        Name.Label
+' '           Text.Whitespace
+'599'         Literal.Number
+')'           Text
+'\n    '      Text.Whitespace
+'code:'       Name.Label
+' '           Text.Whitespace
+'Integer'     Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The expected response body.' Comment.Multiline
+'\n    '      Text.Whitespace
+'body:'       Name.Label
+' '           Text.Whitespace
+'HttpMalformedResponseBodyDefinition' Name.Variable.Class
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'structure'   Keyword.Declaration
+' HttpMalformedResponseBodyDefinition' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'/// The assertion to execute against the response body.' Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'assertion:'  Name.Label
+' '           Text.Whitespace
+'HttpMalformedResponseBodyAssertion' Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// The media type of the response body.' Comment.Multiline
+'\n    '      Text.Whitespace
+'///'         Comment.Multiline
+'\n    '      Text.Whitespace
+'/// This is used to help test runners to parse and evaluate' Comment.Multiline
+'\n    '      Text.Whitespace
+"/// `contents' and `messageRegex` in the assertion" Comment.Multiline
+'\n    '      Text.Whitespace
+'@required'   Name.Decorator
+'\n    '      Text.Whitespace
+'mediaType:'  Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'union'       Keyword.Declaration
+' HttpMalformedResponseBodyAssertion' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'/// Defines the expected serialized response body, which will be matched' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// exactly.' Comment.Multiline
+'\n    '      Text.Whitespace
+'contents:'   Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A regex to evaluate against the `message` field in the body. For' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// responses that may have some variance from platform to platform,' Comment.Multiline
+'\n    '      Text.Whitespace
+'/// such as those that include messages from a parser.' Comment.Multiline
+'\n    '      Text.Whitespace
+'messageRegex:' Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'@private'    Name.Decorator
+'\n'          Text.Whitespace
+
+'map'         Keyword.Declaration
+' HttpMalformedRequestTestParametersDefinition' Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'key:'        Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+','           Punctuation
+'\n    '      Text.Whitespace
+'value:'      Name.Label
+' '           Text.Whitespace
+'StringList'  Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace

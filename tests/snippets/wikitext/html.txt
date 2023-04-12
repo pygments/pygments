@@ -1,0 +1,449 @@
+---input---
+<div class="center" style="width: auto; margin-left: auto; margin-right: auto;">Centered text</div>
+
+<blockquote>
+The '''blockquote''' tag will indent both margins when needed instead of the left margin only as the colon does.
+</blockquote>
+
+<div>
+#123
+:456
+----
+</div>
+
+Use <small >small text</small> only when necessary.
+
+To match, for example, the font-size used in an image caption, the "small" tag can also be used to
+<small style="font-size:87%;">reduce a text's font-size to 87%</small>.
+
+Better not use <big>big text</big>, unless <small>it's <big>within</big> small</small> text.
+
+x<sub>1</sub> x<sub>2</sub> x<sub>3</sub>
+
+function <code>int m2()</code> is nice.
+
+You can <del>indicate deleted material</del> and <ins>inserted material</ins>.
+
+<div       ></div        >
+
+<span <!-- this is a comment --> ></span>
+
+<span class="citation {{{Citation class|{{{Citation type|}}}}}}"></span>
+
+<a></a>
+
+---tokens---
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'center'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'auto'        Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'margin'      Literal.String.Double
+'-'           Literal.String.Double
+'left'        Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'auto'        Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'margin'      Literal.String.Double
+'-'           Literal.String.Double
+'right'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'auto'        Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'Centered'    Text
+' '           Text
+'text'        Text
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'blockquote'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'The'         Text
+' '           Text
+"'''"         Generic.Strong
+'blockquote'  Generic.Strong
+"'''"         Generic.Strong
+' '           Text
+'tag'         Text
+' '           Text
+'will'        Text
+' '           Text
+'indent'      Text
+' '           Text
+'both'        Text
+' '           Text
+'margins'     Text
+' '           Text
+'when'        Text
+' '           Text
+'needed'      Text
+' '           Text
+'instead'     Text
+' '           Text
+'of'          Text
+' '           Text
+'the'         Text
+' '           Text
+'left'        Text
+' '           Text
+'margin'      Text
+' '           Text
+'only'        Text
+' '           Text
+'as'          Text
+' '           Text
+'the'         Text
+' '           Text
+'colon'       Text
+' '           Text
+'does'        Text
+'.'           Text
+'\n'          Text
+
+'</'          Punctuation
+'blockquote'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'#'           Keyword
+'123'         Text
+'\n'          Text
+
+':'           Keyword
+'456'         Text
+'\n'          Text
+
+'----'        Keyword
+'\n'          Text
+
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Use'         Text
+' '           Text
+'<'           Punctuation
+'small'       Name.Tag
+' >'          Punctuation
+'small'       Text
+' '           Text
+'text'        Text
+'</'          Punctuation
+'small'       Name.Tag
+'>'           Punctuation
+' '           Text
+'only'        Text
+' '           Text
+'when'        Text
+' '           Text
+'necessary'   Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'To'          Text
+' '           Text
+'match'       Text
+','           Text
+' '           Text
+'for'         Text
+' '           Text
+'example'     Text
+','           Text
+' '           Text
+'the'         Text
+' '           Text
+'font'        Text
+'-'           Text
+'size'        Text
+' '           Text
+'used'        Text
+' '           Text
+'in'          Text
+' '           Text
+'an'          Text
+' '           Text
+'image'       Text
+' '           Text
+'caption'     Text
+','           Text
+' '           Text
+'the'         Text
+' '           Text
+'"'           Text
+'small'       Text
+'"'           Text
+' '           Text
+'tag'         Text
+' '           Text
+'can'         Text
+' '           Text
+'also'        Text
+' '           Text
+'be'          Text
+' '           Text
+'used'        Text
+' '           Text
+'to'          Text
+'\n'          Text
+
+'<'           Punctuation
+'small'       Name.Tag
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'font'        Literal.String.Double
+'-'           Literal.String.Double
+'size'        Literal.String.Double
+':'           Literal.String.Double
+'87'          Literal.String.Double
+'%'           Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'reduce'      Text
+' '           Text
+'a'           Text
+' '           Text
+'text'        Text
+"'"           Text
+'s'           Text
+' '           Text
+'font'        Text
+'-'           Text
+'size'        Text
+' '           Text
+'to'          Text
+' '           Text
+'87'          Text
+'%'           Text
+'</'          Punctuation
+'small'       Name.Tag
+'>'           Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Better'      Text
+' '           Text
+'not'         Text
+' '           Text
+'use'         Text
+' '           Text
+'<'           Punctuation
+'big'         Name.Tag
+'>'           Punctuation
+'big'         Text
+' '           Text
+'text'        Text
+'</'          Punctuation
+'big'         Name.Tag
+'>'           Punctuation
+','           Text
+' '           Text
+'unless'      Text
+' '           Text
+'<'           Punctuation
+'small'       Name.Tag
+'>'           Punctuation
+'it'          Text
+"'"           Text
+'s'           Text
+' '           Text
+'<'           Punctuation
+'big'         Name.Tag
+'>'           Punctuation
+'within'      Text
+'</'          Punctuation
+'big'         Name.Tag
+'>'           Punctuation
+' '           Text
+'small'       Text
+'</'          Punctuation
+'small'       Name.Tag
+'>'           Punctuation
+' '           Text
+'text'        Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'x'           Text
+'<'           Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+'1'           Text
+'</'          Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+' '           Text
+'x'           Text
+'<'           Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+'2'           Text
+'</'          Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+' '           Text
+'x'           Text
+'<'           Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+'3'           Text
+'</'          Punctuation
+'sub'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Text
+' '           Text
+'<'           Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+'int'         Text
+' '           Text
+'m2'          Text
+'('           Text
+')'           Text
+'</'          Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+' '           Text
+'is'          Text
+' '           Text
+'nice'        Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'You'         Text
+' '           Text
+'can'         Text
+' '           Text
+'<'           Punctuation
+'del'         Name.Tag
+'>'           Punctuation
+'indicate'    Text
+' '           Text
+'deleted'     Text
+' '           Text
+'material'    Text
+'</'          Punctuation
+'del'         Name.Tag
+'>'           Punctuation
+' '           Text
+'and'         Text
+' '           Text
+'<'           Punctuation
+'ins'         Name.Tag
+'>'           Punctuation
+'inserted'    Text
+' '           Text
+'material'    Text
+'</'          Punctuation
+'ins'         Name.Tag
+'>'           Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'div'         Name.Tag
+'       >'    Punctuation
+'</'          Punctuation
+'div'         Name.Tag
+'        '    Text.Whitespace
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'<!-- this is a comment -->' Comment.Multiline
+' >'          Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'citation'    Literal.String.Double
+' '           Literal.String.Double
+'{{{'         Punctuation
+'Citation class' Name.Variable
+'|'           Punctuation
+'{{{'         Punctuation
+'Citation type' Name.Variable
+'|'           Punctuation
+'}}}'         Punctuation
+'}}}'         Punctuation
+'"'           Literal.String.Double
+'>'           Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<'           Text
+'a'           Text
+'>'           Text
+'<'           Text
+'/'           Text
+'a'           Text
+'>'           Text
+'\n'          Text

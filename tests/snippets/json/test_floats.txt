@@ -1,0 +1,42 @@
+---input---
+123456789.0123456789
+-123456789.0123456789
+1e10
+-1E10
+1e-10
+-1E+10
+1.0e10
+-1.0E10
+1.0e-10
+-1.0E+10
+
+---tokens---
+'123456789.0123456789' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-123456789.0123456789' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e10'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-1E10'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e-10'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-1E+10'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.0e10'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-1.0E10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.0e-10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-1.0E+10'    Literal.Number.Float
+'\n'          Text.Whitespace

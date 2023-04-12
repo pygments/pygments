@@ -17,18 +17,18 @@ endin
 'Name'        Name.Function
 '/**/'        Comment.Multiline
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'i'           Keyword.Type
 'Duration'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'p3'          Name.Variable.Instance
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'outc'        Name.Builtin
 ':'           Punctuation
 'a'           Keyword.Type
@@ -36,7 +36,7 @@ endin
 'a'           Keyword.Type
 'Signal'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endin'       Keyword.Declaration
-'\n'          Text
+'\n'          Text.Whitespace

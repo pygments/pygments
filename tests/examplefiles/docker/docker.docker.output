@@ -1,186 +1,189 @@
 'FROM'        Keyword
-' '           Text
+' '           Text.Whitespace
 'alpine:3.5'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MAINTAINER'  Keyword
-" First O'Last" Literal.String
-'\n'          Text
+' '           Text.Whitespace
+"First O'Last" Literal.String
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# comment'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'run'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'  '          Text
+'  '          Text.Whitespace
 '123'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 '$bar'        Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'RUN'         Keyword
-' '           Text
+' '           Text.Whitespace
 'apk'         Text
-' '           Text
+' '           Text.Whitespace
 '--update'    Text
-' '           Text
+' '           Text.Whitespace
 'add'         Text
-' '           Text
+' '           Text.Whitespace
 'rsync'       Text
-' '           Text
+' '           Text.Whitespace
 'dumb-init'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Test env with both syntax' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ENV'         Keyword
-' '           Text
+' '           Text.Whitespace
 'FOO'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"BAR"'       Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ENV'         Keyword
-' '           Text
+' '           Text.Whitespace
 'FOO'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"BAR"'       Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'COPY'        Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Text
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'COPY'        Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"bar"'       Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'HEALTHCHECK' Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 '--interval'  Text
 '='           Operator
 '5m'          Text
-' '           Text
+' '           Text.Whitespace
 '--timeout'   Text
 '='           Operator
 '3s'          Text
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 'CMD'         Keyword
-' '           Text
+' '           Text.Whitespace
 'curl'        Text
-' '           Text
+' '           Text.Whitespace
 '-f'          Text
-' '           Text
+' '           Text.Whitespace
 'http://localhost/' Text
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'exit'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# ONBUILD keyword, then with linebreak' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ONBUILD'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ADD'         Keyword
-' '           Text
+' '           Text.Whitespace
 '.'           Text
-' '           Text
+' '           Text.Whitespace
 '/app/src'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ONBUILD'     Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'\t'          Text
+'\t'          Text.Whitespace
 'RUN'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '123'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 '$bar'        Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Potential JSON array parsing, mixed with linebreaks' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VOLUME'      Keyword
-' \\'         Literal.String
-'\n'          Text
+' '           Text.Whitespace
+'\\'          Literal.String
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '/foo'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VOLUME'      Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'    '        Text
+'    '        Text.Whitespace
 '['           Punctuation
 '"/bar"'      Literal.String.Double
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VOLUME'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"/bar"'      Literal.String.Double
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'VOLUME'      Keyword
-' /foo'       Literal.String
-'\n'          Text
+' '           Text.Whitespace
+'/foo'        Literal.String
+'\n'          Text.Whitespace
 
 'CMD'         Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"foo"'       Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

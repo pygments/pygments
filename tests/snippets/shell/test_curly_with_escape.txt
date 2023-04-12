@@ -3,11 +3,11 @@ echo ${a//[\"]/}
 
 ---tokens---
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '${'          Literal.String.Interpol
 'a'           Name.Variable
 '//['         Punctuation
 '\\"'         Literal.String.Escape
 ']/'          Punctuation
 '}'           Literal.String.Interpol
-'\n'          Text
+'\n'          Text.Whitespace

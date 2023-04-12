@@ -1,0 +1,10 @@
+---input---
+// This invalid input should terminate.
+)
+
+---tokens---
+'// This invalid input should terminate.' Comment.Single
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

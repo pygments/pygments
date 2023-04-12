@@ -2,7 +2,7 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,6 +15,7 @@ import pytest
 from pygments import lexers, formatters, lex, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
+from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
 from pygments.util import ClassNotFound
 
@@ -48,7 +49,7 @@ def test_lexer_classes(cls):
     assert all(al.lower() == al for al in cls.aliases)
 
     if issubclass(cls, RegexLexer):
-        inst = cls(opt1="val1", opt2="val2")
+        cls(opt1="val1", opt2="val2") # should not raise
         if not hasattr(cls, '_tokens'):
             # if there's no "_tokens", the lexer has to be one with
             # multiple tokendef variants
@@ -250,6 +251,27 @@ def test_bare_class_handler():
     else:
         assert False, 'nothing raised'
 
+    # These cases should not trigger this heuristic.
+    class BuggyLexer(RegexLexer):
+        def get_tokens(self, text, extra_argument):
+            pass
+        tokens = {'root': []}
+    try:
+        list(lex('dummy', BuggyLexer()))
+    except TypeError as e:
+        assert 'lex() argument must be a lexer instance' not in str(e)
+    else:
+        assert False, 'no error raised by buggy lexer?'
+
+    class BuggyFormatter(Formatter):
+        def format(self, tokensource, outfile, extra_argument):
+            pass
+    try:
+        format([], BuggyFormatter())
+    except TypeError as e:
+        assert 'format() argument must be a formatter instance' not in str(e)
+    else:
+        assert False, 'no error raised by buggy formatter?'
 
 class TestFilters:
 

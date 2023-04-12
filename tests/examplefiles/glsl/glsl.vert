@@ -1,4 +1,18 @@
 /* Vertex shader */
+
+// Macro inside a single-line comment: #define COMMENT_MACRO 1
+
+/* Macro inside a block comment: #define COMMENT_MACRO 2 */
+
+    # define INDENTED_MACRO 5.0
+
+#define SINGLELINE_MACRO 10.0
+
+#define MULTILINE_MACRO(a, b) vec2( \
+    a, \
+    b \
+)
+
 uniform float waveTime;
 uniform float waveWidth;
 uniform float waveHeight;

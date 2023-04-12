@@ -1,0 +1,51 @@
+---input---
+.target-img {
+  position: absolute; 
+  top: 25%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}     
+
+---tokens---
+'.'           Punctuation
+'target-img'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'position'    Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'absolute'    Keyword.Constant
+';'           Punctuation
+' \n  '       Text.Whitespace
+'top'         Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'25'          Literal.Number.Integer
+'%'           Keyword.Type
+';'           Punctuation
+' \n  '       Text.Whitespace
+'left'        Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'50'          Literal.Number.Integer
+'%'           Keyword.Type
+';'           Punctuation
+' \n  '       Text.Whitespace
+'transform'   Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'translate'   Name.Builtin
+'('           Punctuation
+'-50'         Literal.Number.Integer
+'%'           Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'-50'         Literal.Number.Integer
+'%'           Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'     \n'     Text.Whitespace

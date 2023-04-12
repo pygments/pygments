@@ -1,0 +1,532 @@
+---input---
+; Term : Definition1
+: Definition2
+
+; '''Term'''
+: Definition1
+: Definition2
+: Definition3
+: Definition4
+
+; [[Wikipedia:Term#123|Blah]] : Definition1
+
+; [[Wikipedia:Term#123|Blah]] 
+: Definition1
+
+# Item1
+# ''Item2''
+# Item3
+# [[Item4]]
+## Sub-item 1
+### Sub-sub-item
+#### Sub-sub-sub-item
+## Sub-item 2
+# Item5
+
+* Item1
+* '''Item2'''
+* Item3
+* [[Item4]]
+** Sub-item 4 a)
+*** Sub-item 4 a) 1.
+**** Sub-item 4 a) 1. i)
+**** Sub-item 4 a) 1. ii)
+** Sub-item 4 b)
+* Item5
+
+Indentation as used on talk pages:
+:[[Each]] ''colon'' at the '''start''' of a line
+::causes the line to be indented by three more character positions.
+:::(The indentation persists
+so long as no carriage return or line break is used.)
+:::Repeat the indentation at any line break.
+::::Use an extra colon for each response.
+:::::And so forth ...
+::::::And so on ...
+{{Outdent|::::::}}The outdent template can give a visual indicator that we're deliberately cancelling the indent (6 levels here)
+
+:*# Mixed list
+::##:*: Complex mixed list
+
+---tokens---
+';'           Keyword
+' '           Text
+'Term'        Text
+' '           Text
+':'           Keyword
+' '           Text
+'Definition1' Text
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition2' Text
+'\n'          Text
+
+'\n'          Text
+
+';'           Keyword
+' '           Text
+"'''"         Generic.Strong
+'Term'        Generic.Strong
+"'''"         Generic.Strong
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition1' Text
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition2' Text
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition3' Text
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition4' Text
+'\n'          Text
+
+'\n'          Text
+
+';'           Keyword
+' '           Text
+'[['          Punctuation
+'Wikipedia'   Name.Namespace
+':'           Punctuation
+'Term'        Name.Tag
+'#'           Punctuation
+'123'         Name.Label
+'|'           Punctuation
+'Blah'        Text
+']]'          Punctuation
+'\xa0'        Text
+':'           Keyword
+' '           Text
+'Definition1' Text
+'\n'          Text
+
+'\n'          Text
+
+';'           Keyword
+' '           Text
+'[['          Punctuation
+'Wikipedia'   Name.Namespace
+':'           Punctuation
+'Term'        Name.Tag
+'#'           Punctuation
+'123'         Name.Label
+'|'           Punctuation
+'Blah'        Text
+']]'          Punctuation
+'\xa0'        Text
+'\n'          Text
+
+':'           Keyword
+' '           Text
+'Definition1' Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'Item1'       Text
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+"''"          Generic.Emph
+'Item2'       Generic.Emph
+"''"          Generic.Emph
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'Item3'       Text
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'[['          Punctuation
+'Item4'       Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'##'          Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'###'         Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'sub'         Text
+'-'           Text
+'item'        Text
+'\n'          Text
+
+'####'        Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'sub'         Text
+'-'           Text
+'sub'         Text
+'-'           Text
+'item'        Text
+'\n'          Text
+
+'##'          Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'Item5'       Text
+'\n'          Text
+
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'Item1'       Text
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+"'''"         Generic.Strong
+'Item2'       Generic.Strong
+"'''"         Generic.Strong
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'Item3'       Text
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'[['          Punctuation
+'Item4'       Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'**'          Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'4'           Text
+' '           Text
+'a'           Text
+')'           Text
+'\n'          Text
+
+'***'         Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'4'           Text
+' '           Text
+'a'           Text
+')'           Text
+' '           Text
+'1'           Text
+'.'           Text
+'\n'          Text
+
+'****'        Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'4'           Text
+' '           Text
+'a'           Text
+')'           Text
+' '           Text
+'1'           Text
+'.'           Text
+' '           Text
+'i'           Text
+')'           Text
+'\n'          Text
+
+'****'        Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'4'           Text
+' '           Text
+'a'           Text
+')'           Text
+' '           Text
+'1'           Text
+'.'           Text
+' '           Text
+'ii'          Text
+')'           Text
+'\n'          Text
+
+'**'          Keyword
+' '           Text
+'Sub'         Text
+'-'           Text
+'item'        Text
+' '           Text
+'4'           Text
+' '           Text
+'b'           Text
+')'           Text
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'Item5'       Text
+'\n'          Text
+
+'\n'          Text
+
+'Indentation' Text
+' '           Text
+'as'          Text
+' '           Text
+'used'        Text
+' '           Text
+'on'          Text
+' '           Text
+'talk'        Text
+' '           Text
+'pages'       Text
+':'           Text
+'\n'          Text
+
+':'           Keyword
+'[['          Punctuation
+'Each'        Name.Tag
+']]'          Punctuation
+' '           Text
+"''"          Generic.Emph
+'colon'       Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'at'          Text
+' '           Text
+'the'         Text
+' '           Text
+"'''"         Generic.Strong
+'start'       Generic.Strong
+"'''"         Generic.Strong
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'line'        Text
+'\n'          Text
+
+'::'          Keyword
+'causes'      Text
+' '           Text
+'the'         Text
+' '           Text
+'line'        Text
+' '           Text
+'to'          Text
+' '           Text
+'be'          Text
+' '           Text
+'indented'    Text
+' '           Text
+'by'          Text
+' '           Text
+'three'       Text
+' '           Text
+'more'        Text
+' '           Text
+'character'   Text
+' '           Text
+'positions'   Text
+'.'           Text
+'\n'          Text
+
+':::'         Keyword
+'('           Text
+'The'         Text
+' '           Text
+'indentation' Text
+' '           Text
+'persists'    Text
+'\n'          Text
+
+'so'          Text
+' '           Text
+'long'        Text
+' '           Text
+'as'          Text
+' '           Text
+'no'          Text
+' '           Text
+'carriage'    Text
+' '           Text
+'return'      Text
+' '           Text
+'or'          Text
+' '           Text
+'line'        Text
+' '           Text
+'break'       Text
+' '           Text
+'is'          Text
+' '           Text
+'used'        Text
+'.'           Text
+')'           Text
+'\n'          Text
+
+':::'         Keyword
+'Repeat'      Text
+' '           Text
+'the'         Text
+' '           Text
+'indentation' Text
+' '           Text
+'at'          Text
+' '           Text
+'any'         Text
+' '           Text
+'line'        Text
+' '           Text
+'break'       Text
+'.'           Text
+'\n'          Text
+
+'::::'        Keyword
+'Use'         Text
+' '           Text
+'an'          Text
+' '           Text
+'extra'       Text
+' '           Text
+'colon'       Text
+' '           Text
+'for'         Text
+' '           Text
+'each'        Text
+' '           Text
+'response'    Text
+'.'           Text
+'\n'          Text
+
+':::::'       Keyword
+'And'         Text
+' '           Text
+'so'          Text
+' '           Text
+'forth'       Text
+' '           Text
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'::::::'      Keyword
+'And'         Text
+' '           Text
+'so'          Text
+' '           Text
+'on'          Text
+' '           Text
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'{{'          Punctuation
+'Outdent'     Name.Tag
+'|'           Punctuation
+':'           Text
+':'           Text
+':'           Text
+':'           Text
+':'           Text
+':'           Text
+'}}'          Punctuation
+'The'         Text
+' '           Text
+'outdent'     Text
+' '           Text
+'template'    Text
+' '           Text
+'can'         Text
+' '           Text
+'give'        Text
+' '           Text
+'a'           Text
+' '           Text
+'visual'      Text
+' '           Text
+'indicator'   Text
+' '           Text
+'that'        Text
+' '           Text
+'we'          Text
+"'"           Text
+'re'          Text
+' '           Text
+'deliberately' Text
+' '           Text
+'cancelling'  Text
+' '           Text
+'the'         Text
+' '           Text
+'indent'      Text
+' '           Text
+'('           Text
+'6'           Text
+' '           Text
+'levels'      Text
+' '           Text
+'here'        Text
+')'           Text
+'\n'          Text
+
+'\n'          Text
+
+':*#'         Keyword
+' '           Text
+'Mixed'       Text
+' '           Text
+'list'        Text
+'\n'          Text
+
+'::##:*:'     Keyword
+' '           Text
+'Complex'     Text
+' '           Text
+'mixed'       Text
+' '           Text
+'list'        Text
+'\n'          Text

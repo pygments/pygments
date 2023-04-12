@@ -4,28 +4,43 @@
 
     Lexers for Pascal family languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, words, \
-    using, this, default
+from pygments.lexer import Lexer
 from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation, Error, Whitespace
 from pygments.scanner import Scanner
 
 # compatibility import
 from pygments.lexers.modula2 import Modula2Lexer
 
-__all__ = ['DelphiLexer', 'AdaLexer']
+__all__ = ['DelphiLexer', 'PortugolLexer']
+
+
+class PortugolLexer(Lexer):
+    """For Portugol, a Pascal dialect with keywords in Portuguese."""
+    name = 'Portugol'
+    aliases = ['portugol']
+    filenames = ['*.alg', '*.portugol']
+    mimetypes = []
+    url = "https://www.apoioinformatica.inf.br/produtos/visualg/linguagem"
+
+    def __init__(self, **options):
+        Lexer.__init__(self, **options)
+        self.lexer = DelphiLexer(**options, portugol=True)
+
+    def get_tokens_unprocessed(self, text):
+        return self.lexer.get_tokens_unprocessed(text)
 
 
 class DelphiLexer(Lexer):
     """
-    For `Delphi <http://www.borland.com/delphi/>`_ (Borland Object Pascal),
+    For Delphi (Borland Object Pascal),
     Turbo Pascal and Free Pascal source code.
 
     Additional options accepted:
@@ -297,18 +312,109 @@ class DelphiLexer(Lexer):
         'xlatb', 'xor'
     }
 
+    PORTUGOL_KEYWORDS = (
+        'aleatorio',
+        'algoritmo',
+        'arquivo',
+        'ate',
+        'caso',
+        'cronometro',
+        'debug',
+        'e',
+        'eco',
+        'enquanto',
+        'entao',
+        'escolha',
+        'escreva',
+        'escreval',
+        'faca',
+        'falso',
+        'fimalgoritmo',
+        'fimenquanto',
+        'fimescolha',
+        'fimfuncao',
+        'fimpara',
+        'fimprocedimento',
+        'fimrepita',
+        'fimse',
+        'funcao',
+        'inicio',
+        'int',
+        'interrompa',
+        'leia',
+        'limpatela',
+        'mod',
+        'nao',
+        'ou',
+        'outrocaso',
+        'para',
+        'passo',
+        'pausa',
+        'procedimento',
+        'repita',
+        'retorne',
+        'se',
+        'senao',
+        'timer',
+        'var',
+        'vetor',
+        'verdadeiro',
+        'xou',
+        'div',
+        'mod',
+        'abs',
+        'arccos',
+        'arcsen',
+        'arctan',
+        'cos',
+        'cotan',
+        'Exp',
+        'grauprad',
+        'int',
+        'log',
+        'logn',
+        'pi',
+        'quad',
+        'radpgrau',
+        'raizq',
+        'rand',
+        'randi',
+        'sen',
+        'Tan',
+        'asc',
+        'carac',
+        'caracpnum',
+        'compr',
+        'copia',
+        'maiusc',
+        'minusc',
+        'numpcarac',
+        'pos',
+    )
+
+    PORTUGOL_BUILTIN_TYPES = {
+        'inteiro', 'real', 'caractere', 'logico'
+    }
+
     def __init__(self, **options):
         Lexer.__init__(self, **options)
         self.keywords = set()
-        if get_bool_opt(options, 'turbopascal', True):
-            self.keywords.update(self.TURBO_PASCAL_KEYWORDS)
-        if get_bool_opt(options, 'delphi', True):
-            self.keywords.update(self.DELPHI_KEYWORDS)
-        if get_bool_opt(options, 'freepascal', True):
-            self.keywords.update(self.FREE_PASCAL_KEYWORDS)
         self.builtins = set()
-        for unit in get_list_opt(options, 'units', list(self.BUILTIN_UNITS)):
-            self.builtins.update(self.BUILTIN_UNITS[unit])
+        if get_bool_opt(options, 'portugol', False):
+            self.keywords.update(self.PORTUGOL_KEYWORDS)
+            self.builtins.update(self.PORTUGOL_BUILTIN_TYPES)
+            self.is_portugol = True
+        else:
+            self.is_portugol = False
+
+            if get_bool_opt(options, 'turbopascal', True):
+                self.keywords.update(self.TURBO_PASCAL_KEYWORDS)
+            if get_bool_opt(options, 'delphi', True):
+                self.keywords.update(self.DELPHI_KEYWORDS)
+            if get_bool_opt(options, 'freepascal', True):
+                self.keywords.update(self.FREE_PASCAL_KEYWORDS)
+            for unit in get_list_opt(options, 'units', list(self.BUILTIN_UNITS)):
+                self.builtins.update(self.BUILTIN_UNITS[unit])
 
     def get_tokens_unprocessed(self, text):
         scanner = Scanner(text, re.DOTALL | re.MULTILINE | re.IGNORECASE)
@@ -327,15 +433,17 @@ class DelphiLexer(Lexer):
 
             if stack[-1] == 'initial':
                 if scanner.scan(r'\s+'):
-                    token = Text
-                elif scanner.scan(r'\{.*?\}|\(\*.*?\*\)'):
+                    token = Whitespace
+                elif not self.is_portugol and scanner.scan(r'\{.*?\}|\(\*.*?\*\)'):
                     if scanner.match.startswith('$'):
                         token = Comment.Preproc
                     else:
                         token = Comment.Multiline
                 elif scanner.scan(r'//.*?$'):
                     token = Comment.Single
-                elif scanner.scan(r'[-+*\/=<>:;,.@\^]'):
+                elif self.is_portugol and scanner.scan(r'(<\-)|(>=)|(<=)|%|<|>|-|\+|\*|\=|(<>)|\/|\.|:|,'):
+                    token = Operator
+                elif not self.is_portugol and scanner.scan(r'[-+*\/=<>:;,.@\^]'):
                     token = Operator
                     # stop label highlighting on next ";"
                     if collect_labels and scanner.match == ';':
@@ -363,37 +471,42 @@ class DelphiLexer(Lexer):
                     elif lowercase_name in self.keywords:
                         token = Keyword
                         # if we are in a special block and a
-                        # block ending keyword occours (and the parenthesis
+                        # block ending keyword occurs (and the parenthesis
                         # is balanced) we end the current block context
-                        if (in_function_block or in_property_block) and \
-                           lowercase_name in self.BLOCK_KEYWORDS and \
-                           brace_balance[0] <= 0 and \
-                           brace_balance[1] <= 0:
-                            in_function_block = False
-                            in_property_block = False
-                            brace_balance = [0, 0]
-                            block_labels = set()
-                        if lowercase_name in ('label', 'goto'):
-                            collect_labels = True
-                        elif lowercase_name == 'asm':
-                            stack.append('asm')
-                        elif lowercase_name == 'property':
-                            in_property_block = True
-                            next_token_is_property = True
-                        elif lowercase_name in ('procedure', 'operator',
-                                                'function', 'constructor',
-                                                'destructor'):
-                            in_function_block = True
-                            next_token_is_function = True
+                        if self.is_portugol:
+                            if lowercase_name in ('funcao', 'procedimento'):
+                                in_function_block = True
+                                next_token_is_function = True
+                        else:
+                            if (in_function_block or in_property_block) and \
+                                    lowercase_name in self.BLOCK_KEYWORDS and \
+                                    brace_balance[0] <= 0 and \
+                                    brace_balance[1] <= 0:
+                                in_function_block = False
+                                in_property_block = False
+                                brace_balance = [0, 0]
+                                block_labels = set()
+                            if lowercase_name in ('label', 'goto'):
+                                collect_labels = True
+                            elif lowercase_name == 'asm':
+                                stack.append('asm')
+                            elif lowercase_name == 'property':
+                                in_property_block = True
+                                next_token_is_property = True
+                            elif lowercase_name in ('procedure', 'operator',
+                                                    'function', 'constructor',
+                                                    'destructor'):
+                                in_function_block = True
+                                next_token_is_function = True
                     # we are in a function block and the current name
                     # is in the set of registered modifiers. highlight
                     # it as pseudo keyword
-                    elif in_function_block and \
+                    elif not self.is_portugol and in_function_block and \
                             lowercase_name in self.FUNCTION_MODIFIERS:
                         token = Keyword.Pseudo
                     # if we are in a property highlight some more
                     # modifiers
-                    elif in_property_block and \
+                    elif not self.is_portugol and in_property_block and \
                             lowercase_name in ('read', 'write'):
                         token = Keyword.Pseudo
                         next_token_is_function = True
@@ -404,40 +517,49 @@ class DelphiLexer(Lexer):
                         # Look if the next token is a dot. If yes it's
                         # not a function, but a class name and the
                         # part after the dot a function name
-                        if scanner.test(r'\s*\.\s*'):
+                        if not self.is_portugol and scanner.test(r'\s*\.\s*'):
                             token = Name.Class
                         # it's not a dot, our job is done
                         else:
                             token = Name.Function
                             next_token_is_function = False
+
+                            if self.is_portugol:
+                                block_labels.add(scanner.match.lower())
+
                     # same for properties
-                    elif next_token_is_property:
+                    elif not self.is_portugol and next_token_is_property:
                         token = Name.Property
                         next_token_is_property = False
                     # Highlight this token as label and add it
                     # to the list of known labels
-                    elif collect_labels:
+                    elif not self.is_portugol and collect_labels:
                         token = Name.Label
                         block_labels.add(scanner.match.lower())
                     # name is in list of known labels
                     elif lowercase_name in block_labels:
                         token = Name.Label
-                    elif lowercase_name in self.BUILTIN_TYPES:
+                    elif self.is_portugol and lowercase_name in self.PORTUGOL_BUILTIN_TYPES:
                         token = Keyword.Type
-                    elif lowercase_name in self.DIRECTIVES:
+                    elif not self.is_portugol and lowercase_name in self.BUILTIN_TYPES:
+                        token = Keyword.Type
+                    elif not self.is_portugol and lowercase_name in self.DIRECTIVES:
                         token = Keyword.Pseudo
                     # builtins are just builtins if the token
                     # before isn't a dot
-                    elif not was_dot and lowercase_name in self.builtins:
+                    elif not self.is_portugol and not was_dot and lowercase_name in self.builtins:
                         token = Name.Builtin
                     else:
                         token = Name
-                elif scanner.scan(r"'"):
+                elif self.is_portugol and scanner.scan(r"\""):
                     token = String
                     stack.append('string')
-                elif scanner.scan(r'\#(\d+|\$[0-9A-Fa-f]+)'):
+                elif not self.is_portugol and scanner.scan(r"'"):
+                    token = String
+                    stack.append('string')
+                elif not self.is_portugol and scanner.scan(r'\#(\d+|\$[0-9A-Fa-f]+)'):
                     token = String.Char
-                elif scanner.scan(r'\$[0-9A-Fa-f]+'):
+                elif not self.is_portugol and scanner.scan(r'\$[0-9A-Fa-f]+'):
                     token = Number.Hex
                 elif scanner.scan(r'\d+(?![eE]|\.[^.])'):
                     token = Number.Integer
@@ -450,20 +572,31 @@ class DelphiLexer(Lexer):
                     scanner.get_char()
 
             elif stack[-1] == 'string':
-                if scanner.scan(r"''"):
-                    token = String.Escape
-                elif scanner.scan(r"'"):
-                    token = String
-                    stack.pop()
-                elif scanner.scan(r"[^']*"):
-                    token = String
+                if self.is_portugol:
+                    if scanner.scan(r"''"):
+                        token = String.Escape
+                    elif scanner.scan(r"\""):
+                        token = String
+                        stack.pop()
+                    elif scanner.scan(r"[^\"]*"):
+                        token = String
+                    else:
+                        scanner.get_char()
+                        stack.pop()
                 else:
-                    scanner.get_char()
-                    stack.pop()
-
-            elif stack[-1] == 'asm':
+                    if scanner.scan(r"''"):
+                        token = String.Escape
+                    elif scanner.scan(r"'"):
+                        token = String
+                        stack.pop()
+                    elif scanner.scan(r"[^']*"):
+                        token = String
+                    else:
+                        scanner.get_char()
+                        stack.pop()
+            elif not self.is_portugol and stack[-1] == 'asm':
                 if scanner.scan(r'\s+'):
-                    token = Text
+                    token = Whitespace
                 elif scanner.scan(r'end'):
                     token = Keyword
                     stack.pop()
@@ -502,142 +635,7 @@ class DelphiLexer(Lexer):
                     stack.pop()
 
             # save the dot!!!11
-            if scanner.match.strip():
+            if not self.is_portugol and scanner.match.strip():
                 was_dot = scanner.match == '.'
+
             yield scanner.start_pos, token, scanner.match or ''
-
-
-class AdaLexer(RegexLexer):
-    """
-    For Ada source code.
-
-    .. versionadded:: 1.3
-    """
-
-    name = 'Ada'
-    aliases = ['ada', 'ada95', 'ada2005']
-    filenames = ['*.adb', '*.ads', '*.ada']
-    mimetypes = ['text/x-ada']
-
-    flags = re.MULTILINE | re.IGNORECASE
-
-    tokens = {
-        'root': [
-            (r'[^\S\n]+', Text),
-            (r'--.*?\n', Comment.Single),
-            (r'[^\S\n]+', Text),
-            (r'function|procedure|entry', Keyword.Declaration, 'subprogram'),
-            (r'(subtype|type)(\s+)(\w+)',
-             bygroups(Keyword.Declaration, Text, Keyword.Type), 'type_def'),
-            (r'task|protected', Keyword.Declaration),
-            (r'(subtype)(\s+)', bygroups(Keyword.Declaration, Text)),
-            (r'(end)(\s+)', bygroups(Keyword.Reserved, Text), 'end'),
-            (r'(pragma)(\s+)(\w+)', bygroups(Keyword.Reserved, Text,
-                                             Comment.Preproc)),
-            (r'(true|false|null)\b', Keyword.Constant),
-            (words((
-                'Address', 'Byte', 'Boolean', 'Character', 'Controlled', 'Count',
-                'Cursor', 'Duration', 'File_Mode', 'File_Type', 'Float', 'Generator',
-                'Integer', 'Long_Float', 'Long_Integer', 'Long_Long_Float',
-                'Long_Long_Integer', 'Natural', 'Positive', 'Reference_Type',
-                'Short_Float', 'Short_Integer', 'Short_Short_Float',
-                'Short_Short_Integer', 'String', 'Wide_Character', 'Wide_String'),
-                   suffix=r'\b'),
-             Keyword.Type),
-            (r'(and(\s+then)?|in|mod|not|or(\s+else)|rem)\b', Operator.Word),
-            (r'generic|private', Keyword.Declaration),
-            (r'package', Keyword.Declaration, 'package'),
-            (r'array\b', Keyword.Reserved, 'array_def'),
-            (r'(with|use)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
-            (r'(\w+)(\s*)(:)(\s*)(constant)',
-             bygroups(Name.Constant, Text, Punctuation, Text,
-                      Keyword.Reserved)),
-            (r'<<\w+>>', Name.Label),
-            (r'(\w+)(\s*)(:)(\s*)(declare|begin|loop|for|while)',
-             bygroups(Name.Label, Text, Punctuation, Text, Keyword.Reserved)),
-            (words((
-                'abort', 'abs', 'abstract', 'accept', 'access', 'aliased', 'all',
-                'array', 'at', 'begin', 'body', 'case', 'constant', 'declare',
-                'delay', 'delta', 'digits', 'do', 'else', 'elsif', 'end', 'entry',
-                'exception', 'exit', 'interface', 'for', 'goto', 'if', 'is', 'limited',
-                'loop', 'new', 'null', 'of', 'or', 'others', 'out', 'overriding',
-                'pragma', 'protected', 'raise', 'range', 'record', 'renames', 'requeue',
-                'return', 'reverse', 'select', 'separate', 'some', 'subtype',
-                'synchronized', 'task', 'tagged', 'terminate', 'then', 'type', 'until',
-                'when', 'while', 'xor'), prefix=r'\b', suffix=r'\b'),
-             Keyword.Reserved),
-            (r'"[^"]*"', String),
-            include('attribute'),
-            include('numbers'),
-            (r"'[^']'", String.Character),
-            (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"(<>|=>|:=|[()|:;,.'])", Punctuation),
-            (r'[*<>+=/&-]', Operator),
-            (r'\n+', Text),
-        ],
-        'numbers': [
-            (r'[0-9_]+#[0-9a-f_\.]+#', Number.Hex),
-            (r'[0-9_]+\.[0-9_]*', Number.Float),
-            (r'[0-9_]+', Number.Integer),
-        ],
-        'attribute': [
-            (r"(')(\w+)", bygroups(Punctuation, Name.Attribute)),
-        ],
-        'subprogram': [
-            (r'\(', Punctuation, ('#pop', 'formal_part')),
-            (r';', Punctuation, '#pop'),
-            (r'is\b', Keyword.Reserved, '#pop'),
-            (r'"[^"]+"|\w+', Name.Function),
-            include('root'),
-        ],
-        'end': [
-            ('(if|case|record|loop|select)', Keyword.Reserved),
-            (r'"[^"]+"|[\w.]+', Name.Function),
-            (r'\s+', Text),
-            (';', Punctuation, '#pop'),
-        ],
-        'type_def': [
-            (r';', Punctuation, '#pop'),
-            (r'\(', Punctuation, 'formal_part'),
-            (r'with|and|use', Keyword.Reserved),
-            (r'array\b', Keyword.Reserved, ('#pop', 'array_def')),
-            (r'record\b', Keyword.Reserved, ('record_def')),
-            (r'(null record)(;)', bygroups(Keyword.Reserved, Punctuation), '#pop'),
-            include('root'),
-        ],
-        'array_def': [
-            (r';', Punctuation, '#pop'),
-            (r'(\w+)(\s+)(range)', bygroups(Keyword.Type, Text, Keyword.Reserved)),
-            include('root'),
-        ],
-        'record_def': [
-            (r'end record', Keyword.Reserved, '#pop'),
-            include('root'),
-        ],
-        'import': [
-            (r'[\w.]+', Name.Namespace, '#pop'),
-            default('#pop'),
-        ],
-        'formal_part': [
-            (r'\)', Punctuation, '#pop'),
-            (r'\w+', Name.Variable),
-            (r',|:[^=]', Punctuation),
-            (r'(in|not|null|out|access)\b', Keyword.Reserved),
-            include('root'),
-        ],
-        'package': [
-            ('body', Keyword.Declaration),
-            (r'is\s+new|renames', Keyword.Reserved),
-            ('is', Keyword.Reserved, '#pop'),
-            (';', Punctuation, '#pop'),
-            (r'\(', Punctuation, 'package_instantiation'),
-            (r'([\w.]+)', Name.Class),
-            include('root'),
-        ],
-        'package_instantiation': [
-            (r'("[^"]+"|\w+)(\s+)(=>)', bygroups(Name.Variable, Text, Punctuation)),
-            (r'[\w.\'"]', Text),
-            (r'\)', Punctuation, '#pop'),
-            include('root'),
-        ],
-    }

@@ -14,12 +14,12 @@ end
 '"'           Literal.String.Double
 ')'           Punctuation
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'lib'         Keyword
-' '           Text
+' '           Text.Whitespace
 'LibSome'     Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@['          Operator
 'CallConvention' Name.Decorator
@@ -29,10 +29,10 @@ end
 '"'           Literal.String.Double
 ')'           Punctuation
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fun'         Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Name.Function
 '='           Operator
 '"'           Literal.String.Double
@@ -40,19 +40,19 @@ end
 '"'           Literal.String.Double
 '('           Punctuation
 'thing'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Void'        Name
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LibC'        Name
 '::'          Operator
 'Int'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

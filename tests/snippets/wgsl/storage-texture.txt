@@ -1,0 +1,98 @@
+---input---
+@group(0) @binding(0) var texture_storage_1d<rgba8unorm,write>;
+@group(0) @binding(1) var texture_storage_2d<rgba8unorm,write>;
+@group(0) @binding(2) var texture_storage_2d_array<rgba8unorm,write>;
+@group(0) @binding(3) var texture_storage_3d<rgba8unorm,write>;
+
+---tokens---
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_storage_1d' Name.Builtin
+'<'           Operator
+'rgba8unorm'  Name.Builtin
+','           Punctuation
+'write'       Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_storage_2d' Name.Builtin
+'<'           Operator
+'rgba8unorm'  Name.Builtin
+','           Punctuation
+'write'       Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_storage_2d_array' Name.Builtin
+'<'           Operator
+'rgba8unorm'  Name.Builtin
+','           Punctuation
+'write'       Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_storage_3d' Name.Builtin
+'<'           Operator
+'rgba8unorm'  Name.Builtin
+','           Punctuation
+'write'       Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace

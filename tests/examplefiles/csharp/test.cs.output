@@ -50,998 +50,997 @@
 
 '////////////////////////////////////////////////////////////////////////////////\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'Diva.Core'   Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
-'\n'          Text
+'        '    Text.Whitespace
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'System'      Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Widgets'     Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'System.Xml'  Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Util'        Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'System.Collections.Generic' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'System.Collections' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Basics'      Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTask'  Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Task'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IBoilProvider' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Private structs ////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ObjectInfo'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ObjectContainer' Name
-' '           Text
+' '           Text.Whitespace
 'Container'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Depends'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'SystemType'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'RefId'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '/* CONSTRUCTOR */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ObjectInfo'  Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ObjectContainer' Name
-' '           Text
+' '           Text.Whitespace
 'container'   Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'Container'   Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'container'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'Depends'     Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
 'Depends'     Name
 '.'           Punctuation
 'ToArray'     Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'SystemType'  Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
 'SystemType'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'RefId'       Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'container'   Name
 '.'           Punctuation
 'RefId'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ToString'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
 'Format'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"Type: {0} Deps count: {1} Id: {2}"' Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                      ' Text
+'                                                      ' Text.Whitespace
 'SystemType'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Depends'     Name
 '.'           Punctuation
 'Length'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RefId'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'IsUnBoilable' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IBoilProvider' Name
-' '           Text
+' '           Text.Whitespace
 'provider'    Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'Depends'     Name
 '.'           Punctuation
 'Length'      Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
-'\n'          Text
+'                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'id'          Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Depends'     Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'!'           Punctuation
-' '           Text
+'!'           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'provider'    Name
 '.'           Punctuation
 'Contains'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Name
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
-'\n'          Text
+'                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                 ' Text
-'\n'          Text
+'                                 ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Enums //////////////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Init'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Header'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ProjectInfoRead' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ObjectListRead' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                      ' Text
+'                                      ' Text.Whitespace
 'ObjectListParse' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ObjectListUnBoil' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoots'   Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                      ' Text
+'                                      ' Text.Whitespace
 'Finished'    Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Fields /////////////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'fileName'    Name
 ';'           Punctuation
-'                         ' Text
+'                         ' Text.Whitespace
 "// Filename we're reading\n" Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 'XmlDocument' Name
-' '           Text
+' '           Text.Whitespace
 'xmlDocument' Name
 ';'           Punctuation
-'                 ' Text
+'                 ' Text.Whitespace
 '// Our document\n' Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 '//XmlNode projectInfoNode;               // <projectinfo> node\n' Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 'IEnumerator' Name
-' '           Text
+' '           Text.Whitespace
 'objectsEnumerator' Name
 ';'           Punctuation
-'           ' Text
+'           ' Text.Whitespace
 '// Enumerator\n' Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 'List'        Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'ObjectInfo'  Name
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 'objectsList' Name
 ';'           Punctuation
-'           ' Text
+'           ' Text.Whitespace
 '// Objects list\n' Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 'ObjectListContainer' Name
-' '           Text
+' '           Text.Whitespace
 'objectListContainer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'OpenerTaskStep' Name
-' '           Text
+' '           Text.Whitespace
 'currentStep' Name
 ';'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 '// Our current step\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Dictionary'  Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'int'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'object'      Keyword.Type
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 'idToObject'  Name
 ';'           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '// Id -> object\n' Comment.Single
 
-'                ' Text
+'                ' Text.Whitespace
 'Dictionary'  Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'object'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 'objectToId'  Name
 ';'           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 '// Object -> Id\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'projectName' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
 'Empty'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'projectDirectory' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'String'      Name
 '.'           Punctuation
 'Empty'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'TagList'     Name
-' '           Text
+' '           Text.Whitespace
 'projectTagList' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'StuffList'   Name
-' '           Text
+' '           Text.Whitespace
 'projectStuffList' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'TrackList'   Name
-' '           Text
+' '           Text.Whitespace
 'projectTrackList' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'ClipList'    Name
-' '           Text
+' '           Text.Whitespace
 'projectClipList' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'MediaItemList' Name
-' '           Text
+' '           Text.Whitespace
 'projectMediaItemList' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Commander'   Name
-' '           Text
+' '           Text.Whitespace
 'projectCommander' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Gdv'         Name
 '.'           Punctuation
 'Pipeline'    Name
-' '           Text
+' '           Text.Whitespace
 'projectPipeline' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'Gdv'         Name
 '.'           Punctuation
 'ProjectFormat' Name
-' '           Text
+' '           Text.Whitespace
 'projectFormat' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Properties /////////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ProjectName' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectName' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ProjectDirectory' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectDirectory' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'TagList'     Name
-' '           Text
+' '           Text.Whitespace
 'ProjectTagList' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectTagList' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'StuffList'   Name
-' '           Text
+' '           Text.Whitespace
 'ProjectStuffList' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectStuffList' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'TrackList'   Name
-' '           Text
+' '           Text.Whitespace
 'ProjectTrackList' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectTrackList' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ClipList'    Name
-' '           Text
+' '           Text.Whitespace
 'ProjectClipList' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectClipList' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MediaItemList' Name
-' '           Text
+' '           Text.Whitespace
 'ProjectMediaItemList' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectMediaItemList' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Commander'   Name
-' '           Text
+' '           Text.Whitespace
 'ProjectCommander' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectCommander' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Gdv'         Name
 '.'           Punctuation
 'Pipeline'    Name
-' '           Text
+' '           Text.Whitespace
 'ProjectPipeline' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectPipeline' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Gdv'         Name
 '.'           Punctuation
 'ProjectFormat' Name
-' '           Text
+' '           Text.Whitespace
 'ProjectFormat' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'get'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'projectFormat' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Public methods /////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '/* CONSTRUCTOR */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTask'  Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'fileName'    Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'fileName'    Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'fileName'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'verbatimString' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '@"c:\\test\\"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'verbatimStringWithNewline' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '@"test \\\\ \\n \\t \\r\na\nb\nc"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'verbatimStringWithEscapedQuotes' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '@"He said\n""she says \\"" is not an escaped character in verbatimstrings""\n"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'int'         Keyword.Type
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'numbers'     Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number
 ','           Punctuation
 '6'           Literal.Number
@@ -1061,99 +1060,97 @@
 '7'           Literal.Number
 ','           Punctuation
 '0'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'linqExample' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'numbers'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                          ' Text
+'                                          ' Text.Whitespace
 'where'       Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
-'>'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
 '5'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                          ' Text
+'                                          ' Text.Whitespace
 'select'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'anotherlinqExample' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'numbers'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                 ' Text
+'                                                 ' Text.Whitespace
 'orderby'     Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 'descending'  Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                 ' Text
+'                                                 ' Text.Whitespace
 'select'      Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'int'         Keyword.Type
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'someMoreNumbers' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number
 ','           Punctuation
 '2'           Literal.Number
 ','           Punctuation
-'1'           Literal.Number
-'7'           Literal.Number
+'17'          Literal.Number
 ','           Punctuation
-'3'           Literal.Number
-'4'           Literal.Number
+'34'          Literal.Number
 ','           Punctuation
 '8'           Literal.Number
 ','           Punctuation
@@ -1172,1602 +1169,1593 @@
 '1'           Literal.Number
 ','           Punctuation
 '5'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'var'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'moreLinq'    Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'numbers'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                       ' Text
+'                                       ' Text.Whitespace
 'join'        Keyword
-' '           Text
+' '           Text.Whitespace
 'mn'          Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'moreNumbers' Name
-' '           Text
+' '           Text.Whitespace
 'on'          Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 'equals'      Keyword
-' '           Text
+' '           Text.Whitespace
 'mn'          Name
-' '           Text
-'+'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                       ' Text
+'                                       ' Text.Whitespace
 'select'      Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'n'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mn'          Name
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Reset'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'objectToId'  Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Dictionary'  Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'object'      Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'idToObject'  Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Dictionary'  Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'int'         Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'object'      Keyword.Type
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'xmlDocument' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'null'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '//projectInfoNode = null;\n' Comment.Single
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Init'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'base'        Keyword
 '.'           Punctuation
 'Reset'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GetIdForObject' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'objectToId'  Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'o'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'GetObjectForId' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'id'          Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'idToObject'  Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'id'          Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Contains'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'id'          Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'idToObject'  Name
 '.'           Punctuation
 'ContainsKey' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'id'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '// Private methods ////////////////////////////////////////////\n' Comment.Single
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'protected'   Keyword
-' '           Text
+' '           Text.Whitespace
 'override'    Keyword
-' '           Text
+' '           Text.Whitespace
 'TaskStatus'  Name
-' '           Text
+' '           Text.Whitespace
 'ExecuteStep' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'cont'        Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '// Main\n'   Comment.Single
 
-'                        ' Text
+'                        ' Text.Whitespace
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'currentStep' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Init'        Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'objectsList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'List'        Name
-' '           Text
-'<'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
 'ObjectInfo'  Name
-'>'           Punctuation
-' '           Text
+'>'           Operator
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'xmlDocument' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'XmlDocument' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'xmlDocument' Name
 '.'           Punctuation
 'Load'        Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fileName'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Header'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Header'      Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 '//ReadHeader ();\n' Comment.Single
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ProjectInfoRead' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ProjectInfoRead' Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'XmlNode'     Name
-' '           Text
+' '           Text.Whitespace
 'node'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xmlDocument' Name
 '.'           Punctuation
 'DocumentElement' Name
 '.'           Punctuation
 'ChildNodes'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'node'        Name
 '.'           Punctuation
 'Name'        Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 '"projectinfo"' Literal.String
 ')'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                                        ' Text
+'                                                        ' Text.Whitespace
 'ResolveProjectInfoNode' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'node'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 '// FIXME: Fail if not found/not resolved\n' Comment.Single
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListRead' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListRead' Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'XmlNode'     Name
-' '           Text
+' '           Text.Whitespace
 'node'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'xmlDocument' Name
 '.'           Punctuation
 'DocumentElement' Name
 '.'           Punctuation
 'ChildNodes'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'node'        Name
 '.'           Punctuation
 'Name'        Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 '"objectlist"' Literal.String
 ')'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                                        ' Text
+'                                                        ' Text.Whitespace
 'objectListContainer' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'ObjectListContainer' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                                ' Text
+'                                                                ' Text.Whitespace
 'DataFactory' Name
 '.'           Punctuation
 'MakeDataElement' Name
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'node'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'XmlElement'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                        ' Text
-'\n'          Text
+'                                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objectListContainer' Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 'null'        Keyword
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Exception'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"ObjectListContainer not found!"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListParse' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListParse' Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'flush'       Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'EnumerateSomeObjects' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'flush'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListUnBoil' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'ObjectListUnBoil' Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'done'        Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'UnBoilSomeObjects' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'done'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'FindRoots'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'FindRoots'   Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectTrackList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'TrackList'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"tracklist"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectTagList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'TagList'     Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"taglist"'   Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectStuffList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'StuffList'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"stufflist"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectClipList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'ClipList'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"cliplist"'  Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectMediaItemList' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'MediaItemList' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"mediaitemlist"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectPipeline' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'Gdv'         Name
 '.'           Punctuation
 'Pipeline'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"pipeline"'  Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectCommander' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'Commander'   Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"commander"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'projectFormat' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'Gdv'         Name
 '.'           Punctuation
 'ProjectFormat' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"projectformat"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'currentStep' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Finished'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 'OpenerTaskStep' Name
 '.'           Punctuation
 'Finished'    Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'cont'        Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'false'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'default'     Keyword
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
-'\n'          Text
+'                                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '// Post \n'  Comment.Single
 
-'                        ' Text
+'                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'cont'        Name
 ')'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'TaskStatus'  Name
 '.'           Punctuation
 'Running'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'TaskStatus'  Name
 '.'           Punctuation
 'Done'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '/*\n                void ReadHeader ()\n                {\n                        // FIXME: Read all the attributes from the <divaproject> element\n                        }*/' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'void'        Keyword
-' '           Text
+' '           Text.Whitespace
 'ResolveProjectInfoNode' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'XmlNode'     Name
-' '           Text
+' '           Text.Whitespace
 'node'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'XmlNode'     Name
-' '           Text
+' '           Text.Whitespace
 'childNode'   Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'node'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
-'\n'          Text
+'                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'switch'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'childNode'   Name
 '.'           Punctuation
 'Name'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"name"'      Literal.String
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'projectName' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'childNode'   Name
 '.'           Punctuation
 'FirstChild'  Name
 '.'           Punctuation
 'Value'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
-'\n'          Text
+'                                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'case'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"directory"' Literal.String
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'projectDirectory' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'childNode'   Name
 '.'           Punctuation
 'FirstChild'  Name
 '.'           Punctuation
 'Value'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                                ' Text
+'                                                ' Text.Whitespace
 '// FIXME: Duration etc.\n' Comment.Single
 
-'                                ' Text
+'                                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'EnumerateSomeObjects' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objectsEnumerator' Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 'null'        Keyword
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'objectsEnumerator' Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'objectListContainer' Name
 '.'           Punctuation
 'FindAllObjects' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 '.'           Punctuation
 'GetEnumerator' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
-'<'           Punctuation
-' '           Text
-'1'           Literal.Number
-'0'           Literal.Number
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'+'           Punctuation
-'+'           Punctuation
+'++'          Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objectsEnumerator' Name
 '.'           Punctuation
 'MoveNext'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 'false'       Keyword
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'ObjectContainer' Name
-' '           Text
+' '           Text.Whitespace
 'container'   Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '('           Punctuation
 'ObjectContainer' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'objectsEnumerator' Name
 '.'           Punctuation
 'Current'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
-'\n'          Text
+'                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'ObjectInfo'  Name
-' '           Text
+' '           Text.Whitespace
 'newInfo'     Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'ObjectInfo'  Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'container'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'objectsList' Name
 '.'           Punctuation
 'Add'         Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'newInfo'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'ObjectInfo'  Name
-' '           Text
+' '           Text.Whitespace
 'GetNextCandidate' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ObjectInfo'  Name
-' '           Text
+' '           Text.Whitespace
 'objInfo'     Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'objectsList' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objInfo'     Name
 '.'           Punctuation
 'IsUnBoilable' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'this'        Keyword
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'objInfo'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'throw'       Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Exception'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '"FIXME: No more unboilable objects found. Recursive?"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'UnBoilSomeObjects' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
-'<'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
 '5'           Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'+'           Punctuation
-'+'           Punctuation
+'++'          Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 '// All unboiled\n' Comment.Single
 
-'                                ' Text
+'                                ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objectsList' Name
 '.'           Punctuation
 'Count'       Name
-' '           Text
-'='           Punctuation
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
 '0'           Literal.Number
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                        ' Text
+'                                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
-'\n'          Text
+'                                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'ObjectInfo'  Name
-' '           Text
+' '           Text.Whitespace
 'objInfo'     Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'GetNextCandidate' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'o'           Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'BoilFactory' Name
 '.'           Punctuation
 'UnBoil'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objInfo'     Name
 '.'           Punctuation
 'Container'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'objectsList' Name
 '.'           Punctuation
 'Remove'      Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objInfo'     Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 '// Add\n'    Comment.Single
 
-'                                ' Text
+'                                ' Text.Whitespace
 'idToObject'  Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'objInfo'     Name
 '.'           Punctuation
 'RefId'       Name
 ']'           Punctuation
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'o'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                                ' Text
+'                                ' Text.Whitespace
 'objectToId'  Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'o'           Name
 ']'           Punctuation
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'objInfo'     Name
 '.'           Punctuation
 'RefId'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
-'\n'          Text
+'                        ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'FindRoot'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'string'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'rootString'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'ObjectContainer' Name
-' '           Text
+' '           Text.Whitespace
 'container'   Name
-' '           Text
-'='           Punctuation
-' '           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'objectListContainer' Name
 '.'           Punctuation
 'FindObjectContainer' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rootString'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                        ' Text
+'                        ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'idToObject'  Name
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'container'   Name
 '.'           Punctuation
 'RefId'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
-'\n'          Text
+'                ' Text.Whitespace
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
-'\n'          Text
+'        '    Text.Whitespace
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

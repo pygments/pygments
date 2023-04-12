@@ -1,0 +1,923 @@
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"std/type/int"' Literal.String
+' '           Text.Whitespace
+'as'          Keyword.Namespace
+' '           Text.Whitespace
+'integer'     Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'const'       Keyword.Pseudo
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'vertexCount' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'f'           Keyword.Declaration
+'<'           Punctuation
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'minDistance' Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'bool'        Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'sptSet'      Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'min'         Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'integer'     Name.Other
+'.'           Punctuation
+'MAX_VALUE'   Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'minIndex'    Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'v'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'v'           Name.Other
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'vertexCount' Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'v'           Name.Other
+'++'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'!'           Punctuation
+'sptSet'      Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'min'         Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'min'         Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'minIndex'    Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'v'           Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'minIndex'    Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'p'           Keyword.Declaration
+' '           Text.Whitespace
+'printSolution' Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"Vertex \\t\\t Distance from source\\n"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name.Other
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'vertexCount' Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name.Other
+'++'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"%d \\t\\t %d\\n"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'i'           Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'p'           Keyword.Declaration
+' '           Text.Whitespace
+'dijkstra'    Name.Other
+'('           Punctuation
+'int'         Keyword.Type
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'graph'       Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'src'         Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'bool'        Keyword.Type
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'sptSet'      Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Fill with default values\n' Comment.Single
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name.Other
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'vertexCount' Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name.Other
+'++'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'integer'     Name.Other
+'.'           Punctuation
+'MAX_VALUE'   Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'sptSet'      Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'false'       Keyword.Constant
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Set distance to starting node to 0\n' Comment.Single
+
+'    '        Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'src'         Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'count'       Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'count'       Name.Other
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'vertexCount' Name.Other
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'count'       Name.Other
+'++'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'u'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'minDistance' Name.Other
+'('           Punctuation
+'dist'        Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'sptSet'      Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'sptSet'      Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'v'           Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'v'           Name.Other
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'vertexCount' Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'v'           Name.Other
+'++'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Punctuation
+'sptSet'      Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'graph'       Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'integer'     Name.Other
+'.'           Punctuation
+'MAX_VALUE'   Name.Other
+' '           Text.Whitespace
+'&&'          Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'graph'       Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'dist'        Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'graph'       Name.Other
+'['           Punctuation
+'u'           Name.Other
+']'           Punctuation
+'['           Punctuation
+'v'           Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Print the solution\n' Comment.Single
+
+'    '        Text.Whitespace
+'printSolution' Name.Other
+'('           Punctuation
+'dist'        Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'f'           Keyword.Declaration
+'<'           Punctuation
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+'['           Punctuation
+'vertexCount' Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'graph'       Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'11'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'14'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'14'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'11'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"Computing shortest paths with Dijkstra\'s algorithm ...\\n"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'dijkstra'    Name.Other
+'('           Punctuation
+'graph'       Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'printf'      Name.Builtin
+'('           Punctuation
+'"Done.\\n"'  Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

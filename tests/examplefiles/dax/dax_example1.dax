@@ -1,0 +1,11 @@
+/* This calculation sums sales divided
+by days in the month 
+multiplied by current MTD
+*/
+Total Sales Spread = (
+    --This line does a calculate
+    CALCULATE (
+        SUM ( TABLE1[SALES]),
+        PBCS_PLAN_FCST[Scenario] = "Plan"
+    ) / 'Days in Month'[Days in Month Value]
+) * 'Current MTD'[Current MTD Value]

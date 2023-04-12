@@ -5,16 +5,16 @@ end
 
 ---tokens---
 'record'      Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 'Cls'         Name
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def_equals'  Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 's'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

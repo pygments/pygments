@@ -1,9 +1,9 @@
 'Strict\n'    Keyword.Reserved
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "' single line comment" Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#rem'        Comment.Multiline
 '\n'          Comment.Multiline
@@ -18,7 +18,7 @@
 '\n'          Comment.Multiline
 
 '#end'        Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '#rem'        Comment.Multiline
 '\n'          Comment.Multiline
@@ -42,124 +42,127 @@
 '\n'          Comment.Multiline
 
 '#end'        Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'mojo'        Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ONECONST'    Name.Constant
 ':'           Punctuation
 'Int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'TWOCONST'    Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'THREECONST'  Name.Constant
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FOURCONST'   Name.Constant
 ':'           Punctuation
 'Int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'someVariable' Name.Variable
 ':'           Punctuation
 'Int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' sample class from the documentation" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Game'        Name.Class
-' '           Text
+' '           Text.Whitespace
 'Extends'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'App'         Name.Class
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'New'         Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'DrawSpiral'  Name.Function
 '('           Punctuation
 'clock'       Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'w'           Name.Variable
 '='           Operator
 'DeviceWidth' Name.Function
 '/'           Operator
 '2'           Literal.Number.Integer
-'\n        '  Text
-'For '        Keyword.Reserved
+'\n        '  Text.Whitespace
+'For'         Keyword.Reserved
+' '           Text.Whitespace
 'Local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 '#'           Keyword.Type
 '='           Operator
 '0'           Literal.Number.Integer
-' '           Text
-'Until '      Keyword.Reserved
+' '           Text.Whitespace
+'Until'       Keyword.Reserved
+' '           Text.Whitespace
 'w'           Name.Variable
 '*'           Operator
 '1.5'         Literal.Number.Float
-' '           Text
-'Step '       Keyword.Reserved
+' '           Text.Whitespace
+'Step'        Keyword.Reserved
+' '           Text.Whitespace
 '.2'          Literal.Number.Float
-'\n            ' Text
+'\n            ' Text.Whitespace
 'Local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 '#'           Keyword.Type
 ','           Punctuation
 'y'           Name.Variable
 '#'           Keyword.Type
-'\n            ' Text
+'\n            ' Text.Whitespace
 'x'           Name.Variable
 '='           Operator
 'w'           Name.Variable
@@ -174,7 +177,7 @@
 '+'           Operator
 'clock'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'y'           Name.Variable
 '='           Operator
 'w'           Name.Variable
@@ -189,9 +192,9 @@
 '+'           Operator
 'clock'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'DrawRect'    Name.Function
-'  '          Text
+'  '          Text.Whitespace
 'x'           Name.Variable
 ','           Punctuation
 'y'           Name.Variable
@@ -199,8 +202,9 @@
 '1'           Literal.Number.Integer
 ','           Punctuation
 '1'           Literal.Number.Integer
-'\n        '  Text
-'Next\n        ' Keyword.Reserved
+'\n        '  Text.Whitespace
+'Next'        Keyword.Reserved
+'\n        '  Text.Whitespace
 'hitbox'      Name.Variable
 '.'           Punctuation
 'Collide'     Name.Function
@@ -209,111 +213,111 @@
 '.'           Punctuation
 'pos'         Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Field'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'updateCount' Name.Variable
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'OnCreate'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Print'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'spiral'      Literal.String.Double
 '"'           Literal.String.Double
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'SetUpdateRate' Name.Function
-' '           Text
+' '           Text.Whitespace
 '60'          Literal.Number.Integer
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'OnUpdate'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'updateCount' Name.Variable
 '+='          Operator
 '1'           Literal.Number.Integer
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'OnRender'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Cls'         Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 'DrawSpiral'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'updateCount' Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 'DrawSpiral'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'updateCount' Name.Variable
 '*'           Operator
 '1.1'         Literal.Number.Float
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Enemy'       Name.Class
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Die'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Abstract'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' extending" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Hoodlum'     Name.Class
-' '           Text
+' '           Text.Whitespace
 'Extends'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Enemy'       Name.Class
-'\n    '      Text
+'\n    '      Text.Whitespace
 "' field"     Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Field'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'testField'   Name.Variable
 ':'           Punctuation
 'Bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'True'        Name.Builtin
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "' naming class with modulepath" Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'currentNode' Name.Variable
 ':'           Punctuation
 'list.'       Name.Namespace
@@ -321,139 +325,139 @@
 '<'           Punctuation
 'Vector2D'    Name.Class
 '>'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Die'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'Print'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 "B'oss, he-- he killed me, b'oss!" Literal.String.Double
 '"'           Literal.String.Double
-'\n    '      Text
+'\n    '      Text.Whitespace
 'End'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' extending with generics" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'VectorNode'  Name.Class
-' '           Text
+' '           Text.Whitespace
 'Extends'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Node'        Name.Class
 '<'           Punctuation
 'Vector2D'    Name.Class
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' interfaces" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Interface'   Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Computer'    Name.Class
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Boot'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Process'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'Method'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Display'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Class'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'PC'          Name.Class
-' '           Text
+' '           Text.Whitespace
 'Implements'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Computer'    Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'End'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' array syntax" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'listOfStuff' Name.Variable
 ':'           Punctuation
 'String'      Keyword.Type
 '['           Punctuation
 '42'          Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'lessStuff'   Name.Variable
 ':'           Punctuation
 'String'      Keyword.Type
 '['           Punctuation
 '5'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'listOfStuff' Name.Variable
 '['           Punctuation
 '4'           Literal.Number.Integer
 '.'           Punctuation
 '.8'          Literal.Number.Float
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'oneStuff'    Name.Variable
 ':'           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'listOfStuff' Name.Variable
 '['           Punctuation
 '23'          Literal.Number.Integer
 ']'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "'a comma separated sequence" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'scores'      Name.Variable
 ':'           Punctuation
 'Int'         Keyword.Type
@@ -467,13 +471,13 @@
 ','           Punctuation
 '30'          Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'a comma separated sequence" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'text'        Name.Variable
 ':'           Punctuation
 'String'      Keyword.Type
@@ -493,10 +497,10 @@
 'World'       Literal.String.Double
 '"'           Literal.String.Double
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'worstCase'   Name.Variable
 ':'           Punctuation
 'worst.'      Name.Namespace
@@ -506,99 +510,99 @@
 '['           Punctuation
 ']'           Punctuation
 '>'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' string type" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string1'     Name.Variable
 ':'           Punctuation
 'String'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Hello world' Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string2'     Name.Variable
 '$'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Hello world' Literal.String.Double
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' escape characers in strings" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string3'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Hello'       Literal.String.Double
 '~z'          Literal.String.Escape
 'World'       Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string4'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '~q'          Literal.String.Escape
 'Hello World' Literal.String.Double
 '~q'          Literal.String.Escape
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string5'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '~t'          Literal.String.Escape
 'Indented'    Literal.String.Double
 '~n'          Literal.String.Escape
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'string6'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'tilda is wavey... ' Literal.String.Double
 '~~'          Literal.String.Escape
 '"'           Literal.String.Double
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' string pseudofunctions" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Print'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '  Hello World  ' Literal.String.Double
 '~n'          Literal.String.Escape
@@ -607,12 +611,12 @@
 'Trim'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '\' prints "Hello World"' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Print'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Hello World' Literal.String.Double
 '"'           Literal.String.Double
@@ -620,206 +624,206 @@
 'ToUpper'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '\' prints "HELLO WORLD"' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' Boolean shorttype" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolVariable1' Name.Variable
 ':'           Punctuation
 'Bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'True'        Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'boolVariable2' Name.Variable
 '?'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'False'       Name.Builtin
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' number formats" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'hexNum1'     Name.Variable
 ':'           Punctuation
 'Int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$3d0dead'    Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'hexNum2'     Name.Variable
 '%'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$CAFEBABE'   Literal.Number.Hex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'floatNum1'   Name.Variable
 ':'           Punctuation
 'Float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3.141516'    Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'floatNum2'   Name.Variable
 '#'           Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3.141516'    Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'floatNum3'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '.141516'     Literal.Number.Float
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' preprocessor keywords" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#If'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'TARGET'      Name.Constant
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'android'     Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DoStuff'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#ElseIf'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'TARGET'      Name.Constant
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'ios'         Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DoOtherStuff' Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#End'        Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' preprocessor variable" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'SOMETHING'   Name.Constant
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'True'        Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#Print'      Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'SOMETHING'   Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#If'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'SOMETHING'   Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#End'        Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "' operators" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '32'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '32'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '~='          Operator
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|='          Operator
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '&='          Operator
-' '           Text
+' '           Text.Whitespace
 '16'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace

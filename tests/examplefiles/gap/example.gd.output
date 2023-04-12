@@ -1,20 +1,20 @@
 '#############################################################################' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#W  example.gd' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  This file contains a sample of a GAP declaration file.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DeclareProperty' Name.Builtin
 '('           Punctuation
@@ -26,7 +26,7 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DeclareGlobalFunction' Name.Builtin
 '('           Punctuation
@@ -35,47 +35,47 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#############################################################################' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#C  IsQuuxFrobnicator(<R>)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  <ManSection>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  <Filt Name="IsQuuxFrobnicator" Arg=\'R\' Type=\'Category\'/>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  <Description>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  Tests whether R is a quux frobnicator.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  </Description>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##  </ManSection>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '##'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DeclareSynonym' Name.Builtin
 '('           Punctuation
@@ -91,4 +91,4 @@
 ' '           Text
 ')'           Punctuation
 ';'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

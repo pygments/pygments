@@ -4,26 +4,24 @@
 
     Lexers for PHP and related languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, default, \
-    using, this, words, do_insertions
+    using, this, words, do_insertions, line_re
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other, Generic
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 __all__ = ['ZephirLexer', 'PsyshConsoleLexer', 'PhpLexer']
 
-line_re = re.compile('.*?\n')
-
 
 class ZephirLexer(RegexLexer):
     """
-    For `Zephir language <http://zephir-lang.com/>`_ source code.
+    For Zephir language source code.
 
     Zephir is a compiled high level language aimed
     to the creation of C-extensions for PHP.
@@ -32,6 +30,7 @@ class ZephirLexer(RegexLexer):
     """
 
     name = 'Zephir'
+    url = 'http://zephir-lang.com/'
     aliases = ['zephir']
     filenames = ['*.zep']
 
@@ -71,7 +70,7 @@ class ZephirLexer(RegexLexer):
             (r'(abstract|boolean|bool|char|class|const|double|enum|export|extends|final|'
              r'native|goto|implements|import|int|string|interface|long|ulong|char|uchar|'
              r'float|unsigned|private|protected|public|short|static|self|throws|reverse|'
-             r'transient|volatile)\b', Keyword.Reserved),
+             r'transient|volatile|readonly)\b', Keyword.Reserved),
             (r'(true|false|null|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|_REQUEST|_COOKIE|_SESSION|'
              r'_GET|_POST|_SERVER|this|stdClass|range|count|iterator|'
@@ -88,7 +87,7 @@ class ZephirLexer(RegexLexer):
 
 class PsyshConsoleLexer(Lexer):
     """
-    For `PsySH`_ console output, such as:
+    For PsySH console output, such as:
 
     .. sourcecode:: psysh
 
@@ -99,10 +98,10 @@ class PsyshConsoleLexer(Lexer):
         >>> $greeting('World')
         => "Hello, World"
 
-    .. _PsySH: https://psysh.org/
     .. versionadded:: 2.7
     """
     name = 'PsySH console session for PHP'
+    url = 'https://psysh.org/'
     aliases = ['psysh']
 
     def __init__(self, **options):
@@ -137,7 +136,7 @@ class PsyshConsoleLexer(Lexer):
 
 class PhpLexer(RegexLexer):
     """
-    For `PHP <http://www.php.net/>`_ source code.
+    For PHP source code.
     For PHP embedded in HTML, use the `HtmlPhpLexer`.
 
     Additional options accepted:
@@ -169,16 +168,16 @@ class PhpLexer(RegexLexer):
     """
 
     name = 'PHP'
+    url = 'https://www.php.net/'
     aliases = ['php', 'php3', 'php4', 'php5']
     filenames = ['*.php', '*.php[345]', '*.inc']
     mimetypes = ['text/x-php']
 
-    # Note that a backslash is included in the following two patterns
-    # PHP uses a backslash as a namespace separator
-    _ident_char = r'[\\\w]|[^\x00-\x7f]'
-    _ident_begin = r'(?:[\\_a-z]|[^\x00-\x7f])'
-    _ident_end = r'(?:' + _ident_char + ')*'
-    _ident_inner = _ident_begin + _ident_end
+    # Note that a backslash is included, PHP uses a backslash as a namespace
+    # separator.
+    _ident_inner = r'(?:[\\_a-z]|[^\x00-\x7f])(?:[\\\w]|[^\x00-\x7f])*'
+    # But not inside strings.
+    _ident_nons = r'(?:[_a-z]|[^\x00-\x7f])(?:\w|[^\x00-\x7f])*'
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
     tokens = {
@@ -189,10 +188,11 @@ class PhpLexer(RegexLexer):
         ],
         'php': [
             (r'\?>', Comment.Preproc, '#pop'),
-            (r'(<<<)([\'"]?)(' + _ident_inner + r')(\2\n.*?\n\s*)(\3)(;?)(\n)',
+            (r'(<<<)([\'"]?)(' + _ident_nons + r')(\2\n.*?\n\s*)(\3)(;?)(\n)',
              bygroups(String, String, String.Delimiter, String, String.Delimiter,
                       Punctuation, Text)),
             (r'\s+', Text),
+            (r'#\[', Punctuation, 'attribute'),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
             # put the empty comment here, it is otherwise seen as
@@ -200,11 +200,12 @@ class PhpLexer(RegexLexer):
             (r'/\*\*/', Comment.Multiline),
             (r'/\*\*.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'(->|::)(\s*)(' + _ident_inner + ')',
+            (r'(->|::)(\s*)(' + _ident_nons + ')',
              bygroups(Operator, Text, Name.Attribute)),
             (r'[~!%^&*+=|:.<>/@-]+', Operator),
             (r'\?', Operator),  # don't add to the charclass above!
             (r'[\[\]{}();,]+', Punctuation),
+            (r'(new)(\s+)(class)\b', bygroups(Keyword, Text, Keyword)),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
             (r'(function)(\s+)(&?)(\s*)',
@@ -221,10 +222,10 @@ class PhpLexer(RegexLexer):
              r'array|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace|trait|yield|'
-             r'finally)\b', Keyword),
+             r'finally|match)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             include('magicconstants'),
-            (r'\$\{\$+' + _ident_inner + r'\}', Name.Variable),
+            (r'\$\{', Name.Variable, 'variablevariable'),
             (r'\$+' + _ident_inner, Name.Variable),
             (_ident_inner, Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)(e[+-]?[0-9]+)?', Number.Float),
@@ -236,6 +237,10 @@ class PhpLexer(RegexLexer):
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
+        ],
+        'variablevariable': [
+            (r'\}', Name.Variable, '#pop'),
+            include('php')
         ],
         'magicfuncs': [
             # source: http://php.net/manual/en/language.oop5.magic.php
@@ -265,7 +270,7 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
             (r'\\([nrt"$\\]|[0-7]{1,3}|x[0-9a-f]{1,2})', String.Escape),
-            (r'\$' + _ident_inner + r'(\[\S+?\]|->' + _ident_inner + ')?',
+            (r'\$' + _ident_nons + r'(\[\S+?\]|->' + _ident_nons + ')?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
              bygroups(String.Interpol, using(this, _startinline=True),
@@ -276,6 +281,16 @@ class PhpLexer(RegexLexer):
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
             (r'[${\\]', String.Double)
+        ],
+        'attribute': [
+            (r'\]', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'attributeparams'),
+            (_ident_inner, Name.Decorator),
+            include('php')
+        ],
+        'attributeparams': [
+            (r'\)', Punctuation, '#pop'),
+            include('php')
         ],
     }
 

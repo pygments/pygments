@@ -4,11 +4,9 @@ ServerName localhost
 
 ---tokens---
 'Example'     Name.Builtin
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ServerName'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'localhost'   Text
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace

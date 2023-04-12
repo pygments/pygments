@@ -4,7 +4,7 @@
 
     Lexers for the NixOS Nix language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,17 +19,16 @@ __all__ = ['NixLexer']
 
 class NixLexer(RegexLexer):
     """
-    For the `Nix language <http://nixos.org/nix/>`_.
+    For the Nix language.
 
     .. versionadded:: 2.0
     """
 
     name = 'Nix'
+    url = 'http://nixos.org/nix/'
     aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
-
-    flags = re.MULTILINE | re.UNICODE
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']
@@ -103,7 +102,8 @@ class NixLexer(RegexLexer):
             (r"''\t", String.Escape),
             (r"''", String.Single, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r"[^']", String.Single),
+            (r"['$]", String.Single),
+            (r"[^'$]+", String.Single),
         ],
         'doublequote': [
             (r'\\', String.Escape),

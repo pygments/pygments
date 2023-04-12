@@ -4,26 +4,25 @@
 
     Lexers for the X10 programming language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+from pygments.token import Text, Comment, Keyword, String
 
 __all__ = ['X10Lexer']
+
 
 class X10Lexer(RegexLexer):
     """
     For the X10 language.
 
-    .. versionadded:: 0.1
+    .. versionadded:: 2.2
     """
 
     name = 'X10'
+    url = 'http://x10-lang.org/'
     aliases = ['x10', 'xten']
     filenames = ['*.x10']
     mimetypes = ['text/x-x10']

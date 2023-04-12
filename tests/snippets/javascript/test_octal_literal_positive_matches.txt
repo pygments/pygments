@@ -1,0 +1,23 @@
+---input---
+// Test literals that should be tokenized as octal literals.
+017
+071n
+0o11
+0O77n
+
+---tokens---
+''            Text
+'// Test literals that should be tokenized as octal literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'017'         Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'071n'        Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'0o11'        Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'0O77n'       Literal.Number.Oct
+'\n'          Text.Whitespace

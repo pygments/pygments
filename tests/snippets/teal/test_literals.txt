@@ -6,23 +6,23 @@ a b64 aB/c23=
 
 ---tokens---
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '0x1AaAF'     Literal.Number.Hex
 '\n'          Text
 
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '7777777777777777777777777777777777777777777777777774MSJUVU' Literal.Number
 '\n'          Text
 
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'base32'      Literal.String.Affix
 '(aB/c23=)'   Literal.String.Other
 '\n'          Text
 
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 'b64 '        Literal.String.Affix
 'aB/c23='     Literal.String.Other
 '\n'          Text

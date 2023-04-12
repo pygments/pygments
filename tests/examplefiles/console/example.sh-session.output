@@ -1,20 +1,20 @@
 'user@host:~/path$ ' Generic.Prompt
 'ls'          Text
-' '           Text
+' '           Text.Whitespace
 '-a'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.  ..  a  b  c\n' Generic.Output
 
 'user@host:~/path$ ' Generic.Prompt
 'diff'        Text
-' '           Text
+' '           Text.Whitespace
 '-u'          Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--- a   2008-07-26 17:10:07.000000000 -0700\n' Generic.Output
 
@@ -32,18 +32,18 @@
 
 'user@host:~/path$ ' Generic.Prompt
 'echo'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '> '          Generic.Prompt
 'a'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a\n'         Generic.Output
 
 'user@host:~/path$ ' Generic.Prompt
 'su'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'root@host:~#\n' Generic.Prompt
 
@@ -56,6 +56,6 @@
 '(virtualenv-name)' Generic.Prompt.VirtualEnv
 'user@host:~$ ' Generic.Prompt
 'ls'          Text
-' '           Text
+' '           Text.Whitespace
 '-a'          Text
-'\n'          Text
+'\n'          Text.Whitespace

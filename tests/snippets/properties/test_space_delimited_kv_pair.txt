@@ -3,5 +3,6 @@ key value
 
 ---tokens---
 'key'         Name.Attribute
-' '           Text
-'value\n'     Literal.String
+' '           Text.Whitespace
+'value'       Literal.String
+'\n'          Text.Whitespace
