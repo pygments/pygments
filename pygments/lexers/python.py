@@ -643,7 +643,7 @@ class PythonConsoleLexer(Lexer):
     .. sourcecode:: pycon
 
         >>> a = 'foo'
-        >>> print a
+        >>> print(a)
         foo
         >>> 1 / 0
         Traceback (most recent call last):
