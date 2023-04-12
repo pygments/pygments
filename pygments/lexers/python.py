@@ -763,7 +763,8 @@ class PythonTracebackLexer(RegexLexer):
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Whitespace), '#pop'),
             (r'^([a-zA-Z_][\w.]*)(:?\n)',
-             bygroups(Generic.Error, Whitespace), '#pop')
+             bygroups(Generic.Error, Whitespace), '#pop'),
+            default('#pop'),
         ],
         'markers': [
             # Either `PEP 657 <https://www.python.org/dev/peps/pep-0657/>`
