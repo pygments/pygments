@@ -2,13 +2,17 @@
 '\n'          Text.Whitespace
 
 '# mixing spaces' Comment.Single
-'\n\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
 'Truth'       Name.Attribute
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'Beauty'      Literal.String
-'\n  '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 'Truth'       Name.Attribute
 ':'           Operator
 'Beauty'      Literal.String
@@ -23,18 +27,24 @@
 '                    ' Text.Whitespace
 ':'           Operator
 'Beauty'      Literal.String
-'\n \n'       Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
 
 '! line continuations and escapes' Comment.Single
-'\n '         Text.Whitespace
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
 'fruits'      Name.Attribute
 '                           ' Text.Whitespace
 'apple, banana, pear, ' Literal.String
-'\\'          Text
-'\n                                  ' Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                                  ' Text.Whitespace
 'cantaloupe, watermelon, ' Literal.String
-'\\'          Text
-'\n                                  ' Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                                  ' Text.Whitespace
 'kiwi, mango' Literal.String
 '\n'          Text.Whitespace
 
@@ -42,25 +52,42 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'\\'          Text
-'\n    '      Text.Whitespace
-'value1 \\\\' Literal.String
-'\\'          Text
-'\n    '      Text.Whitespace
-'and value2\\\\' Literal.String
+'\\\n'        Literal.String.Escape
+
+'    '        Text.Whitespace
+'value1 '     Literal.String
+'\\\\'        Literal.String.Escape
+'\\\n'        Literal.String.Escape
+
+'    '        Text.Whitespace
+'and value2'  Literal.String
+'\\\\'        Literal.String.Escape
 '\n'          Text.Whitespace
 
-'key\\ 2'     Name.Attribute
+'key'         Name.Attribute
+'\\ '         Literal.String.Escape
+'2'           Name.Attribute
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'value'       Literal.String
 '\n'          Text.Whitespace
 
-'key\\\\'     Name.Attribute
+'key'         Name.Attribute
+'\\\\'        Literal.String.Escape
 ' '           Text.Whitespace
 '3 = value3'  Literal.String
-'\n\n'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'  '          Text.Whitespace
+'= value'     Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
 
 '! empty keys and edge cases' Comment.Single
 '\n'          Text.Whitespace
@@ -91,4 +118,53 @@
 'key6'        Name.Attribute
 '='           Operator
 'the value6'  Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'! escapes in keys' Comment.Single
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\ '         Literal.String.Escape
+'with'        Name.Attribute
+'\\ '         Literal.String.Escape
+'spaces'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\n'         Literal.String.Escape
+'with'        Name.Attribute
+'\\n'         Literal.String.Escape
+'newlines'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\\n'         Literal.String.Escape
+'with'        Literal.String
+'\\n'         Literal.String.Escape
+'newlines'    Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'! indented comment' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'! line continuations do \\' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'work for comments' Literal.String
 '\n'          Text.Whitespace
