@@ -88,6 +88,7 @@ class ElpiLexer(RegexLexer):
             (r'"', String.Double, 'elpi-string'),
             (r'`', String.Double, 'elpi-btick'),
             (r'\'', String.Double, 'elpi-tick'),
+            (r'\{\{', Text.Punctuation, 'elpi-quote'),
             (r'\{[^\{]', Text, 'elpi-spill'),
             (r"\(", Text, 'elpi-in-parens'),
             (r'\d[\d_]*', Number.Integer),
@@ -151,6 +152,12 @@ class ElpiLexer(RegexLexer):
             (r'[^\"]+', String.Double),
             (r'"', String.Double, '#pop'),
         ],
+        'elpi-quote': [
+            (r'\{\{', Text.Punctuation, '#push'),
+            (r'\}\}', Text.Punctuation, '#pop'),
+            (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Text.Punctuation,Name.Variable)),
+            (r".", Text),
+        ], 
         'elpi-spill': [
             (r'\{[^\{]', Text, '#push'),
             (r'\}[^\}]', Text, '#pop'),
