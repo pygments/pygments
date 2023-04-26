@@ -1,0 +1,17 @@
+---input---
+__restrict
+__int128
+_BitInt(2)
+
+---tokens---
+'__restrict'  Keyword
+'\n'          Text.Whitespace
+
+'__int128'    Keyword.Type
+'\n'          Text.Whitespace
+
+'_BitInt'     Keyword.Type
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
