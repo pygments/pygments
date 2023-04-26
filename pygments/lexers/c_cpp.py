@@ -107,7 +107,8 @@ class CFamilyLexer(RegexLexer):
             (words(('int8', 'int16', 'int32', 'int64', 'wchar_t'), prefix=r'__',
                     suffix=r'\b'), Keyword.Reserved),
             (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
-                    'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type)
+                    'unsigned', 'signed', 'void', '_BitInt',
+                    '__int128'), suffix=r'\b'), Keyword.Type)
         ],
         'keywords': [
             (r'(struct|union)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
