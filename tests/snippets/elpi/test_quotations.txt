@@ -4,23 +4,23 @@ tc {{ Eq lp:A }} {{ f lp:B l } }} :- foo A B.
 ---tokens---
 'tc'          Text
 ' '           Text.Whitespace
-'{{'          Text.Punctuation
+'{{'          Punctuation
 ' Eq '        Text
-'lp:'         Text.Punctuation
+'lp:'         Punctuation
 'A'           Name.Variable
 ' '           Text
-'}}'          Text.Punctuation
+'}}'          Punctuation
 ' '           Text.Whitespace
-'{{'          Text.Punctuation
+'{{'          Punctuation
 ' f '         Text
-'lp:'         Text.Punctuation
+'lp:'         Punctuation
 'B'           Name.Variable
 ' '           Text
 'l'           Text
 ' '           Text
 '}'           Text
 ' '           Text
-'}}'          Text.Punctuation
+'}}'          Punctuation
 ' '           Text.Whitespace
 ':-'          Keyword.Declaration
 ' '           Text.Whitespace
