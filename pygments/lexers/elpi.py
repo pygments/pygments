@@ -156,7 +156,8 @@ class ElpiLexer(RegexLexer):
             (r'\{\{', Text.Punctuation, '#push'),
             (r'\}\}', Text.Punctuation, '#pop'),
             (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Text.Punctuation,Name.Variable)),
-            (r".", Text),
+            (r"[^l\}]+", Text),
+            (r"l|\}", Text),
         ], 
         'elpi-spill': [
             (r'\{[^\{]', Text, '#push'),

@@ -1,25 +1,24 @@
 ---input---
-tc {{ Eq lp:A }} {{ f lp:B }} :- foo A B.
+tc {{ Eq lp:A }} {{ f lp:B l } }} :- foo A B.
 
 ---tokens---
 'tc'          Text
 ' '           Text.Whitespace
 '{{'          Text.Punctuation
-' '           Text
-'E'           Text
-'q'           Text
-' '           Text
+' Eq '        Text
 'lp:'         Text.Punctuation
 'A'           Name.Variable
 ' '           Text
 '}}'          Text.Punctuation
 ' '           Text.Whitespace
 '{{'          Text.Punctuation
-' '           Text
-'f'           Text
-' '           Text
+' f '         Text
 'lp:'         Text.Punctuation
 'B'           Name.Variable
+' '           Text
+'l'           Text
+' '           Text
+'}'           Text
 ' '           Text
 '}}'          Text.Punctuation
 ' '           Text.Whitespace
