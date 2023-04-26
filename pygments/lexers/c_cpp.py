@@ -380,7 +380,7 @@ class CppLexer(CFamilyLexer):
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast', 'class',
-                'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
+                '__restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
                 'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr', 'concept',
                 'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval',
                 'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module',
