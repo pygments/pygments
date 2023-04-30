@@ -155,10 +155,10 @@ class ElpiLexer(RegexLexer):
         'elpi-quote': [
             (r'\{\{', Punctuation, '#push'),
             (r'\}\}', Punctuation, '#pop'),
-            (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Punctuation,Name.Variable)),
+            (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Keyword, Name.Variable)),
             (r"[^l\}]+", Text),
             (r"l|\}", Text),
-        ], 
+        ],
         'elpi-spill': [
             (r'\{[^\{]', Text, '#push'),
             (r'\}[^\}]', Text, '#pop'),

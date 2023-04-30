@@ -6,14 +6,14 @@ tc {{ Eq lp:A }} {{ f lp:B l } }} :- foo A B.
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' Eq '        Text
-'lp:'         Punctuation
+'lp:'         Keyword
 'A'           Name.Variable
 ' '           Text
 '}}'          Punctuation
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' f '         Text
-'lp:'         Punctuation
+'lp:'         Keyword
 'B'           Name.Variable
 ' '           Text
 'l'           Text
