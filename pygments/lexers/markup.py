@@ -1049,37 +1049,37 @@ class WikitextLexer(RegexLexer):
                 r"""(?xi)
                 (\[\[)
                     (File|Image) (:)
-                    ([{}]*)
-                    (?: (\#) ([{}]*?) )?
-                """.format(title_char, f'{title_char}#'),
+                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*)
+                    (?: (\#) ([%s]*?) )?
+                """ % (title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
-                         Name.Tag, Punctuation, Name.Label),
+                         using(this, state=['wikilink-name']), Punctuation, Name.Label),
                 'medialink-inner'
             ),
             # Wikilinks
             (
                 r"""(?xi)
-                (\[\[)(?!{}) # Should not contain URLs
-                    (?: ([{}]*) (:))?
-                    ([{}]*?)
-                    (?: (\#) ([{}]*?) )?
+                (\[\[)(?!%s) # Should not contain URLs
+                    (?: ([%s]*) (:))?
+                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*?)
+                    (?: (\#) ([%s]*?) )?
                 (\]\])
-                """.format('|'.join(protocols), title_char.replace('/', ''),
+                """ % ('|'.join(protocols), title_char.replace('/', ''),
                            title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
-                         Name.Tag, Punctuation, Name.Label, Punctuation)
+                         using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation)
             ),
             (
                 r"""(?xi)
-                (\[\[)(?!{})
-                    (?: ([{}]*) (:))?
-                    ([{}]*?)
-                    (?: (\#) ([{}]*?) )?
+                (\[\[)(?!%s)
+                    (?: ([%s]*) (:))?
+                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*?)
+                    (?: (\#) ([%s]*?) )?
                     (\|)
-                """.format('|'.join(protocols), title_char.replace('/', ''),
+                """ % ('|'.join(protocols), title_char.replace('/', ''),
                            title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
-                         Name.Tag, Punctuation, Name.Label, Punctuation),
+                         using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation),
                 'wikilink-inner'
             ),
             # External links
@@ -1187,6 +1187,11 @@ class WikitextLexer(RegexLexer):
                 'lc-inner'
             ),
             (r'-\{', Punctuation, 'lc-raw'),
+        ],
+        'wikilink-name': [
+            include('replaceable'),
+            (r'[^{<]+', Name.Tag),
+            (r'(?s).', Name.Tag),
         ],
         'wikilink-inner': [
             # Quit in case of another wikilink
