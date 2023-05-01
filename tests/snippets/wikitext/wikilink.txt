@@ -83,6 +83,8 @@ New York also has [[public transport|public transportation]].
 
 [[A|[//example.com a b c]]]
 
+'''[[Special:BlockList/{{BASEPAGENAMEE}}|check]]'''
+
 ---tokens---
 '[['          Punctuation
 'a'           Name.Tag
@@ -769,4 +771,20 @@ New York also has [[public transport|public transportation]].
 'c'           Text
 ']'           Punctuation
 ']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+"'''"         Generic.Strong
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'BlockList/'  Name.Tag
+'{{'          Punctuation
+'BASEPAGENAMEE' Name.Function
+'}}'          Punctuation
+'|'           Punctuation
+'check'       Text
+']]'          Punctuation
+"'''"         Generic.Strong
 '\n'          Text
