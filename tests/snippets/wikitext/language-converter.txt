@@ -19,6 +19,10 @@
 -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
 <span style="font-size:120%;">yyy</span>;}-
 
+-{{This is a template}}-
+
+-{{{This is a template parameter}}}-
+
 ---tokens---
 '-{'          Punctuation
 'H'           Keyword
@@ -270,4 +274,28 @@
 'span'        Name.Tag
 '>'           Punctuation
 ';}-'         Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-'           Text
+'{{'          Punctuation
+'This'        Name.Tag
+' '           Name.Tag
+'is'          Name.Tag
+' '           Name.Tag
+'a'           Name.Tag
+' '           Name.Tag
+'template'    Name.Tag
+'}}'          Punctuation
+'-'           Text
+'\n'          Text
+
+'\n'          Text
+
+'-'           Text
+'{{{'         Punctuation
+'This is a template parameter' Name.Variable
+'}}}'         Punctuation
+'-'           Text
 '\n'          Text

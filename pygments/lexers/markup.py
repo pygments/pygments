@@ -1186,7 +1186,7 @@ class WikitextLexer(RegexLexer):
                          Name.Label, Operator, Name.Label, Punctuation),
                 'lc-inner'
             ),
-            (r'-\{', Punctuation, 'lc-raw'),
+            (r'-\{(?!\{)', Punctuation, 'lc-raw'),
         ],
         'wikilink-name': [
             include('replaceable'),
