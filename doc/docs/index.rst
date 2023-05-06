@@ -46,6 +46,7 @@ Pygments documentation
 .. toctree::
    :maxdepth: 1
 
+   terminaltips
    rstdirective
    moinmoin
    java
