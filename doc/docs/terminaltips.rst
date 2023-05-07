@@ -1,5 +1,7 @@
 .. -*- mode: rst -*-
 
+.. highlight:: shell
+
 =============
 Terminal Tips
 =============
@@ -37,7 +39,7 @@ displaying a file.
 
 Add additional flags can be added as desired.  The monokai style works well for
 a dark background, so this is how you would add that option::
- 
+
     $ alias cath="pygmentize -O style=monokai"
 
 
@@ -48,11 +50,11 @@ the input file(s)::
     $ alias lessh='LESSOPEN="| pygmentize -O style=monokai %s" less -M -R '
 
 These alias commands need to be added to your configuration in order to work
-when you open a new terminal (or restart the computer).  
+when you open a new terminal (or restart the computer).
 
 Add above commands to your configuration file:
 
-* ``bash`` - edit either ``~/.bash_aliases`` (if it exists) or ``~/.bashrc`` file.  
+* ``bash`` - edit either ``~/.bash_aliases`` (if it exists) or ``~/.bashrc`` file.
 * ``csh`` (C shell), edit  the ``~/.cshrc`` file
 * ``ksh`` (Korn shell), edit the ``~/.kshrc`` file.
 * ``tcsh``, edit the ``~/.tcshrc`` file.
@@ -101,4 +103,3 @@ the input file(s)::
     end
 
 Test the ``lessh`` function. To save the function run ``funcsave lessh``.
-
