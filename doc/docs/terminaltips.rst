@@ -10,6 +10,7 @@ These are some tips how to get more out of Pygments on the terminal.
 How do I determine which shell I am using?
 ------------------------------------------
 Run this command::
+
     $ echo $SHELL
 
 Mine outputs  ``/usr/bin/fish``, which is the location of the executable.
@@ -72,13 +73,15 @@ fish shell is a little different.  Functions are used to make permanent aliases.
 
 Running the ``funced cath``, brings up the default editor, and add the
 following code in the function::
+
     function cath
             # 'cath' alias will highlight source code as cat does.
             alias cath="pygmentize"
     end
 
 Here's what the ``cath`` function looks like with an additional argument::
-    function catch
+
+    function cath
             alias cath="pygmentize -O style=monokai"
     end
 
@@ -92,6 +95,7 @@ This saves the function for future sessions.
 ``funced lessh``, which is slightly more
 complicated, because it uses the environment variable ``LESSOPEN`` to preprocess
 the input file(s)::
+
     function lessh
             LESSOPEN="| pygmentize -O style=native %s" less -M -R $argv
     end
