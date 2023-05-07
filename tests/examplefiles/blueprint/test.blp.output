@@ -1,0 +1,206 @@
+'using'       Keyword
+' '           Text.Whitespace
+'Gtk'         Name.Namespace
+' '           Text.Whitespace
+'4.0'         Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'using'       Keyword
+' '           Text.Whitespace
+'Adw'         Name.Namespace
+' '           Text.Whitespace
+'1'           Name.Namespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'template'    Keyword.Declaration
+' '           Text.Whitespace
+'$MyTemplate' Name.Class
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Gtk'         Name.Namespace
+'.'           Punctuation
+'Window'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'hello'       Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'world'       Name.Variable
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'there'       Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'translated'  Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'C_'          Name.Function.Builtin
+'('           Punctuation
+'"test"'      Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"String"'    Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'numbers'     Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'0x1_000_000' Literal.Number.Hex
+';'           Punctuation
+'\n  '        Text.Whitespace
+'types'       Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'typeof'      Keyword
+'<'           Punctuation
+'Adjustment'  Name.Class
+'>'           Punctuation
+';'           Punctuation
+'\n\n  '      Text.Whitespace
+'notify::something' Name.Property
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'$respond_somehow' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'swapped'     Keyword
+';'           Punctuation
+'\n\n  '      Text.Whitespace
+'working'     Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'bind-property' Keyword
+' '           Text.Whitespace
+'template'    Keyword
+'.'           Punctuation
+'idle'        Name.Variable
+' '           Text.Whitespace
+'inverted'    Keyword
+';'           Punctuation
+'\n  '        Text.Whitespace
+'status'      Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'bind'        Keyword
+' '           Text.Whitespace
+'$get_status' Name.Function
+'('           Punctuation
+'template'    Keyword
+'.'           Punctuation
+'idle'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+'$MyStatus'   Name.Class
+'>'           Punctuation
+'.'           Punctuation
+'string'      Name.Variable
+';'           Punctuation
+'\n\n  '      Text.Whitespace
+'Dialog'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'action'      Keyword
+' '           Text.Whitespace
+'response'    Name.Attribute
+'='           Punctuation
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'default'     Keyword
+']'           Punctuation
+'\n    '      Text.Whitespace
+'Button'      Name.Class
+' '           Text.Whitespace
+'btn'         Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'action'      Keyword
+' '           Text.Whitespace
+'response'    Name.Attribute
+'='           Punctuation
+'cancel'      Name.Decorator
+']'           Punctuation
+'\n    '      Text.Whitespace
+'Button'      Name.Class
+' '           Text.Whitespace
+'btn2'        Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n\n  '      Text.Whitespace
+'Adw'         Name.Namespace
+'.'           Punctuation
+'Breakpoint'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'condition'   Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'"max-width: 100"' Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'setters'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'label'       Name.Variable
+'.'           Punctuation
+'foo'         Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'menu'        Keyword
+' '           Text.Whitespace
+'my-menu'     Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'submenu'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Name.Property
+':'           Punctuation
+' '           Text.Whitespace
+'"yes"'       Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

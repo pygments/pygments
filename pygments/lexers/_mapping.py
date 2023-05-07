@@ -53,6 +53,7 @@ LEXERS = {
     'BibTeXLexer': ('pygments.lexers.bibtex', 'BibTeX', ('bibtex', 'bib'), ('*.bib',), ('text/x-bibtex',)),
     'BlitzBasicLexer': ('pygments.lexers.basic', 'BlitzBasic', ('blitzbasic', 'b3d', 'bplus'), ('*.bb', '*.decls'), ('text/x-bb',)),
     'BlitzMaxLexer': ('pygments.lexers.basic', 'BlitzMax', ('blitzmax', 'bmax'), ('*.bmx',), ('text/x-bmx',)),
+    'BlueprintLexer': ('pygments.lexers.blueprint', 'Blueprint', ('blueprint',), ('*.blp',), ('text/x-blueprint',)),
     'BnfLexer': ('pygments.lexers.grammar_notation', 'BNF', ('bnf',), ('*.bnf',), ('text/x-bnf',)),
     'BoaLexer': ('pygments.lexers.boa', 'Boa', ('boa',), ('*.boa',), ()),
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
