@@ -55,7 +55,11 @@ KEYWORDS = (
 
 
 class GraphQLLexer(RegexLexer):
+    """
+    Lexer for GraphQL syntax
 
+    .. versionadded:: 2.15.1
+    """
     name = "GraphQL"
     aliases = ["graphql"]
     filenames = ["*.graphql"]
