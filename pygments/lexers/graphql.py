@@ -86,7 +86,7 @@ class GraphQLLexer(RegexLexer):
                 Number.Float,
                 "#pop",
             ),
-            (r'"', String, "string0"),
+            (r'"', String, ("#pop", "string")),
             (words(BOOLEAN_VALUES, suffix=r"\b"), Name.Builtin, "#pop"),
             (r"\$[a-zA-Z_]\w*", Name.Variable, "#pop"),
             (r"[a-zA-Z_]\w*", Name.Constant, "#pop"),
@@ -119,16 +119,9 @@ class GraphQLLexer(RegexLexer):
             (r"\}", Punctuation, "#pop"),
         ],
         "string": [
-            include("in_string"),
-            (r'"', String, "#pop"),
-        ],
-        "string0": [
-            include("in_string"),
-            (r'"', String, "#pop:2"),
-        ],
-        "in_string": [
             (r'\\(["\\/bfnrt]|u[a-fA-F0-9]{4})', String.Escape),
             (r'[^\\"\n]+', String),  # all other characters
+            (r'"', String, "#pop"),
         ],
         "root": [
             include("ignored_tokens"),
