@@ -167,17 +167,13 @@ class GraphQLLexer(RegexLexer):
         ],
         "directive": [
             include("ignored_tokens"),
-            (r"\(", Punctuation, "arguments2"),
+            (r"\(", Punctuation, ("#pop", "arguments")),
         ],
         "arguments": [
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name),
             (r":", Punctuation, "value"),
             (r"\)", Punctuation, "#pop"),
-        ],
-        "arguments2": [
-            (r"\)", Punctuation, "#pop:2"),
-            include("arguments"),
         ],
         # Fragments
         "fragment_definition": [
