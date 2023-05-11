@@ -1,0 +1,45 @@
+'mutation'    Keyword
+' '           Text.Whitespace
+'CreateReviewForEpisode' Name.Function
+'('           Punctuation
+'$ep'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Episode'     Name.Class
+'!'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'$review'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'ReviewInput' Name.Class
+'!'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'createReview' Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'$ep'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'review'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'$review'     Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'stars'       Name
+'\n    '      Text.Whitespace
+'commentary'  Name
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

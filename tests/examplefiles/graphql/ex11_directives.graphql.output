@@ -1,0 +1,52 @@
+'query'       Keyword
+' '           Text.Whitespace
+'Hero'        Name.Function
+'('           Punctuation
+'$episode'    Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Episode'     Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'$withFriends' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name.Builtin
+'!'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'$episode'    Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name
+'\n    '      Text.Whitespace
+'friends'     Name
+' '           Text.Whitespace
+'@include'    Name.Decorator
+'('           Punctuation
+'if'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'$withFriends' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'name'        Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
