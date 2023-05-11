@@ -73,10 +73,6 @@ class GraphQLLexer(RegexLexer):
             (r"#.*$", Comment),
             (",", Punctuation),  # Insignificant commas
         ],
-        "value": [
-            include("ignored_tokens"),
-            include("value_single0"),
-        ],
         # How to avoid state duplication?
         "value_single0": [
             include("ignored_tokens"),
@@ -115,7 +111,7 @@ class GraphQLLexer(RegexLexer):
         "object_value": [
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name),
-            (r":", Punctuation, "value"),
+            (r":", Punctuation, "value_single0"),
             (r"\}", Punctuation, "#pop"),
         ],
         "string": [
@@ -141,7 +137,7 @@ class GraphQLLexer(RegexLexer):
             (r"\$[a-zA-Z_]\w*", Name.Variable),
             (r"[\]!]", Punctuation),
             (r":", Punctuation, "type"),
-            (r"=", Punctuation, "value"),
+            (r"=", Punctuation, "value_single0"),
             (r"\)", Punctuation, "#pop"),
         ],
         "type": [
@@ -172,7 +168,7 @@ class GraphQLLexer(RegexLexer):
         "arguments": [
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name),
-            (r":", Punctuation, "value"),
+            (r":", Punctuation, "value_single0"),
             (r"\)", Punctuation, "#pop"),
         ],
         # Fragments
