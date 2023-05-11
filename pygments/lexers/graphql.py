@@ -136,11 +136,6 @@ class GraphQLLexer(RegexLexer):
             (r"\(", Punctuation, "variable_definition"),
             (r"\{", Punctuation, "selection_set0"),
         ],
-        # Variables definition
-        "variable_definition0": [
-            (r"\)", Punctuation, "#pop:2"),
-            include("variable_definition"),
-        ],
         "variable_definition": [
             include("ignored_tokens"),
             (r"\$[a-zA-Z_]\w*", Name.Variable),
