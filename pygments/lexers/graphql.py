@@ -13,15 +13,8 @@
 """
 
 from pygments.lexer import RegexLexer, words, include, bygroups, default
-from pygments.token import (
-    Comment,
-    Keyword,
-    Name,
-    Number,
-    Punctuation,
-    String,
-    Whitespace,
-)
+from pygments.token import (Comment, Keyword, Name, Number, Punctuation, String,
+                            Whitespace)
 
 
 __all__ = ["GraphQLLexer"]
