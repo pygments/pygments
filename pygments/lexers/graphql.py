@@ -91,7 +91,7 @@ class GraphQLLexer(RegexLexer):
             (r"\$[a-zA-Z_]\w*", Name.Variable, "#pop"),
             (r"[a-zA-Z_]\w*", Name.Constant, "#pop"),
             (r"\[", Punctuation, ("#pop", "list_value")),
-            (r"\{", Punctuation, "object_value0"),
+            (r"\{", Punctuation, ("#pop", "object_value")),
         ],
         "value_single": [
             include("ignored_tokens"),
@@ -111,10 +111,6 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             include("value_single"),
             ("]", Punctuation, "#pop"),
-        ],
-        "object_value0": [
-            (r"\}", Punctuation, "#pop:2"),
-            include("object_value"),
         ],
         "object_value": [
             include("ignored_tokens"),
