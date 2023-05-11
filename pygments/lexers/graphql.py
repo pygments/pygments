@@ -134,7 +134,7 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name.Function),
             (r"\(", Punctuation, "variable_definition"),
-            (r"\{", Punctuation, "selection_set0"),
+            (r"\{", Punctuation, ("#pop", "selection_set")),
         ],
         "variable_definition": [
             include("ignored_tokens"),
@@ -149,11 +149,6 @@ class GraphQLLexer(RegexLexer):
             (r"\[", Punctuation),
             (words(BUILTIN_TYPES, suffix=r"\b"), Name.Builtin, "#pop"),
             (r"[a-zA-Z_]\w*", Name.Class, "#pop"),
-        ],
-        # Selection set
-        "selection_set0": [
-            (r"\}", Punctuation, "#pop:2"),
-            include("selection_set"),
         ],
         "selection_set": [
             include("ignored_tokens"),
@@ -191,7 +186,7 @@ class GraphQLLexer(RegexLexer):
             (r"on\b", Keyword, "type"),
             (r"[a-zA-Z_]\w*", Name.Function),
             (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
-            (r"\{", Punctuation, "selection_set0"),
+            (r"\{", Punctuation, ("#pop", "selection_set")),
         ],
         "fragment_spread": [
             include("ignored_tokens"),
@@ -202,6 +197,6 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name.Class),  # Type condition
             (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
-            (r"\{", Punctuation, "selection_set0"),
+            (r"\{", Punctuation, ("#pop", "selection_set")),
         ],
     }
