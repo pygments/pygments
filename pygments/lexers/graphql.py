@@ -12,7 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, include, bygroups
+from pygments.lexer import RegexLexer, words, include, bygroups, default
 from pygments.token import (
     Comment,
     Keyword,
@@ -89,24 +89,10 @@ class GraphQLLexer(RegexLexer):
             (r"\[", Punctuation, ("#pop", "list_value")),
             (r"\{", Punctuation, ("#pop", "object_value")),
         ],
-        "value_single": [
-            include("ignored_tokens"),
-            (r"-?\d+(?![.eE])", Number.Integer),
-            (
-                r"-?\d+(\.\d+)?([eE][+-]?\d+)?",
-                Number.Float,
-            ),
-            (r'"', String, "string"),
-            (words(BOOLEAN_VALUES, suffix=r"\b"), Name.Builtin),
-            (r"\$[a-zA-Z_]\w*", Name.Variable),
-            (r"[a-zA-Z_]\w*", Name.Constant),
-            (r"\[", Punctuation, "list_value"),
-            (r"\{", Punctuation, "object_value"),
-        ],
         "list_value": [
             include("ignored_tokens"),
-            include("value_single"),
             ("]", Punctuation, "#pop"),
+            default("value_single0"),
         ],
         "object_value": [
             include("ignored_tokens"),
