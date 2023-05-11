@@ -13,7 +13,15 @@
 """
 
 from pygments.lexer import RegexLexer, words, include, bygroups
-from pygments.token import Comment, Keyword, Name, Number, Punctuation, String, Whitespace
+from pygments.token import (
+    Comment,
+    Keyword,
+    Name,
+    Number,
+    Punctuation,
+    String,
+    Whitespace,
+)
 
 
 __all__ = ["GraphQLLexer"]
@@ -82,7 +90,7 @@ class GraphQLLexer(RegexLexer):
             (words(BOOLEAN_VALUES, suffix=r"\b"), Name.Builtin, "#pop"),
             (r"\$[a-zA-Z_]\w*", Name.Variable, "#pop"),
             (r"[a-zA-Z_]\w*", Name.Constant, "#pop"),
-            (r"\[", Punctuation, "list_value0"),
+            (r"\[", Punctuation, ("#pop", "list_value")),
             (r"\{", Punctuation, "object_value0"),
         ],
         "value_single": [
@@ -98,10 +106,6 @@ class GraphQLLexer(RegexLexer):
             (r"[a-zA-Z_]\w*", Name.Constant),
             (r"\[", Punctuation, "list_value"),
             (r"\{", Punctuation, "object_value"),
-        ],
-        "list_value0": [
-            (r"\]", Punctuation, "#pop:2"),
-            include("list_value"),
         ],
         "list_value": [
             include("ignored_tokens"),
