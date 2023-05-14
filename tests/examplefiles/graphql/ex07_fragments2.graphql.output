@@ -1,0 +1,99 @@
+'query'       Keyword
+' '           Text.Whitespace
+'HeroComparison' Name.Function
+'('           Punctuation
+'$first'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'leftComparison' Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'EMPIRE'      Name.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'...'         Punctuation
+'comparisonFields' Name
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'rightComparison' Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'JEDI'        Name.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'...'         Punctuation
+'comparisonFields' Name
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+' '           Text.Whitespace
+'comparisonFields' Name.Function
+' '           Text.Whitespace
+'on'          Keyword
+' '           Text.Whitespace
+'Character'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name
+'\n  '        Text.Whitespace
+'friendsConnection' Name
+'('           Punctuation
+'first'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'$first'      Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'totalCount'  Name
+'\n    '      Text.Whitespace
+'edges'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'node'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'name'        Name
+'\n      '    Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
