@@ -1,0 +1,736 @@
+'// OTRv3 Authenticated Key Exchange (AKE)' Comment.Single
+'\n'          Text
+
+'// https://otr.cypherpunks.ca/Protocol-v3-4.1.1.html' Comment.Single
+'\n\n'        Text
+
+'attacker'    Name.Builtin
+'['           Punctuation
+'passive'     Literal.String
+']'           Punctuation
+'\n\n'        Text
+
+'// Setup'    Comment.Single
+'\n'          Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Bob'         Literal.String
+'['           Punctuation
+'\n    '      Text
+'knows'       Name.Builtin
+' '           Text.Whitespace
+'private'     Keyword.Constant
+' '           Text.Whitespace
+'priv_b'      Name.Variable
+'\n    '      Text
+'pub_b'       Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'G'           Name.Function
+'^'           Punctuation
+'priv_b'      Name.Variable
+'\n'          Text
+
+']'           Punctuation
+'\n'          Text
+
+'Bob'         Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Alice'       Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'pub_b'       Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Alice'       Literal.String
+'['           Punctuation
+'\n    '      Text
+'knows'       Name.Builtin
+' '           Text.Whitespace
+'private'     Keyword.Constant
+' '           Text.Whitespace
+'priv_a'      Name.Variable
+'\n    '      Text
+'pub_a'       Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'G'           Name.Function
+'^'           Punctuation
+'priv_a'      Name.Variable
+'\n'          Text
+
+']'           Punctuation
+'\n'          Text
+
+'Alice'       Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Bob'         Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'pub_a'       Name.Variable
+']'           Punctuation
+'\n\n'        Text
+
+'// Go!'      Comment.Single
+'\n'          Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Bob'         Literal.String
+'['           Punctuation
+'\n    '      Text
+'generates'   Name.Builtin
+' '           Text.Whitespace
+'r'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+'\n    '      Text
+'g_x'         Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'G'           Name.Function
+'^'           Punctuation
+'x'           Name.Variable
+'\n    '      Text
+'enc_gx'      Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'ENC'         Name.Function
+'('           Punctuation
+'r'           Name.Variable
+','           Punctuation
+' '           Text
+'g_x'         Name.Variable
+')'           Punctuation
+'\n    '      Text
+'hash_gx'     Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'HASH'        Name.Function
+'('           Punctuation
+'g_x'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'Bob'         Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Alice'       Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'enc_gx'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'hash_gx'     Name.Variable
+'\n\n'        Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Alice'       Literal.String
+'['           Punctuation
+'\n    '      Text
+'generates'   Name.Builtin
+' '           Text.Whitespace
+'y'           Name.Variable
+'\n    '      Text
+'g_y'         Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'G'           Name.Function
+'^'           Punctuation
+'y'           Name.Variable
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'Alice'       Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Bob'         Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'g_y'         Name.Variable
+'\n\n'        Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Bob'         Literal.String
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text
+'s'           Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'g_y'         Name.Variable
+'^'           Punctuation
+'x'           Name.Variable
+'\n    '      Text
+'c'           Name.Variable
+','           Punctuation
+' '           Text
+'c_'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'HKDF'        Name.Function
+'('           Punctuation
+'s'           Name.Variable
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+')'           Punctuation
+'\n    '      Text
+'m1'          Name.Variable
+','           Punctuation
+' '           Text
+'m2'          Name.Variable
+','           Punctuation
+' '           Text
+'m1_'         Name.Variable
+','           Punctuation
+' '           Text
+'m2_'         Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'HKDF'        Name.Function
+'('           Punctuation
+'nil'         Name.Function
+','           Punctuation
+' '           Text
+'s'           Name.Variable
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+')'           Punctuation
+'\n    '      Text
+'generates'   Name.Builtin
+' '           Text.Whitespace
+'keyid_b'     Name.Variable
+'\n    '      Text
+'Mb'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m1'          Name.Variable
+','           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'g_x'         Name.Variable
+','           Punctuation
+' '           Text
+'g_y'         Name.Variable
+','           Punctuation
+' '           Text
+'pub_b'       Name.Variable
+','           Punctuation
+' '           Text
+'keyid_b'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'Xb'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'pub_b'       Name.Variable
+','           Punctuation
+' '           Text
+'keyid_b'     Name.Variable
+','           Punctuation
+' '           Text
+'SIGN'        Name.Function
+'('           Punctuation
+'priv_b'      Name.Variable
+','           Punctuation
+' '           Text
+'Mb'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'enc_c_x_b'   Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'ENC'         Name.Function
+'('           Punctuation
+'c'           Name.Variable
+','           Punctuation
+' '           Text
+'Xb'          Name.Variable
+')'           Punctuation
+'\n    '      Text
+'mac_mc2_enc_c_x_b' Name.Variable
+'  '          Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m2'          Name.Variable
+','           Punctuation
+' '           Text
+'ENC'         Name.Function
+'('           Punctuation
+'c'           Name.Variable
+','           Punctuation
+' '           Text
+'Xb'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'Bob'         Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Alice'       Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'r'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'enc_c_x_b'   Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'mac_mc2_enc_c_x_b' Name.Variable
+'\n\n'        Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Alice'       Literal.String
+'['           Punctuation
+'\n    '      Text
+'dec_gx'      Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'DEC'         Name.Function
+'('           Punctuation
+'r'           Name.Variable
+','           Punctuation
+' '           Text
+'enc_gx'      Name.Variable
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'ASSERT'      Name.Function
+'('           Punctuation
+'HASH'        Name.Function
+'('           Punctuation
+'dec_gx'      Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'hash_gx'     Name.Variable
+')'           Punctuation
+'?'           Punctuation
+'\n    '      Text
+'s_'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'dec_gx'      Name.Variable
+'^'           Punctuation
+'y'           Name.Variable
+'\n    '      Text
+'c_alice'     Name.Variable
+','           Punctuation
+' '           Text
+'c__alice'    Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'HKDF'        Name.Function
+'('           Punctuation
+'s_'          Name.Variable
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+')'           Punctuation
+'\n    '      Text
+'m1_alice'    Name.Variable
+','           Punctuation
+' '           Text
+'m2_alice'    Name.Variable
+','           Punctuation
+' '           Text
+'m1__alice'   Name.Variable
+','           Punctuation
+' '           Text
+'m2__alice'   Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'HKDF'        Name.Function
+'('           Punctuation
+'nil'         Name.Function
+','           Punctuation
+' '           Text
+'s_'          Name.Variable
+','           Punctuation
+' '           Text
+'nil'         Name.Function
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'ASSERT'      Name.Function
+'('           Punctuation
+'mac_mc2_enc_c_x_b' Name.Variable
+','           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m2_alice'    Name.Variable
+','           Punctuation
+' '           Text
+'enc_c_x_b'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'?'           Punctuation
+'\n    '      Text
+'xb_alice'    Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'DEC'         Name.Function
+'('           Punctuation
+'c_alice'     Name.Variable
+','           Punctuation
+' '           Text
+'enc_c_x_b'   Name.Variable
+')'           Punctuation
+'\n    '      Text
+'pub_b_alice' Name.Variable
+','           Punctuation
+' '           Text
+'keyd_b_alice' Name.Variable
+','           Punctuation
+' '           Text
+'sig_b_mb_alice' Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'SPLIT'       Name.Function
+'('           Punctuation
+'xb_alice'    Name.Variable
+')'           Punctuation
+'\n    '      Text
+'mb_alice'    Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m1_alice'    Name.Variable
+','           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'dec_gx'      Name.Variable
+','           Punctuation
+' '           Text
+'g_y'         Name.Variable
+','           Punctuation
+' '           Text
+'pub_b_alice' Name.Variable
+','           Punctuation
+' '           Text
+'keyd_b_alice' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'SIGNVERIF'   Name.Function
+'('           Punctuation
+'pub_b_alice' Name.Variable
+','           Punctuation
+' '           Text
+'mb_alice'    Name.Variable
+','           Punctuation
+' '           Text
+'sig_b_mb_alice' Name.Variable
+')'           Punctuation
+'?'           Punctuation
+'\n    '      Text
+'generates'   Name.Builtin
+' '           Text.Whitespace
+'keyid_a'     Name.Variable
+'\n    '      Text
+'ma'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m1__alice'   Name.Variable
+','           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'g_y'         Name.Variable
+','           Punctuation
+' '           Text
+'dec_gx'      Name.Variable
+','           Punctuation
+' '           Text
+'pub_a'       Name.Variable
+','           Punctuation
+' '           Text
+'keyid_a'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'xa'          Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'pub_a'       Name.Variable
+','           Punctuation
+' '           Text
+'keyid_a'     Name.Variable
+','           Punctuation
+' '           Text
+'SIGN'        Name.Function
+'('           Punctuation
+'priv_a'      Name.Variable
+','           Punctuation
+' '           Text
+'ma'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'enc_c__x_a'  Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'ENC'         Name.Function
+'('           Punctuation
+'c__alice'    Name.Variable
+','           Punctuation
+' '           Text
+'xa'          Name.Variable
+')'           Punctuation
+'\n    '      Text
+'mac_m2_enc_c__xa' Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m2__alice'   Name.Variable
+','           Punctuation
+' '           Text
+'ENC'         Name.Function
+'('           Punctuation
+'c__alice'    Name.Variable
+','           Punctuation
+' '           Text
+'xa'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'Alice'       Literal.String
+' '           Text.Whitespace
+'→'           Punctuation
+' '           Text.Whitespace
+'Bob'         Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'enc_c__x_a'  Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'mac_m2_enc_c__xa' Name.Variable
+'\n\n'        Text
+
+'principal'   Name.Builtin
+' '           Text.Whitespace
+'Bob'         Literal.String
+'['           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'ASSERT'      Name.Function
+'('           Punctuation
+'mac_m2_enc_c__xa' Name.Variable
+','           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m2_'         Name.Variable
+','           Punctuation
+' '           Text
+'enc_c__x_a'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'?'           Punctuation
+'\n    '      Text
+'xa_bob'      Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'DEC'         Name.Function
+'('           Punctuation
+'c_'          Name.Variable
+','           Punctuation
+' '           Text
+'enc_c__x_a'  Name.Variable
+')'           Punctuation
+'\n    '      Text
+'pub_a_bob'   Name.Variable
+','           Punctuation
+' '           Text
+'keyid_a_bob' Name.Variable
+','           Punctuation
+' '           Text
+'sig_a_ma_bob' Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'SPLIT'       Name.Function
+'('           Punctuation
+'xa_bob'      Name.Variable
+')'           Punctuation
+'\n    '      Text
+'ma_bob'      Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'MAC'         Name.Function
+'('           Punctuation
+'m1_'         Name.Variable
+','           Punctuation
+' '           Text
+'CONCAT'      Name.Function
+'('           Punctuation
+'g_y'         Name.Variable
+','           Punctuation
+' '           Text
+'g_x'         Name.Variable
+','           Punctuation
+' '           Text
+'pub_a_bob'   Name.Variable
+','           Punctuation
+' '           Text
+'keyid_a_bob' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'SIGNVERIF'   Name.Function
+'('           Punctuation
+'pub_a_bob'   Name.Variable
+','           Punctuation
+' '           Text
+'ma_bob'      Name.Variable
+','           Punctuation
+' '           Text
+'sig_a_ma_bob' Name.Variable
+')'           Punctuation
+'?'           Punctuation
+'\n    '      Text
+'_'           Name.Function
+' '           Text
+'='           Punctuation
+' '           Text
+'ASSERT'      Name.Function
+'('           Punctuation
+'pub_a_bob'   Name.Variable
+','           Punctuation
+' '           Text
+'pub_a'       Name.Variable
+')'           Punctuation
+'?'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'queries'     Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Name.Variable
+'equivalence? ' Keyword.Pseudo
+'s'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s_'          Name.Variable
+'\n    '      Name.Variable
+'confidentiality? ' Keyword.Pseudo
+'s'           Name.Variable
+'\n    '      Name.Variable
+'freshness? ' Keyword.Pseudo
+'s'           Name.Variable
+'\n\n    '    Name.Variable
+'equivalence? ' Keyword.Pseudo
+'pub_b'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'pub_b_alice' Name.Variable
+'\n    '      Name.Variable
+'equivalence? ' Keyword.Pseudo
+'pub_a'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'pub_a_bob'   Name.Variable
+'\n'          Name.Variable
+
+']'           Punctuation
+'\n'          Text
