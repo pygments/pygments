@@ -1,6 +1,7 @@
 import re
 from pygments.lexer import RegexLexer, include, words
-from pygments.token import Comment, Keyword, Name, String, Number, Punctuation, Whitespace
+from pygments.token import Comment, Keyword, Name, String, Number, Punctuation, \
+Whitespace, Operator
 
 __all__ = ["PtxLexer"]
 
@@ -33,6 +34,9 @@ class PtxLexer(RegexLexer):
             (r'%' + identifier, Name.Variable),
             (r'%\d+', Name.Variable.Anonymous),
             (r'c?' + string, String),
+            (identifier, Name.Variable),
+            (r';', Punctuation),
+            (r'[*+-/]', Operator),
 
             (r'0[xX][a-fA-F0-9]+', Number),
             (r'-?\d+(?:[.]\d+)?(?:[eE][-+]?\d+(?:[.]\d+)?)?', Number),
