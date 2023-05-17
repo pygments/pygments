@@ -1,4 +1,13 @@
-import re
+"""
+    pygments.lexers.ptx
+    ~~~~~~~~~~~~~~~~~~~
+
+    Lexer for other PTX language.
+
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, String, Number, Punctuation, \
 Whitespace, Operator
@@ -14,6 +23,7 @@ class PtxLexer(RegexLexer):
     .. versionadded:: 2.15
     """
     name = 'PTX'
+    url = "https://docs.nvidia.com/cuda/parallel-thread-execution/"
     filenames = ['*.ptx']
     aliases = ['ptx']
 
