@@ -20,7 +20,7 @@ class VerifpalLexer(RegexLexer):
     """
     For Ada source code.
 
-    .. versionadded:: 2.15.2
+    .. versionadded:: 2.16.0
     """
 
     name = 'Verifpal'
@@ -32,15 +32,12 @@ class VerifpalLexer(RegexLexer):
     tokens = {
         'root': [
             (r'//.*$', Comment.Single),
-            (r'(principal)( +)([A-Za-z0-9_]+)( *)(\[).*$', bygroups(Name.Builtin, Whitespace, String, Whitespace, Punctuation)),
+            (r'(principal)( +)(\w+)( *)(\[).*$', bygroups(Name.Builtin, Whitespace, String, Whitespace, Punctuation)),
             (r'(attacker)( *)(\[)( *)(passive|active)( *)(\])(.*)$', bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation, Whitespace)),
             (r'(knows)( +)(private|public)( +)', bygroups(Name.Builtin, Whitespace, Keyword.Constant, Whitespace), 'shared'),
             (r'(queries)( +)(\[)', bygroups(Name.Builtin, Whitespace, Punctuation), 'queries'),
-            (r'([A-Za-z0-9_]+)( +)(->|→)( *)([A-Za-z0-9_]+)( *)(\:)', bygroups(String, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation), 'shared'),
-            (words((
-                'generates',
-                'leaks',
-                ), suffix=r'\b'), Name.Builtin, 'shared'),
+            (r'(\w+)( +)(->|→)( *)(\w+)( *)(\:)', bygroups(String, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation), 'shared'),
+            (words(('generates', 'leaks'), suffix=r'\b'), Name.Builtin, 'shared'),
             (words((
                 'phase',
                 'precondition',
@@ -76,13 +73,13 @@ class VerifpalLexer(RegexLexer):
                 '_',
                 'nil',
                 ), suffix=r'\b'), Name.Function),
-            (r'\s+', Text),
-            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'\s+', Whitespace),
+            (r'\w+', Name.Variable),
         ],
         'shared': [
                 (r'[\^\[\],]', Punctuation),
                 (r' +', Whitespace),
-                (r'[A-Za-z0-9_]+', Name.Variable),
+                (r'\w+', Name.Variable),
                 default('#pop')
                 ],
         'queries': [
