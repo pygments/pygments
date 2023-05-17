@@ -18,7 +18,7 @@ __all__ = ['VerifpalLexer']
 
 class VerifpalLexer(RegexLexer):
     """
-    For Ada source code.
+    For Verifpal code.
 
     .. versionadded:: 2.16.0
     """
@@ -32,8 +32,8 @@ class VerifpalLexer(RegexLexer):
     tokens = {
         'root': [
             (r'//.*$', Comment.Single),
-            (r'(principal)( +)(\w+)( *)(\[).*$', bygroups(Name.Builtin, Whitespace, String, Whitespace, Punctuation)),
-            (r'(attacker)( *)(\[)( *)(passive|active)( *)(\])(.*)$', bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation, Whitespace)),
+            (r'(principal)( +)(\w+)( *)(\[)(.*)$', bygroups(Name.Builtin, Whitespace, String, Whitespace, Punctuation, Whitespace)),
+            (r'(attacker)( *)(\[)( *)(passive|active)( *)(\])( *)$', bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation, Whitespace)),
             (r'(knows)( +)(private|public)( +)', bygroups(Name.Builtin, Whitespace, Keyword.Constant, Whitespace), 'shared'),
             (r'(queries)( +)(\[)', bygroups(Name.Builtin, Whitespace, Punctuation), 'queries'),
             (r'(\w+)( +)(->|→)( *)(\w+)( *)(\:)', bygroups(String, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation), 'shared'),
@@ -90,7 +90,7 @@ class VerifpalLexer(RegexLexer):
                     'freshness?',
                     'unlinkability?',
                     'equivalence?',
-                    ), suffix=r' '), Keyword.Pseudo, 'shared'),
+                    ), prefix=r'(', suffix=')( )'), bygroups(Keyword.Pseudo, Whitespace), 'shared'),
                 default('#pop')
         ]
     }
