@@ -26,6 +26,7 @@ class PtxLexer(RegexLexer):
     url = "https://docs.nvidia.com/cuda/parallel-thread-execution/"
     filenames = ['*.ptx']
     aliases = ['ptx']
+    mimetypes = ['text/x-ptx']
 
     #: optional Comment or Whitespace
     string = r'"[^"]*?"'
