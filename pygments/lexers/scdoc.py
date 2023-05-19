@@ -78,7 +78,7 @@ class ScdocLexer(RegexLexer):
 
         # name(section) ["left_footer" ["center_header"]]
         first_line = text.partition('\n')[0]
-        scdoc_preamble_pattern = '^.*\([1-7]\)( "[^"]+"){0,2}$'
+        scdoc_preamble_pattern = r'^.*\([1-7]\)( "[^"]+"){0,2}$'
 
         if re.search(scdoc_preamble_pattern, first_line):
             result += 0.5
