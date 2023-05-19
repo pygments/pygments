@@ -11,7 +11,7 @@
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt
-
+import re
 __all__ = ['BBCodeFormatter']
 
 
@@ -75,34 +75,73 @@ class BBCodeFormatter(Formatter):
 
             self.styles[ttype] = start, end
 
-    def format_unencoded(self, tokensource, outfile):
-        if self._code:
-            outfile.write('[code]')
-        if self._mono:
-            outfile.write('[font=monospace]')
+def format_unencoded(self, tokensource, outfile):
+    if self._code:
+        outfile.write('[code]')
+    if self._mono:
+        outfile.write('[font=monospace]')
 
-        lastval = ''
-        lasttype = None
+    lastval = ''
+    lasttype = None
 
-        for ttype, value in tokensource:
-            while ttype not in self.styles:
-                ttype = ttype.parent
-            if ttype == lasttype:
-                lastval += value
+    for ttype, value in tokensource:
+        while ttype not in self.styles:
+            ttype = ttype.parent
+        if ttype == lasttype:
+            lastval += value
+        else:
+            if lastval:
+                start, end = self.styles[lasttype]
+                outfile.write(''.join((start, lastval, end)))
+            lastval = value
+            lasttype = ttype
+
+    if lastval:
+        start, end = self.styles[lasttype]
+        outfile.write(''.join((start, lastval, end)))
+
+    if self._mono:
+        outfile.write('[/font]')
+    if self._code:
+        outfile.write('[/code]')
+
+    if self._code or self._mono:
+        outfile.write('\n')
+
+    # Validate the produced XHTML
+    outfile.seek(0)
+    xhtml = outfile.getvalue()
+
+    # Validate XHTML structure
+    if not self.validate_xhtml_structure(xhtml):
+        raise ValueError("The produced XHTML is not correctly formatted.")
+
+    # Validate HTML tags and attributes
+    if not self.validate_html_tags_attributes(xhtml):
+        raise ValueError("The produced XHTML contains invalid HTML tags or attributes.")
+
+def validate_xhtml_structure(self, xhtml):
+    # Ensure opening and closing tags match for all elements
+    stack = []
+    pos = 0
+    while pos < len(xhtml):
+        match = re.search(r"<([^\s>/]+)", xhtml[pos:])
+        if match:
+            tag = match.group(1)
+            if tag.startswith("/"):
+                if not stack or stack[-1] != tag[1:]:
+                    return False
+                stack.pop()
             else:
-                if lastval:
-                    start, end = self.styles[lasttype]
-                    outfile.write(''.join((start, lastval, end)))
-                lastval = value
-                lasttype = ttype
+                stack.append(tag)
+            pos += match.end()
+        else:
+            pos += 1
 
-        if lastval:
-            start, end = self.styles[lasttype]
-            outfile.write(''.join((start, lastval, end)))
+    return not stack
 
-        if self._mono:
-            outfile.write('[/font]')
-        if self._code:
-            outfile.write('[/code]')
-        if self._code or self._mono:
-            outfile.write('\n')
+def validate_html_tags_attributes(self, xhtml):
+    # Ensure all HTML tags are <span> and have only the class attribute
+    pattern = r"<span\s+class=[\"'][^\"']*?[\"']\s*>"
+    matches = re.findall(pattern, xhtml)
+    return ''.join(matches) == xhtml
