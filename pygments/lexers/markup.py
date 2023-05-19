@@ -512,32 +512,31 @@ class MarkdownLexer(RegexLexer):
     flags = re.MULTILINE
 
     def _handle_codeblock(self, match):
-        """
-        match args: 1:backticks, 2:lang_name, 3:newline, 4:code, 5:backticks
-        """
         from pygments.lexers import get_lexer_by_name
 
-        # section header
-        yield match.start(1), String.Backtick, match.group(1)
-        yield match.start(2), String.Backtick, match.group(2)
-        yield match.start(3), Text           , match.group(3)
+        yield match.start('initial'), String.Backtick, match.group('initial')
+        yield match.start('lang'), String.Backtick, match.group('lang')
+        if match.group('afterlang') is not None:
+            yield match.start('whitespace'), Whitespace, match.group('whitespace')
+            yield match.start('extra'), Text, match.group('extra')
+        yield match.start('newline'), Whitespace, match.group('newline')
 
         # lookup lexer if wanted and existing
         lexer = None
         if self.handlecodeblocks:
             try:
-                lexer = get_lexer_by_name( match.group(2).strip() )
+                lexer = get_lexer_by_name(match.group('lang').strip())
             except ClassNotFound:
                 pass
-        code = match.group(4)
-
+        code = match.group('code')
         # no lexer for this language. handle it like it was a code block
         if lexer is None:
-            yield match.start(4), String, code
+            yield match.start('code'), String, code
         else:
+            # FIXME: aren't the offsets wrong?
             yield from do_insertions([], lexer.get_tokens_unprocessed(code))
 
-        yield match.start(5), String.Backtick, match.group(5)
+        yield match.start('terminator'), String.Backtick, match.group('terminator')
 
     tokens = {
         'root': [
@@ -563,7 +562,19 @@ class MarkdownLexer(RegexLexer):
             # code block fenced by 3 backticks
             (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
             # code block with language
-            (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$\n)', _handle_codeblock),
+            # Some tools include extra stuff after the language name, just
+            # highlight that as text. For example: https://docs.enola.dev/use/execmd
+            (r'''(?x)
+              ^(?P<initial>\s*```)
+              (?P<lang>[\w\-]+)
+              (?P<afterlang>
+                 (?P<whitespace>[^\S\n]+)
+                 (?P<extra>.*))?
+              (?P<newline>\n)
+              (?P<code>(.|\n)*?)
+              (?P<terminator>^\s*```$\n)
+              ''',
+             _handle_codeblock),
 
             include('inline'),
         ],
