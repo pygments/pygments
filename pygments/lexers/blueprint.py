@@ -45,12 +45,8 @@ class BlueprintLexer(RegexLexer):
         ],
         "type": [
             (r"\$\s*[a-z_][a-z0-9_\-]*", Name.Class),
-            (
-                r"(?:([a-z_][a-z0-9_\-]*)(\s*)(\.)(\s*))?([a-z_][a-z0-9_\-]*)",
-                bygroups(
-                    Name.Namespace, Whitespace, Punctuation, Whitespace, Name.Class
-                ),
-            ),
+            (r"(?:([a-z_][a-z0-9_\-]*)(\s*)(\.)(\s*))?([a-z_][a-z0-9_\-]*)",
+             bygroups(Name.Namespace, Whitespace, Punctuation, Whitespace, Name.Class)),
         ],
         "whitespace": [
             (r"\s+", Whitespace),
@@ -81,115 +77,61 @@ class BlueprintLexer(RegexLexer):
         "content": [
             include("whitespace"),
             # Keywords
-            (
-                words(
-                    (
-                        "after",
-                        "bidirectional",
-                        "bind-property",
-                        "bind",
-                        "default",
-                        "destructive",
-                        "disabled",
-                        "inverted",
-                        "no-sync-create",
-                        "suggested",
-                        "swapped",
-                        "sync-create",
-                        "template",
-                    )
-                ),
-                Keyword,
-            ),
+            (words(("after", "bidirectional", "bind-property", "bind", "default",
+                    "destructive", "disabled", "inverted", "no-sync-create",
+                    "suggested", "swapped", "sync-create", "template")),
+             Keyword),
             # Translated strings
-            (
-                r"(C?_)(\s*)(\()",
-                bygroups(Name.Function.Builtin, Whitespace, Punctuation),
-                "paren-content",
-            ),
+            (r"(C?_)(\s*)(\()",
+             bygroups(Name.Function.Builtin, Whitespace, Punctuation),
+             "paren-content"),
             # Cast expressions
             (r"(as)(\s*)(<)", bygroups(Keyword, Whitespace, Punctuation), "typeof"),
             # Closures
-            (
-                r"(\$?[a-z_][a-z0-9_\-]*)(\s*)(\()",
-                bygroups(Name.Function, Whitespace, Punctuation),
-                "paren-content",
-            ),
+            (r"(\$?[a-z_][a-z0-9_\-]*)(\s*)(\()",
+             bygroups(Name.Function, Whitespace, Punctuation),
+             "paren-content"),
             # Objects
-            (
-                r"(?:(\$\s*[a-z_][a-z0-9_\-]+)|(?:([a-z_][a-z0-9_\-]*)(\s*)(\.)(\s*))?([a-z_][a-z0-9_\-]*))(?:(\s+)([a-z_][a-z0-9_\-]*))?(\s*)(\{)",
-                bygroups(
-                    Name.Class,
-                    Name.Namespace,
-                    Whitespace,
-                    Punctuation,
-                    Whitespace,
-                    Name.Class,
-                    Whitespace,
-                    Name.Variable,
-                    Whitespace,
-                    Punctuation,
-                ),
-                "brace-block",
-            ),
+            (r"(?:(\$\s*[a-z_][a-z0-9_\-]+)|(?:([a-z_][a-z0-9_\-]*)(\s*)(\.)(\s*))?([a-z_][a-z0-9_\-]*))(?:(\s+)([a-z_][a-z0-9_\-]*))?(\s*)(\{)",
+             bygroups(Name.Class, Name.Namespace, Whitespace, Punctuation, Whitespace,
+                      Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation),
+             "brace-block"),
             # Misc
             include("value"),
             (r",|\.", Punctuation),
         ],
         "block-content": [
             # Import statements
-            (
-                r"(using)(\s+)([a-z_][a-z0-9_\-]*)(\s+)(\d[\d\.]*)(;)",
-                bygroups(
-                    Keyword,
-                    Whitespace,
-                    Name.Namespace,
-                    Whitespace,
-                    Name.Namespace,
-                    Punctuation,
-                ),
-            ),
+            (r"(using)(\s+)([a-z_][a-z0-9_\-]*)(\s+)(\d[\d\.]*)(;)",
+             bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
+                      Name.Namespace, Punctuation)),
             # Menus
-            (
-                r"(menu|section|submenu)(?:(\s+)([a-z_][a-z0-9_\-]*))?(\s*)(\{)",
-                bygroups(Keyword, Whitespace, Name.Variable, Whitespace, Punctuation),
-                "brace-block",
-            ),
-            (
-                r"(item)(\s*)(\{)",
-                bygroups(Keyword, Whitespace, Punctuation),
-                "brace-block",
-            ),
-            (
-                r"(item)(\s*)(\()",
-                bygroups(Keyword, Whitespace, Punctuation),
-                "paren-block",
-            ),
+            (r"(menu|section|submenu)(?:(\s+)([a-z_][a-z0-9_\-]*))?(\s*)(\{)",
+             bygroups(Keyword, Whitespace, Name.Variable, Whitespace, Punctuation),
+             "brace-block"),
+            (r"(item)(\s*)(\{)",
+             bygroups(Keyword, Whitespace, Punctuation),
+             "brace-block"),
+            (r"(item)(\s*)(\()",
+             bygroups(Keyword, Whitespace, Punctuation),
+             "paren-block"),
             # Templates
             (r"template", Keyword.Declaration, "template"),
             # Nested blocks. When extensions are added, this is where they go.
-            (
-                r"(responses|items|mime-types|patterns|suffixes|marks|widgets|strings|styles)(\s*)(\[)",
-                bygroups(Keyword, Whitespace, Punctuation),
-                "bracket-block",
-            ),
-            (
-                r"(accessibility|setters|layout|item)(\s*)(\{)",
-                bygroups(Keyword, Whitespace, Punctuation),
-                "brace-block",
-            ),
-            (
-                r"(condition|mark|item)(\s*)(\()",
-                bygroups(Keyword, Whitespace, Punctuation),
-                "paren-content",
-            ),
+            (r"(responses|items|mime-types|patterns|suffixes|marks|widgets|strings|styles)(\s*)(\[)",
+             bygroups(Keyword, Whitespace, Punctuation),
+             "bracket-block"),
+            (r"(accessibility|setters|layout|item)(\s*)(\{)",
+             bygroups(Keyword, Whitespace, Punctuation),
+             "brace-block"),
+            (r"(condition|mark|item)(\s*)(\()",
+             bygroups(Keyword, Whitespace, Punctuation),
+             "paren-content"),
             (r"\[", Punctuation, "child-type"),
             # Properties and signals
-            (
-                r"([a-z_][a-z0-9_\-]*(?:::[a-z0-9_]+)?)(\s*)(:|=>)",
-                bygroups(Name.Property, Whitespace, Punctuation),
-                "statement",
-            ),
+            (r"([a-z_][a-z0-9_\-]*(?:::[a-z0-9_]+)?)(\s*)(:|=>)",
+             bygroups(Name.Property, Whitespace, Punctuation),
+             "statement"),
             include("content"),
         ],
         "paren-block": [
@@ -214,17 +156,9 @@ class BlueprintLexer(RegexLexer):
         ],
         "child-type": [
             include("whitespace"),
-            (
-                r"(action)(\s+)(response)(\s*)(=)(\s*)",
-                bygroups(
-                    Keyword,
-                    Whitespace,
-                    Name.Attribute,
-                    Whitespace,
-                    Punctuation,
-                    Whitespace,
-                ),
-            ),
+            (r"(action)(\s+)(response)(\s*)(=)(\s*)",
+             bygroups(Keyword, Whitespace, Name.Attribute, Whitespace,
+                      Punctuation, Whitespace)),
             (words(("default", "internal-child", "response")), Keyword),
             (r"[a-z_][a-z0-9_\-]*", Name.Decorator),
             include("value"),
