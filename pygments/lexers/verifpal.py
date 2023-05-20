@@ -1,6 +1,6 @@
 """
     pygments.lexers.verifpal
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Verifpal languages.
 
@@ -38,41 +38,17 @@ class VerifpalLexer(RegexLexer):
             (r'(queries)( +)(\[)', bygroups(Name.Builtin, Whitespace, Punctuation), 'queries'),
             (r'(\w+)( +)(->|→)( *)(\w+)( *)(\:)', bygroups(String, Whitespace, Punctuation, Whitespace, String, Whitespace, Punctuation), 'shared'),
             (words(('generates', 'leaks'), suffix=r'\b'), Name.Builtin, 'shared'),
-            (words((
-                'phase',
-                'precondition',
-                ), suffix=r'\b'), Name.Builtin),
+            (words(( 'phase', 'precondition',), suffix=r'\b'), Name.Builtin),
             (r'[\[\(\)\]\?:=→^,]', Punctuation),
             (r'->', Punctuation),
-           (words((
-                'password',
-                ), suffix=r'\b'), Keyword.Constant),
+           (words(( 'password',), suffix=r'\b'), Keyword.Constant),
             (words((
-                'AEAD_DEC',
-                'AEAD_ENC',
-                'ASSERT',
-                'BLIND',
-                'CONCAT',
-                'DEC',
-                'ENC',
-                'G',
-                'HASH',
-                'HKDF',
-                'MAC',
-                'PKE_DEC',
-                'PKE_ENC',
-                'PW_HASH',
-                'RINGSIGN',
-                'RINGSIGNVERIF',
-                'SHAMIR_JOIN',
-                'SHAMIR_SPLIT',
-                'SIGN',
-                'SIGNVERIF',
-                'SPLIT',
-                'UNBLIND',
-                '_',
-                'nil',
-                ), suffix=r'\b'), Name.Function),
+                'AEAD_DEC', 'AEAD_ENC', 'ASSERT', 'BLIND', 'CONCAT',
+                'DEC', 'ENC', 'G', 'HASH', 'HKDF', 'MAC', 'PKE_DEC', 'PKE_ENC',
+                'PW_HASH', 'RINGSIGN', 'RINGSIGNVERIF', 'SHAMIR_JOIN',
+                'SHAMIR_SPLIT', 'SIGN', 'SIGNVERIF', 'SPLIT', 'UNBLIND', '_',
+                'nil',), suffix=r'\b'),
+             Name.Function),
             (r'\s+', Whitespace),
             (r'\w+', Name.Variable),
         ],
@@ -85,12 +61,10 @@ class VerifpalLexer(RegexLexer):
         'queries': [
                (r'\s+', Name.Variable),
                (words((
-                    'confidentiality?',
-                    'authentication?',
-                    'freshness?',
-                    'unlinkability?',
-                    'equivalence?',
-                    ), prefix=r'(', suffix=')( )'), bygroups(Keyword.Pseudo, Whitespace), 'shared'),
+                   'confidentiality?', 'authentication?', 'freshness?',
+                   'unlinkability?', 'equivalence?'), prefix=r'(',
+                   suffix=')( )'),
+                 bygroups(Keyword.Pseudo, Whitespace), 'shared'),
                 default('#pop')
         ]
     }
