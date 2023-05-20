@@ -41,30 +41,27 @@ class VerifpalLexer(RegexLexer):
             (words(( 'phase', 'precondition',), suffix=r'\b'), Name.Builtin),
             (r'[\[\(\)\]\?:=→^,]', Punctuation),
             (r'->', Punctuation),
-           (words(( 'password',), suffix=r'\b'), Keyword.Constant),
-            (words((
-                'AEAD_DEC', 'AEAD_ENC', 'ASSERT', 'BLIND', 'CONCAT',
-                'DEC', 'ENC', 'G', 'HASH', 'HKDF', 'MAC', 'PKE_DEC', 'PKE_ENC',
-                'PW_HASH', 'RINGSIGN', 'RINGSIGNVERIF', 'SHAMIR_JOIN',
-                'SHAMIR_SPLIT', 'SIGN', 'SIGNVERIF', 'SPLIT', 'UNBLIND', '_',
-                'nil',), suffix=r'\b'),
+            (words(('password',), suffix=r'\b'), Keyword.Constant),
+            (words(('AEAD_DEC', 'AEAD_ENC', 'ASSERT', 'BLIND', 'CONCAT',
+                    'DEC', 'ENC', 'G', 'HASH', 'HKDF', 'MAC', 'PKE_DEC',
+                    'PKE_ENC', 'PW_HASH', 'RINGSIGN', 'RINGSIGNVERIF',
+                    'SHAMIR_JOIN', 'SHAMIR_SPLIT', 'SIGN', 'SIGNVERIF',
+                    'SPLIT', 'UNBLIND', '_', 'nil'), suffix=r'\b'),
              Name.Function),
             (r'\s+', Whitespace),
             (r'\w+', Name.Variable),
         ],
         'shared': [
-                (r'[\^\[\],]', Punctuation),
-                (r' +', Whitespace),
-                (r'\w+', Name.Variable),
-                default('#pop')
-                ],
+            (r'[\^\[\],]', Punctuation),
+            (r' +', Whitespace),
+            (r'\w+', Name.Variable),
+            default('#pop')
+        ],
         'queries': [
-               (r'\s+', Name.Variable),
-               (words((
-                   'confidentiality?', 'authentication?', 'freshness?',
-                   'unlinkability?', 'equivalence?'), prefix=r'(',
-                   suffix=')( )'),
-                 bygroups(Keyword.Pseudo, Whitespace), 'shared'),
-                default('#pop')
+            (r'\s+', Name.Variable),
+            (words(('confidentiality?', 'authentication?', 'freshness?',
+                    'unlinkability?', 'equivalence?'), suffix='( )'),
+             bygroups(Keyword.Pseudo, Whitespace), 'shared'),
+            default('#pop')
         ]
     }
