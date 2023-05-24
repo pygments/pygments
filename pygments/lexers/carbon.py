@@ -37,7 +37,7 @@ class CarbonLexer(RegexLexer):
             (r'\\\n', Text),
             # comments
             (r'//(.*?)\n', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*].*?[*](\\\n)?/', Comment.Multiline),
             # Declaration
             (r'(package|import|api|namespace|library)\b', Keyword.Namespace),
             (r'(abstract|alias|fn|class|interface|let|var|virtual|external|'
