@@ -311,7 +311,7 @@ the styling carried on by ANSI codes.
 Here is a couple of third-party projects covering this use-case:
 
 - `pygments-ansi-color
-  <https://github.com/chriskuehl/pygments-ansi-color/tree/master>`_: implements
+  <https://github.com/chriskuehl/pygments-ansi-color>`_: implements
   a new lexer and formatter to parse and render pure ANSI content.
 - `Click Extra <https://github.com/kdeldycke/click-extra>`_: adds
   `ANSI-capable lexers
