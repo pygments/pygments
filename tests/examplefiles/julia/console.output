@@ -1,0 +1,27 @@
+'julia'       Name
+'>'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'julia'       Name
+'>'           Operator
+' '           Text.Whitespace
+'\\'          Operator
+'"'           Literal.String
+'\\"'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\n        The factorial function.\n\n        ```julia\n        @assert fac(3) == 1 * 2 * 3\n        ```\n        ' Literal.String
+'\\"'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\n        function fac(n)\n            if n < 2\n                return 1\n            else\n                return n * fac(n - 1) # <-- recursive call\n            end\n        end\n\n\n        # Lets try the function out...\n        f(x + 1)\n6\n' Literal.String

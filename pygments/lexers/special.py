@@ -46,6 +46,7 @@ class OutputLexer(Lexer):
     aliases = ['output']
     url = ""
     version_added = '2.10'
+    _example = "special/output"
 
     def get_tokens_unprocessed(self, text):
         yield 0, Generic.Output, text
