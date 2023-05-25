@@ -9,7 +9,7 @@ brackets ``[any]`` represent optional parts of the prompt, and prompt parts
 without brackets or in parenthesis ``(any)`` represent required parts of the
 prompt.
 
-* **Bash Session** (console, shell-session):
+* **Bash Session** (``console``, ``shell-session``):
 
   .. code-block:: console
 
@@ -21,7 +21,7 @@ prompt.
      % ls -lh
      > ls -lh
 
-* **MSDOS Session** (doscon):
+* **MSDOS Session** (``doscon``):
 
   .. code-block:: doscon
 
@@ -29,14 +29,14 @@ prompt.
      > dir
      More? dir
 
-* **Tcsh Session** (tcshcon):
+* **Tcsh Session** (``tcshcon``):
 
   .. code-block:: tcshcon
 
      (any)> ls -lh
      ? ls -lh
 
-* **PowerShell Session** (ps1con):
+* **PowerShell Session** (``ps1con``, ``pwsh-session``):
 
   .. code-block:: ps1con
 
