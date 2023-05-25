@@ -151,7 +151,7 @@ language sessions:
      ??? Undefined function or variable 'foo'.
 
 * **Postgres Console** (``postgres-console``, ``postgresql-console``,
-``psql``):
+  ``psql``):
 
   .. code-block:: postgres-console
 
