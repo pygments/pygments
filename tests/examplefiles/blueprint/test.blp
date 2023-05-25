@@ -1,0 +1,34 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $MyTemplate : Gtk.Window {
+  hello: world | there;
+  translated: C_("test", "String");
+  numbers: 0x1_000_000;
+  types: typeof<Adjustment>;
+
+  notify::something => $respond_somehow() swapped;
+
+  working: bind-property template.idle inverted;
+  status: bind $get_status(template.idle, true, 10) as <$MyStatus>.string;
+
+  Dialog {
+    [action response=0 default]
+    Button btn {}
+    [action response=cancel]
+    Button btn2 {}
+  }
+
+  Adw.Breakpoint {
+    condition ("max-width: 100")
+    setters {
+      label.foo: 10;
+    }
+  }
+}
+
+menu my-menu {
+  submenu {
+    attribute: "yes";
+  }
+}

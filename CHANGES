@@ -9,13 +9,17 @@ Version 2.16.0
 
 - New lexers:
 
+  * Blueprint (#2434)
   * GraphQL (#2428)
+  * NVIDIA PTX (#2432)
 
 - Updated lexers:
 
   * C/C++: refine keyword lists (#2421, #2422)
+  * Carbon: fix long processing times on invalid input
   * Elpi: handle quotations (#2419)
   * lean: recognize expressions nested within attributes (#1817)
+  * scdoc: improve language guessing implementation (#2402)
   * Transact SQL: add Pre-sorted Group keyword (#2417)
   * Uxntal: update for current runes (#2424)
 

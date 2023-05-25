@@ -1,0 +1,80 @@
+---input---
+/*
+This
+is
+a
+long
+unterminated
+comment
+with
+many
+newlines.
+
+It
+should
+take
+a
+reasonable
+time
+to
+lex.
+
+---tokens---
+'/'           Operator
+'*'           Operator
+'\n'          Text.Whitespace
+
+'This'        Name.Other
+'\n'          Text.Whitespace
+
+'is'          Keyword
+'\n'          Text.Whitespace
+
+'a'           Name.Other
+'\n'          Text.Whitespace
+
+'long'        Name.Other
+'\n'          Text.Whitespace
+
+'unterminated' Name.Other
+'\n'          Text.Whitespace
+
+'comment'     Name.Other
+'\n'          Text.Whitespace
+
+'with'        Name.Other
+'\n'          Text.Whitespace
+
+'many'        Name.Other
+'\n'          Text.Whitespace
+
+'newlines'    Name.Other
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'It'          Name.Other
+'\n'          Text.Whitespace
+
+'should'      Name.Other
+'\n'          Text.Whitespace
+
+'take'        Name.Other
+'\n'          Text.Whitespace
+
+'a'           Name.Other
+'\n'          Text.Whitespace
+
+'reasonable'  Name.Other
+'\n'          Text.Whitespace
+
+'time'        Name.Other
+'\n'          Text.Whitespace
+
+'to'          Name.Other
+'\n'          Text.Whitespace
+
+'lex'         Name.Other
+'.'           Punctuation
+'\n'          Text.Whitespace

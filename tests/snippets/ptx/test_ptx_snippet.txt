@@ -1,0 +1,311 @@
+---input---
+.const  .u32 foo = 42;
+.global .u32 bar[] = { 2, 3, 5 };
+.global .u32 p1 = foo;          // offset of foo in .const space
+.global .u32 p2 = generic(foo); // generic address of foo
+
+// array of generic-address pointers to elements of bar
+.global .u32 parr[] = { generic(bar), generic(bar)+4,
+generic(bar)+8 };
+
+// examples using mask() operator are pruned for brevity
+.global .u8 addr[] = {0xff(foo), 0xff00(foo), 0xff0000(foo), ...};
+
+.global .u8 addr2[] = {0xff(foo+4), 0xff00(foo+4), 0xff0000(foo+4),...}
+
+.global .u8 addr3[] = {0xff(generic(foo)), 0xff00(generic(foo)),...}
+
+.global .u8 addr4[] = {0xff(generic(foo)+4), 0xff00(generic(foo)+4),...}
+
+// mask() operator with integer const expression
+.global .u8 addr5[] = { 0xFF(1000 + 546), 0xFF00(131187), ...};
+
+---tokens---
+'.const'      Keyword.Pseudo
+'  '          Text.Whitespace
+'.u32'        Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u32'        Keyword.Type
+' '           Text.Whitespace
+'bar'         Keyword
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'5'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u32'        Keyword.Type
+' '           Text.Whitespace
+'p1'          Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'foo'         Name.Variable
+';'           Punctuation
+'          '  Text.Whitespace
+'// offset of foo in .const space\n' Comment
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u32'        Keyword.Type
+' '           Text.Whitespace
+'p2'          Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'generic'     Name.Variable
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// generic address of foo\n' Comment
+
+'\n'          Text.Whitespace
+
+'// array of generic-address pointers to elements of bar\n' Comment
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u32'        Keyword.Type
+' '           Text.Whitespace
+'parr'        Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'generic'     Name.Variable
+'('           Punctuation
+'bar'         Keyword
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'generic'     Name.Variable
+'('           Punctuation
+'bar'         Keyword
+')'           Punctuation
+'+'           Operator
+'4'           Literal.Number
+','           Operator
+'\n'          Text.Whitespace
+
+'generic'     Name.Variable
+'('           Punctuation
+'bar'         Keyword
+')'           Punctuation
+'+'           Operator
+'8'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// examples using mask() operator are pruned for brevity\n' Comment
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u8'         Keyword.Type
+' '           Text.Whitespace
+'add'         Keyword
+'r'           Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'0xff'        Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff00'      Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff0000'    Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'...'         Name.Variable
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u8'         Keyword.Type
+' '           Text.Whitespace
+'add'         Keyword
+'r2'          Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'0xff'        Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff00'      Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff0000'    Literal.Number
+'('           Punctuation
+'foo'         Name.Variable
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+','           Operator
+'...'         Name.Variable
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u8'         Keyword.Type
+' '           Text.Whitespace
+'add'         Keyword
+'r3'          Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'0xff'        Literal.Number
+'('           Punctuation
+'generic'     Name.Variable
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff00'      Literal.Number
+'('           Punctuation
+'generic'     Name.Variable
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+'...'         Name.Variable
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u8'         Keyword.Type
+' '           Text.Whitespace
+'add'         Keyword
+'r4'          Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'0xff'        Literal.Number
+'('           Punctuation
+'generic'     Name.Variable
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xff00'      Literal.Number
+'('           Punctuation
+'generic'     Name.Variable
+'('           Punctuation
+'foo'         Name.Variable
+')'           Punctuation
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+','           Operator
+'...'         Name.Variable
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// mask() operator with integer const expression\n' Comment
+
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'.u8'         Keyword.Type
+' '           Text.Whitespace
+'add'         Keyword
+'r5'          Name.Variable
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'0xFF'        Literal.Number
+'('           Punctuation
+'1000'        Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'546'         Literal.Number
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'0xFF00'      Literal.Number
+'('           Punctuation
+'131187'      Literal.Number
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'...'         Name.Variable
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
