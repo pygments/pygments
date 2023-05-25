@@ -1,3 +1,4 @@
+# Copyright (c) 2023, NVIDIA CORPORATION.
 """
     pygments.lexers.numbair
     ~~~~~~~~~~~~~~~~~~~~~~~
