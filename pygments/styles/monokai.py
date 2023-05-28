@@ -101,6 +101,7 @@ class MonokaiStyle(Style):
         Generic.Output:            "#66d9ef", # class: 'go'
         Generic.Prompt:            "bold #f92672", # class: 'gp'
         Generic.Strong:            "bold",    # class: 'gs'
+        Generic.EmphStrong:        "bold italic",  # class: 'ges'
         Generic.Subheading:        "#75715e", # class: 'gu'
         Generic.Traceback:         "",        # class: 'gt'
     }
