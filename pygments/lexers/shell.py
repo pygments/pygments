@@ -226,6 +226,16 @@ class BashSessionLexer(ShellSessionBaseLexer):
     Lexer for Bash shell sessions, i.e. command lines, including a
     prompt, interspersed with output.
 
+    .. code-block:: console
+
+        [any@any]$ ls -lh
+        [any@any]# ls -lh
+        [any@any]% ls -lh
+        $ ls -lh
+        # ls -lh
+        % ls -lh
+        > ls -lh
+
     .. versionadded:: 1.1
     """
 
@@ -556,6 +566,12 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     Lexer for MS DOS shell sessions, i.e. command lines, including a
     prompt, interspersed with output.
 
+    .. code-block:: doscon
+
+        [any]> dir
+        > dir
+        More? dir
+
     .. versionadded:: 2.1
     """
 
@@ -641,6 +657,11 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for Tcsh sessions, i.e. command lines, including a
     prompt, interspersed with output.
+
+    .. code-block:: tcshcon
+
+        (any)> ls -lh
+        ? ls -lh
 
     .. versionadded:: 2.1
     """
@@ -773,6 +794,12 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for PowerShell sessions, i.e. command lines, including a
     prompt, interspersed with output.
+
+    .. code-block:: ps1con
+
+        PS[any]> Get-ChildItem
+        PS> Get-ChildItem
+        >> Get-ChildItem
 
     .. versionadded:: 2.1
     """

@@ -251,7 +251,7 @@ class DylanConsoleLexer(Lexer):
         ? a
         => 1
 
-    This is based on a copy of the RubyConsoleLexer.
+    This is based on a copy of the ``RubyConsoleLexer``.
 
     .. versionadded:: 1.6
     """
