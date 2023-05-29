@@ -308,7 +308,7 @@ class PostgresConsoleLexer(Lexer):
         psql (15.3)
         Type "help" for help.
 
-        testdb=> \echo `date`
+        testdb=> \\echo `date`
         Tue Oct 26 21:40:57 CEST 1999
         testdb=> CREATE TABLE my_table (
         testdb(>  first integer not null default 0,
