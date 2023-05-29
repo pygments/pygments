@@ -369,6 +369,9 @@ highlight a programming language but a patch file.
 `Generic.Strong`
     Marks the token value as bold (e.g. for rst lexer).
 
+`Generic.EmphStrong`
+    Marks the token value as bold and emphasized.
+
 `Generic.Subheading`
     Marks the token value as subheadline.
 
