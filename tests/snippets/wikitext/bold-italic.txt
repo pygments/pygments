@@ -111,11 +111,11 @@ a{{b|''c}}d
 'produces'    Text
 ' '           Text
 "''"          Generic.Emph
-"'''"         Generic.Strong
-'bold'        Generic.Strong
-' '           Generic.Strong
-'italics'     Generic.Strong
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+'bold'        Generic.EmphStrong
+' '           Generic.EmphStrong
+'italics'     Generic.EmphStrong
+"'''"         Generic.EmphStrong
 "''"          Generic.Emph
 '.'           Text
 '\n'          Text
@@ -123,15 +123,15 @@ a{{b|''c}}d
 '\n'          Text
 
 "''"          Generic.Emph
-"'''"         Generic.Strong
-'Italic'      Generic.Strong
-' '           Generic.Strong
-'and'         Generic.Strong
-' '           Generic.Strong
-'bold'        Generic.Strong
-' '           Generic.Strong
-'formatting'  Generic.Strong
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+'Italic'      Generic.EmphStrong
+' '           Generic.EmphStrong
+'and'         Generic.EmphStrong
+' '           Generic.EmphStrong
+'bold'        Generic.EmphStrong
+' '           Generic.EmphStrong
+'formatting'  Generic.EmphStrong
+"'''"         Generic.EmphStrong
 "''"          Generic.Emph
 ' '           Text
 'works'       Text
@@ -154,10 +154,10 @@ a{{b|''c}}d
 
 "'"           Text
 "''"          Generic.Emph
-"'''"         Generic.Strong
-'foo'         Generic.Strong
-"'"           Generic.Strong
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+'foo'         Generic.EmphStrong
+"'"           Generic.EmphStrong
+"'''"         Generic.EmphStrong
 "''"          Generic.Emph
 '\n'          Text
 
@@ -166,9 +166,9 @@ a{{b|''c}}d
 'L'           Text
 "'"           Text
 "''"          Generic.Emph
-"'''"         Generic.Strong
-'Étranger'    Generic.Strong
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+'Étranger'    Generic.EmphStrong
+"'''"         Generic.EmphStrong
 "''"          Generic.Emph
 '\n'          Text
 
@@ -178,11 +178,11 @@ a{{b|''c}}d
 ' '           Generic.Emph
 'a'           Generic.Emph
 ' '           Generic.Emph
-"'''"         Generic.Strong
-' '           Generic.Strong
-'a'           Generic.Strong
-' '           Generic.Strong
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"'''"         Generic.EmphStrong
 ' '           Generic.Emph
 'a'           Generic.Emph
 ' '           Generic.Emph
@@ -195,37 +195,37 @@ a{{b|''c}}d
 ' '           Generic.Emph
 'a'           Generic.Emph
 ' '           Generic.Emph
-"'''"         Generic.Strong
-' '           Generic.Strong
-'a'           Generic.Strong
-' '           Generic.Strong
-"''"          Generic.Emph
-' '           Generic.Strong
-'a'           Generic.Strong
-' '           Generic.Strong
-"'''"         Generic.Strong
-'\n'          Text
-
-'\n'          Text
-
-"''"          Generic.Emph
-"'''"         Generic.Strong
-' '           Generic.Strong
-'a'           Generic.Strong
-' '           Generic.Strong
-"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"''"          Generic.EmphStrong
 ' '           Generic.Strong
 'a'           Generic.Strong
 ' '           Generic.Strong
 "'''"         Generic.Strong
 '\n'          Text
 
+'\n'          Text
+
 "''"          Generic.Emph
-"'''"         Generic.Strong
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"''"          Generic.EmphStrong
 ' '           Generic.Strong
 'a'           Generic.Strong
 ' '           Generic.Strong
 "'''"         Generic.Strong
+'\n'          Text
+
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"'''"         Generic.EmphStrong
 ' '           Generic.Emph
 'a'           Generic.Emph
 ' '           Generic.Emph
@@ -235,9 +235,9 @@ a{{b|''c}}d
 '\n'          Text
 
 "''"          Generic.Emph
-"'''"         Generic.Strong
-' '           Generic.Strong
-'a'           Generic.Strong
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
 '\n'          Text
 
 'a'           Text

@@ -1039,7 +1039,7 @@ class WikitextLexer(RegexLexer):
             include('entity'),
             # Bold & italic
             (r"('')(''')(?!')", bygroups(Generic.Emph,
-             Generic.Strong), 'inline-italic-bold'),
+             Generic.EmphStrong), 'inline-italic-bold'),
             (r"'''(?!')", Generic.Strong, 'inline-bold'),
             (r"''(?!')", Generic.Emph, 'inline-italic'),
             # Comments & parameters & templates
@@ -1217,7 +1217,7 @@ class WikitextLexer(RegexLexer):
             include('quote-common'),
             (r"('')(''')(?!')", bygroups(Generic.Emph,
              Generic.Strong), ('#pop', 'inline-bold')),
-            (r"'''(?!')", Generic.Strong, ('#pop', 'inline-italic-bold')),
+            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic-bold')),
             (r"''(?!')", Generic.Emph, '#pop'),
             include('inline'),
             include('text-italic'),
@@ -1227,26 +1227,27 @@ class WikitextLexer(RegexLexer):
             (r"(''')('')(?!')", bygroups(
                 Generic.Strong, Generic.Emph), ('#pop', 'inline-italic')),
             (r"'''(?!')", Generic.Strong, '#pop'),
-            (r"''(?!')", Generic.Emph, ('#pop', 'inline-bold-italic')),
+            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold-italic')),
             include('inline'),
             include('text-bold'),
         ],
         'inline-bold-italic': [
             include('quote-common'),
-            (r"('')(''')(?!')", bygroups(Generic.Emph,
+            (r"('')(''')(?!')", bygroups(Generic.EmphStrong,
              Generic.Strong), '#pop'),
-            (r"'''(?!')", Generic.Strong, ('#pop', 'inline-italic')),
-            (r"''(?!')", Generic.Emph, ('#pop', 'inline-bold')),
+            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic')),
+            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold')),
             include('inline'),
-            include('text-italic'),
+            include('text-bold-italic'),
         ],
         'inline-italic-bold': [
             include('quote-common'),
             (r"(''')('')(?!')", bygroups(
-                Generic.Strong, Generic.Emph), '#pop'),
-            (r"'''(?!')", Generic.Strong, ('#pop', 'inline-italic')),
-            (r"''(?!')", Generic.Emph, ('#pop', 'inline-bold')),
-            include('text-bold'),
+                Generic.EmphStrong, Generic.Emph), '#pop'),
+            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic')),
+            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold')),
+            include('inline'),
+            include('text-bold-italic'),
         ],
         'lc-inner': [
             (
@@ -1504,5 +1505,6 @@ class WikitextLexer(RegexLexer):
         'tag-templatedata': delegate_tag_rules('templatedata', JsonLexer),
         'text-italic': text_rules(Generic.Emph),
         'text-bold': text_rules(Generic.Strong),
+        'text-bold-italic': text_rules(Generic.EmphStrong),
         'text': text_rules(Text),
     }
