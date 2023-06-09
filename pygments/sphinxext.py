@@ -177,11 +177,10 @@ class PygmentsDoc(Directive):
 
                 if data[2]:
                     lexer_name = data[2][0]
-                    docstring += '\n\n    Example\n'
-                    docstring += '    .......\n'
-                    docstring += f'\n    .. code-block:: {lexer_name}\n\n'
+                    docstring += '\n\n    .. admonition:: Example\n'
+                    docstring += f'\n      .. code-block:: {lexer_name}\n\n'
                     for line in content.splitlines():
-                        docstring += f'        {line}\n'
+                        docstring += f'          {line}\n'
 
             modules.setdefault(module, []).append((
                 classname,
