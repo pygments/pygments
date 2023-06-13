@@ -1,5 +1,7 @@
 ---input---
 
+include <threads.scad>
+
 /*
    Multiline comment
 */
@@ -7,6 +9,7 @@
 egg(1500);
 
 // Single line comment
+// TODO: add a line
 
 module egg(length, start=-1000, end=-1000) {
     rotate_extrude()
@@ -34,337 +37,408 @@ function egg_eq(x, length) =
 
 
 ---tokens---
-'/*\n   Multiline comment\n*/' Comment.Mutliline
-'\n'          Text
+'include'     Keyword.Namespace
+' '           Text
+'<'           Punctuation
+'threads.scad' Comment.PreprocFile
+'>'           Punctuation
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'M'           Comment.Multiline
+'u'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
 
 'egg'         Name
 '('           Punctuation
 '1500'        Literal.Number
 ')'           Punctuation
 ';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//'          Comment.Single
+' '           Comment.Single
+'S'           Comment.Single
+'i'           Comment.Single
+'n'           Comment.Single
+'g'           Comment.Single
+'l'           Comment.Single
+'e'           Comment.Single
+' '           Comment.Single
+'l'           Comment.Single
+'i'           Comment.Single
+'n'           Comment.Single
+'e'           Comment.Single
+' '           Comment.Single
+'c'           Comment.Single
+'o'           Comment.Single
+'m'           Comment.Single
+'m'           Comment.Single
+'e'           Comment.Single
+'n'           Comment.Single
+'t'           Comment.Single
 '\n'          Text
 
+'//'          Comment.Single
+' '           Comment.Single
+'TODO:'       Comment.Special
+' '           Comment.Single
+'a'           Comment.Single
+'d'           Comment.Single
+'d'           Comment.Single
+' '           Comment.Single
+'a'           Comment.Single
+' '           Comment.Single
+'l'           Comment.Single
+'i'           Comment.Single
+'n'           Comment.Single
+'e'           Comment.Single
 '\n'          Text
 
-'// Single line comment\n' Comment.Singleline
-
-'\n'          Text
+'\n'          Text.Whitespace
 
 'module'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'egg'         Name.Namespace
 '('           Punctuation
 'length'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 '='           Operator
 '-'           Operator
 '1000'        Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Name
 '='           Operator
 '-'           Operator
 '1000'        Literal.Number
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'rotate_extrude' Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'translate'   Name.Builtin
 '('           Punctuation
 '['           Punctuation
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 'length'      Name
 '/'           Operator
 '2'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'rotate'      Name.Builtin
 '('           Punctuation
 '['           Punctuation
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '90'          Literal.Number
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'polygon'     Name.Builtin
 '('           Punctuation
 'egg_half_poly' Name
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'length'      Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'start'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1000'        Literal.Number
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'end'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1000'        Literal.Number
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'egg_half_poly' Name.Function
 '('           Punctuation
 'length'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'start'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'concat'      Name.Builtin
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'start'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ']'           Punctuation
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '['           Punctuation
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'x'           Name
 '='           Operator
 '['           Punctuation
 'start'       Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'release'     Name
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.5'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Name
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'egg_eq'      Name
 '('           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 '/'           Operator
 '2'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 ')'           Punctuation
 ']'           Punctuation
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'end'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ']'           Punctuation
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'egg_eq'      Name.Function
 '('           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.25'        Literal.Number
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'sqrt'        Name.Builtin
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '('           Punctuation
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '('           Punctuation
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'egg_w'       Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'egg_w'       Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'egg_w'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
