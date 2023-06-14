@@ -28,7 +28,6 @@ class OpenScadLexer(RegexLexer):
     tokens = {
         "root": [
             (r"[^\S\n]+", Whitespace),
-            (r"\n", Whitespace),
             (r'//', Comment.Single, 'comment-single'),
             (r'/\*', Comment.Multiline, 'comment-multi'),
             (r"[{}\[\]\(\),;:]", Punctuation),

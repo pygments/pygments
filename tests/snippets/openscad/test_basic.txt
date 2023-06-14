@@ -47,29 +47,7 @@ function egg_eq(x, length) =
 '\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
-'\n'          Comment.Multiline
-
-' '           Comment.Multiline
-' '           Comment.Multiline
-' '           Comment.Multiline
-'M'           Comment.Multiline
-'u'           Comment.Multiline
-'l'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'l'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'c'           Comment.Multiline
-'o'           Comment.Multiline
-'m'           Comment.Multiline
-'m'           Comment.Multiline
-'e'           Comment.Multiline
-'n'           Comment.Multiline
-'t'           Comment.Multiline
-'\n'          Comment.Multiline
+'\n   Multiline comment\n' Comment.Multiline
 
 '*/'          Comment.Multiline
 '\n'          Text.Whitespace
@@ -86,42 +64,11 @@ function egg_eq(x, length) =
 '\n'          Text.Whitespace
 
 '//'          Comment.Single
-' '           Comment.Single
-'S'           Comment.Single
-'i'           Comment.Single
-'n'           Comment.Single
-'g'           Comment.Single
-'l'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'l'           Comment.Single
-'i'           Comment.Single
-'n'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'c'           Comment.Single
-'o'           Comment.Single
-'m'           Comment.Single
-'m'           Comment.Single
-'e'           Comment.Single
-'n'           Comment.Single
-'t'           Comment.Single
+' Single line comment' Comment.Single
 '\n'          Text
 
 '//'          Comment.Single
-' '           Comment.Single
-'TODO:'       Comment.Special
-' '           Comment.Single
-'a'           Comment.Single
-'d'           Comment.Single
-'d'           Comment.Single
-' '           Comment.Single
-'a'           Comment.Single
-' '           Comment.Single
-'l'           Comment.Single
-'i'           Comment.Single
-'n'           Comment.Single
-'e'           Comment.Single
+' TODO: add a line' Comment.Single
 '\n'          Text
 
 '\n'          Text.Whitespace
