@@ -26,15 +26,8 @@ jobs:
         cache: 'pip'
     - name: Install tox
       run: pip install -r requirements.txt
-    - name: Test package (< 3.12)
-      if: matrix.python-version != '3.12-dev'
+    - name: Test package
       run: tox -- -W error
-    - name: Test package (3.12)
-      if: matrix.python-version == '3.12-dev'
-      # Temporarily allow warnings until pytest
-      # has fixed deprecation warnings:
-      # https://github.com/pytest-dev/pytest/pull/10894
-      run: tox
 
   check:
     runs-on: ubuntu-latest
