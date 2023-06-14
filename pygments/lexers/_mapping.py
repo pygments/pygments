@@ -502,6 +502,7 @@ LEXERS = {
     'ThriftLexer': ('pygments.lexers.dsls', 'Thrift', ('thrift',), ('*.thrift',), ('application/x-thrift',)),
     'TiddlyWiki5Lexer': ('pygments.lexers.markup', 'tiddler', ('tid',), ('*.tid',), ('text/vnd.tiddlywiki',)),
     'TlbLexer': ('pygments.lexers.tlb', 'Tl-b', ('tlb',), ('*.tlb',), ()),
+    'TlsLexer': ('pygments.lexers.tls', 'TLS Presentation Language', ('tls',), (), ()),
     'TodotxtLexer': ('pygments.lexers.textfmts', 'Todotxt', ('todotxt',), ('todo.txt', '*.todotxt'), ('text/x-todo',)),
     'TransactSqlLexer': ('pygments.lexers.sql', 'Transact-SQL', ('tsql', 't-sql'), ('*.sql',), ('text/x-tsql',)),
     'TreetopLexer': ('pygments.lexers.parsers', 'Treetop', ('treetop',), ('*.treetop', '*.tt'), ()),
