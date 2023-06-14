@@ -67,7 +67,7 @@ class OpenScadLexer(RegexLexer):
                 ), prefix=r"\b", suffix=r"\b"),
                 Name.Builtin
             ),
-            (words(("children"), prefix=r"\b", suffix=r"\b"), Name.Builtin.Pseudo),
+            (r"\bchildren\b", Name.Builtin.Pseudo),
             (r'""".*?"""', String.Double),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"-?\d+(\.\d+)?(e[+-]?\d+)?", Number),
@@ -86,11 +86,11 @@ class OpenScadLexer(RegexLexer):
         'comment-single': [
             (r'\n', Text, '#pop'),
             include('comment'),
-            (r'[^\n]', Comment.Single)
+            (r'[^\n]+', Comment.Single)
         ],
         'comment-multi': [
             include('comment'),
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
