@@ -34,7 +34,7 @@ class TlsLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             # comments
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/[*].*?[*]/', Comment.Multiline),
             # Keywords
             (words(('struct', 'enum', 'select', 'case'), suffix=r'\b'),
              Keyword),
