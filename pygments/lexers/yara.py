@@ -1,7 +1,15 @@
-# https://github.com/infosec-intern/vscode-yara/blob/main/yara/syntaxes/yara.tmLanguage.json
+"""
+    pygments.lexers.yara
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for YARA.
+
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, words
-#from pygments.util import get_bool_opt, shebang_matches
-from pygments.token import Comment, String, Name, Text, Punctuation, Operator, Keyword, Whitespace
+from pygments.token import Comment, String, Name, Text, Punctuation, Operator, Keyword, Whitespace, Number, Generic
 
 __all__ = ['YaraLexer']
 
@@ -9,14 +17,14 @@ class YaraLexer(RegexLexer):
     """
     For YARA rules
 
-   .. versionadded:: 2.16.0
+    .. versionadded:: 2.16.0
     """
 
     name = 'YARA'
     url = 'https://virustotal.github.io/yara/'
     aliases = ['yara', 'yar']
     filenames = ['*.yar']
-    mimetypes = []
+    mimetypes = ['text/x-yara']
 
     tokens = {
         'root': [
@@ -24,16 +32,15 @@ class YaraLexer(RegexLexer):
             (r'//.*?$', Comment.Singleline),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-            (words(('strings', 'condition', 'meta', 'import'), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('strings', 'condition', 'meta'), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('ascii', 'at', 'base64', 'base64wide', 'condition', 'contains', 'endswith', 'entrypoint', 'filesize', 'for', 'fullword', 'icontains', 'iendswith', 'iequals', 'in', 'include', 'int16', 'int16be', 'int32', 'int32be', 'int8', 'int8be', 'istartswith', 'matches', 'meta', 'nocase', 'none', 'of', 'startswith', 'strings', 'them', 'uint16', 'uint16be', 'uint32', 'uint32be', 'uint8', 'uint8be', 'wide', 'xor', 'defined'), prefix=r'\b', suffix=r'\b'), Generic.Strong),
             (r'(true|false)\b', Keyword.Constant),
-            (r'(and|or|not)\b', Operator.Word),
-            (r'(any|all)\b', Operator.Word),
+            (r'(and|or|not|any|all)\b', Operator.Word),
             (r'(\$[\w\d]+)', Name.Variable),
             (r'"[^"]*"', String.Double),
             (r'\'[^\']*\'', String.Single),
-            #(r'0x(?:[0-9A-Fa-f?]{2}\s*)+(?:\[\d+-\d+\])?', Number.Hex),
-            #(r'0x\[[\da-fA-F?-]+\]', Number.Hex),
-            #(r'\d+(?:-[a-z\d]+)?', Number.Integer),
+            (r'(\{.*?\})$', Number.Hex),
+            (r'(\/.*?\/)', String.Regex),
             (r'[a-z_]\w*', Name),
             (r'[$(){}[\].?+*|]', Punctuation),
             (r'[:=,;]', Punctuation),
