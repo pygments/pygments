@@ -1,0 +1,2671 @@
+'/*\nMulti-line\ncomment\n\nstruct { } ShouldBeIgnored\n*/' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'/* RFC 8446, Section 3.5 */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'red'         Name.Other
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'blue'        Name.Other
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'white'       Name.Other
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'Color'       Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'sweet'       Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'sour'        Name.Other
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'bitter'      Name.Other
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'32000'       Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'Taste'       Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Color'       Name.Other
+' '           Text.Whitespace
+'color'       Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'blue'        Name.Other
+';'           Punctuation
+'           ' Text.Whitespace
+'/* correct, type implicit */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'sad'         Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'meh'         Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'254'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'happy'       Name.Other
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'Mood'        Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/* RFC 8446, Section 3.8 */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'apple'       Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'orange'      Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'VariantTag'  Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'number'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'string'      Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'/* variable length */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'V1'          Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'uint32'      Keyword.Type
+' '           Text.Whitespace
+'number'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'string'      Name.Other
+'['           Punctuation
+'10'          Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'    '        Text.Whitespace
+'/* fixed length */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'V2'          Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'VariantTag'  Name.Other
+' '           Text.Whitespace
+'type'        Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'VariantRecord' Name.Other
+'.'           Punctuation
+'type'        Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'apple'       Name.Other
+':'           Punctuation
+'  '          Text.Whitespace
+'V1'          Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'orange'      Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'V2'          Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'VariantRecord' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/* RFC 8446, Section 7.1 */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'length'      Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'Length'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'label'       Name.Other
+'<'           Punctuation
+'7'           Literal.Number.Integer
+'..'          Operator
+'255'         Literal.Number.Integer
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"tls13 "'    Literal.String
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'Label'       Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'context'     Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'255'         Literal.Number.Integer
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'Context'     Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'HkdfLabel'   Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/* RFC 8446, Appendix B */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'invalid'     Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'change_cipher_spec' Name.Other
+'('           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'alert'       Name.Other
+'('           Punctuation
+'21'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'handshake'   Name.Other
+'('           Punctuation
+'22'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'application_data' Name.Other
+'('           Punctuation
+'23'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'heartbeat'   Name.Other
+'('           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'  '          Text.Whitespace
+'/* RFC 6520 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'ContentType' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ContentType' Name.Other
+' '           Text.Whitespace
+'type'        Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'legacy_record_version' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'length'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'fragment'    Name.Other
+'['           Punctuation
+'TLSPlaintext' Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'TLSPlaintext' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'content'     Name.Other
+'['           Punctuation
+'TLSPlaintext' Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ContentType' Name.Other
+' '           Text.Whitespace
+'type'        Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'uint8'       Keyword.Type
+' '           Text.Whitespace
+'zeros'       Name.Other
+'['           Punctuation
+'length_of_padding' Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'TLSInnerPlaintext' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ContentType' Name.Other
+' '           Text.Whitespace
+'opaque_type' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'application_data' Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'/* 23 */'    Comment.Multiline
+'\n    '      Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'legacy_record_version' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0x0303'      Literal.Number.Hex
+';'           Punctuation
+' '           Text.Whitespace
+'/* TLS v1.2 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'length'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'encrypted_record' Name.Other
+'['           Punctuation
+'TLSCiphertext' Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'TLSCiphertext' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'warning'     Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'fatal'       Name.Other
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'AlertLevel'  Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'close_notify' Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unexpected_message' Name.Other
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'bad_record_mac' Name.Other
+'('           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'decryption_failed_RESERVED' Name.Other
+'('           Punctuation
+'21'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'record_overflow' Name.Other
+'('           Punctuation
+'22'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'decompression_failure_RESERVED' Name.Other
+'('           Punctuation
+'30'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'handshake_failure' Name.Other
+'('           Punctuation
+'40'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'no_certificate_RESERVED' Name.Other
+'('           Punctuation
+'41'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'bad_certificate' Name.Other
+'('           Punctuation
+'42'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unsupported_certificate' Name.Other
+'('           Punctuation
+'43'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_revoked' Name.Other
+'('           Punctuation
+'44'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_expired' Name.Other
+'('           Punctuation
+'45'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_unknown' Name.Other
+'('           Punctuation
+'46'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'illegal_parameter' Name.Other
+'('           Punctuation
+'47'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unknown_ca'  Name.Other
+'('           Punctuation
+'48'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'access_denied' Name.Other
+'('           Punctuation
+'49'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'decode_error' Name.Other
+'('           Punctuation
+'50'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'decrypt_error' Name.Other
+'('           Punctuation
+'51'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'export_restriction_RESERVED' Name.Other
+'('           Punctuation
+'60'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'protocol_version' Name.Other
+'('           Punctuation
+'70'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'insufficient_security' Name.Other
+'('           Punctuation
+'71'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'internal_error' Name.Other
+'('           Punctuation
+'80'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'inappropriate_fallback' Name.Other
+'('           Punctuation
+'86'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'user_canceled' Name.Other
+'('           Punctuation
+'90'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'no_renegotiation_RESERVED' Name.Other
+'('           Punctuation
+'100'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'missing_extension' Name.Other
+'('           Punctuation
+'109'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unsupported_extension' Name.Other
+'('           Punctuation
+'110'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_unobtainable_RESERVED' Name.Other
+'('           Punctuation
+'111'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unrecognized_name' Name.Other
+'('           Punctuation
+'112'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'bad_certificate_status_response' Name.Other
+'('           Punctuation
+'113'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'bad_certificate_hash_value_RESERVED' Name.Other
+'('           Punctuation
+'114'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'unknown_psk_identity' Name.Other
+'('           Punctuation
+'115'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_required' Name.Other
+'('           Punctuation
+'116'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'no_application_protocol' Name.Other
+'('           Punctuation
+'120'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'AlertDescription' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'AlertLevel'  Name.Other
+' '           Text.Whitespace
+'level'       Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'AlertDescription' Name.Other
+' '           Text.Whitespace
+'description' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Alert'       Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'hello_request_RESERVED' Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'client_hello' Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'server_hello' Name.Other
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'hello_verify_request_RESERVED' Name.Other
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'new_session_ticket' Name.Other
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'end_of_early_data' Name.Other
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'hello_retry_request_RESERVED' Name.Other
+'('           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'encrypted_extensions' Name.Other
+'('           Punctuation
+'8'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate' Name.Other
+'('           Punctuation
+'11'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'server_key_exchange_RESERVED' Name.Other
+'('           Punctuation
+'12'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_request' Name.Other
+'('           Punctuation
+'13'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'server_hello_done_RESERVED' Name.Other
+'('           Punctuation
+'14'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_verify' Name.Other
+'('           Punctuation
+'15'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'client_key_exchange_RESERVED' Name.Other
+'('           Punctuation
+'16'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'finished'    Name.Other
+'('           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_url_RESERVED' Name.Other
+'('           Punctuation
+'21'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificate_status_RESERVED' Name.Other
+'('           Punctuation
+'22'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'supplemental_data_RESERVED' Name.Other
+'('           Punctuation
+'23'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'key_update'  Name.Other
+'('           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'message_hash' Name.Other
+'('           Punctuation
+'254'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'HandshakeType' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'HandshakeType' Name.Other
+' '           Text.Whitespace
+'msg_type'    Name.Other
+';'           Punctuation
+'    '        Text.Whitespace
+'/* handshake type */' Comment.Multiline
+'\n    '      Text.Whitespace
+'uint24'      Keyword.Type
+' '           Text.Whitespace
+'length'      Name.Other
+';'           Punctuation
+'             ' Text.Whitespace
+'/* bytes in message */' Comment.Multiline
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Handshake'   Name.Other
+'.'           Punctuation
+'msg_type'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'client_hello' Name.Other
+':'           Punctuation
+'          '  Text.Whitespace
+'ClientHello' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'server_hello' Name.Other
+':'           Punctuation
+'          '  Text.Whitespace
+'ServerHello' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'end_of_early_data' Name.Other
+':'           Punctuation
+'     '       Text.Whitespace
+'EndOfEarlyData' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'encrypted_extensions' Name.Other
+':'           Punctuation
+'  '          Text.Whitespace
+'EncryptedExtensions' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'certificate_request' Name.Other
+':'           Punctuation
+'   '         Text.Whitespace
+'CertificateRequest' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'certificate' Name.Other
+':'           Punctuation
+'           ' Text.Whitespace
+'Certificate' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'certificate_verify' Name.Other
+':'           Punctuation
+'    '        Text.Whitespace
+'CertificateVerify' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'finished'    Name.Other
+':'           Punctuation
+'              ' Text.Whitespace
+'Finished'    Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'new_session_ticket' Name.Other
+':'           Punctuation
+'    '        Text.Whitespace
+'NewSessionTicket' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'key_update'  Name.Other
+':'           Punctuation
+'            ' Text.Whitespace
+'KeyUpdate'   Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Handshake'   Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'ProtocolVersion' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'Random'      Name.Other
+'['           Punctuation
+'32'          Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'uint8'       Keyword.Type
+' '           Text.Whitespace
+'CipherSuite' Name.Other
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'    '        Text.Whitespace
+'/* Cryptographic suite selector */' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'legacy_version' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0x0303'      Literal.Number.Hex
+';'           Punctuation
+'    '        Text.Whitespace
+'/* TLS v1.2 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'Random'      Name.Other
+' '           Text.Whitespace
+'random'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'legacy_session_id' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'32'          Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'CipherSuite' Name.Other
+' '           Text.Whitespace
+'cipher_suites' Name.Other
+'<'           Punctuation
+'2'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'legacy_compression_methods' Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'8'           Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'8'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'ClientHello' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'legacy_version' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0x0303'      Literal.Number.Hex
+';'           Punctuation
+'    '        Text.Whitespace
+'/* TLS v1.2 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'Random'      Name.Other
+' '           Text.Whitespace
+'random'      Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'legacy_session_id_echo' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'32'          Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'CipherSuite' Name.Other
+' '           Text.Whitespace
+'cipher_suite' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'uint8'       Keyword.Type
+' '           Text.Whitespace
+'legacy_compression_method' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'6'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'ServerHello' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ExtensionType' Name.Other
+' '           Text.Whitespace
+'extension_type' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'extension_data' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Extension'   Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'server_name' Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                             ' Text.Whitespace
+'/* RFC 6066 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'max_fragment_length' Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                     ' Text.Whitespace
+'/* RFC 6066 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'status_request' Name.Other
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                          ' Text.Whitespace
+'/* RFC 6066 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'supported_groups' Name.Other
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                       ' Text.Whitespace
+'/* RFC 8422, 7919 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'signature_algorithms' Name.Other
+'('           Punctuation
+'13'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                   ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'use_srtp'    Name.Other
+'('           Punctuation
+'14'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                               ' Text.Whitespace
+'/* RFC 5764 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'heartbeat'   Name.Other
+'('           Punctuation
+'15'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                              ' Text.Whitespace
+'/* RFC 6520 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'application_layer_protocol_negotiation' Name.Other
+'('           Punctuation
+'16'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'/* RFC 7301 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'signed_certificate_timestamp' Name.Other
+'('           Punctuation
+'18'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'           ' Text.Whitespace
+'/* RFC 6962 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'client_certificate_type' Name.Other
+'('           Punctuation
+'19'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                ' Text.Whitespace
+'/* RFC 7250 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'server_certificate_type' Name.Other
+'('           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                ' Text.Whitespace
+'/* RFC 7250 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'padding'     Name.Other
+'('           Punctuation
+'21'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                                ' Text.Whitespace
+'/* RFC 7685 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'RESERVED'    Name.Other
+'('           Punctuation
+'40'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                               ' Text.Whitespace
+'/* Used but never\n                                                    assigned */' Comment.Multiline
+'\n    '      Text.Whitespace
+'pre_shared_key' Name.Other
+'('           Punctuation
+'41'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                         ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'early_data'  Name.Other
+'('           Punctuation
+'42'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                             ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'supported_versions' Name.Other
+'('           Punctuation
+'43'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                     ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'cookie'      Name.Other
+'('           Punctuation
+'44'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                                 ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'psk_key_exchange_modes' Name.Other
+'('           Punctuation
+'45'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                 ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'RESERVED'    Name.Other
+'('           Punctuation
+'46'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                               ' Text.Whitespace
+'/* Used but never\n                                                    assigned */' Comment.Multiline
+'\n    '      Text.Whitespace
+'certificate_authorities' Name.Other
+'('           Punctuation
+'47'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'oid_filters' Name.Other
+'('           Punctuation
+'48'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                            ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'post_handshake_auth' Name.Other
+'('           Punctuation
+'49'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                    ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'signature_algorithms_cert' Name.Other
+'('           Punctuation
+'50'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'              ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'key_share'   Name.Other
+'('           Punctuation
+'51'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'                              ' Text.Whitespace
+'/* RFC 8446 */' Comment.Multiline
+'\n    '      Text.Whitespace
+'('           Punctuation
+'65535'       Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'ExtensionType' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'NamedGroup'  Name.Other
+' '           Text.Whitespace
+'group'       Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'key_exchange' Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyShareEntry' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'KeyShareEntry' Name.Other
+' '           Text.Whitespace
+'client_shares' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyShareClientHello' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'NamedGroup'  Name.Other
+' '           Text.Whitespace
+'selected_group' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyShareHelloRetryRequest' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'KeyShareEntry' Name.Other
+' '           Text.Whitespace
+'server_share' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyShareServerHello' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'uint8'       Keyword.Type
+' '           Text.Whitespace
+'legacy_form' Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'X'           Name.Other
+'['           Punctuation
+'coordinate_length' Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'Y'           Name.Other
+'['           Punctuation
+'coordinate_length' Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'UncompressedPointRepresentation' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'psk_ke'      Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'psk_dhe_ke'  Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'PskKeyExchangeMode' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'PskKeyExchangeMode' Name.Other
+' '           Text.Whitespace
+'ke_modes'    Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'255'         Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'PskKeyExchangeModes' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'Empty'       Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Handshake'   Name.Other
+'.'           Punctuation
+'msg_type'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'new_session_ticket' Name.Other
+':'           Punctuation
+'   '         Text.Whitespace
+'uint32'      Keyword.Type
+' '           Text.Whitespace
+'max_early_data_size' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'client_hello' Name.Other
+':'           Punctuation
+'         '   Text.Whitespace
+'Empty'       Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'encrypted_extensions' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'Empty'       Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'EarlyDataIndication' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'identity'    Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'uint32'      Keyword.Type
+' '           Text.Whitespace
+'obfuscated_ticket_age' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'PskIdentity' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'PskBinderEntry' Name.Other
+'<'           Punctuation
+'32'          Literal.Number.Integer
+'..'          Operator
+'255'         Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'PskIdentity' Name.Other
+' '           Text.Whitespace
+'identities'  Name.Other
+'<'           Punctuation
+'7'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'PskBinderEntry' Name.Other
+' '           Text.Whitespace
+'binders'     Name.Other
+'<'           Punctuation
+'33'          Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'OfferedPsks' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Handshake'   Name.Other
+'.'           Punctuation
+'msg_type'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'client_hello' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'OfferedPsks' Name.Other
+';'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'server_hello' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'selected_identity' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'PreSharedKeyExtension' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Handshake'   Name.Other
+'.'           Punctuation
+'msg_type'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'client_hello' Name.Other
+':'           Punctuation
+'\n            ' Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'versions'    Name.Other
+'<'           Punctuation
+'2'           Literal.Number.Integer
+'..'          Operator
+'254'         Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'server_hello' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'/* and HelloRetryRequest */' Comment.Multiline
+'\n            ' Text.Whitespace
+'ProtocolVersion' Name.Other
+' '           Text.Whitespace
+'selected_version' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'SupportedVersions' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'cookie'      Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Cookie'      Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'/* RSASSA-PKCS1-v1_5 algorithms */' Comment.Multiline
+'\n    '      Text.Whitespace
+'rsa_pkcs1_sha256' Name.Other
+'('           Punctuation
+'0x0401'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pkcs1_sha384' Name.Other
+'('           Punctuation
+'0x0501'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pkcs1_sha512' Name.Other
+'('           Punctuation
+'0x0601'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* ECDSA algorithms */' Comment.Multiline
+'\n    '      Text.Whitespace
+'ecdsa_secp256r1_sha256' Name.Other
+'('           Punctuation
+'0x0403'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ecdsa_secp384r1_sha384' Name.Other
+'('           Punctuation
+'0x0503'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ecdsa_secp521r1_sha512' Name.Other
+'('           Punctuation
+'0x0603'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* RSASSA-PSS algorithms with public key OID rsaEncryption */' Comment.Multiline
+'\n    '      Text.Whitespace
+'rsa_pss_rsae_sha256' Name.Other
+'('           Punctuation
+'0x0804'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pss_rsae_sha384' Name.Other
+'('           Punctuation
+'0x0805'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pss_rsae_sha512' Name.Other
+'('           Punctuation
+'0x0806'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* EdDSA algorithms */' Comment.Multiline
+'\n    '      Text.Whitespace
+'ed25519'     Name.Other
+'('           Punctuation
+'0x0807'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ed448'       Name.Other
+'('           Punctuation
+'0x0808'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* RSASSA-PSS algorithms with public key OID RSASSA-PSS */' Comment.Multiline
+'\n    '      Text.Whitespace
+'rsa_pss_pss_sha256' Name.Other
+'('           Punctuation
+'0x0809'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pss_pss_sha384' Name.Other
+'('           Punctuation
+'0x080a'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'rsa_pss_pss_sha512' Name.Other
+'('           Punctuation
+'0x080b'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* Legacy algorithms */' Comment.Multiline
+'\n    '      Text.Whitespace
+'rsa_pkcs1_sha1' Name.Other
+'('           Punctuation
+'0x0201'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ecdsa_sha1'  Name.Other
+'('           Punctuation
+'0x0203'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* Reserved Code Points */' Comment.Multiline
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0000'      Literal.Number.Hex
+'..'          Operator
+'0x0200'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'dsa_sha1_RESERVED' Name.Other
+'('           Punctuation
+'0x0202'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0204'      Literal.Number.Hex
+'..'          Operator
+'0x0400'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'dsa_sha256_RESERVED' Name.Other
+'('           Punctuation
+'0x0402'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0404'      Literal.Number.Hex
+'..'          Operator
+'0x0500'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'dsa_sha384_RESERVED' Name.Other
+'('           Punctuation
+'0x0502'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0504'      Literal.Number.Hex
+'..'          Operator
+'0x0600'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'dsa_sha512_RESERVED' Name.Other
+'('           Punctuation
+'0x0602'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0604'      Literal.Number.Hex
+'..'          Operator
+'0x06FF'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'private_use' Name.Other
+'('           Punctuation
+'0xFE00'      Literal.Number.Hex
+'..'          Operator
+'0xFFFF'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'0xFFFF'      Literal.Number.Hex
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'SignatureScheme' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'SignatureScheme' Name.Other
+' '           Text.Whitespace
+'supported_signature_algorithms' Name.Other
+'<'           Punctuation
+'2'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'SignatureSchemeList' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'unallocated_RESERVED' Name.Other
+'('           Punctuation
+'0x0000'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* Elliptic Curve Groups (ECDHE) */' Comment.Multiline
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x0001'      Literal.Number.Hex
+'..'          Operator
+'0x0016'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'secp256r1'   Name.Other
+'('           Punctuation
+'0x0017'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'secp384r1'   Name.Other
+'('           Punctuation
+'0x0018'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'secp521r1'   Name.Other
+'('           Punctuation
+'0x0019'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0x001A'      Literal.Number.Hex
+'..'          Operator
+'0x001C'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'x25519'      Name.Other
+'('           Punctuation
+'0x001D'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'x448'        Name.Other
+'('           Punctuation
+'0x001E'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* Finite Field Groups (DHE) */' Comment.Multiline
+'\n    '      Text.Whitespace
+'ffdhe2048'   Name.Other
+'('           Punctuation
+'0x0100'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'ffdhe3072'   Name.Other
+'('           Punctuation
+'0x0101'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'ffdhe4096'   Name.Other
+'('           Punctuation
+'0x0102'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ffdhe6144'   Name.Other
+'('           Punctuation
+'0x0103'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'ffdhe8192'   Name.Other
+'('           Punctuation
+'0x0104'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n\n    '    Text.Whitespace
+'/* Reserved Code Points */' Comment.Multiline
+'\n    '      Text.Whitespace
+'ffdhe_private_use' Name.Other
+'('           Punctuation
+'0x01FC'      Literal.Number.Hex
+'..'          Operator
+'0x01FF'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'ecdhe_private_use' Name.Other
+'('           Punctuation
+'0xFE00'      Literal.Number.Hex
+'..'          Operator
+'0xFEFF'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'obsolete_RESERVED' Name.Other
+'('           Punctuation
+'0xFF01'      Literal.Number.Hex
+'..'          Operator
+'0xFF02'      Literal.Number.Hex
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'0xFFFF'      Literal.Number.Hex
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'NamedGroup'  Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'NamedGroup'  Name.Other
+' '           Text.Whitespace
+'named_group_list' Name.Other
+'<'           Punctuation
+'2'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'NamedGroupList' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'DistinguishedName' Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'DistinguishedName' Name.Other
+' '           Text.Whitespace
+'authorities' Name.Other
+'<'           Punctuation
+'3'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'CertificateAuthoritiesExtension' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'certificate_extension_oid' Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'8'           Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'certificate_extension_values' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'OIDFilter'   Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'OIDFilter'   Name.Other
+' '           Text.Whitespace
+'filters'     Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'OIDFilterExtension' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'PostHandshakeAuth' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'EncryptedExtensions' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'certificate_request_context' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'8'           Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'2'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'CertificateRequest' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'X509'        Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'OpenPGP_RESERVED' Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'RawPublicKey' Name.Other
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'CertificateType' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'select'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'certificate_type' Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'RawPublicKey' Name.Other
+':'           Punctuation
+'\n        '  Text.Whitespace
+'/* From RFC 7250 ASN.1_subjectPublicKeyInfo */' Comment.Multiline
+'\n        '  Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'ASN1_subjectPublicKeyInfo' Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'24'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'X509'        Name.Other
+':'           Punctuation
+'\n        '  Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'cert_data'   Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'24'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'CertificateEntry' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'certificate_request_context' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'8'           Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'CertificateEntry' Name.Other
+' '           Text.Whitespace
+'certificate_list' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'24'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Certificate' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'SignatureScheme' Name.Other
+' '           Text.Whitespace
+'algorithm'   Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'signature'   Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'CertificateVerify' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'verify_data' Name.Other
+'['           Punctuation
+'Hash'        Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'Finished'    Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'uint32'      Keyword.Type
+' '           Text.Whitespace
+'ticket_lifetime' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'uint32'      Keyword.Type
+' '           Text.Whitespace
+'ticket_age_add' Name.Other
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'ticket_nonce' Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'255'         Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'opaque'      Keyword.Type
+' '           Text.Whitespace
+'ticket'      Name.Other
+'<'           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Extension'   Name.Other
+' '           Text.Whitespace
+'extensions'  Name.Other
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'2'           Literal.Number.Integer
+'^'           Operator
+'16'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'NewSessionTicket' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'EndOfEarlyData' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'update_not_requested' Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'update_requested' Name.Other
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyUpdateRequest' Name.Other
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'KeyUpdateRequest' Name.Other
+' '           Text.Whitespace
+'request_update' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'KeyUpdate'   Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
