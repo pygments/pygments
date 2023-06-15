@@ -40,7 +40,7 @@ class YaraLexer(RegexLexer):
             (r'(\$\w+)', Name.Variable),
             (r'"[^"]*"', String.Double),
             (r'\'[^\']*\'', String.Single),
-            (r'(\{.*?\})$', Number.Hex),
+            (r'\{.*?\}$', Number.Hex),
             (r'(/.*?/)', String.Regex),
             (r'[a-z_]\w*', Name),
             (r'[$(){}[\].?+*|]', Punctuation),
