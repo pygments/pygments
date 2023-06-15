@@ -19,7 +19,7 @@ rule SyntaxExample
         $false = false
         $hex_string = { E2 34 ?? C8 A? FB [2-4] }
         $hex_string2 = { F4 23 ( 62 B4 | 56 ) 45 }
-        $dstring = "double string" wide nocase fullword
+        $dstring = "double # string" wide nocase fullword
         $reg_ex = /md5: [0-9a-zA-Z]{32}/    // greedy test comment
     condition:
         $hex_string
@@ -50,7 +50,7 @@ rule Yara4Example
         description = "Example rule to test features added in version 4.0"
         author = "test /test/"
     strings:
-        $b64name = "string" base64
+        $b64name = "string" base64 # some more comments
         $b64wname = "string" base64wide
     condition:
         any of them
@@ -59,3 +59,4 @@ rule Yara4Example
         and pe.export_timestamp == 000000000
         and pe.exports_index(40)
 }
+# another comment
