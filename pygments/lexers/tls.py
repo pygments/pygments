@@ -32,9 +32,7 @@ class TlsLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'\\\n', Text),
             # comments
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             # Keywords
