@@ -35,7 +35,7 @@ rule SyntaxExample
 rule RuleReferenceExample
 {
     meta:
-        description = "Rule Reference Example"
+        description = "Rule Reference Example {this should not be here}"
         author = "Test"
         reference = "https://github.com/infosec-intern/vscode-yara/wiki"
     strings:
@@ -48,6 +48,7 @@ rule Yara4Example
 {
     meta:
         description = "Example rule to test features added in version 4.0"
+        author = "test /test/"
     strings:
         $b64name = "string" base64
         $b64wname = "string" base64wide
