@@ -48,7 +48,6 @@ class TlsLexer(RegexLexer):
             # tokens
             (r'[.]{2}', Operator),
             (r'[+\-*/&^]', Operator),
-            (r'\[\[|\]\]', Punctuation),
             (r'[|<>=!()\[\]{}.,;:\?]', Punctuation),
             # identifiers
             (r'[^\W\d]\w*', Name.Other),
