@@ -8,6 +8,8 @@ __all__ = ['YaraLexer']
 class YaraLexer(RegexLexer):
     """
     For YARA rules
+
+   .. versionadded:: 2.16.0
     """
 
     name = 'YARA'
