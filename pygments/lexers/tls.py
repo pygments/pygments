@@ -1,6 +1,6 @@
 """
     pygments.lexers.tls
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the TLS presentation language.
 
