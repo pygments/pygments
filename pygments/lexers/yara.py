@@ -20,7 +20,7 @@ class YaraLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'//.*?$', Comment.Singleline),
+            (r'//.*?$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(('strings', 'condition', 'meta', 'import'), prefix=r'\b', suffix=r'\b'), Keyword),
