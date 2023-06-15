@@ -1,7 +1,7 @@
 # https://github.com/infosec-intern/vscode-yara/blob/main/yara/syntaxes/yara.tmLanguage.json
 from pygments.lexer import RegexLexer, words
 #from pygments.util import get_bool_opt, shebang_matches
-from pygments.token import *
+from pygments.token import Comment, String, Name, Text, Punctuation, Operator, Keyword, Whitespace
 
 __all__ = ['YaraLexer']
 
@@ -16,11 +16,12 @@ class YaraLexer(RegexLexer):
     url = 'https://virustotal.github.io/yara/'
     aliases = ['yara', 'yar']
     filenames = ['*.yar']
+    mimetypes = []
 
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (r'//.*?$', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'//.*?$', Comment.Singleline),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(('strings', 'condition', 'meta', 'import'), prefix=r'\b', suffix=r'\b'), Keyword),
