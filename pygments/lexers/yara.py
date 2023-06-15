@@ -34,7 +34,7 @@ class YaraLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(('strings', 'condition', 'meta'), prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(('ascii', 'at', 'base64', 'base64wide', 'condition', 'contains', 'endswith', 'entrypoint', 'filesize', 'for', 'fullword', 'icontains', 'iendswith', 'iequals', 'in', 'include', 'int16', 'int16be', 'int32', 'int32be', 'int8', 'int8be', 'istartswith', 'matches', 'meta', 'nocase', 'none', 'of', 'startswith', 'strings', 'them', 'uint16', 'uint16be', 'uint32', 'uint32be', 'uint8', 'uint8be', 'wide', 'xor', 'defined'), prefix=r'\b', suffix=r'\b'), Generic.Strong),
+            (words(('ascii', 'at', 'base64', 'base64wide', 'condition', 'contains', 'endswith', 'entrypoint', 'filesize', 'for', 'fullword', 'icontains', 'iendswith', 'iequals', 'in', 'include', 'int16', 'int16be', 'int32', 'int32be', 'int8', 'int8be', 'istartswith', 'matches', 'meta', 'nocase', 'none', 'of', 'startswith', 'strings', 'them', 'uint16', 'uint16be', 'uint32', 'uint32be', 'uint8', 'uint8be', 'wide', 'xor', 'defined'), prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (r'(true|false)\b', Keyword.Constant),
             (r'(and|or|not|any|all)\b', Operator.Word),
             (r'(\$\w+)', Name.Variable),
