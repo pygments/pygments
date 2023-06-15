@@ -30,7 +30,7 @@ class YaraLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
-            (r'\#.*?$', Comment.Singleline),
+            (r'\#.*?$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
             (words(('strings', 'condition', 'meta'), prefix=r'\b', suffix=r'\b'), Keyword),
