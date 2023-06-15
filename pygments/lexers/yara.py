@@ -29,7 +29,7 @@ class YaraLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'//.*?$', Comment.Singleline),
+            (r'//.*?$', Comment.Single),
             (r'\#.*?$', Comment.Singleline),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
