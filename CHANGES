@@ -12,12 +12,14 @@ Version 2.16.0
   * Blueprint (#2434)
   * GraphQL (#2428)
   * NVIDIA PTX (#2432)
+  * OpenSCAD (#2449)
   * Verifpal (#2430)
 
 - Updated lexers:
 
   * C/C++: refine keyword lists (#2421, #2422)
-  * Carbon: fix long processing times on invalid input
+  * Carbon: fix long processing times on invalid input, fix number
+    lexing (#2454, #2456)
   * Elpi: handle quotations (#2419)
   * lean: recognize expressions nested within attributes (#1817)
   * Markdown: allow extra characters after language name
