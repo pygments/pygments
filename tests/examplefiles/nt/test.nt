@@ -8,8 +8,11 @@ dict:
   key3: > str-like value
   key4: no trailing whitespace
   key5: trailing whitespace    
-  'key: single-quoted': value
-  "key: double-quoted": value
+
+  : key:
+    > key with terminal colon: value
+  : - key
+    > key with leading -: value
   empty:
 
 list:

@@ -4,154 +4,144 @@
 '#'           Comment
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+'  '          Text
 '# indented comment' Comment
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
+'\n'          Text
 
-'dict'        Name
+'dict'        Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'key1'        Name
-':'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'key1'        Name.Tag
+': '          Punctuation
 'dict-like: value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'key2'        Name
-':'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'key2'        Name.Tag
+': '          Punctuation
 '- list-like value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'key3'        Name
-':'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'key3'        Name.Tag
+': '          Punctuation
 '> str-like value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'key4'        Name
-':'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'key4'        Name.Tag
+': '          Punctuation
 'no trailing whitespace' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'key5'        Name
-':'           Punctuation
-' '           Text.Whitespace
-'trailing whitespace' Literal.String
-'    '        Text.Whitespace
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-"'"           Punctuation
-'key: single-quoted' Name
-"': "         Punctuation
-'value'       Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'"'           Punctuation
-'key: double-quoted' Name
-'": '         Punctuation
-'value'       Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'empty'       Name
-':'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'list'        Name
-':'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'-'           Punctuation
-' '           Text.Whitespace
-'dict-like: value' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'-'           Punctuation
-' '           Text.Whitespace
-'- list-like value' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'-'           Punctuation
-' '           Text.Whitespace
-'> str-like value' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'-'           Punctuation
-' '           Text.Whitespace
-'no trailing whitespace' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
-'-'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'key5'        Name.Tag
+': '          Punctuation
 'trailing whitespace' Literal.String
 '    \n'      Text.Whitespace
 
+'\n  '        Text
+': '          Punctuation
+'key:'        Name.Tag
 '\n'          Text.Whitespace
 
-'empty list'  Name
+'    '        Text
+'> '          Punctuation
+'key with terminal colon: value' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+': '          Punctuation
+'- key'       Name.Tag
+'\n'          Text.Whitespace
+
+'    '        Text
+'> '          Punctuation
+'key with leading -: value' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+'empty'       Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'-'           Punctuation
-'\n'          Text.Whitespace
+'\n'          Text
 
-'\n'          Text.Whitespace
-
-'string'      Name
+'list'        Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'>'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'- '          Punctuation
 'dict-like: value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'>'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'- '          Punctuation
 '- list-like value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'>'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'- '          Punctuation
 '> str-like value' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'>'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'- '          Punctuation
 'no trailing whitespace' Literal.String
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-'>'           Punctuation
-' '           Text.Whitespace
+'  '          Text
+'- '          Punctuation
+'trailing whitespace' Literal.String
+'    \n'      Text.Whitespace
+
+'\n'          Text
+
+'empty list'  Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text
+'-'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'string'      Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text
+'> '          Punctuation
+'dict-like: value' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+'> '          Punctuation
+'- list-like value' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+'> '          Punctuation
+'> str-like value' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+'> '          Punctuation
+'no trailing whitespace' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text
+'> '          Punctuation
 'trailing whitespace' Literal.String
 '    '        Text.Whitespace
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+'  '          Text
 '>'           Punctuation
 '\n'          Text.Whitespace

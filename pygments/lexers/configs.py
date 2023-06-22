@@ -1104,16 +1104,49 @@ class NestedTextLexer(RegexLexer):
     aliases = ['nestedtext', 'nt']
     filenames = ['*.nt']
 
-    _quoted_dict_item = r'^(\s*)({0})(.*?)({0}: ?)(.*?)(\s*)$'
-
     tokens = {
         'root': [
-            (r'^(\s*)(#.*?)$', bygroups(Whitespace, Comment)),
-            (r'^(\s*)(>)( ?)(.*?)(\s*)$', bygroups(Whitespace, Punctuation, Whitespace, String, Whitespace)),
-            (r'^(\s*)(-)( ?)(.*?)(\s*)$', bygroups(Whitespace, Punctuation, Whitespace, String, Whitespace)),
-            (_quoted_dict_item.format("'"), bygroups(Whitespace, Punctuation, Name, Punctuation, String, Whitespace)),
-            (_quoted_dict_item.format('"'), bygroups(Whitespace, Punctuation, Name, Punctuation, String, Whitespace)),
-            (r'^(\s*)(.*?)(:)( ?)(.*?)(\s*)$', bygroups(Whitespace, Name, Punctuation, Whitespace, String, Whitespace)),
+            (r'^(\s*)(#.*)$', bygroups(Text, Comment)),
+            (r'^(\s*)(\{)', bygroups(Text, Punctuation), 'inline_dict'),
+            (r'^(\s*)(\[)', bygroups(Text, Punctuation), 'inline_list'),
+            (r'^(\s*)(>)$', bygroups(Text, Punctuation)),
+            (r'^(\s*)(> )(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (r'^(\s*)(-)$', bygroups(Text, Punctuation)),
+            (r'^(\s*)(- )(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (r'^(\s*)(:)$', bygroups(Text, Punctuation)),
+            (r'^(\s*)(: )(.*?)(\s*)$', bygroups(Text, Punctuation, Name.Tag, Whitespace)),
+            (r'^(\s*)([^\{\[].+?)(:)$', bygroups(Text, Name.Tag, Punctuation)),
+            (r'^(\s*)([^\{\[].+?)(: )(.*?)(\s*)$', bygroups(Text, Name.Tag, Punctuation, String, Whitespace)),
+        ],
+        'inline_list': [
+            include('whitespace'),
+            (r'[^\{\}\[\],\s]', String),
+            include('inline_value'),
+            (r',', Punctuation),
+            (r'\]', Punctuation, '#pop'),
+            (r'\n', Error, '#pop'),
+        ],
+        'inline_dict': [
+            include('whitespace'),
+            (r'[^\{\}\[\],:\s]', Name.Tag),
+            (r':', Punctuation, 'inline_dict_value'),
+            (r'\}', Punctuation, '#pop'),
+            (r'\n', Error, '#pop'),
+        ],
+        'inline_dict_value': [
+            include('whitespace'),
+            (r'[^\{\}\[\],:\s]', String),
+            include('inline_value'),
+            (r',', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop:2'),
+        ],
+        'inline_value': [
+            include('whitespace'),
+            (r'\{', Punctuation, 'inline_dict'),
+            (r'\[', Punctuation, 'inline_list'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
         ],
     }
 

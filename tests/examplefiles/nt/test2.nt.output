@@ -1,0 +1,218 @@
+'# This is not a valid NestedText file, but the first part of it should be ' Comment
+'\n'          Text.Whitespace
+
+'# rendered as valid by Vim, as Vim is only looking at one line at a time, and ' Comment
+'\n'          Text.Whitespace
+
+'# each line could be found in a valid NestedText file.' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'this:is:the:key' Name.Tag
+': '          Punctuation
+'this is a string' Literal.String
+'\n'          Text.Whitespace
+
+'-this:is:the:key' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'> '          Punctuation
+'this is a string' Literal.String
+'\n'          Text.Whitespace
+
+'>this:is:the:key' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'> '          Punctuation
+'this is string' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'- '          Punctuation
+'this is a list item' Literal.String
+'\n'          Text.Whitespace
+
+'> '          Punctuation
+'this is a string' Literal.String
+'\n'          Text.Whitespace
+
+': '          Punctuation
+'Lorem ipsum dolor sit amet' Name.Tag
+'\n'          Text.Whitespace
+
+':'           Punctuation
+'\n'          Text.Whitespace
+
+': '          Punctuation
+'consectetur adipiscing elit' Name.Tag
+'\n'          Text.Whitespace
+
+'\n    '      Text
+'sed do eiusmod tempor' Name.Tag
+': '          Punctuation
+'incididunt ut labore et dolore' Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text
+':magna aliqua' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'> '          Punctuation
+'this is string' Literal.String
+'\n'          Text.Whitespace
+
+'\n    '      Text
+'- '          Punctuation
+'this is a list item' Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text
+'# this is a comment' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+' '           Text
+'v'           Literal.String
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+' '           Text
+'v'           Literal.String
+','           Punctuation
+' '           Text
+'k'           Name.Tag
+':'           Punctuation
+'v'           Literal.String
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+'v'           Literal.String
+','           Punctuation
+' '           Text
+'k'           Name.Tag
+':'           Punctuation
+'['           Punctuation
+'v'           Literal.String
+','           Punctuation
+'v'           Literal.String
+']'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+' '           Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Literal.String
+','           Punctuation
+'v'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Literal.String
+','           Punctuation
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+'v'           Literal.String
+'}'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Literal.String
+','           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+','           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'-k'          Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'- '          Punctuation
+'k:'          Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'# Errors'    Comment
+'\n'          Text.Whitespace
+
+'# commented out because pytest is configured to fail the test if there is an ' Comment
+'\n'          Text.Whitespace
+
+'# error.'    Comment
+'\n'          Text.Whitespace
+
+'# {k:v} fsjlfu' Comment
+'\n'          Text.Whitespace
+
+'# {k:v fsjlfu' Comment
+'\n'          Text.Whitespace
+
+'# {k:'       Comment
+'\n'          Text.Whitespace
+
+'# [v]: this is a string' Comment
+'\n'          Text.Whitespace
+
+'# [v'        Comment
+'\n'          Text.Whitespace
+
+'# [v,'       Comment
+'\n'          Text.Whitespace
+
+'# {k:v k:[v,v]}' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'# Mishandled' Comment
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+'v'           Literal.String
+','           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
