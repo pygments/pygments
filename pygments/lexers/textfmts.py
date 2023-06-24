@@ -184,7 +184,7 @@ class HttpLexer(RegexLexer):
              'headers'),
         ],
         'headers': [
-            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|\Z)', header_callback),
+            (r'([^\s:]+)( *)(:)( *)([^\r\n]*)(\r?\n|\Z)', header_callback),
             (r'([\t ]+)([^\r\n]+)(\r?\n|\Z)', continuous_header_callback),
             (r'\r?\n', Text, 'content')
         ],
