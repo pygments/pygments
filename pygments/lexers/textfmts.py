@@ -194,8 +194,13 @@ class HttpLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return re.search(r'^([a-zA-Z][-_a-zA-Z]+)( +)([^ ]+)( +)'
-             r'(HTTP)(/)(1\.[01]|2(?:\.0)?|3)(\r?\n|\Z)', text) is not None
+        return any (
+            re.search(pattern, text) is not None
+            for pattern in (
+                r'^([a-zA-Z][-_a-zA-Z]+)( +)([^ ]+)( +)(HTTP)(/)(1\.[01]|2(?:\.0)?|3)(\r?\n|\Z)',
+                r'^(HTTP)(/)(1\.[01]|2(?:\.0)?|3)( +)(\d{3})(?:( +)([^\r\n]*))?(\r?\n|\Z)',
+            )
+        )
 
 
 class TodotxtLexer(RegexLexer):
