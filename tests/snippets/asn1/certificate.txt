@@ -1,0 +1,147 @@
+---input---
+Certificate  ::=  SEQUENCE  {
+        tbsCertificate       TBSCertificate,
+        signatureAlgorithm   AlgorithmIdentifier,
+        signatureValue       BIT STRING  }
+
+TBSCertificate  ::=  SEQUENCE  {
+    version         [0]  EXPLICIT Version DEFAULT v1,
+    serialNumber         CertificateSerialNumber,
+    signature            AlgorithmIdentifier,
+    issuer               Name,
+    validity             Validity,
+    subject              Name,
+    subjectPublicKeyInfo SubjectPublicKeyInfo,
+    issuerUniqueID  [1]  IMPLICIT UniqueIdentifier OPTIONAL,
+                            -- If present, version MUST be v2 or v3
+    subjectUniqueID [2]  IMPLICIT UniqueIdentifier OPTIONAL,
+                                -- If present, version MUST be v2 or v3
+    extensions      [3]  EXPLICIT Extensions OPTIONAL
+                        -- If present, version MUST be v3
+    }
+
+---tokens---
+'Certificate' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'tbsCertificate' Name.Variable
+'       '     Text.Whitespace
+'TBSCertificate' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureAlgorithm' Name.Variable
+'   '         Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureValue' Name.Variable
+'       '     Text.Whitespace
+'BIT STRING'  Keyword.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'TBSCertificate' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'version'     Name.Variable
+'         '   Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'Version'     Name.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'v1'          Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'serialNumber' Name.Variable
+'         '   Text.Whitespace
+'CertificateSerialNumber' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'signature'   Name.Variable
+'            ' Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'issuer'      Name.Variable
+'               ' Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'validity'    Name.Variable
+'             ' Text.Whitespace
+'Validity'    Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subject'     Name.Variable
+'              ' Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subjectPublicKeyInfo' Name.Variable
+' '           Text.Whitespace
+'SubjectPublicKeyInfo' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'issuerUniqueID' Name.Variable
+'  '          Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'IMPLICIT'    Keyword
+' '           Text.Whitespace
+'UniqueIdentifier' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n                            ' Text.Whitespace
+'-- If present, version MUST be v2 or v3' Comment.Single
+'\n    '      Text.Whitespace
+'subjectUniqueID' Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'IMPLICIT'    Keyword
+' '           Text.Whitespace
+'UniqueIdentifier' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n                                ' Text.Whitespace
+'-- If present, version MUST be v2 or v3' Comment.Single
+'\n    '      Text.Whitespace
+'extensions'  Name.Variable
+'      '      Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'Extensions'  Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'\n                        ' Text.Whitespace
+'-- If present, version MUST be v3' Comment.Single
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

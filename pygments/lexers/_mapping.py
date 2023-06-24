@@ -32,6 +32,7 @@ LEXERS = {
     'ArrowLexer': ('pygments.lexers.arrow', 'Arrow', ('arrow',), ('*.arw',), ()),
     'ArturoLexer': ('pygments.lexers.arturo', 'Arturo', ('arturo', 'art'), ('*.art',), ()),
     'AscLexer': ('pygments.lexers.asc', 'ASCII armored', ('asc', 'pem'), ('*.asc', '*.pem', 'id_dsa', 'id_ecdsa', 'id_ecdsa_sk', 'id_ed25519', 'id_ed25519_sk', 'id_rsa'), ('application/pgp-keys', 'application/pgp-encrypted', 'application/pgp-signature')),
+    'Asn1Lexer': ('pygments.lexers.asn1', 'ASN.1', ('asn1',), ('*.asn1',), ()),
     'AspectJLexer': ('pygments.lexers.jvm', 'AspectJ', ('aspectj',), ('*.aj',), ('text/x-aspectj',)),
     'AsymptoteLexer': ('pygments.lexers.graphics', 'Asymptote', ('asymptote', 'asy'), ('*.asy',), ('text/x-asymptote',)),
     'AugeasLexer': ('pygments.lexers.configs', 'Augeas', ('augeas',), ('*.aug',), ()),
