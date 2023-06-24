@@ -15,6 +15,7 @@ Version 2.16.0
   * OpenSCAD (#2449)
   * TLS presentation language (#2455)
   * Verifpal (#2430)
+  * YARA (#2453)
 
 - Updated lexers:
 
@@ -22,6 +23,8 @@ Version 2.16.0
   * Carbon: fix long processing times on invalid input, fix number
     lexing (#2454, #2456)
   * Elpi: handle quotations (#2419)
+  * HTTP: support empty headers (#2461), support more general methods (#2460),
+    also recognize responses in ``analyse_text`` implementation (#2460)
   * lean: recognize expressions nested within attributes (#1817)
   * Macaulay2: update builtins (#2457)
   * Markdown: allow extra characters after language name
