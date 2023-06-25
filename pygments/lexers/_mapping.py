@@ -266,6 +266,7 @@ LEXERS = {
     'LassoJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Lasso', ('javascript+lasso', 'js+lasso'), (), ('application/x-javascript+lasso', 'text/x-javascript+lasso', 'text/javascript+lasso')),
     'LassoLexer': ('pygments.lexers.javascript', 'Lasso', ('lasso', 'lassoscript'), ('*.lasso', '*.lasso[89]'), ('text/x-lasso',)),
     'LassoXmlLexer': ('pygments.lexers.templates', 'XML+Lasso', ('xml+lasso',), (), ('application/xml+lasso',)),
+    'LdifLexer': ('pygments.lexers.ldap', 'LDIF', ('ldif',), ('*.ldif',), ('text/x-ldif',)),
     'LeanLexer': ('pygments.lexers.theorem', 'Lean', ('lean',), ('*.lean',), ('text/x-lean',)),
     'LessCssLexer': ('pygments.lexers.css', 'LessCss', ('less',), ('*.less',), ('text/x-less-css',)),
     'LighttpdConfLexer': ('pygments.lexers.configs', 'Lighttpd configuration file', ('lighttpd', 'lighty'), ('lighttpd.conf',), ('text/x-lighttpd-conf',)),
