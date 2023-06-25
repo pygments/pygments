@@ -1093,9 +1093,12 @@ class TOMLLexer(RegexLexer):
 
 class NestedTextLexer(RegexLexer):
     """
-    Lexer for NextedText, a human-friendly data format.
+    Lexer for *NextedText*, a human-friendly data format.
 
-    .. versionadded:: 3.0
+    .. versionadded:: 2.9
+
+    .. versionchanged:: 2.16
+        Added support for *NextedText* v3.0.
     """
 
     name = 'NestedText'
