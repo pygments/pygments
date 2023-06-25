@@ -7,78 +7,92 @@
 '# each line could be found in a valid NestedText file.' Comment
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this:is:the:key' Name.Tag
-': '          Punctuation
-'this is a string' Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
 '\n'          Text.Whitespace
 
 '-this:is:the:key' Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
-'> '          Punctuation
-'this is a string' Literal.String
+'    '        Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
 '\n'          Text.Whitespace
 
 '>this:is:the:key' Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
-'> '          Punctuation
-'this is string' Literal.String
+'    '        Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is string' Text
 '\n'          Text.Whitespace
 
-'\n'          Text
-
-'- '          Punctuation
-'this is a list item' Literal.String
 '\n'          Text.Whitespace
 
-'> '          Punctuation
-'this is a string' Literal.String
+'-'           Punctuation
+' '           Text.Whitespace
+'this is a list item' Text
 '\n'          Text.Whitespace
 
-': '          Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
+'\n'          Text.Whitespace
+
+':'           Punctuation
+' '           Text.Whitespace
 'Lorem ipsum dolor sit amet' Name.Tag
 '\n'          Text.Whitespace
 
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'consectetur adipiscing elit' Name.Tag
 '\n'          Text.Whitespace
 
-'\n    '      Text
-'sed do eiusmod tempor' Name.Tag
-': '          Punctuation
-'incididunt ut labore et dolore' Literal.String
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
+'sed do eiusmod tempor' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'incididunt ut labore et dolore' Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 ':magna aliqua' Name.Tag
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text
-'> '          Punctuation
-'this is string' Literal.String
+'        '    Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is string' Text
 '\n'          Text.Whitespace
 
-'\n    '      Text
-'- '          Punctuation
-'this is a list item' Literal.String
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'this is a list item' Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
 '# this is a comment' Comment
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
 '}'           Punctuation
@@ -88,7 +102,7 @@
 'k'           Name.Tag
 ':'           Punctuation
 ' '           Text
-'v'           Literal.String
+'v'           Text
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -96,27 +110,27 @@
 'k'           Name.Tag
 ':'           Punctuation
 ' '           Text
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
 ' '           Text
 'k'           Name.Tag
 ':'           Punctuation
-'v'           Literal.String
+'v'           Text
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 '{'           Punctuation
 'k'           Name.Tag
 ':'           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
 ' '           Text
 'k'           Name.Tag
 ':'           Punctuation
 '['           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
-'v'           Literal.String
+'v'           Text
 ']'           Punctuation
 '}'           Punctuation
 '\n'          Text.Whitespace
@@ -131,30 +145,30 @@
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Literal.String
+'v'           Text
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
-'v'           Literal.String
+'v'           Text
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
 '{'           Punctuation
 'k'           Name.Tag
 ':'           Punctuation
-'v'           Literal.String
+'v'           Text
 '}'           Punctuation
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
 ']'           Punctuation
 '\n'          Text.Whitespace
@@ -168,11 +182,12 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'- '          Punctuation
-'k:'          Literal.String
+'-'           Punctuation
+' '           Text.Whitespace
+'k:'          Text
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Errors'    Comment
 '\n'          Text.Whitespace
@@ -204,7 +219,7 @@
 '# {k:v k:[v,v]}' Comment
 '\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Mishandled' Comment
 '\n'          Text.Whitespace
@@ -212,7 +227,7 @@
 '{'           Punctuation
 'k'           Name.Tag
 ':'           Punctuation
-'v'           Literal.String
+'v'           Text
 ','           Punctuation
 '}'           Punctuation
 '\n'          Text.Whitespace

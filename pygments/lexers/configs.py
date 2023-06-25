@@ -1093,10 +1093,9 @@ class TOMLLexer(RegexLexer):
 
 class NestedTextLexer(RegexLexer):
     """
-    Lexer for NextedText, a human-friendly data
-    format.
+    Lexer for NextedText, a human-friendly data format.
 
-    .. versionadded:: 2.9
+    .. versionadded:: 3.0
     """
 
     name = 'NestedText'
@@ -1106,21 +1105,42 @@ class NestedTextLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^(\s*)(#.*)$', bygroups(Text, Comment)),
-            (r'^(\s*)(\{)', bygroups(Text, Punctuation), 'inline_dict'),
-            (r'^(\s*)(\[)', bygroups(Text, Punctuation), 'inline_list'),
-            (r'^(\s*)(>)$', bygroups(Text, Punctuation)),
-            (r'^(\s*)(> )(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
-            (r'^(\s*)(-)$', bygroups(Text, Punctuation)),
-            (r'^(\s*)(- )(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
-            (r'^(\s*)(:)$', bygroups(Text, Punctuation)),
-            (r'^(\s*)(: )(.*?)(\s*)$', bygroups(Text, Punctuation, Name.Tag, Whitespace)),
-            (r'^(\s*)([^\{\[].+?)(:)$', bygroups(Text, Name.Tag, Punctuation)),
-            (r'^(\s*)([^\{\[].+?)(: )(.*?)(\s*)$', bygroups(Text, Name.Tag, Punctuation, String, Whitespace)),
+            # Comment: # ...
+            (r'^([ ]*)(#.*)$', bygroups(Whitespace, Comment)),
+
+            # Inline dictionary: {...}
+            (r'^([ ]*)(\{)', bygroups(Whitespace, Punctuation), 'inline_dict'),
+
+            # Inline list: [...]
+            (r'^([ ]*)(\[)', bygroups(Whitespace, Punctuation), 'inline_list'),
+
+            # empty multiline string item: >
+            (r'^([ ]*)(>)$', bygroups(Whitespace, Punctuation)),
+
+            # multiline string item: > ...
+            (r'^([ ]*)(>)( )(.*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Text, Whitespace)),
+
+            # empty list item: -
+            (r'^([ ]*)(-)$', bygroups(Whitespace, Punctuation)),
+
+            # list item: - ...
+            (r'^([ ]*)(-)( )(.*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Text, Whitespace)),
+
+            # empty multiline key item: :
+            (r'^([ ]*)(:)$', bygroups(Whitespace, Punctuation)),
+
+            # multiline key item: : ...
+            (r'^([ ]*)(:)( )([^\n]*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Name.Tag, Whitespace)),
+
+            # empty dict key item: ...:
+            (r'^([ ]*)([^\{\[\s].*?)(:)$', bygroups(Whitespace, Name.Tag, Punctuation)),
+
+            # dict key item: ...: ...
+            (r'^([ ]*)([^\{\[\s].*?)(:)( )(.*?)([ \t]*)$', bygroups(Whitespace, Name.Tag, Punctuation, Whitespace, Text, Whitespace)),
         ],
         'inline_list': [
             include('whitespace'),
-            (r'[^\{\}\[\],\s]', String),
+            (r'[^\{\}\[\],\s]', Text),
             include('inline_value'),
             (r',', Punctuation),
             (r'\]', Punctuation, '#pop'),
@@ -1135,7 +1155,7 @@ class NestedTextLexer(RegexLexer):
         ],
         'inline_dict_value': [
             include('whitespace'),
-            (r'[^\{\}\[\],:\s]', String),
+            (r'[^\{\}\[\],:\s]', Text),
             include('inline_value'),
             (r',', Punctuation, '#pop'),
             (r'\}', Punctuation, '#pop:2'),
@@ -1146,7 +1166,7 @@ class NestedTextLexer(RegexLexer):
             (r'\[', Punctuation, 'inline_list'),
         ],
         'whitespace': [
-            (r'\s+', Text),
+            (r'[ \t]+', Text),
         ],
     }
 
