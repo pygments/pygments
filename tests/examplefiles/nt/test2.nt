@@ -23,13 +23,14 @@ this:is:the:key: this is a string
 
 {}
 {k: v}
+{k1: v1}
 {k: v, k:v}
-{k:v, k:[v,v]}
+{k1:v1, k2:[v2a,v2b]}
 []
 [ ]
 [v]
-[v,v]
-[v,{k:v}]
+[v1,v2]
+[v1,{k2:v2}]
 [v,]
 [,]
 -k:

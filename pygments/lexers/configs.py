@@ -1140,7 +1140,7 @@ class NestedTextLexer(RegexLexer):
         ],
         'inline_list': [
             include('whitespace'),
-            (r'[^\{\}\[\],\s]', Text),
+            (r'[^\{\}\[\],\s]+', Text),
             include('inline_value'),
             (r',', Punctuation),
             (r'\]', Punctuation, '#pop'),
@@ -1148,14 +1148,14 @@ class NestedTextLexer(RegexLexer):
         ],
         'inline_dict': [
             include('whitespace'),
-            (r'[^\{\}\[\],:\s]', Name.Tag),
+            (r'[^\{\}\[\],:\s]+', Name.Tag),
             (r':', Punctuation, 'inline_dict_value'),
             (r'\}', Punctuation, '#pop'),
             (r'\n', Error, '#pop'),
         ],
         'inline_dict_value': [
             include('whitespace'),
-            (r'[^\{\}\[\],:\s]', Text),
+            (r'[^\{\}\[\],:\s]+', Text),
             include('inline_value'),
             (r',', Punctuation, '#pop'),
             (r'\}', Punctuation, '#pop:2'),

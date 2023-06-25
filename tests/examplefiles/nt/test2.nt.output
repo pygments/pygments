@@ -107,6 +107,14 @@
 '\n'          Text.Whitespace
 
 '{'           Punctuation
+'k1'          Name.Tag
+':'           Punctuation
+' '           Text
+'v1'          Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
 'k'           Name.Tag
 ':'           Punctuation
 ' '           Text
@@ -120,17 +128,17 @@
 '\n'          Text.Whitespace
 
 '{'           Punctuation
-'k'           Name.Tag
+'k1'          Name.Tag
 ':'           Punctuation
-'v'           Text
+'v1'          Text
 ','           Punctuation
 ' '           Text
-'k'           Name.Tag
+'k2'          Name.Tag
 ':'           Punctuation
 '['           Punctuation
-'v'           Text
+'v2a'         Text
 ','           Punctuation
-'v'           Text
+'v2b'         Text
 ']'           Punctuation
 '}'           Punctuation
 '\n'          Text.Whitespace
@@ -150,19 +158,19 @@
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Text
+'v1'          Text
 ','           Punctuation
-'v'           Text
+'v2'          Text
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '['           Punctuation
-'v'           Text
+'v1'          Text
 ','           Punctuation
 '{'           Punctuation
-'k'           Name.Tag
+'k2'          Name.Tag
 ':'           Punctuation
-'v'           Text
+'v2'          Text
 '}'           Punctuation
 ']'           Punctuation
 '\n'          Text.Whitespace
