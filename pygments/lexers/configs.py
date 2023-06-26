@@ -1093,10 +1093,12 @@ class TOMLLexer(RegexLexer):
 
 class NestedTextLexer(RegexLexer):
     """
-    Lexer for NextedText, a human-friendly data
-    format.
+    Lexer for *NextedText*, a human-friendly data format.
 
     .. versionadded:: 2.9
+
+    .. versionchanged:: 2.16
+        Added support for *NextedText* v3.0.
     """
 
     name = 'NestedText'
@@ -1104,16 +1106,70 @@ class NestedTextLexer(RegexLexer):
     aliases = ['nestedtext', 'nt']
     filenames = ['*.nt']
 
-    _quoted_dict_item = r'^(\s*)({0})(.*?)({0}: ?)(.*?)(\s*)$'
-
     tokens = {
         'root': [
-            (r'^(\s*)(#.*?)$', bygroups(Whitespace, Comment)),
-            (r'^(\s*)(>)( ?)(.*?)(\s*)$', bygroups(Whitespace, Punctuation, Whitespace, String, Whitespace)),
-            (r'^(\s*)(-)( ?)(.*?)(\s*)$', bygroups(Whitespace, Punctuation, Whitespace, String, Whitespace)),
-            (_quoted_dict_item.format("'"), bygroups(Whitespace, Punctuation, Name, Punctuation, String, Whitespace)),
-            (_quoted_dict_item.format('"'), bygroups(Whitespace, Punctuation, Name, Punctuation, String, Whitespace)),
-            (r'^(\s*)(.*?)(:)( ?)(.*?)(\s*)$', bygroups(Whitespace, Name, Punctuation, Whitespace, String, Whitespace)),
+            # Comment: # ...
+            (r'^([ ]*)(#.*)$', bygroups(Whitespace, Comment)),
+
+            # Inline dictionary: {...}
+            (r'^([ ]*)(\{)', bygroups(Whitespace, Punctuation), 'inline_dict'),
+
+            # Inline list: [...]
+            (r'^([ ]*)(\[)', bygroups(Whitespace, Punctuation), 'inline_list'),
+
+            # empty multiline string item: >
+            (r'^([ ]*)(>)$', bygroups(Whitespace, Punctuation)),
+
+            # multiline string item: > ...
+            (r'^([ ]*)(>)( )(.*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Text, Whitespace)),
+
+            # empty list item: -
+            (r'^([ ]*)(-)$', bygroups(Whitespace, Punctuation)),
+
+            # list item: - ...
+            (r'^([ ]*)(-)( )(.*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Text, Whitespace)),
+
+            # empty multiline key item: :
+            (r'^([ ]*)(:)$', bygroups(Whitespace, Punctuation)),
+
+            # multiline key item: : ...
+            (r'^([ ]*)(:)( )([^\n]*?)([ \t]*)$', bygroups(Whitespace, Punctuation, Whitespace, Name.Tag, Whitespace)),
+
+            # empty dict key item: ...:
+            (r'^([ ]*)([^\{\[\s].*?)(:)$', bygroups(Whitespace, Name.Tag, Punctuation)),
+
+            # dict key item: ...: ...
+            (r'^([ ]*)([^\{\[\s].*?)(:)( )(.*?)([ \t]*)$', bygroups(Whitespace, Name.Tag, Punctuation, Whitespace, Text, Whitespace)),
+        ],
+        'inline_list': [
+            include('whitespace'),
+            (r'[^\{\}\[\],\s]+', Text),
+            include('inline_value'),
+            (r',', Punctuation),
+            (r'\]', Punctuation, '#pop'),
+            (r'\n', Error, '#pop'),
+        ],
+        'inline_dict': [
+            include('whitespace'),
+            (r'[^\{\}\[\],:\s]+', Name.Tag),
+            (r':', Punctuation, 'inline_dict_value'),
+            (r'\}', Punctuation, '#pop'),
+            (r'\n', Error, '#pop'),
+        ],
+        'inline_dict_value': [
+            include('whitespace'),
+            (r'[^\{\}\[\],:\s]+', Text),
+            include('inline_value'),
+            (r',', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop:2'),
+        ],
+        'inline_value': [
+            include('whitespace'),
+            (r'\{', Punctuation, 'inline_dict'),
+            (r'\[', Punctuation, 'inline_list'),
+        ],
+        'whitespace': [
+            (r'[ \t]+', Whitespace),
         ],
     }
 
