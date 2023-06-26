@@ -1169,7 +1169,7 @@ class NestedTextLexer(RegexLexer):
             (r'\[', Punctuation, 'inline_list'),
         ],
         'whitespace': [
-            (r'[ \t]+', Text),
+            (r'[ \t]+', Whitespace),
         ],
     }
 
