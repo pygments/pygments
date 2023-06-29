@@ -1,0 +1,11 @@
+---input---
+login=foo&password=12345
+
+---tokens---
+'login'       Name.Tag
+'='           Operator
+'foo'         Literal.String
+'&'           Punctuation
+'password'    Name.Tag
+'='           Operator
+'12345\n'     Literal.String
