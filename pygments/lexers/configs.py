@@ -17,8 +17,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
-__all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
-           'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
+__all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'PropertiesLexer',
+           'KconfigLexer', 'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
@@ -34,10 +34,6 @@ class IniLexer(RegexLexer):
     aliases = ['ini', 'cfg', 'dosini']
     filenames = [
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
-        # systemd unit files
-        # https://www.freedesktop.org/software/systemd/man/systemd.unit.html
-        '*.service', '*.socket', '*.device', '*.mount', '*.automount',
-        '*.swap', '*.target', '*.path', '*.timer', '*.slice', '*.scope',
     ]
     mimetypes = ['text/x-ini', 'text/inf']
 
@@ -67,7 +63,82 @@ class IniLexer(RegexLexer):
         npos = text.find('\n')
         if npos < 3:
             return False
-        return text[0] == '[' and text[npos-1] == ']'
+        if text[0] == '[' and text[npos-1] == ']':
+            return 0.8
+        return False
+
+
+
+class DesktopLexer(RegexLexer):
+    """
+    Lexer for .desktop files.
+    """
+
+    name = 'Desktop file'
+    url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
+    aliases = ['desktop']
+    filenames = ['*.desktop']
+
+    tokens = {
+        'root': [
+            (r'^[ \t]*\n', Whitespace),
+            (r'^(#.*)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'(\[[^\]\n]+\])(\n)', bygroups(Keyword, Whitespace)),
+            (r'([-A-Za-z0-9]+)([ \t]*)(=)([ \t]*)([^\n]*)([ \t\n]*\n)',
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Whitespace)),
+        ],
+    }
+
+    def analyse_text(text):
+        if text.startswith("[Desktop Entry]"):
+            return 1.0
+        if re.search(r"^\[Desktop Entry\][ \t]*$", text[:500], re.MULTILINE) is not None:
+            return 0.9
+        return 0.0
+
+
+
+class SystemdLexer(RegexLexer):
+    """
+    Lexer for systemd unit files.
+    """
+
+    name = 'Systemd'
+    url = "https://www.freedesktop.org/software/systemd/man/systemd.syntax.html"
+    aliases = ['systemd']
+    filenames = [
+        '*.service', '*.socket', '*.device', '*.mount', '*.automount',
+        '*.swap', '*.target', '*.path', '*.timer', '*.slice', '*.scope',
+    ]
+
+    tokens = {
+        'root': [
+            (r'^[ \t]*\n', Whitespace),
+            (r'^([;#].*)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'(\[[^\]\n]+\])(\n)', bygroups(Keyword, Whitespace)),
+            (r'([^=]+)([ \t]*)(=)([ \t]*)([^\n]*)(\\)(\n)',
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String,
+                      Text, Whitespace),
+             "value"),
+            (r'([^=]+)([ \t]*)(=)([ \t]*)([^\n]*)(\n)',
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Whitespace)),
+        ],
+        'value': [
+            # line continuation
+            (r'^([;#].*)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'([ \t]*)([^\n]*)(\\)(\n)',
+             bygroups(Whitespace, String, Text, Whitespace)),
+            (r'([ \t]*)([^\n]*)(\n)',
+             bygroups(Whitespace, String, Whitespace), "#pop"),
+        ],
+    }
+
+    def analyse_text(text):
+        if text.startswith("[Unit]"):
+            return 1.0
+        if re.search(r"^\[Unit\][ \t]*$", text[:500], re.MULTILINE) is not None:
+            return 0.9
+        return 0.0
 
 
 class RegeditLexer(RegexLexer):
