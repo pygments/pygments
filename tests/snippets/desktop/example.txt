@@ -4,6 +4,7 @@ Version=1.0
 Type=Application
 Name=Foo Viewer
 Comment=The best viewer for Foo objects available!
+Comment[fr]=Le meilleur visionneur d'objets Foo disponible !
 TryExec=fooview
 Exec=fooview %F
 Icon=fooview
@@ -41,6 +42,12 @@ Icon=fooview-new
 'Comment'     Name.Attribute
 '='           Operator
 'The best viewer for Foo objects available!' Literal.String
+'\n'          Text.Whitespace
+
+'Comment'     Name.Attribute
+'[fr]'        Name.Namespace
+'='           Operator
+"Le meilleur visionneur d'objets Foo disponible !" Literal.String
 '\n'          Text.Whitespace
 
 'TryExec'     Name.Attribute

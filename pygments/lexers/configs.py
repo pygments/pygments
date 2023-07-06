@@ -84,8 +84,8 @@ class DesktopLexer(RegexLexer):
             (r'^[ \t]*\n', Whitespace),
             (r'^(#.*)(\n)', bygroups(Comment.Single, Whitespace)),
             (r'(\[[^\]\n]+\])(\n)', bygroups(Keyword, Whitespace)),
-            (r'([-A-Za-z0-9]+)([ \t]*)(=)([ \t]*)([^\n]*)([ \t\n]*\n)',
-             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String, Whitespace)),
+            (r'([-A-Za-z0-9]+)(\[[^\] \t=]+\])?([ \t]*)(=)([ \t]*)([^\n]*)([ \t\n]*\n)',
+             bygroups(Name.Attribute, Name.Namespace, Whitespace, Operator, Whitespace, String, Whitespace)),
         ],
     }
 
