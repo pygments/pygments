@@ -43,7 +43,7 @@ class BQNLexer(RegexLexer):
             (r'"(("")|[^"])*"', String.Double),
             #
             # Null Character
-            # ===============
+            # ==============
             # Literal representation of the null character
             (r'@', String.Symbol),
             #
@@ -54,7 +54,7 @@ class BQNLexer(RegexLexer):
             (r'[◇,\[\]⟨⟩‿]', Punctuation),
             #
             # Expression Grouping
-            # ==============
+            # ===================
             # Since this token type is important in BQN, it is not included in
             # the punctuation token type but rather in the following one
             (r'[\(\)]', String.Regex), 
@@ -64,11 +64,14 @@ class BQNLexer(RegexLexer):
             # Includes the numeric literals and nothing
             (r'¯?([0-9]+\.?[0-9]+|[0-9]+)([Ee][¯]?[0-9]+)?|¯|∞|π|·', Number),
             #
+            # Variables
+            # =========
+            (r'\b[a-z]\w*\b', Name.Variable),
+            #
             # 1-Modifiers
             # ===========
             (r'[˙˜˘¨⌜⁼´˝`𝕣]', Name.Attribute),
             (r'\b_[a-zA-Z0-9]+\b', Name.Attribute),
-            #
             #
             # 2-Modifiers
             # ===========
@@ -79,10 +82,9 @@ class BQNLexer(RegexLexer):
             # =========
             # The monadic or dyadic function primatives and function
             # operands and arguments, along with function self-reference
-            (r'[+-×÷⋆√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
+            (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            # (r'\b[A-Z]\w*|•\w+\b', Operator),
-            # (r'\b[A-Z]\w', Operator),
+            (r'\b[A-Z]\w*|•\w+\b', Operator),
             #
             # Constant
             # ========
@@ -95,6 +97,12 @@ class BQNLexer(RegexLexer):
             # Blocks
             # ======
             (r'[{}]', Keyword.Type),
+            #
+            # Extra characters
+            # ================
+            (r'[;:?𝕨𝕩𝕗𝕘𝕤]', Name.Entity),
+            #
+            
         ],
     }
 
