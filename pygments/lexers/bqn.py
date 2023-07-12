@@ -84,7 +84,7 @@ class BQNLexer(RegexLexer):
             # operands and arguments, along with function self-reference
             (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            (r'\b[A-Z]\w*|•\w+\b', Operator),
+            (r'[A-Z]\w*|•\w+\b', Operator),
             #
             # Constant
             # ========
