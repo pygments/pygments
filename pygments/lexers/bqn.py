@@ -62,7 +62,7 @@ class BQNLexer(RegexLexer):
             # Numbers
             # =======
             # Includes the numeric literals and nothing
-            (r'¯?([0-9]+\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞|π|·)', Number),
+            (r'¯?([0-9]+\.?[0-9]+|[0-9]+)([Ee][¯]?[0-9]+)?|¯|∞|π|·', Number),
             #
             # 1-Modifiers
             # ===========
@@ -81,7 +81,8 @@ class BQNLexer(RegexLexer):
             # operands and arguments, along with function self-reference
             (r'[+-×÷⋆√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            (r'\b[A-Z]\w*|•\w+\b', Operator),
+            # (r'\b[A-Z]\w*|•\w+\b', Operator),
+            # (r'\b[A-Z]\w', Operator),
             #
             # Constant
             # ========
