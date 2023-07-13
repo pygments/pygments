@@ -22,9 +22,8 @@ class BQNLexer(RegexLexer):
     name = 'BQN'
     url = 'https://mlochbaum.github.io/BQN/index.html'
     aliases = ['bqn']
-    filenames = [
-        '*.bqn',
-    ]
+    filenames = ['*.bqn']
+    mimetypes = []
 
     tokens = {
         'root': [
@@ -61,7 +60,7 @@ class BQNLexer(RegexLexer):
             #
             # Numbers
             # =======
-            # Includes the numeric literals and nothing
+            # Includes the numeric literals and the Nothing character
             (r'¯?([0-9]+\.?[0-9]+|[0-9]+)([Ee][¯]?[0-9]+)?|¯|∞|π|·', Number),
             #
             # Variables
@@ -80,7 +79,7 @@ class BQNLexer(RegexLexer):
             #
             # Functions
             # =========
-            # The monadic or dyadic function primatives and function
+            # The monadic or dyadic function primitives and function
             # operands and arguments, along with function self-reference
             (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
