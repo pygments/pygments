@@ -50,7 +50,7 @@ class BQNLexer(RegexLexer):
             # ===========
             # This token type is used for diamond, commas
             # and  array and list brackets and strand syntax
-            (r'[◇,\[\]⟨⟩‿]', Punctuation),
+            (r'[\.⋄,\[\]⟨⟩‿]', Punctuation),
             #
             # Expression Grouping
             # ===================
