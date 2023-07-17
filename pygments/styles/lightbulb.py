@@ -27,7 +27,7 @@ from pygments.token import (
 COLORS = {
     "bg": "#1d2331",
     "blue_1": "#73D0FF",
-    "gray_1": "#707F9A",
+    "gray_1": "#7e8aa1",
     "gray_2": "#3c4354",
     "gray_3": "#6e7681",
     "red_1": "#f88f7f",
@@ -47,7 +47,6 @@ class LightbulbStyle(Style):
     """
     A minimal dark theme based on the Lightbulb theme for VSCode.
     """
-
     background_color = COLORS['bg']
     highlight_color = COLORS['gray_3']
 
