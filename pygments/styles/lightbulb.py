@@ -1,5 +1,5 @@
 """
-    pygments.styles.inkpot
+    pygments.styles.lightbulb
     ~~~~~~~~~~~~~~~~~~~~~~
 
     A minimal dark theme based on the Lightbulb theme for VSCode.
