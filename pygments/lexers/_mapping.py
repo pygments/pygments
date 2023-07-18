@@ -41,6 +41,7 @@ LEXERS = {
     'BBCBasicLexer': ('pygments.lexers.basic', 'BBC Basic', ('bbcbasic',), ('*.bbc',), ()),
     'BBCodeLexer': ('pygments.lexers.markup', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BCLexer': ('pygments.lexers.algebra', 'BC', ('bc',), ('*.bc',), ()),
+    'BQNLexer': ('pygments.lexers.bqn', 'BQN', ('bqn',), ('*.bqn',), ()),
     'BSTLexer': ('pygments.lexers.bibtex', 'BST', ('bst', 'bst-pybtex'), ('*.bst',), ()),
     'BareLexer': ('pygments.lexers.bare', 'BARE', ('bare',), ('*.bare',), ()),
     'BaseMakefileLexer': ('pygments.lexers.make', 'Base Makefile', ('basemake',), (), ()),

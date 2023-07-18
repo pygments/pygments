@@ -1,0 +1,42 @@
+---input---
+⟨alias⇐a, b⟩ ← {
+  b‿c⇐
+  a⇐2
+  c←÷b↩1+a
+}
+
+---tokens---
+'⟨'           Punctuation
+'alias'       Name.Variable
+'⇐'           Keyword.Declaration
+'a'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+'⟩'           Punctuation
+' '           Text.Whitespace
+'←'           Keyword.Declaration
+' '           Text.Whitespace
+'{'           Keyword.Type
+'\n  '        Text.Whitespace
+'b'           Name.Variable
+'‿'           Punctuation
+'c'           Name.Variable
+'⇐'           Keyword.Declaration
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'⇐'           Keyword.Declaration
+'2'           Literal.Number
+'\n  '        Text.Whitespace
+'c'           Name.Variable
+'←'           Keyword.Declaration
+'÷'           Operator
+'b'           Name.Variable
+'↩'           Keyword.Declaration
+'1'           Literal.Number
+'+'           Operator
+'a'           Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Keyword.Type
+'\n'          Text.Whitespace

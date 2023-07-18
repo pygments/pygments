@@ -1,0 +1,28 @@
+---input---
+Ambiv ← { ⟨1,𝕩⟩ ; ⟨2,𝕨,𝕩⟩ }
+
+---tokens---
+'Ambiv'       Operator
+' '           Text.Whitespace
+'←'           Keyword.Declaration
+' '           Text.Whitespace
+'{'           Keyword.Type
+' '           Text.Whitespace
+'⟨'           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'𝕩'           Name.Entity
+'⟩'           Punctuation
+' '           Text.Whitespace
+';'           Name.Entity
+' '           Text.Whitespace
+'⟨'           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'𝕨'           Name.Entity
+','           Punctuation
+'𝕩'           Name.Entity
+'⟩'           Punctuation
+' '           Text.Whitespace
+'}'           Keyword.Type
+'\n'          Text.Whitespace
