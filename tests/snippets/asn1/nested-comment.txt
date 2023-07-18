@@ -1,0 +1,49 @@
+---input---
+/*
+   Outer comment
+   /*
+   Inner comment
+   */
+   Outer comment
+*/
+
+test  ::=  SEQUENCE  {
+        a   INTEGER,
+        b   OCTET STRING,
+        b   BIT STRING  }
+
+---tokens---
+'/*'          Comment.Multiline
+'\n   Outer comment\n   ' Comment.Multiline
+'/*'          Comment.Multiline
+'\n   Inner comment\n   ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n   Outer comment\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'test'        Name.Variable
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'a'           Error
+'   '         Text.Whitespace
+'INTEGER'     Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'b'           Error
+'   '         Text.Whitespace
+'OCTET STRING' Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'b'           Error
+'   '         Text.Whitespace
+'BIT STRING'  Keyword.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
