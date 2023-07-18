@@ -33,6 +33,7 @@ STYLE_MAP = {
     'gruvbox-light': 'gruvbox::GruvboxLightStyle',
     'igor': 'igor::IgorStyle',
     'inkpot': 'inkpot::InkPotStyle',
+    'lightbulb': 'lightbulb::LightbulbStyle',
     'lilypond': 'lilypond::LilyPondStyle',
     'lovelace': 'lovelace::LovelaceStyle',
     'manni': 'manni::ManniStyle',
