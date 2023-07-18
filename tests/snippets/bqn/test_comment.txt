@@ -1,0 +1,12 @@
+---input---
+'#' - 1  #This is the comment
+
+---tokens---
+"'#'"         Literal.String.Single
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'  '          Text.Whitespace
+'#This is the comment' Comment.Single
+'\n'          Text.Whitespace

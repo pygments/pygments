@@ -1,0 +1,107 @@
+---input---
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Foo Viewer
+Comment=The best viewer for Foo objects available!
+Comment[fr]=Le meilleur visionneur d'objets Foo disponible !
+TryExec=fooview
+Exec=fooview %F
+Icon=fooview
+MimeType=image/x-foo;
+Actions=Gallery;Create;
+
+[Desktop Action Gallery]
+Exec=fooview --gallery
+Name=Browse Gallery
+
+[Desktop Action Create]
+Exec=fooview --create-new
+Name=Create a new Foo!
+Icon=fooview-new
+
+---tokens---
+'[Desktop Entry]' Keyword
+'\n'          Text.Whitespace
+
+'Version'     Name.Attribute
+'='           Operator
+'1.0'         Literal.String
+'\n'          Text.Whitespace
+
+'Type'        Name.Attribute
+'='           Operator
+'Application' Literal.String
+'\n'          Text.Whitespace
+
+'Name'        Name.Attribute
+'='           Operator
+'Foo Viewer'  Literal.String
+'\n'          Text.Whitespace
+
+'Comment'     Name.Attribute
+'='           Operator
+'The best viewer for Foo objects available!' Literal.String
+'\n'          Text.Whitespace
+
+'Comment'     Name.Attribute
+'[fr]'        Name.Namespace
+'='           Operator
+"Le meilleur visionneur d'objets Foo disponible !" Literal.String
+'\n'          Text.Whitespace
+
+'TryExec'     Name.Attribute
+'='           Operator
+'fooview'     Literal.String
+'\n'          Text.Whitespace
+
+'Exec'        Name.Attribute
+'='           Operator
+'fooview %F'  Literal.String
+'\n'          Text.Whitespace
+
+'Icon'        Name.Attribute
+'='           Operator
+'fooview'     Literal.String
+'\n'          Text.Whitespace
+
+'MimeType'    Name.Attribute
+'='           Operator
+'image/x-foo;' Literal.String
+'\n'          Text.Whitespace
+
+'Actions'     Name.Attribute
+'='           Operator
+'Gallery;Create;' Literal.String
+'\n\n'        Text.Whitespace
+
+'[Desktop Action Gallery]' Keyword
+'\n'          Text.Whitespace
+
+'Exec'        Name.Attribute
+'='           Operator
+'fooview --gallery' Literal.String
+'\n'          Text.Whitespace
+
+'Name'        Name.Attribute
+'='           Operator
+'Browse Gallery' Literal.String
+'\n\n'        Text.Whitespace
+
+'[Desktop Action Create]' Keyword
+'\n'          Text.Whitespace
+
+'Exec'        Name.Attribute
+'='           Operator
+'fooview --create-new' Literal.String
+'\n'          Text.Whitespace
+
+'Name'        Name.Attribute
+'='           Operator
+'Create a new Foo!' Literal.String
+'\n'          Text.Whitespace
+
+'Icon'        Name.Attribute
+'='           Operator
+'fooview-new' Literal.String
+'\n'          Text.Whitespace

@@ -10,15 +10,20 @@ Version 2.16.0
 - New lexers:
 
   * Blueprint (#2434)
+  * BQN (#2472)
   * GraphQL (#2428)
+  * Linux desktop files (following the specification of the
+    Freedesktop group, formerly known as XDG) (#2470)
   * NVIDIA PTX (#2432)
   * OpenSCAD (#2449)
+  * systemd (#2470)
   * TLS presentation language (#2455)
   * Verifpal (#2430)
   * YARA (#2453)
 
 - Updated lexers:
 
+  * ASC: add ``application/pem-certificate-chain`` mimetype
   * C/C++: refine keyword lists (#2421, #2422)
   * Carbon: fix long processing times on invalid input, fix number
     lexing (#2454, #2456)
@@ -29,6 +34,7 @@ Version 2.16.0
   * Macaulay2: update builtins (#2457)
   * Markdown: allow extra characters after language name
     in code blocks (#2437)
+  * NestedText: update to version 3 (#2459)
   * scdoc: improve language guessing implementation (#2402)
   * Transact SQL: add Pre-sorted Group keyword (#2417)
   * Uxntal: update for current runes (#2424)
