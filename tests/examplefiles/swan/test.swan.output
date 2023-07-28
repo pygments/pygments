@@ -1,0 +1,666 @@
+'-- version swan: 2025.0 graph: 2.0' Comment.Singleline
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'N'           Name
+' '           Text
+'('           Punctuation
+'i0'          Name
+':'           Punctuation
+' '           Text
+'int32'       Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'I1'          Name
+' '           Text
+':'           Punctuation
+' '           Text
+'int16'       Keyword.Type
+';'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'returns'     Keyword.Declaration
+' '           Text
+'('           Punctuation
+'o0'          Name
+':'           Punctuation
+' '           Text
+'int32'       Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'diagram'     Keyword.Declaration
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#0'          Name.Variable
+' '           Text
+'expr'        Keyword.Declaration
+' '           Text
+'i0'          Name
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H-20925;V-3325"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#1'          Name.Variable
+' '           Text
+'def'         Keyword.Declaration
+' '           Text
+'tmp'         Name
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H7000;V-3325"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#2'          Name.Variable
+' '           Text
+'expr'        Keyword.Declaration
+' '           Text
+'I1'          Name
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H-20925;V6925"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#3'          Name.Variable
+' '           Text
+'expr'        Keyword.Declaration
+' '           Text
+'tmp'         Name
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H-20925;V15075"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#4'          Name.Variable
+' '           Text
+'def'         Keyword.Declaration
+' '           Text
+'o0'          Name
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H31150;V8825"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#5'          Name.Variable
+' '           Text
+'expr'        Keyword.Declaration
+' '           Text
+'#6'          Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'#7'          Name.Variable
+'\n'          Text
+
+'      '      Text
+'where'       Keyword.Declaration
+'\n'          Text
+
+'        '    Text
+'('           Punctuation
+'#6'          Name.Variable
+' '           Text
+'group'       Keyword.Declaration
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'('           Punctuation
+'#7'          Name.Variable
+' '           Text
+'group'       Keyword.Declaration
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H11050;V8825"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#8'          Name.Variable
+' '           Text
+'expr'        Keyword.Declaration
+' '           Text
+'('           Punctuation
+'#9'          Name.Variable
+' '           Text
+':>'          Operator
+' '           Text
+'int32'       Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'where'       Keyword.Declaration
+'\n'          Text
+
+'        '    Text
+'('           Punctuation
+'#9'          Name.Variable
+' '           Text
+'group'       Keyword.Declaration
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"xy":"H-5125;V6925","wh":"14000;7000"} ' Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#10'         Name.Variable
+' '           Text
+'wire'        Keyword.Declaration
+' '           Text
+'#0'          Name.Variable
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'#1'          Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#11'         Name.Variable
+' '           Text
+'wire'        Keyword.Declaration
+' '           Text
+'#2'          Name.Variable
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'#9'          Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#12'         Name.Variable
+' '           Text
+'wire'        Keyword.Declaration
+' '           Text
+'#3'          Name.Variable
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'#7'          Name.Variable
+'\n'          Text
+
+'    '        Text
+'#pragma'     Comment.Preproc
+' diagram {"wp":"' Comment.Preproc
+'#'           Comment.Preproc
+'3 h3537 v-4350 ' Comment.Preproc
+'#'           Comment.Preproc
+'7"} '        Comment.Preproc
+'#end'        Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#13'         Name.Variable
+' '           Text
+'wire'        Keyword.Declaration
+' '           Text
+'#8'          Name.Variable
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'#6'          Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'#14'         Name.Variable
+' '           Text
+'wire'        Keyword.Declaration
+' '           Text
+'#5'          Name.Variable
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'#4'          Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'var'         Keyword.Declaration
+'\n'          Text
+
+'        '    Text
+'tmp'         Name
+';'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Color'       Name
+' '           Text
+'='           Operator
+' '           Text
+'enum'        Keyword.Type
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'#pragma'     Comment.Preproc
+' cg C:enum_val 0 ' Comment.Preproc
+'#end'        Comment.Preproc
+' '           Text
+'RED'         Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'#pragma'     Comment.Preproc
+' cg C:enum_val 1 ' Comment.Preproc
+'#end'        Comment.Preproc
+' '           Text
+'BLUE'        Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'IsColor'     Name
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text
+'Color'       Name
+';'           Punctuation
+' '           Text
+'b'           Name
+':'           Punctuation
+' '           Text
+'Color'       Name
+')'           Punctuation
+' '           Text
+'returns'     Keyword.Declaration
+' '           Text
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'bool'        Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'b'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'node'        Keyword.Declaration
+'\n'          Text
+
+'  '          Text
+'#pragma'     Comment.Preproc
+' cg C:name OP1 ' Comment.Preproc
+'#end'        Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'#pragma'     Comment.Preproc
+' cg doc This operator operates ' Comment.Preproc
+'##'          Comment.Preproc
+'end '        Comment.Preproc
+'#'           Comment.Preproc
+' '           Comment.Preproc
+'#end'        Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'operator1'   Name
+'<<'          Generic.Strong
+'N'           Generic.Strong
+'>>'          Generic.Strong
+'('           Punctuation
+'i0'          Name
+':'           Punctuation
+' '           Text
+'float32'     Keyword.Type
+' '           Text
+'default'     Operator.Word
+' '           Text
+'='           Operator
+' '           Text
+'3.14'        Literal.Number.Float
+'_f32'        Keyword
+';'           Punctuation
+' '           Text
+'i1'          Name
+':'           Punctuation
+' '           Text
+'Color'       Name
+'^'           Operator
+'N'           Name
+';'           Punctuation
+' '           Text
+'i2'          Name
+':'           Punctuation
+"'a"          Name.Label
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'returns'     Keyword.Declaration
+' '           Text
+'('           Punctuation
+'o1'          Name
+':'           Punctuation
+' '           Text
+'uint32'      Keyword.Type
+' '           Text
+'last'        Operator.Word
+' '           Text
+'='           Operator
+' '           Text
+'42'          Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'o2'          Name
+':'           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'default'     Operator.Word
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+')'           Punctuation
+' '           Text
+'where'       Keyword.Declaration
+' '           Text
+"'a"          Name.Label
+' '           Text
+'integer'     Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'let'         Keyword.Declaration
+'\n'          Text
+
+'  '          Text
+'o1'          Name
+','           Punctuation
+' '           Text
+'o2'          Name
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'activate'    Keyword.Builtin
+' '           Text
+'$'           Text
+'act'         Name
+' '           Text
+'if'          Operator.Word
+' '           Text
+'('           Punctuation
+'i0'          Name
+' '           Text
+'>'           Operator
+' '           Text
+'0.'          Literal.Number.Float
+')'           Punctuation
+' '           Text
+'then'        Operator.Word
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'let'         Keyword.Declaration
+' '           Text
+'tmp'         Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'map'         Keyword.Builtin
+' '           Text
+'('           Punctuation
+'IsColor'     Name
+' '           Text
+'\\'          Text
+' '           Text
+'a'           Name
+':'           Punctuation
+' '           Text
+'RED'         Name
+')'           Punctuation
+')'           Punctuation
+'<<'          Generic.Strong
+'N'           Generic.Strong
+'>>'          Generic.Strong
+'('           Punctuation
+'i1'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'o2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'fold'        Keyword.Builtin
+' '           Text
+'('           Punctuation
+'and'         Operator.Word
+')'           Punctuation
+')'           Punctuation
+'<<'          Generic.Strong
+'N'           Generic.Strong
+'>>'          Generic.Strong
+'('           Punctuation
+'true'        Name.Builtin
+','           Punctuation
+' '           Text
+'tmp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'o1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'0o700'       Literal.Number.Oct
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'i2'          Name
+' '           Text
+':>'          Operator
+' '           Text
+'uint32'      Keyword.Type
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'-- octal notation' Comment.Singleline
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'elsif'       Keyword.Builtin
+' '           Text
+'('           Punctuation
+'false'       Name.Builtin
+' '           Text
+'->'          Operator
+' '           Text
+'not'         Operator.Word
+' '           Text
+'('           Punctuation
+'last'        Operator.Word
+' '           Text
+"'i0"         Name.Label
+' '           Text
+'>'           Operator
+' '           Text
+'1.5e-24'     Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Operator.Word
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'let'         Keyword.Declaration
+' '           Text
+'o1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'0xFF'        Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'/*'          Comment.Multiline
+' hexadecimal\n                          notation ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Operator.Word
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'let'         Keyword.Declaration
+' '           Text
+'o1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'0b0101010101010101' Literal.Number.Bin
+' '           Text
+'/*'          Comment.Multiline
+' '           Comment.Multiline
+'/*'          Comment.Multiline
+' nested comment ' Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+' '           Text
+'+'           Operator
+' '           Text
+'last'        Operator.Word
+' '           Text
+"'o1"         Name.Label
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
