@@ -504,6 +504,7 @@ LEXERS = {
     'StanLexer': ('pygments.lexers.modeling', 'Stan', ('stan',), ('*.stan',), ()),
     'StataLexer': ('pygments.lexers.stata', 'Stata', ('stata', 'do'), ('*.do', '*.ado'), ('text/x-stata', 'text/stata', 'application/x-stata')),
     'SuperColliderLexer': ('pygments.lexers.supercollider', 'SuperCollider', ('supercollider', 'sc'), ('*.sc', '*.scd'), ('application/supercollider', 'text/supercollider')),
+    'SwanLexer': ('pygments.lexers.swan', 'Swan', ('swan', 'scade one'), ('*.swan', '*.swani', '*.swant'), ()),
     'SwiftLexer': ('pygments.lexers.objective', 'Swift', ('swift',), ('*.swift',), ('text/x-swift',)),
     'SwigLexer': ('pygments.lexers.c_like', 'SWIG', ('swig',), ('*.swg', '*.i'), ('text/swig',)),
     'SystemVerilogLexer': ('pygments.lexers.hdl', 'systemverilog', ('systemverilog', 'sv'), ('*.sv', '*.svh'), ('text/x-systemverilog',)),
