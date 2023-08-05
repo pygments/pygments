@@ -1,0 +1,258 @@
+'$ORIGIN'     Keyword
+' '           Text.Whitespace
+'foo.example.' Literal
+'\n'          Text.Whitespace
+
+'$TTL'        Keyword
+'    '        Text.Whitespace
+'1h'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@'           Operator
+'       '     Text.Whitespace
+'IN'          Name.Class
+'      '      Text.Whitespace
+'SOA'         Keyword.Type
+'     '       Text.Whitespace
+'ns'          Literal
+' '           Text.Whitespace
+'root'        Literal
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'; E-mail'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'42'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Serial'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'2h'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Refresh'   Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'1h'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Retry'     Comment.Single
+'\n'          Text.Whitespace
+
+'                            ' Text.Whitespace
+'14d'         Literal.Number.Integer
+'   '         Text.Whitespace
+'; Expire'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'1h'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'; Negative Cache TTL' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; DNS'       Comment.Single
+'\n'          Text.Whitespace
+
+'@'           Operator
+'       '     Text.Whitespace
+'IN'          Name.Class
+'      '      Text.Whitespace
+'NS'          Keyword.Type
+'     '       Text.Whitespace
+'alpha'       Literal
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'NS'          Keyword.Type
+'     '       Text.Whitespace
+'beta'        Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; Mail'      Comment.Single
+'\n'          Text.Whitespace
+
+'@'           Operator
+'               ' Text.Whitespace
+'MX'          Keyword.Type
+'     '       Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'mx1'         Literal
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'MX'          Keyword.Type
+'     '       Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'mx2'         Literal
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'TXT'         Keyword.Type
+'    '        Text.Whitespace
+'"'           Literal.String
+'v=spf1 +mx -all' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'SPF'         Keyword.Type
+'    '        Text.Whitespace
+'"'           Literal.String
+'v=spf1 +mx -all' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; TLS'       Comment.Single
+'\n'          Text.Whitespace
+
+'@'           Operator
+' '           Text.Whitespace
+'CAA'         Keyword.Type
+' '           Text.Whitespace
+'128'         Literal.Number.Integer
+' '           Text.Whitespace
+'issue'       Literal
+' '           Text.Whitespace
+'"'           Literal.String
+'letsencrypt.org' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'alpha'       Name
+'           ' Text.Whitespace
+'A'           Keyword.Type
+'      '      Text.Whitespace
+'192.0.2.1'   Literal
+'\n'          Text.Whitespace
+
+'beta'        Name
+'            ' Text.Whitespace
+'A'           Keyword.Type
+'      '      Text.Whitespace
+'192.0.2.2'   Literal
+'\n'          Text.Whitespace
+
+'gamma'       Name
+'           ' Text.Whitespace
+'A'           Keyword.Type
+'      '      Text.Whitespace
+'192.0.2.3'   Literal
+'\n'          Text.Whitespace
+
+'delta'       Name
+'           ' Text.Whitespace
+'A'           Keyword.Type
+'      '      Text.Whitespace
+'192.0.2.4'   Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'alpha'       Name
+'           ' Text.Whitespace
+'AAAA'        Keyword.Type
+'      '      Text.Whitespace
+'2001:db8::1' Literal
+'\n'          Text.Whitespace
+
+'beta'        Name
+'            ' Text.Whitespace
+'AAAA'        Keyword.Type
+'      '      Text.Whitespace
+'2001:db8::2' Literal
+'\n'          Text.Whitespace
+
+'gamma'       Name
+'           ' Text.Whitespace
+'AAAA'        Keyword.Type
+'      '      Text.Whitespace
+'2001:db8::3' Literal
+'\n'          Text.Whitespace
+
+'delta'       Name
+'           ' Text.Whitespace
+'AAAA'        Keyword.Type
+'      '      Text.Whitespace
+'2001:db8::4' Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; Services'  Comment.Single
+'\n'          Text.Whitespace
+
+'www'         Name
+'             ' Text.Whitespace
+'CNAME'       Keyword.Type
+'  '          Text.Whitespace
+'gamma'       Literal
+'\n'          Text.Whitespace
+
+'mx1'         Name
+'             ' Text.Whitespace
+'CNAME'       Keyword.Type
+'  '          Text.Whitespace
+'delta'       Literal
+'\n'          Text.Whitespace
+
+'mx2'         Name
+'             ' Text.Whitespace
+'CNAME'       Keyword.Type
+'  '          Text.Whitespace
+'gamma'       Literal
+'\n'          Text.Whitespace
+
+'ns0'         Name
+'             ' Text.Whitespace
+'CNAME'       Keyword.Type
+'  '          Text.Whitespace
+'alpha'       Literal
+'\n'          Text.Whitespace
+
+'ns1'         Name
+'             ' Text.Whitespace
+'CNAME'       Keyword.Type
+'  '          Text.Whitespace
+'beta'        Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'alpha'       Name
+'           ' Text.Whitespace
+'LOC'         Keyword.Type
+'    '        Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'N'           Literal
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'E'           Literal
+'\n'          Text.Whitespace
+
+'alpaa'       Name
+'           ' Text.Whitespace
+'TXT'         Keyword.Type
+'    '        Text.Whitespace
+'"'           Literal.String
+'Null Island' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

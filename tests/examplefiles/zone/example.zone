@@ -1,0 +1,42 @@
+$ORIGIN foo.example.
+$TTL    1h
+
+@       IN      SOA     ns root ( ; E-mail
+                             42   ; Serial
+                             2h   ; Refresh
+                             1h   ; Retry
+                            14d   ; Expire
+                             1h ) ; Negative Cache TTL
+
+; DNS
+@       IN      NS     alpha
+                NS     beta
+
+; Mail
+@               MX     10 mx1
+                MX     10 mx2
+                TXT    "v=spf1 +mx -all"
+                SPF    "v=spf1 +mx -all"
+
+; TLS
+@ CAA 128 issue "letsencrypt.org"
+
+alpha           A      192.0.2.1
+beta            A      192.0.2.2
+gamma           A      192.0.2.3
+delta           A      192.0.2.4
+
+alpha           AAAA      2001:db8::1
+beta            AAAA      2001:db8::2
+gamma           AAAA      2001:db8::3
+delta           AAAA      2001:db8::4
+
+; Services
+www             CNAME  gamma
+mx1             CNAME  delta
+mx2             CNAME  gamma
+ns0             CNAME  alpha
+ns1             CNAME  beta
+
+alpha           LOC    0 N 0 E
+alpaa           TXT    "Null Island"
