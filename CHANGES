@@ -24,28 +24,32 @@ Version 2.16.0
 
 - Updated lexers:
 
-  * ASC: add ``application/pem-certificate-chain`` mimetype
-  * C/C++: refine keyword lists (#2421, #2422)
-  * Carbon: fix long processing times on invalid input, fix number
+  * ASC: Add ``application/pem-certificate-chain`` mimetype (#2471)
+  * C/C++: Refine keyword lists (#2421, #2422)
+  * Carbon: Fix long processing times on invalid input, fix number
     lexing (#2454, #2456)
-  * Elpi: handle quotations (#2419)
-  * HTTP: support empty headers (#2461), support more general methods (#2460),
+  * Elpi: Handle quotations (#2419)
+  * Go: Support additional built-ins (#2481)
+  * HTTP: Support empty headers (#2461), support more general methods (#2460),
     also recognize responses in ``analyse_text`` implementation (#2460)
-  * lean: recognize expressions nested within attributes (#1817)
-  * Macaulay2: update builtins (#2457)
-  * Markdown: allow extra characters after language name
+  * Igor Pro: Update to Igor Pro 9 (#2482)
+  * lean: Recognize expressions nested within attributes (#1817)
+  * Macaulay2: Update builtins (#2457)
+  * Markdown: Allow extra characters after language name
     in code blocks (#2437)
-  * NestedText: update to version 3 (#2459)
-  * scdoc: improve language guessing implementation (#2402)
-  * Spice: update to latest version (#2476)
-  * Transact SQL: add Pre-sorted Group keyword (#2417)
-  * Uxntal: update for current runes (#2424)
-  * Wikitext: fix templates in wiki links; fix a language converter false
+  * NestedText: Update to version 3 (#2459)
+  * scdoc: Improve language guessing implementation (#2402)
+  * Spice: Update to latest version (#2476)
+  * Transact SQL: Add Pre-sorted Group keyword (#2417)
+  * Uxntal: Update for current runes (#2424)
+  * Wikitext: Fix templates in wiki links; fix a language converter false
     positive; add bold italic markup (#2447)
 
 - Add ``Generic.EmphStrong`` token for bold italic markup (#2444)
 - Add Lightbulb style (#2474)
+- Add Eclipse-Light style (#2440)
 - Improve contrast in Monokai style (#2448)
+- Add documentation how to create terminal code highlighting commands (#2131, #2425)
 
 Version 2.15.1
 --------------
