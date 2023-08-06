@@ -40,6 +40,7 @@ STYLE_MAP = {
     'material': 'material::MaterialStyle',
     'monokai': 'monokai::MonokaiStyle',
     'murphy': 'murphy::MurphyStyle',
+    'native':   'native::NativeStyle',
     'nord': 'nord::NordStyle',
     'nord-darker': 'nord::NordDarkerStyle',
     'one-dark': 'onedark::OneDarkStyle',
