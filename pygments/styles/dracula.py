@@ -16,7 +16,11 @@ from pygments.token import Keyword, Name, Comment, String, Error, Literal, \
     Number, Operator, Other, Punctuation, Text, Generic, Whitespace
 
 
+__all__ = ['DraculaStyle']
+
+
 class DraculaStyle(Style):
+    name = 'dracula'
 
     background_color = "#282a36"
     highlight_color = "#44475a"
