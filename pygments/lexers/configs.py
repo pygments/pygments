@@ -68,10 +68,11 @@ class IniLexer(RegexLexer):
         return False
 
 
-
 class DesktopLexer(RegexLexer):
     """
     Lexer for .desktop files.
+
+    .. versionadded:: 2.16
     """
 
     name = 'Desktop file'
@@ -97,10 +98,11 @@ class DesktopLexer(RegexLexer):
         return 0.0
 
 
-
 class SystemdLexer(RegexLexer):
     """
     Lexer for systemd unit files.
+
+    .. versionadded:: 2.16
     """
 
     name = 'Systemd'

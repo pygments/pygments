@@ -8,10 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, include, words, bygroups, default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, Punctuation, Whitespace
+from pygments.lexer import RegexLexer, words, bygroups, default
+from pygments.token import Comment, Keyword, Name, String, Punctuation, \
+    Whitespace
 
 __all__ = ['VerifpalLexer']
 
@@ -20,7 +19,7 @@ class VerifpalLexer(RegexLexer):
     """
     For Verifpal code.
 
-    .. versionadded:: 2.16.0
+    .. versionadded:: 2.16
     """
 
     name = 'Verifpal'

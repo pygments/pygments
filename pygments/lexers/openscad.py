@@ -16,8 +16,8 @@ __all__ = ['OpenScadLexer']
 
 class OpenScadLexer(RegexLexer):
     """For openSCAD code.
-    
-    .. versionadded:: 2.16.0
+
+    .. versionadded:: 2.16
     """
     name = "OpenSCAD"
     url = "https://openscad.org/"

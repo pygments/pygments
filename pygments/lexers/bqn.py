@@ -18,6 +18,8 @@ __all__ = ['BQNLexer']
 class BQNLexer(RegexLexer):
     """
     A simple BQN lexer.
+
+    .. versionadded:: 2.16
     """
     name = 'BQN'
     url = 'https://mlochbaum.github.io/BQN/index.html'

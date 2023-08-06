@@ -126,7 +126,7 @@ class Asn1Lexer(RegexLexer):
 
     name = 'ASN.1'
     aliases = ['asn1']
-    filenames = [ "*.asn1" ]
+    filenames = ["*.asn1"]
     url = "https://www.itu.int/ITU-T/studygroups/com17/languages/X.680-0207.pdf"
 
     tokens = {

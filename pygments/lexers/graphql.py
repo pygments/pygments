@@ -58,7 +58,7 @@ class GraphQLLexer(RegexLexer):
     """
     Lexer for GraphQL syntax
 
-    .. versionadded:: 2.15.1
+    .. versionadded:: 2.16
     """
     name = "GraphQL"
     aliases = ["graphql"]
