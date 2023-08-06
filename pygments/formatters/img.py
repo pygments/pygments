@@ -268,6 +268,7 @@ class FontManager:
 
         return font
 
+
 class ImageFormatter(Formatter):
     """
     Create a PNG image from source code. This uses the Python Imaging Library to
