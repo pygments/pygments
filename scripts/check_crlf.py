@@ -14,6 +14,7 @@ import sys
 import os
 
 if __name__ == '__main__':
+    error = False
     for directory in sys.argv[1:]:
         if not os.path.exists(directory):
             continue
@@ -27,6 +28,9 @@ if __name__ == '__main__':
                 with open(full_path, 'rb') as f:
                     if b'\r\n' in f.read():
                         print('CR/LF found in', full_path)
-                        sys.exit(1)
+                        error = True
+
+    if error:
+        sys.exit(1)
 
     sys.exit(0)
