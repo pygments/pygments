@@ -89,6 +89,17 @@ class VisualPrologLexer(VisualPrologBaseLexer):
         ]
     }
 
+    def analyse_text(text):
+        """Compedes with IDL and Prolog on *.pro; div. lisps on*.cl and SwigLexer on *.i"""
+        # These are *really* good indicators (and not conflicting with the other languages)
+        # end-scope first on line e.g. 'end implement'
+        # section keyword alone on line e.g. 'clauses'
+        if re.search(r'^\s*(end\s+(interface|class|implement)|(clauses|predicates|domains|facts|constants|properties)\s*$)', text):
+            return 0.98
+        else:
+            return 0
+
+
 class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     name = 'Visual Prolog Grammar'
     aliases = ['visualprologgrammar']
@@ -103,3 +114,13 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
             inherit
         ]
     }
+    
+    def analyse_text(text):
+        """No competditors (currently)"""
+        # These are *really* good indicators
+        # end-scope first on line e.g. 'end grammar'
+        # section keyword alone on line e.g. 'rules'
+        if re.search(r'^\s*(end\s+grammar|(nonterminals|startsymbols|terminals|rules|precedence)\s*$)', text):
+            return 0.98
+        else:
+            return 0
