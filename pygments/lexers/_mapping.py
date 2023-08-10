@@ -247,7 +247,7 @@ LEXERS = {
     'JsgfLexer': ('pygments.lexers.grammar_notation', 'JSGF', ('jsgf',), ('*.jsgf',), ('application/jsgf', 'application/x-jsgf', 'text/jsgf')),
     'JsonBareObjectLexer': ('pygments.lexers.data', 'JSONBareObject', (), (), ()),
     'JsonLdLexer': ('pygments.lexers.data', 'JSON-LD', ('jsonld', 'json-ld'), ('*.jsonld',), ('application/ld+json',)),
-    'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', 'Pipfile.lock'), ('application/json', 'application/json-object')),
+    'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock'), ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')),
     'JsonnetLexer': ('pygments.lexers.jsonnet', 'Jsonnet', ('jsonnet',), ('*.jsonnet', '*.libsonnet'), ()),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'JuliaConsoleLexer': ('pygments.lexers.julia', 'Julia console', ('jlcon', 'julia-repl'), (), ()),
