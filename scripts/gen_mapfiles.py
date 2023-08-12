@@ -33,7 +33,7 @@ def main():
                 elif key == 'formatters':
                     desc += (tuple(obj.filenames), docstring_headline(obj),)
                 elif key == 'styles':
-                    desc += (f'{module_name.split(".")[-1]}::{obj_name}',)
+                    pass
                 else:
                     assert False
                 lines.append(f'    {obj_name!r}: {desc!r},')

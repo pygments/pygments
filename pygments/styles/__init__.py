@@ -16,7 +16,11 @@ __all__ = ['get_style_by_name', 'get_all_styles']
 
 #: A dictionary of built-in styles, mapping style names to
 #: ``'submodule::classname'`` strings.
-STYLE_MAP = {k[1]: k[3] for k in STYLES.values()}
+# This list is deprecated. Use `pygments.styles.STYLES` instead
+STYLE_MAP = {v[1]: v[0].split('.')[-1] + '::' + k for k, v in STYLES.items()}
+
+# Internal reverse mapping to make `get_style_by_name` more efficient
+_STYLE_NAME_TO_MODULE_MAP = {v[1]: (v[0], k) for k, v in STYLES.items()}
 
 
 def get_style_by_name(name):
@@ -27,8 +31,8 @@ def get_style_by_name(name):
     Will raise :exc:`pygments.util.ClassNotFound` if no style of that name is
     found.
     """
-    if name in STYLE_MAP:
-        mod, cls = STYLE_MAP[name].split('::')
+    if name in _STYLE_NAME_TO_MODULE_MAP:
+        mod, cls = _STYLE_NAME_TO_MODULE_MAP[name]
         builtin = "yes"
     else:
         for found_name, style in find_plugin_styles():
@@ -36,14 +40,15 @@ def get_style_by_name(name):
                 return style
         # perhaps it got dropped into our styles package
         builtin = ""
-        mod = name
+        mod = 'pygments.styles.' + name
         cls = name.title() + "Style"
 
     try:
-        mod = __import__('pygments.styles.' + mod, None, None, [cls])
+        mod = __import__(mod, None, None, [cls])
     except ImportError:
         raise ClassNotFound("Could not find style module %r" % mod +
-                         (builtin and ", though it should be builtin") + ".")
+                            (builtin and ", though it should be builtin")
+                            + ".")
     try:
         return getattr(mod, cls)
     except AttributeError:
@@ -52,6 +57,7 @@ def get_style_by_name(name):
 
 def get_all_styles():
     """Return a generator for all styles by name, both builtin and plugin."""
-    yield from STYLE_MAP
+    for v in STYLES.values():
+        yield v[1]
     for name, _ in find_plugin_styles():
         yield name
