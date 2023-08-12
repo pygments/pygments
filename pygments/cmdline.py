@@ -474,7 +474,7 @@ def main_inner(parser, argns):
             pass
         else:
             outfile = colorama.initialise.wrap_stream(
-                outfile, convert=None, strip=None, autoreset=False, wrap=True)
+                outfile, convert=None, strip=False, autoreset=False, wrap=True)
 
     # When using the LaTeX formatter and the option `escapeinside` is
     # specified, we need a special lexer which collects escaped text
