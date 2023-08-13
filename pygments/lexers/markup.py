@@ -1076,7 +1076,7 @@ class WikitextLexer(RegexLexer):
                     (?: (\#) ([%s]*?) )?
                 (\]\])
                 """ % ('|'.join(protocols), title_char.replace('/', ''),
-                           title_char, f'{title_char}#'),
+                       title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation)
             ),
@@ -1088,7 +1088,7 @@ class WikitextLexer(RegexLexer):
                     (?: (\#) ([%s]*?) )?
                     (\|)
                 """ % ('|'.join(protocols), title_char.replace('/', ''),
-                           title_char, f'{title_char}#'),
+                       title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation),
                 'wikilink-inner'
@@ -1195,18 +1195,20 @@ class WikitextLexer(RegexLexer):
                         (\s* (?:{variants}) \s*) (:)
                     )?
                 """.format(variants='|'.join(variant_langs)),
-                bygroups(Punctuation, Keyword, Punctuation,  
-                         using(this, state=['root', 'lc-raw']), 
-                         Operator, Name.Label, Punctuation), 
+                bygroups(Punctuation, Keyword, Punctuation,
+                         using(this, state=['root', 'lc-raw']),
+                         Operator, Name.Label, Punctuation),
                 'lc-inner'
             ),
             # LanguageConverter markups: composite conversion grammar
             (
                 r"""(?xi)
-                (-\{{) # Use {{ to escape format()
+                (-\{)
                     ([a-z\s;-]*?) (\|)
-                """.format(variants='|'.join(variant_langs)),
-                bygroups(Punctuation, using(this, state=['root', 'lc-flag']), Punctuation ), 
+                """,
+                bygroups(Punctuation,
+                         using(this, state=['root', 'lc-flag']),
+                         Punctuation),
                 'lc-raw'
             ),
             # LanguageConverter markups: fallbacks
@@ -1214,8 +1216,8 @@ class WikitextLexer(RegexLexer):
                 r"""(?xi)
                 (-\{{) (?!\{{) # Use {{ to escape format()
                     (?: (\s* (?:{variants}) \s*) (:))?
-                """.format(variants='|'.join(variant_langs)), 
-                bygroups(Punctuation, Name.Label, Punctuation), 
+                """.format(variants='|'.join(variant_langs)),
+                bygroups(Punctuation, Name.Label, Punctuation),
                 'lc-inner'
             ),
         ],
@@ -1280,7 +1282,7 @@ class WikitextLexer(RegexLexer):
             include('inline'),
             include('text-bold-italic'),
         ],
-        'lc-flag':[
+        'lc-flag': [
             (r'\s+', Whitespace),
             (r';', Punctuation),
             *text_rules(Keyword),
@@ -1292,7 +1294,7 @@ class WikitextLexer(RegexLexer):
                 (?: ([^;]*?) (=>))?
                 (\s* (?:{variants}) \s*) (:)
                 """.format(variants='|'.join(variant_langs)),
-                bygroups(Punctuation, using(this, state=['root', 'lc-raw']), 
+                bygroups(Punctuation, using(this, state=['root', 'lc-raw']),
                          Operator, Name.Label, Punctuation)
             ),
             (r';?\s*?\}-', Punctuation, '#pop'),
