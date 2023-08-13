@@ -1188,16 +1188,36 @@ class WikitextLexer(RegexLexer):
             # LanguageConverter markups
             (
                 r"""(?xi)
-                (-\{{) # Escape format()
-                    (?: ([^|]) (\|))?
-                    (?: (\s* (?:{variants}) \s*) (=>))?
-                    (\s* (?:{variants}) \s*) (:)
+                (-\{{) # Use {{ to escape format()
+                    ([^|]) (\|)
+                    (?: 
+                        (?: ([^;]*?) (=>))?
+                        (\s* (?:{variants}) \s*) (:)
+                    )?
                 """.format(variants='|'.join(variant_langs)),
-                bygroups(Punctuation, Keyword, Punctuation,
-                         Name.Label, Operator, Name.Label, Punctuation),
+                bygroups(Punctuation, Keyword, Punctuation,  
+                         using(this, state=['root', 'lc-raw']), 
+                         Operator, Name.Label, Punctuation), 
                 'lc-inner'
             ),
-            (r'-\{(?!\{)', Punctuation, 'lc-raw'),
+            # LanguageConverter markups: composite conversion grammar
+            (
+                r"""(?xi)
+                (-\{{) # Use {{ to escape format()
+                    ([a-z\s;-]*?) (\|)
+                """.format(variants='|'.join(variant_langs)),
+                bygroups(Punctuation, using(this, state=['root', 'lc-flag']), Punctuation ), 
+                'lc-raw'
+            ),
+            # LanguageConverter markups: fallbacks
+            (
+                r"""(?xi)
+                (-\{{) (?!\{{) # Use {{ to escape format()
+                    (?: (\s* (?:{variants}) \s*) (:))?
+                """.format(variants='|'.join(variant_langs)), 
+                bygroups(Punctuation, Name.Label, Punctuation), 
+                'lc-inner'
+            ),
         ],
         'wikilink-name': [
             include('replaceable'),
@@ -1260,14 +1280,19 @@ class WikitextLexer(RegexLexer):
             include('inline'),
             include('text-bold-italic'),
         ],
+        'lc-flag':[
+            (r'\s+', Whitespace),
+            (r';', Punctuation),
+            *text_rules(Keyword),
+        ],
         'lc-inner': [
             (
                 r"""(?xi)
                 (;)
-                (?: (\s* (?:{variants}) \s*) (=>))?
+                (?: ([^;]*?) (=>))?
                 (\s* (?:{variants}) \s*) (:)
                 """.format(variants='|'.join(variant_langs)),
-                bygroups(Punctuation, Name.Label,
+                bygroups(Punctuation, using(this, state=['root', 'lc-raw']), 
                          Operator, Name.Label, Punctuation)
             ),
             (r';?\s*?\}-', Punctuation, '#pop'),
