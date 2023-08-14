@@ -14,7 +14,7 @@ from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, \
     include, default, this, using, words, line_re
 from pygments.token import Punctuation, Whitespace, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import shebang_matches
+from pygments.util import shebang_matches, get_bool_opt
 
 __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
            'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
@@ -159,19 +159,27 @@ class ShellSessionBaseLexer(Lexer):
     _bare_continuation = False
     _venv = re.compile(r'^(\([^)]*\))(\s*)')
 
+    def __init__(self, **options):
+        Lexer.__init__(self, **options)
+        if get_bool_opt(options, 'single_prompt', False):
+            self.single_prompt = True
+        else:
+            self.single_prompt = False
+
     def get_tokens_unprocessed(self, text):
         innerlexer = self._innerLexerCls(**self.options)
 
         pos = 0
         curcode = ''
         insertions = []
+        prompt_found = False
         backslash_continuation = False
 
         for match in line_re.finditer(text):
             line = match.group()
 
             venv_match = self._venv.match(line)
-            if venv_match:
+            if venv_match and not (self.single_prompt and prompt_found):
                 venv = venv_match.group(1)
                 venv_whitespace = venv_match.group(2)
                 insertions.append((len(curcode),
@@ -182,10 +190,11 @@ class ShellSessionBaseLexer(Lexer):
                 line = line[venv_match.end():]
 
             m = self._ps1rgx.match(line)
-            if m:
+            if m and not (self.single_prompt and prompt_found):
                 # To support output lexers (say diff output), the output
                 # needs to be broken by prompts whenever the output lexer
                 # changes.
+                prompt_found = True
                 if not insertions:
                     pos = match.start()
 
