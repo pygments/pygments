@@ -178,7 +178,7 @@ class ShellSessionBaseLexer(Lexer):
                                    [(0, Generic.Prompt.VirtualEnv, venv)]))
                 if venv_whitespace:
                     insertions.append((len(curcode),
-                                       [(0, Text, venv_whitespace)]))
+                                       [(0, Generic.Prompt.VirtualEnv, venv_whitespace)]))
                 line = line[venv_match.end():]
 
             m = self._ps1rgx.match(line)
