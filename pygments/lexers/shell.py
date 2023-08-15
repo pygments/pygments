@@ -174,6 +174,7 @@ class ShellSessionBaseLexer(Lexer):
         insertions = []
         prompt_found = False
         backslash_continuation = False
+        heredoc_continuation = False
 
         for match in line_re.finditer(text):
             line = match.group()
@@ -202,14 +203,19 @@ class ShellSessionBaseLexer(Lexer):
                                    [(0, Generic.Prompt, m.group(1))]))
                 curcode += m.group(2)
                 backslash_continuation = curcode.endswith('\\\n')
-            elif backslash_continuation:
+                heredoc_continuation = curcode.endswith('<<EOF\n')
+            elif backslash_continuation or heredoc_continuation:
                 if line.startswith(self._ps2):
                     insertions.append((len(curcode),
                                        [(0, Generic.Prompt,
                                          line[:len(self._ps2)])]))
-                    curcode += line[len(self._ps2):]
+                    rem = line[len(self._ps2):]
+                    curcode += rem
+                    if heredoc_continuation:
+                        heredoc_continuation = not (rem == 'EOF\n')
                 else:
                     curcode += line
+                    heredoc_continuation = False
                 backslash_continuation = curcode.endswith('\\\n')
             elif self._bare_continuation and line.startswith(self._ps2):
                 insertions.append((len(curcode),
