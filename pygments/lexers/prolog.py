@@ -78,7 +78,7 @@ class PrologLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        """Compedes with IDL and Visual Prolog on *.pro"""
+        """Competes with IDL and Visual Prolog on *.pro"""
         if ':-' in text:
             # Visual Prolog also uses :-
             return 0.5
