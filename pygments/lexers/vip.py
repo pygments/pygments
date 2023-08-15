@@ -49,9 +49,7 @@ class VisualPrologBaseLexer(RegexLexer):
         ],
         'stringescape' : [
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
-            (r'\\u[0-9a-fA-F]{0,3}', String.Escape.Error),
             (r'\\[\'"ntr\\]', String.Escape),
-            (r'\\[^\'"ntr\\]', String.Escape.Error),
         ],
         'stringsingle' : [
             include('stringescape'),
@@ -90,7 +88,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     }
 
     def analyse_text(text):
-        """Compedes with IDL and Prolog on *.pro; div. lisps on*.cl and SwigLexer on *.i"""
+        """Competes with IDL and Prolog on *.pro; div. lisps on*.cl and SwigLexer on *.i"""
         # These are *really* good indicators (and not conflicting with the other languages)
         # end-scope first on line e.g. 'end implement'
         # section keyword alone on line e.g. 'clauses'
