@@ -930,7 +930,9 @@ class WikitextLexer(RegexLexer):
     variant_langs = {
         # ZhConverter.php
         'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw',
-        # UnConverter.php
+        # WuuConverter.php
+        'wuu', 'wuu-hans', 'wuu-hant',
+        # UzConverter.php
         'uz', 'uz-latn', 'uz-cyrl',
         # TlyConverter.php
         'tly', 'tly-cyrl',
