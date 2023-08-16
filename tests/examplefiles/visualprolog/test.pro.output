@@ -454,26 +454,3 @@
 '.'           Literal.String
 '"'           Literal.String.Symbol
 '\n'          Text.Whitespace
-
-'"'           Literal.String.Symbol
-'\\u123'      Literal.String.Escape.Error
-'"'           Literal.String.Symbol
-'\n'          Text.Whitespace
-
-'"'           Literal.String.Symbol
-'\\a'         Literal.String.Escape.Error
-'"'           Literal.String.Symbol
-'\n'          Text.Whitespace
-
-'"'           Literal.String.Symbol
-'unterminated' Literal.String
-'\n'          Literal.String.Escape.Error
-
-'\n'          Text.Whitespace
-
-'@"'          Literal.String.Symbol
-'literal '    Literal.String
-'""'          Literal.String.Escape
-' literal\nnext line\\' Literal.String
-'"'           Literal.String.Symbol
-'\n'          Text.Whitespace

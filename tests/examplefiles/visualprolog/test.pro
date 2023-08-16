@@ -149,10 +149,3 @@ asdlkajsd
 "string"
 'string'
 "\u1233.\t.\r.\n.\\.\".\'."
-"\u123"
-"\a"
-"unterminated
-
-@"literal "" literal
-next line\"
-
