@@ -19,7 +19,7 @@ sys.path.insert(0, str(pygments_package.parent.resolve()))
 from pygments.util import docstring_headline
 
 def main():
-    for key in ['lexers', 'formatters']:
+    for key in ['lexers', 'formatters', 'styles']:
         lines = []
         for file in (pygments_package / key).glob('[!_]*.py'):
             module_name = '.'.join(file.relative_to(pygments_package.parent).with_suffix('').parts)
@@ -27,11 +27,13 @@ def main():
             module = import_module(module_name)
             for obj_name in module.__all__:
                 obj = getattr(module, obj_name)
-                desc = (module_name, obj.name, tuple(obj.aliases), tuple(obj.filenames))
+                desc = (module_name, obj.name, tuple(obj.aliases))
                 if key == 'lexers':
-                    desc += (tuple(obj.mimetypes),)
+                    desc += (tuple(obj.filenames), tuple(obj.mimetypes),)
                 elif key == 'formatters':
-                    desc += (docstring_headline(obj),)
+                    desc += (tuple(obj.filenames), docstring_headline(obj),)
+                elif key == 'styles':
+                    pass
                 else:
                     assert False
                 lines.append(f'    {obj_name!r}: {desc!r},')

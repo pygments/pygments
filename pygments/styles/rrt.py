@@ -12,11 +12,16 @@ from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, String
 
 
+__all__ = ['RrtStyle']
+
+
 class RrtStyle(Style):
     """
     Minimalistic "rrt" theme, based on Zap and Emacs defaults.
     """
 
+    name = 'rrt'
+    
     background_color = '#000000'
     highlight_color = '#0000ff'
 
