@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.visualprolog
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for Visual Prolog & Grammar files.
+
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import RegexLexer, inherit, words, include
