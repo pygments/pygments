@@ -1,5 +1,5 @@
 """
-    pygments.lexers.visualprolog
+    pygments.lexers.vip
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Visual Prolog & Grammar files.
