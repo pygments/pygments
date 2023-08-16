@@ -41,13 +41,7 @@ To make the style usable for Pygments, you must
 * or update the ``pygments.styles`` subpackage directory. For example:
 
   * add ``your.py`` file
-  * register the new style by adding a line to the ``__init__.py`` file:
-
-  .. sourcecode:: python
-
-      STYLE_MAP = {
-          ...
-          'your':  'your::YourStyle',
+  * regenerate the mappings file using ``tox -e mapfiles``
 
 .. note::
 
