@@ -12,8 +12,6 @@ from pygments.plugin import find_plugin_styles
 from pygments.util import ClassNotFound
 from pygments.styles._mapping import STYLES
 
-__all__ = ['get_style_by_name', 'get_all_styles']
-
 #: A dictionary of built-in styles, mapping style names to
 #: ``'submodule::classname'`` strings.
 # This list is deprecated. Use `pygments.styles.STYLES` instead
