@@ -12,7 +12,12 @@ Version 2.17.0
   * JSON: add MIME types and file extensions for several line-delimited
     JSON formats (#2490)
   * Wikitext: fix erroneous highlighting of LanguageConverter markup
-    (#2493)
+    (#2493), add missing variant languages (#2494)
+
+- Fix ctags support and tests (#2487)
+- The ``pygments.styles`` module contains a new ``STYLES`` variable
+  with a dictionary of built-in styles.  The old ``STYLE_MAP`` variable,
+  which uses a different format, is kept for backwards compatibility.
 
 Version 2.16.1
 --------------
