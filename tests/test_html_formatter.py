@@ -235,12 +235,12 @@ def test_ctags():
     except ImportError:
         # we can't check without the ctags module, but at least check the exception
         assert pytest.raises(
-            RuntimeError, HtmlFormatter, tagsfile='support/tags'
+            RuntimeError, HtmlFormatter, tagsfile='tests/support/tags'
         )
     else:
         # this tagfile says that test_ctags() is on line 165, even if it isn't
         # anymore in the actual source
-        fmt = HtmlFormatter(tagsfile='support/tags', lineanchors='L',
+        fmt = HtmlFormatter(tagsfile='tests/support/tags', lineanchors='L',
                             tagurlformat='%(fname)s%(fext)s')
         outfile = StringIO()
         fmt.format(tokensource, outfile)
