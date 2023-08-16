@@ -1,0 +1,86 @@
+---input---
+[strings]
+basic-string = "I'm a basic string. I can contain 'single quotes', \u0055nicode escapes \U0001f61b \U0001F61B, \"escaped\" double quotes, \n and \t more."
+literal-string = 'I am literal string. Escapes like \this have no effect on me. I can contain "double quotes".'
+multiline-basic-string = """
+I'm a multiline basic string.
+I can span several lines and contain 'single' and "double" quotes
+as well as \u0055nicode escapes. Line continuations \
+   work too.
+"""
+multiline-literal-string = '''
+I'm a "multiline" 'literal' string.
+Escapes like \this have no effect on me. Neither does this: \
+   it is not a line continuation.'''
+
+---tokens---
+'['           Keyword
+'strings'     Keyword
+']'           Keyword
+'\n'          Text.Whitespace
+
+'basic-string' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+"I'm a basic string. I can contain 'single quotes', " Literal.String.Double
+'\\u0055'     Literal.String.Escape
+'nicode escapes ' Literal.String.Double
+'\\U0001f61b' Literal.String.Escape
+' '           Literal.String.Double
+'\\U0001F61B' Literal.String.Escape
+', '          Literal.String.Double
+'\\"'         Literal.String.Escape
+'escaped'     Literal.String.Double
+'\\"'         Literal.String.Escape
+' double quotes, ' Literal.String.Double
+'\\n'         Literal.String.Escape
+' and '       Literal.String.Double
+'\\t'         Literal.String.Escape
+' more.'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'literal-string' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'I am literal string. Escapes like \\this have no effect on me. I can contain "double quotes".\'' Literal.String.Single
+'\n'          Text.Whitespace
+
+'multiline-basic-string' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+"\nI'm a multiline basic string.\nI can span several lines and contain 'single' and " Literal.String.Double
+'"'           Literal.String.Double
+'double'      Literal.String.Double
+'"'           Literal.String.Double
+' quotes\nas well as ' Literal.String.Double
+'\\u0055'     Literal.String.Escape
+'nicode escapes. Line continuations ' Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Text.Whitespace
+
+'   work too.\n' Literal.String.Double
+
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'multiline-literal-string' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'''"         Literal.String.Single
+'\nI'         Literal.String.Single
+"'"           Literal.String.Single
+'m a "multiline" ' Literal.String.Single
+"'"           Literal.String.Single
+'literal'     Literal.String.Single
+"'"           Literal.String.Single
+' string.\nEscapes like \\this have no effect on me. Neither does this: \\\n   it is not a line continuation.' Literal.String.Single
+"'''"         Literal.String.Single
+'\n'          Text.Whitespace

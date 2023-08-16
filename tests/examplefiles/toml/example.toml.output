@@ -1,20 +1,20 @@
 '# This is a TOML document comment' Comment.Single
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'title'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"TOML example file"' Literal.String
+'"'           Literal.String.Double
+'TOML example file' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '# This is an inline comment' Comment.Single
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[examples]'  Keyword
+'['           Keyword
+'examples'    Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 '# Examples taken from https://github.com/toml-lang/toml/blob/master/README.md' Comment.Single
@@ -24,70 +24,98 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'bare_key'    Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'bare-key'    Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'1234'        Literal.Number.Integer
+'1234'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'"127.0.0.1"' Literal.String
+'"'           Literal.String.Double
+'127.0.0.1'   Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'"character encoding"' Literal.String
+'"'           Literal.String.Double
+'character encoding' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'"ʎǝʞ"'       Literal.String
+'"'           Literal.String.Double
+'ʎǝʞ'         Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-"'key2'"      Literal.String
+"'"           Literal.String.Single
+"key2'"       Literal.String.Single
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'\'quoted "value"\'' Literal.String
+"'"           Literal.String.Single
+'quoted "value"\'' Literal.String.Single
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"value"'     Literal.String
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"Orange"'    Literal.String
+'"'           Literal.String.Double
+'Orange'      Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'physical'    Name
@@ -96,7 +124,9 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"orange"'    Literal.String
+'"'           Literal.String.Double
+'orange'      Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'physical'    Name
@@ -105,12 +135,16 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"round"'     Literal.String
+'"'           Literal.String.Double
+'round'       Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'site'        Name
 '.'           Punctuation
-'"google.com"' Literal.String
+'"'           Literal.String.Double
+'google.com'  Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -135,136 +169,180 @@
 '='           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[strings]'   Keyword
+'['           Keyword
+'strings'     Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'str'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"I\'m a string. \\"You can quote me\\". Name\\tJos\\u00E9\\nLocation\\tSF."' Literal.String
+'"'           Literal.String.Double
+"I'm a string. " Literal.String.Double
+'\\"'         Literal.String.Escape
+'You can quote me' Literal.String.Double
+'\\"'         Literal.String.Escape
+'. Name'      Literal.String.Double
+'\\t'         Literal.String.Escape
+'Jos'         Literal.String.Double
+'\\u00E9'     Literal.String.Escape
+'\\n'         Literal.String.Escape
+'Location'    Literal.String.Double
+'\\t'         Literal.String.Escape
+'SF.'         Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'str1'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'""'          Literal.String
-'"\nRoses are red\nViolets are blue"' Literal.String
-'""'          Literal.String
+'"""'         Literal.String.Double
+'\nRoses are red\nViolets are blue' Literal.String.Double
+'"""'         Literal.String.Double
 '\n'          Text.Whitespace
 
 'str2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"Roses are red\\nViolets are blue"' Literal.String
+'"'           Literal.String.Double
+'Roses are red' Literal.String.Double
+'\\n'         Literal.String.Escape
+'Violets are blue' Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
 
 'str3'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"Roses are red\\r\\nViolets are blue"' Literal.String
-'\n'          Text.Whitespace
-
+'"'           Literal.String.Double
+'Roses are red' Literal.String.Double
+'\\r'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'Violets are blue' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
+'['           Keyword
+'strings'     Keyword
+'.'           Keyword
+'equivalents' Keyword
+']'           Keyword
 '\n  '        Text.Whitespace
-'[strings.equivalents]' Keyword
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
 'str1'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"The quick brown fox jumps over the lazy dog."' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'"'           Literal.String.Double
+'The quick brown fox jumps over the lazy dog.' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'str2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'""'          Literal.String
-'"\nThe quick brown \\\n\n\n    fox jumps over \\\n      the lazy dog."' Literal.String
-'""'          Literal.String
+'"""'         Literal.String.Double
+'\nThe quick brown ' Literal.String.Double
+'\\'          Literal.String.Escape
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+'\n\n    fox jumps over ' Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Text.Whitespace
+
+'      the lazy dog.' Literal.String.Double
+'"""'         Literal.String.Double
+'\n  '        Text.Whitespace
 'str3'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'""'          Literal.String
-'"\\\n         The quick brown \\\n         fox jumps over \\\n         the lazy dog.\\\n         "' Literal.String
-'""'          Literal.String
+'"""'         Literal.String.Double
+'\\'          Literal.String.Escape
 '\n'          Text.Whitespace
 
+'         The quick brown ' Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Text.Whitespace
+
+'         fox jumps over ' Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Text.Whitespace
+
+'         the lazy dog.' Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Text.Whitespace
+
+'         '   Literal.String.Double
+'"""'         Literal.String.Double
+'\n\n  '      Text.Whitespace
+'['           Keyword
+'strings'     Keyword
+'.'           Keyword
+'literal'     Keyword
+']'           Keyword
 '\n  '        Text.Whitespace
-'[strings.literal]' Keyword
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
 'winpath'     Name
 '  '          Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"'C:\\Users\\nodejs\\templates'" Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+"'"           Literal.String.Single
+"C:\\Users\\nodejs\\templates'" Literal.String.Single
+'\n  '        Text.Whitespace
 'winpath2'    Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"'\\\\ServerX\\admin$\\system32\\'" Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+"'"           Literal.String.Single
+"\\\\ServerX\\admin$\\system32\\'" Literal.String.Single
+'\n  '        Text.Whitespace
 'quoted'      Name
 '   '         Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'\'Tom "Dubs" Preston-Werner\'' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+"'"           Literal.String.Single
+'Tom "Dubs" Preston-Werner\'' Literal.String.Single
+'\n  '        Text.Whitespace
 'regex'       Name
 '    '        Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"'<\\i\\c*\\s*>'" Literal.String
-'\n'          Text.Whitespace
-
+"'"           Literal.String.Single
+"<\\i\\c*\\s*>'" Literal.String.Single
+'\n\n  '      Text.Whitespace
+'['           Keyword
+'strings'     Keyword
+'.'           Keyword
+'multiline'   Keyword
+']'           Keyword
 '\n  '        Text.Whitespace
-'[strings.multiline]' Keyword
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
 'regex2'      Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"'''I [dw]on't need \\d{2} apples'''" Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+"'''"         Literal.String.Single
+'I [dw]on'    Literal.String.Single
+"'"           Literal.String.Single
+'t need \\d{2} apples' Literal.String.Single
+"'''"         Literal.String.Single
+'\n  '        Text.Whitespace
 'lines'       Name
 '  '          Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-"''"          Literal.String
-"'\nThe first newline is\ntrimmed in raw strings.\n   All other whitespace\n   is preserved.\n'" Literal.String
-"''"          Literal.String
-'\n'          Text.Whitespace
+"'''"         Literal.String.Single
+'\nThe first newline is\ntrimmed in raw strings.\n   All other whitespace\n   is preserved.\n' Literal.String.Single
 
-'\n'          Text.Whitespace
+"'''"         Literal.String.Single
+'\n\n'        Text.Whitespace
 
-'[integers]'  Keyword
+'['           Keyword
+'integers'    Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'int1'        Name
@@ -299,24 +377,21 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number.Integer
-'_000'        Name
+'1_000'       Literal.Number.Integer
 '\n'          Text.Whitespace
 
 'int6'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'5'           Literal.Number.Integer
-'_349_221'    Name
+'5_349_221'   Literal.Number.Integer
 '\n'          Text.Whitespace
 
 'int7'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number.Integer
-'_2_3_4_5'    Name
+'1_2_3_4_5'   Literal.Number.Integer
 ' '           Text.Whitespace
 '# discouraged format' Comment.Single
 '\n'          Text.Whitespace
@@ -328,24 +403,21 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'xDEADBEEF'   Name
+'0xDEADBEEF'  Literal.Number.Hex
 '\n'          Text.Whitespace
 
 'hex2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'xdeadbeef'   Name
+'0xdeadbeef'  Literal.Number.Hex
 '\n'          Text.Whitespace
 
 'hex3'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'xdead_beef'  Name
+'0xdead_beef' Literal.Number.Hex
 '\n'          Text.Whitespace
 
 '# octal with prefix `0o`' Comment.Single
@@ -355,16 +427,14 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'o01234567'   Name
+'0o01234567'  Literal.Number.Oct
 '\n'          Text.Whitespace
 
 'oct2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'o755'        Name
+'0o755'       Literal.Number.Oct
 ' '           Text.Whitespace
 '# useful for Unix file permissions' Comment.Single
 '\n'          Text.Whitespace
@@ -376,13 +446,12 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number.Integer
-'b11010110'   Name
-'\n'          Text.Whitespace
+'0b11010110'  Literal.Number.Bin
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[floats]'    Keyword
+'['           Keyword
+'floats'      Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 '# fractional' Comment.Single
@@ -392,8 +461,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'+1'          Literal.Number.Integer
-'.0'          Literal.Number.Float
+'+1.0'        Literal.Number.Float
 '\n'          Text.Whitespace
 
 'flt2'        Name
@@ -407,8 +475,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-0'          Literal.Number.Integer
-'.01'         Literal.Number.Float
+'-0.01'       Literal.Number.Float
 '\n'          Text.Whitespace
 
 '# exponent'  Comment.Single
@@ -432,8 +499,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-2'          Literal.Number.Integer
-'E-2'         Name
+'-2E-2'       Literal.Number.Float
 '\n'          Text.Whitespace
 
 '# both'      Comment.Single
@@ -453,10 +519,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'224'         Literal.Number.Integer
-'_617'        Name
-'.445'        Literal.Number.Float
-'_991_228'    Name
+'224_617.445_991_228' Literal.Number.Float
 '\n'          Text.Whitespace
 
 '# infinity'  Comment.Single
@@ -466,7 +529,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'inf'         Name
+'inf'         Literal.Number.Float
 '  '          Text.Whitespace
 '# positive infinity' Comment.Single
 '\n'          Text.Whitespace
@@ -496,7 +559,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'nan'         Name
+'nan'         Literal.Number.Float
 '  '          Text.Whitespace
 '# actual sNaN/qNaN encoding is implementation specific' Comment.Single
 '\n'          Text.Whitespace
@@ -526,21 +589,19 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'+0'          Literal.Number.Integer
-'.0'          Literal.Number.Float
+'+0.0'        Literal.Number.Float
 '\n'          Text.Whitespace
 
 'sf0_2'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-0'          Literal.Number.Integer
-'.0'          Literal.Number.Float
-'\n'          Text.Whitespace
+'-0.0'        Literal.Number.Float
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[booleans]'  Keyword
+'['           Keyword
+'booleans'    Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'bool1'       Name
@@ -555,128 +616,102 @@
 '='           Operator
 ' '           Text.Whitespace
 'false'       Keyword.Constant
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[datetime.offset]' Keyword
+'['           Keyword
+'datetime'    Keyword
+'.'           Keyword
+'offset'      Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'odt1'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979-05-27T07:32:00Z' Literal.Number.Integer
+'1979-05-27T07:32:00Z' Literal.Date
 '\n'          Text.Whitespace
 
 'odt2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979-05-27T00:32:00-07:00' Literal.Number.Integer
+'1979-05-27T00:32:00-07:00' Literal.Date
 '\n'          Text.Whitespace
 
 'odt3'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979'        Literal.Number.Integer
-'-05'         Literal.Number.Integer
-'-27'         Literal.Number.Integer
-'T00'         Name
-':'           Punctuation
-'32'          Literal.Number.Integer
-':'           Punctuation
-'00.999999'   Literal.Number.Float
-'-07'         Literal.Number.Integer
-':'           Punctuation
-'00'          Literal.Number.Integer
+'1979-05-27T00:32:00.999999-07:00' Literal.Date
 '\n'          Text.Whitespace
 
 'odt4'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979-05-27 07:32:00Z' Literal.Number.Integer
-'\n'          Text.Whitespace
+'1979-05-27 07:32:00Z' Literal.Date
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[datetime.local]' Keyword
+'['           Keyword
+'datetime'    Keyword
+'.'           Keyword
+'local'       Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'ldt1'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979'        Literal.Number.Integer
-'-05'         Literal.Number.Integer
-'-27'         Literal.Number.Integer
-'T07'         Name
-':'           Punctuation
-'32'          Literal.Number.Integer
-':'           Punctuation
-'00'          Literal.Number.Integer
+'1979-05-27T07:32:00' Literal.Date
 '\n'          Text.Whitespace
 
 'ldt2'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979'        Literal.Number.Integer
-'-05'         Literal.Number.Integer
-'-27'         Literal.Number.Integer
-'T00'         Name
-':'           Punctuation
-'32'          Literal.Number.Integer
-':'           Punctuation
-'00.999999'   Literal.Number.Float
-'\n'          Text.Whitespace
+'1979-05-27T00:32:00.999999' Literal.Date
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[date.local]' Keyword
+'['           Keyword
+'date'        Keyword
+'.'           Keyword
+'local'       Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'ld1'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1979'        Literal.Number.Integer
-'-05'         Literal.Number.Integer
-'-27'         Literal.Number.Integer
-'\n'          Text.Whitespace
+'1979-05-27'  Literal.Date
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[time.local]' Keyword
+'['           Keyword
+'time'        Keyword
+'.'           Keyword
+'local'       Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'lt1'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'07'          Literal.Number.Integer
-':'           Punctuation
-'32'          Literal.Number.Integer
-':'           Punctuation
-'00'          Literal.Number.Integer
+'07:32:00'    Literal.Date
 '\n'          Text.Whitespace
 
 'lt2'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'00'          Literal.Number.Integer
-':'           Punctuation
-'32'          Literal.Number.Integer
-':'           Punctuation
-'00.999999'   Literal.Number.Float
-'\n'          Text.Whitespace
+'00:32:00.999999' Literal.Date
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'[arrays]'    Keyword
+'['           Keyword
+'arrays'      Keyword
+']'           Keyword
 '\n'          Text.Whitespace
 
 'arr1'        Name
@@ -702,13 +737,19 @@
 ' '           Text.Whitespace
 '['           Punctuation
 ' '           Text.Whitespace
-'"red"'       Literal.String
+'"'           Literal.String.Double
+'red'         Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"yellow"'    Literal.String
+'"'           Literal.String.Double
+'yellow'      Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"green"'     Literal.String
+'"'           Literal.String.Double
+'green'       Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 ']'           Punctuation
 '\n'          Text.Whitespace
@@ -748,18 +789,13 @@
 ' '           Text.Whitespace
 '['           Punctuation
 ' '           Text.Whitespace
-'"all"'       Literal.String
+'"'           Literal.String.Double
+'all'         Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-"'strings'"   Literal.String
-','           Punctuation
-' '           Text.Whitespace
-'""'          Literal.String
-'"are the same"' Literal.String
-'""'          Literal.String
-','           Punctuation
-' '           Text.Whitespace
-"'''type'''"  Literal.String
+"'"           Literal.String.Single
+'strings\', """are the same""", \'\'\'type\'\'\'' Literal.String.Single
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -780,13 +816,19 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '['           Punctuation
-'"a"'         Literal.String
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"b"'         Literal.String
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
-'"c"'         Literal.String
+'"'           Literal.String.Double
+'c'           Literal.String.Double
+'"'           Literal.String.Double
 ']'           Punctuation
 ' '           Text.Whitespace
 ']'           Punctuation
@@ -813,9 +855,7 @@
 '='           Operator
 ' '           Text.Whitespace
 '['           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
@@ -833,14 +873,10 @@
 '='           Operator
 ' '           Text.Whitespace
 '['           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
@@ -848,11 +884,13 @@
 '\n'          Text.Whitespace
 
 ']'           Punctuation
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'["inline tables"]' Keyword
+'['           Keyword
+'"'           Literal.String.Double
+'inline tables' Literal.String.Double
+'"'           Literal.String.Double
+']'           Keyword
 '\n'          Text.Whitespace
 
 'name'        Name
@@ -863,16 +901,20 @@
 ' '           Text.Whitespace
 'first'       Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
-'"Tom"'       Literal.String
+'"'           Literal.String.Double
+'Tom'         Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 ' '           Text.Whitespace
 'last'        Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
-'"Preston-Werner"' Literal.String
+'"'           Literal.String.Double
+'Preston-Werner' Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
@@ -885,14 +927,14 @@
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'y'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text.Whitespace
@@ -909,16 +951,20 @@
 '.'           Punctuation
 'name'        Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
-'"pug"'       Literal.String
+'"'           Literal.String.Double
+'pug'         Literal.String.Double
+'"'           Literal.String.Double
 ' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'["arrays of tables"]' Keyword
+'['           Keyword
+'"'           Literal.String.Double
+'arrays of tables' Literal.String.Double
+'"'           Literal.String.Double
+']'           Keyword
 '\n'          Text.Whitespace
 
 'points'      Name
@@ -931,219 +977,219 @@
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'y'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'z'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ' '           Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n'          Text.Whitespace
-
-'           ' Text.Whitespace
+'\n           ' Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'y'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '8'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'z'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '9'           Literal.Number.Integer
 ' '           Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n'          Text.Whitespace
-
-'           ' Text.Whitespace
+'\n           ' Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'y'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'z'           Name
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation
 ' '           Text.Whitespace
 '8'           Literal.Number.Integer
 ' '           Text.Whitespace
 '}'           Punctuation
 ' '           Text.Whitespace
 ']'           Punctuation
-'\n'          Text.Whitespace
-
-'\n  '        Text.Whitespace
-'[products]'  Keyword
-'\n'          Text.Whitespace
-
+'\n\n  '      Text.Whitespace
+'['           Keyword
+'products'    Keyword
+']'           Keyword
+'\n\n    '    Text.Whitespace
+'[['          Keyword
+'products'    Keyword
+']]'          Keyword
 '\n    '      Text.Whitespace
-'[[products]]' Keyword
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"Hammer"'    Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'"'           Literal.String.Double
+'Hammer'      Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
 'sku'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '738594937'   Literal.Number.Integer
-'\n'          Text.Whitespace
-
+'\n\n    '    Text.Whitespace
+'[['          Keyword
+'products'    Keyword
+']]'          Keyword
+'\n\n    '    Text.Whitespace
+'[['          Keyword
+'products'    Keyword
+']]'          Keyword
 '\n    '      Text.Whitespace
-'[[products]]' Keyword
-'\n'          Text.Whitespace
-
-'\n    '      Text.Whitespace
-'[[products]]' Keyword
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"Nail"'      Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'"'           Literal.String.Double
+'Nail'        Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
 'sku'         Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '284758393'   Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'color'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"gray"'      Literal.String
-'\n'          Text.Whitespace
-
-'\n  '        Text.Whitespace
-'[fruits]'    Keyword
-'\n'          Text.Whitespace
-
-'\n    '      Text.Whitespace
-'[[fruit]]'   Keyword
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
+'"'           Literal.String.Double
+'gray'        Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
+'['           Keyword
+'fruits'      Keyword
+']'           Keyword
+'\n\n    '    Text.Whitespace
+'[['          Keyword
+'fruit'       Keyword
+']]'          Keyword
+'\n      '    Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"apple"'     Literal.String
-'\n'          Text.Whitespace
-
-'\n      '    Text.Whitespace
-'[fruit.physical]' Keyword
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'"'           Literal.String.Double
+'apple'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\n      '  Text.Whitespace
+'['           Keyword
+'fruit'       Keyword
+'.'           Keyword
+'physical'    Keyword
+']'           Keyword
+'\n        '  Text.Whitespace
 'color'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"red"'       Literal.String
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'"'           Literal.String.Double
+'red'         Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
 'shape'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"round"'     Literal.String
-'\n'          Text.Whitespace
-
+'"'           Literal.String.Double
+'round'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\n      '  Text.Whitespace
+'[['          Keyword
+'fruit'       Keyword
+'.'           Keyword
+'variety'     Keyword
+']]'          Keyword
+'\n        '  Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'red delicious' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n      '  Text.Whitespace
+'[['          Keyword
+'fruit'       Keyword
+'.'           Keyword
+'variety'     Keyword
+']]'          Keyword
+'\n        '  Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'granny smith' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n    '    Text.Whitespace
+'[['          Keyword
+'fruit'       Keyword
+']]'          Keyword
 '\n      '    Text.Whitespace
-'[[fruit.variety]]' Keyword
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"red delicious"' Literal.String
-'\n'          Text.Whitespace
-
-'\n      '    Text.Whitespace
-'[[fruit.variety]]' Keyword
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'"'           Literal.String.Double
+'banana'      Literal.String.Double
+'"'           Literal.String.Double
+'\n\n      '  Text.Whitespace
+'[['          Keyword
+'fruit'       Keyword
+'.'           Keyword
+'variety'     Keyword
+']]'          Keyword
+'\n        '  Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"granny smith"' Literal.String
-'\n'          Text.Whitespace
-
-'\n    '      Text.Whitespace
-'[[fruit]]'   Keyword
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'name'        Name
-' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'"banana"'    Literal.String
-'\n'          Text.Whitespace
-
-'\n      '    Text.Whitespace
-'[[fruit.variety]]' Keyword
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
-'name'        Name
-' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'"plantain"'  Literal.String
+'"'           Literal.String.Double
+'plantain'    Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text.Whitespace
