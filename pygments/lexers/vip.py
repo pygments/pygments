@@ -1,6 +1,6 @@
 """
     pygments.lexers.vip
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for Visual Prolog & Grammar files.
 
