@@ -33,6 +33,7 @@ class LexerTestItem(pytest.Item):
     def __init__(self, name, parent):
         super().__init__(name, parent)
         self.lexer = Path(str(self.fspath)).parent.name
+        self.options = {}
         self.actual = None
 
     @classmethod
@@ -45,7 +46,7 @@ class LexerTestItem(pytest.Item):
                 yield ''
 
     def runtest(self):
-        lexer = pygments.lexers.get_lexer_by_name(self.lexer)
+        lexer = pygments.lexers.get_lexer_by_name(self.lexer, **self.options)
         tokens = lexer.get_tokens(self.input)
         self.actual = '\n'.join(self._prettyprint_tokens(tokens)).rstrip('\n') + '\n'
         if not self.config.getoption('--update-goldens'):
@@ -110,6 +111,13 @@ class LexerInlineTestItem(LexerTestItem):
         if not self.input.endswith('\n'):
             self.input += '\n'
         self.comment = self.comment.strip()
+
+        # Support an "options:" magic comment to specify custom Lexer options.
+        for l in self.comment.split("\n"):
+            if l.startswith("# options:"):
+                options = [tuple(pair.split("=")) for
+                           pair in l[len("# options:"):].strip().split(",")]
+                self.options.update(options)
 
     def overwrite(self):
         with self.fspath.open('w', encoding='utf-8') as f:
