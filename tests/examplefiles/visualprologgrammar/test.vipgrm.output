@@ -1,0 +1,88 @@
+'end foreach' Keyword.Minor
+'\n'          Text.Whitespace
+
+'end try'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'end if'      Keyword.Minor
+'\n\n'        Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
+
+'grammar'     Keyword
+'\n'          Text.Whitespace
+
+'namespace'   Keyword
+'\n'          Text.Whitespace
+
+'nonterminals' Keyword
+'\n'          Text.Whitespace
+
+'open'        Keyword
+'\n'          Text.Whitespace
+
+'precedence'  Keyword
+'\n'          Text.Whitespace
+
+'rules'       Keyword
+'\n'          Text.Whitespace
+
+'startsymbols' Keyword
+'\n'          Text.Whitespace
+
+'terminals'   Keyword
+'\n\n'        Text.Whitespace
+
+'and'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'catch'       Keyword.Minor
+'\n'          Text.Whitespace
+
+'do'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'else'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'elseif'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'erroneous'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'finally'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'foreach'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'if'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'or'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'orelse'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'otherwise'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'then'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'try'         Keyword.Minor
+'\n\n'        Text.Whitespace
+
+'#bininclude' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#stringinclude' Keyword.Directive
+'\n\n'        Text.Whitespace
+
+'%'           Comment
+' strings, etc shared with "visualprolog"' Comment
+''            Comment
+'\n'          Text.Whitespace

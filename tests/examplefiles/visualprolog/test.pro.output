@@ -1,0 +1,456 @@
+'end foreach' Keyword.Minor
+'\n'          Text.Whitespace
+
+'end try'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'end if'      Keyword.Minor
+'\n\n'        Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
+
+'class'       Keyword
+'\n'          Text.Whitespace
+
+'clauses'     Keyword
+'\n'          Text.Whitespace
+
+'constants'   Keyword
+'\n'          Text.Whitespace
+
+'constructors' Keyword
+'\n'          Text.Whitespace
+
+'delegate'    Keyword
+'\n'          Text.Whitespace
+
+'domains'     Keyword
+'\n'          Text.Whitespace
+
+'facts'       Keyword
+'\n'          Text.Whitespace
+
+'goal'        Keyword
+'\n'          Text.Whitespace
+
+'implement'   Keyword
+'\n'          Text.Whitespace
+
+'inherits'    Keyword
+'\n'          Text.Whitespace
+
+'interface'   Keyword
+'\n'          Text.Whitespace
+
+'monitor'     Keyword
+'\n'          Text.Whitespace
+
+'namespace'   Keyword
+'\n'          Text.Whitespace
+
+'open'        Keyword
+'\n'          Text.Whitespace
+
+'predicates'  Keyword
+'\n'          Text.Whitespace
+
+'properties'  Keyword
+'\n'          Text.Whitespace
+
+'resolve'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'supports'    Keyword
+'\n\n\n'      Text.Whitespace
+
+'#bininclude' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#else'       Keyword.Directive
+'\n'          Text.Whitespace
+
+'#elseif'     Keyword.Directive
+'\n'          Text.Whitespace
+
+'#endif'      Keyword.Directive
+'\n'          Text.Whitespace
+
+'#error'      Keyword.Directive
+'\n'          Text.Whitespace
+
+'#export'     Keyword.Directive
+'\n'          Text.Whitespace
+
+'#externally' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#grammargenerate' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#grammarinclude' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#if'         Keyword.Directive
+'\n'          Text.Whitespace
+
+'#include'    Keyword.Directive
+'\n'          Text.Whitespace
+
+'#message'    Keyword.Directive
+'\n'          Text.Whitespace
+
+'#options'    Keyword.Directive
+'\n'          Text.Whitespace
+
+'#orrequires' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#requires'   Keyword.Directive
+'\n'          Text.Whitespace
+
+'#stringinclude' Keyword.Directive
+'\n'          Text.Whitespace
+
+'#then'       Keyword.Directive
+'\n\n'        Text.Whitespace
+
+':-'          Operator
+'\n'          Text.Whitespace
+
+'::'          Operator
+'\n'          Text.Whitespace
+
+':='          Operator
+'\n'          Text.Whitespace
+
+'->'          Operator
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+'\n'          Text.Whitespace
+
+'...'         Punctuation
+'\n'          Text.Whitespace
+
+'++'          Operator
+'\n'          Text.Whitespace
+
+'--'          Operator
+'\n'          Text.Whitespace
+
+'**'          Operator
+'\n'          Text.Whitespace
+
+'~~'          Operator
+'\n'          Text.Whitespace
+
+'<='          Operator
+'\n'          Text.Whitespace
+
+'<>'          Operator
+'\n'          Text.Whitespace
+
+'=='          Operator
+'\n'          Text.Whitespace
+
+'><'          Operator
+'\n'          Text.Whitespace
+
+'>='          Operator
+'\n'          Text.Whitespace
+
+'<<'          Operator
+'\n'          Text.Whitespace
+
+'>>'          Operator
+'\n'          Text.Whitespace
+
+'!'           Operator
+'\n\n'        Text.Whitespace
+
+'||'          Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'()'          Punctuation
+'\n'          Text.Whitespace
+
+'+'           Operator
+'\n'          Text.Whitespace
+
+','           Punctuation
+'\n'          Text.Whitespace
+
+'-'           Operator
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+':'           Operator
+'\n'          Text.Whitespace
+
+';'           Text
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'\\'          Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'^'           Operator
+'\n\n'        Text.Whitespace
+
+'*'           Operator
+'\n'          Text.Whitespace
+
+'/'           Operator
+'\n'          Text.Whitespace
+
+'<'           Operator
+'\n'          Text.Whitespace
+
+'='           Operator
+'\n'          Text.Whitespace
+
+'>'           Operator
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'align'       Keyword.Minor
+'\n'          Text.Whitespace
+
+'and'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'anyflow'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'as'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'bitsize'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'catch'       Keyword.Minor
+'\n'          Text.Whitespace
+
+'determ'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'digits'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'do'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'else'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'elseif'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
+
+'erroneous'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'externally'  Keyword.Minor
+'\n'          Text.Whitespace
+
+'failure'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'finally'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'foreach'     Keyword.Minor
+'\n'          Text.Whitespace
+
+'from'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'guard'       Keyword.Minor
+'\n'          Text.Whitespace
+
+'if'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'multi'       Keyword.Minor
+'\n'          Text.Whitespace
+
+'nondeterm'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'or'          Keyword.Minor
+'\n'          Text.Whitespace
+
+'orelse'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'otherwise'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'procedure'   Keyword.Minor
+'\n'          Text.Whitespace
+
+'single'      Keyword.Minor
+'\n'          Text.Whitespace
+
+'suspending'  Keyword.Minor
+'\n'          Text.Whitespace
+
+'div'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'mod'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'quot'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'rem'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'then'        Keyword.Minor
+'\n'          Text.Whitespace
+
+'try'         Keyword.Minor
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\n'        Text.Whitespace
+
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'12'          Literal.Number
+'\n'          Text.Whitespace
+
+'.122_123'    Literal.Number
+'\n'          Text.Whitespace
+
+'1.1'         Literal.Number
+'\n'          Text.Whitespace
+
+'1.2e-1'      Literal.Number
+'\n'          Text.Whitespace
+
+'0x_123_3123_12AD' Literal.Number
+'\n\n'        Text.Whitespace
+
+'_Aasda_sd124' Name.Variable.Anonymous
+'\n'          Text.Whitespace
+
+'Aasda_sd124' Name.Variable
+'\n'          Text.Whitespace
+
+'@asda_sd124' Name.Variable
+'\n'          Text.Whitespace
+
+'asdlkajsd'   Name
+'\n\n'        Text.Whitespace
+
+'Æ'           Text
+'ld'          Name
+'\n'          Text.Whitespace
+
+'æ'           Text
+'ld'          Name
+'\n\n'        Text.Whitespace
+
+'%'           Comment
+' single'     Comment
+''            Comment
+'\n'          Text.Whitespace
+
+'%'           Comment
+' '           Comment
+'@short'      Comment.Preproc
+' '           Comment
+'@detail'     Comment.Preproc
+' '           Comment
+'@withdomain' Comment.Preproc
+' '           Comment
+'@'           Comment
+'exception '  Comment
+'@end'        Comment.Preproc
+''            Comment
+'\n'          Text.Whitespace
+
+'%'           Comment
+' '           Comment
+'@'           Comment
+'not'         Comment
+''            Comment
+'\n\n'        Text.Whitespace
+
+'/*'          Comment
+'\n'          Comment
+
+'@short'      Comment.Preproc
+' '           Comment
+'@detail'     Comment.Preproc
+' '           Comment
+'@withdomain' Comment.Preproc
+' '           Comment
+'@'           Comment
+'exception '  Comment
+'@end'        Comment.Preproc
+'\n'          Comment
+
+'@'           Comment
+'not\n'       Comment
+
+'/*'          Comment
+'\n    % nesting\n' Comment
+
+'*/'          Comment
+'\n'          Comment
+
+'*/'          Comment
+'\n\n'        Text.Whitespace
+
+'"'           Literal.String.Symbol
+'string'      Literal.String
+'"'           Literal.String.Symbol
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Symbol
+'string'      Literal.String
+"'"           Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Symbol
+'\\u1233'     Literal.String.Escape
+'.'           Literal.String
+'\\t'         Literal.String.Escape
+'.'           Literal.String
+'\\r'         Literal.String.Escape
+'.'           Literal.String
+'\\n'         Literal.String.Escape
+'.'           Literal.String
+'\\\\'        Literal.String.Escape
+'.'           Literal.String
+'\\"'         Literal.String.Escape
+'.'           Literal.String
+"\\'"         Literal.String.Escape
+'.'           Literal.String
+'"'           Literal.String.Symbol
+'\n'          Text.Whitespace
