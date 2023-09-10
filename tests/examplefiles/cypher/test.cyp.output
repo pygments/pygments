@@ -1,4 +1,6 @@
 '//test comment' Comment.Single
+'\n  '        Text.Whitespace
+'//another test comment' Comment.Single
 '\n'          Text.Whitespace
 
 'START'       Keyword
@@ -384,7 +386,7 @@
 ' '           Text.Whitespace
 'Movies'      Name
 ','           Punctuation
-'collect'     Name
+'collect'     Keyword
 '('           Punctuation
 'm'           Name
 '.'           Punctuation
@@ -1273,6 +1275,8 @@
 '('           Punctuation
 'bob'         Name
 ')'           Punctuation
+'  '          Text.Whitespace
+'// comment to something' Comment.Single
 '\n'          Text.Whitespace
 
 'MATCH'       Keyword
@@ -1295,4 +1299,27 @@
 '\n'          Text.Whitespace
 
 '"string\\t\\n\\b\\f\\\\\\\'\'\\""' Literal.String
+'\n'          Text.Whitespace
+
+"'also string'" Literal.String
+'\n\n'        Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'p'           Name
+':'           Punctuation
+'Person'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'uri'         Name
+':'           Punctuation
+'"http://example.com/thing/1"' Literal.String
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'p'           Name
 '\n'          Text.Whitespace
