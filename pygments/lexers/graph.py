@@ -73,6 +73,10 @@ class CypherLexer(RegexLexer):
                 bygroups(Keyword, Whitespace, Keyword)),
             (r'(using)(\s+)(periodic)(\s+)(commit)\b',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword)),
+            (r'(using)(\s+)(index)\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(using)(\s+)(range|text|point)(\s+)(index)\b',
+                bygroups(Keyword, Whitespace, Name, Whitespace, Keyword)),
             (words((
                 'all', 'any', 'as', 'asc', 'ascending', 'assert', 'call', 'case', 'create',
                 'delete', 'desc', 'descending', 'distinct', 'end', 'fieldterminator',
