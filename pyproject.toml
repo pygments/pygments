@@ -42,6 +42,7 @@ classifiers = [
 
 [project.optional-dependencies]
 plugins = ["importlib-metadata;python_version<'3.8'"]
+windows-terminal = ["colorama >= 0.4.6"]
 
 [project.urls]
 Homepage = "https://pygments.org"
