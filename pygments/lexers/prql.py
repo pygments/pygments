@@ -79,12 +79,8 @@ class PrqlLexer(RegexLexer):
             # Main
             (r'^prql ', Keyword.Reserved),
 
-            # Variable Names
+            # Transforms
             (r'^[A-Za-z_][a-zA-Z0-9_]*', Keyword),
-
-            (r'[-~+/*%=<>&^|.@]', Operator),
-            (r'->|=>|==|!=|>=|<=|~=|&&|\|\||\?\?|\/\/', Operator),
-            (r'[]{}:(),;[]', Punctuation),
 
             include('keywords'),
             include('expr'),
@@ -127,8 +123,11 @@ class PrqlLexer(RegexLexer):
             ("'", String.Single, combined('stringescape', 'sqs')),
 
             (r'[^\S\n]+', Text),
-            include('functions'),
             include('numbers'),
+            (r'[-~+/*%=<>&^|.@]', Operator),
+            (r'->|=>|==|!=|>=|<=|~=|&&|\|\||\?\?|\/\/', Operator),
+            (r'[]{}:(),;[]', Punctuation),
+            include('functions'),
 
             # Variable Names
             (r'[A-Za-z_][a-zA-Z0-9_]*', Name.Variable),
@@ -146,7 +145,7 @@ class PrqlLexer(RegexLexer):
             include('stringescape'),
         ],
         'bytesescape': [
-            (r'\\([\\abfnrtv"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+            (r'\\([\\bfnrt"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'stringescape': [
             (r'\\(N\{.*?\}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})', String.Escape),
