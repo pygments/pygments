@@ -1,6 +1,6 @@
 """
     pygments.lexers.prql
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the PRQL query language.
 
