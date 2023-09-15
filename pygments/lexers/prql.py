@@ -43,7 +43,6 @@ class PrqlLexer(RegexLexer):
             # the new style '{}'.format(...) string formatting
             (r'\{'
              r'((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
-             r'(\![sra])?'                       # conversion
              r'(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
              r'\}', String.Interpol),
 
@@ -207,12 +206,10 @@ class PrqlLexer(RegexLexer):
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
-             r'(\![sraf])?'     # conversion
              r'\}', String.Interpol, '#pop'),
             # with format specifier
             # we'll catch the remaining '}' in the outer scope
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
-             r'(\![sraf])?'     # conversion
              r':', String.Interpol, '#pop'),
             (r'\s+', Whitespace),  # allow new lines
             include('expr'),
