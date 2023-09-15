@@ -23,27 +23,22 @@ select {
 derive db_version = s"version()"
 
 ---tokens---
-'from'        Keyword
+'from'        Name.Variable
 ' '           Text.Whitespace
 'invoices'    Name.Variable
 '\n'          Text.Whitespace
 
-'filter'      Keyword
+'filter'      Name.Variable
 ' '           Text.Whitespace
 'invoice_date' Name.Variable
 ' '           Text.Whitespace
 '>'           Operator
 '='           Operator
 ' '           Text.Whitespace
-'@'           Operator
-'1970'        Literal.Number.Integer
-'-'           Operator
-'01'          Literal.Number.Integer
-'-'           Operator
-'16'          Literal.Number.Integer
+'@1970-01-16' Literal.Date
 '\n'          Text.Whitespace
 
-'derive'      Keyword
+'derive'      Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text.Whitespace
@@ -68,7 +63,7 @@ derive db_version = s"version()"
 '}'           Punctuation
 '\n'          Text.Whitespace
 
-'filter'      Keyword
+'filter'      Name.Variable
 ' '           Text.Whitespace
 'income'      Name.Variable
 ' '           Text.Whitespace
@@ -77,7 +72,7 @@ derive db_version = s"version()"
 '1'           Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'group'       Keyword
+'group'       Name.Variable
 ' '           Text.Whitespace
 'customer_id' Name.Variable
 ' '           Text.Whitespace
@@ -116,7 +111,7 @@ derive db_version = s"version()"
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'sort'        Keyword
+'sort'        Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
 '-'           Operator
@@ -124,12 +119,12 @@ derive db_version = s"version()"
 '}'           Punctuation
 '\n'          Text.Whitespace
 
-'take'        Keyword
+'take'        Name.Variable
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'join'        Keyword
+'join'        Name.Variable
 ' '           Text.Whitespace
 'c'           Name.Variable
 '='           Operator
@@ -142,7 +137,7 @@ derive db_version = s"version()"
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'derive'      Keyword
+'derive'      Name.Variable
 ' '           Text.Whitespace
 'name'        Name.Variable
 ' '           Text.Whitespace
@@ -164,7 +159,7 @@ derive db_version = s"version()"
 '"'           Literal.String.Double
 '\n'          Text.Whitespace
 
-'select'      Keyword
+'select'      Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text.Whitespace
@@ -182,7 +177,7 @@ derive db_version = s"version()"
 '}'           Punctuation
 '\n'          Text.Whitespace
 
-'derive'      Keyword
+'derive'      Name.Variable
 ' '           Text.Whitespace
 'db_version'  Name.Variable
 ' '           Text.Whitespace
