@@ -9,7 +9,7 @@
 """
 
 from pygments.lexer import RegexLexer, combined, words, include, bygroups
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
+from pygments.token import Comment, Literal, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
 __all__ = ['PrqlLexer']
@@ -64,7 +64,7 @@ class PrqlLexer(RegexLexer):
         'root': [
 
             # Comments
-            (r'#!.*', Comment.Comment.Special),
+            (r'#!.*', String.Doc),
             (r'#.*', Comment.Single),
 
             # Whitespace
@@ -79,11 +79,13 @@ class PrqlLexer(RegexLexer):
             # Main
             (r'^prql ', Keyword.Reserved),
 
-            # Transforms
-            (r'^[A-Za-z_][a-zA-Z0-9_]*', Keyword),
+            ('let', Keyword.Declaration),
 
             include('keywords'),
             include('expr'),
+
+            # Transforms
+            (r'^[A-Za-z_][a-zA-Z0-9_]*', Keyword),
         ],
         'expr': [
             # non-raw f-strings
@@ -121,6 +123,11 @@ class PrqlLexer(RegexLexer):
             ("'''", String.Single, combined('stringescape', 'tsqs')),
             ('"', String.Double, combined('stringescape', 'dqs')),
             ("'", String.Single, combined('stringescape', 'sqs')),
+
+            # Time and dates
+            (r'@\d{4}-\d{2}-\d{2}', Literal.Date),
+            (r'@\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?([+-]\d{1,2})?', Literal.Date),
+            (r'@\d{4}-\d{2}-\d{2}T\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?([+-]\d{1,2})?', Literal.Date),
 
             (r'[^\S\n]+', Text),
             include('numbers'),
@@ -218,7 +225,7 @@ class PrqlLexer(RegexLexer):
         ],
         'keywords': [
             (words((
-                'let', 'into', 'case', 'prql', 'type', 'module', 'internal',
+                'into', 'case', 'type', 'module', 'internal',
                 ), suffix=r'\b'),
              Keyword),
             (words(('true', 'false', 'null'), suffix=r'\b'), Keyword.Constant),
