@@ -32,8 +32,7 @@ derive db_version = s"version()"
 ' '           Text.Whitespace
 'invoice_date' Name.Variable
 ' '           Text.Whitespace
-'>'           Operator
-'='           Operator
+'>='          Operator
 ' '           Text.Whitespace
 '@1970-01-16' Literal.Date
 '\n'          Text.Whitespace
@@ -131,8 +130,7 @@ derive db_version = s"version()"
 'customers'   Name.Variable
 ' '           Text.Whitespace
 '('           Punctuation
-'='           Operator
-'='           Operator
+'=='          Operator
 'customer_id' Name.Variable
 ')'           Punctuation
 '\n'          Text.Whitespace
