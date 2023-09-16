@@ -389,7 +389,7 @@ LEXERS = {
     'PromQLLexer': ('pygments.lexers.promql', 'PromQL', ('promql',), ('*.promql',), ()),
     'PropertiesLexer': ('pygments.lexers.configs', 'Properties', ('properties', 'jproperties'), ('*.properties',), ('text/x-java-properties',)),
     'ProtoBufLexer': ('pygments.lexers.dsls', 'Protocol Buffer', ('protobuf', 'proto'), ('*.proto',), ()),
-    'PrqlLexer': ('pygments.lexers.prql', 'PRQL', ('prql'), ('*.prql',), ('application/prql', 'application/x-prql')),
+    'PrqlLexer': ('pygments.lexers.prql', 'PRQL', ('prql',), ('*.prql',), ('application/prql', 'application/x-prql')),
     'PsyshConsoleLexer': ('pygments.lexers.php', 'PsySH console session for PHP', ('psysh',), (), ()),
     'PtxLexer': ('pygments.lexers.ptx', 'PTX', ('ptx',), ('*.ptx',), ('text/x-ptx',)),
     'PugLexer': ('pygments.lexers.html', 'Pug', ('pug', 'jade'), ('*.pug', '*.jade'), ('text/x-pug', 'text/x-jade')),
