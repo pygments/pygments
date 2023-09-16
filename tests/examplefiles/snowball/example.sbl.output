@@ -881,6 +881,32 @@
 'standard_suffix' Name
 '\n    '      Text.Whitespace
 ')'           Punctuation
+'\n    '      Text.Whitespace
+'$'           Operator
+'('           Punctuation
+'lenof'       Operator.Word
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'a'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'sizeof'      Operator.Word
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'a'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n    '      Text.Whitespace
+'$'           Operator
+'('           Punctuation
+'len'         Name.Builtin
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'size'        Name.Builtin
+')'           Punctuation
 '\n'          Text.Whitespace
 
 ')'           Punctuation
