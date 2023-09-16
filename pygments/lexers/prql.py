@@ -130,8 +130,8 @@ class PrqlLexer(RegexLexer):
 
             (r'[^\S\n]+', Text),
             include('numbers'),
-            (r'[-~+/*%=<>&^|.@]', Operator),
             (r'->|=>|==|!=|>=|<=|~=|&&|\|\||\?\?|\/\/', Operator),
+            (r'[-~+/*%=<>&^|.@]', Operator),
             (r'[]{}:(),;[]', Punctuation),
             include('functions'),
 
