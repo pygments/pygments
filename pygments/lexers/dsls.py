@@ -879,7 +879,7 @@ class SnowballLexer(ExtendedRegexLexer):
     """
 
     name = 'Snowball'
-    url = 'http://snowballstem.org/'
+    url = 'https://snowballstem.org/'
     aliases = ['snowball']
     filenames = ['*.sbl']
 
