@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: "3.x"
     - name: Checkout Pygments
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install tox
       run: pip install -r requirements.txt
     - name: Sphinx build
