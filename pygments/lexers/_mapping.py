@@ -527,6 +527,7 @@ LEXERS = {
     'UnixConfigLexer': ('pygments.lexers.configs', 'Unix/Linux config files', ('unixconfig', 'linuxconfig'), (), ()),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
     'UrlEncodedLexer': ('pygments.lexers.html', 'urlencoded', ('urlencoded',), (), ('application/x-www-form-urlencoded',)),
+    'UrsaLexer': ('pygments.lexers.ursa', 'Ursa', ('ursa',), ('*.ursa',), ('application/x-ursa', 'text/x-ursa')),
     'UsdLexer': ('pygments.lexers.usd', 'USD', ('usd', 'usda'), ('*.usd', '*.usda'), ()),
     'VBScriptLexer': ('pygments.lexers.basic', 'VBScript', ('vbscript',), ('*.vbs', '*.VBS'), ()),
     'VCLLexer': ('pygments.lexers.varnish', 'VCL', ('vcl',), ('*.vcl',), ('text/x-vclsrc',)),
