@@ -56,7 +56,7 @@ Lexers
 The base lexer class from which all lexers are derived is:
 
 .. autoclass:: Lexer
-   :members: __init__, get_tokens, get_tokens_unprocessed, analyse_text
+   :members: __init__, add_filter, get_tokens, get_tokens_unprocessed, analyse_text
 
 There are several base class derived from ``Lexer`` you can use to build your lexer from:
 
