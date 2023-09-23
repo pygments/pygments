@@ -13,6 +13,14 @@ You can use Pygments from the shell, provided you installed the
 will print the file test.py to standard output, using the Python lexer
 (inferred from the file name extension) and the terminal formatter (because
 you didn't give an explicit formatter name).
+
+.. note::
+
+   If you are on Windows, an extra tool may be needed for colored output to
+   work in the terminal. You can make sure Pygments is installed with
+   Windows console coloring support by installing Pygments with the ``windows-terminal``
+   extra (e.g., ``pip install pygments[windows-terminal]``).
+
 :program:`pygmentize` attempts to
 detect the maximum number of colors that the terminal supports. The difference
 between color formatters for 16 and 256 colors is immense, but there is a less
@@ -135,7 +143,7 @@ Highlighting stdin until EOF
 ----------------------------
 
 The ``-s`` option processes lines one at a time until EOF, rather than waiting
-to process the entire file. This only works for stdin, only for lexers with no 
+to process the entire file. This only works for stdin, only for lexers with no
 line-spanning constructs, and is intended for streaming input such as you get
 from `tail -f`. Usage is as follows::
 
