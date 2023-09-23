@@ -125,9 +125,9 @@ class PrqlLexer(RegexLexer):
             ("'", String.Single, combined('stringescape', 'sqs')),
 
             # Time and dates
+            (r'@\d{4}-\d{2}-\d{2}T\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?(Z|[+-]\d{1,2}(:\d{1,2})?)?', Literal.Date),
             (r'@\d{4}-\d{2}-\d{2}', Literal.Date),
-            (r'@\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?([+-]\d{1,2})?', Literal.Date),
-            (r'@\d{4}-\d{2}-\d{2}T\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?([+-]\d{1,2})?', Literal.Date),
+            (r'@\d{2}(:\d{2})?(:\d{2})?(\.\d{1,6})?(Z|[+-]\d{1,2}(:\d{1,2})?)?', Literal.Date),
 
             (r'[^\S\n]+', Text),
             include('numbers'),
