@@ -1,0 +1,13 @@
+---input---
+f"Hello {name}!"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'Hello '      Literal.String.Double
+'{'           Literal.String.Interpol
+'name'        Name.Variable
+'}'           Literal.String.Interpol
+'!'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
