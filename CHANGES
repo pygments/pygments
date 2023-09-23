@@ -8,7 +8,9 @@ Version 2.17.0
 (unreleased)
 
 - New lexers:
+
   * LDIF (#2489)
+  * PRQL (#2507)
   * Visual Prolog and Visual Prolog Grammar (#2480)
 
 - Updated lexers:
@@ -25,6 +27,8 @@ Version 2.17.0
 - The ``pygments.styles`` module contains a new ``STYLES`` variable
   with a dictionary of built-in styles.  The old ``STYLE_MAP`` variable,
   which uses a different format, is kept for backwards compatibility.
+- On Windows, add a new installation extra (``windows-terminal``) which pulls in
+  dependencies for colored console output. See :doc:`cmdline` for more details.
 
 Version 2.16.1
 --------------

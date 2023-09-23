@@ -82,7 +82,12 @@ class VisualPrologBaseLexer(RegexLexer):
         ]
     }
 
+
 class VisualPrologLexer(VisualPrologBaseLexer):
+    """Lexer for VisualProlog
+
+    .. versionadded:: 2.17
+    """
     name = 'Visual Prolog'
     aliases = ['visualprolog']
     filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
@@ -111,6 +116,11 @@ class VisualPrologLexer(VisualPrologBaseLexer):
 
 
 class VisualPrologGrammarLexer(VisualPrologBaseLexer):
+    """Lexer for VisualProlog grammar
+
+    .. versionadded:: 2.17
+    """
+
     name = 'Visual Prolog Grammar'
     aliases = ['visualprologgrammar']
     filenames = ['*.vipgrm']
@@ -124,7 +134,7 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
             inherit
         ]
     }
-    
+
     def analyse_text(text):
         """No competditors (currently)"""
         # These are *really* good indicators

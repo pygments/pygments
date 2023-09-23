@@ -14,10 +14,10 @@ from pygments.styles._mapping import STYLES
 
 #: A dictionary of built-in styles, mapping style names to
 #: ``'submodule::classname'`` strings.
-# This list is deprecated. Use `pygments.styles.STYLES` instead
+#: This list is deprecated. Use `pygments.styles.STYLES` instead
 STYLE_MAP = {v[1]: v[0].split('.')[-1] + '::' + k for k, v in STYLES.items()}
 
-# Internal reverse mapping to make `get_style_by_name` more efficient
+#: Internal reverse mapping to make `get_style_by_name` more efficient
 _STYLE_NAME_TO_MODULE_MAP = {v[1]: (v[0], k) for k, v in STYLES.items()}
 
 
