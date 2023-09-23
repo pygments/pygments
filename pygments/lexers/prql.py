@@ -19,8 +19,8 @@ class PrqlLexer(RegexLexer):
     """
     For PRQL source code.
 
-    .. versionadded:: 2.16.2
-    
+    .. versionadded:: 2.17
+
     grammar: https://github.com/PRQL/prql/tree/main/grammars
     """
 
@@ -29,7 +29,7 @@ class PrqlLexer(RegexLexer):
     aliases = ['prql']
     filenames = ['*.prql']
     mimetypes = ['application/prql', 'application/x-prql']
-    
+
     builtinTypes = words((
         "bool",
         "int",
@@ -70,9 +70,10 @@ class PrqlLexer(RegexLexer):
             (r'\s+', Whitespace),
 
             # Modules
-            (r'^(\s*)(module)(\s*)', bygroups(Whitespace, Keyword.Namespace,
-                Whitespace), 'imports'),
-            
+            (r'^(\s*)(module)(\s*)',
+             bygroups(Whitespace, Keyword.Namespace, Whitespace),
+             'imports'),
+
             (builtinTypes, Keyword.Type),
 
             # Main
