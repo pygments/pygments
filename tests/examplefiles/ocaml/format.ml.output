@@ -528,7 +528,7 @@
 '*)'          Comment
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'tag'         Name
 ' '           Text
@@ -537,7 +537,7 @@
 'string'      Keyword.Type
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'block_type'  Name
 ' '           Text
@@ -598,7 +598,7 @@
 '*)'          Comment
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'tblock'      Name
 ' '           Text
@@ -746,7 +746,7 @@
 'queue_cell'  Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 "'"           Keyword
 'a'           Name
@@ -1824,7 +1824,7 @@
 ')'           Operator
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_output_newline' Name
 ' '           Text
@@ -5365,7 +5365,7 @@
 'Pp_hbox'     Name.Class
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_open_vbox' Name
 ' '           Text
@@ -5384,7 +5384,7 @@
 'Pp_vbox'     Name.Class
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_open_hvbox' Name
 ' '           Text
@@ -5403,7 +5403,7 @@
 'Pp_hvbox'    Name.Class
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_open_hovbox' Name
 ' '           Text
@@ -5422,7 +5422,7 @@
 'Pp_hovbox'   Name.Class
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_open_box' Name
 ' '           Text
@@ -5475,7 +5475,7 @@
 '()'          Name.Builtin.Pseudo
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_print_flush' Name
 ' '           Text
@@ -5701,7 +5701,7 @@
 '0'           Literal.Number.Integer
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_print_cut' Name
 ' '           Text
@@ -6270,7 +6270,7 @@
 's'           Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_get_ellipsis_text' Name
 ' '           Text
@@ -7718,7 +7718,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_vbox'   Name
 ' '           Text
@@ -7729,7 +7729,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_hvbox'  Name
 ' '           Text
@@ -7740,7 +7740,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_hovbox' Name
 ' '           Text
@@ -7751,7 +7751,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_box'    Name
 ' '           Text
@@ -7762,7 +7762,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'close_box'   Name
 ' '           Text
@@ -7773,7 +7773,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_tag'    Name
 ' '           Text
@@ -7784,7 +7784,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'close_tag'   Name
 ' '           Text
@@ -7795,7 +7795,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_as'    Name
 ' '           Text
@@ -7806,7 +7806,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_string' Name
 ' '           Text
@@ -7817,7 +7817,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_int'   Name
 ' '           Text
@@ -7828,7 +7828,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_float' Name
 ' '           Text
@@ -7839,7 +7839,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_char'  Name
 ' '           Text
@@ -7850,7 +7850,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_bool'  Name
 ' '           Text
@@ -7861,7 +7861,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_break' Name
 ' '           Text
@@ -7872,7 +7872,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_cut'   Name
 ' '           Text
@@ -7883,7 +7883,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_space' Name
 ' '           Text
@@ -7894,7 +7894,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'force_newline' Name
 ' '           Text
@@ -7905,7 +7905,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_flush' Name
 ' '           Text
@@ -7916,7 +7916,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_newline' Name
 ' '           Text
@@ -7927,7 +7927,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_if_newline' Name
 ' '           Text
@@ -7938,7 +7938,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'open_tbox'   Name
 ' '           Text
@@ -7949,7 +7949,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'close_tbox'  Name
 ' '           Text
@@ -7960,7 +7960,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_tbreak' Name
 ' '           Text
@@ -7971,7 +7971,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_tab'     Name
 ' '           Text
@@ -7982,7 +7982,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'print_tab'   Name
 ' '           Text
@@ -7993,7 +7993,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_margin'  Name
 ' '           Text
@@ -8004,7 +8004,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_margin'  Name
 ' '           Text
@@ -8015,7 +8015,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_max_indent' Name
 ' '           Text
@@ -8026,7 +8026,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_max_indent' Name
 ' '           Text
@@ -8037,7 +8037,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_max_boxes' Name
 ' '           Text
@@ -8048,7 +8048,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_max_boxes' Name
 ' '           Text
@@ -8059,7 +8059,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'over_max_boxes' Name
 ' '           Text
@@ -8070,7 +8070,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_ellipsis_text' Name
 ' '           Text
@@ -8081,7 +8081,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_ellipsis_text' Name
 ' '           Text
@@ -8092,7 +8092,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_formatter_out_channel' Name
 ' '           Text
@@ -8103,7 +8103,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_formatter_output_functions' Name
 ' '           Text
@@ -8114,7 +8114,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_formatter_output_functions' Name
 ' '           Text
@@ -8125,7 +8125,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_all_formatter_output_functions' Name
 ' '           Text
@@ -8136,7 +8136,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_all_formatter_output_functions' Name
 ' '           Text
@@ -8147,7 +8147,7 @@
 'std_formatter' Name
 '\n\n'        Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_formatter_tag_functions' Name
 ' '           Text
@@ -8158,7 +8158,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_formatter_tag_functions' Name
 ' '           Text
@@ -8169,7 +8169,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_print_tags' Name
 ' '           Text
@@ -8180,7 +8180,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_print_tags' Name
 ' '           Text
@@ -8191,7 +8191,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_mark_tags' Name
 ' '           Text
@@ -8202,7 +8202,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_mark_tags' Name
 ' '           Text
@@ -8213,7 +8213,7 @@
 'std_formatter' Name
 '\n'          Text
 
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'set_tags'    Name
 ' '           Text
@@ -8961,7 +8961,7 @@
 ' '           Text
 'None'        Name.Class
 '\n      '    Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'pp_print_as_string' Name
 ' '           Text
@@ -9461,7 +9461,7 @@
 'i'           Name
 ')'           Operator
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_s'      Name
 ' '           Text
@@ -9484,7 +9484,7 @@
 ' '           Text
 'i'           Name
 '\n      '    Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_a'      Name
 ' '           Text
@@ -9547,7 +9547,7 @@
 ' '           Text
 'i'           Name
 '\n      '    Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_t'      Name
 ' '           Text
@@ -9600,7 +9600,7 @@
 ' '           Text
 'i'           Name
 '\n      '    Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_f'      Name
 ' '           Text
@@ -9623,7 +9623,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_m'      Name
 ' '           Text
@@ -9659,7 +9659,7 @@
 ' '           Text
 'sfmt'        Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_int'     Name
 ' '           Text
@@ -9752,7 +9752,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_a'      Name
 ' '           Text
@@ -9772,7 +9772,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_t'      Name
 ' '           Text
@@ -9790,7 +9790,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_f'      Name
 ' '           Text
@@ -9806,7 +9806,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_m'      Name
 ' '           Text
@@ -9983,7 +9983,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'skip_gt'     Name
 ' '           Text
@@ -10056,7 +10056,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_box_kind' Name
 ' '           Text
@@ -10299,7 +10299,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'get_tag_name' Name
 ' '           Text
@@ -10478,7 +10478,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_a'      Name
 ' '           Text
@@ -10558,7 +10558,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_t'      Name
 ' '           Text
@@ -10642,7 +10642,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_f'      Name
 ' '           Text
@@ -10662,7 +10662,7 @@
 ' '           Text
 'i'           Name
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'cont_m'      Name
 ' '           Text
@@ -10740,7 +10740,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'do_pp_break' Name
 ' '           Text
@@ -10824,7 +10824,7 @@
 'nspaces'     Name
 ')'           Operator
 '\n          ' Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'got_offset'  Name
 ' '           Text
@@ -10898,7 +10898,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'do_pp_open_box' Name
 ' '           Text
@@ -11043,7 +11043,7 @@
 ' '           Text
 'i'           Name
 '\n\n      '  Text
-'and'         Operator.Word
+'and'         Keyword
 ' '           Text
 'do_pp_open_tag' Name
 ' '           Text
