@@ -1,0 +1,17 @@
+---input---
+<button aria-label="Submit">Submit</button>
+
+---tokens---
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'aria-label'  Name.Attribute
+'='           Operator
+'"Submit"'    Literal.String
+'>'           Punctuation
+'Submit'      Name.Other
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

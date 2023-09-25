@@ -1,0 +1,22 @@
+---input---
+<User name={'john'} last={'doe'} />
+
+---tokens---
+'<'           Punctuation
+'User'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'{'           Punctuation
+"'john'"      Literal.String.Single
+'}'           Punctuation
+' '           Text
+'last'        Name.Attribute
+'='           Operator
+'{'           Punctuation
+"'doe'"       Literal.String.Single
+'}'           Punctuation
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text.Whitespace
