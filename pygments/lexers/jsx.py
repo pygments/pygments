@@ -50,14 +50,14 @@ TOKENS = {
         (r"(>)", bygroups(Punctuation), "#pop"),
     ],
     "attr": [
-        ("{", Punctuation, "expression"),
-        ('".*?"', String, "#pop"),
-        ("'.*?'", String, "#pop"),
+        (r"\{", Punctuation, "expression"),
+        (r'".*?"', String, "#pop"),
+        (r"'.*?'", String, "#pop"),
         default("#pop"),
     ],
     "expression": [
-        ("{", Punctuation, "#push"),
-        ("}", Punctuation, "#pop"),
+        (r"\{", Punctuation, "#push"),
+        (r\"}", Punctuation, "#pop"),
         include("root"),
     ],
 }
