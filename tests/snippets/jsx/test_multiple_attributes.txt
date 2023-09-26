@@ -4,19 +4,19 @@
 ---tokens---
 '<'           Punctuation
 'User'        Name.Tag
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Operator
 '{'           Punctuation
 "'john'"      Literal.String.Single
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'last'        Name.Attribute
 '='           Operator
 '{'           Punctuation
 "'doe'"       Literal.String.Single
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n'          Text.Whitespace

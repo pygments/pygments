@@ -71,8 +71,7 @@
 '{'           Punctuation
 'children'    Name.Other
 '}'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'h3'          Name.Tag
 '>'           Punctuation
 '\n'          Text.Whitespace
@@ -111,8 +110,7 @@
 '{'           Punctuation
 'title'       Name.Other
 '}'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'BlogTitle'   Name.Tag
 '>'           Punctuation
 '\n  '        Text.Whitespace
@@ -131,7 +129,7 @@
 '\n    '      Text.Whitespace
 '<'           Punctuation
 'div'         Name.Tag
-' '           Text
+' '           Text.Whitespace
 'className'   Name.Attribute
 '='           Operator
 '"blog-body"' Literal.String
@@ -160,8 +158,7 @@
 '.'           Punctuation
 'body'        Name.Other
 '}'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'p'           Name.Tag
 '>'           Punctuation
 '\n      '    Text.Whitespace
@@ -169,40 +166,37 @@
 'CustomComponent' Name.Tag
 '>'           Punctuation
 'text'        Name.Other
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'CustomComponent' Name.Tag
 '>'           Punctuation
 '\n      '    Text.Whitespace
 '<'           Punctuation
 'input'       Name.Tag
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Attribute
 '='           Operator
 '"text"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '...props.inputProps' Name.Attribute
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 '\n      '    Text.Whitespace
 '<'           Punctuation
 'button'      Name.Tag
-' '           Text
+' '           Text.Whitespace
 'aria-label'  Name.Attribute
 '='           Operator
 '"Submit"'    Literal.String
 '>'           Punctuation
 'Submit'      Name.Other
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'button'      Name.Tag
 '>'           Punctuation
 '\n    '      Text.Whitespace
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'div'         Name.Tag
 '>'           Punctuation
 '\n    '      Text.Whitespace
@@ -233,17 +227,17 @@
 ' '           Text.Whitespace
 '<'           Punctuation
 'BlogPost'    Name.Tag
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Attribute
 '='           Operator
 '"What\'s going on?"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'body'        Name.Attribute
 '='           Operator
 '{'           Punctuation
 'body'        Name.Other
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/'           Punctuation
 '>'           Punctuation
 ';'           Punctuation
@@ -273,11 +267,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'<'           Punctuation
-'>'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
-'>'           Punctuation
+'<>'          Punctuation
+'</>'         Punctuation
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -287,15 +278,12 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'<'           Punctuation
-'>'           Punctuation
+'<>'          Punctuation
 '<'           Punctuation
 'div'         Name.Tag
 '/'           Punctuation
 '>'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
-'>'           Punctuation
+'</>'         Punctuation
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -314,8 +302,7 @@
 'div'         Name.Tag
 '/'           Punctuation
 '>'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'React'       Name.Tag
 '.'           Punctuation
 'Fragment'    Name.Attribute
@@ -338,8 +325,7 @@
 'div'         Name.Tag
 '/'           Punctuation
 '>'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'Context'     Name.Tag
 '.'           Punctuation
 'Provider'    Name.Attribute
@@ -357,7 +343,7 @@
 'Context'     Name.Tag
 '.'           Punctuation
 'Provider'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 'value'       Name.Attribute
 '='           Operator
 '"Hello"'     Literal.String
@@ -366,8 +352,7 @@
 'div'         Name.Tag
 '/'           Punctuation
 '>'           Punctuation
-'<'           Punctuation
-'/'           Punctuation
+'</'          Punctuation
 'Context'     Name.Tag
 '.'           Punctuation
 'Provider'    Name.Attribute
