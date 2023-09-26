@@ -1,0 +1,23 @@
+---input---
+<div style={{ color: 'red' }} />
+
+---tokens---
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'{'           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'color'       Name.Other
+':'           Operator
+' '           Text.Whitespace
+"'red'"       Literal.String.Single
+' '           Text.Whitespace
+'}'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text.Whitespace
