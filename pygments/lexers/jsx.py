@@ -57,7 +57,7 @@ TOKENS = {
     ],
     "expression": [
         (r"\{", Punctuation, "#push"),
-        (r\"}", Punctuation, "#pop"),
+        (r"\}", Punctuation, "#pop"),
         include("root"),
     ],
 }
