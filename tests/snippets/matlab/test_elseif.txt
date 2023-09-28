@@ -1,0 +1,84 @@
+Issue #1490 shows this case to produce a wrong output.
+
+---input---
+if (i == r)
+    j = j + 1;
+elseif (j == 1)
+    i = i + 1;
+else
+    i = i + 1;
+    j = j - 1;
+end
+
+---tokens---
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Name.Builtin
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'r'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'j'           Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'j'           Name.Builtin
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'elseif'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'j'           Name.Builtin
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text.Whitespace
+'i'           Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'i'           Name.Builtin
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'else'        Keyword
+'\n    '      Text.Whitespace
+'i'           Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'i'           Name.Builtin
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'j'           Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'j'           Name.Builtin
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
