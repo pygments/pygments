@@ -1,6 +1,5 @@
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import *
-from pygments.formatters import Terminal256Formatter
 
 
 class VyperLexer(RegexLexer):
