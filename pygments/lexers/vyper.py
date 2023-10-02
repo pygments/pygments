@@ -6,6 +6,7 @@ class VyperLexer(RegexLexer):
     name = 'Vyper'
     aliases = ['vyper']
     filenames = ['*.vy']
+    url = "https://vyper.readthedocs.io/"
 
     tokens = {
         'root': [
