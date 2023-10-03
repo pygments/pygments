@@ -18,8 +18,7 @@ class VyperLexer(RegexLexer):
     filenames = ['*.vy']
     url = "https://vyper.readthedocs.io/"
 
-    # Note: The order of regex patterns matter. More specific patterns or patterns
-    # expected to match more frequently should be placed higher.
+
     tokens = {
         'root': [
             # Whitespace
@@ -51,7 +50,6 @@ class VyperLexer(RegexLexer):
             (r'[,:;()\[\]{}]', Punctuation),
 
             # Built-in Functions
-            # Condensed and ordered by expected frequency of appearance
             (r'\b(bitwise_and|bitwise_not|bitwise_or|bitwise_xor|shift|'
              r'create_minimal_proxy_to|create_copy_of|create_from_blueprint|'
              r'ecadd|ecmul|ecrecover|keccak256|sha256|'
@@ -64,7 +62,6 @@ class VyperLexer(RegexLexer):
             (r'\b(msg\.sender|msg\.value|block\.timestamp|block\.number|msg\.gas)\b', Name.Builtin.Pseudo),
 
             # Other variable names and types
-            # Order matters; more specific patterns should come first
             (r'@internal', Name.Decorator),
             (r'@[\w.]+', Name.Decorator),
             (r'__\w+__', Name.Magic),  # Matches double underscores followed by word characters
