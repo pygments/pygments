@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import (Comment, String, Name, Keyword, Number,
                             Operator, Punctuation, Text, Error)
 
@@ -38,10 +38,10 @@ class VyperLexer(RegexLexer):
             (r'\b\d+\.\d*\b', Number.Float),
 
             # Keywords
-            (r'\b(def|event|pass|return|for|while|if|elif|else|assert|raise|import|in|struct|implements|interface|from)\b', Keyword),
+            (words(('def', 'event', 'pass', 'return', 'for', 'while', 'if', 'elif', 'else', 'assert', 'raise', 'import', 'in', 'struct', 'implements', 'interface', 'from'), prefix=r'\b', suffix=r'\b'), Keyword),
 
             # Visibility and State Mutability
-            (r'\b(public|private|view|pure|constant|immutable)\b', Keyword.Declaration),
+            (words(('public', 'private', 'view', 'pure', 'constant', 'immutable'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
 
             # Operators and Punctuation
             (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=)', Operator),
@@ -50,16 +50,13 @@ class VyperLexer(RegexLexer):
             (r'[,:;()\[\]{}]', Punctuation),
 
             # Built-in Functions
-            (r'\b(bitwise_and|bitwise_not|bitwise_or|bitwise_xor|shift|'
-             r'create_minimal_proxy_to|create_copy_of|create_from_blueprint|'
-             r'ecadd|ecmul|ecrecover|keccak256|sha256|'
-             r'concat|convert|uint2str|extract32|slice|'
-             r'abs|ceil|floor|max|max_value|min|min_value|pow_mod256|sqrt|isqrt|'
-             r'uint256_addmod|uint256_mulmod|unsafe_add|unsafe_sub|unsafe_mul|unsafe_div|'
-             r'as_wei_value|blockhash|empty|len|method_id|_abi_encode|_abi_decode|print|range)\b', Name.Builtin),
+            (words(('bitwise_and', 'bitwise_not', 'bitwise_or', 'bitwise_xor', 'shift', 'create_minimal_proxy_to', 'create_copy_of', 'create_from_blueprint',
+            'ecadd', 'ecmul', 'ecrecover', 'keccak256', 'sha256', 'concat', 'convert', 'uint2str', 'extract32', 'slice', 'abs', 'ceil', 'floor', 'max', 'max_value', 'min', 'min_value', 
+            'pow_mod256', 'sqrt', 'isqrt', 'uint256_addmod', 'uint256_mulmod', 'unsafe_add', 'unsafe_sub', 'unsafe_mul', 'unsafe_div',
+            'as_wei_value', 'blockhash', 'empty', 'len', 'method_id', '_abi_encode', '_abi_decode', 'print', 'range'), prefix=r'\b', suffix=r'\b'), Name.Builtin),
 
             # Built-in Variables and Attributes
-            (r'\b(msg\.sender|msg\.value|block\.timestamp|block\.number|msg\.gas)\b', Name.Builtin.Pseudo),
+            (words(('msg.sender', 'msg.value', 'block.timestamp', 'block.number', 'msg.gas'), prefix=r'\b', suffix=r'\b'), Name.Builtin.Pseudo),
 
             # Other variable names and types
             (r'@internal', Name.Decorator),
@@ -70,7 +67,12 @@ class VyperLexer(RegexLexer):
             (r'ERC20', Name.Class),
             (r'log', Keyword),
 
-            (r'\b(?:u?int\d+|bool|decimal|bytes\d{1,4}|string|String|address|bytes|enum|struct)\b', Keyword.Type),
+            (words(('uint', 'uint8', 'uint16', 'uint32', 'uint64', 'uint128', 'uint256', 'int', 'int8', 'int16', 'int32', 'int64', 'int128', 'int256',
+            'bool', 'decimal', 'bytes', 'bytes1', 'bytes2', 'bytes3', 'bytes4', 'bytes5', 'bytes6', 'bytes7', 'bytes8', 'bytes9', 
+            'bytes10', 'bytes11', 'bytes12', 'bytes13', 'bytes14', 'bytes15', 'bytes16', 'bytes17', 'bytes18', 'bytes19', 'bytes20', 
+            'bytes21', 'bytes22', 'bytes23', 'bytes24', 'bytes25', 'bytes26', 'bytes27', 'bytes28', 'bytes29', 'bytes30', 'bytes31', 'bytes32', 
+            'string', 'String', 'address', 'enum', 'struct'
+            ), prefix=r'\b', suffix=r'\b'), Keyword.Type),
 
             (r'\binterface\b', Keyword.Declaration),
             (r'\bfrom\b', Keyword.Namespace, 'importfrom'),
@@ -88,8 +90,9 @@ class VyperLexer(RegexLexer):
         ],
 
         'multiline-comment': [
-            (r'\"\"\"', Comment.Multiline, '#pop'),
-            (r'.|\n', Comment.Multiline)
+            (r'\"\"\"', Comment.Multiline, '#pop'),   
+            (r'[^"]+', Comment.Multiline),            
+            (r'\"', Comment.Multiline)                
         ],
 
         'importfrom': [
