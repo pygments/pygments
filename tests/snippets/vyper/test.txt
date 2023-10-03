@@ -1,0 +1,138 @@
+---input---
+@external
+def __init__(_name: String[64], _symbol: String[32]):
+    name = _name
+    symbol = _symbol
+
+    NAME_HASH = keccak256(_name)
+    CACHED_CHAIN_ID = chain.id
+    salt = block.prevhash
+    CACHED_DOMAIN_SEPARATOR = keccak256(
+        _abi_encode(
+            EIP712_TYPEHASH,
+            keccak256(_name),
+            VERSION_HASH,
+            chain.id,
+            self,
+            block.prevhash,
+        )
+    )
+
+    self.minter = msg.sender
+    log SetMinter(msg.sender)
+
+---tokens---
+'@external'   Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'__init__'    Name.Magic
+'('           Punctuation
+'_name:'      Name.Variable
+' '           Text.Whitespace
+'String'      Keyword.Type
+'['           Punctuation
+'64'          Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'_symbol:'    Name.Variable
+' '           Text.Whitespace
+'String'      Keyword.Type
+'['           Punctuation
+'32'          Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n    '      Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_name'       Name
+'\n    '      Text.Whitespace
+'symbol'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_symbol'     Name
+'\n\n    '    Text.Whitespace
+'NAME_HASH'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'_name'       Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'CACHED_CHAIN_ID' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'chain'       Name
+'.'           Text
+'id'          Name
+'\n    '      Text.Whitespace
+'salt'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'block'       Name
+'.'           Text
+'prevhash'    Name
+'\n    '      Text.Whitespace
+'CACHED_DOMAIN_SEPARATOR' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'\n        '  Text.Whitespace
+'_abi_encode' Name.Builtin
+'('           Punctuation
+'\n            ' Text.Whitespace
+'EIP712_TYPEHASH' Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'_name'       Name
+')'           Punctuation
+','           Punctuation
+'\n            ' Text.Whitespace
+'VERSION_HASH' Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'chain'       Name
+'.'           Text
+'id'          Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'self'        Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'block'       Name
+'.'           Text
+'prevhash'    Name
+','           Punctuation
+'\n        '  Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'self.'       Name.Attribute
+'minter'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'msg.sender'  Name.Builtin.Pseudo
+'\n    '      Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'SetMinter'   Name
+'('           Punctuation
+'msg.sender'  Name.Builtin.Pseudo
+')'           Punctuation
+'\n'          Text.Whitespace

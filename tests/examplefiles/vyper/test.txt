@@ -1,0 +1,87 @@
+# @version 0.2.5
+"""
+@title crvUSD Stablecoin
+@author Curve.Fi
+@license Copyright (c) Curve.Fi, 2020-2023 - all rights reserved
+"""
+from vyper.interfaces import ERC20
+
+implements: ERC20
+
+
+interface ERC1271:
+    def isValidSignature(_hash: bytes32, _signature: Bytes[65]) -> bytes4: view
+
+
+event Approval:
+    owner: indexed(address)
+    spender: indexed(address)
+    value: uint256
+
+event Transfer:
+    sender: indexed(address)
+    receiver: indexed(address)
+    value: uint256
+
+event SetMinter:
+    minter: indexed(address)
+
+
+decimals: public(constant(uint8)) = 18
+version: public(constant(String[8])) = "v1.0.0"
+
+ERC1271_MAGIC_VAL: constant(bytes4) = 0x1626ba7e
+EIP712_TYPEHASH: constant(bytes32) = keccak256(
+    "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract,bytes32 salt)"
+)
+EIP2612_TYPEHASH: constant(bytes32) = keccak256(
+    "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"
+)
+VERSION_HASH: constant(bytes32) = keccak256(version)
+
+
+name: public(immutable(String[64]))
+symbol: public(immutable(String[32]))
+salt: public(immutable(bytes32))
+
+NAME_HASH: immutable(bytes32)
+CACHED_CHAIN_ID: immutable(uint256)
+CACHED_DOMAIN_SEPARATOR: immutable(bytes32)
+
+
+allowance: public(HashMap[address, HashMap[address, uint256]])
+balanceOf: public(HashMap[address, uint256])
+totalSupply: public(uint256)
+
+nonces: public(HashMap[address, uint256])
+minter: public(address)
+
+
+@external
+def __init__(_name: String[64], _symbol: String[32]):
+    name = _name
+    symbol = _symbol
+
+    NAME_HASH = keccak256(_name)
+    CACHED_CHAIN_ID = chain.id
+    salt = block.prevhash
+    CACHED_DOMAIN_SEPARATOR = keccak256(
+        _abi_encode(
+            EIP712_TYPEHASH,
+            keccak256(_name),
+            VERSION_HASH,
+            chain.id,
+            self,
+            block.prevhash,
+        )
+    )
+
+    self.minter = msg.sender
+    log SetMinter(msg.sender)
+
+
+@internal
+def _approve(_owner: address, _spender: address, _value: uint256):
+    self.allowance[_owner][_spender] = _value
+
+    log Approval(_owner, _spender, _value)

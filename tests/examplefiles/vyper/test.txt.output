@@ -1,0 +1,611 @@
+'# @version 0.2.5' Comment.Single
+'\n'          Text.Whitespace
+
+'"""'         Comment.Multiline
+'\n'          Comment.Multiline
+
+'@'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'t'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'r'           Comment.Multiline
+'v'           Comment.Multiline
+'U'           Comment.Multiline
+'S'           Comment.Multiline
+'D'           Comment.Multiline
+' '           Comment.Multiline
+'S'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'b'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'@'           Comment.Multiline
+'a'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+' '           Comment.Multiline
+'C'           Comment.Multiline
+'u'           Comment.Multiline
+'r'           Comment.Multiline
+'v'           Comment.Multiline
+'e'           Comment.Multiline
+'.'           Comment.Multiline
+'F'           Comment.Multiline
+'i'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'@'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'c'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'C'           Comment.Multiline
+'o'           Comment.Multiline
+'p'           Comment.Multiline
+'y'           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'g'           Comment.Multiline
+'h'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'c'           Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+'C'           Comment.Multiline
+'u'           Comment.Multiline
+'r'           Comment.Multiline
+'v'           Comment.Multiline
+'e'           Comment.Multiline
+'.'           Comment.Multiline
+'F'           Comment.Multiline
+'i'           Comment.Multiline
+','           Comment.Multiline
+' '           Comment.Multiline
+'2'           Comment.Multiline
+'0'           Comment.Multiline
+'2'           Comment.Multiline
+'0'           Comment.Multiline
+'-'           Comment.Multiline
+'2'           Comment.Multiline
+'0'           Comment.Multiline
+'2'           Comment.Multiline
+'3'           Comment.Multiline
+' '           Comment.Multiline
+'-'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+'l'           Comment.Multiline
+' '           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'g'           Comment.Multiline
+'h'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'v'           Comment.Multiline
+'e'           Comment.Multiline
+'d'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'"""'         Comment.Multiline
+'\n'          Text.Whitespace
+
+'from'        Keyword
+' '           Text.Whitespace
+'vyper'       Name
+'.'           Text
+'interfaces'  Name
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ERC20'       Name.Class
+'\n\n'        Text.Whitespace
+
+'implements'  Keyword
+':'           Operator
+' '           Text.Whitespace
+'ERC20'       Name.Class
+'\n\n\n'      Text.Whitespace
+
+'interface'   Keyword
+' '           Text.Whitespace
+'ERC1271:'    Name.Variable
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'isValidSignature' Name
+'('           Punctuation
+'_hash:'      Name.Variable
+' '           Text.Whitespace
+'bytes32'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_signature:' Name.Variable
+' '           Text.Whitespace
+'Bytes'       Name
+'['           Punctuation
+'65'          Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'bytes4'      Keyword.Type
+':'           Operator
+' '           Text.Whitespace
+'view'        Keyword.Declaration
+'\n\n\n'      Text.Whitespace
+
+'event'       Keyword
+' '           Text.Whitespace
+'Approval:'   Name.Variable
+'\n    '      Text.Whitespace
+'owner:'      Name.Variable
+' '           Text.Whitespace
+'indexed'     Name
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n    '      Text.Whitespace
+'spender:'    Name.Variable
+' '           Text.Whitespace
+'indexed'     Name
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n    '      Text.Whitespace
+'value:'      Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'event'       Keyword
+' '           Text.Whitespace
+'Transfer:'   Name.Variable
+'\n    '      Text.Whitespace
+'sender:'     Name.Variable
+' '           Text.Whitespace
+'indexed'     Name
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n    '      Text.Whitespace
+'receiver:'   Name.Variable
+' '           Text.Whitespace
+'indexed'     Name
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n    '      Text.Whitespace
+'value:'      Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'event'       Keyword
+' '           Text.Whitespace
+'SetMinter:'  Name.Variable
+'\n    '      Text.Whitespace
+'minter:'     Name.Variable
+' '           Text.Whitespace
+'indexed'     Name
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'decimals:'   Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'constant'    Keyword.Declaration
+'('           Punctuation
+'uint8'       Keyword.Type
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'18'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'version:'    Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'constant'    Keyword.Declaration
+'('           Punctuation
+'String'      Keyword.Type
+'['           Punctuation
+'8'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"v1.0.0"'    Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'ERC1271_MAGIC_VAL:' Name.Variable
+' '           Text.Whitespace
+'constant'    Keyword.Declaration
+'('           Punctuation
+'bytes4'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1626ba7e'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'EIP712_TYPEHASH:' Name.Variable
+' '           Text.Whitespace
+'constant'    Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'\n    '      Text.Whitespace
+'"EIP712Domain(string name,string version,uint256 chainId,address verifyingContract,bytes32 salt)"' Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'EIP2612_TYPEHASH:' Name.Variable
+' '           Text.Whitespace
+'constant'    Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'\n    '      Text.Whitespace
+'"Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"' Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'VERSION_HASH:' Name.Variable
+' '           Text.Whitespace
+'constant'    Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'version'     Name
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'name:'       Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'String'      Keyword.Type
+'['           Punctuation
+'64'          Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'symbol:'     Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'String'      Keyword.Type
+'['           Punctuation
+'32'          Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'salt:'       Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'NAME_HASH:'  Name.Variable
+' '           Text.Whitespace
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'CACHED_CHAIN_ID:' Name.Variable
+' '           Text.Whitespace
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'uint256'     Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'CACHED_DOMAIN_SEPARATOR:' Name.Variable
+' '           Text.Whitespace
+'immutable'   Keyword.Declaration
+'('           Punctuation
+'bytes32'     Keyword.Type
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'allowance:'  Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'HashMap'     Name
+'['           Punctuation
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'HashMap'     Name
+'['           Punctuation
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'balanceOf:'  Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'HashMap'     Name
+'['           Punctuation
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'totalSupply:' Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'uint256'     Keyword.Type
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'nonces:'     Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'HashMap'     Name
+'['           Punctuation
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'minter:'     Name.Variable
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'('           Punctuation
+'address'     Keyword.Type
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'@external'   Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'__init__'    Name.Magic
+'('           Punctuation
+'_name:'      Name.Variable
+' '           Text.Whitespace
+'String'      Keyword.Type
+'['           Punctuation
+'64'          Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'_symbol:'    Name.Variable
+' '           Text.Whitespace
+'String'      Keyword.Type
+'['           Punctuation
+'32'          Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n    '      Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_name'       Name
+'\n    '      Text.Whitespace
+'symbol'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_symbol'     Name
+'\n\n    '    Text.Whitespace
+'NAME_HASH'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'_name'       Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'CACHED_CHAIN_ID' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'chain'       Name
+'.'           Text
+'id'          Name
+'\n    '      Text.Whitespace
+'salt'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'block'       Name
+'.'           Text
+'prevhash'    Name
+'\n    '      Text.Whitespace
+'CACHED_DOMAIN_SEPARATOR' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'\n        '  Text.Whitespace
+'_abi_encode' Name.Builtin
+'('           Punctuation
+'\n            ' Text.Whitespace
+'EIP712_TYPEHASH' Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
+'_name'       Name
+')'           Punctuation
+','           Punctuation
+'\n            ' Text.Whitespace
+'VERSION_HASH' Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'chain'       Name
+'.'           Text
+'id'          Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'self'        Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'block'       Name
+'.'           Text
+'prevhash'    Name
+','           Punctuation
+'\n        '  Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'self.'       Name.Attribute
+'minter'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'msg.sender'  Name.Builtin.Pseudo
+'\n    '      Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'SetMinter'   Name
+'('           Punctuation
+'msg.sender'  Name.Builtin.Pseudo
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'@internal'   Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'_approve'    Name
+'('           Punctuation
+'_owner:'     Name.Variable
+' '           Text.Whitespace
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_spender:'   Name.Variable
+' '           Text.Whitespace
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_value:'     Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+':'           Operator
+'\n    '      Text.Whitespace
+'self.'       Name.Attribute
+'allowance'   Name
+'['           Punctuation
+'_owner'      Name
+']'           Punctuation
+'['           Punctuation
+'_spender'    Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_value'      Name
+'\n\n    '    Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'Approval'    Name
+'('           Punctuation
+'_owner'      Name
+','           Punctuation
+' '           Text.Whitespace
+'_spender'    Name
+','           Punctuation
+' '           Text.Whitespace
+'_value'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
