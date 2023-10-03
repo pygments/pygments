@@ -1,6 +1,6 @@
 """
     pygments.lexers.vyper
-    ~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
     
     Lexer for the Vyper Smart Contract language.
 
