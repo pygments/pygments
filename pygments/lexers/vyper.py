@@ -121,9 +121,7 @@ class VyperLexer(RegexLexer):
 
         'funcparams': [
             (r'\)', Punctuation, '#pop'),
-            (r'\w+', Name.Variable),
-            (r':', Punctuation),
-            (r'\w+', Keyword.Type),
+            (r'(\w+)\s*:\s*(\w+)', bygroups(Name.Variable, Keyword.Type)),
             (r',', Punctuation),
             (r'\s+', Text.Whitespace),
         ]
