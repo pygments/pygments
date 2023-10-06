@@ -248,7 +248,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'var'         Keyword
 ' '           Text.Whitespace
 'local_var'   Name
@@ -260,7 +260,7 @@
 
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
 'param1'      Name
@@ -271,14 +271,14 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text.Whitespace
+'\t\t'        Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 'param1'      Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'elif'        Keyword
 ' '           Text.Whitespace
 'param2'      Name
@@ -289,19 +289,19 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text.Whitespace
+'\t\t'        Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 'param2'      Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'else'        Keyword
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text.Whitespace
+'\t\t'        Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 '"'           Literal.String.Double
@@ -312,7 +312,7 @@
 
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
 'i'           Name
@@ -326,7 +326,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text.Whitespace
+'\t\t'        Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 'i'           Name
@@ -335,7 +335,7 @@
 
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'while'       Keyword
 ' '           Text.Whitespace
 'param2'      Name
@@ -346,7 +346,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'        '    Text.Whitespace
+'\t\t'        Text.Whitespace
 'param2'      Name
 ' '           Text.Whitespace
 '-='          Operator
@@ -356,7 +356,7 @@
 
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'var'         Keyword
 ' '           Text.Whitespace
 'local_var2'  Name
@@ -370,7 +370,7 @@
 '3'           Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
 'local_var2'  Name
@@ -400,7 +400,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 '.'           Operator
 'something'   Name
 '('           Punctuation
@@ -426,7 +426,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'var'         Keyword
 ' '           Text.Whitespace
 'a'           Name
@@ -453,7 +453,7 @@
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 '"'           Literal.String.Double
@@ -462,7 +462,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'var'         Keyword
 ' '           Text.Whitespace
 'lv'          Name
@@ -476,7 +476,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'\t'          Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 'lv'          Name
