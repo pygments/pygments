@@ -31,8 +31,22 @@ States are groups of regular expressions that are matched against the input
 string at the *current position*.  If one of these expressions matches, a
 corresponding action is performed (such as yielding a token with a specific
 type, or changing state), the current position is set to where the last match
-ended and the matching process continues with the first regex of the current
+ended and the matching process continues with the _first_ regex of the current
 state.
+
+.. note::
+
+    This means you're always jumping back to the first entry, i.e. you cannot match states in a particular order. For example, a state with the following rules won't work as intended:
+    
+    .. code:: python
+
+        'state': [
+            (r'\w+', Name,),
+            (r'\s+', Whitespace,),
+            (r'\w+', Keyword,)
+        ]
+
+    In the example above, ``Keyword`` will never be matched. To match certain token types in order, see below for the `bygroups` helper.
 
 Lexer states are kept on a stack: each time a new state is entered, the new
 state is pushed onto the stack.  The most basic lexers (like the `DiffLexer`)
