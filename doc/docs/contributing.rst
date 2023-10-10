@@ -113,3 +113,14 @@ codebase and does not result in surprising behavior. For instance, in
 C89, accepting `//` based comments would be fine because de-facto all
 compilers supported it, and having a separate lexer for it would not
 be worth it.
+
+Language support
+----------------
+
+While we strive for the broadest language support possible, we can't support 
+every programming language on the planet. Our minimum bar is fairly low, but to 
+avoid pet projects and other one-off languages, we expect any language that is 
+proposed for inclusion to have a reasonably sized community around it. If you 
+need a syntax highlighter for your in-house programming language or the brand 
+new language project you kicked off, consuer writing a :doc:`plugin <plugins>` 
+until it gains enough popularity.
