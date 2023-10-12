@@ -541,4 +541,3 @@ continues on this line
 some_delimiter;
 
 ?>
-

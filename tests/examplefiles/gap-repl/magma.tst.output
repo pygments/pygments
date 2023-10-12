@@ -1,0 +1,694 @@
+'#@local F,M,T\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'START_TEST'  Name.Variable
+'('           Punctuation
+' '           Text
+'"magma.tst"' Literal.String
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'#\n'         Generic.Output
+
+'gap> '       Generic.Prompt
+'M'           Name.Variable
+':='          Operator
+' '           Text
+'MagmaByMultiplicationTable' Name.Variable
+'('           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+' '           Text
+']'           Punctuation
+' '           Text
+']'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'gap> '       Generic.Prompt
+'IsGeneratorsOfMagmaWithInverses' Name.Variable
+'('           Punctuation
+' '           Text
+'Elements'    Name.Variable
+'('           Punctuation
+' '           Text
+'M'           Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'false\n'     Generic.Output
+
+'\n'          Generic.Output
+
+'# IsAssociative and IsCommutative\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'T'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'2'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'2'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+' '           Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+']'           Punctuation
+';'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'gap> '       Generic.Prompt
+'M'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'MagmaByMultiplicationTable' Name.Variable
+'('           Punctuation
+'T'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'<magma with 5 generators>\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'IsAssociative' Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+' '           Text
+'or'          Operator.Word
+' '           Text
+'IsCommutative' Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'false\n'     Generic.Output
+
+'gap> '       Generic.Prompt
+'Filtered'    Name.Variable
+'('           Punctuation
+'Combinations' Name.Variable
+'('           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'x'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Name.Variable
+' '           Text
+'and'         Operator.Word
+' '           Text
+'IsAssociative' Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'[ [ m5 ] ]\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'Filtered'    Name.Variable
+'('           Punctuation
+'Combinations' Name.Variable
+'('           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'x'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Name.Variable
+' '           Text
+'and'         Operator.Word
+' '           Text
+'IsCommutative' Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'[ [ m1 ], [ m1, m5 ], [ m2 ], [ m2, m5 ], [ m3 ], [ m3, m4 ], [ m4 ], [ m5 ] ]\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'T'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'2'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'2'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'2'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'1'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'4'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'2'           Name.Variable
+','           Operator
+' '           Text
+'2'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+','           Operator
+' '           Text
+'5'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+' '           Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+']'           Punctuation
+';'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'gap> '       Generic.Prompt
+'M'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'MagmaByMultiplicationTable' Name.Variable
+'('           Punctuation
+'T'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'<magma with 5 generators>\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'IsAssociative' Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+' '           Text
+'or'          Operator.Word
+' '           Text
+'IsCommutative' Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'false\n'     Generic.Output
+
+'gap> '       Generic.Prompt
+'Filtered'    Name.Variable
+'('           Punctuation
+'Combinations' Name.Variable
+'('           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'x'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Name.Variable
+' '           Text
+'and'         Operator.Word
+' '           Text
+'IsAssociative' Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'[ [ m1 ], [ m1, m3 ], [ m2 ], [ m2, m4 ], [ m3 ], [ m4 ] ]\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'AsSemigroup' Name.Variable
+'('           Punctuation
+'['           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+'['           Punctuation
+'1'           Name.Variable
+']'           Punctuation
+','           Operator
+' '           Text
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+'['           Punctuation
+'2'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'fail\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'AsSemigroup' Name.Variable
+'('           Punctuation
+'['           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+'['           Punctuation
+'1'           Name.Variable
+']'           Punctuation
+','           Operator
+' '           Text
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+'['           Punctuation
+'3'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'<semigroup of size 2, with 2 generators>\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'Filtered'    Name.Variable
+'('           Punctuation
+'Combinations' Name.Variable
+'('           Punctuation
+'Elements'    Name.Variable
+'('           Punctuation
+'M'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'x'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Name.Variable
+' '           Text
+'and'         Operator.Word
+' '           Text
+'IsCommutative' Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'[ [ m1 ], [ m1, m2 ], [ m1, m2, m3 ], [ m1, m2, m5 ], [ m1, m3 ], [ m1, m5 ], \n' Generic.Output
+
+'  [ m2 ], [ m2, m3 ], [ m2, m4 ], [ m2, m5 ], [ m3 ], [ m4 ], [ m5 ] ]\n' Generic.Output
+
+'\n'          Generic.Output
+
+'#\n'         Generic.Output
+
+'gap> '       Generic.Prompt
+'F'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'Elements'    Name.Variable
+'('           Punctuation
+' '           Text
+'GL'          Name.Variable
+'('           Punctuation
+'2'           Name.Variable
+','           Operator
+'2'           Name.Variable
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'gap> '       Generic.Prompt
+'IsAssociative' Name.Variable
+'('           Punctuation
+' '           Text
+'F'           Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'IsCommutative' Name.Variable
+'('           Punctuation
+' '           Text
+'F'           Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'false\n'     Generic.Output
+
+'gap> '       Generic.Prompt
+'Number'      Name.Variable
+'('           Punctuation
+' '           Text
+'Combinations' Name.Variable
+'('           Punctuation
+' '           Text
+'F'           Name.Variable
+','           Operator
+' '           Text
+'3'           Name.Variable
+' '           Text
+')'           Punctuation
+','           Operator
+' '           Text
+'IsCommutative' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'1\n'         Generic.Output
+
+'gap> '       Generic.Prompt
+'AsSemigroup' Name.Variable
+'('           Punctuation
+' '           Text
+'F'           Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'<semigroup of size 6, with 2 generators>\n' Generic.Output
+
+'\n'          Generic.Output
+
+'#\n'         Generic.Output
+
+'gap> '       Generic.Prompt
+'STOP_TEST'   Name.Variable
+'('           Punctuation
+' '           Text
+'"magma.tst"' Literal.String
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace

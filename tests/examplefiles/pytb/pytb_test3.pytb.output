@@ -8,12 +8,12 @@
 '1'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'TypeError'   Generic.Error
 ': '          Text
 "unsupported operand type(s) for /: 'int' and 'str'" Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>>> blah\n'  Other
 
@@ -25,7 +25,7 @@
 '1'           Literal.Number
 ', in '       Text
 '<module>'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'builtins.NameError' Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace

@@ -73,7 +73,7 @@
 '$'           Literal.String
 ''            Literal.String.Delimiter
 '$'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'if'          Keyword
@@ -84,19 +84,19 @@
 ' '           Text
 'b'           Name
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'return'      Keyword
 ' '           Text
 'a'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 'return'      Keyword
 ' '           Text
 'b'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Literal.String
 ''            Literal.String.Delimiter

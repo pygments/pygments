@@ -1,5 +1,5 @@
 '/** Example file for the X10 programming langauge (http://x10-lang.org).\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
@@ -12,9 +12,9 @@
 'e'           Text
 ' '           Text
 '{'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'public'      Keyword.Declaration
@@ -43,7 +43,7 @@
 ')'           Text
 ' '           Text
 '{'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\t'          Text
 'C'           Text
@@ -74,9 +74,9 @@
 
 '    '        Text
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace

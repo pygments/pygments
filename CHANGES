@@ -3,12 +3,242 @@ Pygments changelog
 
 Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
-Version 2.13.0
+Version 2.17.0
 --------------
-(not released yet)
+(unreleased)
+
+- New lexers:
+
+  * JSX (#2524)
+  * LDIF (#2489)
+  * PRQL (#2507, #2523)
+  * Visual Prolog and Visual Prolog Grammar (#2480)
+
+- Updated lexers:
+
+  * Cypher: fix comment matching, add missing keywords (#2504)
+  * JSON: add MIME types and file extensions for several line-delimited
+    JSON formats (#2490)
+  * Python: add ``starlark`` and ``bazel`` aliases (#2517)
+  * Spice: add ``panic`` keyword and ``->`` operator (#2510)
+  * Wikitext: fix erroneous highlighting of LanguageConverter markup
+    (#2493), add missing variant languages (#2494)
+
+- Fix ctags support and tests (#2487)
+- The ``pygments.styles`` module contains a new ``STYLES`` variable
+  with a dictionary of built-in styles.  The old ``STYLE_MAP`` variable,
+  which uses a different format, is kept for backwards compatibility.
+- On Windows, add a new installation extra (``windows-terminal``) which pulls in
+  dependencies for colored console output. See :doc:`cmdline` for more details.
+
+Version 2.16.1
+--------------
+
+- Fix ``native`` style missing from style list (#2484)
+
+Version 2.16.0
+--------------
+(released August 6th, 2023)
+
+- New lexers:
+
+  * ASN.1 (#2462)
+  * Blueprint (#2434)
+  * BQN (#2472)
+  * DNS zone files (#2464)
+  * GraphQL (#2428)
+  * Linux desktop files (following the specification of the
+    Freedesktop group, formerly known as XDG) (#2470)
+  * NVIDIA PTX (#2432)
+  * OpenSCAD (#2449)
+  * systemd (#2470)
+  * TLS presentation language (#2455)
+  * Verifpal (#2430)
+  * YARA (#2453)
+
+- Updated lexers:
+
+  * ASC: Add ``application/pem-certificate-chain`` mimetype (#2471)
+  * C/C++: Refine keyword lists (#2421, #2422)
+  * Carbon: Fix long processing times on invalid input, fix number
+    lexing (#2454, #2456)
+  * Elpi: Handle quotations (#2419)
+  * Go: Support additional built-ins (#2481)
+  * HTTP: Support empty headers (#2461), support more general methods (#2460),
+    also recognize responses in ``analyse_text`` implementation (#2460), and
+    highlight URL encoded data (#2465, #1620)
+  * Igor Pro: Update to Igor Pro 9 (#2482)
+  * lean: Recognize expressions nested within attributes (#1817)
+  * Macaulay2: Update builtins (#2457)
+  * Markdown: Allow extra characters after language name
+    in code blocks (#2437)
+  * NestedText: Update to version 3 (#2459)
+  * scdoc: Improve language guessing implementation (#2402)
+  * Spice: Update to latest version (#2476)
+  * Transact SQL: Add Pre-sorted Group keyword (#2417)
+  * Uxntal: Update for current runes (#2424)
+  * Wikitext: Fix templates in wiki links; fix a language converter false
+    positive; add bold italic markup (#2447)
+
+- Add ``Generic.EmphStrong`` token for bold italic markup (#2444)
+- Add Lightbulb style (#2474)
+- Improve contrast in Monokai style (#2448)
+- Add documentation how to create terminal code highlighting commands (#2131, #2425)
+- Add support for loading TrueType fonts to the ``ImageFormatter`` (#1960)
+
+Version 2.15.1
+--------------
+(released April 18th, 2023)
+
+- Updated lexers:
+
+  * Java properties: Fix catastrophic backtracking (#2356, #2404)
+
+- Fix Python console traceback lexing being too strict
+  and sometimes reordering output (#2407, #2410, #2412)
+
+
+Version 2.15.0
+--------------
+(released April 10th, 2023)
 
 - Added lexers:
 
+  * Carbon (#2362, #2365, #2366, #2367, #2368, #2369, #2370)
+  * Dax (#2335, #2345)
+  * MediaWiki Wikitext (#2373, #827)
+  * PostgreSQL Explain (#2398)
+  * WGSL (WebGPU Shading Language) (#2386)
+  * X++ (#2339)
+
+- Updated lexers:
+
+  * AMDGPU: Add support for ``scratch_`` instructions, the ``attr*.*`` argument,
+    as well as the ``off`` modifier (#2327).
+  * APDL: Miscellaneous improvements (#2314)
+  * bash/tcsh:
+
+    - Move ``break`` to keywords (#2377)
+    - Improve bash math expansion lexing (#2255, #2353)
+
+  * Chapel: Support attributes (#2376)
+  * CMake: Implement bracket style comments (#2338, #2354)
+  * CSS: Improve lexing of numbers inside function calls (#2382, #2383)
+  * diff: Support normal diff syntax, as opposed to unified diff syntax (#2321)
+  * GLSL, HLSL:
+
+    - Support line continuations in preprocessor code (#2350)
+    - Improve preprocessor directive handling (#2357)
+
+  * LilyPond: minor update of builtins
+  * PHP: support attributes (#2055, #2347, #2360), fix anonymous classes without
+    parameters (#2359), improve lexing of variable variable syntax (#2358)
+  * Python:
+
+    - Add missing builtins (#2334)
+    - Fix inconsistent lexing of ``None`` (#2406)
+
+  * Rebol/Red: Don't require script headers (#2348, #2349)
+  * Spice: Update keywords (#2336)
+  * SQL+Jinja (``analyse_text`` method): Fix catastrophic backtracking (#2355)
+  * Terraform: Add ``hcl`` alias (#2375)
+
+- Declare support for Python 3.11 and drop support for Python 3.6 (#2324).
+- Update ``native`` style to improve contrast (#2325).
+- Update `github-dark`` style to match latest Primer style (#2401)
+- Revert a change that made guessing lexers based on file names slower
+  on Python 3.10 and older (#2328).
+- Fix some places where a locale-dependent encoding could unintentionally
+  be used instead of UTF-8 (#2326).
+- Fix Python traceback handling (#2226, #2329).
+- Groff formatter: sort color definitions for reproducibility (#2343)
+- Move project metadata to ``pyproject.toml``, remove ``setup.py``
+  and ``setup.cfg`` (#2342)
+
+- The top-level ``Makefile`` has been removed. Instead, all shortcuts
+  for developing are now defined and run through tox.  The ``doc`` folder
+  still contains a ``Makefile`` as an alternative to ``tox -e doc``.
+
+
+Version 2.14.0
+--------------
+(released January 1st, 2023)
+
+- Added lexers:
+
+  * Arturo (#2259)
+  * GAP session (#2211)
+  * Fift (#2249)
+  * func (#2232)
+  * Jsonnet (#2239)
+  * Minecraft schema (#2276)
+  * MIPS (#2228)
+  * Phix (#2222)
+  * Portugol (#2300)
+  * TL-b (#2247)
+  * World of Warcraft TOC format (#2244, #2245)
+  * Wren (#2271)
+
+- Updated lexers:
+
+  * Abap: Update keywords (#2281)
+  * Alloy: Update for Alloy 6 (#1963)
+  * C family (C, C++ and many others):
+
+    - Fix an issue where a chunk would be wrongly recognized as a function
+      definition due to braces in comments (#2210)
+    - Improve parantheses handling for function definitions (#2207, #2208)
+
+  * C#: Fix number and operator recognition (#2256, #2257)
+  * CSound: Updated builtins (#2268)
+  * F#: Add ``.fsx`` file extension (#2282)
+  * gas (GNU assembler): recognize braces as punctuation (#2230)
+  * HTTP: Add `CONNECT` keyword (#2242)
+  * Inform 6: Fix lexing of properties and doubles (#2214)
+  * INI: Allow comments that are not their own line (#2217, #2161)
+  * Java properties: Fix issue with whitespace-delimited keys, support
+    comments starting with `!` and escapes, no longer support undocumented
+    `;` and `//` comments (#2241)
+  * LilyPond: Improve heuristics, add ``\maxima`` duration (#2283)
+  * LLVM: Add opaque pointer type (#2269)
+  * Macaulay2: Update keywords (#2305)
+  * Minecraft-related lexers (SNB and Minecraft function) moved to
+    ``pygments.lexers.minecraft`` (#2276)
+  * Nim: General improvements (#1970)
+  * Nix: Fix single quotes inside indented strings (#2289)
+  * Objective J: Fix catastrophic backtracking (#2225)
+  * NASM: Add support for SSE/AVX/AVX-512 registers as well as 'rel'
+    and 'abs' address operators (#2212)
+  * Powershell:
+
+    - Add ``local:`` keyword (#2254)
+    - Allow continuations without markers (#2262, #2263)
+
+  * Solidity: Add boolean operators (#2292)
+  * Spice: Add ``enum`` keyword and fix a bug regarding binary,
+    hexadecimal and octal number tokens (#2227)
+  * YAML: Accept colons in key names (#2277)
+
+- Fix `make mapfiles` when Pygments is not installed in editable mode
+  (#2223)
+
+- Support more filetypes and compression types in `autopygmentize` (#2219)
+- Merge consecutive tokens in Autohotkey, Clay (#2248)
+- Add ``.nasm`` as a recognized file type for NASM (#2280)
+- Add ``*Spec.hs`` as a recognized file type for ``HSpec`` (#2308)
+- Add ``*.pyi`` (for typing stub files) as a recognized file type for
+  Python (#2231)
+- The HTML lexer no longer emits empty spans for whitespace (#2304)
+- Fix ``IRCFormatter`` inserting linenumbers incorrectly (#2270)
+
+Version 2.13.0
+--------------
+(released August 15th, 2022)
+
+- Added lexers:
+
+  * COMAL-80 (#2180)
+  * JMESPath (#2174, #2175, #2179, #2182)
   * Sql+Jinja (#2148)
 
 - Updated lexers:
@@ -19,19 +249,40 @@ Version 2.13.0
   * C family (C, C++ and many others): allow comments between
     elements of function headers, e.g. between the arguments and
     the opening brace for the body (#1891)
-  * Coq: add some common keywords, improve recognition of ``Set``
+  * C++: Resolve several cases of ``Error`` tokens (#2207, #2208)
+  * Coq: Add some common keywords, improve recognition of ``Set``
     and qualified identifiers (#2158)
   * F*: Allow C-style comments anywhere in a line
+  * Fortran: Fix catastrophic backtracking with backslashes in strings
+    (#2194)
   * Go: add support for generics (#2167)
+  * Inform: Update for version 6.40 (#2190)
+  * Isabelle: recognize cartouches (#2089)
   * Java: support multiline strings aka. text blocks (#2132)
-  * Kotlin: add ``value`` modifier (#2142)
-  * Macaulay2: update builtins (#2139)
+  * Kotlin: Add ``value`` modifier (#2142)
+  * LilyPond: Add some missing builtins
+  * Macaulay2: Update builtins (#2139)
   * Matlab session: fix traceback when a line continuation ellipsis
     appears in the output (#2166)
-  * Nim: use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
+  * .NET: Add aliases for LibreOffice Basic, OpenOfficeBasic and
+    StarOffice Basic (#2170)
+  * Nim: Use ``Name.Builtin`` instead of ``Keyword.Type`` (#2136)
+  * PHP: fix `\"$var\"` inside strings (#2105)
+  * Python: only recognize ``\N``, ``\u`` and ``\U`` escape sequences
+    in string literals, but not in bytes literals where they are
+    not supported (#2204)
   * Tcl: support ``${name}`` variables (#2145)
-  * Terraform: accept leading whitespace for `<<` heredoc
+  * Terraform: Accept leading whitespace for `<<` heredoc
     delimiters (#2162)
+  * Teraterm: Various improvements (#2165)
+  * Spice: add support for the recently added features including more
+    builtin functions and bin, oct, hex number formats (#2206)
+
+- Added styles:
+
+  * GitHub dark (#2192)
+  * StarOffice (#2168)
+  * Nord (`nord` and `nord-darker`; #2189, #1799, #1678)
 
 - Pygments now tries to use the ``importlib.metadata`` module to
   discover plugins instead of the slower ``pkg_resources`` (#2155).  In
@@ -52,6 +303,8 @@ Version 2.13.0
   ``importlib.metadata`` nor ``importlib_metadata`` is found, but it
   will be slower.
 
+- Silently ignore ``BrokenPipeError`` in the command-line interface
+  (#2193).
 - The ``HtmlFormatter`` now uses the ``linespans`` attribute for
   ``anchorlinenos`` if the ``lineanchors`` attribute is unset (#2026).
 - The ``highlight``, ``lex`` and ``format`` functions no longer
@@ -64,6 +317,10 @@ Version 2.13.0
   support is available.  In that case, it uses the ``TerminalTrueColorFormatter``
   by default (#2160)
 - Remove redundant caches for filename patterns (#2153)
+- Use new non-deprecated Pillow API for text bounding box in ``ImageFormatter``
+  (#2198)
+- Remove ``default_style`` (#930, #2183)
+- Stop treating ``DeprecationWarnings`` as errors in the unit tests (#2196)
 
 Version 2.12.0
 --------------

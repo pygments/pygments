@@ -11,7 +11,6 @@
 
 import json
 import os
-import sys
 
 import pygments.styles
 import pygments.token
@@ -60,7 +59,7 @@ def min_contrasts():
 
 
 def update_json():
-    with open(JSON_FILENAME, "w") as f:
+    with open(JSON_FILENAME, "w", encoding="utf-8") as f:
         json.dump(
             min_contrasts(),
             f,
@@ -69,7 +68,7 @@ def update_json():
 
 
 def test_contrasts(fail_if_improved=True):
-    with open(JSON_FILENAME) as f:
+    with open(JSON_FILENAME, encoding="utf-8") as f:
         previous_contrasts = json.load(f)
 
     for style_name in pygments.styles.STYLE_MAP:

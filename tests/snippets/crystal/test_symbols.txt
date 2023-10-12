@@ -1,0 +1,20 @@
+---input---
+:sym_bol
+:あ
+:question?
+:"symbol"
+
+---tokens---
+':sym_bol'    Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':あ'          Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':question?'  Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':"'          Literal.String.Symbol
+'symbol'      Literal.String.Symbol
+'"'           Literal.String.Symbol
+'\n'          Text.Whitespace

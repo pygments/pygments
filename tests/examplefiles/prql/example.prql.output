@@ -1,0 +1,163 @@
+'from'        Name.Variable
+' '           Text.Whitespace
+'invoices'    Name.Variable
+'\n'          Text.Whitespace
+
+'filter'      Name.Variable
+' '           Text.Whitespace
+'invoice_date' Name.Variable
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'@1970-01-16' Literal.Date
+'\n'          Text.Whitespace
+
+'derive'      Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'transaction_fees' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.8'         Literal.Number.Float
+','           Punctuation
+'\n  '        Text.Whitespace
+'income'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'total'       Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'transaction_fees' Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'filter'      Name.Variable
+' '           Text.Whitespace
+'income'      Name.Variable
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'group'       Name.Variable
+' '           Text.Whitespace
+'customer_id' Name.Variable
+' '           Text.Whitespace
+'('           Punctuation
+'\n  '        Text.Whitespace
+'aggregate'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'average'     Name.Function
+' '           Text.Whitespace
+'total'       Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'sum_income'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sum'         Name.Function
+' '           Text.Whitespace
+'income'      Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'ct'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'count'       Name.Function
+' '           Text.Whitespace
+'total'       Name.Variable
+','           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'sort'        Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'-'           Operator
+'sum_income'  Name.Variable
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'take'        Name.Variable
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'join'        Name.Variable
+' '           Text.Whitespace
+'c'           Name.Variable
+'='           Operator
+'customers'   Name.Variable
+' '           Text.Whitespace
+'('           Punctuation
+'=='          Operator
+'customer_id' Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'derive'      Name.Variable
+' '           Text.Whitespace
+'name'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'c'           Name.Variable
+'.'           Operator
+'last_name'   Name.Variable
+'}'           Literal.String.Interpol
+', '          Literal.String.Double
+'{'           Literal.String.Interpol
+'c'           Name.Variable
+'.'           Operator
+'first_name'  Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'select'      Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'c'           Name.Variable
+'.'           Operator
+'customer_id' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'sum_income'  Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'derive'      Name.Variable
+' '           Text.Whitespace
+'db_version'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'s'           Literal.String.Affix
+'"'           Literal.String.Double
+'version()'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

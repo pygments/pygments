@@ -1,0 +1,29 @@
+---input---
+<style>
+.ui-helper-hidden { display: none }
+</style>
+
+---tokens---
+'<'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'ui-helper-hidden' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'display'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'none'        Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'<'           Punctuation
+'/'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n'          Text

@@ -18,7 +18,7 @@
 'endraw'      Name.Tag
 ' '           Text.Whitespace
 '%}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\nJust regular text - what happens?\n\n' Text
 
@@ -127,7 +127,7 @@
 'upcase'      Name.Function
 ' '           Text.Whitespace
 '}}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{'          Punctuation
 ' '           Text.Whitespace
@@ -144,7 +144,7 @@
 'markdownify' Name.Function
 ' '           Text.Whitespace
 '}}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{'          Punctuation
 ' '           Text.Whitespace
@@ -163,7 +163,7 @@
 'markdownify' Name.Function
 ' '           Text.Whitespace
 '}}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{'          Punctuation
 ' '           Text.Whitespace
@@ -181,7 +181,7 @@
 '\'df"g\''    Literal.String.Single
 ' '           Text.Whitespace
 '}}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -247,7 +247,7 @@
 "'B'"         Literal.String.Single
 ' '           Text.Whitespace
 '%}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Punctuation
 ' '           Text.Whitespace
@@ -260,7 +260,7 @@
 "'C%}'"       Literal.String.Single
 ' '           Text.Whitespace
 '%}'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{%'          Punctuation
 ' '           Text.Whitespace

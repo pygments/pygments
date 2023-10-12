@@ -7,7 +7,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,8 +21,7 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
     sys.path.insert(0, srcpath)
 
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
-    ProfilingRegexLexer, ProfilingRegexLexerMeta
+from pygments.lexer import ExtendedRegexLexer, LexerContext
 from pygments.lexers import get_lexer_by_name, find_lexer_class, \
     find_lexer_class_for_filename, guess_lexer
 from pygments.token import Error, Text, _TokenType

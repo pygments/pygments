@@ -1,0 +1,2717 @@
+---input---
+{{#speciale:userlogin}}
+
+{{#if: 1==2 | yes | no }}
+{{#if:{{{1|}}}|You entered text in variable 1|There is no text in variable 1}}
+
+{{#ifeq: {{#expr:10^3}} | 1000 | equal | not equal}}
+
+{{#iferror: <strong class="error">a</strong> | error | correct }}
+
+{{#ifeq:{{{1}}}|condition1
+ |<!--then-->branch1t{{
+  #ifeq:{{{1}}}|condition2
+   |<!--then-->branch1t2t{{#ifeq:{{{1}}}|condition4|<!--then-->branch1t2t4t|<!--else-->branch1t2t4e}}
+   |<!--else-->branch1t2e{{#ifeq:{{{1}}}|condition5|<!--then-->branch1t2e5t|<!--else-->branch1t2e5e}}
+  }}
+ |<!--else-->branch1e{{#ifeq:{{{1}}}|condition3
+   |<!--then-->branch1e3t{{#ifeq:{{{1}}}|condition6|branch1e3t6t|branch1e3t6e}}
+   |<!--else-->branch1e3e{{
+    #ifeq:{{{1}}}|condition7
+     |branch1e3e7t
+     |branch1e3e7t
+    }}
+  }}
+}}
+
+{{CURRENTYEAR}}
+{{CURRENTMONTH}}
+{{CURRENTMONTH1}}
+{{CURRENTMONTHNAME}}
+{{CURRENTMONTHNAMEGEN}}
+{{CURRENTMONTHABBREV}}
+{{CURRENTDAY}}
+{{CURRENTDAY2}}
+{{CURRENTDOW}}
+{{CURRENTDAYNAME}}
+{{CURRENTTIME}}
+{{CURRENTHOUR}}
+{{CURRENTWEEK}}
+{{CURRENTTIMESTAMP}}
+{{LOCALYEAR}}
+{{LOCALMONTH}}
+{{LOCALMONTH1}}
+{{LOCALMONTHNAME}}
+{{LOCALMONTHNAMEGEN}}
+{{LOCALMONTHABBREV}}
+{{LOCALDAY}}
+{{LOCALDAY2}}
+{{LOCALDOW}}
+{{LOCALDAYNAME}}
+{{LOCALTIME}}
+{{LOCALHOUR}}
+{{LOCALWEEK}}
+{{LOCALTIMESTAMP}}
+{{SITENAME}}
+{{SERVER}}
+{{SERVERNAME}}
+{{DIRMARK}}
+{{DIRECTIONMARK}}
+{{SCRIPTPATH}}
+{{STYLEPATH}}
+{{CURRENTVERSION}}
+{{CONTENTLANGUAGE}}
+{{CONTENTLANG}}
+{{PAGEID}}
+{{PAGELANGUAGE}}
+{{#language:{{PAGELANGUAGE}}}}
+{{PROTECTIONLEVEL:action}}
+{{PROTECTIONEXPIRY:action}}
+{{CASCADINGSOURCES}}
+{{REVISIONID}}
+{{REVISIONDAY}}
+{{REVISIONDAY2}}
+{{REVISIONMONTH}}
+{{REVISIONMONTH1}}
+{{REVISIONYEAR}}
+{{REVISIONTIMESTAMP}}
+{{REVISIONUSER}}
+{{REVISIONSIZE}}
+{{DISPLAYTITLE:title}}
+{{DISPLAYTITLE:title|noerror}}
+{{DISPLAYTITLE:title|noreplace}}
+{{DEFAULTSORT:sortkey}}
+{{DEFAULTSORTKEY:sortkey}}
+{{DEFAULTCATEGORYSORT:sortkey}}
+{{DEFAULTSORT:sortkey|noerror}}
+{{DEFAULTSORT:sortkey|noreplace}}
+{{NUMBEROFPAGES}}
+{{NUMBEROFARTICLES}}
+{{NUMBEROFFILES}}
+{{NUMBEROFEDITS}}
+{{NUMBEROFUSERS}}
+{{NUMBEROFADMINS}}
+{{NUMBEROFACTIVEUSERS}}
+{{PAGESINCATEGORY:categoryname}}
+{{PAGESINCAT:categoryname}}
+{{PAGESINCATEGORY:categoryname|all}}
+{{PAGESINCATEGORY:categoryname|pages}}
+{{PAGESINCATEGORY:categoryname|subcats}}
+{{PAGESINCATEGORY:categoryname|files}}
+{{NUMBERINGROUP:groupname}}
+{{NUMINGROUP:groupname}}
+{{PAGESINNS:index}}
+{{PAGESINNAMESPACE:index}}
+{{FULLPAGENAME}}
+{{PAGENAME}}
+{{BASEPAGENAME}}
+{{ROOTPAGENAME}}
+{{SUBPAGENAME}}
+{{SUBJECTPAGENAME}}
+{{ARTICLEPAGENAME}}
+{{TALKPAGENAME}}
+{{PAGENAME:Template:Main Page}}
+{{PAGENAME:one/./three}}
+{{FULLPAGENAMEE}}
+{{PAGENAMEE}}
+{{BASEPAGENAMEE}}
+{{SUBPAGENAMEE}}
+{{SUBJECTPAGENAMEE}}
+{{ARTICLEPAGENAMEE}}
+{{TALKPAGENAMEE}}
+{{ROOTPAGENAMEE}}
+{{NAMESPACE}}
+{{NAMESPACENUMBER}}
+{{SUBJECTSPACE}}
+{{ARTICLESPACE}}
+{{TALKSPACE}}
+{{NAMESPACEE}}
+{{SUBJECTSPACEE}}
+{{ARTICLESPACEE}}
+{{TALKSPACEE}}
+{{NAMESPACENUMBER:MediaWiki}}
+{{NAMESPACE:MediaWiki}}
+{{NAMESPACE:Template:Main Page}}
+{{SUBJECTSPACE:Template:Main Page}}
+{{ARTICLESPACE:Template:Main Page}}
+{{TALKSPACE:Template:Main Page}}
+{{SUBJECTSPACE:Help talk}}
+{{!}}
+{{=}}
+{{PAGEID: page name }}
+{{PAGESIZE:page name}}
+{{PAGESIZE: page name |R}}
+{{PROTECTIONLEVEL:action | page name}}
+{{PROTECTIONEXPIRY: action | page name}}
+{{CASCADINGSOURCES: page name}}
+{{REVISIONID: page name }}
+{{REVISIONDAY: page name }}
+{{REVISIONDAY2: page name }}
+{{REVISIONMONTH: page name }}
+{{REVISIONMONTH1: page name }}
+{{REVISIONYEAR: page name }}
+{{REVISIONTIMESTAMP: page name }}
+{{REVISIONUSER: page name }}
+{{localurl:page name}}
+{{localurl:page name
+|query_string}}
+{{localurl:MediaWiki|printable=yes}}
+{{fullurl:page name}}
+{{fullurl:page name
+|query_string}}
+{{fullurl:interwiki:remote page name
+|query_string}}
+{{fullurl:Category:Top level|action=edit}}
+{{fullurl:s:Electra|action=edit}}
+{{fullurl:s:es:Electra|action=edit}}
+{{canonicalurl:page name}}
+{{canonicalurl:page name
+|query_string}}
+{{canonicalurl:interwiki:remote page name
+|query_string}}
+{{canonicalurl:Category:Top level|action=edit}}
+{{filepath:file name}}
+{{filepath:file name|nowiki}}
+{{filepath:file name|thumbnail_size}}
+{{filepath:Wiki.png|nowiki}}
+{{filepath:Example.svg|300}}
+{{urlencode:string}}
+{{urlencode:string|QUERY}}
+{{urlencode:string|WIKI}}
+{{urlencode:string|PATH}}
+{{urlencode:x:y/z á é|QUERY}}
+{{urlencode:x:y/z á é|WIKI}}
+{{urlencode:x:y/z á é|PATH}}
+{{anchorencode:string}}
+{{ns:}}
+{{nse:}}
+{{ns:-2}}
+{{ns:0}}
+{{ns:2}}
+{{ns:4}}
+{{ns:6}}
+{{ns:8}}
+{{ns:10}}
+{{ns:12}}
+{{ns:14}}
+{{formatnum:unformatted number}}
+{{formatnum:formatnum-formatted number|R}}
+{{formatnum:unformatted number|NOSEP}}
+{{formatnum:987654321.654321}}
+{{formatnum:987,654,321.654321|R}}
+{{formatnum:{{formatnum:987654321.654321}}}}
+{{formatnum:00001}}
+{{formatnum:987654321.654321 |NOSEP}}
+{{formatnum:987654321.654321}}
+{{formatnum:987654321.654321 |NOSEP}}
+{{formatnum:৯৮,৭৬,৫৪,৩২১.৬৫৪৩২১ |R}}
+{{formatnum:{{formatnum:987.654.321}}}}
+{{formatnum:987,654.321|R}}
+{{formatnum:987.654,321|R}}
+{{formatnum:987 654,321|R}}
+{{formatnum:987&nbsp;654,321|R}}
+{{#dateformat:date}}
+{{#formatdate:date}}
+{{#dateformat:date|format}}
+{{#formatdate:date|format}}
+{{#dateformat:25 dec 2009|ymd}}
+{{#formatdate:dec 25,2009|dmy}}
+{{#dateformat:2009-12-25|mdy}}
+{{#formatdate:2009 dec 25|ISO 8601}}
+{{#dateformat:25 decEmber|mdy}}
+{{lc:string}}
+{{lc:DATA CENTER}}
+{{lcfirst:string}}
+{{lcfirst:DATA center}}
+{{uc:string}}
+{{uc:text transform}}
+{{ucfirst:string}}
+{{ucfirst:text tRAnSFORM}}
+{{padleft:xyz|stringlength}}
+{{padleft:xyz|strlen|char}}
+{{padleft:xyz|strlen|string}}
+{{padleft:xyz|5}}
+{{padleft:xyz|5|_}}
+{{padleft:xyz|5|abc}}
+{{padleft:xyz|2}}
+{{padleft:|1|xyz}}
+{{padright:xyz|stringlength}}
+{{padright:xyz|strlen|char}}
+{{padright:xyz|strlen|string}}
+{{padright:xyz|5}}
+{{padright:xyz|5|_}}
+{{padright:xyz|5|abc}}
+{{padright:xyz|2}}
+{{padright:|1|xyz}}
+{{PLURAL:2|is|are}}
+{{PLURAL:1*1|is|are}}
+{{PLURAL:21 mod 10|is|are}}
+{{PLURAL:{{#expr:21 mod 10}}}}
+{{PLURAL:1|is|are}}
+{{PLURAL:2|is|are}}
+{{PLURAL:-1|is|are}}
+{{PLURAL:-2|is|are}}
+{{PLURAL:0.5|is|are}}
+{{PLURAL:1.5|is|are}}
+{{PLURAL:-0.5|is|are}}
+{{PLURAL:-1.5|is|are}}
+{{PLURAL:5|1=Категория|Категории}}
+{{PLURAL:3|страница|страницы|страниц}}
+{{PLURAL:5|страница|страницы|страниц}}
+{{GRAMMAR:N|noun}}
+{{GENDER:username|text for every gender}}
+{{GENDER:Username|male text|female text|text for unspecified}}
+{{GENDER:|male text|female text|text for unspecified}}
+{{GENDER:.|male text|female text|text for unspecified}}
+{{int:message name}}
+{{int:editsectionhint|MediaWiki}}
+{{Page name|optional params}}
+{{:xyz}}
+{{int:xyz}}
+{{#language:language code}}
+{{#language:language code|target language code}}
+{{#language:ar|en}}
+{{#special:special page name}}
+{{#speciale:special page name}}
+{{#tag:tagname
+|content
+|attribute1=value1
+|attribute2=value2
+}}
+{{#tag:ref|Citation on Magic words. |name = "multiple"}}
+
+---tokens---
+'{{'          Punctuation
+'#speciale'   Name.Function
+':'           Punctuation
+'userlogin'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'#if'         Name.Function
+':'           Punctuation
+' '           Text
+'1'           Text
+'='           Text
+'='           Text
+'2'           Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'yes'         Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'no'          Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#if'         Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'|'           Punctuation
+'}}}'         Punctuation
+'|'           Punctuation
+'You'         Text
+' '           Text
+'entered'     Text
+' '           Text
+'text'        Text
+' '           Text
+'in'          Text
+' '           Text
+'variable'    Text
+' '           Text
+'1'           Text
+'|'           Punctuation
+'There'       Text
+' '           Text
+'is'          Text
+' '           Text
+'no'          Text
+' '           Text
+'text'        Text
+' '           Text
+'in'          Text
+' '           Text
+'variable'    Text
+' '           Text
+'1'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+' '           Text
+'{{'          Punctuation
+'#expr'       Name.Function
+':'           Punctuation
+'10'          Text
+'^'           Text
+'3'           Text
+'}}'          Punctuation
+' '           Text
+'|'           Punctuation
+' '           Text
+'1000'        Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'equal'       Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'not'         Text
+' '           Text
+'equal'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'#iferror'    Name.Function
+':'           Punctuation
+' '           Text
+'<'           Punctuation
+'strong'      Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'error'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'a'           Text
+'</'          Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' '           Text
+'|'           Punctuation
+' '           Text
+'error'       Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'correct'     Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition1'  Text
+'\n'          Text
+
+' '           Text
+'|'           Punctuation
+'<!--then-->' Comment.Multiline
+'branch1t'    Text
+'{{'          Punctuation
+'\n  '        Text.Whitespace
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition2'  Text
+'\n'          Text
+
+'   '         Text
+'|'           Punctuation
+'<!--then-->' Comment.Multiline
+'branch1t2t'  Text
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition4'  Text
+'|'           Punctuation
+'<!--then-->' Comment.Multiline
+'branch1t2t4t' Text
+'|'           Punctuation
+'<!--else-->' Comment.Multiline
+'branch1t2t4e' Text
+'}}'          Punctuation
+'\n'          Text
+
+'   '         Text
+'|'           Punctuation
+'<!--else-->' Comment.Multiline
+'branch1t2e'  Text
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition5'  Text
+'|'           Punctuation
+'<!--then-->' Comment.Multiline
+'branch1t2e5t' Text
+'|'           Punctuation
+'<!--else-->' Comment.Multiline
+'branch1t2e5e' Text
+'}}'          Punctuation
+'\n'          Text
+
+'  '          Text
+'}}'          Punctuation
+'\n'          Text
+
+' '           Text
+'|'           Punctuation
+'<!--else-->' Comment.Multiline
+'branch1e'    Text
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition3'  Text
+'\n'          Text
+
+'   '         Text
+'|'           Punctuation
+'<!--then-->' Comment.Multiline
+'branch1e3t'  Text
+'{{'          Punctuation
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition6'  Text
+'|'           Punctuation
+'branch1e3t6t' Text
+'|'           Punctuation
+'branch1e3t6e' Text
+'}}'          Punctuation
+'\n'          Text
+
+'   '         Text
+'|'           Punctuation
+'<!--else-->' Comment.Multiline
+'branch1e3e'  Text
+'{{'          Punctuation
+'\n    '      Text.Whitespace
+'#ifeq'       Name.Function
+':'           Punctuation
+'{{{'         Punctuation
+'1'           Name.Variable
+'}}}'         Punctuation
+'|'           Punctuation
+'condition7'  Text
+'\n'          Text
+
+'     '       Text
+'|'           Punctuation
+'branch1e3e7t' Text
+'\n'          Text
+
+'     '       Text
+'|'           Punctuation
+'branch1e3e7t' Text
+'\n'          Text
+
+'    '        Text
+'}}'          Punctuation
+'\n'          Text
+
+'  '          Text
+'}}'          Punctuation
+'\n'          Text
+
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTYEAR' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTMONTH' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTMONTH1' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTMONTHNAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTMONTHNAMEGEN' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTMONTHABBREV' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTDAY'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTDAY2' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTDOW'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTDAYNAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTTIME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTHOUR' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTWEEK' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTTIMESTAMP' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALYEAR'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALMONTH'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALMONTH1' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALMONTHNAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALMONTHNAMEGEN' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALMONTHABBREV' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALDAY'    Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALDAY2'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALDOW'    Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALDAYNAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALTIME'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALHOUR'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALWEEK'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'LOCALTIMESTAMP' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SITENAME'    Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SERVER'      Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SERVERNAME'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DIRMARK'     Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DIRECTIONMARK' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SCRIPTPATH'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'STYLEPATH'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CURRENTVERSION' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CONTENTLANGUAGE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CONTENTLANG' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGEID'      Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGELANGUAGE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#language'   Name.Function
+':'           Punctuation
+'{{'          Punctuation
+'PAGELANGUAGE' Name.Function
+'}}'          Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PROTECTIONLEVEL' Name.Function
+':'           Punctuation
+'action'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PROTECTIONEXPIRY' Name.Function
+':'           Punctuation
+'action'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CASCADINGSOURCES' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONID'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONDAY' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONDAY2' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONMONTH' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONMONTH1' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONYEAR' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONTIMESTAMP' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONUSER' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONSIZE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DISPLAYTITLE' Name.Function
+':'           Punctuation
+'title'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DISPLAYTITLE' Name.Function
+':'           Punctuation
+'title'       Text
+'|'           Punctuation
+'noerror'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DISPLAYTITLE' Name.Function
+':'           Punctuation
+'title'       Text
+'|'           Punctuation
+'noreplace'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DEFAULTSORT' Name.Function
+':'           Punctuation
+'sortkey'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DEFAULTSORTKEY' Name.Function
+':'           Punctuation
+'sortkey'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DEFAULTCATEGORYSORT' Name.Function
+':'           Punctuation
+'sortkey'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DEFAULTSORT' Name.Function
+':'           Punctuation
+'sortkey'     Text
+'|'           Punctuation
+'noerror'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'DEFAULTSORT' Name.Function
+':'           Punctuation
+'sortkey'     Text
+'|'           Punctuation
+'noreplace'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFPAGES' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFARTICLES' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFFILES' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFEDITS' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFUSERS' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFADMINS' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBEROFACTIVEUSERS' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCATEGORY' Name.Function
+':'           Punctuation
+'categoryname' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCAT'  Name.Function
+':'           Punctuation
+'categoryname' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCATEGORY' Name.Function
+':'           Punctuation
+'categoryname' Text
+'|'           Punctuation
+'all'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCATEGORY' Name.Function
+':'           Punctuation
+'categoryname' Text
+'|'           Punctuation
+'pages'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCATEGORY' Name.Function
+':'           Punctuation
+'categoryname' Text
+'|'           Punctuation
+'subcats'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINCATEGORY' Name.Function
+':'           Punctuation
+'categoryname' Text
+'|'           Punctuation
+'files'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMBERINGROUP' Name.Function
+':'           Punctuation
+'groupname'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NUMINGROUP'  Name.Function
+':'           Punctuation
+'groupname'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINNS'   Name.Function
+':'           Punctuation
+'index'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESINNAMESPACE' Name.Function
+':'           Punctuation
+'index'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'FULLPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGENAME'    Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'BASEPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ROOTPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ARTICLEPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'TALKPAGENAME' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGENAME'    Name.Function
+':'           Punctuation
+'Template'    Text
+':'           Text
+'Main'        Text
+' '           Text
+'Page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGENAME'    Name.Function
+':'           Punctuation
+'one'         Text
+'/'           Text
+'.'           Text
+'/'           Text
+'three'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'FULLPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGENAMEE'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'BASEPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ARTICLEPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'TALKPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ROOTPAGENAMEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACE'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACENUMBER' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTSPACE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ARTICLESPACE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'TALKSPACE'   Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACEE'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTSPACEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ARTICLESPACEE' Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'TALKSPACEE'  Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACENUMBER' Name.Function
+':'           Punctuation
+'MediaWiki'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACE'   Name.Function
+':'           Punctuation
+'MediaWiki'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'NAMESPACE'   Name.Function
+':'           Punctuation
+'Template'    Text
+':'           Text
+'Main'        Text
+' '           Text
+'Page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTSPACE' Name.Function
+':'           Punctuation
+'Template'    Text
+':'           Text
+'Main'        Text
+' '           Text
+'Page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ARTICLESPACE' Name.Function
+':'           Punctuation
+'Template'    Text
+':'           Text
+'Main'        Text
+' '           Text
+'Page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'TALKSPACE'   Name.Function
+':'           Punctuation
+'Template'    Text
+':'           Text
+'Main'        Text
+' '           Text
+'Page'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'SUBJECTSPACE' Name.Function
+':'           Punctuation
+'Help'        Text
+' '           Text
+'talk'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'='           Name.Function
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGEID'      Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESIZE'    Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PAGESIZE'    Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PROTECTIONLEVEL' Name.Function
+':'           Punctuation
+'action'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PROTECTIONEXPIRY' Name.Function
+':'           Punctuation
+' '           Text
+'action'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'CASCADINGSOURCES' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONID'  Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONDAY' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONDAY2' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONMONTH' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONMONTH1' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONYEAR' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONTIMESTAMP' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'REVISIONUSER' Name.Function
+':'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'localurl'    Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'localurl'    Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'\n'          Text
+
+'|'           Punctuation
+'query_string' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'localurl'    Name.Function
+':'           Punctuation
+'MediaWiki'   Text
+'|'           Punctuation
+'printable'   Name.Label
+'='           Operator
+'yes'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'\n'          Text
+
+'|'           Punctuation
+'query_string' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'interwiki'   Text
+':'           Text
+'remote'      Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'\n'          Text
+
+'|'           Punctuation
+'query_string' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'Category'    Text
+':'           Text
+'Top'         Text
+' '           Text
+'level'       Text
+'|'           Punctuation
+'action'      Name.Label
+'='           Operator
+'edit'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'s'           Text
+':'           Text
+'Electra'     Text
+'|'           Punctuation
+'action'      Name.Label
+'='           Operator
+'edit'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'fullurl'     Name.Function
+':'           Punctuation
+'s'           Text
+':'           Text
+'es'          Text
+':'           Text
+'Electra'     Text
+'|'           Punctuation
+'action'      Name.Label
+'='           Operator
+'edit'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'canonicalurl' Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'canonicalurl' Name.Function
+':'           Punctuation
+'page'        Text
+' '           Text
+'name'        Text
+'\n'          Text
+
+'|'           Punctuation
+'query_string' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'canonicalurl' Name.Function
+':'           Punctuation
+'interwiki'   Text
+':'           Text
+'remote'      Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'\n'          Text
+
+'|'           Punctuation
+'query_string' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'canonicalurl' Name.Function
+':'           Punctuation
+'Category'    Text
+':'           Text
+'Top'         Text
+' '           Text
+'level'       Text
+'|'           Punctuation
+'action'      Name.Label
+'='           Operator
+'edit'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'filepath'    Name.Function
+':'           Punctuation
+'file'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'filepath'    Name.Function
+':'           Punctuation
+'file'        Text
+' '           Text
+'name'        Text
+'|'           Punctuation
+'nowiki'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'filepath'    Name.Function
+':'           Punctuation
+'file'        Text
+' '           Text
+'name'        Text
+'|'           Punctuation
+'thumbnail_size' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'filepath'    Name.Function
+':'           Punctuation
+'Wiki'        Text
+'.'           Text
+'png'         Text
+'|'           Punctuation
+'nowiki'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'filepath'    Name.Function
+':'           Punctuation
+'Example'     Text
+'.'           Text
+'svg'         Text
+'|'           Punctuation
+'300'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'string'      Text
+'|'           Punctuation
+'QUERY'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'string'      Text
+'|'           Punctuation
+'WIKI'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'string'      Text
+'|'           Punctuation
+'PATH'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'x'           Text
+':'           Text
+'y'           Text
+'/'           Text
+'z'           Text
+' '           Text
+'á'           Text
+' '           Text
+'é'           Text
+'|'           Punctuation
+'QUERY'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'x'           Text
+':'           Text
+'y'           Text
+'/'           Text
+'z'           Text
+' '           Text
+'á'           Text
+' '           Text
+'é'           Text
+'|'           Punctuation
+'WIKI'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'urlencode'   Name.Function
+':'           Punctuation
+'x'           Text
+':'           Text
+'y'           Text
+'/'           Text
+'z'           Text
+' '           Text
+'á'           Text
+' '           Text
+'é'           Text
+'|'           Punctuation
+'PATH'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'anchorencode' Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'nse'         Name.Function
+':'           Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'-'           Text
+'2'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'0'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'2'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'4'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'6'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'8'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'10'          Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'12'          Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ns'          Name.Function
+':'           Punctuation
+'14'          Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'unformatted' Text
+' '           Text
+'number'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'formatnum'   Text
+'-'           Text
+'formatted'   Text
+' '           Text
+'number'      Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'unformatted' Text
+' '           Text
+'number'      Text
+'|'           Punctuation
+'NOSEP'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987654321'   Text
+'.'           Text
+'654321'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+','           Text
+'654'         Text
+','           Text
+'321'         Text
+'.'           Text
+'654321'      Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987654321'   Text
+'.'           Text
+'654321'      Text
+'}}'          Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'00001'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987654321'   Text
+'.'           Text
+'654321'      Text
+' '           Text
+'|'           Punctuation
+'NOSEP'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987654321'   Text
+'.'           Text
+'654321'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987654321'   Text
+'.'           Text
+'654321'      Text
+' '           Text
+'|'           Punctuation
+'NOSEP'       Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'৯৮'          Text
+','           Text
+'৭৬'          Text
+','           Text
+'৫৪'          Text
+','           Text
+'৩২১'         Text
+'.'           Text
+'৬৫৪৩২১'      Text
+' '           Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+'.'           Text
+'654'         Text
+'.'           Text
+'321'         Text
+'}}'          Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+','           Text
+'654'         Text
+'.'           Text
+'321'         Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+'.'           Text
+'654'         Text
+','           Text
+'321'         Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+' '           Text
+'654'         Text
+','           Text
+'321'         Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'formatnum'   Name.Function
+':'           Punctuation
+'987'         Text
+'&nbsp;'      Name.Entity
+'654'         Text
+','           Text
+'321'         Text
+'|'           Punctuation
+'R'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#dateformat' Name.Function
+':'           Punctuation
+'date'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#formatdate' Name.Function
+':'           Punctuation
+'date'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#dateformat' Name.Function
+':'           Punctuation
+'date'        Text
+'|'           Punctuation
+'format'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#formatdate' Name.Function
+':'           Punctuation
+'date'        Text
+'|'           Punctuation
+'format'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#dateformat' Name.Function
+':'           Punctuation
+'25'          Text
+' '           Text
+'dec'         Text
+' '           Text
+'2009'        Text
+'|'           Punctuation
+'ymd'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#formatdate' Name.Function
+':'           Punctuation
+'dec'         Text
+' '           Text
+'25'          Text
+','           Text
+'2009'        Text
+'|'           Punctuation
+'dmy'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#dateformat' Name.Function
+':'           Punctuation
+'2009'        Text
+'-'           Text
+'12'          Text
+'-'           Text
+'25'          Text
+'|'           Punctuation
+'mdy'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#formatdate' Name.Function
+':'           Punctuation
+'2009'        Text
+' '           Text
+'dec'         Text
+' '           Text
+'25'          Text
+'|'           Punctuation
+'ISO'         Text
+' '           Text
+'8601'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#dateformat' Name.Function
+':'           Punctuation
+'25'          Text
+' '           Text
+'decEmber'    Text
+'|'           Punctuation
+'mdy'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'lc'          Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'lc'          Name.Function
+':'           Punctuation
+'DATA'        Text
+' '           Text
+'CENTER'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'lcfirst'     Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'lcfirst'     Name.Function
+':'           Punctuation
+'DATA'        Text
+' '           Text
+'center'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'uc'          Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'uc'          Name.Function
+':'           Punctuation
+'text'        Text
+' '           Text
+'transform'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ucfirst'     Name.Function
+':'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'ucfirst'     Name.Function
+':'           Punctuation
+'text'        Text
+' '           Text
+'tRAnSFORM'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'stringlength' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'strlen'      Text
+'|'           Punctuation
+'char'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'strlen'      Text
+'|'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'|'           Punctuation
+'_'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'|'           Punctuation
+'abc'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'2'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padleft'     Name.Function
+':'           Punctuation
+'|'           Punctuation
+'1'           Text
+'|'           Punctuation
+'xyz'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'stringlength' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'strlen'      Text
+'|'           Punctuation
+'char'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'strlen'      Text
+'|'           Punctuation
+'string'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'|'           Punctuation
+'_'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'5'           Text
+'|'           Punctuation
+'abc'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'xyz'         Text
+'|'           Punctuation
+'2'           Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'padright'    Name.Function
+':'           Punctuation
+'|'           Punctuation
+'1'           Text
+'|'           Punctuation
+'xyz'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'2'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'1'           Text
+'*'           Text
+'1'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'21'          Text
+' '           Text
+'mod'         Text
+' '           Text
+'10'          Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'{{'          Punctuation
+'#expr'       Name.Function
+':'           Punctuation
+'21'          Text
+' '           Text
+'mod'         Text
+' '           Text
+'10'          Text
+'}}'          Punctuation
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'1'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'2'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'-'           Text
+'1'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'-'           Text
+'2'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'0'           Text
+'.'           Text
+'5'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'1'           Text
+'.'           Text
+'5'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'-'           Text
+'0'           Text
+'.'           Text
+'5'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'-'           Text
+'1'           Text
+'.'           Text
+'5'           Text
+'|'           Punctuation
+'is'          Text
+'|'           Punctuation
+'are'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'5'           Text
+'|'           Punctuation
+'1'           Name.Label
+'='           Operator
+'Категория'   Text
+'|'           Punctuation
+'Категории'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'3'           Text
+'|'           Punctuation
+'страница'    Text
+'|'           Punctuation
+'страницы'    Text
+'|'           Punctuation
+'страниц'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'PLURAL'      Name.Function
+':'           Punctuation
+'5'           Text
+'|'           Punctuation
+'страница'    Text
+'|'           Punctuation
+'страницы'    Text
+'|'           Punctuation
+'страниц'     Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'GRAMMAR'     Name.Function
+':'           Punctuation
+'N'           Text
+'|'           Punctuation
+'noun'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'GENDER'      Name.Function
+':'           Punctuation
+'username'    Text
+'|'           Punctuation
+'text'        Text
+' '           Text
+'for'         Text
+' '           Text
+'every'       Text
+' '           Text
+'gender'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'GENDER'      Name.Function
+':'           Punctuation
+'Username'    Text
+'|'           Punctuation
+'male'        Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'female'      Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'text'        Text
+' '           Text
+'for'         Text
+' '           Text
+'unspecified' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'GENDER'      Name.Function
+':'           Punctuation
+'|'           Punctuation
+'male'        Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'female'      Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'text'        Text
+' '           Text
+'for'         Text
+' '           Text
+'unspecified' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'GENDER'      Name.Function
+':'           Punctuation
+'.'           Text
+'|'           Punctuation
+'male'        Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'female'      Text
+' '           Text
+'text'        Text
+'|'           Punctuation
+'text'        Text
+' '           Text
+'for'         Text
+' '           Text
+'unspecified' Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'int'         Name.Function
+':'           Punctuation
+'message'     Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'int'         Name.Function
+':'           Punctuation
+'editsectionhint' Text
+'|'           Punctuation
+'MediaWiki'   Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'Page'        Name.Tag
+' '           Name.Tag
+'name'        Name.Tag
+'|'           Punctuation
+'optional'    Text
+' '           Text
+'params'      Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+':'           Punctuation
+'xyz'         Name.Tag
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'int'         Name.Function
+':'           Punctuation
+'xyz'         Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#language'   Name.Function
+':'           Punctuation
+'language'    Text
+' '           Text
+'code'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#language'   Name.Function
+':'           Punctuation
+'language'    Text
+' '           Text
+'code'        Text
+'|'           Punctuation
+'target'      Text
+' '           Text
+'language'    Text
+' '           Text
+'code'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#language'   Name.Function
+':'           Punctuation
+'ar'          Text
+'|'           Punctuation
+'en'          Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#special'    Name.Function
+':'           Punctuation
+'special'     Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#speciale'   Name.Function
+':'           Punctuation
+'special'     Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#tag'        Name.Function
+':'           Punctuation
+'tagname'     Text
+'\n'          Text
+
+'|'           Punctuation
+'content'     Text
+'\n'          Text
+
+'|'           Punctuation
+'attribute1'  Name.Label
+'='           Operator
+'value1'      Text
+'\n'          Text
+
+'|'           Punctuation
+'attribute2'  Name.Label
+'='           Operator
+'value2'      Text
+'\n'          Text
+
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+'#tag'        Name.Function
+':'           Punctuation
+'ref'         Text
+'|'           Punctuation
+'Citation'    Text
+' '           Text
+'on'          Text
+' '           Text
+'Magic'       Text
+' '           Text
+'words'       Text
+'.'           Text
+' '           Text
+'|'           Punctuation
+'name '       Name.Label
+'='           Operator
+' '           Text
+'"'           Text
+'multiple'    Text
+'"'           Text
+'}}'          Punctuation
+'\n'          Text

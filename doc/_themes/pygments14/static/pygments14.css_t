@@ -382,6 +382,19 @@ div.admonition, div.warning {
     padding-bottom: 0.5rem;
 }
 
+/*
+If we have a code highlight box inside an admonition, we hide the background
+color of the highlight box so it doesn't interfere with the admonition
+background color set above.
+*/
+div.admonition .highlight {
+    background-color: unset;
+}
+
+div.admonition div[class*="highlight-"] {
+    margin: 0;
+}
+
 div.admonition p, div.warning p {
     margin: 0.5em 1em 0.5em 1em;
     padding: 0;

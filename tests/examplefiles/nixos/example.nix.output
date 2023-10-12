@@ -1086,86 +1086,14 @@
 'preConfigure =' Literal.String.Symbol
 ' '           Text
 "''"          Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'e'           Literal.String.Single
-'x'           Literal.String.Single
-'p'           Literal.String.Single
-'o'           Literal.String.Single
-'r'           Literal.String.Single
-'t'           Literal.String.Single
-' '           Literal.String.Single
-'N'           Literal.String.Single
-'I'           Literal.String.Single
-'X'           Literal.String.Single
-'_'           Literal.String.Single
-'C'           Literal.String.Single
-'F'           Literal.String.Single
-'L'           Literal.String.Single
-'A'           Literal.String.Single
-'G'           Literal.String.Single
-'S'           Literal.String.Single
-'_'           Literal.String.Single
-'C'           Literal.String.Single
-'O'           Literal.String.Single
-'M'           Literal.String.Single
-'P'           Literal.String.Single
-'I'           Literal.String.Single
-'L'           Literal.String.Single
-'E'           Literal.String.Single
-'='           Literal.String.Single
-'"'           Literal.String.Single
+'\n    export NIX_CFLAGS_COMPILE="' Literal.String.Single
 '$'           Literal.String.Single
-'N'           Literal.String.Single
-'I'           Literal.String.Single
-'X'           Literal.String.Single
-'_'           Literal.String.Single
-'C'           Literal.String.Single
-'F'           Literal.String.Single
-'L'           Literal.String.Single
-'A'           Literal.String.Single
-'G'           Literal.String.Single
-'S'           Literal.String.Single
-'_'           Literal.String.Single
-'C'           Literal.String.Single
-'O'           Literal.String.Single
-'M'           Literal.String.Single
-'P'           Literal.String.Single
-'I'           Literal.String.Single
-'L'           Literal.String.Single
-'E'           Literal.String.Single
-' '           Literal.String.Single
-'-'           Literal.String.Single
-'I'           Literal.String.Single
+'NIX_CFLAGS_COMPILE -I' Literal.String.Single
 '${'          Literal.String.Interpol
 'libxml2'     Text
 ' '           Text
 '}'           Literal.String.Interpol
-'/'           Literal.String.Single
-'i'           Literal.String.Single
-'n'           Literal.String.Single
-'c'           Literal.String.Single
-'l'           Literal.String.Single
-'u'           Literal.String.Single
-'d'           Literal.String.Single
-'e'           Literal.String.Single
-'/'           Literal.String.Single
-'l'           Literal.String.Single
-'i'           Literal.String.Single
-'b'           Literal.String.Single
-'x'           Literal.String.Single
-'m'           Literal.String.Single
-'l'           Literal.String.Single
-'2'           Literal.String.Single
-'"'           Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
+'/include/libxml2"\n  ' Literal.String.Single
 "''"          Literal.String.Single
 ';'           Punctuation
 '\n\n  '      Text
@@ -1174,42 +1102,19 @@
 'postInstall =' Literal.String.Symbol
 ' '           Text
 "''"          Literal.String.Single
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
-'m'           Literal.String.Single
-'v'           Literal.String.Single
+'\n    mv '   Literal.String.Single
+'$'           Literal.String.Single
+'out/sbin '   Literal.String.Single
+"'"           Literal.String.Single
+'foo'         Literal.String.Single
+"'"           Literal.String.Single
 ' '           Literal.String.Single
 '$'           Literal.String.Single
-'o'           Literal.String.Single
-'u'           Literal.String.Single
-'t'           Literal.String.Single
-'/'           Literal.String.Single
-'s'           Literal.String.Single
-'b'           Literal.String.Single
-'i'           Literal.String.Single
-'n'           Literal.String.Single
-' '           Literal.String.Single
-'$'           Literal.String.Single
-'o'           Literal.String.Single
-'u'           Literal.String.Single
-'t'           Literal.String.Single
-'/'           Literal.String.Single
-'b'           Literal.String.Single
-'i'           Literal.String.Single
-'n'           Literal.String.Single
-' '           Literal.String.Single
+'out/bin '    Literal.String.Single
 "'''"         Literal.String.Escape
 ' '           Literal.String.Single
 "''${"        Literal.String.Escape
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
-' '           Literal.String.Single
+'\n   '       Literal.String.Single
 '${'          Literal.String.Interpol
 ' '           Text
 'if'          Keyword
@@ -1230,10 +1135,7 @@
 'false'       Name.Constant
 ' '           Text
 '}'           Literal.String.Interpol
-'\n'          Literal.String.Single
-
-' '           Literal.String.Single
-' '           Literal.String.Single
+'\n  '        Literal.String.Single
 "''"          Literal.String.Single
 ';'           Punctuation
 '\n\n  '      Text

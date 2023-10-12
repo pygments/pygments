@@ -2,32 +2,32 @@
 ':'           Punctuation
 '     file format ' Text
 'elf64-x86-64' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Disassembly of section ' Text
 '.text'       Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0000000000000000' Literal.Number.Hex
 ' '           Text.Whitespace
 '<'           Punctuation
 'foo'         Name.Function
 '>:'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 '0:'          Name.Label
 '\t'          Text.Whitespace
 'endbr64'     Name.Function
 ' '           Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 '4:'          Name.Label
@@ -35,7 +35,7 @@
 'push'        Name.Function
 '   '         Text.Whitespace
 'rbp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 '5:'          Name.Label
@@ -45,7 +45,7 @@
 'rbp'         Name.Builtin
 ','           Punctuation
 'rsp'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 '8:'          Name.Label
@@ -55,7 +55,7 @@
 'rsp'         Name.Builtin
 ','           Punctuation
 '0x10'        Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 'c:'          Name.Label
@@ -72,7 +72,7 @@
 '0x4'         Literal.Number.Hex
 '],'          Punctuation
 'edi'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text.Whitespace
 'f:'          Name.Label
@@ -87,7 +87,7 @@
 ']'           Punctuation
 '        '    Text.Whitespace
 '# 16 <foo+0x16>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '16:'         Name.Label
@@ -101,7 +101,7 @@
 '+'           Operator
 '0x1b'        Literal.Number.Hex
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '1b:'         Name.Label
@@ -111,18 +111,18 @@
 'eax'         Name.Builtin
 ','           Punctuation
 '0x0'         Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '20:'         Name.Label
 '\t'          Text.Whitespace
 'leave'       Name.Function
 '  '          Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '21:'         Name.Label
 '\t'          Text.Whitespace
 'ret'         Name.Function
 '   '         Text.Whitespace
-'\n'          Text
+'\n'          Text.Whitespace

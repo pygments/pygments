@@ -374,10 +374,10 @@
 'pyrun'       Name.Builtin
 ' '           Text.Whitespace
 '{{'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Python'    Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}}'          Literal.String
 '\n'          Text.Whitespace

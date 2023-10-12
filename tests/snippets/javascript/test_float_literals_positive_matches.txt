@@ -1,0 +1,52 @@
+---input---
+// Test literals that should be tokenized as float literals.
+1
+1.
+    .1
+1.1
+1e1
+1E1
+1e+1
+1E-1
+1.e1
+1e1
+0888 // octal prefix with non-octal numbers
+
+---tokens---
+''            Text
+'// Test literals that should be tokenized as float literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.'          Literal.Number.Float
+'\n    '      Text.Whitespace
+'.1'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1E1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e+1'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1E-1'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.e1'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0888'        Literal.Number.Float
+' '           Text.Whitespace
+'// octal prefix with non-octal numbers' Comment.Single
+'\n'          Text.Whitespace

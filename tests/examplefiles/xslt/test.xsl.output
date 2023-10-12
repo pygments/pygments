@@ -1,103 +1,103 @@
 '<?xml version="1.0" encoding="utf-8"?>' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<xsl:stylesheet' Keyword
-' '           Text
+' '           Text.Whitespace
 'version='    Name.Attribute
 '"1.0"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'xmlns:xsl='  Name.Attribute
 '"http://www.w3.org/1999/XSL/Transform"' Literal.String
 '>'           Name.Tag
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '<xsl:output' Keyword
-' '           Text
+' '           Text.Whitespace
 'method='     Name.Attribute
 '"xml"'       Literal.String
 '/>'          Name.Tag
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '<xsl:template' Keyword
-' '           Text
+' '           Text.Whitespace
 'match='      Name.Attribute
 '"/"'         Literal.String
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<customers'  Name.Tag
 '>'           Name.Tag
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<xsl:apply-templates' Keyword
-' '           Text
+' '           Text.Whitespace
 'select='     Name.Attribute
 '"customers/customer[@Country=\'Germany\']"' Literal.String
 '/>'          Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '</customers>' Name.Tag
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '</xsl:template>' Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '<xsl:template' Keyword
-' '           Text
+' '           Text.Whitespace
 'match='      Name.Attribute
 '"customers"' Literal.String
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<xsl:apply-templates' Keyword
 '/>'          Name.Tag
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '</xsl:template>' Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '<xsl:template' Keyword
-' '           Text
+' '           Text.Whitespace
 'match='      Name.Attribute
 '"customer"'  Literal.String
 '>'           Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<customer'   Name.Tag
 '>'           Name.Tag
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<xsl:attribute' Keyword
-' '           Text
+' '           Text.Whitespace
 'name='       Name.Attribute
 '"CompanyName"' Literal.String
 '>'           Name.Tag
 '<xsl:value-of' Keyword
-' '           Text
+' '           Text.Whitespace
 'select='     Name.Attribute
 '"@CompanyName"' Literal.String
 '/>'          Name.Tag
 '</xsl:attribute>' Keyword
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<xsl:attribute' Keyword
-' '           Text
+' '           Text.Whitespace
 'name='       Name.Attribute
 '"CustomerID"' Literal.String
 '>'           Name.Tag
 '<xsl:value-of' Keyword
-' '           Text
+' '           Text.Whitespace
 'select='     Name.Attribute
 '"@CustomerID"' Literal.String
 '/>'          Name.Tag
 '</xsl:attribute>' Keyword
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '<xsl:attribute' Keyword
-' '           Text
+' '           Text.Whitespace
 'name='       Name.Attribute
 '"Country"'   Literal.String
 '>'           Name.Tag
 '<xsl:value-of' Keyword
-' '           Text
+' '           Text.Whitespace
 'select='     Name.Attribute
 '"@Country"'  Literal.String
 '/>'          Name.Tag
 '</xsl:attribute>' Keyword
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '</customer>' Name.Tag
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '<xsl:apply-templates' Keyword
 '/>'          Name.Tag
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '</xsl:template>' Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '</xsl:stylesheet>' Keyword
-'\n'          Text
+'\n'          Text.Whitespace

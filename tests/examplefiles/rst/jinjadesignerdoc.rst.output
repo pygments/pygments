@@ -7,12 +7,12 @@
 '======================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This part of the Jinja documentaton is meant for template designers.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Basics'      Generic.Heading
 '\n'          Text
@@ -20,30 +20,30 @@
 '======'      Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The Jinja template language is designed to strike a balance between content' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and application logic. Nevertheless you can use a python like statement' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "language. You don't have to know how Python works to create Jinja templates," Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but if you know it you can use some additional statements you may know from' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python.'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Here is a small example template' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -227,7 +227,7 @@
 '\n\n'        Text
 
 'This covers the default settings. The application developer might have changed' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the syntax from ' Text
 '``'          Literal.String
@@ -238,54 +238,54 @@
 '<% foo %>'   Literal.String
 '``'          Literal.String
 ' or something similar. This' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'documentation just covers the default values.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A variable looks like ' Text
 '``'          Literal.String
 '{{ foobar }}' Literal.String
 '``'          Literal.String
 ' where foobar is the variable name. Inside' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of statements (' Text
 '``'          Literal.String
 '{% some content here %}' Literal.String
 '``'          Literal.String
 ') variables are just normal names' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'without the braces around it. In fact ' Text
 '``'          Literal.String
 '{{ foobar }}' Literal.String
 '``'          Literal.String
 ' is just an alias for' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the statement ' Text
 '``'          Literal.String
 '{% print foobar %}' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Variables are coming from the context provided by the application. Normally there' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'should be a documentation regarding the context contents but if you want to know' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the content of the current context, you can add this to your template' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -315,19 +315,19 @@
 '\n\n'        Text
 
 "A context isn't flat which means that each variable can has subvariables, as long" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'as it is representable as python data structure. You can access attributes of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a variable using the dot and bracket operators. The following examples show' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this'        Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -396,16 +396,16 @@
 '======='     Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In the examples above you might have noticed the pipe symbols. Pipe symbols tell' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the engine that it has to apply a filter on the variable. Here is a small example' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -434,15 +434,15 @@
 '\n\n'        Other
 
 'If you want, you can also put whitespace between the filters.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This will look for a variable ' Text
 '`variable`'  Name.Variable
 ', pass it to the filter ' Text
 '`replace`'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'with the arguments ' Text
 '``'          Literal.String
@@ -453,27 +453,27 @@
 "'bar'"       Literal.String
 '``'          Literal.String
 ', and pass the result to the filter' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`escape`'    Name.Variable
 ' that automatically XML-escapes the value. The ' Text
 '`e`'         Name.Variable
 ' filter is an alias for' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`escape`'    Name.Variable
 '. Here is the complete list of supported filters' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Text
 '['           Text
 'list_of_filters]]' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -481,21 +481,21 @@
 '::'          Punctuation
 ' '           Text
 'note'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Filters have a pretty low priority. If you want to add fitered values' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    you have to put them into parentheses. The same applies if you want to access' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    attributes' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    ..'      Punctuation
 ' '           Text
@@ -587,15 +587,15 @@
 '====='       Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You can use the ' Text
 '`is`'        Name.Variable
 ' operator to perform tests on a value' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -645,16 +645,16 @@
 'These tests are especially useful when used in ' Text
 '`if`'        Name.Variable
 ' conditions.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '['           Text
 '['           Text
 'list_of_tests]]' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Global Functions' Generic.Heading
 '\n'          Text
@@ -662,52 +662,52 @@
 '================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Test functions and filter functions live in their own namespace. Global' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions not. They behave like normal objects in the context. Beside the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions added by the application or framewhere there are two functions' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'available per default' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`range`'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Works like the python ' Text
 '`range function`_' Literal.String
 " just that it doesn't support" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    ranges greater than ' Text
 '``'          Literal.String
 '1000000'     Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`debug`'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Function that outputs the contents of the context.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Loops'       Generic.Heading
 '\n'          Text
@@ -715,20 +715,20 @@
 '====='       Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'To iterate over a sequence, you can use the ' Text
 '`for`'       Name.Variable
 ' loop. It basically looks like a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'normal Python ' Text
 '`for`'       Name.Variable
 ' loop and works pretty much the same' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -850,143 +850,143 @@
 'else'        Literal.String
 '``'          Literal.String
 ' block only' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'executed if there was no iteration because the sequence was empty.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Inside of a ' Text
 '`for`'       Name.Variable
 ' loop block you can access some special variables' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' Variable             | Description                            |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+======================+========================================+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.index`' Name.Variable
 '         | The current iteration of the loop.     |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.index0`' Name.Variable
 '        | The current iteration of the loop,     |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 '                      | starting counting by 0.                |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.revindex`' Name.Variable
 '      | The number of iterations from the end  |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 '                      | of the loop.                           |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.revindex0`' Name.Variable
 '     | The number of iterations from the end  |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 '                      | of the loop, starting counting by 0.   |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.first`' Name.Variable
 '         | True if first iteration.               |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.last`' Name.Variable
 '          | True if last iteration.                |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.even`' Name.Variable
 '          | True if current iteration is even.     |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.odd`'  Name.Variable
 '           | True if current iteration is odd.      |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.length`' Name.Variable
 '        | Total number of items in the sequence. |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Operator
 ' '           Text
 '`loop.parent`' Name.Variable
 '        | The context of the parent loop.        |' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+----------------------+----------------------------------------+' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Loops also support recursion. Let's assume you have a sitemap where each item" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'might have a number of child items. A template for that could look like this' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1116,7 +1116,7 @@
 '\n\n'        Text
 
 'What happens here? Basically the first thing that is different to a normal' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'loop is the additional ' Text
 '``'          Literal.String
@@ -1125,20 +1125,20 @@
 ' modifier in the ' Text
 '`for`'       Name.Variable
 '-loop declaration.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'It tells the template engine that we want recursion. If recursion is enabled' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the special ' Text
 '`loop`'      Name.Variable
 ' variable is callable. If you call it with a sequence it will' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'automatically render the loop at that position with the new sequence as argument.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Cycling'     Generic.Heading
 '\n'          Text
@@ -1146,22 +1146,22 @@
 '======='     Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Sometimes you might want to have different text snippets for each row in a list,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'for example to have alternating row colors. You can easily do this by using the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 '{% cycle %}' Literal.String
 '``'          Literal.String
 ' tag'        Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1246,16 +1246,16 @@
 'Each time Jinja encounters a ' Text
 '`cycle`'     Name.Variable
 ' tag it will cycle through the list' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of given items and return the next one. If you pass it one item jinja assumes' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that this item is a sequence from the context and uses this' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1294,7 +1294,7 @@
 '=========='  Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Jinja supports Python-like ' Text
 '`if`'        Name.Variable
@@ -1304,9 +1304,9 @@
 '`else`'      Name.Variable
 ' constructs' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1391,18 +1391,18 @@
 '\n\n'        Other
 
 'If the user is active the first block is rendered. If not and the user was' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'deleted the second one, in all other cases the third one.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You can also use comparison operators' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1488,30 +1488,30 @@
 '::'          Punctuation
 ' '           Text
 'Note'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Of course you can use ' Text
 '`or`'        Name.Variable
 ' / '         Text
 '`and`'       Name.Variable
 ' and parentheses to create more complex' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    conditions, but usually the logic is already handled in the application and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    you don't have to create such complex constructs in the template code. However" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    in some situations it might be a good thing to have the abilities to create' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    them.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Operators'   Generic.Heading
 '\n'          Text
@@ -1519,7 +1519,7 @@
 '========='   Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Inside '     Text
 '``'          Literal.String
@@ -1528,23 +1528,23 @@
 ' blocks, '   Text
 '`if`'        Name.Variable
 ' conditions and many other parts you can' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'can use expressions. In expressions you can use any of the following operators' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    ======= ===================================================================' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '+'           Literal.String
 '``'          Literal.String
 '   add the right operand to the left one.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '``'          Literal.String
@@ -1555,14 +1555,14 @@
 '3'           Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '-'           Literal.String
 '``'          Literal.String
 '   subtract the right operand from the left one.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '``'          Literal.String
@@ -1573,14 +1573,14 @@
 '0'           Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '/'           Literal.String
 '``'          Literal.String
 '   divide the left operand by the right one.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '``'          Literal.String
@@ -1591,14 +1591,14 @@
 '0.5'         Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '*'           Literal.String
 '``'          Literal.String
 '   multiply the left operand with the right one.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '``'          Literal.String
@@ -1609,14 +1609,14 @@
 '4'           Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '**'          Literal.String
 '``'          Literal.String
 '  raise the left operand to the power of the right' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            operand. ' Text
 '``'          Literal.String
@@ -1627,7 +1627,7 @@
 '8'           Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
@@ -1638,51 +1638,51 @@
 '{{ 1 in [1,2,3] }}' Literal.String
 '``'          Literal.String
 ' would'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            return true.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 'is'          Literal.String
 '``'          Literal.String
 '  perform a test on the value. See the section about' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            tests for more information.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 '|'           Literal.String
 '``'          Literal.String
 '   apply a filter on the value. See the section about' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            filters for more information.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 'and'         Literal.String
 '``'          Literal.String
 ' return true if the left and the right operand is true.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 'or'          Literal.String
 '``'          Literal.String
 '  return true if the left or the right operand is true.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
 'not'         Literal.String
 '``'          Literal.String
 ' negate a statement (see below)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '``'          Literal.String
@@ -1695,7 +1695,7 @@
 '{{ user.get_username() }}' Literal.String
 '``'          Literal.String
 '. Inside of the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            parentheses you can use variables' Text
 ':'           Text
@@ -1704,15 +1704,15 @@
 '{{ user.get(username) }}' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    ======= ===================================================================' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Note that there is no support for any bit operations or something similar.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -1725,7 +1725,7 @@
 ' and '       Text
 '`in`'        Name.Variable
 ' operators support negation' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  using an infix notation too' Text
 ':'           Text
@@ -1737,7 +1737,7 @@
 '``'          Literal.String
 'foo not in bar' Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  instead of ' Text
 '``'          Literal.String
@@ -1748,7 +1748,7 @@
 'not foo in bar' Literal.String
 '``'          Literal.String
 '. All other expressions' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  require a prefix notation' Text
 ':'           Text
@@ -1757,9 +1757,9 @@
 'not (foo and bar)' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Boolean Values' Generic.Heading
 '\n'          Text
@@ -1767,12 +1767,12 @@
 '==============' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In If-Conditions Jinja performs a boolean check. All empty values (eg' Text
 ':'           Text
 ' empty'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'lists '      Text
 '``'          Literal.String
@@ -1785,7 +1785,7 @@
 ' etc) evaluate to ' Text
 '`false`'     Name.Variable
 '. Numbers that are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'equal to '   Text
 '`0`'         Name.Variable
@@ -1794,23 +1794,23 @@
 ' are considered ' Text
 '`false`'     Name.Variable
 ' too. The boolean value of other' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'objects depends on the behavior the application developer gave it. Usually' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'items are '  Text
 '`true`'      Name.Variable
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Here some examples that should explain it' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1882,13 +1882,13 @@
 '======='     Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Some objects support slicing operations. For example lists' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -1971,12 +1971,12 @@
 
 'For more informations about slicing have a look at the ' Text
 '`slicing chapter`_' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'in the "Dive into Python" e-book.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Macros'      Generic.Heading
 '\n'          Text
@@ -1984,16 +1984,16 @@
 '======'      Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If you want to use a partial template in more than one place, you might want to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'create a macro from it' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2073,9 +2073,9 @@
 
 'Now you can use it from everywhere in the code by passing it an item' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2121,9 +2121,9 @@
 
 'You can also specify more than one value' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2235,28 +2235,28 @@
 '===========' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The most powerful part of Jinja is template inheritance. Template inheritance' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'allows you to build a base "skeleton" template that contains all the common' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elements of your site and defines ' Text
 '**blocks**'  Generic.Strong
 ' that child templates can override.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Sounds complicated but is very basic. It's easiest to understand it by starting" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'with an example.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Base Template' Generic.Heading
 '\n'          Text
@@ -2264,23 +2264,23 @@
 '-------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "This template, which we'll call " Text
 '``'          Literal.String
 'base.html'   Literal.String
 '``'          Literal.String
 ', defines a simple HTML skeleton' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "document that you might use for a simple two-column page. It's the job of" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"child" templates to fill the empty blocks with content' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2487,17 +2487,17 @@
 '{% block %}' Literal.String
 '``'          Literal.String
 ' tags define four blocks that child templates' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'can fill in. All the ' Text
 '`block`'     Name.Variable
 ' tag does is to tell the template engine that a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'child template may override those portions of the template.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Child Template' Generic.Heading
 '\n'          Text
@@ -2505,13 +2505,13 @@
 '--------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A child template might look like this' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2666,30 +2666,30 @@
 '{% extends %}' Literal.String
 '``'          Literal.String
 ' tag is the key here. It tells the template engine that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this template "extends" another template. When the template system evaluates' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'this template, first it locates the parent.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The filename of the template depends on the template loader. For example the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'FileSystemLoader' Literal.String
 '``'          Literal.String
 ' allows you to access other templates by giving the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'filename. You can access templates in subdirectories with an slash' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2710,21 +2710,21 @@
 '\n\n'        Other
 
 'But this behavior can depend on the application using Jinja.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Note that since the child template didn't define the " Text
 '``'          Literal.String
 'footer'      Literal.String
 '``'          Literal.String
 ' block, the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'value from the parent template is used instead.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2732,39 +2732,39 @@
 '::'          Punctuation
 ' '           Text
 'Note'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    You can't define multiple " Text
 '``'          Literal.String
 '{% block %}' Literal.String
 '``'          Literal.String
 ' tags with the same name in the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    same template. This limitation exists because a block tag works in "both"' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    directions. That is, a block tag doesn't just provide a hole to fill - it" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    also defines the content that fills the hole in the ' Text
 '*parent*'    Generic.Emph
 '. If there were' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    two similarly-named ' Text
 '``'          Literal.String
 '{% block %}' Literal.String
 '``'          Literal.String
 " tags in a template, that template's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "    parent wouldn't know which one of the blocks' content to use." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Template Inclusion' Generic.Heading
 '\n'          Text
@@ -2772,26 +2772,26 @@
 '==================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You can load another template at a given position using ' Text
 '``'          Literal.String
 '{% include %}' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Usually it's a better idea to use inheritance but if you for example want to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'load macros, ' Text
 '`include`'   Name.Variable
 ' works better than ' Text
 '`extends`'   Name.Variable
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2831,12 +2831,12 @@
 'myhelpers.html' Literal.String
 '``'          Literal.String
 ', you can now' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'use it from the template as shown above.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Filtering Blocks' Generic.Heading
 '\n'          Text
@@ -2844,16 +2844,16 @@
 '================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Sometimes it could be a good idea to filter a complete block of text. For' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'example, if you want to escape some html code' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2892,9 +2892,9 @@
 
 'Of course you can chain filters too' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2932,9 +2932,9 @@
 '"&lt;b&gt;some text&lt;/b&gt;"' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Defining Variables' Generic.Heading
 '\n'          Text
@@ -2942,7 +2942,7 @@
 '==================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You can also define variables in the namespace using the ' Text
 '``'          Literal.String
@@ -2950,9 +2950,9 @@
 '``'          Literal.String
 ' tag'        Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -2989,9 +2989,9 @@
 'foobar'      Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Scopes'      Generic.Heading
 '\n'          Text
@@ -2999,19 +2999,19 @@
 '======'      Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Jinja has multiple scopes. A scope is something like a new transparent foil on' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a stack of foils. You can only write to the outermost foil but read all of them' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'since you can look through them. If you remove the top foil all data on that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foil disappears. Some tags in Jinja add a new layer to the stack. Currently' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'these are '  Text
 '`block`'     Name.Variable
@@ -3022,16 +3022,16 @@
 ' and '       Text
 '`filter`'    Name.Variable
 '. This means that variables and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'other elements defined inside a macro, loop or some of the other tags listed' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'above will be only available in that block. Here an example' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3107,39 +3107,39 @@
 'angryname'   Literal.String
 '``'          Literal.String
 ' just exists inside the macro, not outside it.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Defined macros appear on the context as variables. Because of this, they are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'affected by the scoping too. A macro defined inside of a macro is just available' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "in those two macros (the macro itself and the macro it's defined in). For " Text
 '`set`'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and '        Text
 '`macro`'     Name.Variable
 ' two additional rules exist' Text
 ':'           Text
 ' If a macro is defined in an extended' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'template but outside of a visible block (thus outside of any block) will be' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'available in all blocks below. This allows you to use ' Text
 '`include`'   Name.Variable
 ' statements to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'load often used macros at once.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Undefined Variables' Generic.Heading
 '\n'          Text
@@ -3147,44 +3147,44 @@
 '===================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If you have already worked with python you probably know about the fact that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'undefined variables raise an exception. This is different in Jinja. There is a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'special value called ' Text
 '`undefined`' Name.Variable
 ' that represents values that do not exist.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This special variable works complete different from any variables you maybe' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'know. If you print it using ' Text
 '``'          Literal.String
 '{{ variable }}' Literal.String
 '``'          Literal.String
 " it will not appear because it's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'literally empty. If you try to iterate over it, it will work. But no items' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'are returned. Comparing this value to any other value results in ' Text
 '`false`'     Name.Variable
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Even if you compare it to itself' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3230,7 +3230,7 @@
 '    will return true.\n\n' Other
 
 'There are also some additional rules regarding this special value. Any' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mathematical operators (' Text
 '``'          Literal.String
@@ -3249,13 +3249,13 @@
 '/'           Literal.String
 '``'          Literal.String
 ') return the operand' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'as result'   Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3301,13 +3301,13 @@
 ' evaluates to ' Text
 '`false`'     Name.Variable
 '. It has no length, all' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'attribute calls return undefined, calling too' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3342,21 +3342,21 @@
 '========'    Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Sometimes you might want to add Jinja syntax elements into the template' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'without executing them. In that case you have quite a few possibilities.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'For small parts this might be a good way' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3380,9 +3380,9 @@
 '``'          Literal.String
 ' block'      Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3432,24 +3432,24 @@
 '=================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Jinja has some keywords you cannot use a variable names. This limitation' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "exists to make look coherent. Syntax highlighters won't mess things up and" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "you will don't have unexpected output." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The following keywords exist and cannot be used as identifiers' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '`and`'       Name.Variable
@@ -3466,7 +3466,7 @@
 ', '          Text
 '`endfilter`' Name.Variable
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '`endfor`'    Name.Variable
@@ -3483,7 +3483,7 @@
 ', '          Text
 '`filter`'    Name.Variable
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '`for`'       Name.Variable
@@ -3504,7 +3504,7 @@
 ', '          Text
 '`pluralize`' Name.Variable
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '`raw`'       Name.Variable
@@ -3514,18 +3514,18 @@
 '`set`'       Name.Variable
 ', '          Text
 '`trans`'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If you want to use such a name you have to prefix or suffix it or use' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'alternative names' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3570,18 +3570,18 @@
 '\n\n'        Other
 
 'If future Jinja releases add new keywords those will be "light" keywords which' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "means that they won't raise an error for several releases but yield warnings" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "on the application side. But it's very unlikely that new keywords will be" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'added.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Internationalization' Generic.Heading
 '\n'          Text
@@ -3589,18 +3589,18 @@
 '====================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If the application is configured for i18n, you can define translatable blocks' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'for translators using the ' Text
 '`trans`'     Name.Variable
 ' tag or the special underscore function' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3651,17 +3651,17 @@
 '\n\n'        Other
 
 'The latter one is useful if you want translatable arguments for filters etc.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If you want to have plural forms too, use the ' Text
 '`pluralize`' Name.Variable
 ' block'      Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3780,45 +3780,45 @@
 '\n\n'        Other
 
 'If you have multiple arguments, the first one is assumed to be the indicator (the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'number that is used to determine the correct singular or plural form. If you' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "don't have the indicator variable on position 1 you have to tell the " Text
 '`pluralize`' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tag the correct variable name.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Inside translatable blocks you cannot use blocks or expressions (however you can' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'still use the ' Text
 '``'          Literal.String
 'raw'         Literal.String
 '``'          Literal.String
 ' block which will work as expected). The variable' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'print syntax (' Text
 '``'          Literal.String
 '{{ variablename }}' Literal.String
 '``'          Literal.String
 ') is the only way to insert the variables' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'defined in the ' Text
 '``'          Literal.String
 'trans'       Literal.String
 '``'          Literal.String
 ' header. Filters must be applied in the header.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3826,24 +3826,24 @@
 '::'          Punctuation
 ' '           Text
 'note'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Please make sure that you always use pluralize blocks where required.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Many languages have more complex plural forms than the English language.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Never try to workaround that issue by using something like this' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    ..'      Punctuation
 ' '           Text
@@ -3901,7 +3901,7 @@
 ' http'       Text
 ':'           Text
 '//diveintopython.org/native_data_types/lists.html#odbchelper.list.slice' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
@@ -3909,4 +3909,4 @@
 ' http'       Text
 ':'           Text
 '//docs.python.org/tut/node6.html#SECTION006300000000000000000' Text
-'\n'          Text
+'\n'          Text.Whitespace

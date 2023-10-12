@@ -5,27 +5,32 @@ on:
     branches:
       - master
 
+
+env:
+  FORCE_COLOR: 1
+
+permissions: {}
 jobs:
   build:
+    permissions:
+      contents: write # to push pages branch (peaceiris/actions-gh-pages)
+
     runs-on: ubuntu-latest
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
-        python-version: "3.10"
+        python-version: "3.x"
     - name: Checkout Pygments
-      uses: actions/checkout@v2
-    - name: Install Sphinx & WCAG contrast ratio
-      run: pip install Sphinx wcag-contrast-ratio
-    - name: Create Pyodide WASM package
-      run: cd doc && make pyodide
+      uses: actions/checkout@v4
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Sphinx build
       run: |
-        cd doc
-        WEBSITE_BUILD=1 make dirhtml
-        touch _build/dirhtml/.nojekyll
-        echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
-        echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
+        tox -e web-doc -- dirhtml
+        touch doc/_build/dirhtml/.nojekyll
+        echo -e 'pygments.org\nwww.pygments.org' > doc/_build/dirhtml/CNAME
+        echo 'Automated deployment of docs for GitHub pages.' > doc/_build/dirhtml/README
     - name: Deploy to repo
       if: github.repository_owner == 'pygments'
       uses: peaceiris/actions-gh-pages@v3

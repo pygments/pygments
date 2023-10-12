@@ -1,9 +1,3 @@
-preface.... everything what is before header is not evaluated
-so this should not be colorized:
-1 + 2
-
-REBOL [] ;<- this is minimal header, everything behind it must be colorized
-
 ;## String tests ##
 print "Hello ^"World" ;<- with escaped char
 multiline-string: {

@@ -11,26 +11,26 @@ code (`in brackets`)
 'code:'       Text
 ' '           Text
 '`code`'      Literal.String.Backtick
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 '`**code**`'  Literal.String.Backtick
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Text
 '`code`'      Literal.String.Backtick
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'code'        Text
 ' '           Text
 '('           Text
 '`in brackets`' Literal.String.Backtick
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace

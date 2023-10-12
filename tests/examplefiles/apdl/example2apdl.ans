@@ -1,19 +1,19 @@
 ! ANSYS command file to perform 2D Truss Tutorial (Chandrupatla p.123)
 !
-/title, Bridge Truss Tutorial
+ /title, Bridge Truss Tutorial
 /PREP7                  ! preprocessor phase
 !
 ! define parameters (mm)
 height = 3118
 width = 3600
 !
-! define keypoints 
+! define keypoints
 !
 K,1,    0,   0               ! keypoint, #, x, y
-K,2,   width/2,height 
+K,2,   width/2,height
 K,3,     width,  0
 K,4, 3*width/2,  height
-K,5,   2*width,   0 
+K,5,   2*width,   0
 K,6, 5*width/2,  height
 K,7,   3*width,  0
 !
@@ -30,7 +30,7 @@ L,4,6
 L,5,6
 L,5,7
 L,6,7
- 
+
 !
 ! element definition
 !
@@ -47,14 +47,14 @@ FINISH                  ! finish pre-processor
 !
 ! apply some constraints
 DK,1,ALL,0        ! define a DOF constraint at a keypoint
-DK,7,UY,0 
+DK,7,UY,0
 !
 ! apply loads
 !
 FK,1,FY,-280e3          ! define a force load to a keypoint
-FK,3,FY,-210e3          
-FK,5,FY,-280e3          
-FK,7,FY,-360e3          
+FK,3,FY,-210e3
+FK,5,FY,-280e3
+FK,7,FY,-360e3
 !
 SOLVE                   ! solve the resulting system of equations
 FINISH                  ! finish solution

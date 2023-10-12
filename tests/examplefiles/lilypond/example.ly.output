@@ -59,7 +59,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n  '        Text.Whitespace
-'oddHeaderMarkup' Name.Lvalue
+'oddHeaderMarkup' Name.Builtin.PaperVariable
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
@@ -71,11 +71,11 @@
 ' are recognized.' Literal.String
 '"'           Literal.String
 '\n  '        Text.Whitespace
-'evenHeaderMarkup' Name.Lvalue
+'evenHeaderMarkup' Name.Builtin.PaperVariable
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'\\oddHeaderMarkup' Name.BackslashReference
+'\\oddHeaderMarkup' Name.Builtin.PaperVariable
 '\n  '        Text.Whitespace
 'indent'      Name.Builtin.PaperVariable
 ' '           Text.Whitespace
@@ -399,21 +399,31 @@
 '}'           Punctuation
 ' '           Text.Whitespace
 '4'           Literal.Number
-' '           Text.Whitespace
+'\n      '    Text.Whitespace
 'des'         Pitch
 '8'           Literal.Number
+'--'          Name.Builtin.Articulation
 ' '           Text.Whitespace
 '8'           Literal.Number
 '['           Name.Builtin.Articulation
+'__'          Name.Builtin.Articulation
+' '           Text.Whitespace
+'\\ottava'    Name.Builtin.MusicFunction
+' '           Text.Whitespace
+'-1'          Literal.Number
 ' '           Text.Whitespace
 '<'           Punctuation
-'des'         Pitch
+'des,'        Pitch
 ' '           Text.Whitespace
 'ges'         Pitch
 '>'           Punctuation
 '8'           Literal.Number
 ']'           Name.Builtin.Articulation
 '\\)'         Name.Builtin.Articulation
+' '           Text.Whitespace
+'\\ottava'    Name.Builtin.MusicFunction
+' '           Text.Whitespace
+'0'           Literal.Number
 '\n    '      Text.Whitespace
 '\\bar'       Name.Builtin.MusicFunction
 ' '           Text.Whitespace
@@ -477,7 +487,7 @@
 'left'        Name.Builtin.GrobProperty
 '.'           Punctuation
 'padding'     Name.Builtin.GrobProperty
-'-5'          Literal.Number
+'-5'          Name.Builtin.Articulation
 '\\-'         Name.Builtin.Articulation
 '^"'          Literal.String
 'Some music'  Literal.String
@@ -573,6 +583,8 @@
 '--'          Punctuation
 ' '           Text.Whitespace
 'Song'        Text
+' '           Text.Whitespace
+'__'          Punctuation
 '\n  '        Text.Whitespace
 '}'           Punctuation
 '\n  '        Text.Whitespace

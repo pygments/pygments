@@ -88,35 +88,37 @@
 '\n'          Text.Whitespace
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<html'       Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<head'       Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<title'      Name.Tag
 '>'           Name.Tag
 'Example'     Text
 '<title'      Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<body'       Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<a'          Name.Tag
-' '           Text
+' '           Text.Whitespace
 'href='       Name.Attribute
 '"http://example.com"' Literal.String
 '>'           Name.Tag
-'Test link'   Text
+'Test'        Text
+' '           Text.Whitespace
+'link'        Text
 '</a>'        Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 ' '           Text.Whitespace
@@ -226,4 +228,4 @@
 '\n'          Text.Whitespace
 
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace

@@ -73,7 +73,7 @@ Property long
     ! to the semicolon
     ;
 Property additive;
-Property individual;
+Property individual 1;
 Iffalse true;
 Property long individual;
 Property long individual individual;
@@ -89,6 +89,7 @@ Class Bird(10) has animate class Flier with wingspan 2;
 Constant Constant1;
 Constant Constant2 Constant1;
 Constant Constant3 = Constant2;
+Constant Constant4 = 1, Constant5, Constant6 = 2;
 Ifdef VN_1633; Undef Constant1; Endif;
 
 Ifdef VN_1633;
@@ -101,8 +102,10 @@ Fake_action NotReal;
 
 Global global1;
 Global global2 = 69105;
+Global global3 69105;
 
 Lowstring low_string "low string";
+Constant LOW_STRING_N = 25;
 
 Iftrue false;
 Message error "Uh-oh!^~false~ shouldn't be ~true~.";
@@ -246,6 +249,7 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
             " by mnemonic: @!! @<< @'A @AE @et @:y^",
             " by decimal value: @@64 @@126^",
             " by Unicode value: @{DC}@{002b}^",
+            " by string variable via constant: @(LOW_STRING_N)^",
             " by string variable: @25^";
     'font', 'style': 
         font off; print "font off^";
@@ -330,6 +334,8 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
         a = '''; ! character
         a = $09afAF;
         a = $$01;
+        a = $+1.0;
+        a = $<-1E-3;
         a = ##Eat; a = #a$Eat;
         a = #g$self;
         a = #n$!word;

@@ -1,0 +1,9 @@
+---input---
+s"version()"
+
+---tokens---
+'s'           Literal.String.Affix
+'"'           Literal.String.Double
+'version()'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

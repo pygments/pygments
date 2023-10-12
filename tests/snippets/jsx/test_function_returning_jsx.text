@@ -1,0 +1,25 @@
+---input---
+<Component wrapped={data => <User name={data.name} />} />
+
+---tokens---
+'<'         Token.Punctuation
+'Component' Token.Name.Tag
+'wrapped'   Token.Name.Attribute
+'='         Token.Operator
+'{'         Token.Punctuation
+'data'      Token.Name.Other
+'=>'        Token.Punctuation
+'<'         Token.Punctuation
+'User'      Token.Name.Tag
+'name'      Token.Name.Attribute
+'='         Token.Operator
+'{'         Token.Punctuation
+'data'      Token.Name.Other
+'.'         Token.Punctuation
+'name'      Token.Name.Other
+'}'         Token.Punctuation
+'/'         Token.Punctuation
+'>'         Token.Punctuation
+'}'         Token.Punctuation
+'/'         Token.Punctuation
+'>'         Token.Punctuation

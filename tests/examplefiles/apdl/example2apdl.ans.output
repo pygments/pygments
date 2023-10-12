@@ -2,8 +2,8 @@
 
 '!\n'         Comment
 
-'/'           Operator
-'title'       Name.Variable
+' '           Text.Whitespace
+'/title'      Keyword
 ','           Punctuation
 ' '           Text.Whitespace
 'Bridge'      Name.Variable
@@ -13,8 +13,7 @@
 'Tutorial'    Name.Variable
 '\n'          Text.Whitespace
 
-'/'           Operator
-'PREP7'       Name.Variable
+'/PREP7'      Keyword
 '                  ' Text.Whitespace
 '! preprocessor phase\n' Comment
 
@@ -38,7 +37,7 @@
 
 '!\n'         Comment
 
-'! define keypoints \n' Comment
+'! define keypoints\n' Comment
 
 '!\n'         Comment
 
@@ -64,7 +63,7 @@
 '2'           Literal.Number.Integer
 ','           Punctuation
 'height'      Name.Variable
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 'K'           Keyword
 ','           Punctuation
@@ -103,7 +102,7 @@
 ','           Punctuation
 '   '         Text.Whitespace
 '0'           Literal.Number.Integer
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 'K'           Keyword
 ','           Punctuation
@@ -215,7 +214,7 @@
 '6'           Literal.Number.Integer
 ','           Punctuation
 '7'           Literal.Number.Integer
-'\n \n'       Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '!\n'         Comment
 
@@ -227,7 +226,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'LINK1'       Keyword
+'LINK1'       Name.Variable
 '              ' Text.Whitespace
 '! element type      #1; spring element\n' Comment
 
@@ -245,8 +244,7 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'20'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'200e3'       Literal.Number.Float
 '          '  Text.Whitespace
 "! material property #1; Young's modulus: 200 GPa\n" Comment
 
@@ -282,8 +280,7 @@
 
 '!\n'         Comment
 
-'/'           Operator
-'SOLU'        Keyword
+'/SOLU'       Keyword
 '                   ' Text.Whitespace
 '! enter solution phase\n' Comment
 
@@ -308,7 +305,7 @@
 'UY'          Name.Variable
 ','           Punctuation
 '0'           Literal.Number.Integer
-' \n'         Text.Whitespace
+'\n'          Text.Whitespace
 
 '!\n'         Comment
 
@@ -322,9 +319,7 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'28'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
+'-280e3'      Literal.Number.Float
 '          '  Text.Whitespace
 '! define a force load to a keypoint\n' Comment
 
@@ -334,10 +329,8 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'21'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
-'          \n' Text.Whitespace
+'-210e3'      Literal.Number.Float
+'\n'          Text.Whitespace
 
 'FK'          Keyword
 ','           Punctuation
@@ -345,10 +338,8 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'28'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
-'          \n' Text.Whitespace
+'-280e3'      Literal.Number.Float
+'\n'          Text.Whitespace
 
 'FK'          Keyword
 ','           Punctuation
@@ -356,10 +347,8 @@
 ','           Punctuation
 'FY'          Name.Variable
 ','           Punctuation
-'-'           Operator
-'36'          Literal.Number.Integer
-'0e3'         Literal.Number.Float
-'          \n' Text.Whitespace
+'-360e3'      Literal.Number.Float
+'\n'          Text.Whitespace
 
 '!\n'         Comment
 
@@ -373,13 +362,12 @@
 
 '\n'          Text.Whitespace
 
-'/'           Operator
-'POST1'       Name.Variable
+'/POST1'      Keyword
 '\n'          Text.Whitespace
 
 'PRRSOL'      Keyword
 ','           Punctuation
-'F'           Keyword
+'F'           Name.Variable
 '                ' Text.Whitespace
 '! List Reaction Forces\n' Comment
 

@@ -8,7 +8,7 @@
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text.Whitespace
@@ -42,7 +42,7 @@
 ' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text.Whitespace
@@ -55,7 +55,7 @@
 ' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text.Whitespace
@@ -119,7 +119,7 @@
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text.Whitespace
@@ -150,7 +150,7 @@
 ' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
 ' '           Text.Whitespace
@@ -165,7 +165,7 @@
 ' '           Text.Whitespace
 '`test-name`' Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'export'      Keyword
@@ -173,7 +173,7 @@
 'scanUnit'    Name.Namespace
 '.'           Punctuation
 'scan'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'export'      Keyword
@@ -190,4 +190,4 @@
 ' '           Text.Whitespace
 '_'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

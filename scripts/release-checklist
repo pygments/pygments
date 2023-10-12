@@ -2,17 +2,19 @@ Release checklist
 =================
 
 * Check ``git status``
-* ``make check``
-* LATER when configured properly: ``make pylint``
+* Check all lexers have ``versionadded:: `` set correctly.
 * ``tox``
+* ``tox -e check``
+* LATER when configured properly: ``tox -e pylint``
 * Update version in ``pygments/__init__.py``
-* Check setup.py metadata: long description, trove classifiers
+* Check pyproject.toml metadata: long description, trove classifiers
 * Update release date/code name in ``CHANGES``
 * ``git commit``
 * Wait for the CI to finish
-* ``make clean``
+* ``git clean -xdf`` (warning: removes all untracked and ignored files,
+   do a dry run with ``git clean -xdfn`` first)
 * ``python3 -m build``
-* Check the size of the generated packages. If they're significantly different from the last release, check if the repository is in a modified state and that ``make clean`` was run.
+* Check the size of the generated packages. If they're significantly different from the last release, check if the repository is in a modified state and that ``git clean`` was run.
 * ``twine upload dist/Pygments-$NEWVER*``
 * Check PyPI release page for obvious errors (like different file sizes!)
 * ``git tag -a``

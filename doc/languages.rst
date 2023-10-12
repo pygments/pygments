@@ -1,5 +1,18 @@
 :orphan:
 
-This file is overridden by _templates/languages.html and just exists to
-allow the language list to be reliably linked from the documentation
-(since its location varies between `make html` and `make dirhtml`).
+Languages
+=========
+
+.. pygmentsdoc:: lexers_overview
+
+... that's all?
+---------------
+
+Well, why not write your own? Contributing to Pygments is easy and fun. Take a
+look at the :doc:`docs on lexer development <docs/lexerdevelopment>`. Pull
+requests are welcome on `GitHub <https://github.com/pygments/pygments>`_.
+
+.. note:: 
+    
+    The languages listed here are supported in the development version. The
+    latest release may lack a few of them.

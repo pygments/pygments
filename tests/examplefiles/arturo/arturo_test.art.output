@@ -1,0 +1,2564 @@
+'#! home/.arturo/bin' Comment.Hashbang
+'\n\n'        Text.Whitespace
+
+'; this is a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'; this is another comment' Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; VARIABLES & VALUES' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; numbers'   Comment.Single
+'\n'          Text.Whitespace
+
+'a1:'         Name.Label
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a2:'         Name.Label
+' '           Text.Whitespace
+'3.14'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'a3:'         Name.Label
+' '           Text.Whitespace
+'to'          Name.Builtin
+' '           Text.Whitespace
+':complex'    Keyword.Type
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2.0'         Literal.Number.Float
+']'           Punctuation
+'     '       Text.Whitespace
+'; 1.0+2.0i'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'; strings'   Comment.Single
+'\n'          Text.Whitespace
+
+'c1:'         Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'this is a string' Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'c2:'         Name.Label
+' '           Text.Whitespace
+'{'           Literal.String.Single
+'\n    this is a multiline string\n    that is indentation-agnostic\n' Literal.String
+
+'}'           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+'c3:'         Name.Label
+' '           Text.Whitespace
+'{:'          Literal.String.Double
+'\n    this is\n        a verbatim\n            multiline string\n                which will remain exactly\n                    as the original\n' Literal.String
+
+':}'          Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'c4:'         Name.Label
+' '           Text.Whitespace
+'{'           Literal.String.Single
+'\n    this is a multiline string\n    with ' Literal.String
+'|'           Literal.String.Interpol
+'a1'          Name
+'|'           Literal.String.Interpol
+' lines.\n'   Literal.String
+
+'}'           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+'annotatedStrings:' Name.Label
+' '           Text.Whitespace
+'{'           Literal.String.Double
+'!'           Literal.String.Interpol
+'md'          Literal.String.Interpol
+'\n'          Text.Whitespace
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'#'           Text
+' '           Text
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'markdown'    Text
+' '           Text
+'example'     Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+"I'm"         Text
+' '           Text
+'a'           Text
+' '           Text
+'paragraph'   Text
+'\n'          Text.Whitespace
+
+'\n    > '    Keyword
+"I'm a blockquote\n" Generic.Emph
+
+'\n    ```'   Literal.String.Backtick
+'c'           Literal.String.Backtick
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<stdio.h>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'World'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'Hello, %s!'  Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'printf'      Name
+'('           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+"I'm a highlighted C code" Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'"'           Literal.String
+'inside Markdown highlighted code,' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'"'           Literal.String
+'inside Arturo. Awesome!' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    ```\n'   Literal.String.Backtick
+
+'}'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'smartString:' Name.Label
+' '           Text.Whitespace
+'»'           Literal.String.Single
+"I'm a string until the end of line    ; I'm not a comment" Literal.String
+'\n'          Literal.String.Single
+
+'safeString:' Name.Label
+' '           Text.Whitespace
+'«««'         Literal.String.Double
+"I'm a safe string. 🙂" Literal.String
+'»»»'         Literal.String.Double
+'             ' Text.Whitespace
+"; I'm a comment" Comment.Single
+'\n\n'        Text.Whitespace
+
+'; characters' Comment.Single
+'\n'          Text.Whitespace
+
+'ch:'         Name.Label
+' '           Text.Whitespace
+'`c`'         Literal.String.Char
+'\n\n'        Text.Whitespace
+
+'; blocks/arrays' Comment.Single
+'\n'          Text.Whitespace
+
+'d:'          Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; dictionaries' Comment.Single
+'\n'          Text.Whitespace
+
+'e:'          Name.Label
+' '           Text.Whitespace
+'#'           Name.Decorator
+'['           Punctuation
+'\n    '      Text.Whitespace
+'name:'       Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'John'        Literal.String
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'surname:'    Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Doe'         Literal.String
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'age:'        Name.Label
+' '           Text.Whitespace
+'34'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'likes:'      Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'pizza'       Name
+' '           Text.Whitespace
+'spaghetti'   Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; yes, functions are values too' Comment.Single
+'\n'          Text.Whitespace
+
+'f:'          Name.Label
+' '           Text.Whitespace
+'function'    Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; colors - right, you can directly define them as well!' Comment.Single
+'\n'          Text.Whitespace
+
+'g1:'         Name.Label
+' '           Text.Whitespace
+'#red'        Name.Constant
+'\n'          Text.Whitespace
+
+'g2:'         Name.Label
+' '           Text.Whitespace
+'#0077BF'     Name.Constant
+'\n\n'        Text.Whitespace
+
+'; dates'     Comment.Single
+'\n'          Text.Whitespace
+
+'h:'          Name.Label
+' '           Text.Whitespace
+'now'         Name.Builtin
+'              ' Text.Whitespace
+'; 2021-05-03T17:10:48+02:00' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; logical values' Comment.Single
+'\n'          Text.Whitespace
+
+'i1:'         Name.Label
+' '           Text.Whitespace
+'true'        Name.Constant
+'\n'          Text.Whitespace
+
+'i2:'         Name.Label
+' '           Text.Whitespace
+'false'       Name.Constant
+'\n'          Text.Whitespace
+
+'i3:'         Name.Label
+' '           Text.Whitespace
+'maybe'       Name.Constant
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; BASIC OPERATORS' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; simple arithmetic' Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => 2'      Comment.Single
+'\n'          Text.Whitespace
+
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => 7'      Comment.Single
+'\n'          Text.Whitespace
+
+'4.2'         Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1.1'         Literal.Number.Float
+'   '         Text.Whitespace
+'; => 3.1'    Comment.Single
+'\n'          Text.Whitespace
+
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'      '      Text.Whitespace
+'; => 20'     Comment.Single
+'\n'          Text.Whitespace
+
+'35'          Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'      '      Text.Whitespace
+'; => 8'      Comment.Single
+'\n'          Text.Whitespace
+
+'35'          Literal.Number.Integer
+' '           Text.Whitespace
+'//'          Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'     '       Text.Whitespace
+'; => 8.75'   Comment.Single
+'\n'          Text.Whitespace
+
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => 32'     Comment.Single
+'\n'          Text.Whitespace
+
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'%'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => 2'      Comment.Single
+'\n\n'        Text.Whitespace
+
+'; bitwise operators' Comment.Single
+'\n'          Text.Whitespace
+
+'and'         Name.Builtin
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'     '       Text.Whitespace
+'; => 1'      Comment.Single
+'\n'          Text.Whitespace
+
+'or'          Name.Builtin
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'      '      Text.Whitespace
+'; => 7'      Comment.Single
+'\n'          Text.Whitespace
+
+'xor'         Name.Builtin
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'     '       Text.Whitespace
+'; => 6'      Comment.Single
+'\n\n'        Text.Whitespace
+
+'; pre-defined constants' Comment.Single
+'\n'          Text.Whitespace
+
+'pi'          Name.Builtin
+'          '  Text.Whitespace
+'; => 3.141592653589793' Comment.Single
+'\n'          Text.Whitespace
+
+'epsilon'     Name.Builtin
+'     '       Text.Whitespace
+'; => 2.718281828459045' Comment.Single
+'\n'          Text.Whitespace
+
+'null'        Name.Builtin
+'        '    Text.Whitespace
+'; => null'   Comment.Single
+'\n'          Text.Whitespace
+
+'true'        Name.Constant
+'        '    Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'false'       Name.Constant
+'       '     Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; COMPARISON OPERATORS' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; equality'  Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'; inequality' Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'      '      Text.Whitespace
+'; => false'  Comment.Single
+'\n'          Text.Whitespace
+
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'; more comparisons' Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'     '       Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'    '        Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'      '      Text.Whitespace
+'; => false'  Comment.Single
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'     '       Text.Whitespace
+'; => false'  Comment.Single
+'\n'          Text.Whitespace
+
+'11'          Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'    '        Text.Whitespace
+'; => true'   Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; CONDITIONALS' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; logical operators' Comment.Single
+'\n'          Text.Whitespace
+
+'and?'        Name.Builtin
+' '           Text.Whitespace
+'true'        Name.Constant
+' '           Text.Whitespace
+'true'        Name.Constant
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'and?'        Name.Builtin
+' '           Text.Whitespace
+'true'        Name.Constant
+' '           Text.Whitespace
+'false'       Name.Constant
+'     '       Text.Whitespace
+'; => false'  Comment.Single
+'\n'          Text.Whitespace
+
+'or?'         Name.Builtin
+' '           Text.Whitespace
+'true'        Name.Constant
+' '           Text.Whitespace
+'false'       Name.Constant
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'or?'         Name.Builtin
+' '           Text.Whitespace
+'false'       Name.Constant
+' '           Text.Whitespace
+'false'       Name.Constant
+'     '       Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'and?'        Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+'='           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'['           Punctuation
+'2'           Literal.Number.Integer
+'<'           Operator
+'3'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'; => false'  Comment.Single
+'\n                    ' Text.Whitespace
+'; (the second block will not be evaluated)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; simple if statements' Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Name.Builtin
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'yes!'        Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'    '        Text.Whitespace
+'; yes!'      Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Name.Builtin
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'true!'       Literal.String
+'"'           Literal.String.Double
+'  '          Text.Whitespace
+'; true!'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'; if/else statements' Comment.Single
+'\n'          Text.Whitespace
+
+'if?'         Name.Builtin
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'2 is greater than 3' Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'else'        Name.Builtin
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'2 is not greater than 3' Literal.String
+'"'           Literal.String.Double
+'         '   Text.Whitespace
+'; 2 is not greater than 3' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; switch statements' Comment.Single
+'\n'          Text.Whitespace
+
+'switch'      Name.Builtin
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'2 is greater than 3' Literal.String
+'"'           Literal.String.Double
+'\n             ' Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'2 is not greater than 3' Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'; 2 is not greater than 3' Comment.Single
+'\n\n'        Text.Whitespace
+
+'a:'          Name.Label
+' '           Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+'['           Punctuation
+'"'           Literal.String.Double
+'yes'         Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'['           Punctuation
+'"'           Literal.String.Double
+'no'          Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'         '   Text.Whitespace
+'; a: "no"'   Comment.Single
+'\n'          Text.Whitespace
+
+'a:'          Name.Label
+' '           Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')?'          Punctuation
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'yes'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'no'          Literal.String
+'"'           Literal.String.Double
+'    '        Text.Whitespace
+'; a: "no" (exactly the same as above)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; case/when statements' Comment.Single
+'\n'          Text.Whitespace
+
+'case'        Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n    '      Text.Whitespace
+'when?'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'>'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1 is greater than 2. what?!' Literal.String
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'when?'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'<'           Operator
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1 is less than 0. nope...' Literal.String
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'else'        Name.Builtin
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'here we are!' Literal.String
+'"'           Literal.String.Double
+'                ' Text.Whitespace
+'; here we are!' Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; LOOPS'     Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; with `loop`' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+"'x"          Keyword.Declaration
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'x ='         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'x'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'; x = 1'     Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 4'     Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 5'     Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 3'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'; with loop and custom index' Comment.Single
+'\n'          Text.Whitespace
+
+'loop'        Name.Builtin
+'.with:'      Name.Attribute
+"'i"          Keyword.Declaration
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+"'x"          Keyword.Declaration
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'item at position' Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'=>'          Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'x'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'; item at position 0 => 1' Comment.Single
+'\n'          Text.Whitespace
+
+'; item at position 1 => 4' Comment.Single
+'\n'          Text.Whitespace
+
+'; item at position 2 => 5' Comment.Single
+'\n'          Text.Whitespace
+
+'; item at position 3 => 3' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; using ranges' Comment.Single
+'\n'          Text.Whitespace
+
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+"'x"          Keyword.Declaration
+' '           Text.Whitespace
+'->'          Name.Decorator
+'         '   Text.Whitespace
+"; since it's a single statement" Comment.Single
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'x'           Name
+'             ' Text.Whitespace
+"; there's no need for [block] notation" Comment.Single
+'\n                        ' Text.Whitespace
+'; we can wrap it up using the `->` syntactic sugar' Comment.Single
+'\n\n'        Text.Whitespace
+
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'`a`'         Literal.String.Char
+'..'          Operator
+'`c`'         Literal.String.Char
+' '           Text.Whitespace
+"'ch"         Keyword.Declaration
+' '           Text.Whitespace
+'->'          Name.Decorator
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'ch'          Name
+'\n'          Text.Whitespace
+
+'; a'         Comment.Single
+'\n'          Text.Whitespace
+
+'; b'         Comment.Single
+'\n'          Text.Whitespace
+
+'; c'         Comment.Single
+'\n\n'        Text.Whitespace
+
+'; picking multiple items' Comment.Single
+'\n'          Text.Whitespace
+
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'y'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'->'          Name.Decorator
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'x ='         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+', y ='       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'y'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'; x = 1 , y = 2' Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 3 , y = 4' Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 5 , y = 6' Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 7 , y = 8' Comment.Single
+'\n'          Text.Whitespace
+
+'; x = 9 , y = 10' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; looping through a dictionary' Comment.Single
+'\n'          Text.Whitespace
+
+'dict:'       Name.Label
+' '           Text.Whitespace
+'#'           Name.Decorator
+'['           Punctuation
+'name:'       Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'John'        Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'surname:'    Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Doe'         Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'age:'        Name.Label
+' '           Text.Whitespace
+'34'          Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'dict'        Name
+' '           Text.Whitespace
+'['           Punctuation
+'key'         Name
+' '           Text.Whitespace
+'value'       Name
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'key'         Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'->'          Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'value'       Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'; name -> John' Comment.Single
+'\n'          Text.Whitespace
+
+'; surname -> Doe' Comment.Single
+'\n'          Text.Whitespace
+
+'; age -> 34' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; while loops' Comment.Single
+'\n'          Text.Whitespace
+
+'i:'          Name.Label
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'while'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'i'           Name
+'<'           Operator
+'3'           Literal.Number.Integer
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'i ='         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'i'           Name
+']'           Punctuation
+'\n    '      Text.Whitespace
+'inc'         Name.Builtin
+' '           Text.Whitespace
+"'i"          Keyword.Declaration
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'; i = 0'     Comment.Single
+'\n'          Text.Whitespace
+
+'; i = 1'     Comment.Single
+'\n'          Text.Whitespace
+
+'; i = 2'     Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; STRINGS'   Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; case'      Comment.Single
+'\n'          Text.Whitespace
+
+'a:'          Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'tHis Is a stRinG' Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'upper'       Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'               ' Text.Whitespace
+'; THIS IS A STRING' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'lower'       Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'               ' Text.Whitespace
+'; this is a string' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'capitalize'  Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'          '  Text.Whitespace
+'; THis Is a stRinG' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; concatenation' Comment.Single
+'\n'          Text.Whitespace
+
+'a:'          Name.Label
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hello '      Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'+'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'World!'      Literal.String
+'"'           Literal.String.Double
+'     '       Text.Whitespace
+'; a: "Hello World!"' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; strings as an array' Comment.Single
+'\n'          Text.Whitespace
+
+'split'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+'               ' Text.Whitespace
+'; => [h e l l o]' Comment.Single
+'\n'          Text.Whitespace
+
+'split'       Name.Builtin
+'.words'      Name.Attribute
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello world' Literal.String
+'"'           Literal.String.Double
+'   '         Text.Whitespace
+'; => [hello world]' Comment.Single
+'\n\n'        Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'first'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+'         '   Text.Whitespace
+'; h'         Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'last'        Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+'          '  Text.Whitespace
+'; o'         Comment.Single
+'\n\n'        Text.Whitespace
+
+'; conversion' Comment.Single
+'\n'          Text.Whitespace
+
+'to'          Name.Builtin
+' '           Text.Whitespace
+':string'     Keyword.Type
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+'              ' Text.Whitespace
+'; => "123"'  Comment.Single
+'\n'          Text.Whitespace
+
+'to'          Name.Builtin
+' '           Text.Whitespace
+':integer'    Keyword.Type
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'123'         Literal.String
+'"'           Literal.String.Double
+'           ' Text.Whitespace
+'; => 123'    Comment.Single
+'\n\n'        Text.Whitespace
+
+'; joining strings together' Comment.Single
+'\n'          Text.Whitespace
+
+'join'        Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world'       Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'              ' Text.Whitespace
+'; => "helloworld"' Comment.Single
+'\n'          Text.Whitespace
+
+'join'        Name.Builtin
+'.with:'      Name.Attribute
+'"'           Literal.String.Double
+'-'           Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world'       Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'     '       Text.Whitespace
+'; => "hello-world"' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; string interpolation' Comment.Single
+'\n'          Text.Whitespace
+
+'x:'          Name.Label
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+'"'           Literal.String.Double
+'x = '        Literal.String
+'|'           Literal.String.Interpol
+'x'           Name
+'|'           Literal.String.Interpol
+'"'           Literal.String.Double
+'            ' Text.Whitespace
+'; x = 2'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'; interpolation with `print`' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'x ='         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'x'           Name
+']'           Punctuation
+'             ' Text.Whitespace
+'; x = 2'     Comment.Single
+'\n                            ' Text.Whitespace
+'; (`print` works by calculating the given block' Comment.Single
+'\n                            ' Text.Whitespace
+';  and joining the different values as strings' Comment.Single
+'\n                            ' Text.Whitespace
+';  with a single space between them)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; templates' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'render'      Name.Builtin
+'.template'   Name.Attribute
+' '           Text.Whitespace
+'{'           Literal.String.Single
+'\n    '      Literal.String
+'<||'         Literal.String.Interpol
+'='           Operator
+' '           Text.Whitespace
+'switch'      Name.Builtin
+' '           Text.Whitespace
+'x'           Name
+'='           Operator
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'||>'         Literal.String.Interpol
+'\n        Yes, x = 2\n    ' Literal.String
+'<||'         Literal.String.Interpol
+']'           Punctuation
+'['           Punctuation
+'||>'         Literal.String.Interpol
+'\n        No, x is not 2\n    ' Literal.String
+'<||'         Literal.String.Interpol
+']'           Punctuation
+'||>'         Literal.String.Interpol
+'\n'          Literal.String
+
+'}'           Literal.String.Single
+' '           Text.Whitespace
+'; Yes, x = 2' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; matching'  Comment.Single
+'\n'          Text.Whitespace
+
+'prefix?'     Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'he'          Literal.String
+'"'           Literal.String.Double
+'        '    Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'suffix?'     Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'he'          Literal.String
+'"'           Literal.String.Double
+'        '    Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'contains?'   Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ll'          Literal.String
+'"'           Literal.String.Double
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'contains?'   Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'he'          Literal.String
+'"'           Literal.String.Double
+'      '      Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'contains?'   Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'x'           Literal.String
+'"'           Literal.String.Double
+'       '     Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+'in?'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ll'          Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+'            ' Text.Whitespace
+'; => true'   Comment.Single
+'\n'          Text.Whitespace
+
+'in?'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'x'           Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String
+'"'           Literal.String.Double
+'             ' Text.Whitespace
+'; => false'  Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; BLOCKS'    Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; calculate a block' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'+'           Operator
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'+'           Operator
+'1'           Literal.Number.Integer
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'arr'         Name
+'                        ' Text.Whitespace
+'; => [1 2 3]' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; execute a block' Comment.Single
+'\n'          Text.Whitespace
+
+'sth:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'print'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hello world' Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'  '          Text.Whitespace
+'; this is perfectly valid,' Comment.Single
+'\n                            ' Text.Whitespace
+'; could contain *anything*' Comment.Single
+'\n                            ' Text.Whitespace
+'; and will not be executed...' Comment.Single
+'\n\n'        Text.Whitespace
+
+'do'          Name.Builtin
+' '           Text.Whitespace
+'sth'         Name
+'                      ' Text.Whitespace
+'; Hello world' Comment.Single
+'\n                            ' Text.Whitespace
+'; (...until we tell it to)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; array indexing' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'zero'        Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'two'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'three'       Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'first'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'             ' Text.Whitespace
+'; zero'      Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'\\0'         Name.Property
+'                 ' Text.Whitespace
+'; zero'      Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'last'        Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'              ' Text.Whitespace
+'; three'     Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'\\3'         Name.Property
+'                 ' Text.Whitespace
+'; three'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'x:'          Name.Label
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'get'         Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+'x'           Name
+'             ' Text.Whitespace
+'; two'       Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'\\'          Operator
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'               ' Text.Whitespace
+'; two'       Comment.Single
+'\n\n'        Text.Whitespace
+
+'; setting an array element' Comment.Single
+'\n'          Text.Whitespace
+
+'arr'         Name
+'\\0:'        Name.Property
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'nada'        Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'set'         Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dos'         Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'                   ' Text.Whitespace
+'; nada one dos three' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; adding elements to an array' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+"'arr"        Keyword.Declaration
+' '           Text.Whitespace
+'+'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+"'arr"        Keyword.Declaration
+' '           Text.Whitespace
+'+'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'two'         Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'                   ' Text.Whitespace
+'; one two'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'; remove elements from an array' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'new'         Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'two'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'three'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'four'        Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+"'arr"        Keyword.Declaration
+' '           Text.Whitespace
+'-'           Operator
+'-'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'two'         Literal.String
+'"'           Literal.String.Double
+'               ' Text.Whitespace
+'; arr: ["one" "three" "four"]' Comment.Single
+'\n'          Text.Whitespace
+
+'remove'      Name.Builtin
+' '           Text.Whitespace
+"'arr"        Keyword.Declaration
+' '           Text.Whitespace
+'.index'      Name.Attribute
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'        '    Text.Whitespace
+'; arr: ["three" "four"]' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; getting the size of an array' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'three'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'size'        Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'              ' Text.Whitespace
+'; 4'         Comment.Single
+'\n\n'        Text.Whitespace
+
+'; getting a slice of an array' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'slice'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'two'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'three'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'four'        Literal.String
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'        '    Text.Whitespace
+'; one two'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'; check if array contains a specific element' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'contains?'   Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+'   '         Text.Whitespace
+'; true'      Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'contains?'   Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'five'        Literal.String
+'"'           Literal.String.Double
+'  '          Text.Whitespace
+'; false'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'; sorting array' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'sort'        Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'                    ' Text.Whitespace
+'; => [1 2 3 4 5]' Comment.Single
+'\n'          Text.Whitespace
+
+'sort'        Name.Builtin
+'.descending' Name.Attribute
+' '           Text.Whitespace
+'arr'         Name
+'         '   Text.Whitespace
+'; => [5 4 3 2 1]' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; mapping values' Comment.Single
+'\n'          Text.Whitespace
+
+'map'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'['           Punctuation
+'2'           Literal.Number.Integer
+'*'           Operator
+'x'           Name
+']'           Punctuation
+'          '  Text.Whitespace
+'; => [2 4 6 8 10 12 14 16 18 20]' Comment.Single
+'\n'          Text.Whitespace
+
+'map'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+"'x"          Keyword.Declaration
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'*'           Operator
+'x'           Name
+'         '   Text.Whitespace
+'; same as above' Comment.Single
+'\n'          Text.Whitespace
+
+'map'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+'*'           Operator
+'&'           Name.Decorator
+']'           Punctuation
+'          '  Text.Whitespace
+'; same as above' Comment.Single
+'\n'          Text.Whitespace
+
+'map'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+'*'           Operator
+']'           Punctuation
+'           ' Text.Whitespace
+'; same as above' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; selecting/filtering array values' Comment.Single
+'\n'          Text.Whitespace
+
+'select'      Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'['           Punctuation
+'odd?'        Name.Builtin
+' '           Text.Whitespace
+'x'           Name
+']'           Punctuation
+'    '        Text.Whitespace
+'; => [1 3 5 7 9]' Comment.Single
+'\n'          Text.Whitespace
+
+'select'      Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'odd?'        Name.Builtin
+'        '    Text.Whitespace
+'; same as above' Comment.Single
+'\n\n'        Text.Whitespace
+
+'filter'      Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'odd?'        Name.Builtin
+'        '    Text.Whitespace
+'; => [2 4 6 8 10]' Comment.Single
+'\n                            ' Text.Whitespace
+'; (now, we leave out all odd numbers -' Comment.Single
+'\n                            ' Text.Whitespace
+';  while select keeps them)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; misc operations' Comment.Single
+'\n'          Text.Whitespace
+
+'arr:'        Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'one'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'three'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'reverse'     Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'                 ' Text.Whitespace
+'; => [4 "three" 2 "one"]' Comment.Single
+'\n'          Text.Whitespace
+
+'shuffle'     Name.Builtin
+' '           Text.Whitespace
+'arr'         Name
+'                 ' Text.Whitespace
+'; => [2 4 "three" "one"]' Comment.Single
+'\n'          Text.Whitespace
+
+'unique'      Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+']'           Punctuation
+'        '    Text.Whitespace
+'; => [1 2 3]' Comment.Single
+'\n'          Text.Whitespace
+
+'permutate'   Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Punctuation
+'           ' Text.Whitespace
+'; => [[1 2 3] [1 3 2] [3 1 2] [2 1 3] [2 3 1] [3 2 1]]' Comment.Single
+'\n'          Text.Whitespace
+
+'take'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'                ' Text.Whitespace
+'; => [1 2 3]' Comment.Single
+'\n'          Text.Whitespace
+
+'repeat'      Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'              ' Text.Whitespace
+'; => [1 2 1 2 1 2]' Comment.Single
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; FUNCTIONS' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; declaring a function' Comment.Single
+'\n'          Text.Whitespace
+
+'f:'          Name.Label
+' '           Text.Whitespace
+'function'    Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'['           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'*'           Operator
+'x'           Name
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'f:'          Name.Label
+' '           Text.Whitespace
+'function'    Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'->'          Name.Decorator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'*'           Operator
+'x'           Name
+'       '     Text.Whitespace
+'; same as above' Comment.Single
+'\n'          Text.Whitespace
+
+'f:'          Name.Label
+' '           Text.Whitespace
+'$'           Name.Decorator
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'->'          Name.Decorator
+'2'           Literal.Number.Integer
+'*'           Operator
+'x'           Name
+'                ' Text.Whitespace
+'; same as above (only using the `$` alias' Comment.Single
+'\n                            ' Text.Whitespace
+';  for the `function`... function)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; calling a function' Comment.Single
+'\n'          Text.Whitespace
+
+'f'           Name
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'                        ' Text.Whitespace
+'; => 20'     Comment.Single
+'\n\n'        Text.Whitespace
+
+'; returning a value' Comment.Single
+'\n'          Text.Whitespace
+
+'g:'          Name.Label
+' '           Text.Whitespace
+'function'    Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'if'          Name.Builtin
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'return'      Name.Builtin
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\n    '    Text.Whitespace
+'res:'        Name.Label
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'loop'        Name.Builtin
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'..'          Operator
+'x'           Name
+' '           Text.Whitespace
+"'z"          Keyword.Declaration
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'res:'        Name.Label
+' '           Text.Whitespace
+'res'         Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'z'           Name
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Name.Builtin
+' '           Text.Whitespace
+'res'         Name
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n'          Text.Whitespace
+
+'; CUSTOM TYPES' Comment.Single
+'\n'          Text.Whitespace
+
+';---------------------------------' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; defining a custom type' Comment.Single
+'\n'          Text.Whitespace
+
+'define'      Name.Builtin
+' '           Text.Whitespace
+':person'     Keyword.Type
+' '           Text.Whitespace
+'['           Punctuation
+'                            ' Text.Whitespace
+'; define a new custom type "Person"' Comment.Single
+'\n    '      Text.Whitespace
+'name'        Name
+'                                    ' Text.Whitespace
+'; with fields: name, surname, age' Comment.Single
+'\n    '      Text.Whitespace
+'surname'     Name
+'\n    '      Text.Whitespace
+'age'         Name
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'; with custom post-construction initializer' Comment.Single
+'\n    '      Text.Whitespace
+'init:'       Name.Builtin.Pseudo
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'this'        Name.Builtin.Pseudo
+'\\name:'     Name.Property
+' '           Text.Whitespace
+'capitalize'  Name.Builtin
+' '           Text.Whitespace
+'this'        Name.Builtin.Pseudo
+'\\name'      Name.Property
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n\n    '    Text.Whitespace
+'; custom print function' Comment.Single
+'\n    '      Text.Whitespace
+'print:'      Name.Label
+' '           Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+'render'      Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'NAME: '      Literal.String
+'|'           Literal.String.Interpol
+'this'        Name.Builtin.Pseudo
+'\\name'      Name.Property
+'|'           Literal.String.Interpol
+', SURNAME: ' Literal.String
+'|'           Literal.String.Interpol
+'this'        Name.Builtin.Pseudo
+'\\surname'   Name.Property
+'|'           Literal.String.Interpol
+', AGE: '     Literal.String
+'|'           Literal.String.Interpol
+'this'        Name.Builtin.Pseudo
+'\\age'       Name.Property
+'|'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n\n    '    Text.Whitespace
+'; custom comparison operator' Comment.Single
+'\n    '      Text.Whitespace
+'compare:'    Name.Label
+' '           Text.Whitespace
+"'age"        Keyword.Declaration
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; create a method for our custom type' Comment.Single
+'\n'          Text.Whitespace
+
+'sayHello:'   Name.Label
+' '           Text.Whitespace
+'function'    Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'this'        Name.Builtin.Pseudo
+']'           Punctuation
+'['           Punctuation
+'\n    '      Text.Whitespace
+'ensure'      Name.Builtin
+' '           Text.Whitespace
+'->'          Name.Decorator
+' '           Text.Whitespace
+'is?'         Name.Builtin
+' '           Text.Whitespace
+':person'     Keyword.Type
+' '           Text.Whitespace
+'this'        Name.Builtin.Pseudo
+'\n\n    '    Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'Hello'       Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'this'        Name.Builtin.Pseudo
+'\\name'      Name.Property
+']'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; create new objects of our custom type' Comment.Single
+'\n'          Text.Whitespace
+
+'a:'          Name.Label
+' '           Text.Whitespace
+'to'          Name.Builtin
+' '           Text.Whitespace
+':person'     Keyword.Type
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'John'        Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Doe'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'34'          Literal.Number.Integer
+']'           Punctuation
+'                 ' Text.Whitespace
+'; let\'s create 2 "Person"s' Comment.Single
+'\n'          Text.Whitespace
+
+'b:'          Name.Label
+' '           Text.Whitespace
+'to'          Name.Builtin
+' '           Text.Whitespace
+':person'     Keyword.Type
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+'jane'        Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Doe'         Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'33'          Literal.Number.Integer
+']'           Punctuation
+'                 ' Text.Whitespace
+'; and another one' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; call pseudo-inner method' Comment.Single
+'\n'          Text.Whitespace
+
+'sayHello'    Name
+' '           Text.Whitespace
+'a'           Name
+'                                      ' Text.Whitespace
+'; Hello John' Comment.Single
+'\n'          Text.Whitespace
+
+'sayHello'    Name
+' '           Text.Whitespace
+'b'           Name
+'                                      ' Text.Whitespace
+'; Hello Jane' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; access object fields' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+"The first person's name is:" Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'a'           Name
+'\\name'      Name.Property
+']'           Punctuation
+'    '        Text.Whitespace
+"; The first person's name is: John" Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'"'           Literal.String.Double
+"The second person's name is:" Literal.String
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'b'           Name
+'\\name'      Name.Property
+']'           Punctuation
+'   '         Text.Whitespace
+"; The second person's name is: Jane" Comment.Single
+'\n\n'        Text.Whitespace
+
+'; changing object fields' Comment.Single
+'\n'          Text.Whitespace
+
+'a'           Name
+'\\name:'     Name.Property
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Bob'         Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'sayHello'    Name
+' '           Text.Whitespace
+'a'           Name
+'                                      ' Text.Whitespace
+'; Hello Bob' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; verifying object type' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'type'        Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'                                    ' Text.Whitespace
+'; :person'   Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'is?'         Name.Builtin
+' '           Text.Whitespace
+':person'     Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+'                             ' Text.Whitespace
+'; true'      Comment.Single
+'\n\n'        Text.Whitespace
+
+'; printing objects' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'                                         ' Text.Whitespace
+'; NAME: John, SURNAME: Doe, AGE: 34' Comment.Single
+'\n\n'        Text.Whitespace
+
+'; sorting user objects (using custom comparator)' Comment.Single
+'\n'          Text.Whitespace
+
+'sort'        Name.Builtin
+' '           Text.Whitespace
+'@'           Name.Decorator
+'['           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+']'           Punctuation
+'                                     ' Text.Whitespace
+'; Jane..., John...' Comment.Single
+'\n'          Text.Whitespace
+
+'sort'        Name.Builtin
+'.descending' Name.Attribute
+' '           Text.Whitespace
+'@'           Name.Decorator
+'['           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+']'           Punctuation
+'                          ' Text.Whitespace
+'; John..., Jane...' Comment.Single
+'\n\n'        Text.Whitespace
+
+'eofString:'  Name.Label
+'\n'          Text.Whitespace
+
+'---'         Literal.String.Single
+"\nI'm an end of file\nMultiline string.\n" Literal.String
+
+''            Literal.String.Single

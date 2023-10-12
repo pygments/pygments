@@ -1,0 +1,81 @@
+---input---
+Headings:
+
+#Heading
+
+# Heading
+
+# Another heading
+
+# Another # heading
+
+# Heading #
+
+These are NOT parsed as headings:
+
+#
+
+a #
+
+*#
+
+---tokens---
+'Headings:'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#Heading'    Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'# Heading'   Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'# Another heading' Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'# Another # heading' Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'# Heading #' Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'These'       Text
+' '           Text
+'are'         Text
+' '           Text
+'NOT'         Text
+' '           Text
+'parsed'      Text
+' '           Text
+'as'          Text
+' '           Text
+'headings:'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a'           Text
+' '           Text
+'#'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'*#'          Text
+'\n'          Text.Whitespace

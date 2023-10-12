@@ -1,33 +1,34 @@
 '>>> '        Generic.Prompt
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-''            Generic.Traceback
 '  File '     Text
 '"<stdin>"'   Name.Builtin
 ', line '     Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '^'           Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SyntaxError' Generic.Error
 ': '          Text
 'invalid syntax' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
 
-'KeyboardInterrupt\n' Name.Class
+'KeyboardInterrupt\n' Generic.Output
 
-'>>>\n'       Generic.Output
+'>>>'         Generic.Prompt
+'\n'          Text.Whitespace
 
 '\n'          Generic.Output
 
@@ -35,29 +36,30 @@
 '1'           Literal.Number.Integer
 '/'           Operator
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'   '         Text
+'   '         Text.Whitespace
 '...'         Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ZeroDivisionError' Generic.Error
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Generic.Output
+'\n'          Text.Whitespace
 
+''            Text
 '>>> '        Generic.Prompt
 '1'           Literal.Number.Integer
 '/'           Operator
 '0'           Literal.Number.Integer
 '   '         Text
 '# this used to swallow the traceback' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
-'   '         Text
+'   '         Text.Whitespace
 '...'         Comment
-'\n'          Text
+'\n'          Text.Whitespace

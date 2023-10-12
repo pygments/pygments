@@ -4,15 +4,15 @@
 
     Lexers for semantic web and RDF query languages and markup.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, bygroups, default
-from pygments.token import Keyword, Punctuation, String, Number, Operator, Generic, \
-    Whitespace, Name, Literal, Comment, Text
+from pygments.token import Keyword, Punctuation, String, Number, Operator, \
+    Generic, Whitespace, Name, Literal, Comment, Text
 
 __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 

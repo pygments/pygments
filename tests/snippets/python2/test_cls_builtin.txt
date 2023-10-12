@@ -13,11 +13,11 @@ class TestClass():
 '('           Punctuation
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '@classmethod' Name.Decorator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 'def'         Keyword
@@ -27,8 +27,8 @@ class TestClass():
 'cls'         Name.Builtin.Pseudo
 ')'           Punctuation
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'pass'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace

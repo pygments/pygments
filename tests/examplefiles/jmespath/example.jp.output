@@ -1,0 +1,258 @@
+"'@|&&||`'"   Literal.String
+'\n'          Text.Whitespace
+
+'||'          Operator
+' '           Text.Whitespace
+'[?'          Punctuation
+'@'           Name.Variable.Global
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'`'           Literal
+'['           Punctuation
+'-1.1'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'5.4e+3'      Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'-5.4E-3'     Literal.Number
+']'           Punctuation
+'`'           Literal
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'`'           Literal
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'-3'          Literal.Number
+']'           Punctuation
+'`'           Literal
+','           Punctuation
+'\n'          Text.Whitespace
+
+'hello'       Name.Function
+'('           Punctuation
+"'hom\\''"    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'fds'"       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'`'           Literal
+'false'       Keyword.Constant
+'`'           Literal
+','           Punctuation
+' '           Text.Whitespace
+'`'           Literal
+'nullandmore' Name.Variable
+'`'           Literal
+' '           Text.Whitespace
+'`'           Literal
+"'6\\`.7'"    Literal.String
+'`'           Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'>'           Operator
+' '           Text.Whitespace
+'locations'   Name.Variable
+'[?'          Punctuation
+'state'       Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'`'           Literal
+'null'        Keyword.Constant
+'`'           Literal
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'foo'         Name.Variable
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'`'           Literal
+'5.40'        Literal.Number
+'`'           Literal
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'bar'         Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'`'           Literal
+'6'           Literal.Number
+'`'           Literal
+']'           Punctuation
+'.'           Punctuation
+'name'        Name.Variable
+'.'           Punctuation
+'"'           Punctuation
+'foo.bar'     Name.Variable
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'[?'          Punctuation
+'@'           Name.Variable.Global
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'&function'   Name.Function
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'[?'          Punctuation
+'@'           Name.Variable.Global
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'`'           Literal
+'"'           Punctuation
+'foo.bar'     Name.Variable
+'"'           Punctuation
+'`'           Literal
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'sort'        Name.Function
+'('           Punctuation
+'@'           Name.Variable.Global
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'WashingtonCities' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'join'        Name.Function
+'('           Punctuation
+"', '"        Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'@'           Name.Variable.Global
+')'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+'['           Punctuation
+']'           Punctuation
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'0'           Literal.Number
+':'           Punctuation
+'2'           Literal.Number
+':'           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+'|'           Punctuation
+'['           Punctuation
+'name'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'state'       Name.Variable
+'.'           Punctuation
+'name'        Name.Variable
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'!'           Operator
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'=='          Operator
+' '           Text.Whitespace
+'&'           Name.Variable
+'('           Punctuation
+'features'    Name.Variable
+'[?'          Punctuation
+'type'        Name.Variable
+'=='          Operator
+"'CDS'"       Literal.String
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'qualifiers'  Name.Variable
+'.'           Punctuation
+'translation' Name.Variable
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'||'          Operator
+' '           Text.Whitespace
+'min_by'      Name.Function
+'('           Punctuation
+'people'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'&age'        Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'||'          Operator
+' '           Text.Whitespace
+'max_by'      Name.Function
+'('           Punctuation
+'other-people' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'&'           Name.Variable
+'"'           Punctuation
+'other-age'   Name.Variable
+'"'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'!='          Operator
+' '           Text.Whitespace
+'foo-bar'     Name.Variable
+'\n'          Text.Whitespace
+
+'&&'          Operator
+' '           Text.Whitespace
+'&'           Name.Variable
+'"'           Punctuation
+'-foo-b '     Name.Variable
+'\\"'         Name.Variable
+'a'           Name.Variable
+'\\"'         Name.Variable
+'r'           Name.Variable
+'"'           Punctuation
+' '           Text.Whitespace
+'"'           Punctuation
+'other-string' Name.Variable
+'"'           Punctuation
+'\n'          Text.Whitespace

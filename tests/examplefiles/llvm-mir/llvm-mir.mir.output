@@ -148,7 +148,7 @@
 'i32'         Keyword.Type
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '%5'          Name.Variable
@@ -163,7 +163,7 @@
 ' '           Text
 'float '      Keyword.Type
 '1.0'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '%6'          Name.Variable
@@ -207,7 +207,7 @@
 'COPY'        Name.Builtin
 ' '           Text
 '%3'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Keyword
 '\n'          Text

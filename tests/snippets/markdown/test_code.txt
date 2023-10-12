@@ -1,0 +1,108 @@
+---input---
+Code fence:
+
+```
+foo
+```
+
+Code fence with language:
+
+```python
+import this
+```
+
+Code fence with unknown language:
+
+```invalid-lexer
+foo
+```
+
+Code fence with extra stuff after the language name:
+
+```shell-session $?
+$ unknown
+```
+
+---tokens---
+'Code'        Text
+' '           Text
+'fence:'      Text
+'\n'          Text.Whitespace
+
+'\n```\nfoo\n```\n' Literal.String.Backtick
+
+'\n'          Text.Whitespace
+
+'Code'        Text
+' '           Text
+'fence'       Text
+' '           Text
+'with'        Text
+' '           Text
+'language:'   Text
+'\n'          Text.Whitespace
+
+'\n```'       Literal.String.Backtick
+'python'      Literal.String.Backtick
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text
+'this'        Name.Namespace
+'\n'          Text.Whitespace
+
+'```\n'       Literal.String.Backtick
+
+'\n'          Text.Whitespace
+
+'Code'        Text
+' '           Text
+'fence'       Text
+' '           Text
+'with'        Text
+' '           Text
+'unknown'     Text
+' '           Text
+'language:'   Text
+'\n'          Text.Whitespace
+
+'\n```'       Literal.String.Backtick
+'invalid-lexer' Literal.String.Backtick
+'\n'          Text.Whitespace
+
+'foo\n'       Literal.String
+
+'```\n'       Literal.String.Backtick
+
+'\n'          Text.Whitespace
+
+'Code'        Text
+' '           Text
+'fence'       Text
+' '           Text
+'with'        Text
+' '           Text
+'extra'       Text
+' '           Text
+'stuff'       Text
+' '           Text
+'after'       Text
+' '           Text
+'the'         Text
+' '           Text
+'language'    Text
+' '           Text
+'name:'       Text
+'\n'          Text.Whitespace
+
+'\n```'       Literal.String.Backtick
+'shell-session' Literal.String.Backtick
+' '           Text.Whitespace
+'$?'          Text
+'\n'          Text.Whitespace
+
+'$ '          Generic.Prompt
+'unknown'     Text
+'\n'          Text.Whitespace
+
+'```\n'       Literal.String.Backtick

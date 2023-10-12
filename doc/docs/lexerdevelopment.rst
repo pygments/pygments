@@ -24,15 +24,29 @@ RegexLexer
 ==========
 
 The lexer base class used by almost all of Pygments' lexers is the
-:class:`RegexLexer`.  This class allows you to define lexing rules in terms of
+:class:`RegexLexer <pygments.lexer.RegexLexer>`.  This class allows you to define lexing rules in terms of
 *regular expressions* for different *states*.
 
 States are groups of regular expressions that are matched against the input
 string at the *current position*.  If one of these expressions matches, a
 corresponding action is performed (such as yielding a token with a specific
 type, or changing state), the current position is set to where the last match
-ended and the matching process continues with the first regex of the current
+ended and the matching process continues with the _first_ regex of the current
 state.
+
+.. note::
+
+    This means you're always jumping back to the first entry, i.e. you cannot match states in a particular order. For example, a state with the following rules won't work as intended:
+    
+    .. code:: python
+
+        'state': [
+            (r'\w+', Name,),
+            (r'\s+', Whitespace,),
+            (r'\w+', Keyword,)
+        ]
+
+    In the example above, ``Keyword`` will never be matched. To match certain token types in order, see below for the `bygroups` helper.
 
 Lexer states are kept on a stack: each time a new state is entered, the new
 state is pushed onto the stack.  The most basic lexers (like the `DiffLexer`)
@@ -85,8 +99,8 @@ If no rule matches at the current position, the current char is emitted as an
 one.
 
 
-Adding and testing a new lexer
-==============================
+Using a lexer
+=============
 
 The easiest way to use a new lexer is to use Pygments' support for loading
 the lexer from a file relative to your current directory.
@@ -131,7 +145,7 @@ If you only want to use your lexer with the Pygments API, you can import and
 instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
 
 Use the ``-f`` flag to select a different output format than terminal
-escape sequences. The :class:`pygments.formatters.html.HtmlFormatter` helps
+escape sequences. The :class:`.HtmlFormatter` helps
 you with debugging your lexer. You can use the ``debug_token_types`` option
 to display the token types assigned to each part of your input file:
 
@@ -141,69 +155,8 @@ to display the token types assigned to each part of your input file:
 
 Hover over each token to see the token type displayed as a tooltip.
 
-To prepare your new lexer for inclusion in the Pygments distribution, so that it
-will be found when passing filenames or lexer aliases from the command line, you
-have to perform the following steps.
-
-First, change to the current directory containing the Pygments source code.  You
-will need to have either an unpacked source tarball, or (preferably) a copy
-cloned from GitHub.
-
-.. code-block:: console
-
-    $ cd pygments
-
-Select a matching module under ``pygments/lexers``, or create a new module for
-your lexer class.
-
-.. note::
-
-  We encourage you to put your lexer class into its own module, unless it's a
-  very small derivative of an already existing lexer.
-
-Next, make sure the lexer is known from outside of the module.  All modules in
-the ``pygments.lexers`` package specify ``__all__``. For example,
-``esoteric.py`` sets::
-
-    __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
-
-Add the name of your lexer class to this list (or create the list if your lexer
-is the only class in the module).
-
-Finally the lexer can be made publicly known by rebuilding the lexer mapping:
-
-.. code-block:: console
-
-    $ make mapfiles
-
-To test the new lexer, store an example file in
-``tests/examplefiles/<alias>``.  For example, to test your
-``DiffLexer``, add a ``tests/examplefiles/diff/example.diff`` containing a
-sample diff output.  To (re)generate the lexer output which the file is checked
-against, use the command ``pytest tests/examplefiles/diff --update-goldens``.
-
-Now you can use ``python -m pygments`` from the current root of the checkout to
-render your example to HTML:
-
-.. code-block:: console
-
-    $ python -m pygments -O full -f html -o /tmp/example.html tests/examplefiles/diff/example.diff
-
-Note that this explicitly calls the ``pygments`` module in the current
-directory. This ensures your modifications are used. Otherwise a possibly
-already installed, unmodified version without your new lexer would have been
-called from the system search path (``$PATH``).
-
-To view the result, open ``/tmp/example.html`` in your browser.
-
-Once the example renders as expected, you should run the complete test suite:
-
-.. code-block:: console
-
-    $ make test
-
-It also tests that your lexer fulfills the lexer API and certain invariants,
-such as that the concatenation of all token text is the same as the input text.
+If your lexer would be useful to other people, we would love if you
+contributed it to Pygments.  See :doc:`contributing` for advice.
 
 
 Regex Flags
@@ -745,3 +698,110 @@ pseudo keywords::
                     yield index, token, value
 
 The `PhpLexer` and `LuaLexer` use this method to resolve builtin functions.
+
+
+
+.. _lexer-pitfalls:
+
+Common pitfalls and best practices
+==================================
+
+Regular expressions are ubiquitous in Pygments lexers.  We have
+written this section to warn about a few common mistakes you might do
+when using them. There are also some tips on making your lexers easier
+to read and review. You are asked to read this section if you want to
+contribute a new lexer, but you might find it useful in any case.
+
+
+* When writing rules, try to merge simple rules. For instance, combine::
+
+     (r"\(", token.Punctuation),
+     (r"\)", token.Punctuation),
+     (r"\[", token.Punctuation),
+     (r"\]", token.Punctuation),
+     ("{", token.Punctuation),
+     ("}", token.Punctuation),
+
+  into::
+
+   (r"[\(\)\[\]{}]", token.Punctuation)
+
+
+* Be careful with ``.*``. This matches greedily as much as it can. For instance,
+  a rule like ``@.*@`` will match the whole string ``@first@ second @third@``,
+  instead of matching ``@first@`` and ``@second@``. You can use ``@.*?@`` in
+  this case to stop early. The ``?`` tries to match *as few times* as possible.
+
+* Beware of so-called "catastrophic backtracking".  As a first example, consider
+  the regular expression ``(A+)*B``.  This is equivalent to ``A*B`` regarding
+  what it matches, but *non*-matches will take very long.  This is because
+  of the way the regular expression engine works.  Suppose you feed it 50
+  'A's, and a 'C' at the end.  It first matches the 'A's greedily in ``A+``,
+  but finds that it cannot match the end since 'B' is not the same as 'C'.
+  Then it backtracks, removing one 'A' from the first ``A+`` and trying to
+  match the rest as another ``(A+)*``.  This fails again, so it backtracks
+  further left in the input string, etc.  In effect, it tries all combinations
+
+  .. code-block:: text
+
+     (AAAAAAAAAAAAAAAAA)
+     (AAAAAAAAAAAAAAAA)(A)
+     (AAAAAAAAAAAAAAA)(AA)
+     (AAAAAAAAAAAAAAA)(A)(A)
+     (AAAAAAAAAAAAAA)(AAA)
+     (AAAAAAAAAAAAAA)(AA)(A)
+     ...
+
+  Thus, the matching has exponential complexity.  In a lexer, the
+  effect is that Pygments will seemingly hang when parsing invalid
+  input. ::
+
+     >>> import re
+     >>> re.match('(A+)*B', 'A'*50 + 'C') # hangs
+
+  As a more subtle and real-life example, here is a badly written
+  regular expression to match strings::
+
+     r'"(\\?.)*?"'
+
+  If the ending quote is missing, the regular expression engine will
+  find that it cannot match at the end, and try to backtrack with less
+  matches in the ``*?``.  When it finds a backslash, as it has already
+  tried the possibility ``\\.``, it tries ``.`` (recognizing it as a
+  simple character without meaning), which leads to the same
+  exponential backtracking problem if there are lots of backslashes in
+  the (invalid) input string.  A good way to write this would be
+  ``r'"([^\\]|\\.)*?"'``, where the inner group can only match in one
+  way.  Better yet is to use a dedicated state, which not only
+  sidesteps the issue without headaches, but allows you to highlight
+  string escapes. ::
+
+     'root': [
+         ...,
+         (r'"', String, 'string'),
+         ...
+     ],
+     'string': [
+         (r'\\.', String.Escape),
+         (r'"', String, '#pop'),
+         (r'[^\\"]+', String),
+     ]
+
+* When writing rules for patterns such as comments or strings, match as many
+  characters as possible in each token.  This is an example of what *not* to
+  do::
+
+     'comment': [
+         (r'\*/', Comment.Multiline, '#pop'),
+         (r'.', Comment.Multiline),
+     ]
+
+  This generates one token per character in the comment, which slows
+  down the lexing process, and also makes the raw token output (and in
+  particular the test output) hard to read.  Do this instead::
+
+     'comment': [
+         (r'\*/', Comment.Multiline, '#pop'),
+         (r'[^*]+', Comment.Multiline),
+         (r'\*', Comment.Multiline),
+     ]

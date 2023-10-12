@@ -1,0 +1,55 @@
+---input---
+@       IN      SOA     ns root ( ; E-mail
+                             42   ; Serial
+                             2h   ; Refresh
+                             1h   ; Retry
+                            14d   ; Expire
+                             1h ) ; Negative Cache TTL
+
+---tokens---
+'@'           Operator
+'       '     Text.Whitespace
+'IN'          Name.Class
+'      '      Text.Whitespace
+'SOA'         Keyword.Type
+'     '       Text.Whitespace
+'ns'          Literal
+' '           Text.Whitespace
+'root'        Literal
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'; E-mail'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'42'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Serial'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'2h'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Refresh'   Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'1h'          Literal.Number.Integer
+'   '         Text.Whitespace
+'; Retry'     Comment.Single
+'\n'          Text.Whitespace
+
+'                            ' Text.Whitespace
+'14d'         Literal.Number.Integer
+'   '         Text.Whitespace
+'; Expire'    Comment.Single
+'\n'          Text.Whitespace
+
+'                             ' Text.Whitespace
+'1h'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'; Negative Cache TTL' Comment.Single
+'\n'          Text.Whitespace

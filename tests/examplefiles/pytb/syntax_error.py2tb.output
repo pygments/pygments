@@ -3,19 +3,19 @@
 '"<stdin>"'   Name.Builtin
 ', line '     Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'mismatch'    Name
 '('           Punctuation
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '^'           Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SyntaxError' Generic.Error
 ': '          Text
 "closing parenthesis ']' does not match opening parenthesis '('" Name
-'\n'          Text
+'\n'          Text.Whitespace

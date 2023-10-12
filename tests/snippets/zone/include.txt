@@ -1,0 +1,8 @@
+---input---
+$INCLUDE test.zone
+
+---tokens---
+'$INCLUDE'    Comment.Preproc
+' '           Text.Whitespace
+'test.zone'   Comment.PreprocFile
+'\n'          Text.Whitespace

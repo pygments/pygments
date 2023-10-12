@@ -1,0 +1,549 @@
+---input---
+const a = 0;
+const au = 0u;
+const ai = 0i;
+const b = 12345;
+const bu = 12345u;
+const bi= 12345i;
+const c = 0x0;
+const cu = 0x0u;
+const ci = 0x0i;
+const d = 0x12345;
+const di = 0x12345i;
+const du = 0x12345u;
+const eh = 0h;
+const ef = 0f;
+const f = 1.;
+const fh = 1.h;
+const ff = 1.f;
+const g = .1;
+const gh = .1h;
+const gf = .1f;
+const g = 1e1;
+const gh = 1e1h;
+const gf = 1e1f;
+const h = 1e+1;
+const hh = 1e+1h;
+const hf = 1e+1f;
+const i = 1e-1;
+const ih = 1e-1h;
+const if = 1e-1f;
+const j = 1.0e+1;
+const jh = 1.0e+1h;
+const jf= 1.0e+1f;
+const k = 1.0e-1;
+const kh = 1.0e-1h;
+const kf= 1.0e-1f;
+const l = 0x1p1;
+const lh = 0x1p1h;
+const lf = 0x1p1f;
+const m = 0x1p+1;
+const mh = 0x1p+1h;
+const mf = 0x1p+1f;
+const n = 0x1p-1;
+const nh = 0x1p-1h;
+const nf = 0x1p-1f;
+const o = 0x1.p1;
+const oh = 0x1.p1h;
+const of = 0x1.p1f;
+const p = 0x.1p1;
+const ph = 0x.1p1h;
+const pf = 0x.1p1f;
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'au'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0u'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ai'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0i'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12345'       Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'bu'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12345u'      Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'bi'          Name
+'='           Operator
+' '           Text.Whitespace
+'12345i'      Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x0'         Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'cu'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x0u'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ci'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x0i'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x12345'     Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'di'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x12345i'    Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'du'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x12345u'    Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'eh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0h'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ef'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0f'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'fh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.h'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ff'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.f'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.1'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'gh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.1h'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'gf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.1f'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e1'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'gh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e1h'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'gf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e1f'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e+1'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'hh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e+1h'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'hf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e+1f'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e-1'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ih'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e-1h'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e-1f'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'j'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0e+1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'jh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0e+1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'jf'          Name
+'='           Operator
+' '           Text.Whitespace
+'1.0e+1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'k'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0e-1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'kh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0e-1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'kf'          Name
+'='           Operator
+' '           Text.Whitespace
+'1.0e-1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'l'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p1'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'lh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p1h'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'lf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p1f'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p+1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'mh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p+1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'mf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p+1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p-1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'nh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p-1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'nf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1p-1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'o'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1.p1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'oh'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1.p1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'of'          Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1.p1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x.1p1'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ph'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x.1p1h'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'pf'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x.1p1f'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace

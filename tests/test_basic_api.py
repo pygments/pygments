@@ -2,7 +2,7 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -49,7 +49,7 @@ def test_lexer_classes(cls):
     assert all(al.lower() == al for al in cls.aliases)
 
     if issubclass(cls, RegexLexer):
-        inst = cls(opt1="val1", opt2="val2")
+        cls(opt1="val1", opt2="val2") # should not raise
         if not hasattr(cls, '_tokens'):
             # if there's no "_tokens", the lexer has to be one with
             # multiple tokendef variants

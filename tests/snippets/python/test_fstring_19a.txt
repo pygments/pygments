@@ -6,41 +6,41 @@ f'mapping is { {a:b for (a, b) in ((1, 2), (3, 4))} }'
 "'"           Literal.String.Single
 'mapping is ' Literal.String.Single
 '{'           Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'a'           Name
 ':'           Punctuation
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '3'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Literal.String.Interpol
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace

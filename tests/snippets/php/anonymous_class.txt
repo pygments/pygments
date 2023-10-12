@@ -1,0 +1,28 @@
+---input---
+<?php
+$containerObject = new class {
+  public $something;
+}
+
+---tokens---
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'$containerObject' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'public'      Keyword
+' '           Text
+'$something'  Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

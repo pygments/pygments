@@ -2,19 +2,19 @@
 ':'           Text
 ' '           Text
 'Formatting'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'created'     Keyword
 ':'           Text
 ' '           Text
 '20131205155959399' Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'modified'    Keyword
 ':'           Text
 ' '           Text
 '20200201075357846' Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tags'        Keyword
 ':'           Text
@@ -22,7 +22,7 @@
 'TiddlyWiki'  Text
 ' '           Text
 'WikiText'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'title'       Keyword
 ': '          Text
@@ -36,9 +36,9 @@
 'vnd'         Text
 '.'           Text
 'tiddlywiki'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\define'    Keyword
 ' '           Text
@@ -49,7 +49,7 @@
 '<div class="cell positive">' Name.Tag
 '+'           Text
 '</div>'      Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\define'    Keyword
 ' '           Text
@@ -60,9 +60,9 @@
 '<div class="cell negative">' Name.Tag
 '-'           Text
 '</div>'      Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\define'    Keyword
 ' '           Text
@@ -75,7 +75,7 @@
 'variables'   Text
 '('           Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Hi'          Text
 ','           Text
@@ -96,12 +96,12 @@
 ' '           Text
 '$(address)$' Name.Tag
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\\end'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<style>'     Literal.String
 '\n'          Literal.String
@@ -162,14 +162,14 @@
 '\n'          Text.Whitespace
 
 '</style>'    Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!'           Generic.Heading
 'Main Header\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Available'   Text
 ' '           Text
@@ -179,7 +179,7 @@
 ' '           Text
 'includes'    Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -194,7 +194,7 @@
 'for'         Text
 ' '           Text
 '`code`'      Literal.String.Backtick
-'\n'          Text
+'\n'          Text.Whitespace
 
 '**'          Keyword
 ' '           Text
@@ -218,7 +218,7 @@
 '&#96;'       Literal.String.Regex
 '&#96;'       Literal.String.Regex
 '</code>'     Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 ' '           Text
 '*'           Keyword
@@ -228,7 +228,7 @@
 'for'         Text
 ' '           Text
 "''bold text''" Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Keyword
 '`//italic//`' Literal.String.Backtick
@@ -242,7 +242,7 @@
 '$:/core/images/italic' Name.Tag
 '}}'          Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*#'          Keyword
 ' '           Text
@@ -251,15 +251,15 @@
 'for'         Text
 ' '           Text
 '__underscored text__' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Ordered'     Text
 ' '           Text
 'list'        Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -278,7 +278,7 @@
 '$:/core/images/superscript' Name.Tag
 '}}'          Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Keyword
 ' '           Text
@@ -295,7 +295,7 @@
 '$:/core/images/subscript' Name.Tag
 '}}'          Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#*'          Keyword
 ' '           Text
@@ -312,9 +312,9 @@
 '$:/core/images/strikethrough' Name.Tag
 '}}'          Text
 ')'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<span style="font-style: italic;">' Name.Tag
 "'"           Text
@@ -326,14 +326,14 @@
 '&#96;'       Literal.String.Regex
 '&amp;'       Literal.String.Regex
 '</span>'     Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!!'          Generic.Subheading
 'Links\n'     Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Internal'    Text
 ' '           Text
@@ -343,9 +343,9 @@
 '[['          Text
 'Code Blocks in WikiText' Name.Tag
 ']]'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'External'    Text
 ' '           Text
@@ -357,9 +357,9 @@
 '|'           Text
 'https://tiddlywiki.com' Name.Attribute
 ']]'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Image'       Text
 ' '           Text
@@ -371,9 +371,9 @@
 '{{'          Text
 '$:/core/images/underline' Name.Tag
 '}}'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Just'        Text
 ' '           Text
@@ -383,45 +383,45 @@
 ':'           Text
 ' '           Text
 'ftp://ftp.halifax.rwth-aachen.de/' Name.Attribute
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!!!'         Generic.Subheading
 'Code\n'      Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```'         Literal.String
 'bash'        Literal.String
 '\n'          Text
 
 'cd'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$HOME'       Name.Variable
 '/workspace'  Literal.String.Double
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '```'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!!!'         Generic.Subheading
 'Table\n'     Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|myclass anotherClass|k' Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|This is a caption |c' Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|Header|Header|h' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Text
 "'"           Text
@@ -434,7 +434,7 @@
 '<<neg>>'     Name.Tag
 ' '           Text
 '|'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|'           Text
 '/'           Text
@@ -447,29 +447,29 @@
 '<<pos>>'     Name.Tag
 ' '           Text
 '|'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|Footer|Footer|f' Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!'           Generic.Heading
 'Block quote\n' Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<<<\n'       Literal.String
 
 'Computers are like a bicycle for our minds\n' Text
 
 '<<< Steve Jobs' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Term being defined' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':'           Text
 ' '           Text
@@ -480,4 +480,4 @@
 'that'        Text
 ' '           Text
 'term'        Text
-'\n'          Text
+'\n'          Text.Whitespace

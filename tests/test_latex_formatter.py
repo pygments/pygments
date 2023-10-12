@@ -2,7 +2,7 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +24,7 @@ TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
 
 
 def test_correct_output():
-    with open(TESTFILE) as fp:
+    with open(TESTFILE, encoding='utf-8') as fp:
         tokensource = list(PythonLexer().get_tokens(fp.read()))
     hfmt = LatexFormatter(nowrap=True)
     houtfile = StringIO()
@@ -35,7 +35,7 @@ def test_correct_output():
 
 
 def test_valid_output():
-    with open(TESTFILE) as fp:
+    with open(TESTFILE, encoding='utf-8') as fp:
         tokensource = list(PythonLexer().get_tokens(fp.read()))
     fmt = LatexFormatter(full=True, encoding='latin1')
 
@@ -83,7 +83,7 @@ def test_embedded_lexer():
         (Token.Operator, '='),
         (Token.Text, ' '),
         (Token.Literal.Number.Integer, '1'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Generic.Prompt, '>>> '),
         (Token.Name, 'y'),
         (Token.Text, ' '),
@@ -98,10 +98,10 @@ def test_embedded_lexer():
         (Token.Punctuation, ')'),
         (Token.Text, '  '),
         (Token.Comment.Single, '# these |pipes| are untouched'),  # note: not Token.Escape
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Generic.Prompt, '>>> '),
         (Token.Name, 'y'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Escape, '$1 + z^2$'),
         (Token.Generic.Output, '\n'),
     ]

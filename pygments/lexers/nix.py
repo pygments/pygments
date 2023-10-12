@@ -4,7 +4,7 @@
 
     Lexers for the NixOS Nix language.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -102,7 +102,8 @@ class NixLexer(RegexLexer):
             (r"''\t", String.Escape),
             (r"''", String.Single, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r"[^']", String.Single),
+            (r"['$]", String.Single),
+            (r"[^'$]+", String.Single),
         ],
         'doublequote': [
             (r'\\', String.Escape),

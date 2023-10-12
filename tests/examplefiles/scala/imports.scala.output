@@ -43,14 +43,14 @@
 ' '           Text.Whitespace
 '`test-name`' Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'given'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -61,7 +61,7 @@
 ' '           Text.Whitespace
 'a'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -73,21 +73,21 @@
 ' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 '_'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'x'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -98,7 +98,7 @@
 'y'           Name.Namespace
 '.'           Punctuation
 'z'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -115,7 +115,7 @@
 ' '           Text.Whitespace
 'FileNotFoundException' Name.Class
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -124,7 +124,7 @@
 'io'          Name.Namespace
 '.'           Punctuation
 'File'        Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -140,7 +140,7 @@
 'Int'         Name.Class
 ']'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
@@ -156,16 +156,16 @@
 '?'           Name
 ']'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 'a'           Name.Namespace
 '.'           Punctuation
 'givenSomething' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
 ' '           Text.Whitespace
 'givenPackage' Name
-'\n'          Text
+'\n'          Text.Whitespace

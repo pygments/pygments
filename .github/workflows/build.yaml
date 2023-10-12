@@ -2,66 +2,76 @@ name: Pygments
 
 on: [push, pull_request]
 
+env:
+  FORCE_COLOR: 1
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
-      max-parallel: 4
+        os: [windows-latest, ubuntu-latest]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12-dev"]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install package
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install .
+        cache: 'pip'
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Test package
-      run: make test TEST=-v
-      if: runner.os == 'Linux'
-    - name: Test package
-      run: pytest
-      if: runner.os != 'Linux'
+      run: tox -- -W error
 
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-    - name: Run make check
-      run: make check
-    - name: Fail if the basic checks failed
-      run: make check
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install tox
+      run: pip install -r requirements.txt
+    - name: Perform basic checks
+      run: tox -e check
       if: runner.os == 'Linux'
 
   check-mapfiles:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Regenerate mapfiles
-      run: make mapfiles
+      run: tox -e mapfiles
     - name: Fail if mapfiles changed
       run: |
         if git ls-files -m | grep mapping; then
-          echo 'Please run "make mapfiles" and add the changes to a commit.'
+          echo 'Please run "tox -e mapfiles" and add the changes to a commit.'
           exit 1
         fi
 
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
       with:
-        python-version: 3.8
-    - name: Check out regexlint
-      run: git clone https://github.com/pygments/regexlint
+        python-version: "3.x"
+    - name: Install tox
+      run: pip install -r requirements.txt
     - name: Run regexlint
-      run: make regexlint REGEXLINT=`pwd`/regexlint
+      run: tox -e regexlint

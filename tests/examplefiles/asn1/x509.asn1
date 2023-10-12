@@ -1,0 +1,404 @@
+-- Extracted from RFC5280:
+
+Certificate  ::=  SEQUENCE  {
+        tbsCertificate       TBSCertificate,
+        signatureAlgorithm   AlgorithmIdentifier,
+        signatureValue       BIT STRING  }
+
+TBSCertificate  ::=  SEQUENCE  {
+    version         [0]  EXPLICIT Version DEFAULT v1,
+    serialNumber         CertificateSerialNumber,
+    signature            AlgorithmIdentifier,
+    issuer               Name,
+    validity             Validity,
+    subject              Name,
+    subjectPublicKeyInfo SubjectPublicKeyInfo,
+    issuerUniqueID  [1]  IMPLICIT UniqueIdentifier OPTIONAL,
+                            -- If present, version MUST be v2 or v3
+    subjectUniqueID [2]  IMPLICIT UniqueIdentifier OPTIONAL,
+                                -- If present, version MUST be v2 or v3
+    extensions      [3]  EXPLICIT Extensions OPTIONAL
+                        -- If present, version MUST be v3
+    }
+
+Version  ::=  INTEGER  {  v1(0), v2(1), v3(2)  }
+
+CertificateSerialNumber  ::=  INTEGER
+
+Validity ::= SEQUENCE {
+    notBefore      Time,
+    notAfter       Time }
+
+Time ::= CHOICE {
+    utcTime        UTCTime,
+    generalTime    GeneralizedTime }
+
+UniqueIdentifier  ::=  BIT STRING
+
+SubjectPublicKeyInfo  ::=  SEQUENCE  {
+    algorithm            AlgorithmIdentifier,
+    subjectPublicKey     BIT STRING  }
+
+Extensions  ::=  SEQUENCE SIZE (1..MAX) OF Extension
+
+Extension  ::=  SEQUENCE  {
+    extnID      OBJECT IDENTIFIER,
+    critical    BOOLEAN DEFAULT FALSE,
+    extnValue   OCTET STRING
+                -- contains the DER encoding of an ASN.1 value
+                -- corresponding to the extension type identified
+                -- by extnID
+    }
+
+AlgorithmIdentifier  ::=  SEQUENCE  {
+        algorithm               OBJECT IDENTIFIER,
+        parameters              ANY DEFINED BY algorithm OPTIONAL  }
+
+Name ::= CHOICE { -- only one possibility for now --
+     rdnSequence  RDNSequence }
+
+RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+
+RelativeDistinguishedName ::=
+    SET SIZE (1..MAX) OF AttributeTypeAndValue
+
+AttributeTypeAndValue ::= SEQUENCE {
+    type     AttributeType,
+    value    AttributeValue }
+
+AttributeType ::= OBJECT IDENTIFIER
+
+AttributeValue ::= ANY -- DEFINED BY AttributeType
+
+DirectoryString ::= CHOICE {
+        teletexString           TeletexString (SIZE (1..MAX)),
+        printableString         PrintableString (SIZE (1..MAX)),
+        universalString         UniversalString (SIZE (1..MAX)),
+        utf8String              UTF8String (SIZE (1..MAX)),
+        bmpString               BMPString (SIZE (1..MAX)) }
+
+id-ce-authorityKeyIdentifier OBJECT IDENTIFIER ::=  { id-ce 35 }
+
+AuthorityKeyIdentifier ::= SEQUENCE {
+    keyIdentifier             [0] KeyIdentifier           OPTIONAL,
+    authorityCertIssuer       [1] GeneralNames            OPTIONAL,
+    authorityCertSerialNumber [2] CertificateSerialNumber OPTIONAL  }
+
+KeyIdentifier ::= OCTET STRING
+
+id-ce-keyUsage OBJECT IDENTIFIER ::=  { id-ce 15 }
+
+KeyUsage ::= BIT STRING {
+    digitalSignature        (0),
+    nonRepudiation          (1), -- recent editions of X.509 have
+                        -- renamed this bit to contentCommitment
+    keyEncipherment         (2),
+    dataEncipherment        (3),
+    keyAgreement            (4),
+    keyCertSign             (5),
+    cRLSign                 (6),
+    encipherOnly            (7),
+    decipherOnly            (8) }
+
+id-ce-certificatePolicies OBJECT IDENTIFIER ::=  { id-ce 32 }
+
+anyPolicy OBJECT IDENTIFIER ::= { id-ce-certificatePolicies 0 }
+
+certificatePolicies ::= SEQUENCE SIZE (1..MAX) OF PolicyInformation
+
+PolicyInformation ::= SEQUENCE {
+    policyIdentifier   CertPolicyId,
+    policyQualifiers   SEQUENCE SIZE (1..MAX) OF
+                            PolicyQualifierInfo OPTIONAL }
+
+CertPolicyId ::= OBJECT IDENTIFIER
+
+PolicyQualifierInfo ::= SEQUENCE {
+    policyQualifierId  PolicyQualifierId,
+    qualifier          ANY DEFINED BY policyQualifierId }
+
+-- policyQualifierIds for Internet policy qualifiers
+
+id-qt          OBJECT IDENTIFIER ::=  { id-pkix 2 }
+id-qt-cps      OBJECT IDENTIFIER ::=  { id-qt 1 }
+id-qt-unotice  OBJECT IDENTIFIER ::=  { id-qt 2 }
+
+PolicyQualifierId ::= OBJECT IDENTIFIER ( id-qt-cps | id-qt-unotice )
+
+Qualifier ::= CHOICE {
+    cPSuri           CPSuri,
+    userNotice       UserNotice }
+
+CPSuri ::= IA5String
+
+UserNotice ::= SEQUENCE {
+    noticeRef        NoticeReference OPTIONAL,
+    explicitText     DisplayText OPTIONAL }
+
+NoticeReference ::= SEQUENCE {
+    organization     DisplayText,
+    noticeNumbers    SEQUENCE OF INTEGER }
+
+DisplayText ::= CHOICE {
+    ia5String        IA5String      (SIZE (1..200)),
+    visibleString    VisibleString  (SIZE (1..200)),
+    bmpString        BMPString      (SIZE (1..200)),
+    utf8String       UTF8String     (SIZE (1..200)) }
+
+id-ce-policyMappings OBJECT IDENTIFIER ::=  { id-ce 33 }
+
+PolicyMappings ::= SEQUENCE SIZE (1..MAX) OF SEQUENCE {
+    issuerDomainPolicy      CertPolicyId,
+    subjectDomainPolicy     CertPolicyId }
+
+id-ce-subjectAltName OBJECT IDENTIFIER ::=  { id-ce 17 }
+
+SubjectAltName ::= GeneralNames
+
+GeneralNames ::= SEQUENCE SIZE (1..MAX) OF GeneralName
+
+GeneralName ::= CHOICE {
+    otherName                       [0]     OtherName,
+    rfc822Name                      [1]     IA5String,
+    dNSName                         [2]     IA5String,
+    x400Address                     [3]     ORAddress,
+    directoryName                   [4]     Name,
+    ediPartyName                    [5]     EDIPartyName,
+    uniformResourceIdentifier       [6]     IA5String,
+    iPAddress                       [7]     OCTET STRING,
+    registeredID                    [8]     OBJECT IDENTIFIER }
+
+OtherName ::= SEQUENCE {
+    type-id    OBJECT IDENTIFIER,
+    value      [0] EXPLICIT ANY DEFINED BY type-id }
+
+EDIPartyName ::= SEQUENCE {
+    nameAssigner            [0]     DirectoryString OPTIONAL,
+    partyName               [1]     DirectoryString }
+
+
+id-ce-issuerAltName OBJECT IDENTIFIER ::=  { id-ce 18 }
+
+IssuerAltName ::= GeneralNames
+
+id-ce-subjectDirectoryAttributes OBJECT IDENTIFIER ::=  { id-ce 9 }
+
+SubjectDirectoryAttributes ::= SEQUENCE SIZE (1..MAX) OF Attribute
+
+id-ce-basicConstraints OBJECT IDENTIFIER ::=  { id-ce 19 }
+
+BasicConstraints ::= SEQUENCE {
+    cA                      BOOLEAN DEFAULT FALSE,
+    pathLenConstraint       INTEGER (0..MAX) OPTIONAL }
+      id-ce-nameConstraints OBJECT IDENTIFIER ::=  { id-ce 30 }
+
+NameConstraints ::= SEQUENCE {
+    permittedSubtrees       [0]     GeneralSubtrees OPTIONAL,
+    excludedSubtrees        [1]     GeneralSubtrees OPTIONAL }
+
+GeneralSubtrees ::= SEQUENCE SIZE (1..MAX) OF GeneralSubtree
+
+
+GeneralSubtree ::= SEQUENCE {
+    base                    GeneralName,
+    minimum         [0]     BaseDistance DEFAULT 0,
+    maximum         [1]     BaseDistance OPTIONAL }
+
+BaseDistance ::= INTEGER (0..MAX)
+
+id-ce-policyConstraints OBJECT IDENTIFIER ::=  { id-ce 36 }
+
+PolicyConstraints ::= SEQUENCE {
+    requireExplicitPolicy           [0] SkipCerts OPTIONAL,
+    inhibitPolicyMapping            [1] SkipCerts OPTIONAL }
+
+SkipCerts ::= INTEGER (0..MAX)
+
+id-ce-extKeyUsage OBJECT IDENTIFIER ::= { id-ce 37 }
+
+ExtKeyUsageSyntax ::= SEQUENCE SIZE (1..MAX) OF KeyPurposeId
+
+KeyPurposeId ::= OBJECT IDENTIFIER
+
+anyExtendedKeyUsage OBJECT IDENTIFIER ::= { id-ce-extKeyUsage 0 }
+
+id-kp OBJECT IDENTIFIER ::= { id-pkix 3 }
+
+id-kp-serverAuth             OBJECT IDENTIFIER ::= { id-kp 1 }
+-- TLS WWW server authentication
+-- Key usage bits that may be consistent: digitalSignature,
+-- keyEncipherment or keyAgreement
+
+id-kp-clientAuth             OBJECT IDENTIFIER ::= { id-kp 2 }
+-- TLS WWW client authentication
+-- Key usage bits that may be consistent: digitalSignature
+-- and/or keyAgreement
+
+id-kp-codeSigning             OBJECT IDENTIFIER ::= { id-kp 3 }
+-- Signing of downloadable executable code
+-- Key usage bits that may be consistent: digitalSignature
+
+id-kp-emailProtection         OBJECT IDENTIFIER ::= { id-kp 4 }
+-- Email protection
+-- Key usage bits that may be consistent: digitalSignature,
+-- nonRepudiation, and/or (keyEncipherment or keyAgreement)
+
+id-kp-timeStamping            OBJECT IDENTIFIER ::= { id-kp 8 }
+-- Binding the hash of an object to a time
+-- Key usage bits that may be consistent: digitalSignature
+-- and/or nonRepudiation
+
+id-kp-OCSPSigning            OBJECT IDENTIFIER ::= { id-kp 9 }
+-- Signing OCSP responses
+-- Key usage bits that may be consistent: digitalSignature
+-- and/or nonRepudiation
+
+ id-ce-cRLDistributionPoints OBJECT IDENTIFIER ::=  { id-ce 31 }
+
+CRLDistributionPoints ::= SEQUENCE SIZE (1..MAX) OF DistributionPoint
+
+DistributionPoint ::= SEQUENCE {
+    distributionPoint       [0]     DistributionPointName OPTIONAL,
+    reasons                 [1]     ReasonFlags OPTIONAL,
+    cRLIssuer               [2]     GeneralNames OPTIONAL }
+
+DistributionPointName ::= CHOICE {
+    fullName                [0]     GeneralNames,
+    nameRelativeToCRLIssuer [1]     RelativeDistinguishedName }
+
+ReasonFlags ::= BIT STRING {
+        unused                  (0),
+        keyCompromise           (1),
+        cACompromise            (2),
+        affiliationChanged      (3),
+        superseded              (4),
+        cessationOfOperation    (5),
+        certificateHold         (6),
+        privilegeWithdrawn      (7),
+        aACompromise            (8) }
+
+Conforming CAs MUST mark this extension as critical.
+
+id-ce-inhibitAnyPolicy OBJECT IDENTIFIER ::=  { id-ce 54 }
+
+InhibitAnyPolicy ::= SkipCerts
+
+SkipCerts ::= INTEGER (0..MAX)
+
+id-ce-freshestCRL OBJECT IDENTIFIER ::=  { id-ce 46 }
+
+FreshestCRL ::= CRLDistributionPoints
+
+id-pkix  OBJECT IDENTIFIER  ::=
+        { iso(1) identified-organization(3) dod(6) internet(1)
+                security(5) mechanisms(5) pkix(7) }
+
+id-pe  OBJECT IDENTIFIER  ::=  { id-pkix 1 }
+
+id-pe-authorityInfoAccess OBJECT IDENTIFIER ::= { id-pe 1 }
+
+AuthorityInfoAccessSyntax  ::=
+        SEQUENCE SIZE (1..MAX) OF AccessDescription
+
+AccessDescription  ::=  SEQUENCE {
+        accessMethod          OBJECT IDENTIFIER,
+        accessLocation        GeneralName  }
+
+id-ad OBJECT IDENTIFIER ::= { id-pkix 48 }
+
+id-ad-caIssuers OBJECT IDENTIFIER ::= { id-ad 2 }
+
+id-ad-ocsp OBJECT IDENTIFIER ::= { id-ad 1 }
+
+id-pe-subjectInfoAccess OBJECT IDENTIFIER ::= { id-pe 11 }
+
+SubjectInfoAccessSyntax  ::=
+        SEQUENCE SIZE (1..MAX) OF AccessDescription
+
+AccessDescription  ::=  SEQUENCE {
+        accessMethod          OBJECT IDENTIFIER,
+        accessLocation        GeneralName  }
+
+id-ad OBJECT IDENTIFIER ::= { id-pkix 48 }
+
+id-ad-caRepository OBJECT IDENTIFIER ::= { id-ad 5 }
+
+id-ad-timeStamping OBJECT IDENTIFIER ::= { id-ad 3 }
+
+CertificateList  ::=  SEQUENCE  {
+        tbsCertList          TBSCertList,
+        signatureAlgorithm   AlgorithmIdentifier,
+        signatureValue       BIT STRING  }
+
+TBSCertList  ::=  SEQUENCE  {
+    version                 Version OPTIONAL,
+                                    -- if present, MUST be v2
+    signature               AlgorithmIdentifier,
+    issuer                  Name,
+    thisUpdate              Time,
+    nextUpdate              Time OPTIONAL,
+    revokedCertificates     SEQUENCE OF SEQUENCE  {
+            userCertificate         CertificateSerialNumber,
+            revocationDate          Time,
+            crlEntryExtensions      Extensions OPTIONAL
+                                    -- if present, version MUST be v2
+                                }  OPTIONAL,
+    crlExtensions           [0]  EXPLICIT Extensions OPTIONAL
+                                    -- if present, version MUST be v2
+                                }
+
+-- Version, Time, CertificateSerialNumber, and Extensions
+-- are all defined in the ASN.1 in Section 4.1
+
+-- AlgorithmIdentifier is defined in Section 4.1.1.2
+
+id-ce-cRLNumber OBJECT IDENTIFIER ::= { id-ce 20 }
+
+CRLNumber ::= INTEGER (0..MAX)
+
+id-ce-deltaCRLIndicator OBJECT IDENTIFIER ::= { id-ce 27 }
+
+BaseCRLNumber ::= CRLNumber
+
+id-ce-issuingDistributionPoint OBJECT IDENTIFIER ::= { id-ce 28 }
+
+IssuingDistributionPoint ::= SEQUENCE {
+    distributionPoint          [0] DistributionPointName OPTIONAL,
+    onlyContainsUserCerts      [1] BOOLEAN DEFAULT FALSE,
+    onlyContainsCACerts        [2] BOOLEAN DEFAULT FALSE,
+    onlySomeReasons            [3] ReasonFlags OPTIONAL,
+    indirectCRL                [4] BOOLEAN DEFAULT FALSE,
+    onlyContainsAttributeCerts [5] BOOLEAN DEFAULT FALSE }
+
+-- at most one of onlyContainsUserCerts, onlyContainsCACerts,
+-- and onlyContainsAttributeCerts may be set to TRUE.
+
+id-ce-freshestCRL OBJECT IDENTIFIER ::=  { id-ce 46 }
+
+FreshestCRL ::= CRLDistributionPoints
+
+id-ce-cRLReasons OBJECT IDENTIFIER ::= { id-ce 21 }
+
+-- reasonCode ::= { CRLReason }
+
+CRLReason ::= ENUMERATED {
+    unspecified             (0),
+    keyCompromise           (1),
+    cACompromise            (2),
+    affiliationChanged      (3),
+    superseded              (4),
+    cessationOfOperation    (5),
+    certificateHold         (6),
+            -- value 7 is not used
+    removeFromCRL           (8),
+    privilegeWithdrawn      (9),
+    aACompromise           (10) }
+
+id-ce-invalidityDate OBJECT IDENTIFIER ::= { id-ce 24 }
+
+InvalidityDate ::=  GeneralizedTime
+
+id-ce-certificateIssuer   OBJECT IDENTIFIER ::= { id-ce 29 }
+
+CertificateIssuer ::=     GeneralNames
+

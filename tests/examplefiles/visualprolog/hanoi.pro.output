@@ -1,0 +1,202 @@
+'class'       Keyword
+' '           Text.Whitespace
+'hanoi'       Name
+' \n   '      Text.Whitespace
+'predicates'  Keyword
+' \n       '  Text.Whitespace
+'hanoi'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'unsigned'    Name
+' '           Text.Whitespace
+'N'           Name.Variable
+').'          Punctuation
+' \n'         Text.Whitespace
+
+'end'         Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'hanoi'       Name
+' \n \n'      Text.Whitespace
+
+'implement'   Keyword
+' '           Text.Whitespace
+'hanoi'       Name
+' \n   '      Text.Whitespace
+'domains'     Keyword
+' \n       '  Text.Whitespace
+'pole'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'left'        Name
+';'           Text
+' '           Text.Whitespace
+'center'      Name
+';'           Text
+' '           Text.Whitespace
+'right'       Name
+'.'           Punctuation
+' \n \n   '   Text.Whitespace
+'clauses'     Keyword
+' \n       '  Text.Whitespace
+'hanoi'       Name
+'('           Punctuation
+'N'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+':-'          Operator
+' '           Text.Whitespace
+'move'        Name
+'('           Punctuation
+'N'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'left'        Name
+','           Punctuation
+' '           Text.Whitespace
+'center'      Name
+','           Punctuation
+' '           Text.Whitespace
+'right'       Name
+').'          Punctuation
+' \n \n   '   Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'predicates'  Keyword
+' \n       '  Text.Whitespace
+'move'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'unsigned'    Name
+' '           Text.Whitespace
+'N'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'pole'        Name
+' '           Text.Whitespace
+'A'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'pole'        Name
+' '           Text.Whitespace
+'B'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'pole'        Name
+' '           Text.Whitespace
+'C'           Name.Variable
+').'          Punctuation
+' \n   '      Text.Whitespace
+'clauses'     Keyword
+' \n       '  Text.Whitespace
+'move'        Name
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'_'           Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'_'           Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'_'           Name.Variable.Anonymous
+')'           Punctuation
+' '           Text.Whitespace
+':-'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'.'           Punctuation
+' \n       '  Text.Whitespace
+'move'        Name
+'('           Punctuation
+'N'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'A'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+':-'          Operator
+' \n           ' Text.Whitespace
+'move'        Name
+'('           Punctuation
+'N'           Name.Variable
+'-'           Operator
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'A'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Variable
+'),'          Punctuation
+' \n           ' Text.Whitespace
+'stdio'       Name
+'::'          Operator
+'writef'      Name
+'('           Punctuation
+'"'           Literal.String.Symbol
+'move a disc from % pole to the % pole' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'A'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Variable
+'),'          Punctuation
+' \n           ' Text.Whitespace
+'move'        Name
+'('           Punctuation
+'N'           Name.Variable
+'-'           Operator
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'A'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Variable
+').'          Punctuation
+' \n'         Text.Whitespace
+
+'end'         Keyword
+' '           Text.Whitespace
+'implement'   Keyword
+' '           Text.Whitespace
+'hanoi'       Name
+' \n \n'      Text.Whitespace
+
+'goal'        Keyword
+' \n   '      Text.Whitespace
+'console'     Name
+'::'          Operator
+'init'        Name
+'(),'         Punctuation
+' \n   '      Text.Whitespace
+'hanoi'       Name
+'::'          Operator
+'hanoi'       Name
+'('           Punctuation
+'4'           Literal.Number
+').'          Punctuation
+'\n'          Text.Whitespace

@@ -139,7 +139,7 @@
 %% REPEAT TYPES
 
 #(define all-repeat-types
-   '(volta percent unfold segno))
+   '(volta percent tremolo unfold segno))
 
 #(dump-py-list 'repeat_types all-repeat-types)
 
@@ -269,7 +269,9 @@
               (ly:context-def? (cdr entry)))
             layout-alist))
         (context-def-names
-          (map car all-context-defs)))
+          (map car all-context-defs))
+        ;; Timing is added dynamically
+        (context-def-names (cons 'Timing context-def-names)))
    (dump-py-list 'contexts context-def-names))
 
 %% TRANSLATORS
@@ -347,11 +349,19 @@
      print-all-headers
      system-separator-markup
      footnote-separator-markup
-     ; Let's view these four as \paper variables.
+     ;; Let's view these four as \paper variables.
      basic-distance
      minimum-distance
      padding
-     stretchability))
+     stretchability
+     ;; These were forgotten in the documentation.
+     evenHeaderMarkup
+     oddHeaderMarkup
+     evenFooterMarkup
+     oddFooterMarkup
+     bookTitleMarkup
+     scoreTitleMarkup
+   ))
 
 #(dump-py-list 'paper_variables all-paper-variables)
 

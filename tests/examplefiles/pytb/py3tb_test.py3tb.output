@@ -3,18 +3,18 @@
 '"<stdin>"'   Name.Builtin
 ', line '     Text
 '1'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '1'           Literal.Number.Integer
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '^'           Punctuation.Marker
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SyntaxError' Generic.Error
 ': '          Text
 'invalid syntax' Name
-'\n'          Text
+'\n'          Text.Whitespace

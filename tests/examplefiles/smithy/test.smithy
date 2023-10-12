@@ -2,6 +2,18 @@ $version: "1.0"
 
 namespace test
 
+metadata "foo" = ["bar", "baz"]
+metadata validators = [
+    {
+        name: "ValidatorName"
+        id: "ValidatorId"
+        message: "Some string"
+        configuration: {
+            selector: "operation"
+        }
+    }
+]
+
 /// Define how an HTTP request is serialized given a specific protocol,
 /// authentication scheme, and set of input parameters.
 @trait(selector: "operation")

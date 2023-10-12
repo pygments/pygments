@@ -1,0 +1,20 @@
+---input---
+'\\ \n \x12 \777 \u1234 \U00010348 \N{Plus-Minus Sign}'
+
+---tokens---
+"'"           Literal.String.Single
+'\\\\'        Literal.String.Escape
+' '           Literal.String.Single
+'\\n'         Literal.String.Escape
+' '           Literal.String.Single
+'\\x12'       Literal.String.Escape
+' '           Literal.String.Single
+'\\777'       Literal.String.Escape
+' '           Literal.String.Single
+'\\u1234'     Literal.String.Escape
+' '           Literal.String.Single
+'\\U00010348' Literal.String.Escape
+' '           Literal.String.Single
+'\\N{Plus-Minus Sign}' Literal.String.Escape
+"'"           Literal.String.Single
+'\n'          Text.Whitespace

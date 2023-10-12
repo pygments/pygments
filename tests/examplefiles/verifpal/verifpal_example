@@ -1,0 +1,84 @@
+// OTRv3 Authenticated Key Exchange (AKE)
+// https://otr.cypherpunks.ca/Protocol-v3-4.1.1.html
+
+attacker[passive]
+
+// Setup
+principal Bob[
+    knows private priv_b
+    pub_b = G^priv_b
+]
+Bob → Alice: [pub_b]
+principal Alice[
+    knows private priv_a
+    pub_a = G^priv_a
+]
+Alice → Bob: [pub_a]
+
+// Go!
+principal Bob[
+    generates r, x
+    g_x = G^x
+    enc_gx = ENC(r, g_x)
+    hash_gx = HASH(g_x)
+]
+
+Bob → Alice: enc_gx, hash_gx
+
+principal Alice[
+    generates y
+    g_y = G^y
+]
+
+Alice → Bob: g_y
+
+principal Bob [
+    s = g_y^x
+    c, c_ = HKDF(s, nil, nil)
+    m1, m2, m1_, m2_ = HKDF(nil, s, nil)
+    generates keyid_b
+    Mb = MAC(m1, CONCAT(g_x, g_y, pub_b, keyid_b))
+    Xb = CONCAT(pub_b, keyid_b, SIGN(priv_b, Mb))
+    enc_c_x_b = ENC(c, Xb)
+    mac_mc2_enc_c_x_b  = MAC(m2, ENC(c, Xb))
+]
+
+Bob → Alice: r, enc_c_x_b, mac_mc2_enc_c_x_b
+
+principal Alice[
+    dec_gx = DEC(r, enc_gx)
+    _ = ASSERT(HASH(dec_gx), hash_gx)?
+    s_ = dec_gx^y
+    c_alice, c__alice = HKDF(s_, nil, nil)
+    m1_alice, m2_alice, m1__alice, m2__alice = HKDF(nil, s_, nil)
+    _ = ASSERT(mac_mc2_enc_c_x_b, MAC(m2_alice, enc_c_x_b))?
+    xb_alice = DEC(c_alice, enc_c_x_b)
+    pub_b_alice, keyd_b_alice, sig_b_mb_alice = SPLIT(xb_alice)
+    mb_alice = MAC(m1_alice, CONCAT(dec_gx, g_y, pub_b_alice, keyd_b_alice))
+    _ = SIGNVERIF(pub_b_alice, mb_alice, sig_b_mb_alice)?
+    generates keyid_a
+    ma = MAC(m1__alice, CONCAT(g_y, dec_gx, pub_a, keyid_a))
+    xa = CONCAT(pub_a, keyid_a, SIGN(priv_a, ma))
+    enc_c__x_a = ENC(c__alice, xa)
+    mac_m2_enc_c__xa = MAC(m2__alice, ENC(c__alice, xa))
+]
+
+Alice → Bob: enc_c__x_a, mac_m2_enc_c__xa
+
+principal Bob[
+    _ = ASSERT(mac_m2_enc_c__xa, MAC(m2_, enc_c__x_a))?
+    xa_bob = DEC(c_, enc_c__x_a)
+    pub_a_bob, keyid_a_bob, sig_a_ma_bob = SPLIT(xa_bob)
+    ma_bob = MAC(m1_, CONCAT(g_y, g_x, pub_a_bob, keyid_a_bob))
+    _ = SIGNVERIF(pub_a_bob, ma_bob, sig_a_ma_bob)?
+    _ = ASSERT(pub_a_bob, pub_a)?
+]
+
+queries [
+    equivalence? s, s_
+    confidentiality? s
+    freshness? s
+
+    equivalence? pub_b, pub_b_alice
+    equivalence? pub_a, pub_a_bob
+]

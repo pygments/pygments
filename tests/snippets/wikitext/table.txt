@@ -1,0 +1,2323 @@
+---input---
+{| class="wikitable"
+|+ Caption text
+|-
+! Header texta !! Header text !! Header text
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|}
+
+{| class=wikitable style="text-align: center;"
+|+ Multiplication table
+|-
+! ×
+! 1
+! 2
+! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+
+{| class=wikitable
+|+ style="text-align: left;" | Data reported for 2014–2015, by region<ref name="Garcia 2005"/>
+|-
+! scope=col | Year !! scope=col | Africa !! scope=col | Americas !! scope=col | Asia & Pacific !! scope=col | Europe
+|-
+! scope=row | 2014
+| 2,300 || 8,950 || ''9,325'' || 4,200
+|-
+! scope=row | 2015
+| 2,725 || ''9,200'' || 8,850 || 4,775
+|}
+
+<!-- || can be used in headers as well -->
+{| class="wikitable"
+|+ Caption text
+|-
+! Header text !! Header text || Header text
+|-
+  |}
+
+Text before centered table...
+{| style="border: 1px solid black; border-spacing: 0; margin: 1em auto;"
+|+ '''An example table'''
+|-
+! style="border: 1px solid black; padding: 5px; background: #efefef;" | First header
+! colspan="2" style="border: 1px solid black; padding: 5px; background: #ffdead;" | Second header
+|-
+| style="border: 1px solid black; padding: 5px;" | Upper left
+| style="border: 1px solid black; padding: 5px;" | Upper middle
+| rowspan="2" style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px; vertical-align: top;" |
+Right side
+|-
+| style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px;" | Lower left
+| style="border: 1px solid black; border-bottom: 3px solid grey; padding: 5px;" | Lower middle
+|-
+| colspan="3" style="border: 1px solid black; text-align: center;" |
+Text before a nested table...
+{|
+|+ ''A table in a table''
+|-
+| style="text-align: center; width: 150px;" | [[File:Wiki.png]]
+| style="text-align: center; width: 150px;" | [[File:Wiki.png]]
+|-
+| colspan="2" style="text-align:center; border-top: 1px solid red;<!--
+  --> border-right: 1px solid red; border-bottom: 2px solid red;<!--
+  --> border-left: 1px solid red;" |
+Two Wikipedia logos
+|}
+...text after a nested table
+|}
+...text after centered table
+
+{| class="wikitable"
+|+ a=1 | Caption text
+|- a=1 b=2
+! a=1 | Header text !! b=2 | Header text !! c="sdfsd f" | Header text
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|-
+| Example || Example || Example
+|}
+
+{| class=wikitable
+|-
+|class=1|P|i|p|e|
+|C|e|l|l|2|
+|-
+|class=1|P|i|p|e||class=1|C|e|l|l|2|
+|-
+||P|i|p|e|s||C|e|l|l|2|
+|}
+
+{| class=wikitable
+|-
+|<nowiki>|</nowiki>Pipes34:<nowiki>||</nowiki>
+|-
+|&#124;Pipes34:&#124;&#x7C;
+|}
+
+{| style="border: 1px solid black;"
+| style="border: 1px solid black;" | &alpha;
+| style="border: 1px solid black; text-align:center;" | cell2
+{| style="border: 2px solid black; background: #ffffcc;" <!-- The nested table must be on a new line -->
+| style="border: 2px solid darkgray;" | NESTED
+|-
+| style="border: 2px solid darkgray;" | TABLE
+|}
+| style="border: 1px solid black; vertical-align: bottom;" | the original table again
+| style="border: 1px solid black; width:100px" |
+{| style="border: 2px solid black; background: #ffffcc"
+| style="border: 2px solid darkgray;" | A
+|}
+{| style="border: 2px solid black; background: #ffffcc"
+| style="border: 2px solid darkgray;" | B
+| style="border: 2px solid darkgray;" | B
+|}
+| style="border: 1px solid black; width: 50px" |
+{| style="border: 2px solid black; background:#ffffcc; float:left"
+| style="border: 2px solid darkgray;" | C
+|}
+{| style="border: 2px solid black; background:#ffffcc; float:right"
+| style="border: 2px solid darkgray;" | D
+|}
+|}
+
+{| style="border-spacing: 2px; border: 1px solid darkgray;"
+! style="width: 140px;" | Left
+! style="width: 150px;" | Center
+! style="width: 130px;" | Right
+|- style="text-align: center;"
+| style="border: 1px solid blue;"|
+[[File:StarIconBronze.png|120px|Bronze star icon]]
+| style="border: 1px solid #777777;"|
+[[File:StarIconGold.png|120px|Gold star icon]]
+| style="border: 1px solid #22AA55;"|<!-- greenish border -->
+[[File:StarIconGreen.png|120px|Green star icon]]
+|- style="text-align: center;"
+|Bronze star || Gold star || Green star
+|}
+
+{| class=wikitable
+ <!--
+  Row one is shown because the '1' evaluates
+  to TRUE.
+ -->
+ {{ #if:1|{{!}}-
+  ! scope=row {{!}} row one, column one
+  <!--
+   Any {{!}}'s are evaluated to the pipe
+   character '|' since the template '!' just
+   contains '|'.
+  -->
+  {{!}}row one, column two}}
+ <!--
+  Row two is NOT shown because the space
+  between the ':' and the '|' evaluates to FALSE.
+ -->
+ {{ #if: |{{!}}-
+  ! scope=row {{!}} row two, column one
+  {{!}}row two, column two}}
+ <!--
+  Row three is shown.
+ -->
+ |-
+  ! scope=row {{!}} row three, column one
+  | row three, column two
+|}
+
+---tokens---
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'wikitable'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|+'          Punctuation
+' Caption text' Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'texta'       Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'wikitable'   Literal.String
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|+'          Punctuation
+' Multiplication table' Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'×'           Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'1'           Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'2'           Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'3'           Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'1'           Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'1'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'2'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'3'           Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'2'           Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'2'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'4'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'6'           Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'3'           Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'3'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'6'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'9'           Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'4'           Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'4'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'8'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'12'          Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'5'           Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'5'           Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'10'          Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'15'          Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'wikitable'   Literal.String
+'\n'          Text
+
+'|+'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'left'        Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' Data reported for 2014–2015, by region<ref name="Garcia 2005"/>' Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'col'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Year'        Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'col'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Africa'      Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'col'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Americas'    Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'col'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Asia'        Generic.Subheading
+' '           Generic.Subheading
+'&'           Generic.Subheading
+' '           Generic.Subheading
+'Pacific'     Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'col'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Europe'      Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'row'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'2014'        Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'2'           Text
+','           Text
+'300'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'8'           Text
+','           Text
+'950'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+"''"          Generic.Emph
+'9'           Generic.Emph
+','           Generic.Emph
+'325'         Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'||'          Punctuation
+' '           Text
+'4'           Text
+','           Text
+'200'         Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'scope'       Name.Attribute
+'='           Operator
+'row'         Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'2015'        Generic.Subheading
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'2'           Text
+','           Text
+'725'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+"''"          Generic.Emph
+'9'           Generic.Emph
+','           Generic.Emph
+'200'         Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'||'          Punctuation
+' '           Text
+'8'           Text
+','           Text
+'850'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'4'           Text
+','           Text
+'775'         Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'<!-- || can be used in headers as well -->' Comment.Multiline
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'wikitable'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|+'          Punctuation
+' Caption text' Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+' '           Generic.Subheading
+'||'          Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'  '          Text.Whitespace
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Text'        Text
+' '           Text
+'before'      Text
+' '           Text
+'centered'    Text
+' '           Text
+'table'       Text
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'border'      Literal.String.Double
+'-'           Literal.String.Double
+'spacing'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'0'           Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'margin'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1em'         Literal.String.Double
+' '           Literal.String.Double
+'auto'        Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|+'          Punctuation
+" '''An example table'''" Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'efefef'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'First'       Generic.Subheading
+' '           Generic.Subheading
+'header'      Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'colspan'     Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'2'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'ffdead'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Second'      Generic.Subheading
+' '           Generic.Subheading
+'header'      Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'Upper'       Text
+' '           Text
+'left'        Text
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'Upper'       Text
+' '           Text
+'middle'      Text
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'rowspan'     Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'2'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'border'      Literal.String.Double
+'-'           Literal.String.Double
+'bottom'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'3px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'grey'        Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'vertical'    Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'top'         Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+'\n'          Text
+
+'Right'       Text
+' '           Text
+'side'        Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'border'      Literal.String.Double
+'-'           Literal.String.Double
+'bottom'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'3px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'grey'        Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'Lower'       Text
+' '           Text
+'left'        Text
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'border'      Literal.String.Double
+'-'           Literal.String.Double
+'bottom'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'3px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'grey'        Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'padding'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'5px'         Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'Lower'       Text
+' '           Text
+'middle'      Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'colspan'     Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'3'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+'\n'          Text
+
+'Text'        Text
+' '           Text
+'before'      Text
+' '           Text
+'a'           Text
+' '           Text
+'nested'      Text
+' '           Text
+'table'       Text
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'{|'          Punctuation
+'\n'          Text
+
+'|+'          Punctuation
+" ''A table in a table''" Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'150px'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'Wiki.png'    Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'150px'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'Wiki.png'    Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'colspan'     Text
+'='           Text
+'"'           Text
+'2'           Text
+'"'           Text
+' '           Text
+'style'       Text
+'='           Text
+'"'           Text
+'text'        Text
+'-'           Text
+'align'       Text
+':'           Text
+'center'      Text
+';'           Text
+' '           Text
+'border'      Text
+'-'           Text
+'top'         Text
+':'           Text
+' '           Text
+'1px'         Text
+' '           Text
+'solid'       Text
+' '           Text
+'red'         Text
+';'           Text
+'<!--\n  -->' Comment.Multiline
+' '           Text
+'border'      Text
+'-'           Text
+'right'       Text
+':'           Text
+' '           Text
+'1px'         Text
+' '           Text
+'solid'       Text
+' '           Text
+'red'         Text
+';'           Text
+' '           Text
+'border'      Text
+'-'           Text
+'bottom'      Text
+':'           Text
+' '           Text
+'2px'         Text
+' '           Text
+'solid'       Text
+' '           Text
+'red'         Text
+';'           Text
+'<!--\n  -->' Comment.Multiline
+' '           Text
+'border'      Text
+'-'           Text
+'left'        Text
+':'           Text
+' '           Text
+'1px'         Text
+' '           Text
+'solid'       Text
+' '           Text
+'red'         Text
+';'           Text
+'"'           Text
+' '           Text
+'|'           Text
+'\n'          Text
+
+'Two'         Text
+' '           Text
+'Wikipedia'   Text
+' '           Text
+'logos'       Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'.'           Text
+'.'           Text
+'.'           Text
+'text'        Text
+' '           Text
+'after'       Text
+' '           Text
+'a'           Text
+' '           Text
+'nested'      Text
+' '           Text
+'table'       Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'.'           Text
+'.'           Text
+'.'           Text
+'text'        Text
+' '           Text
+'after'       Text
+' '           Text
+'centered'    Text
+' '           Text
+'table'       Text
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'wikitable'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|+'          Punctuation
+' '           Text.Whitespace
+'a'           Name.Attribute
+'='           Operator
+'1'           Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' Caption text' Generic.Heading
+'\n'          Text
+
+'|-'          Punctuation
+' '           Text.Whitespace
+'a'           Name.Attribute
+'='           Operator
+'1'           Literal.String
+' '           Text.Whitespace
+'b'           Name.Attribute
+'='           Operator
+'2'           Literal.String
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Attribute
+'='           Operator
+'1'           Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'b'           Name.Attribute
+'='           Operator
+'2'           Literal.String
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+' '           Generic.Subheading
+'!!'          Punctuation
+' '           Text.Whitespace
+'c'           Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'sdfsd'       Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Header'      Generic.Subheading
+' '           Generic.Subheading
+'text'        Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Example'     Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'wikitable'   Literal.String
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+'class'       Name.Attribute
+'='           Operator
+'1'           Literal.String
+'|'           Punctuation
+'P'           Text
+'|'           Text
+'i'           Text
+'|'           Text
+'p'           Text
+'|'           Text
+'e'           Text
+'|'           Text
+'\n'          Text
+
+'|'           Punctuation
+'C'           Name.Attribute
+'|'           Punctuation
+'e'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'2'           Text
+'|'           Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+'class'       Name.Attribute
+'='           Operator
+'1'           Literal.String
+'|'           Punctuation
+'P'           Text
+'|'           Text
+'i'           Text
+'|'           Text
+'p'           Text
+'|'           Text
+'e'           Text
+'||'          Punctuation
+'class'       Name.Attribute
+'='           Operator
+'1'           Literal.String
+'|'           Punctuation
+'C'           Text
+'|'           Text
+'e'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'2'           Text
+'|'           Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+'|'           Punctuation
+'P'           Text
+'|'           Text
+'i'           Text
+'|'           Text
+'p'           Text
+'|'           Text
+'e'           Text
+'|'           Text
+'s'           Text
+'||'          Punctuation
+'C'           Name.Attribute
+'|'           Punctuation
+'e'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'l'           Text
+'|'           Text
+'2'           Text
+'|'           Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'wikitable'   Literal.String
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+'<'           Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'|'           Text
+'</'          Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'Pipes34'     Text
+':'           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'|'           Text
+'|'           Text
+'</'          Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+'&#124;'      Name.Entity
+'Pipes34'     Text
+':'           Text
+'&#124;'      Name.Entity
+'&#x7C;'      Name.Entity
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'&alpha;'     Name.Entity
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'cell2'       Text
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'ffffcc'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'<!-- The nested table must be on a new line -->' Comment.Multiline
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'NESTED'      Text
+'\n'          Text
+
+'|-'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'TABLE'       Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'vertical'    Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'bottom'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'the'         Text
+' '           Text
+'original'    Text
+' '           Text
+'table'       Text
+' '           Text
+'again'       Text
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+'100px'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'ffffcc'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'A'           Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'ffffcc'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'B'           Text
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'B'           Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'50px'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+'#'           Literal.String.Double
+'ffffcc'      Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'float'       Literal.String.Double
+':'           Literal.String.Double
+'left'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'C'           Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'black'       Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'background'  Literal.String.Double
+':'           Literal.String.Double
+'#'           Literal.String.Double
+'ffffcc'      Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'float'       Literal.String.Double
+':'           Literal.String.Double
+'right'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text
+'D'           Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+'-'           Literal.String.Double
+'spacing'     Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'2px'         Literal.String.Double
+';'           Literal.String.Double
+' '           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'darkgray'    Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'140px'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Left'        Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'150px'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Center'      Generic.Subheading
+'\n'          Text
+
+'!'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'width'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'130px'       Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Generic.Subheading
+'Right'       Generic.Subheading
+'\n'          Text
+
+'|-'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'blue'        Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'|'           Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'StarIconBronze.png' Name.Tag
+'|'           Punctuation
+'120px'       Text
+'|'           Punctuation
+'Bronze'      Text
+' '           Text
+'star'        Text
+' '           Text
+'icon'        Text
+']]'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'777777'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'|'           Punctuation
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'StarIconGold.png' Name.Tag
+'|'           Punctuation
+'120px'       Text
+'|'           Punctuation
+'Gold'        Text
+' '           Text
+'star'        Text
+' '           Text
+'icon'        Text
+']]'          Punctuation
+'\n'          Text
+
+'|'           Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'border'      Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'1px'         Literal.String.Double
+' '           Literal.String.Double
+'solid'       Literal.String.Double
+' '           Literal.String.Double
+'#'           Literal.String.Double
+'22AA55'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'|'           Punctuation
+'<!-- greenish border -->' Comment.Multiline
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'StarIconGreen.png' Name.Tag
+'|'           Punctuation
+'120px'       Text
+'|'           Punctuation
+'Green'       Text
+' '           Text
+'star'        Text
+' '           Text
+'icon'        Text
+']]'          Punctuation
+'\n'          Text
+
+'|-'          Punctuation
+' '           Text.Whitespace
+'style'       Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'-'           Literal.String.Double
+'align'       Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'center'      Literal.String.Double
+';'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'|'           Punctuation
+'Bronze'      Text
+' '           Text
+'star'        Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Gold'        Text
+' '           Text
+'star'        Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'Green'       Text
+' '           Text
+'star'        Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'{|'          Punctuation
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'wikitable'   Literal.String
+'\n'          Text
+
+' '           Text
+"<!--\n  Row one is shown because the '1' evaluates\n  to TRUE.\n -->" Comment.Multiline
+'\n'          Text
+
+' '           Text
+'{{'          Punctuation
+' '           Text.Whitespace
+'#if'         Name.Function
+':'           Punctuation
+'1'           Text
+'|'           Punctuation
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+'-'           Text
+'\n'          Text
+
+'  '          Text
+'!'           Text
+' '           Text
+'scope'       Text
+'='           Text
+'row'         Text
+' '           Text
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+' '           Text
+'row'         Text
+' '           Text
+'one'         Text
+','           Text
+' '           Text
+'column'      Text
+' '           Text
+'one'         Text
+'\n'          Text
+
+'  '          Text
+"<!--\n   Any {{!}}'s are evaluated to the pipe\n   character '|' since the template '!' just\n   contains '|'.\n  -->" Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+'row'         Text
+' '           Text
+'one'         Text
+','           Text
+' '           Text
+'column'      Text
+' '           Text
+'two'         Text
+'}}'          Punctuation
+'\n'          Text
+
+' '           Text
+"<!--\n  Row two is NOT shown because the space\n  between the ':' and the '|' evaluates to FALSE.\n -->" Comment.Multiline
+'\n'          Text
+
+' '           Text
+'{{'          Punctuation
+' '           Text.Whitespace
+'#if'         Name.Function
+':'           Punctuation
+' '           Text
+'|'           Punctuation
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+'-'           Text
+'\n'          Text
+
+'  '          Text
+'!'           Text
+' '           Text
+'scope'       Text
+'='           Text
+'row'         Text
+' '           Text
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+' '           Text
+'row'         Text
+' '           Text
+'two'         Text
+','           Text
+' '           Text
+'column'      Text
+' '           Text
+'one'         Text
+'\n'          Text
+
+'  '          Text
+'{{'          Punctuation
+'!'           Name.Function
+'}}'          Punctuation
+'row'         Text
+' '           Text
+'two'         Text
+','           Text
+' '           Text
+'column'      Text
+' '           Text
+'two'         Text
+'}}'          Punctuation
+'\n'          Text
+
+' '           Text
+'<!--\n  Row three is shown.\n -->' Comment.Multiline
+'\n'          Text
+
+' '           Text.Whitespace
+'|-'          Punctuation
+'\n'          Text
+
+'  !'         Punctuation
+' '           Generic.Subheading
+'scope'       Generic.Subheading
+'='           Generic.Subheading
+'row'         Generic.Subheading
+' '           Generic.Subheading
+'{'           Generic.Subheading
+'{'           Generic.Subheading
+'!'           Generic.Subheading
+'}'           Generic.Subheading
+'}'           Generic.Subheading
+' '           Generic.Subheading
+'row'         Generic.Subheading
+' '           Generic.Subheading
+'three'       Generic.Subheading
+','           Generic.Subheading
+' '           Generic.Subheading
+'column'      Generic.Subheading
+' '           Generic.Subheading
+'one'         Generic.Subheading
+'\n'          Text
+
+'  |'         Punctuation
+' '           Text
+'row'         Text
+' '           Text
+'three'       Text
+','           Text
+' '           Text
+'column'      Text
+' '           Text
+'two'         Text
+'\n'          Text
+
+'|}'          Punctuation
+'\n'          Text

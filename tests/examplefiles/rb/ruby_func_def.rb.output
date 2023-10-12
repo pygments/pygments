@@ -1,5 +1,5 @@
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'get_foo'     Name
 '('           Operator
@@ -10,9 +10,9 @@
 ')'           Punctuation
 '::'          Operator
 'Foo'         Name.Class
-'\n  '        Text
+'\n  '        Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'foo'         Name
 '('           Operator
@@ -20,9 +20,9 @@
 'bar'         Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'bar'         Name
 '('           Operator
 '"'           Literal.String.Double
@@ -32,22 +32,22 @@
 ')'           Punctuation
 '.'           Operator
 'something'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'argh'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'aaahaa'      Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 '42'          Literal.Number.Integer
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'get_the_fuck' Name
 '('           Punctuation
 '"'           Literal.String.Double
@@ -58,15 +58,15 @@
 'Of'          Name.Constant
 '::'          Operator
 'My'          Name.Constant
-'\n  '        Text
+'\n  '        Text.Whitespace
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'parser_definition' Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 'ruby!'       Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

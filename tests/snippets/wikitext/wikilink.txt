@@ -1,0 +1,790 @@
+---input---
+[[a|
+b''b''
+]]
+
+[[维基百科:关于|关于]]
+
+[[Edge case#]]
+
+[[Edge case#|another]]
+
+[[ pagename | https://www.example.com ]]
+
+[[| this is legal! ]]
+
+[[ | this is illegal! ]]
+
+[[public transport#sth]]
+
+[[:public transport#sth]]
+
+[[:public transport]]
+
+[[a:public transport]]
+
+[[a:public transport#sth]]
+
+[[a:public transport#sth|<code>a</code> b ''c'' '''d''' ~~~~ <nowiki>[[a]]</nowiki>]]
+
+London has [[public transport]].
+
+Link to this page: "[[Help:Wikitext]]" will appear only as bold text.
+
+New York also has [[public transport|public transportation]].
+
+[[kingdom (biology)|]]
+
+[[Seattle, Washington|]]
+
+[[Wikipedia:Manual of Style#Links|]]
+
+[[:Category:Character sets|]]
+
+[[commons:category:Wikimedia]]
+
+[[Wiktionary:fr:bonjour]]
+
+[[Wiktionary:fr:bonjour|]]
+
+[[Wiktionary:fr:bonjour|bonjour]]
+
+[[ wp:pagename | page name[[ wp:pagename | page name ]] [[ wp:pagename | page name ]]  [[ wp:pagename[[ wp:pagename | page name ]] | page name ]]  [[ wp:pagename | page nam[[ wp:pagename | page name ]]e ]]]]
+
+[[ wp:pagename | page name ]]
+
+[<nowiki />[ wp:pagename | page name ]]
+
+[[<nowiki /> wp:pagename | page name ]]
+
+[[ wp:pagename <nowiki />| page name ]]
+
+[[ wp:pagename | page name ]<nowiki />]
+
+[[a|]]]]
+
+[[foo|[https://example.com]]]
+
+[[a|[[]]]]
+
+[[Hindenburg disaster|''Hindenburg'' disaster]]
+
+[[Special:Diff/330349143/330350877|Diff between revisions 330349143 and 330350877]]
+
+[[Special:Diff/330350877|Diff between revisions 330349143 and 330350877]]
+
+[[Special:Permalink/330350877|Revision 330350877]]
+
+[[Special:Contributions/2001:0db8:0000:0000:0000:ff00:0042:8329]]
+
+[[Special:Contributions/UserName]]
+
+[[File:wiki.png|thumb|left|alt={{User sandbox notice}}|Wikipedia ''logo'']]
+
+[[A|[//example.com a b c]]]
+
+'''[[Special:BlockList/{{BASEPAGENAMEE}}|check]]'''
+
+---tokens---
+'[['          Punctuation
+'a'           Name.Tag
+'|'           Punctuation
+'\n'          Text
+
+'b'           Text
+"''"          Generic.Emph
+'b'           Generic.Emph
+"''"          Generic.Emph
+'\n'          Text
+
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'维基百科'        Name.Namespace
+':'           Punctuation
+'关于'          Name.Tag
+'|'           Punctuation
+'关于'          Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Edge case'   Name.Tag
+'#'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Edge case'   Name.Tag
+'#'           Punctuation
+'|'           Punctuation
+'another'     Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+' pagename '  Name.Tag
+'|'           Punctuation
+' '           Text
+'https'       Text
+':'           Text
+'/'           Text
+'/'           Text
+'www'         Text
+'.'           Text
+'example'     Text
+'.'           Text
+'com'         Text
+' '           Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'|'           Punctuation
+' '           Text
+'this'        Text
+' '           Text
+'is'          Text
+' '           Text
+'legal'       Text
+'!'           Text
+' '           Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+' '           Name.Tag
+'|'           Punctuation
+' '           Text
+'this'        Text
+' '           Text
+'is'          Text
+' '           Text
+'illegal'     Text
+'!'           Text
+' '           Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'public transport' Name.Tag
+'#'           Punctuation
+'sth'         Name.Label
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+':'           Punctuation
+'public transport' Name.Tag
+'#'           Punctuation
+'sth'         Name.Label
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+':'           Punctuation
+'public transport' Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'a'           Name.Namespace
+':'           Punctuation
+'public transport' Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'a'           Name.Namespace
+':'           Punctuation
+'public transport' Name.Tag
+'#'           Punctuation
+'sth'         Name.Label
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'a'           Name.Namespace
+':'           Punctuation
+'public transport' Name.Tag
+'#'           Punctuation
+'sth'         Name.Label
+'|'           Punctuation
+'<'           Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+'a'           Text
+'</'          Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+' '           Text
+'b'           Text
+' '           Text
+"''"          Generic.Emph
+'c'           Generic.Emph
+"''"          Generic.Emph
+' '           Text
+"'''"         Generic.Strong
+'d'           Generic.Strong
+"'''"         Generic.Strong
+' '           Text
+'~~~~'        Keyword
+' '           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+'['           Text
+'['           Text
+'a'           Text
+']'           Text
+']'           Text
+'</'          Punctuation
+'nowiki'      Name.Tag
+'>'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'London'      Text
+' '           Text
+'has'         Text
+' '           Text
+'[['          Punctuation
+'public transport' Name.Tag
+']]'          Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Link'        Text
+' '           Text
+'to'          Text
+' '           Text
+'this'        Text
+' '           Text
+'page'        Text
+':'           Text
+' '           Text
+'"'           Text
+'[['          Punctuation
+'Help'        Name.Namespace
+':'           Punctuation
+'Wikitext'    Name.Tag
+']]'          Punctuation
+'"'           Text
+' '           Text
+'will'        Text
+' '           Text
+'appear'      Text
+' '           Text
+'only'        Text
+' '           Text
+'as'          Text
+' '           Text
+'bold'        Text
+' '           Text
+'text'        Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'New'         Text
+' '           Text
+'York'        Text
+' '           Text
+'also'        Text
+' '           Text
+'has'         Text
+' '           Text
+'[['          Punctuation
+'public transport' Name.Tag
+'|'           Punctuation
+'public'      Text
+' '           Text
+'transportation' Text
+']]'          Punctuation
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'kingdom (biology)' Name.Tag
+'|'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Seattle, Washington' Name.Tag
+'|'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Wikipedia'   Name.Namespace
+':'           Punctuation
+'Manual of Style' Name.Tag
+'#'           Punctuation
+'Links'       Name.Label
+'|'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+':Category'   Name.Namespace
+':'           Punctuation
+'Character sets' Name.Tag
+'|'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'commons:category' Name.Namespace
+':'           Punctuation
+'Wikimedia'   Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Wiktionary:fr' Name.Namespace
+':'           Punctuation
+'bonjour'     Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Wiktionary:fr' Name.Namespace
+':'           Punctuation
+'bonjour'     Name.Tag
+'|'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Wiktionary:fr' Name.Namespace
+':'           Punctuation
+'bonjour'     Name.Tag
+'|'           Punctuation
+'bonjour'     Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+''            Punctuation
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']]'          Punctuation
+' '           Text
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']]'          Punctuation
+'  '          Text
+'['           Text
+'['           Text
+' '           Text
+'wp'          Text
+':'           Text
+'pagename'    Text
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']]'          Punctuation
+' '           Text
+'|'           Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']'           Text
+']'           Text
+'  '          Text
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'nam'         Text
+''            Punctuation
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']]'          Punctuation
+'e'           Text
+' '           Text
+']'           Text
+']'           Text
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+' '           Text.Whitespace
+'/>'          Punctuation
+'['           Text
+' '           Text
+'wp'          Text
+':'           Text
+'pagename'    Text
+' '           Text
+'|'           Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'['           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+' '           Text.Whitespace
+'/>'          Punctuation
+' '           Text
+'wp'          Text
+':'           Text
+'pagename'    Text
+' '           Text
+'|'           Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'['           Text
+' '           Text
+'wp'          Text
+':'           Text
+'pagename'    Text
+' '           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+' '           Text.Whitespace
+'/>'          Punctuation
+'|'           Text
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+' wp'         Name.Namespace
+':'           Punctuation
+'pagename '   Name.Tag
+'|'           Punctuation
+' '           Text
+'page'        Text
+' '           Text
+'name'        Text
+' '           Text
+']'           Text
+'<'           Punctuation
+'nowiki'      Name.Tag
+' '           Text.Whitespace
+'/>'          Punctuation
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+''            Punctuation
+'[['          Punctuation
+'a'           Name.Tag
+'|'           Punctuation
+']]'          Punctuation
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'foo'         Name.Tag
+'|'           Punctuation
+'['           Punctuation
+'https://example.com' Name.Label
+']'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'a'           Name.Tag
+'|'           Punctuation
+''            Punctuation
+'[['          Punctuation
+']]'          Punctuation
+']'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Hindenburg disaster' Name.Tag
+'|'           Punctuation
+"''"          Generic.Emph
+'Hindenburg'  Generic.Emph
+"''"          Generic.Emph
+' '           Text
+'disaster'    Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'Diff/330349143/330350877' Name.Tag
+'|'           Punctuation
+'Diff'        Text
+' '           Text
+'between'     Text
+' '           Text
+'revisions'   Text
+' '           Text
+'330349143'   Text
+' '           Text
+'and'         Text
+' '           Text
+'330350877'   Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'Diff/330350877' Name.Tag
+'|'           Punctuation
+'Diff'        Text
+' '           Text
+'between'     Text
+' '           Text
+'revisions'   Text
+' '           Text
+'330349143'   Text
+' '           Text
+'and'         Text
+' '           Text
+'330350877'   Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'Permalink/330350877' Name.Tag
+'|'           Punctuation
+'Revision'    Text
+' '           Text
+'330350877'   Text
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'Contributions/2001:0db8:0000:0000:0000:ff00:0042:8329' Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'Contributions/UserName' Name.Tag
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'File'        Name.Namespace
+':'           Punctuation
+'wiki.png'    Name.Tag
+'|'           Punctuation
+'thumb'       Text
+'|'           Punctuation
+'left'        Text
+'|'           Punctuation
+'alt'         Name.Attribute
+'='           Operator
+'{{'          Punctuation
+'User'        Name.Tag
+' '           Name.Tag
+'sandbox'     Name.Tag
+' '           Name.Tag
+'notice'      Name.Tag
+'}}'          Punctuation
+'|'           Punctuation
+'Wikipedia'   Text
+' '           Text
+"''"          Generic.Emph
+'logo'        Generic.Emph
+"''"          Generic.Emph
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'[['          Punctuation
+'A'           Name.Tag
+'|'           Punctuation
+'['           Punctuation
+'//example.com' Name.Label
+' '           Text.Whitespace
+'a'           Text
+' '           Text
+'b'           Text
+' '           Text
+'c'           Text
+']'           Punctuation
+']]'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+"'''"         Generic.Strong
+'[['          Punctuation
+'Special'     Name.Namespace
+':'           Punctuation
+'BlockList/'  Name.Tag
+'{{'          Punctuation
+'BASEPAGENAMEE' Name.Function
+'}}'          Punctuation
+'|'           Punctuation
+'check'       Text
+']]'          Punctuation
+"'''"         Generic.Strong
+'\n'          Text

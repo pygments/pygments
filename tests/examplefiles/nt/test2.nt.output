@@ -1,0 +1,241 @@
+'# This is not a valid NestedText file, but the first part of it should be ' Comment
+'\n'          Text.Whitespace
+
+'# rendered as valid by Vim, as Vim is only looking at one line at a time, and ' Comment
+'\n'          Text.Whitespace
+
+'# each line could be found in a valid NestedText file.' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'this:is:the:key' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
+'\n'          Text.Whitespace
+
+'-this:is:the:key' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
+'\n'          Text.Whitespace
+
+'>this:is:the:key' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is string' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'-'           Punctuation
+' '           Text.Whitespace
+'this is a list item' Text
+'\n'          Text.Whitespace
+
+'>'           Punctuation
+' '           Text.Whitespace
+'this is a string' Text
+'\n'          Text.Whitespace
+
+':'           Punctuation
+' '           Text.Whitespace
+'Lorem ipsum dolor sit amet' Name.Tag
+'\n'          Text.Whitespace
+
+':'           Punctuation
+'\n'          Text.Whitespace
+
+':'           Punctuation
+' '           Text.Whitespace
+'consectetur adipiscing elit' Name.Tag
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'sed do eiusmod tempor' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'incididunt ut labore et dolore' Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+':magna aliqua' Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'this is string' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'this is a list item' Text
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'# this is a comment' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'v'           Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k1'          Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'v1'          Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'v'           Text
+','           Punctuation
+' '           Text.Whitespace
+'k'           Name.Tag
+':'           Punctuation
+'v'           Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k1'          Name.Tag
+':'           Punctuation
+'v1'          Text
+','           Punctuation
+' '           Text.Whitespace
+'k2'          Name.Tag
+':'           Punctuation
+'['           Punctuation
+'v2a'         Text
+','           Punctuation
+'v2b'         Text
+']'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v1'          Text
+','           Punctuation
+'v2'          Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v1'          Text
+','           Punctuation
+'{'           Punctuation
+'k2'          Name.Tag
+':'           Punctuation
+'v2'          Text
+'}'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'v'           Text
+','           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+','           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'-k'          Name.Tag
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'-'           Punctuation
+' '           Text.Whitespace
+'k:'          Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Errors'    Comment
+'\n'          Text.Whitespace
+
+'# commented out because pytest is configured to fail the test if there is an ' Comment
+'\n'          Text.Whitespace
+
+'# error.'    Comment
+'\n'          Text.Whitespace
+
+'# {k:v} fsjlfu' Comment
+'\n'          Text.Whitespace
+
+'# {k:v fsjlfu' Comment
+'\n'          Text.Whitespace
+
+'# {k:'       Comment
+'\n'          Text.Whitespace
+
+'# [v]: this is a string' Comment
+'\n'          Text.Whitespace
+
+'# [v'        Comment
+'\n'          Text.Whitespace
+
+'# [v,'       Comment
+'\n'          Text.Whitespace
+
+'# {k:v k:[v,v]}' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Mishandled' Comment
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'k'           Name.Tag
+':'           Punctuation
+'v'           Text
+','           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace

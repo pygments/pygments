@@ -1,0 +1,45 @@
+'##'          Keyword.Declaration
+' '           Text.Whitespace
+'X-Foo'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Value'       Literal.String
+'\n'          Text.Whitespace
+
+'##'          Keyword.Declaration
+' '           Text.Whitespace
+'Non-Conforming' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'Value'       Literal.String
+'\n'          Text.Whitespace
+
+'##'          Keyword.Declaration
+'no'          Name.Other
+':'           Punctuation
+'whitespace'  Literal.String
+'\n'          Text.Whitespace
+
+'##'          Keyword.Declaration
+'      '      Text.Whitespace
+'plenty'      Name.Other
+'   '         Text.Whitespace
+':'           Punctuation
+'    '        Text.Whitespace
+'of   whitespace' Literal.String
+'   '         Text.Whitespace
+'\n'          Text.Whitespace
+
+'##'          Keyword.Declaration
+' '           Text.Whitespace
+'NoValueOk'   Name.Other
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'##'          Keyword.Declaration
+' '           Text.Whitespace
+'other\tintermediate\tnon-space\twhitespace' Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'is ok'       Literal.String
+'\n'          Text.Whitespace

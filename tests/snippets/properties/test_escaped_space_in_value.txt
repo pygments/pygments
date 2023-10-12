@@ -6,5 +6,7 @@ key = doubleword\ value
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'doubleword\\ value' Literal.String
+'doubleword'  Literal.String
+'\\ '         Literal.String.Escape
+'value'       Literal.String
 '\n'          Text.Whitespace

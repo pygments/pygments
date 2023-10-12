@@ -180,6 +180,9 @@ Name Tokens
 `Name.Other`
     Other names. Normally unused.
 
+`Name.Property`
+    Additional token type occasionally used for class attributes.
+
 `Name.Tag`
     Tag names (in HTML/XML markup or configuration files).
 
@@ -321,6 +324,9 @@ Comments
 `Comment.Preproc`
     Token type for preprocessor comments (also ``<?php``/``<%`` constructs).
 
+`Comment.PreprocFile`
+    Token type for filenames in preprocessor comments, such as include files in C/C++.
+
 `Comment.Single`
     Token type for comments that end at the end of a line (e.g. ``# foo``).
 
@@ -362,6 +368,9 @@ highlight a programming language but a patch file.
 
 `Generic.Strong`
     Marks the token value as bold (e.g. for rst lexer).
+
+`Generic.EmphStrong`
+    Marks the token value as bold and emphasized.
 
 `Generic.Subheading`
     Marks the token value as subheadline.

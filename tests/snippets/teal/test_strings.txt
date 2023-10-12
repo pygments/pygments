@@ -3,7 +3,7 @@ a "abc\x123\n\"de//f"
 
 ---tokens---
 'a'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'abc'         Literal.String
 '\\x12'       Literal.String.Escape

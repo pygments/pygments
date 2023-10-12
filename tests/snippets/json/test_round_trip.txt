@@ -1,0 +1,29 @@
+---input---
++
+0
+""0
+a
+b
+""/-
+
+---tokens---
+'+'           Error
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'""'          Literal.String.Double
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Error
+'\n'          Text.Whitespace
+
+'b'           Error
+'\n'          Text.Whitespace
+
+'""'          Literal.String.Double
+'/'           Error
+'-'           Literal.Number.Integer
+'\n'          Text.Whitespace

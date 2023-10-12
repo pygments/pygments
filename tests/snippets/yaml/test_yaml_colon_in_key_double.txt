@@ -1,0 +1,11 @@
+# Colons in the key name is accepted by the YAML specs too
+
+---input---
+foo::bar: value
+
+---tokens---
+'foo::bar'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace

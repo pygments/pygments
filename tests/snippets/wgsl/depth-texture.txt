@@ -1,0 +1,97 @@
+---input---
+@group(0) @binding(1) var texture_depth_2d;
+@group(0) @binding(2) var texture_depth_2d_array;
+@group(0) @binding(4) var texture_depth_cube;
+@group(0) @binding(5) var texture_depth_cube_array;
+@group(0) @binding(5) var texture_depth_multisampled_2d;
+
+---tokens---
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_depth_2d' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_depth_2d_array' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_depth_cube' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_depth_cube_array' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_depth_multisampled_2d' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace

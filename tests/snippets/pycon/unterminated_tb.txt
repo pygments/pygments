@@ -1,0 +1,17 @@
+---input---
+>>> unterminated_traceback()
+Traceback (most recent call last):
+>>>
+
+---tokens---
+'>>> '        Generic.Prompt
+'unterminated_traceback' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+''            Text
+'>>>'         Generic.Prompt
+'\n'          Text.Whitespace

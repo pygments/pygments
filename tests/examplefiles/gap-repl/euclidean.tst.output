@@ -1,0 +1,838 @@
+'#@local checkEuclideanRing\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'START_TEST'  Name.Variable
+'('           Punctuation
+'"euclidean.tst"' Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'# test consistency of EuclideanDegree, EuclideanQuotient, EuclideanRemainder,\n' Generic.Output
+
+'# and QuotientRemainder for some ring and elements of it\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+' '           Text
+':='          Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+'function'    Keyword
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'colls'       Name.Variable
+'.'           Operator
+'.'           Operator
+'.'           Operator
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'local'       Keyword
+' '           Text
+'coll1'       Name.Variable
+','           Operator
+' '           Text
+'coll2'       Name.Variable
+','           Operator
+' '           Text
+'a'           Name.Variable
+','           Operator
+' '           Text
+'b'           Name.Variable
+','           Operator
+' '           Text
+'deg_b'       Name.Variable
+','           Operator
+' '           Text
+'deg_r'       Name.Variable
+','           Operator
+' '           Text
+'q'           Name.Variable
+','           Operator
+' '           Text
+'r'           Name.Variable
+','           Operator
+' '           Text
+'qr'          Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'Length'      Name.Variable
+'('           Punctuation
+'colls'       Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'1'           Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'coll1'       Name.Variable
+':='          Operator
+'colls'       Name.Variable
+'['           Punctuation
+'1'           Name.Variable
+']'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'elif'        Keyword
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+')'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'100'         Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'coll1'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'R'           Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'coll1'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'List'        Name.Variable
+'('           Punctuation
+'['           Punctuation
+'1'           Name.Variable
+'.'           Operator
+'.'           Operator
+'100'         Name.Variable
+']'           Punctuation
+','           Operator
+'i'           Name.Variable
+'-'           Operator
+'>'           Operator
+'Random'      Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'Length'      Name.Variable
+'('           Punctuation
+'colls'       Name.Variable
+')'           Punctuation
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'2'           Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'coll2'       Name.Variable
+':='          Operator
+'colls'       Name.Variable
+'['           Punctuation
+'2'           Name.Variable
+']'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'elif'        Keyword
+' '           Text
+'Size'        Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+')'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'100'         Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'coll2'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'R'           Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'coll2'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'List'        Name.Variable
+'('           Punctuation
+'['           Punctuation
+'1'           Name.Variable
+'.'           Operator
+'.'           Operator
+'100'         Name.Variable
+']'           Punctuation
+','           Operator
+'i'           Name.Variable
+'-'           Operator
+'>'           Operator
+'Random'      Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'coll1'       Name.Variable
+' '           Text
+'do'          Keyword
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'IsZero'      Name.Variable
+'('           Punctuation
+'b'           Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'continue'    Keyword
+';'           Operator
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'deg_b'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'EuclideanDegree' Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'a'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'coll2'       Name.Variable
+' '           Text
+'do'          Keyword
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'q'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'EuclideanQuotient' Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'a'           Name.Variable
+','           Operator
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+';'           Operator
+' '           Text
+'Assert'      Keyword
+'('           Punctuation
+'0'           Name.Variable
+','           Operator
+' '           Text
+'q'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'R'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'r'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'EuclideanRemainder' Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'a'           Name.Variable
+','           Operator
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+';'           Operator
+' '           Text
+'Assert'      Keyword
+'('           Punctuation
+'0'           Name.Variable
+','           Operator
+' '           Text
+'r'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'R'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'a'           Name.Variable
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'q'           Name.Variable
+'*'           Operator
+'b'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'r'           Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'Error'       Name.Variable
+'('           Punctuation
+'"a <> q*b + r for "' Literal.String
+','           Operator
+' '           Text
+'['           Punctuation
+'R'           Name.Variable
+','           Operator
+'a'           Name.Variable
+','           Operator
+'b'           Name.Variable
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'deg_r'       Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'EuclideanDegree' Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'r'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'IsZero'      Name.Variable
+'('           Punctuation
+'r'           Name.Variable
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'deg_r'       Name.Variable
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'deg_b'       Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'Error'       Name.Variable
+'('           Punctuation
+'"Euclidean degree did not decrease for "' Literal.String
+','           Operator
+'['           Punctuation
+'R'           Name.Variable
+','           Operator
+'a'           Name.Variable
+','           Operator
+'b'           Name.Variable
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'qr'          Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'QuotientRemainder' Name.Variable
+'('           Punctuation
+'R'           Name.Variable
+','           Operator
+' '           Text
+'a'           Name.Variable
+','           Operator
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'qr'          Name.Variable
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'['           Punctuation
+'q'           Name.Variable
+','           Operator
+' '           Text
+'r'           Name.Variable
+']'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'Error'       Name.Variable
+'('           Punctuation
+'"QuotientRemainder inconsistent for "' Literal.String
+','           Operator
+' '           Text
+'['           Punctuation
+'R'           Name.Variable
+','           Operator
+'a'           Name.Variable
+','           Operator
+'b'           Name.Variable
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'od'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'od'          Keyword
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'true'        Name.Constant
+';'           Operator
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+'end'         Keyword
+';'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'# rings in characteristic 0\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+','           Operator
+'['           Punctuation
+'-'           Operator
+'100'         Name.Variable
+'.'           Operator
+'.'           Operator
+'100'         Name.Variable
+']'           Punctuation
+','           Operator
+'['           Punctuation
+'-'           Operator
+'100'         Name.Variable
+'.'           Operator
+'.'           Operator
+'100'         Name.Variable
+']'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Rationals'   Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'GaussianIntegers' Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'GaussianRationals' Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'\n'          Generic.Output
+
+'# finite fields\n' Generic.Output
+
+'gap> '       Generic.Prompt
+'ForAll'      Name.Variable
+'('           Punctuation
+'Filtered'    Name.Variable
+'('           Punctuation
+'['           Punctuation
+'2'           Name.Variable
+'.'           Operator
+'.'           Operator
+'50'          Name.Variable
+']'           Punctuation
+','           Operator
+' '           Text
+'IsPrimePowerInt' Name.Variable
+')'           Punctuation
+','           Operator
+' '           Text
+'q'           Name.Variable
+'-'           Operator
+'>'           Operator
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'GF'          Name.Variable
+'('           Punctuation
+'q'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'\n'          Generic.Output
+
+'# ZmodnZ\n'  Generic.Output
+
+'gap> '       Generic.Prompt
+'ForAll'      Name.Variable
+'('           Punctuation
+'['           Punctuation
+'1'           Name.Variable
+'.'           Operator
+'.'           Operator
+'50'          Name.Variable
+']'           Punctuation
+','           Operator
+' '           Text
+'m'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'m'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'2'           Name.Variable
+'*'           Operator
+'3'           Name.Variable
+'*'           Operator
+'5'           Name.Variable
+')'           Punctuation
+'^'           Operator
+'2'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'2'           Name.Variable
+'*'           Operator
+'3'           Name.Variable
+'*'           Operator
+'5'           Name.Variable
+')'           Punctuation
+'^'           Operator
+'3'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'2'           Name.Variable
+'*'           Operator
+'3'           Name.Variable
+'*'           Operator
+'5'           Name.Variable
+'*'           Operator
+'7'           Name.Variable
+')'           Punctuation
+'^'           Operator
+'2'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'gap> '       Generic.Prompt
+'checkEuclideanRing' Name.Variable
+'('           Punctuation
+'Integers'    Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'2'           Name.Variable
+'*'           Operator
+'3'           Name.Variable
+'*'           Operator
+'5'           Name.Variable
+'*'           Operator
+'7'           Name.Variable
+')'           Punctuation
+'^'           Operator
+'3'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace
+
+'true\n'      Generic.Output
+
+'\n'          Generic.Output
+
+'#\n'         Generic.Output
+
+'gap> '       Generic.Prompt
+'STOP_TEST'   Name.Variable
+'('           Punctuation
+' '           Text
+'"euclidean.tst"' Literal.String
+','           Operator
+' '           Text
+'1'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text.Whitespace

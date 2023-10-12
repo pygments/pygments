@@ -1,3 +1,19 @@
+const int test 0x123;
+
+type BloodType enum {
+    A,
+    B = 3,
+    AB,
+    ZERO = 0
+}
+
+type Person struct {
+    string firstName
+    string lastName
+    unsigned int age
+    BloodType bloodType
+}
+
 // Function to compute fibonacci numbers recursively
 f<int> fib(int n) {
     if n <= 2 {
@@ -14,11 +30,11 @@ inline f<int> fac(int input) {
     result = input * fac(input - 1);
 }
 
-/*
+/**
 * Entry point of the program
 */
 f<int> main() {
-    short number = 10s;
+    short number = 0d10s;
     printf("Fibonacci of %d: %d\n", number, fib((int) number));
     long base = (long) number;
     base += 1;

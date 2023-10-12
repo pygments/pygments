@@ -2,7 +2,7 @@
     Pygments tests for words()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -358,9 +358,8 @@ class MySecondLexer(RegexLexer):
 
 
 def test_bracket_escape():
-    s = "whatever"
     # This used to emit a FutureWarning.
     assert list(MySecondLexer().get_tokens("x")) == [
         (Token.Name, "x"),
-        (Token.Text, "\n"),
+        (Token.Text.Whitespace, "\n"),
     ]

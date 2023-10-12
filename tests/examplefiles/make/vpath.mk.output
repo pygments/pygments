@@ -5,103 +5,103 @@
 'EXEC'        Name.Variable
 '='           Operator
 'hello'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SRC'         Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'hello.c'     Text
-' '           Text
+' '           Text.Whitespace
 'main.c'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'OBJ'         Name.Variable
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'SRC:.c'      Text
 '='           Operator
 '.o'          Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'all'         Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'EXEC'        Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'hello'       Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'OBJ'         Name.Variable
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$'           Text
 '^'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'LDFLAGS'     Text
 ')'           Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'main.o'      Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'hello'       Name
 '.'           Text
 'h'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%.o'         Name.Function
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '%'           Text
 '.'           Text
 'c'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '$('          Keyword
 'CC'          Text
 ')'           Keyword
-' '           Text
+' '           Text.Whitespace
 '-I'          Text
-' '           Text
+' '           Text.Whitespace
 'header'      Text
-' '           Text
+' '           Text.Whitespace
 '-o'          Text
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
-'        '    Text
+'        '    Text.Whitespace
 '-c'          Text
-' '           Text
+' '           Text.Whitespace
 '$'           Text
 '<'           Text
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'CFLAGS'      Text
 ')'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace

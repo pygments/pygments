@@ -1,0 +1,38 @@
+---input---
+1,2d0
+< A
+< A
+4c2
+< C
+---
+> F
+5a4
+> E
+
+---tokens---
+'1,2d0'       Generic.Subheading
+'\n'          Text.Whitespace
+
+'< A'         Generic.Deleted
+'\n'          Text.Whitespace
+
+'< A'         Generic.Deleted
+'\n'          Text.Whitespace
+
+'4c2'         Generic.Subheading
+'\n'          Text.Whitespace
+
+'< C'         Generic.Deleted
+'\n'          Text.Whitespace
+
+'---'         Generic.Strong
+'\n'          Text.Whitespace
+
+'> F'         Generic.Inserted
+'\n'          Text.Whitespace
+
+'5a4'         Generic.Subheading
+'\n'          Text.Whitespace
+
+'> E'         Generic.Inserted
+'\n'          Text.Whitespace

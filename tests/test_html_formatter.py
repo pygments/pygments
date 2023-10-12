@@ -2,7 +2,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -231,16 +231,16 @@ def test_unicode_options():
 
 def test_ctags():
     try:
-        import ctags
+        import ctags # noqa: F401
     except ImportError:
         # we can't check without the ctags module, but at least check the exception
         assert pytest.raises(
-            RuntimeError, HtmlFormatter, tagsfile='support/tags'
+            RuntimeError, HtmlFormatter, tagsfile='tests/support/tags'
         )
     else:
         # this tagfile says that test_ctags() is on line 165, even if it isn't
         # anymore in the actual source
-        fmt = HtmlFormatter(tagsfile='support/tags', lineanchors='L',
+        fmt = HtmlFormatter(tagsfile='tests/support/tags', lineanchors='L',
                             tagurlformat='%(fname)s%(fext)s')
         outfile = StringIO()
         fmt.format(tokensource, outfile)

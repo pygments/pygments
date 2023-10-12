@@ -14,7 +14,7 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 ' '           Text.Whitespace
@@ -23,25 +23,27 @@
 'com.acme.MySnippets._' Name.Namespace
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<html'       Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<body'       Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<h1'         Name.Tag
 '>'           Name.Tag
-'Hello ${someName}%' Text
+'Hello'       Text
+' '           Text.Whitespace
+'${someName}%' Text
 '</h1>'       Name.Tag
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<ul'         Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%='         Keyword
 ' '           Text.Whitespace
@@ -59,19 +61,19 @@
 '{'           Punctuation
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '<li'         Name.Tag
 '>'           Name.Tag
 '${person.name}' Text
 '</li>'       Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<%'          Keyword
 ' '           Text.Whitespace
 '}'           Punctuation
 ' '           Text.Whitespace
 '%>'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</ul>'       Name.Tag
-'  \n'        Text
+'  \n'        Text.Whitespace

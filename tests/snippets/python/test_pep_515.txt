@@ -10,19 +10,19 @@
 
 ---tokens---
 '1_000_000'   Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1_000.000_001' Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1_000e1_000j' Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0xCAFE_F00D' Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0b_0011_1111_0100_1110' Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0o_777_123'  Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace

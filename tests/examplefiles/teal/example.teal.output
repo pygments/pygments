@@ -1,41 +1,41 @@
 '//example teal code taken from https://developer.algorand.org/tutorials/writing-simple-smart-contract/' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Check the Fee is resonable ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// In this case 10,000 microalgos' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Fee'         Keyword
 '\n'          Text
 
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '10000'       Literal.Number.Integer
 '\n'          Text
 
 '<='          Name.Function
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Check the length of the passphrase is correct ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'arg'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n'          Text
 
 'len'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '\n'          Text
 
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '73'          Literal.Number.Integer
 '\n'          Text
 
@@ -45,13 +45,13 @@
 '&&'          Name.Function
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// The sha256 value of the passphrase' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'arg'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n'          Text
 
@@ -59,7 +59,7 @@
 '\n'          Text
 
 'byte'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'base64 '     Literal.String.Affix
 '30AT2gOReDBdJmLBO/DgvjC6hIXgACecTpFDcP1bJHU=' Literal.String.Other
 '\n'          Text
@@ -70,20 +70,20 @@
 '&&'          Name.Function
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Make sure the CloseRemainderTo is not set' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'CloseRemainderTo' Keyword
 '\n'          Text
 
 'txn'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'Receiver'    Keyword
-' '           Text
+' '           Text.Whitespace
 '\n'          Text
 
 '=='          Name.Function

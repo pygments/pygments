@@ -1,214 +1,214 @@
 '# This is the VCL configuration Varnish will automatically append to your VCL' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# file during compilation/loading. See the vcl(7) man page for details on syntax' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# and semantics.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# New users is recommended to use the example.vcl file as a starting point.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'vcl '        Keyword.Reserved
 '4.0'         Name.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'backend'     Keyword
 ' foo'        Name.Variable.Global
 ' {'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '.host'       Name.Attribute
 ' = '         Operator
 '"'           Literal.String
 '192.168.1.1' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'probe '      Keyword
 'blatti '     Name.Variable.Global
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.url'        Name.Attribute
 ' = '         Operator
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'probe '      Keyword
 'fooy '       Name.Variable.Global
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '.url'        Name.Attribute
 ' = '         Operator
 '"'           Literal.String
 'beh'         Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'acl '        Keyword
 'foo '        Name.Variable.Global
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"'           Literal.String
 '192.168.1.1' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '"'           Literal.String
 '192.168.0.0' Literal.String
 '"'           Literal.String
 '/'           Operator
 '24'          Literal.Number
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '192.168.0.1' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'include'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo.vcl'     Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_init'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'director'    Name.Function
 '.'           Punctuation
 'foo'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_recv'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ban'         Keyword
 '('           Punctuation
 'req.url'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'foo'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'rollback'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_recv'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'PRI'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '/*'          Comment.Multiline
 ' We do not support SPDY or HTTP' Comment.Multiline
 '/'           Comment.Multiline
 '2.0 '        Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'synth'       Name.Constant
 '('           Punctuation
@@ -216,547 +216,547 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'GET'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'HEAD'        Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'PUT'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'POST'        Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'TRACE'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'OPTIONS'     Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'DELETE'      Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '/*'          Comment.Multiline
 ' Non-RFC2616 or CONNECT which is weird. ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pipe'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'GET'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'req.method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'HEAD'        Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '/*'          Comment.Multiline
 ' We only deal with GET and HEAD by default ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pass'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'req.http.Authorization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'req.http.Cookie' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '/*'          Comment.Multiline
 ' Not cacheable by default ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pass'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'hash'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_pipe'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '# By default Connection: close is set on all piped requests, to stop' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '# connection reuse from sending future requests directly to the' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '# (potentially) wrong backend. If you do want this to happen, you can undo' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '# it here.'  Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '# unset bereq.http.connection;' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pipe'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_pass'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fetch'       Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_hash'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'hash_data'   Keyword
 '('           Punctuation
 'req.url'     Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'req.http.host' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'hash_data'   Keyword
 '('           Punctuation
 'req.http.host' Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'hash_data'   Keyword
 '('           Punctuation
 'server.ip'   Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'lookup'      Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_purge'   Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'synth'       Name.Constant
 '('           Punctuation
 '200'         Literal.Number
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Purged'      Literal.String
 '"'           Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_hit'     Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'obj.ttl'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>='          Operator
-' '           Text
+' '           Text.Whitespace
 '0s'          Literal.Date
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '// A pure unadultered hit, deliver it' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'obj.ttl'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'obj.grace'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0s'          Literal.Date
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '// Object is in grace, deliver it' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '// Automatically triggers a background fetch' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '// fetch & deliver once we get the result' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'miss'        Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_miss'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fetch'       Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_deliver' Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'resp.http.x-storage' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'storage.s0.free' Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 '\n '         Comment.Multiline
 '*'           Comment.Multiline
 ' We can come here "invisibly" with the following errors: 413, 417 & 503\n ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_synth'   Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'resp.http.Content-Type' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'text/html; charset=utf-8' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'resp.http.Retry-After' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '5'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'synthetic'   Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '!'           Literal.String
@@ -805,23 +805,23 @@
 'e'           Literal.String
 '>'           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'resp.status' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' '           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'resp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -869,23 +869,23 @@
 'r'           Literal.String
 ' '           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'resp.status' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' '           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'resp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -902,13 +902,13 @@
 'p'           Literal.String
 '>'           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'resp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -960,13 +960,13 @@
 ':'           Literal.String
 ' '           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'req.xid'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -1038,205 +1038,205 @@
 '\n'          Literal.String
 
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#######################################################################' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Backend Fetch' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_backend_fetch' Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fetch'       Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_backend_response' Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'beresp.ttl'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '<='          Operator
-' '           Text
+' '           Text.Whitespace
 '0s'          Literal.Date
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'beresp.http.Set-Cookie' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'beresp.http.Surrogate-control' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'no-store'    Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '('           Punctuation
 '!'           Operator
 'beresp.http.Surrogate-Control' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'beresp.http.Cache-Control' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'no-cache|no-store|private' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'beresp.http.Vary' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '*'           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '/*'          Comment.Multiline
 '\n        '  Comment.Multiline
 '*'           Comment.Multiline
 ' Mark as "Hit-For-Pass" for the next 2 minutes\n        ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'beresp.ttl'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '120s'        Literal.Date
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'beresp.uncacheable' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_backend_error' Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'beresp.http.Content-Type' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'text/html; charset=utf-8' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'beresp.http.Retry-After' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '5'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'synthetic'   Keyword
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '!'           Literal.String
@@ -1285,23 +1285,23 @@
 'e'           Literal.String
 '>'           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'beresp.status' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' '           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'beresp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -1349,23 +1349,23 @@
 'r'           Literal.String
 ' '           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'beresp.status' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' '           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'beresp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -1382,13 +1382,13 @@
 'p'           Literal.String
 '>'           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'beresp.reason' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -1440,13 +1440,13 @@
 ':'           Literal.String
 ' '           Literal.String
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'bereq.xid'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '{"'          Literal.String
 '<'           Literal.String
 '/'           Literal.String
@@ -1518,56 +1518,56 @@
 '\n'          Literal.String
 
 '"}'          Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'deliver'     Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#######################################################################' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Housekeeping' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_init'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub '        Keyword
 'vcl_fini'    Name.Function
 ' {'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ok'          Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

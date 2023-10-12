@@ -1,9 +1,9 @@
 'irb(main):001:0> ' Generic.Prompt
 'puts'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '<<'          Operator
 'XYZ'         Literal.String.Delimiter
-'\n'          Text
+'\n'          Text.Whitespace
 
 'irb(main):002:0" ' Generic.Prompt
 'a\n'         Literal.String.Heredoc
@@ -21,4 +21,4 @@
 '=> nil\n'    Generic.Output
 
 'irb(main):005:0> ' Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace

@@ -39,7 +39,7 @@ Or you can also import your own style (which must be a subclass of
 Creating Own Styles
 ===================
 
-See :ref:`creating-own-styles`.
+See :doc:`styledevelopment`.
 
 
 Builtin Styles
@@ -79,7 +79,7 @@ Terminal Styles
 
 Custom styles used with the 256-color terminal formatter can also map colors to
 use the 8 default ANSI colors.  To do so, use ``ansigreen``, ``ansibrightred`` or
-any other colors defined in :attr:`pygments.style.ansicolors`.  Foreground ANSI
+any other colors defined in :data:`pygments.style.ansicolors`.  Foreground ANSI
 colors will be mapped to the corresponding `escape codes 30 to 37
 <https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_ thus respecting any
 custom color mapping and themes provided by many terminal emulators.  Light
