@@ -324,7 +324,7 @@ LEXERS = {
     'MqlLexer': ('pygments.lexers.c_like', 'MQL', ('mql', 'mq4', 'mq5', 'mql4', 'mql5'), ('*.mq4', '*.mq5', '*.mqh'), ('text/x-mql',)),
     'MscgenLexer': ('pygments.lexers.dsls', 'Mscgen', ('mscgen', 'msc'), ('*.msc',), ()),
     'MuPADLexer': ('pygments.lexers.algebra', 'MuPAD', ('mupad',), ('*.mu',), ()),
-    'MumpsLexer': ('pygments.lexers.mumps', 'MUMPS', ('Mumps', 'mumps', 'M'), ('*.m', '*.mumps', '*.epc', '*.int'), ()),
+    'MumpsLexer': ('pygments.lexers.mumps', 'MUMPS', ('mumps', 'm'), ('*.m', '*.mumps', '*.epc', '*.int'), ()),
     'MxmlLexer': ('pygments.lexers.actionscript', 'MXML', ('mxml',), ('*.mxml',), ()),
     'MySqlLexer': ('pygments.lexers.sql', 'MySQL', ('mysql',), (), ('text/x-mysql',)),
     'MyghtyCssLexer': ('pygments.lexers.templates', 'CSS+Myghty', ('css+myghty',), (), ('text/css+myghty',)),
