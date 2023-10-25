@@ -23,9 +23,9 @@ class LeanLexer(RegexLexer):
     """
     name = 'Lean'
     url = 'https://github.com/leanprover/lean'
-    aliases = ['lean']
+    aliases = ['lean', 'lean3']
     filenames = ['*.lean']
-    mimetypes = ['text/x-lean']
+    mimetypes = ['text/x-lean', 'text/x-lean3']
 
     tokens = {
         'expression': [
