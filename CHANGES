@@ -17,6 +17,9 @@ Version 2.17.0
 - Updated lexers:
 
   * Cypher: fix comment matching, add missing keywords (#2504)
+  * Fortran: add ``elseif`` keyword (#2528)
+  * Lean: make it available as ``lean3``, in preparation for
+    a possible switch to ``lean`` highlighting as Lean 4 (#2546)
   * JSON: add MIME types and file extensions for several line-delimited
     JSON formats (#2490)
   * Python: add ``starlark`` and ``bazel`` aliases (#2517)
@@ -30,6 +33,8 @@ Version 2.17.0
   which uses a different format, is kept for backwards compatibility.
 - On Windows, add a new installation extra (``windows-terminal``) which pulls in
   dependencies for colored console output. See :doc:`cmdline` for more details.
+- Support more file types in ``autopygmentize`` script (#2513)
+- Change color of numbers in ``rrt`` style (#2526)
 
 Version 2.16.1
 --------------
