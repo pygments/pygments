@@ -1,0 +1,7 @@
+# Single line comment
+URI     ldaps://ad.bridoulou.fr/
+BINDDN  cn=admin,ou=users,dc=bridoulou,dc=fr
+TLS_REQCERT hard
+NETWORK_TIMEOUT 5
+TIMEOUT 5
+REFERRALS off
