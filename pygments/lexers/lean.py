@@ -13,19 +13,19 @@ from pygments.lexer import RegexLexer, default, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['LeanLexer']
+__all__ = ['Lean3Lexer']
 
-class LeanLexer(RegexLexer):
+class Lean3Lexer(RegexLexer):
     """
-    For the Lean theorem prover.
+    For the Lean 3 theorem prover.
 
     .. versionadded:: 2.0
     """
     name = 'Lean'
-    url = 'https://github.com/leanprover/lean'
-    aliases = ['lean']
+    url = 'https://leanprover-community.github.io/lean3'
+    aliases = ['lean', 'lean3']
     filenames = ['*.lean']
-    mimetypes = ['text/x-lean']
+    mimetypes = ['text/x-lean', 'text/x-lean3']
 
     tokens = {
         'expression': [
@@ -118,3 +118,5 @@ class LeanLexer(RegexLexer):
             ('"', String.Double, '#pop'),
         ],
     }
+
+LeanLexer = Lean3Lexer
