@@ -13,7 +13,7 @@ from pygments.lexer import RegexLexer, default, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['Lean3Lexer', 'LeanLexer']
+__all__ = ['Lean3Lexer']
 
 class Lean3Lexer(RegexLexer):
     """
