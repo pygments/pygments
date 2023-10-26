@@ -1,7 +1,6 @@
 [build-system]
-# setuptools added pyproject.toml support in v61.0.0
-requires = ["setuptools >= 61"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "Pygments"
@@ -54,8 +53,5 @@ Changelog = "https://github.com/pygments/pygments/blob/master/CHANGES"
 [project.scripts]
 pygmentize = "pygments.cmdline:main"
 
-[tool.setuptools.dynamic]
-version = {attr = "pygments.__version__" }
-
-[tool.setuptools.packages.find]
-include = ["pygments", "pygments.*"]
+[tool.hatch.version]
+path = "pygments/__init__.py"
