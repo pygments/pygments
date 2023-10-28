@@ -234,6 +234,7 @@ LEXERS = {
     'JMESPathLexer': ('pygments.lexers.jmespath', 'JMESPath', ('jmespath', 'jp'), ('*.jp',), ()),
     'JSLTLexer': ('pygments.lexers.jslt', 'JSLT', ('jslt',), ('*.jslt',), ('text/x-jslt',)),
     'JagsLexer': ('pygments.lexers.modeling', 'JAGS', ('jags',), ('*.jag', '*.bug'), ()),
+    'JanetLexer': ('pygments.lexers.lisp', 'Janet', ('janet',), ('*.janet', '*.jdn'), ('text/x-janet', 'application/x-janet')),
     'JasminLexer': ('pygments.lexers.jvm', 'Jasmin', ('jasmin', 'jasminxt'), ('*.j',), ()),
     'JavaLexer': ('pygments.lexers.jvm', 'Java', ('java',), ('*.java',), ('text/x-java',)),
     'JavascriptDjangoLexer': ('pygments.lexers.templates', 'JavaScript+Django/Jinja', ('javascript+django', 'js+django', 'javascript+jinja', 'js+jinja'), ('*.js.j2', '*.js.jinja2'), ('application/x-javascript+django', 'application/x-javascript+jinja', 'text/x-javascript+django', 'text/x-javascript+jinja', 'text/javascript+django', 'text/javascript+jinja')),

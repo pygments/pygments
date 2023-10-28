@@ -1,0 +1,18 @@
+---input---
+[:html [:body [:p "surely you must be joking"]]]
+
+---tokens---
+'['           Punctuation
+':html'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+':body'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+':p'          Name.Constant
+' '           Text.Whitespace
+'"surely you must be joking"' Literal.String
+']'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace

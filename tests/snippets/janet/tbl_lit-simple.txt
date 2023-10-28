@@ -1,0 +1,18 @@
+---input---
+@{:x 0 :y 100 :z -80}
+
+---tokens---
+'@{'          Punctuation
+':x'          Name.Constant
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+' '           Text.Whitespace
+':y'          Name.Constant
+' '           Text.Whitespace
+'100'         Literal.Number.Float
+' '           Text.Whitespace
+':z'          Name.Constant
+' '           Text.Whitespace
+'-80'         Literal.Number.Float
+'}'           Punctuation
+'\n'          Text.Whitespace

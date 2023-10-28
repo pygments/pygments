@@ -1,0 +1,30 @@
+---input---
+@{:ant @{:legs 6} :bee @{:legs 6} :cheetah @{:legs 4}}
+
+---tokens---
+'@{'          Punctuation
+':ant'        Name.Constant
+' '           Text.Whitespace
+'@{'          Punctuation
+':legs'       Name.Constant
+' '           Text.Whitespace
+'6'           Literal.Number.Float
+'}'           Punctuation
+' '           Text.Whitespace
+':bee'        Name.Constant
+' '           Text.Whitespace
+'@{'          Punctuation
+':legs'       Name.Constant
+' '           Text.Whitespace
+'6'           Literal.Number.Float
+'}'           Punctuation
+' '           Text.Whitespace
+':cheetah'    Name.Constant
+' '           Text.Whitespace
+'@{'          Punctuation
+':legs'       Name.Constant
+' '           Text.Whitespace
+'4'           Literal.Number.Float
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
