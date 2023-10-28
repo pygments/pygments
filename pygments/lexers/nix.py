@@ -69,6 +69,8 @@ class NixLexer(RegexLexer):
             # word operators
             (r'\b(or|and)\b', Operator.Word),
 
+            (r'\{', Punctuation, 'block'),
+
             # punctuations
             ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
 
@@ -78,8 +80,6 @@ class NixLexer(RegexLexer):
             # strings
             (r'"', String.Double, 'doublequote'),
             (r"''", String.Multiline, 'multiline'),
-
-
 
             # paths
             (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
@@ -118,6 +118,10 @@ class NixLexer(RegexLexer):
             (r"\}", String.Interpol, '#pop'),
             # TODO: we should probably escape also here ''${ \${
             (r"\$\{", String.Interpol, '#push'),
+            include('root'),
+        ],
+        'block': [
+            (r"\}", Punctuation, '#pop'),
             include('root'),
         ],
     }
