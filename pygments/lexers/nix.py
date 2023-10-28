@@ -59,6 +59,9 @@ class NixLexer(RegexLexer):
 
             (r'\b(true|false|null)\b', Name.Constant),
 
+            # floats
+            (r'-?(\d+\.\d*|\.\d+)([eE][-+]?\d+)?', Number.Float),
+
             # operators
             ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
              Operator),
