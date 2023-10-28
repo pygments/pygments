@@ -128,7 +128,8 @@ true, false, null, 123, 3.141
 '<nixpkgs>'   Literal
 '\n\n'        Text
 
-"''"          Literal.String.Single
-'\n  multi\n   line\n    string\n' Literal.String.Single
+"''"          Literal.String.Multiline
+'\n  multi\n   line\n    string\n' Literal.String.Multiline
 
-"''\n"        Literal.String.Escape
+"''"          Literal.String.Multiline
+'\n'          Text

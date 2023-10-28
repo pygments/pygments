@@ -74,7 +74,9 @@ class NixLexer(RegexLexer):
 
             # strings
             (r'"', String.Double, 'doublequote'),
-            (r"''", String.Single, 'singlequote'),
+            (r"''", String.Multiline, 'multiline'),
+
+
 
             # paths
             (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
@@ -94,16 +96,12 @@ class NixLexer(RegexLexer):
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
         ],
-        'singlequote': [
-            (r"'''", String.Escape),
-            (r"''\$\{", String.Escape),
-            (r"''\n", String.Escape),
-            (r"''\r", String.Escape),
-            (r"''\t", String.Escape),
-            (r"''", String.Single, '#pop'),
+        'multiline': [
+            (r"''(\$|'|\\n|\\r|\\t)", String.Escape),
+            (r"''", String.Multiline, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r"['$]", String.Single),
-            (r"[^'$]+", String.Single),
+            (r"['$]", String.Multiline),
+            (r"[^'']+", String.Multiline),
         ],
         'doublequote': [
             (r'\\', String.Escape),

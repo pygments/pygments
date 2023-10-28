@@ -1,0 +1,21 @@
+---input---
+''
+  ''\t ''\n ''\r ''' ''$
+''
+
+---tokens---
+"''"          Literal.String.Multiline
+'\n  '        Literal.String.Multiline
+"''\\t"       Literal.String.Escape
+' '           Literal.String.Multiline
+"''\\n"       Literal.String.Escape
+' '           Literal.String.Multiline
+"''\\r"       Literal.String.Escape
+' '           Literal.String.Multiline
+"'''"         Literal.String.Escape
+' '           Literal.String.Multiline
+"''$"         Literal.String.Escape
+'\n'          Literal.String.Multiline
+
+"''"          Literal.String.Multiline
+'\n'          Text
