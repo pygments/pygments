@@ -92,6 +92,7 @@ class NixLexer(RegexLexer):
             (r'[\w-]+(?=\s*=)', String.Symbol),
             (r'[a-zA-Z_][\w\'-]*', Text),
 
+            (r"\$\{", String.Interpol, 'antiquote'),
         ],
         'comment': [
             (r'[^/*]+', Comment.Multiline),
