@@ -86,7 +86,7 @@ class NixLexer(RegexLexer):
             (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[\w%/?:@&=+$,\\.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[\w-]+\s*=', String.Symbol),
+            (r'[\w-]+(?=\s*=)', String.Symbol),
             (r'[a-zA-Z_][\w\'-]*', Text),
 
         ],

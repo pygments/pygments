@@ -85,7 +85,9 @@ args @ { x, y }: x + y
 
 'let'         Keyword
 ' '           Text
-'inc ='       Literal.String.Symbol
+'inc'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'x'           Text
 ':'           Punctuation
