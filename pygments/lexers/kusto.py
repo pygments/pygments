@@ -144,54 +144,95 @@ class KustoLexer(RegexLexer):
     tokens = {
         "root": [
             (
+                # One or more whitespace characters
                 r"\s+",
                 Whitespace,
             ),
-            (words(KUSTO_KEYWORDS, suffix=r"\b"), Keyword),
             (
+                # Keywords
+                words(KUSTO_KEYWORDS, suffix=r"\b"),
+                Keyword,
+            ),
+            (
+                # Single line comments begin with //
                 r"//.*",
                 Comment,
             ),
             (
+                # Punctuation
                 words(KUSTO_PUNCTUATION),
                 Punctuation,
             ),
             (
+                # Names begin with a letter or underscore,
+                # followed by zero or more letters, underscores or digits
                 r"[a-zA-Z_][a-zA-Z_0-9]*",
                 Name,
             ),
             (
+                # Numbers can take the form 1, .1, 1., 1.1, 1.1111, etc.
                 r"([0-9]*[.])?[0-9]+([.][0-9]*)?",
                 Number,
             ),
-            (r"'", String, "single_string"),
-            (r'"', String, "double_string"),
-            (r"@'", String, "single_verbatum"),
-            (r'@"', String, "double_verbatum"),
-            (r"```", String, "multi_string"),
+            (
+                # String literals can begin with '...
+                r"'",
+                String,
+                "single_string",
+            ),
+            (
+                # ...or with "
+                r'"',
+                String,
+                "double_string",
+            ),
+            (
+                # Verbatum strings can begin with @'...
+                r"@'",
+                String,
+                "single_verbatum",
+            ),
+            (
+                # ...or with @"
+                r'@"',
+                String,
+                "double_verbatum",
+            ),
+            (
+                # Multi-line strings begin with ```
+                r"```",
+                String,
+                "multi_string",
+            ),
         ],
         "single_string": [
+            # This string literal ends with an unescaped single quote
             (r"'", String, "#pop"),
             (r"\\", String.Escape, "string_escape"),
             (r"[^'\\]+", String),
         ],
         "double_string": [
+            # This string literal ends with an unescaped double quote
             (r'"', String, "#pop"),
             (r"\\", String.Escape, "string_escape"),
             (r'[^"\\]+', String),
         ],
         "string_escape": [
+            # Presume, for simplicity, that any single character can be escaped
             (r".", String.Escape, "#pop"),
         ],
         "single_verbatum": [
+            # This string literal ends with the first single quote
             (r"[^']+", String),
             (r"'", String, "#pop"),
         ],
         "double_verbatum": [
+            # This string literal ends with the first double quote
             (r'[^"]+', String),
             (r'"', String, "#pop"),
         ],
         "multi_string": [
+            # This string literal ends with the first ```
             (
                 r"[^```]+",
                 String,
