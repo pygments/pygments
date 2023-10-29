@@ -9,6 +9,8 @@
 
 "cp \"$(nix-build -A ${attr})\" \"$0\" > /dev/null"
 
+"$" #
+
 ---tokens---
 "''"          Literal.String.Multiline
 '\n  '        Literal.String.Multiline
@@ -62,4 +64,11 @@
 '\\"'         Literal.String.Escape
 ' > /dev/null' Literal.String.Double
 '"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'#'           Comment.Single
 '\n'          Text
