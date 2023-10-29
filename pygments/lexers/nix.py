@@ -35,7 +35,7 @@ class NixLexer(RegexLexer):
     builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
                 'map', 'removeAttrs', 'throw', 'toString', 'derivation']
     operators = ['++', '+', '?', '.', '!', '//', '==',
-                 '!=', '&&', '||', '->', '=']
+                 '!=', '&&', '||', '->', '=', '<', '>', '*']
 
     punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
 
@@ -62,6 +62,10 @@ class NixLexer(RegexLexer):
             # floats
             (r'-?(\d+\.\d*|\.\d+)([eE][-+]?\d+)?', Number.Float),
 
+            # paths
+            (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
+            (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
+
             # operators
             ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
              Operator),
@@ -80,10 +84,6 @@ class NixLexer(RegexLexer):
             # strings
             (r'"', String.Double, 'doublequote'),
             (r"''", String.Multiline, 'multiline'),
-
-            # paths
-            (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
-            (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
 
             # urls
             (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[\w%/?:@&=+$,\\.!~*\'-]+', Literal),

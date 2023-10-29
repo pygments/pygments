@@ -6,8 +6,7 @@ map (x: x + x) [ 1 2 3 ]
 ---tokens---
 'import'      Name.Builtin
 ' '           Text
-'.'           Operator
-'/foo.nix'    Literal
+'./foo.nix'   Literal
 '\n\n'        Text
 
 'map'         Name.Builtin

@@ -9,6 +9,10 @@
 
 !true
 
+2 * 2 < 5
+
+5 > 1
+
 { x = 1; y = 2; }.x
 
 { x = 1; y = 2; }.z or 3
@@ -65,6 +69,24 @@
 
 '!'           Operator
 'true'        Name.Constant
+'\n\n'        Text
+
+'2'           Literal.Number.Integer
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+'\n\n'        Text
+
+'5'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
 '\n\n'        Text
 
 '{'           Punctuation
