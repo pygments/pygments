@@ -35,7 +35,7 @@ class NixLexer(RegexLexer):
     builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
                 'map', 'removeAttrs', 'throw', 'toString', 'derivation']
     operators = ['++', '+', '?', '.', '!', '//', '==',
-                 '!=', '&&', '||', '->', '=', '<', '>', '*']
+                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-']
 
     punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
 
@@ -62,6 +62,9 @@ class NixLexer(RegexLexer):
             # floats
             (r'-?(\d+\.\d*|\.\d+)([eE][-+]?\d+)?', Number.Float),
 
+            # integers
+            (r'-?[0-9]+', Number.Integer),
+
             # paths
             (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
             (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
@@ -77,9 +80,6 @@ class NixLexer(RegexLexer):
 
             # punctuations
             ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
-
-            # integers
-            (r'-?[0-9]+', Number.Integer),
 
             # strings
             (r'"', String.Double, 'doublequote'),
