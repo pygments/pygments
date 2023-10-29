@@ -1,10 +1,11 @@
 ---input---
 ''
-  ''\t ''\n ''\r ''' ''$
+  ''\t ''\n ''\r ''' ''$ '
 ''
 
 "\"\$${builtins.toString maxArgIndex}\""
 
+"\n"
 
 "cp \"$(nix-build -A ${attr})\" \"$0\" > /dev/null"
 
@@ -20,7 +21,8 @@
 "'''"         Literal.String.Escape
 ' '           Literal.String.Multiline
 "''$"         Literal.String.Escape
-'\n'          Literal.String.Multiline
+' '           Literal.String.Multiline
+"'\n"         Literal.String.Multiline
 
 "''"          Literal.String.Multiline
 '\n\n'        Text
@@ -37,7 +39,12 @@
 '}'           Literal.String.Interpol
 '\\"'         Literal.String.Escape
 '"'           Literal.String.Double
-'\n\n\n'      Text
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n\n'        Text
 
 '"'           Literal.String.Double
 'cp '         Literal.String.Double
