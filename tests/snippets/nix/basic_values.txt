@@ -9,6 +9,7 @@
 
 true, false, null, 123, 3.141
 
+-1
 
 /etc
 ./foo.png
@@ -90,7 +91,10 @@ true, false, null, 123, 3.141
 ','           Punctuation
 ' '           Text
 '3.141'       Literal.Number.Float
-'\n\n\n'      Text
+'\n\n'        Text
+
+'-1'          Literal.Number.Integer
+'\n\n'        Text
 
 '/etc'        Literal
 '\n'          Text

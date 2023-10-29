@@ -75,7 +75,7 @@ class NixLexer(RegexLexer):
             ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
 
             # integers
-            (r'[0-9]+', Number.Integer),
+            (r'-?[0-9]+', Number.Integer),
 
             # strings
             (r'"', String.Double, 'doublequote'),
