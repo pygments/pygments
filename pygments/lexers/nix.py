@@ -115,6 +115,7 @@ class NixLexer(RegexLexer):
             (r'[^"\\\$]+', String.Double),
             (r'\$[^\{"]', String.Double),
             (r'\$(?=")', String.Double),
+            (r'\\', String.Double),
         ],
         'antiquote': [
             (r"\}", String.Interpol, '#pop'),

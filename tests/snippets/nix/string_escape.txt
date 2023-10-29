@@ -11,6 +11,8 @@
 
 "$" #
 
+" \ "
+
 ---tokens---
 "''"          Literal.String.Multiline
 '\n  '        Literal.String.Multiline
@@ -71,4 +73,11 @@
 '"'           Literal.String.Double
 ' '           Text
 '#'           Comment.Single
+'\n\n'        Text
+
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'\\'          Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
 '\n'          Text
