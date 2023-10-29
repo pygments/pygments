@@ -729,7 +729,7 @@ contribute a new lexer, but you might find it useful in any case.
 
 * Be careful with ``.*``. This matches greedily as much as it can. For instance,
   a rule like ``@.*@`` will match the whole string ``@first@ second @third@``,
-  instead of matching ``@first@`` and ``@second@``. You can use ``@.*?@`` in
+  instead of matching ``@first@`` and ``@third@``. You can use ``@.*?@`` in
   this case to stop early. The ``?`` tries to match *as few times* as possible.
 
 * Beware of so-called "catastrophic backtracking".  As a first example, consider
