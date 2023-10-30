@@ -102,7 +102,7 @@ class NixLexer(RegexLexer):
             (r'[*/]', Comment.Multiline),
         ],
         'multiline': [
-            (r"''(\$|'|\\n|\\r|\\t)", String.Escape),
+            (r"''(\$|'|\\n|\\r|\\t|\\)", String.Escape),
             (r"''", String.Multiline, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
             (r"[^''\$]+", String.Multiline),

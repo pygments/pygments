@@ -15,6 +15,8 @@
 
 " \ "
 
+'' ''\ ''
+
 ---tokens---
 "''"          Literal.String.Multiline
 '\n  '        Literal.String.Multiline
@@ -89,4 +91,11 @@
 '\\'          Literal.String.Double
 ' '           Literal.String.Double
 '"'           Literal.String.Double
+'\n\n'        Text
+
+"''"          Literal.String.Multiline
+' '           Literal.String.Multiline
+"''\\"        Literal.String.Escape
+' '           Literal.String.Multiline
+"''"          Literal.String.Multiline
 '\n'          Text
