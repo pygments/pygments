@@ -34,7 +34,7 @@ class NixLexer(RegexLexer):
                 'else', 'then', '...']
     builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
                 'map', 'removeAttrs', 'throw', 'toString', 'derivation']
-    operators = ['++', '+', '?', '.', '!', '//', '==',
+    operators = ['++', '+', '?', '.', '!', '//', '==', '/',
                  '!=', '&&', '||', '->', '=', '<', '>', '*', '-']
 
     punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
