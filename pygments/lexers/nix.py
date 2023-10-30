@@ -67,6 +67,7 @@ class NixLexer(RegexLexer):
 
             # paths
             (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
+            (r'~(\/[\w.+-]+)+', Literal),
             (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
 
             # operators
