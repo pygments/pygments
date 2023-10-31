@@ -34,7 +34,7 @@ class VyperLexer(RegexLexer):
 
             # Numeric Literals
             (r'\b0x[0-9a-fA-F]+\b', Number.Hex),
-            (r'\b\d{1,3}(?:_\d{3})*\b', Number.Integer),
+            (r'\b(\d{1,3}(?:_\d{3})*|\d+)\b', Number.Integer),
             (r'\b\d+\.\d*\b', Number.Float),
 
             # Keywords
@@ -44,10 +44,8 @@ class VyperLexer(RegexLexer):
             (words(('public', 'private', 'view', 'pure', 'constant', 'immutable'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
 
             # Operators and Punctuation
-            (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=)', Operator),
-            (r'(?<=[^\s:]):(?=[^\s:])', Operator),  # Match colons surrounded by non-space characters
-            (r':', Operator),  # Match standalone colons
-            (r'[,:;()\[\]{}]', Punctuation),
+            (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=|\||&)', Operator),
+            (r'[.,:;()\[\]{}]', Punctuation),
 
             # Built-in Functions
             (words(('bitwise_and', 'bitwise_not', 'bitwise_or', 'bitwise_xor', 'shift', 'create_minimal_proxy_to', 'create_copy_of', 'create_from_blueprint',
@@ -59,13 +57,12 @@ class VyperLexer(RegexLexer):
             (words(('msg.sender', 'msg.value', 'block.timestamp', 'block.number', 'msg.gas'), prefix=r'\b', suffix=r'\b'), Name.Builtin.Pseudo),
 
             # Other variable names and types
-            (r'@internal', Name.Decorator),
             (r'@[\w.]+', Name.Decorator),
             (r'__\w+__', Name.Magic),  # Matches double underscores followed by word characters
             (r'EMPTY_BYTES32', Name.Constant),
-            (r'self\.', Name.Attribute),
             (r'ERC20', Name.Class),
-            (r'log', Keyword),
+            (r'\bself\b', Name.Attribute),
+            (r'\blog\b', Keyword),
 
             (words(('uint', 'uint8', 'uint16', 'uint32', 'uint64', 'uint128', 'uint256', 'int', 'int8', 'int16', 'int32', 'int64', 'int128', 'int256',
             'bool', 'decimal', 'bytes', 'bytes1', 'bytes2', 'bytes3', 'bytes4', 'bytes5', 'bytes6', 'bytes7', 'bytes8', 'bytes9', 
@@ -85,8 +82,6 @@ class VyperLexer(RegexLexer):
             (r'\b[a-zA-Z_]\w*\b:', Name.Variable),
             (r'\b[a-zA-Z_]\w*\b', Name),
 
-            # Error for unmatched sequences
-            (r'.', Text)
         ],
 
         'multiline-comment': [
