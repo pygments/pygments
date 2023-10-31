@@ -33,7 +33,7 @@ class PrqlLexer(RegexLexer):
     builtinTypes = words((
         "bool",
         "int",
-        "int8", "int16", "int32", "int64",
+        "int8", "int16", "int32", "int64", "int128",
         "float",
         "text",
         "set"), suffix=r'\b')
@@ -155,7 +155,7 @@ class PrqlLexer(RegexLexer):
             (r'\\([\\bfnrt"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'stringescape': [
-            (r'\\(N\{.*?\}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})', String.Escape),
+            (r'\\(N\{.*?\}|u\{[a-fA-F0-9]{1,6}\})', String.Escape),
             include('bytesescape')
         ],
         'fstrings-single': fstring_rules(String.Single),
