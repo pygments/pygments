@@ -1,25 +1,63 @@
 ---input---
 @external
-def __init__(_name: String[64], _symbol: String[32]):
-    name = _name
-    symbol = _symbol
+def permit(
+    _owner: address,
+    _spender: address,
+    _value: uint256,
+    _deadline: uint256,
+    _v: uint8,
+    _r: bytes32,
+    _s: bytes32
+) -> bool:
+    """
+    @notice Approves spender by owner's signature to expend owner's tokens.
+        See https://eips.ethereum.org/EIPS/eip-2612.
+    @dev Inspired by https://github.com/yearn/yearn-vaults/blob/main/contracts/Vault.vy#L753-L793
+    @dev Supports smart contract wallets which implement ERC1271
+        https://eips.ethereum.org/EIPS/eip-1271
+    @param _owner The address which is a source of funds and has signed the Permit.
+    @param _spender The address which is allowed to spend the funds.
+    @param _value The amount of tokens to be spent.
+    @param _deadline The timestamp after which the Permit is no longer valid.
+    @param _v The bytes[64] of the valid secp256k1 signature of permit by owner
+    @param _r The bytes[0:32] of the valid secp256k1 signature of permit by owner
+    @param _s The bytes[32:64] of the valid secp256k1 signature of permit by owner
+    @return True, if transaction completes successfully
+    """
+    assert _owner != empty(address)
+    assert block.timestamp <= _deadline
 
-    NAME_HASH = keccak256(_name)
-    CACHED_CHAIN_ID = chain.id
-    salt = block.prevhash
-    CACHED_DOMAIN_SEPARATOR = keccak256(
-        _abi_encode(
-            EIP712_TYPEHASH,
-            keccak256(_name),
-            VERSION_HASH,
-            chain.id,
-            self,
-            block.prevhash,
+    nonce: uint256 = self.nonces[_owner]
+    digest: bytes32 = keccak256(
+        concat(
+            b"\x19\x01",
+            self.DOMAIN_SEPARATOR,
+            keccak256(_abi_encode(PERMIT_TYPEHASH, _owner, _spender, _value, nonce, _deadline))
         )
     )
 
-    self.minter = msg.sender
-    log SetMinter(msg.sender)
+    if _owner.is_contract:
+        sig: Bytes[65] = concat(_abi_encode(_r, _s), slice(convert(_v, bytes32), 31, 1))
+        # reentrancy not a concern since this is a staticcall
+        assert ERC1271(_owner).isValidSignature(digest, sig) == ERC1271_MAGIC_VAL
+    else:
+        assert ecrecover(digest, convert(_v, uint256), convert(_r, uint256), convert(_s, uint256)) == _owner
+
+    self.allowance[_owner][_spender] = _value
+    self.nonces[_owner] = nonce + 1
+
+    log Approval(_owner, _spender, _value)
+    return True
+
+
+### StableSwap Functionality ###
+
+@pure
+@internal
+def pack_prices(p1: uint256, p2: uint256) -> uint256:
+    assert p1 < 2**128
+    assert p2 < 2**128
+    return p1 | shift(p2, 128)
 
 ---tokens---
 '@external'   Name.Decorator
@@ -27,112 +65,351 @@ def __init__(_name: String[64], _symbol: String[32]):
 
 'def'         Keyword
 ' '           Text.Whitespace
-'__init__'    Name.Magic
+'permit'      Name
 '('           Punctuation
-'_name:'      Name.Variable
+'\n    '      Text.Whitespace
+'_owner:'     Name.Variable
 ' '           Text.Whitespace
-'String'      Keyword.Type
-'['           Punctuation
-'64'          Literal.Number.Integer
-']'           Punctuation
+'address'     Keyword.Type
 ','           Punctuation
+'\n    '      Text.Whitespace
+'_spender:'   Name.Variable
 ' '           Text.Whitespace
-'_symbol:'    Name.Variable
+'address'     Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'_value:'     Name.Variable
 ' '           Text.Whitespace
-'String'      Keyword.Type
-'['           Punctuation
-'32'          Literal.Number.Integer
-']'           Punctuation
+'uint256'     Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'_deadline:'  Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'_v:'         Name.Variable
+' '           Text.Whitespace
+'uint8'       Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'_r:'         Name.Variable
+' '           Text.Whitespace
+'bytes32'     Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'_s:'         Name.Variable
+' '           Text.Whitespace
+'bytes32'     Keyword.Type
+'\n'          Text.Whitespace
+
 ')'           Punctuation
-':'           Operator
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'bool'        Keyword.Type
+':'           Punctuation
 '\n    '      Text.Whitespace
-'name'        Name
-' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'_name'       Name
+'"""'         Comment.Multiline
+"\n    @notice Approves spender by owner's signature to expend owner's tokens.\n        See https://eips.ethereum.org/EIPS/eip-2612.\n    @dev Inspired by https://github.com/yearn/yearn-vaults/blob/main/contracts/Vault.vy#L753-L793\n    @dev Supports smart contract wallets which implement ERC1271\n        https://eips.ethereum.org/EIPS/eip-1271\n    @param _owner The address which is a source of funds and has signed the Permit.\n    @param _spender The address which is allowed to spend the funds.\n    @param _value The amount of tokens to be spent.\n    @param _deadline The timestamp after which the Permit is no longer valid.\n    @param _v The bytes[64] of the valid secp256k1 signature of permit by owner\n    @param _r The bytes[0:32] of the valid secp256k1 signature of permit by owner\n    @param _s The bytes[32:64] of the valid secp256k1 signature of permit by owner\n    @return True, if transaction completes successfully\n    " Comment.Multiline
+'"""'         Comment.Multiline
 '\n    '      Text.Whitespace
-'symbol'      Name
+'assert'      Keyword
 ' '           Text.Whitespace
-'='           Operator
+'_owner'      Name
 ' '           Text.Whitespace
-'_symbol'     Name
-'\n\n    '    Text.Whitespace
-'NAME_HASH'   Name
+'!='          Operator
 ' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'keccak256'   Name.Builtin
+'empty'       Name.Builtin
 '('           Punctuation
-'_name'       Name
+'address'     Keyword.Type
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'CACHED_CHAIN_ID' Name
+'assert'      Keyword
+' '           Text.Whitespace
+'block.timestamp' Name.Builtin.Pseudo
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'_deadline'   Name
+'\n\n    '    Text.Whitespace
+'nonce:'      Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'chain'       Name
-'.'           Text
-'id'          Name
+'self'        Name.Attribute
+'.'           Punctuation
+'nonces'      Name
+'['           Punctuation
+'_owner'      Name
+']'           Punctuation
 '\n    '      Text.Whitespace
-'salt'        Name
+'digest:'     Name.Variable
 ' '           Text.Whitespace
-'='           Operator
-' '           Text.Whitespace
-'block'       Name
-'.'           Text
-'prevhash'    Name
-'\n    '      Text.Whitespace
-'CACHED_DOMAIN_SEPARATOR' Name
+'bytes32'     Keyword.Type
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'keccak256'   Name.Builtin
 '('           Punctuation
 '\n        '  Text.Whitespace
+'concat'      Name.Builtin
+'('           Punctuation
+'\n            ' Text.Whitespace
+'b'           Name
+'"\\x19\\x01"' Literal.String.Double
+','           Punctuation
+'\n            ' Text.Whitespace
+'self'        Name.Attribute
+'.'           Punctuation
+'DOMAIN_SEPARATOR' Name
+','           Punctuation
+'\n            ' Text.Whitespace
+'keccak256'   Name.Builtin
+'('           Punctuation
 '_abi_encode' Name.Builtin
 '('           Punctuation
-'\n            ' Text.Whitespace
-'EIP712_TYPEHASH' Name
+'PERMIT_TYPEHASH' Name
 ','           Punctuation
-'\n            ' Text.Whitespace
-'keccak256'   Name.Builtin
-'('           Punctuation
-'_name'       Name
+' '           Text.Whitespace
+'_owner'      Name
+','           Punctuation
+' '           Text.Whitespace
+'_spender'    Name
+','           Punctuation
+' '           Text.Whitespace
+'_value'      Name
+','           Punctuation
+' '           Text.Whitespace
+'nonce'       Name
+','           Punctuation
+' '           Text.Whitespace
+'_deadline'   Name
 ')'           Punctuation
-','           Punctuation
-'\n            ' Text.Whitespace
-'VERSION_HASH' Name
-','           Punctuation
-'\n            ' Text.Whitespace
-'chain'       Name
-'.'           Text
-'id'          Name
-','           Punctuation
-'\n            ' Text.Whitespace
-'self'        Name
-','           Punctuation
-'\n            ' Text.Whitespace
-'block'       Name
-'.'           Text
-'prevhash'    Name
-','           Punctuation
+')'           Punctuation
 '\n        '  Text.Whitespace
 ')'           Punctuation
 '\n    '      Text.Whitespace
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self.'       Name.Attribute
-'minter'      Name
+'if'          Keyword
+' '           Text.Whitespace
+'_owner'      Name
+'.'           Punctuation
+'is_contract:' Name.Variable
+'\n        '  Text.Whitespace
+'sig:'        Name.Variable
+' '           Text.Whitespace
+'Bytes'       Name
+'['           Punctuation
+'65'          Literal.Number.Integer
+']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'msg.sender'  Name.Builtin.Pseudo
+'concat'      Name.Builtin
+'('           Punctuation
+'_abi_encode' Name.Builtin
+'('           Punctuation
+'_r'          Name
+','           Punctuation
+' '           Text.Whitespace
+'_s'          Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'slice'       Name.Builtin
+'('           Punctuation
+'convert'     Name.Builtin
+'('           Punctuation
+'_v'          Name
+','           Punctuation
+' '           Text.Whitespace
+'bytes32'     Keyword.Type
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text.Whitespace
+'# reentrancy not a concern since this is a staticcall' Comment.Single
+'\n        '  Text.Whitespace
+'assert'      Keyword
+' '           Text.Whitespace
+'ERC1271'     Name
+'('           Punctuation
+'_owner'      Name
+')'           Punctuation
+'.'           Punctuation
+'isValidSignature' Name
+'('           Punctuation
+'digest'      Name
+','           Punctuation
+' '           Text.Whitespace
+'sig'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'ERC1271_MAGIC_VAL' Name
 '\n    '      Text.Whitespace
+'else'        Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'assert'      Keyword
+' '           Text.Whitespace
+'ecrecover'   Name.Builtin
+'('           Punctuation
+'digest'      Name
+','           Punctuation
+' '           Text.Whitespace
+'convert'     Name.Builtin
+'('           Punctuation
+'_v'          Name
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'convert'     Name.Builtin
+'('           Punctuation
+'_r'          Name
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'convert'     Name.Builtin
+'('           Punctuation
+'_s'          Name
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'_owner'      Name
+'\n\n    '    Text.Whitespace
+'self'        Name.Attribute
+'.'           Punctuation
+'allowance'   Name
+'['           Punctuation
+'_owner'      Name
+']'           Punctuation
+'['           Punctuation
+'_spender'    Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_value'      Name
+'\n    '      Text.Whitespace
+'self'        Name.Attribute
+'.'           Punctuation
+'nonces'      Name
+'['           Punctuation
+'_owner'      Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonce'       Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'SetMinter'   Name
+'Approval'    Name
 '('           Punctuation
-'msg.sender'  Name.Builtin.Pseudo
+'_owner'      Name
+','           Punctuation
+' '           Text.Whitespace
+'_spender'    Name
+','           Punctuation
+' '           Text.Whitespace
+'_value'      Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'True'        Name
+'\n\n\n'      Text.Whitespace
+
+'### StableSwap Functionality ###' Comment.Single
+'\n\n'        Text.Whitespace
+
+'@pure'       Name.Decorator
+'\n'          Text.Whitespace
+
+'@internal'   Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'pack_prices' Name
+'('           Punctuation
+'p1:'         Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'p2:'         Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+':'           Punctuation
+'\n    '      Text.Whitespace
+'assert'      Keyword
+' '           Text.Whitespace
+'p1'          Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'*'           Operator
+'*'           Operator
+'128'         Literal.Number.Integer
+'\n    '      Text.Whitespace
+'assert'      Keyword
+' '           Text.Whitespace
+'p2'          Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'*'           Operator
+'*'           Operator
+'128'         Literal.Number.Integer
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'p1'          Name
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'shift'       Name.Builtin
+'('           Punctuation
+'p2'          Name
+','           Punctuation
+' '           Text.Whitespace
+'128'         Literal.Number.Integer
 ')'           Punctuation
 '\n'          Text.Whitespace
