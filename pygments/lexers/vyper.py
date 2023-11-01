@@ -67,15 +67,16 @@ class VyperLexer(RegexLexer):
             (words(('uint', 'uint8', 'uint16', 'uint32', 'uint64', 'uint128', 'uint256', 'int', 'int8', 'int16', 'int32', 'int64', 'int128', 'int256',
             'bool', 'decimal', 'bytes', 'bytes1', 'bytes2', 'bytes3', 'bytes4', 'bytes5', 'bytes6', 'bytes7', 'bytes8', 'bytes9', 
             'bytes10', 'bytes11', 'bytes12', 'bytes13', 'bytes14', 'bytes15', 'bytes16', 'bytes17', 'bytes18', 'bytes19', 'bytes20', 
-            'bytes21', 'bytes22', 'bytes23', 'bytes24', 'bytes25', 'bytes26', 'bytes27', 'bytes28', 'bytes29', 'bytes30', 'bytes31', 'bytes32', 
-            'string', 'String', 'address', 'enum', 'struct'
+            'bytes21', 'bytes22', 'bytes23', 'bytes24', 'bytes25', 'bytes26', 'bytes27', 'bytes28', 'bytes29', 'bytes30', 'bytes31', 'bytes32',  
+            'string', 'String', 'address', 'enum', 'struct', 'Bytes'
             ), prefix=r'\b', suffix=r'\b'), Keyword.Type),
 
-            (r'\binterface\b', Keyword.Declaration),
             (r'\bfrom\b', Keyword.Namespace, 'importfrom'),
 
-            # Match function and event signatures
-            (r'\b[a-zA-Z_]\w*\b\([a-zA-Z_]\w*: [a-zA-Z_]\w*\):', Name.Function),
+            (r'\binterface\b', Keyword, 'interface-name'),
+
+            (r'(?:\bdef\b\s+)?([a-zA-Z_]\w*)\s*(:)?\(', bygroups(Name.Function, Punctuation), 'funcparams'),
+
             (r'\b(?:event|struct)\b \w+', Name.Class, 'body'),
 
             # Generic names and variables
@@ -106,6 +107,12 @@ class VyperLexer(RegexLexer):
             (r';?', Punctuation, '#pop')
         ],
 
+        'interface-name': [
+            (r'\w+', Name.Class),  # Capture the interface name
+            (r':', Punctuation, '#pop'),  # Pop back to root after capturing the name
+            (r'\s+', Text.Whitespace),  # Consume any whitespace
+        ],
+
         'body': [
             (r'\(', Punctuation, 'funcparams'),
             (r':', Punctuation),
@@ -115,11 +122,11 @@ class VyperLexer(RegexLexer):
         ],
 
         'funcparams': [
-            (r'\)', Punctuation, '#pop'),
-            (r'(\w+)(\s*:\s*)(\w+)', bygroups(Name.Variable, Text, Keyword.Type)),
+            (r'\)', Punctuation, '#pop'),  # End of parameters
+            (r'(\w+)(\s*:\s*)(\w+)', bygroups(Name.Variable, Text, Keyword.Type)),  # Capture parameters
             (r',', Punctuation),
             (r'\s+', Text.Whitespace),
-        ]
+        ],
     }
 
 __all__ = ['VyperLexer']
