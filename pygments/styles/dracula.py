@@ -34,7 +34,7 @@ class DraculaStyle(Style):
     red        = "#FF5555"
     yellow     = "#F1FA8C"
 
-    deletion   = "#f1fa8c"
+    deletion   = "#8B080B"
 
     styles = {
         Whitespace             : foreground         ,
