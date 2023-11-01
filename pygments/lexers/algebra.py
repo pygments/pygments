@@ -93,6 +93,23 @@ class GAPConsoleLexer(Lexer):
     """
     For GAP console sessions. Modeled after JuliaConsoleLexer.
 
+    .. code-block:: gap-console
+
+        gap> for i in [1..5] do
+        >      Print( i, " ", i^2, " ", i^3, "\n" );
+        >    od;
+        1 1 1
+        2 4 8
+        3 9 27
+        4 16 64
+        5 25 125
+        gap> g:= SmallGroup(12,5);
+        <pc group of size 12 with 3 generators>
+        gap> Print( g, "\n" );
+        Group( [ f1, f2, f3 ] )
+        gap> View( g );  Print( "\n" );
+        <pc group of size 12 with 3 generators>
+
     .. versionadded:: 2.14
     """
     name = 'GAP session'

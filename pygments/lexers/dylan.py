@@ -244,7 +244,7 @@ class DylanConsoleLexer(Lexer):
     """
     For Dylan interactive console output.
 
-    This is based on a copy of the RubyConsoleLexer.
+    This is based on a copy of the ``RubyConsoleLexer``.
 
     .. versionadded:: 1.6
     """

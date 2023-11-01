@@ -23,6 +23,29 @@ line_re  = re.compile('.*?\n')
 class RConsoleLexer(Lexer):
     """
     For R console transcripts or R CMD BATCH output files.
+
+    .. code-block:: rconsole
+
+        R version 2.9.2 (2009-08-24)
+        Copyright (C) 2009 The R Foundation for Statistical Computing
+        ISBN 3-900051-07-0
+
+        [R.app GUI 1.29 (5464) i386-apple-darwin8.11.1]
+
+        > x <- function() {
+        + cat("hello")
+        + cat("world")
+        + }
+        > x
+        function() {
+        cat("hello")
+        cat("world")
+        }
+        > x()
+        helloworld
+        > 2 + 2
+        [1] 4
+        >
     """
 
     name = 'RConsole'

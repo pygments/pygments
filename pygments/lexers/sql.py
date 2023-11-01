@@ -303,6 +303,28 @@ class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
 
+    .. code-block:: postgres-console
+
+        psql (15.3)
+        Type "help" for help.
+
+        testdb=> \\echo `date`
+        Tue Oct 26 21:40:57 CEST 1999
+        testdb=> CREATE TABLE my_table (
+        testdb(>  first integer not null default 0,
+        testdb(>  second text)
+        testdb-> ;
+        CREATE TABLE
+        testdb=> SELECT * FROM my_table;
+        first | second
+        -------+--------
+            1 | one
+            2 | two
+            3 | three
+            4 | four
+        (4 rows)
+        testdb=>
+
     .. versionadded:: 1.5
     """
 
@@ -959,6 +981,31 @@ class MySqlLexer(RegexLexer):
 class SqliteConsoleLexer(Lexer):
     """
     Lexer for example sessions using sqlite3.
+
+    .. code-block:: sqlite3
+
+        SQLite version 3.4.2
+        Enter ".help" for instructions
+        sqlite> .schema
+        CREATE TABLE paste (paste_id integer, code text, parsed_code text,
+        pub_date varchar(24), language varchar(64), parent_id integer, url
+        varchar(128));
+        CREATE TABLE vars (key varchar(24), value varchar(128));
+        sqlite> select count(language), language from paste group by language
+            ...> order by count(language) desc;
+        144|python
+        76|text
+        22|pycon
+        9|ruby
+        7|c
+        7|js
+        6|html+django
+        4|html
+        4|tex
+        2|html+php
+        1|cpp
+        1|scheme
+        sqlite>
 
     .. versionadded:: 0.11
     """
