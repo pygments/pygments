@@ -24,65 +24,65 @@ class DraculaStyle(Style):
 
     background = "#282A36"
     foreground = "#F8F8F2"
-    selection  = "#44475A"
-    comment    = "#6272A4"
-    cyan       = "#8BE9FD"
-    green      = "#50FA7B"
-    orange     = "#FFB86C"
-    pink       = "#FF79C6"
-    purple     = "#BD93F9"
-    red        = "#FF5555"
-    yellow     = "#F1FA8C"
+    selection = "#44475A"
+    comment = "#6272A4"
+    cyan = "#8BE9FD"
+    green = "#50FA7B"
+    orange = "#FFB86C"
+    pink = "#FF79C6"
+    purple = "#BD93F9"
+    red = "#FF5555"
+    yellow = "#F1FA8C"
 
-    deletion   = "#8B080B"
+    deletion = "#8B080B"
 
     styles = {
-        Whitespace             : foreground         ,
+        Whitespace: foreground,
 
-        Comment                : comment            ,
-        Comment.Preproc        : pink               ,
+        Comment: comment,
+        Comment.Preproc: pink,
 
-        Generic                : foreground         ,
-        Generic.Deleted        : deletion           ,
-        Generic.Emph           : "underline"        ,
-        Generic.Heading        : "bold"             ,
-        Generic.Inserted       : "bold"             ,
-        Generic.Output         : selection          ,
-        Generic.EmphStrong     : "underline"        ,
-        Generic.Subheading     : "bold"             ,
+        Generic: foreground,
+        Generic.Deleted: deletion,
+        Generic.Emph: "underline",
+        Generic.Heading: "bold",
+        Generic.Inserted: "bold",
+        Generic.Output: selection,
+        Generic.EmphStrong: "underline",
+        Generic.Subheading: "bold",
 
-        Error                  : foreground         ,
+        Error: foreground,
 
-        Keyword                : pink               ,
-        Keyword.Constant       : pink               ,
-        Keyword.Declaration    : cyan + " italic"   ,
-        Keyword.Namespace      : pink + " italic"   ,
-        Keyword.Type           : cyan               ,
+        Keyword: pink,
+        Keyword.Constant: pink,
+        Keyword.Declaration: cyan + " italic",
+        Keyword.Namespace: pink + " italic",
+        Keyword.Type: cyan,
 
-        Literal                : foreground         ,
-        Literal.Date           : foreground         ,
+        Literal: foreground,
+        Literal.Date: foreground,
 
-        Name                   : foreground         ,
-        Name.Attribute         : green              ,
-        Name.Builtin           : cyan               ,
-        Name.Class             : green              ,
-        Name.Function          : green              ,
-        Name.Label             : cyan + " italic"   ,
-        Name.Tag               : pink               ,
-        Name.Variable          : cyan + " italic"   ,
-        Name.Variable.Class    : cyan + " italic"   ,
-        Name.Variable.Global   : cyan + " italic"   ,
-        Name.Variable.Instance : cyan + " italic"   ,
+        Name: foreground,
+        Name.Attribute: green,
+        Name.Builtin: cyan,
+        Name.Class: green,
+        Name.Function: green,
+        Name.Label: cyan + " italic",
+        Name.Tag: pink,
+        Name.Variable: cyan + " italic",
+        Name.Variable.Class: cyan + " italic",
+        Name.Variable.Global: cyan + " italic",
+        Name.Variable.Instance: cyan + " italic",
 
-        Number                 : orange             ,
+        Number: orange,
 
-        Operator               : pink               ,
+        Operator: pink,
 
-        Other                  : foreground         ,
+        Other: foreground,
 
-        Punctuation            : foreground         ,
+        Punctuation: foreground,
 
-        String                 : purple             ,
+        String: purple,
 
-        Text                   : foreground         ,
+        Text: foreground,
     }
