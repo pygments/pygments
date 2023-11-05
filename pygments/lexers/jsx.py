@@ -18,6 +18,8 @@ __all__ = ['JsxLexer']
 
 
 class JsxLexer(JavascriptLexer):
+    """For JavaScript Syntax Extension (JSX)."""
+
     name = "JSX"
     aliases = ["jsx", "react"]
     filenames = ["*.jsx", "*.react"]
