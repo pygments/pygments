@@ -61,8 +61,8 @@ class DraculaStyle(Style):
 
         Keyword: pink,
         Keyword.Constant: pink,
-        Keyword.Declaration: cyan + "italic",
-        Keyword.Namespace: pink + "italic",
+        Keyword.Declaration: cyan + " italic",
+        Keyword.Namespace: pink + " italic",
         Keyword.Type: cyan,
 
         Literal: foreground,
@@ -73,12 +73,12 @@ class DraculaStyle(Style):
         Name.Builtin: cyan,
         Name.Class: green,
         Name.Function: green,
-        Name.Label: cyan + "italic",
+        Name.Label: cyan + " italic",
         Name.Tag: pink,
-        Name.Variable: cyan + "italic",
-        Name.Variable.Class: cyan + "italic",
-        Name.Variable.Global: cyan + "italic",
-        Name.Variable.Instance: cyan + "italic",
+        Name.Variable: cyan + " italic",
+        Name.Variable.Class: cyan + " italic",
+        Name.Variable.Global: cyan + " italic",
+        Name.Variable.Instance: cyan + " italic",
 
         Number: orange,
 
