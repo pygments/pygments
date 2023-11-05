@@ -1,0 +1,99 @@
+---input---
+if 1 + 1 == 2 then "yes!" else "no!"
+
+assert 1 + 1 == 2; "yes!"
+
+let x = "foo"; y = "bar"; in x + y
+
+with builtins; head [ 1 2 3 ]
+
+---tokens---
+'if'          Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'yes!'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'else'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'no!'         Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'assert'      Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'yes!'        Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'with'        Keyword
+' '           Text
+'builtins'    Name.Builtin
+';'           Punctuation
+' '           Text
+'head'        Text
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+'\n'          Text

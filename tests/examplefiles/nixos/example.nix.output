@@ -72,573 +72,186 @@
 
 'let'         Keyword
 '\n  '        Text
-'version ='   Literal.String.Symbol
+'version'     Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'.'           Literal.String.Double
-'4'           Literal.String.Double
-'.'           Literal.String.Double
-'4'           Literal.String.Double
+'1.4.4'       Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
-'mainSrc ='   Literal.String.Symbol
+'mainSrc'     Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'fetchurl'    Text
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'url ='       Literal.String.Symbol
+'url'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-':'           Literal.String.Double
-'/'           Literal.String.Double
-'/'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'x'           Literal.String.Double
-'.'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'g'           Literal.String.Double
-'/'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'w'           Literal.String.Double
-'n'           Literal.String.Double
-'l'           Literal.String.Double
-'o'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'/'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'x'           Literal.String.Double
-'-'           Literal.String.Double
+'http://nginx.org/download/nginx-' Literal.String.Double
 '${'          Literal.String.Interpol
 'version'     Text
 '}'           Literal.String.Interpol
-'.'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'.'           Literal.String.Double
-'g'           Literal.String.Double
-'z'           Literal.String.Double
+'.tar.gz'     Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'sha256 ='    Literal.String.Symbol
+'sha256'      Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'8'           Literal.String.Double
-'2'           Literal.String.Double
-'8'           Literal.String.Double
-'4'           Literal.String.Double
-'5'           Literal.String.Double
-'m'           Literal.String.Double
-'p'           Literal.String.Double
-'g'           Literal.String.Double
-'m'           Literal.String.Double
-'h'           Literal.String.Double
-'v'           Literal.String.Double
-'m'           Literal.String.Double
-'1'           Literal.String.Double
-'5'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'h'           Literal.String.Double
-'n'           Literal.String.Double
-'2'           Literal.String.Double
-'c'           Literal.String.Double
-'n'           Literal.String.Double
-'q'           Literal.String.Double
-'j'           Literal.String.Double
-'g'           Literal.String.Double
-'g'           Literal.String.Double
-'w'           Literal.String.Double
-'9'           Literal.String.Double
-'w'           Literal.String.Double
-'7'           Literal.String.Double
-'c'           Literal.String.Double
-'v'           Literal.String.Double
-'s'           Literal.String.Double
-'q'           Literal.String.Double
-'b'           Literal.String.Double
-'v'           Literal.String.Double
-'a'           Literal.String.Double
-'9'           Literal.String.Double
-'r'           Literal.String.Double
-'b'           Literal.String.Double
-'3'           Literal.String.Double
-'2'           Literal.String.Double
-'0'           Literal.String.Double
-'w'           Literal.String.Double
-'m'           Literal.String.Double
-'c'           Literal.String.Double
-'9'           Literal.String.Double
-'m'           Literal.String.Double
-'6'           Literal.String.Double
-'3'           Literal.String.Double
-'w'           Literal.String.Double
+'1f82845mpgmhvm151fhn2cnqjggw9w7cvsqbva9rb320wmc9m63w' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n  '      Text
-'rtmp-ext ='  Literal.String.Symbol
+'rtmp-ext'    Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'fetchgit'    Text
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'url ='       Literal.String.Symbol
+'url'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'git://github.com/arut/nginx-rtmp-module.git' Literal
 ';'           Punctuation
 '\n    '      Text
-'rev ='       Literal.String.Symbol
+'rev'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'c'           Literal.String.Double
-'f'           Literal.String.Double
-'b'           Literal.String.Double
-'7'           Literal.String.Double
-'a'           Literal.String.Double
-'e'           Literal.String.Double
-'b'           Literal.String.Double
-'5'           Literal.String.Double
-'8'           Literal.String.Double
-'2'           Literal.String.Double
-'7'           Literal.String.Double
-'8'           Literal.String.Double
-'9'           Literal.String.Double
-'f'           Literal.String.Double
-'3'           Literal.String.Double
-'b'           Literal.String.Double
-'1'           Literal.String.Double
-'5'           Literal.String.Double
-'a'           Literal.String.Double
-'0'           Literal.String.Double
-'3'           Literal.String.Double
-'d'           Literal.String.Double
-'a'           Literal.String.Double
-'5'           Literal.String.Double
-'b'           Literal.String.Double
-'6'           Literal.String.Double
-'6'           Literal.String.Double
-'2'           Literal.String.Double
-'d'           Literal.String.Double
-'1'           Literal.String.Double
-'8'           Literal.String.Double
-'1'           Literal.String.Double
-'1'           Literal.String.Double
-'e'           Literal.String.Double
-'2'           Literal.String.Double
-'a'           Literal.String.Double
-'3'           Literal.String.Double
-'f'           Literal.String.Double
-'1'           Literal.String.Double
+'1cfb7aeb582789f3b15a03da5b662d1811e2a3f1' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'sha256 ='    Literal.String.Symbol
+'sha256'      Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'0'           Literal.String.Double
-'3'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'f'           Literal.String.Double
-'d'           Literal.String.Double
-'2'           Literal.String.Double
-'l'           Literal.String.Double
-'8'           Literal.String.Double
-'m'           Literal.String.Double
-'z'           Literal.String.Double
-'s'           Literal.String.Double
-'j'           Literal.String.Double
-'w'           Literal.String.Double
-'x'           Literal.String.Double
-'8'           Literal.String.Double
-'9'           Literal.String.Double
-'6'           Literal.String.Double
-'l'           Literal.String.Double
-'0'           Literal.String.Double
-'7'           Literal.String.Double
-'r'           Literal.String.Double
-'d'           Literal.String.Double
-'r'           Literal.String.Double
-'w'           Literal.String.Double
-'5'           Literal.String.Double
-'j'           Literal.String.Double
-'n'           Literal.String.Double
-'7'           Literal.String.Double
-'j'           Literal.String.Double
-'j'           Literal.String.Double
-'f'           Literal.String.Double
-'d'           Literal.String.Double
-'i'           Literal.String.Double
-'y'           Literal.String.Double
-'l'           Literal.String.Double
-'5'           Literal.String.Double
-'7'           Literal.String.Double
-'2'           Literal.String.Double
-'y'           Literal.String.Double
-'b'           Literal.String.Double
-'9'           Literal.String.Double
-'j'           Literal.String.Double
-'f'           Literal.String.Double
-'r'           Literal.String.Double
-'n'           Literal.String.Double
-'k'           Literal.String.Double
-'4'           Literal.String.Double
-'8'           Literal.String.Double
-'f'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
+'03ikfd2l8mzsjwx896l07rdrw5jn7jjfdiyl572yb9jfrnk48fwi' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n  '      Text
-'dav-ext ='   Literal.String.Symbol
+'dav-ext'     Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'fetchgit'    Text
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'url ='       Literal.String.Symbol
+'url'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'git://github.com/arut/nginx-dav-ext-module.git' Literal
 ';'           Punctuation
 '\n    '      Text
-'rev ='       Literal.String.Symbol
+'rev'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'5'           Literal.String.Double
-'4'           Literal.String.Double
-'c'           Literal.String.Double
-'e'           Literal.String.Double
-'b'           Literal.String.Double
-'c'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'2'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'c'           Literal.String.Double
-'1'           Literal.String.Double
-'3'           Literal.String.Double
-'3'           Literal.String.Double
-'9'           Literal.String.Double
-'1'           Literal.String.Double
-'a'           Literal.String.Double
-'a'           Literal.String.Double
-'e'           Literal.String.Double
-'6'           Literal.String.Double
-'9'           Literal.String.Double
-'2'           Literal.String.Double
-'c'           Literal.String.Double
-'6'           Literal.String.Double
-'c'           Literal.String.Double
-'c'           Literal.String.Double
-'e'           Literal.String.Double
-'6'           Literal.String.Double
-'7'           Literal.String.Double
-'2'           Literal.String.Double
-'f'           Literal.String.Double
-'a'           Literal.String.Double
-'7'           Literal.String.Double
-'9'           Literal.String.Double
-'8'           Literal.String.Double
-'6'           Literal.String.Double
-'f'           Literal.String.Double
-'9'           Literal.String.Double
-'d'           Literal.String.Double
+'54cebc1f21fc13391aae692c6cce672fa7986f9d' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'sha256 ='    Literal.String.Symbol
+'sha256'      Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'d'           Literal.String.Double
-'v'           Literal.String.Double
-'p'           Literal.String.Double
-'q'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'g'           Literal.String.Double
-'5'           Literal.String.Double
-'r'           Literal.String.Double
-'s'           Literal.String.Double
-'l'           Literal.String.Double
-'n'           Literal.String.Double
-'l'           Literal.String.Double
-'0'           Literal.String.Double
-'5'           Literal.String.Double
-'z'           Literal.String.Double
-'8'           Literal.String.Double
-'j'           Literal.String.Double
-'c'           Literal.String.Double
-'3'           Literal.String.Double
-'9'           Literal.String.Double
-'s'           Literal.String.Double
-'g'           Literal.String.Double
-'n'           Literal.String.Double
-'v'           Literal.String.Double
-'h'           Literal.String.Double
-'3'           Literal.String.Double
-'a'           Literal.String.Double
-'k'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'9'           Literal.String.Double
-'q'           Literal.String.Double
-'x'           Literal.String.Double
-'f'           Literal.String.Double
-'l'           Literal.String.Double
-'0'           Literal.String.Double
-'3'           Literal.String.Double
-'3'           Literal.String.Double
-'a'           Literal.String.Double
-'k'           Literal.String.Double
-'p'           Literal.String.Double
-'c'           Literal.String.Double
-'z'           Literal.String.Double
-'q'           Literal.String.Double
-'1'           Literal.String.Double
-'b'           Literal.String.Double
-'h'           Literal.String.Double
-'8'           Literal.String.Double
-'n'           Literal.String.Double
-'q'           Literal.String.Double
+'1dvpq1fg5rslnl05z8jc39sgnvh3akam9qxfl033akpczq1bh8nq' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n  '      Text
-'syslog-ext =' Literal.String.Symbol
+'syslog-ext'  Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'fetchgit'    Text
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'url ='       Literal.String.Symbol
+'url'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'https://github.com/yaoweibin/nginx_syslog_patch.git' Literal
 ';'           Punctuation
 '\n    '      Text
-'rev ='       Literal.String.Symbol
+'rev'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'6'           Literal.String.Double
-'5'           Literal.String.Double
-'a'           Literal.String.Double
-'f'           Literal.String.Double
-'f'           Literal.String.Double
-'d'           Literal.String.Double
-'9'           Literal.String.Double
-'7'           Literal.String.Double
-'4'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'0'           Literal.String.Double
-'e'           Literal.String.Double
-'3'           Literal.String.Double
-'0'           Literal.String.Double
-'c'           Literal.String.Double
-'4'           Literal.String.Double
-'c'           Literal.String.Double
-'8'           Literal.String.Double
-'2'           Literal.String.Double
-'2'           Literal.String.Double
-'5'           Literal.String.Double
-'d'           Literal.String.Double
-'a'           Literal.String.Double
-'5'           Literal.String.Double
-'e'           Literal.String.Double
-'4'           Literal.String.Double
-'8'           Literal.String.Double
-'7'           Literal.String.Double
-'d'           Literal.String.Double
-'3'           Literal.String.Double
-'3'           Literal.String.Double
-'8'           Literal.String.Double
-'3'           Literal.String.Double
-'2'           Literal.String.Double
-'a'           Literal.String.Double
-'c'           Literal.String.Double
-'a'           Literal.String.Double
-'3'           Literal.String.Double
+'165affd9741f0e30c4c8225da5e487d33832aca3' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'sha256 ='    Literal.String.Symbol
+'sha256'      Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'4'           Literal.String.Double
-'d'           Literal.String.Double
-'k'           Literal.String.Double
-'k'           Literal.String.Double
-'a'           Literal.String.Double
-'f'           Literal.String.Double
-'j'           Literal.String.Double
-'n'           Literal.String.Double
-'b'           Literal.String.Double
-'a'           Literal.String.Double
-'p'           Literal.String.Double
-'p'           Literal.String.Double
-'6'           Literal.String.Double
-'j'           Literal.String.Double
-'n'           Literal.String.Double
-'v'           Literal.String.Double
-'r'           Literal.String.Double
-'j'           Literal.String.Double
-'g'           Literal.String.Double
-'9'           Literal.String.Double
-'i'           Literal.String.Double
-'p'           Literal.String.Double
-'4'           Literal.String.Double
-'6'           Literal.String.Double
-'j'           Literal.String.Double
-'0'           Literal.String.Double
-'0'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'8'           Literal.String.Double
-'p'           Literal.String.Double
-'q'           Literal.String.Double
-'c'           Literal.String.Double
-'2'           Literal.String.Double
-'g'           Literal.String.Double
-'7'           Literal.String.Double
-'3'           Literal.String.Double
-'7'           Literal.String.Double
-'4'           Literal.String.Double
-'z'           Literal.String.Double
-'9'           Literal.String.Double
-'a'           Literal.String.Double
-'j'           Literal.String.Double
-'7'           Literal.String.Double
-'h'           Literal.String.Double
-'r'           Literal.String.Double
-'v'           Literal.String.Double
-'d'           Literal.String.Double
-'v'           Literal.String.Double
-'h'           Literal.String.Double
-'s'           Literal.String.Double
+'14dkkafjnbapp6jnvrjg9ip46j00cr8pqc2g7374z9aj7hrvdvhs' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n  '      Text
-'moreheaders-ext =' Literal.String.Symbol
+'moreheaders-ext' Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'fetchgit'    Text
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'url ='       Literal.String.Symbol
+'url'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'https://github.com/agentzh/headers-more-nginx-module.git' Literal
 ';'           Punctuation
 '\n    '      Text
-'rev ='       Literal.String.Symbol
+'rev'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'f'           Literal.String.Double
-'s'           Literal.String.Double
-'/'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'g'           Literal.String.Double
-'s'           Literal.String.Double
-'/'           Literal.String.Double
-'v'           Literal.String.Double
-'0'           Literal.String.Double
-'.'           Literal.String.Double
-'2'           Literal.String.Double
-'3'           Literal.String.Double
+'refs/tags/v0.23' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'sha256 ='    Literal.String.Symbol
+'sha256'      Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'1'           Literal.String.Double
-'2'           Literal.String.Double
-'p'           Literal.String.Double
-'b'           Literal.String.Double
-'j'           Literal.String.Double
-'g'           Literal.String.Double
-'s'           Literal.String.Double
-'x'           Literal.String.Double
-'n'           Literal.String.Double
-'v'           Literal.String.Double
-'c'           Literal.String.Double
-'f'           Literal.String.Double
-'2'           Literal.String.Double
-'f'           Literal.String.Double
-'f'           Literal.String.Double
-'2'           Literal.String.Double
-'i'           Literal.String.Double
-'2'           Literal.String.Double
-'q'           Literal.String.Double
-'d'           Literal.String.Double
-'n'           Literal.String.Double
-'3'           Literal.String.Double
-'9'           Literal.String.Double
-'q'           Literal.String.Double
-'4'           Literal.String.Double
-'c'           Literal.String.Double
-'m'           Literal.String.Double
-'5'           Literal.String.Double
-'c'           Literal.String.Double
-'z'           Literal.String.Double
-'l'           Literal.String.Double
-'g'           Literal.String.Double
-'r'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'9'           Literal.String.Double
-'6'           Literal.String.Double
-'j'           Literal.String.Double
-'8'           Literal.String.Double
-'m'           Literal.String.Double
-'l'           Literal.String.Double
-'4'           Literal.String.Double
-'c'           Literal.String.Double
-'g'           Literal.String.Double
-'x'           Literal.String.Double
-'v'           Literal.String.Double
-'n'           Literal.String.Double
-'b'           Literal.String.Double
-'d'           Literal.String.Double
-'h'           Literal.String.Double
-'3'           Literal.String.Double
-'9'           Literal.String.Double
+'12pbjgsxnvcf2ff2i2qdn39q4cm5czlgrng96j8ml4cgxvnbdh39' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
@@ -657,27 +270,28 @@
 ' '           Text
 '{'           Punctuation
 '\n  '        Text
-'name ='      Literal.String.Symbol
+'name'        Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'x'           Literal.String.Double
-'-'           Literal.String.Double
+'nginx-'      Literal.String.Double
 '${'          Literal.String.Interpol
 'version'     Text
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n  '        Text
-'src ='       Literal.String.Symbol
+'src'         Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'mainSrc'     Text
 ';'           Punctuation
 '\n\n  '      Text
-'buildInputs =' Literal.String.Symbol
+'buildInputs' Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '['           Punctuation
 ' '           Text
@@ -706,7 +320,9 @@
 'expat'       Text
 ';'           Punctuation
 '\n\n  '      Text
-'patches ='   Literal.String.Symbol
+'patches'     Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'if'          Keyword
 ' '           Text
@@ -720,25 +336,7 @@
 '${'          Literal.String.Interpol
 'syslog-ext'  Text
 '}'           Literal.String.Interpol
-'/'           Literal.String.Double
-'s'           Literal.String.Double
-'y'           Literal.String.Double
-'s'           Literal.String.Double
-'l'           Literal.String.Double
-'o'           Literal.String.Double
-'g'           Literal.String.Double
-'_'           Literal.String.Double
-'1'           Literal.String.Double
-'.'           Literal.String.Double
-'4'           Literal.String.Double
-'.'           Literal.String.Double
-'0'           Literal.String.Double
-'.'           Literal.String.Double
-'p'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-'c'           Literal.String.Double
-'h'           Literal.String.Double
+'/syslog_1.4.0.patch' Literal.String.Double
 '"'           Literal.String.Double
 ' '           Text
 ']'           Punctuation
@@ -749,215 +347,42 @@
 ']'           Punctuation
 ';'           Punctuation
 '\n\n  '      Text
-'configureFlags =' Literal.String.Symbol
+'configureFlags' Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '['           Punctuation
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'s'           Literal.String.Double
-'s'           Literal.String.Double
-'l'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_ssl_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'s'           Literal.String.Double
-'p'           Literal.String.Double
-'d'           Literal.String.Double
-'y'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_spdy_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'x'           Literal.String.Double
-'s'           Literal.String.Double
-'l'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_xslt_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'s'           Literal.String.Double
-'u'           Literal.String.Double
-'b'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_sub_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'d'           Literal.String.Double
-'a'           Literal.String.Double
-'v'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_dav_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'g'           Literal.String.Double
-'z'           Literal.String.Double
-'i'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_gzip_static_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'t'           Literal.String.Double
-'p'           Literal.String.Double
-'_'           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'u'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'_'           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'k'           Literal.String.Double
-'_'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
+'--with-http_secure_link_module' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'-'           Literal.String.Double
-'i'           Literal.String.Double
-'p'           Literal.String.Double
-'v'           Literal.String.Double
-'6'           Literal.String.Double
+'--with-ipv6' Literal.String.Double
 '"'           Literal.String.Double
 '\n    '      Text
 '# Install destination problems' Comment.Single
@@ -977,19 +402,7 @@
 'rtmp'        Text
 ' '           Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'-'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'='           Literal.String.Double
+'--add-module=' Literal.String.Double
 '${'          Literal.String.Interpol
 'rtmp-ext'    Text
 '}'           Literal.String.Interpol
@@ -1006,19 +419,7 @@
 'fullWebDAV'  Text
 ' '           Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'-'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'='           Literal.String.Double
+'--add-module=' Literal.String.Double
 '${'          Literal.String.Interpol
 'dav-ext'     Text
 '}'           Literal.String.Interpol
@@ -1035,19 +436,7 @@
 'syslog'      Text
 ' '           Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'-'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'='           Literal.String.Double
+'--add-module=' Literal.String.Double
 '${'          Literal.String.Interpol
 'syslog-ext'  Text
 '}'           Literal.String.Interpol
@@ -1064,57 +453,48 @@
 'moreheaders' Text
 ' '           Text
 '"'           Literal.String.Double
-'-'           Literal.String.Double
-'-'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'-'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'d'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'='           Literal.String.Double
+'--add-module=' Literal.String.Double
 '${'          Literal.String.Interpol
 'moreheaders-ext' Text
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n\n  '      Text
-'preConfigure =' Literal.String.Symbol
+'preConfigure' Literal.String.Symbol
 ' '           Text
-"''"          Literal.String.Single
-'\n    export NIX_CFLAGS_COMPILE="' Literal.String.Single
-'$'           Literal.String.Single
-'NIX_CFLAGS_COMPILE -I' Literal.String.Single
+'='           Operator
+' '           Text
+"''"          Literal.String.Multiline
+'\n    export NIX_CFLAGS_COMPILE="' Literal.String.Multiline
+'$N'          Literal.String.Multiline
+'IX_CFLAGS_COMPILE -I' Literal.String.Multiline
 '${'          Literal.String.Interpol
 'libxml2'     Text
 ' '           Text
 '}'           Literal.String.Interpol
-'/include/libxml2"\n  ' Literal.String.Single
-"''"          Literal.String.Single
+'/include/libxml2"\n  ' Literal.String.Multiline
+"''"          Literal.String.Multiline
 ';'           Punctuation
 '\n\n  '      Text
 '# escape example' Comment.Single
 '\n  '        Text
-'postInstall =' Literal.String.Symbol
+'postInstall' Literal.String.Symbol
 ' '           Text
-"''"          Literal.String.Single
-'\n    mv '   Literal.String.Single
-'$'           Literal.String.Single
-'out/sbin '   Literal.String.Single
-"'"           Literal.String.Single
-'foo'         Literal.String.Single
-"'"           Literal.String.Single
-' '           Literal.String.Single
-'$'           Literal.String.Single
-'out/bin '    Literal.String.Single
+'='           Operator
+' '           Text
+"''"          Literal.String.Multiline
+'\n    mv '   Literal.String.Multiline
+'$o'          Literal.String.Multiline
+'ut/sbin '    Literal.String.Multiline
+"'f"          Literal.String.Multiline
+'oo'          Literal.String.Multiline
+"' "          Literal.String.Multiline
+'$o'          Literal.String.Multiline
+'ut/bin '     Literal.String.Multiline
 "'''"         Literal.String.Escape
-' '           Literal.String.Single
-"''${"        Literal.String.Escape
-'\n   '       Literal.String.Single
+' '           Literal.String.Multiline
+"''$"         Literal.String.Escape
+'{\n   '      Literal.String.Multiline
 '${'          Literal.String.Interpol
 ' '           Text
 'if'          Keyword
@@ -1135,62 +515,28 @@
 'false'       Name.Constant
 ' '           Text
 '}'           Literal.String.Interpol
-'\n  '        Literal.String.Single
-"''"          Literal.String.Single
+'\n  '        Literal.String.Multiline
+"''"          Literal.String.Multiline
 ';'           Punctuation
 '\n\n  '      Text
-'meta ='      Literal.String.Symbol
+'meta'        Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '{'           Punctuation
 '\n    '      Text
-'description =' Literal.String.Symbol
+'description' Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '"'           Literal.String.Double
-'A'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'p'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'x'           Literal.String.Double
-'y'           Literal.String.Double
-' '           Literal.String.Double
-'a'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'e'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'w'           Literal.String.Double
-'e'           Literal.String.Double
-'b'           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
+'A reverse proxy and lightweight webserver' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
 '\n    '      Text
-'maintainers =' Literal.String.Symbol
+'maintainers' Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 '['           Punctuation
 ' '           Text
@@ -1204,7 +550,9 @@
 ']'           Punctuation
 ';'           Punctuation
 '\n    '      Text
-'platforms =' Literal.String.Symbol
+'platforms'   Literal.String.Symbol
+' '           Text
+'='           Operator
 ' '           Text
 'stdenv'      Text
 '.'           Operator

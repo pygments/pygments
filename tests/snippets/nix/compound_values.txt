@@ -1,0 +1,140 @@
+---input---
+{ x = 1; y = 2; }
+
+{ foo.bar = 1; }
+
+rec { x = "foo"; y = x + "bar"; }
+
+[ "foo" "bar" "baz" ]
+
+[ 1 2 3 ]
+
+[ (f 1) { a = 1; b = 2; } [ "c" ] ]
+
+---tokens---
+'{'           Punctuation
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'{'           Punctuation
+' '           Text
+'foo'         Text
+'.'           Operator
+'bar'         Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'rec'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'['           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'baz'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'['           Punctuation
+' '           Text
+'('           Punctuation
+'f'           Text
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'a'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'b'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+']'           Punctuation
+' '           Text
+']'           Punctuation
+'\n'          Text

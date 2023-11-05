@@ -1,0 +1,219 @@
+---input---
+x: x + 1
+
+
+A function that expects an integer and returns it increased by 1
+
+x: y: x + y
+
+(x: x + 1) 100
+
+let inc = x: x + 1; in inc (inc (inc 100))
+
+{ x, y }: x + y
+
+{ x, y ? "bar" }: x + y
+
+{ x, y, ... }: x + y
+
+{ x, y } @ args: x + y
+
+args @ { x, y }: x + y
+
+---tokens---
+'x'           Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n\n'      Text
+
+'A'           Text
+' '           Text
+'function'    Text
+' '           Text
+'that'        Text
+' '           Text
+'expects'     Text
+' '           Text
+'an'          Text
+' '           Text
+'integer'     Text
+' '           Text
+'and'         Operator.Word
+' '           Text
+'returns'     Text
+' '           Text
+'it'          Text
+' '           Text
+'increased'   Text
+' '           Text
+'by'          Text
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n'        Text
+
+'x'           Text
+':'           Punctuation
+' '           Text
+'y'           Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'('           Punctuation
+'x'           Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'100'         Literal.Number.Integer
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'inc'         Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'x'           Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'inc'         Text
+' '           Text
+'('           Punctuation
+'inc'         Text
+' '           Text
+'('           Punctuation
+'inc'         Text
+' '           Text
+'100'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'{'           Punctuation
+' '           Text
+'x'           Text
+','           Punctuation
+' '           Text
+'y'           Text
+' '           Text
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'{'           Punctuation
+' '           Text
+'x'           Text
+','           Punctuation
+' '           Text
+'y'           Text
+' '           Text
+'?'           Operator
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'{'           Punctuation
+' '           Text
+'x'           Text
+','           Punctuation
+' '           Text
+'y'           Text
+','           Punctuation
+' '           Text
+'.'           Operator
+'.'           Operator
+'.'           Operator
+' '           Text
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'{'           Punctuation
+' '           Text
+'x'           Text
+','           Punctuation
+' '           Text
+'y'           Text
+' '           Text
+'}'           Punctuation
+' '           Text
+'@'           Punctuation
+' '           Text
+'args'        Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n\n'        Text
+
+'args'        Text
+' '           Text
+'@'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Text
+','           Punctuation
+' '           Text
+'y'           Text
+' '           Text
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Text
+'\n'          Text

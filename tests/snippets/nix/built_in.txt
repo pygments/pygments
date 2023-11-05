@@ -1,0 +1,34 @@
+---input---
+import ./foo.nix
+
+map (x: x + x) [ 1 2 3 ]
+
+---tokens---
+'import'      Name.Builtin
+' '           Text
+'./foo.nix'   Literal
+'\n\n'        Text
+
+'map'         Name.Builtin
+' '           Text
+'('           Punctuation
+'x'           Text
+':'           Punctuation
+' '           Text
+'x'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'x'           Text
+')'           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+'\n'          Text
