@@ -2,15 +2,19 @@
 Plugins
 =======
 
-If you want to extend Pygments without hacking the sources, but want to
-use the lexer/formatter/style/filter lookup functions (`lexers.get_lexer_by_name`
-et al.), you can use `setuptools`_ entrypoints to add new lexers, formatters
-or styles as if they were in the Pygments core.
+If you want to extend Pygments without hacking the sources, you can use
+package `entry points`_ to add new lexers, formatters, styles or filters
+as if they were in the Pygments core.
 
-.. _setuptools: https://pypi.org/project/setuptools/
+.. _entry points: https://packaging.python.org/en/latest/guides/creating-and-discovering-plugins/
 
-That means you can use your highlighter modules with the `pygmentize` script,
-which relies on the mentioned functions.
+The idea is to create a Python package, declare how extends Pygments,
+and install it.
+
+This will allow you to use your custom lexers/... with the
+``pygmentize`` command. They will also be found by the lookup functions
+(``lexers.get_lexer_by_name`` et al.), which makes them available to
+tools such as Sphinx, mkdocs, ...
 
 
 Plugin discovery
@@ -42,76 +46,13 @@ requirement, for example, with ``pip``:
 .. _pkg_resources: https://setuptools.pypa.io/en/latest/pkg_resources.html
 
 
-Defining plugins through entrypoints
-====================================
+Defining plugins through entry points
+=====================================
 
-Here is a list of setuptools entrypoints that Pygments understands:
+We have created a repository with a project template for defining your
+own plugins.  It is available at
 
-`pygments.lexers`
-
-    This entrypoint is used for adding new lexers to the Pygments core.
-    The name of the entrypoint values doesn't really matter, Pygments extracts
-    required metadata from the class definition:
-
-    .. sourcecode:: ini
-
-        [pygments.lexers]
-        yourlexer = yourmodule:YourLexer
-
-    Note that you have to define ``name``, ``aliases`` and ``filename``
-    attributes so that you can use the highlighter from the command line:
-
-    .. sourcecode:: python
-
-        class YourLexer(...):
-            name = 'Name Of Your Lexer'
-            aliases = ['alias']
-            filenames = ['*.ext']
-
-
-`pygments.formatters`
-
-    You can use this entrypoint to add new formatters to Pygments. The
-    name of an entrypoint item is the name of the formatter. If you
-    prefix the name with a slash it's used as a filename pattern:
-
-    .. sourcecode:: ini
-
-        [pygments.formatters]
-        yourformatter = yourmodule:YourFormatter
-        /.ext = yourmodule:YourFormatter
-
-
-`pygments.styles`
-
-    To add a new style you can use this entrypoint. The name of the entrypoint
-    is the name of the style:
-
-    .. sourcecode:: ini
-
-        [pygments.styles]
-        yourstyle = yourmodule:YourStyle
-
-
-`pygments.filters`
-
-    Use this entrypoint to register a new filter. The name of the
-    entrypoint is the name of the filter:
-
-    .. sourcecode:: ini
-
-        [pygments.filters]
-        yourfilter = yourmodule:YourFilter
-
-
-How To Use Entrypoints
-======================
-
-This documentation doesn't explain how to use those entrypoints because this is
-covered in the `setuptools documentation`_. That page should cover everything
-you need to write a plugin.
-
-.. _setuptools documentation: https://setuptools.readthedocs.io/en/latest/
+https://github.com/pygments/pygments-plugin-scaffolding
 
 
 Extending The Core
