@@ -14,7 +14,11 @@ import os
 
 import pygments.styles
 import pygments.token
-import wcag_contrast_ratio
+try:
+    import wcag_contrast_ratio
+except ImportError:
+    wcag_contrast_ratio = None
+import unittest
 
 JSON_FILENAME = os.path.join(os.path.dirname(__file__), "min_contrasts.json")
 WCAG_AA_CONTRAST = 4.5
@@ -67,6 +71,8 @@ def update_json():
         )
 
 
+@unittest.skipIf(wcag_contrast_ratio is None,
+                 "wcag-contrast-ratio has not been installed")
 def test_contrasts(fail_if_improved=True):
     with open(JSON_FILENAME, encoding="utf-8") as f:
         previous_contrasts = json.load(f)
