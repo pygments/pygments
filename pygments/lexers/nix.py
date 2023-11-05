@@ -105,9 +105,9 @@ class NixLexer(RegexLexer):
             (r"''(\$|'|\\n|\\r|\\t|\\)", String.Escape),
             (r"''", String.Multiline, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r"[^''\$]+", String.Multiline),
+            (r"[^'\$]+", String.Multiline),
             (r"\$[^\{']", String.Multiline),
-            (r'\'[^\']', String.Multiline),
+            (r"'[^']", String.Multiline),
             (r"\$(?=')", String.Multiline),
         ],
         'doublequote': [
