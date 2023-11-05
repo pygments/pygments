@@ -18,23 +18,29 @@ from pygments.token import Keyword, Name, Comment, String, Error, Literal, \
 
 __all__ = ['DraculaStyle']
 
+background = "#282a36"
+foreground = "#f8f8f2"
+selection = "#44475a"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+
+deletion = "#8b080b"
 
 class DraculaStyle(Style):
     name = 'dracula'
 
-    background = "#282A36"
-    foreground = "#F8F8F2"
-    selection = "#44475A"
-    comment = "#6272A4"
-    cyan = "#8BE9FD"
-    green = "#50FA7B"
-    orange = "#FFB86C"
-    pink = "#FF79C6"
-    purple = "#BD93F9"
-    red = "#FF5555"
-    yellow = "#F1FA8C"
-
-    deletion = "#8B080B"
+    background_color = background
+    highlight_color = selection
+    line_number_color = yellow
+    line_number_background_color = selection
+    line_number_special_color = green
+    line_number_special_background_color = comment
 
     styles = {
         Whitespace: foreground,
@@ -55,8 +61,8 @@ class DraculaStyle(Style):
 
         Keyword: pink,
         Keyword.Constant: pink,
-        Keyword.Declaration: cyan + " italic",
-        Keyword.Namespace: pink + " italic",
+        Keyword.Declaration: cyan + "italic",
+        Keyword.Namespace: pink + "italic",
         Keyword.Type: cyan,
 
         Literal: foreground,
@@ -67,12 +73,12 @@ class DraculaStyle(Style):
         Name.Builtin: cyan,
         Name.Class: green,
         Name.Function: green,
-        Name.Label: cyan + " italic",
+        Name.Label: cyan + "italic",
         Name.Tag: pink,
-        Name.Variable: cyan + " italic",
-        Name.Variable.Class: cyan + " italic",
-        Name.Variable.Global: cyan + " italic",
-        Name.Variable.Instance: cyan + " italic",
+        Name.Variable: cyan + "italic",
+        Name.Variable.Class: cyan + "italic",
+        Name.Variable.Global: cyan + "italic",
+        Name.Variable.Instance: cyan + "italic",
 
         Number: orange,
 
