@@ -59,7 +59,7 @@ class TactLexer(RegexLexer):
         ],
         'struct-header': [
             include('comments'),
-            (r'\b[\w]+\b', Name.Entity),
+            (r'\b[\w]+\b', Name.Class),
             (r'\(((?:\b0(?:x|X)[0-9a-fA-F][0-9a-fA-F_]*\b)|(?:\b[0-9]+\b))\)', Number),
         ],
         'struct-body-in': [
