@@ -171,7 +171,8 @@ class KustoLexer(RegexLexer):
             ),
             (
                 # Numbers can take the form 1, .1, 1., 1.1, 1.1111, etc.
-                r"([0-9]*[.])?[0-9]+([.][0-9]*)?",
+                (r"\d+[.]\d*|[.]\d+", Number.Float),
+                (r"\d+", Number.Integer),
                 Number,
             ),
             (
