@@ -188,16 +188,16 @@ class KustoLexer(RegexLexer):
                 "double_string",
             ),
             (
-                # Verbatum strings can begin with @'...
+                # Verbatim strings can begin with @'...
                 r"@'",
                 String,
-                "single_verbatum",
+                "single_verbatim",
             ),
             (
                 # ...or with @"
                 r'@"',
                 String,
-                "double_verbatum",
+                "double_verbatim",
             ),
             (
                 # Multi-line strings begin with ```
@@ -222,12 +222,12 @@ class KustoLexer(RegexLexer):
             # Presume, for simplicity, that any single character can be escaped
             (r".", String.Escape, "#pop"),
         ],
-        "single_verbatum": [
+        "single_verbatim": [
             # This string literal ends with the first single quote
             (r"[^']+", String),
             (r"'", String, "#pop"),
         ],
-        "double_verbatum": [
+        "double_verbatim": [
             # This string literal ends with the first double quote
             (r'[^"]+', String),
             (r'"', String, "#pop"),

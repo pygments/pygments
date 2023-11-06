@@ -246,9 +246,9 @@
 '\n'          Text.Whitespace
 
 "@'"          Literal.String
-'single-verbatum' Literal.String
+'single-verbatim' Literal.String
 "'"           Literal.String
 '\n'          Text.Whitespace
 
 '@"'          Literal.String
-'double-verbatum\n\n// name\nmyColumnName123\n' Literal.String
+'double-verbatim\n\n// name\nmyColumnName123\n' Literal.String
