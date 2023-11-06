@@ -166,7 +166,7 @@ class KustoLexer(RegexLexer):
             (
                 # Names begin with a letter or underscore,
                 # followed by zero or more letters, underscores or digits
-                r"[a-zA-Z_][a-zA-Z_0-9]*",
+                r"[^\W\d]\w*",
                 Name,
             ),
             (
