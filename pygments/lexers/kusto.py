@@ -9,15 +9,8 @@
 """
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import (
-    Comment,
-    Keyword,
-    Name,
-    Number,
-    Punctuation,
-    String,
-    Whitespace,
-)
+from pygments.token import (Comment, Keyword, Name, Number, Punctuation,
+                            String, Whitespace)
 
 __all__ = ["KustoLexer"]
 
@@ -164,17 +157,14 @@ class KustoLexer(RegexLexer):
                 Punctuation,
             ),
             (
-                # Names begin with a letter or underscore,
-                # followed by zero or more letters, underscores or digits
+                # Names begin with a non-numeric word character
+                # followed by zero or more word characters
                 r"[^\W\d]\w*",
                 Name,
             ),
-            (
-                # Numbers can take the form 1, .1, 1., 1.1, 1.1111, etc.
-                (r"\d+[.]\d*|[.]\d+", Number.Float),
-                (r"\d+", Number.Integer),
-                Number,
-            ),
+            # Numbers can take the form 1, .1, 1., 1.1, 1.1111, etc.
+            (r"\d+[.]\d*|[.]\d+", Number.Float),
+            (r"\d+", Number.Integer),
             (
                 # String literals can begin with '...
                 r"'",
