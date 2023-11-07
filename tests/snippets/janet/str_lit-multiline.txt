@@ -3,5 +3,7 @@
 and what is this one?"
 
 ---tokens---
-'"this is the first line\nand what is this one?"' Literal.String
+'"'           Literal.String
+'this is the first line\nand what is this one?' Literal.String
+'"'           Literal.String
 '\n'          Text.Whitespace

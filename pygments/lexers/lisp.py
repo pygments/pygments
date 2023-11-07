@@ -3113,7 +3113,7 @@ class JanetLexer(RegexLexer):
              Number.Float),
 
             # strings and buffers
-            (r'@?"(\\.|[^"])*"', String),
+            (r'@?"', String, 'string'),
 
             # long-strings and long-buffers
             #
@@ -3154,5 +3154,12 @@ class JanetLexer(RegexLexer):
 
             # other symbols
             (valid_name, Name.Variable),
+        ],
+        'string': [
+            (r'\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{6})', String.Escape),
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+            (r'\\.', String.Escape),
+            (r'"', String, '#pop'),
+            (r'[^\\"]+', String),
         ]
     }

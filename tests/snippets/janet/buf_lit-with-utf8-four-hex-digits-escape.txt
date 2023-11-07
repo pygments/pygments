@@ -2,5 +2,7 @@
 @"\u89ee"
 
 ---tokens---
-'@"\\u89ee"'  Literal.String
+'@"'          Literal.String
+'\\u89ee'     Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace

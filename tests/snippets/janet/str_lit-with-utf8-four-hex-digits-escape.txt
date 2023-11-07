@@ -2,5 +2,7 @@
 "\u23f1"
 
 ---tokens---
-'"\\u23f1"'   Literal.String
+'"'           Literal.String
+'\\u23f1'     Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace

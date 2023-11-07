@@ -2,5 +2,7 @@
 @"good bye"
 
 ---tokens---
-'@"good bye"' Literal.String
+'@"'          Literal.String
+'good bye'    Literal.String
+'"'           Literal.String
 '\n'          Text.Whitespace

@@ -2,5 +2,7 @@
 @"\x0f"
 
 ---tokens---
-'@"\\x0f"'    Literal.String
+'@"'          Literal.String
+'\\x0f'       Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace

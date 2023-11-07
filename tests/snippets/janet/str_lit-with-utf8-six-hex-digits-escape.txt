@@ -2,5 +2,7 @@
 "\U01F609"
 
 ---tokens---
-'"\\U01F609"' Literal.String
+'"'           Literal.String
+'\\U01F609'   Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace

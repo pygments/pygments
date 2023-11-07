@@ -2,5 +2,7 @@
 @"\U01f6aa"
 
 ---tokens---
-'@"\\U01f6aa"' Literal.String
+'@"'          Literal.String
+'\\U01f6aa'   Literal.String.Escape
+'"'           Literal.String
 '\n'          Text.Whitespace
