@@ -3070,14 +3070,7 @@ class JanetLexer(RegexLexer):
     _radix_exp = r'&[+-]?[0-9a-zA-Z]+'
 
     # 2af3__bee_
-    _hex_unit = r'''
-       [0-9a-fA-F]+      # one or more hex digits
-       (                 # followed by zero or more groups of:
-        _*                 # zero or more underscores
-        [0-9a-fA-F]+       # one or more hex digits
-        _*                 # zero or more underscores
-       )*
-    '''
+    _hex_unit = r'[0-9a-fA-F]+[0-9a-fA-F_]*'
 
     # 12_000__
     _dec_unit = r'''
