@@ -3112,20 +3112,6 @@ class JanetLexer(RegexLexer):
       )?
     '''
 
-    _collection_delims = r'''(?x)
-      (
-         @\( |                   # arrays and tuples
-          \( |
-          \) |
-         @\[ |
-          \[ |
-          \] |
-         @\{ |                   # tables and structs
-          \{ |
-          \}
-      )
-    '''
-
     tokens = {
         'root': [
             (r'#.*$', Comment.Single),
@@ -3169,7 +3155,11 @@ class JanetLexer(RegexLexer):
             (r"('|~|,|;|\|)", Operator),
 
             # collection delimiters
-            (_collection_delims, Punctuation),
+            #
+            #   @( ( )
+            #   @[ [ ]
+            #   @{ { }
+            (r'@?[(\[{]|[)\]}]', Punctuation),
 
             # constants
             (words(constants, suffix=_token_end), Keyword.Constants),
