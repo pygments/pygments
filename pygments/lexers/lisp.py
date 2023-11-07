@@ -3155,7 +3155,9 @@ class JanetLexer(RegexLexer):
             (r'@?(`+)(.|\n)+?\1', String),
 
             # things that hang out on front
-            (r"('|~|,|;|\|)", Operator),
+            #
+            #   ' ~ , ; |
+            (r"['~,;|]", Operator),
 
             # collection delimiters
             #
