@@ -3073,23 +3073,11 @@ class JanetLexer(RegexLexer):
     _hex_unit = r'[0-9a-fA-F]+[0-9a-fA-F_]*'
 
     # 12_000__
-    _dec_unit = r'''
-      [0-9]+             # one or more digits
-      (                  # followed by zero or more groups of:
-       _*                  # zero or more underscores
-       [0-9]+              # one or more digits
-       _*                  # zero or more underscores
-      )*
-    '''
+    _dec_unit = r'[0-9]+[0-9_]*'
 
     # E-23
-    _dec_exp_mb = r'''
-      (                    # optional group of:
-       [eE]                  # lower or uppercase e
-       [+-]?                 # optional sign
-       [0-9]+                # one or more digits
-      )?
-    '''
+    # lower or uppercase e, optional sign, one or more digits
+    _dec_exp = r'[eE][+-]?[0-9]+'
 
     tokens = {
         'root': [
@@ -3118,10 +3106,10 @@ class JanetLexer(RegexLexer):
              Number.Hex),
 
             # decimal number
-            (rf'(?x) [+-]? {_dec_unit} \. ({_dec_unit})? {_dec_exp_mb}',
+            (rf'(?x) [+-]? {_dec_unit} \. ({_dec_unit})? ({_dec_exp})?',
              Number.Float),
 
-            (rf'(?x) [+-]? (\.)? {_dec_unit} {_dec_exp_mb}',
+            (rf'(?x) [+-]? (\.)? {_dec_unit} ({_dec_exp})?',
              Number.Float),
 
             # strings and buffers
