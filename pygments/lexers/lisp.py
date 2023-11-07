@@ -3064,7 +3064,7 @@ class JanetLexer(RegexLexer):
 
     valid_name = rf'{_first_char}({_rest_char})*'
 
-    _radix_unit = r'[0-9a-zA-Z]+[0-9a-zA-Z_]*'
+    _radix_unit = r'[0-9a-zA-Z][0-9a-zA-Z_]*'
 
     # exponent marker, optional sign, one or more alphanumeric
     _radix_exp = r'&[+-]?[0-9a-zA-Z]+'
