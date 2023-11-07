@@ -10,6 +10,7 @@ Version 2.17.0
 - New lexers:
 
   * JSX (#2524)
+  * Kusto (#2552)
   * ldaprc (#2532)
   * LDIF (#2489)
   * PRQL (#2507, #2523, #2559)
@@ -37,6 +38,8 @@ Version 2.17.0
   dependencies for colored console output. See :doc:`cmdline` for more details.
 - Support more file types in ``autopygmentize`` script (#2513)
 - Change color of numbers in ``rrt`` style (#2526)
+- Fix error when trying to look up plugin formatters by file extension
+  of the output format (#2563)
 
 Version 2.16.1
 --------------
