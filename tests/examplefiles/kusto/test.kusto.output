@@ -233,15 +233,13 @@
 
 '"'           Literal.String
 'double-quoted' Literal.String
-'\\'          Literal.String.Escape
-'"'           Literal.String.Escape
+'\\"'         Literal.String.Escape
 '"'           Literal.String
 '\n'          Text.Whitespace
 
 "'"           Literal.String
 'single-quoted' Literal.String
-'\\'          Literal.String.Escape
-"'"           Literal.String.Escape
+"\\'"         Literal.String.Escape
 "'"           Literal.String
 '\n'          Text.Whitespace
 
