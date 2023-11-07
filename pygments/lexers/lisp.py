@@ -3118,13 +3118,13 @@ class JanetLexer(RegexLexer):
 
             # radix number
             (rf'''(?x)
-                  [+-]? [0-9][0-9]? r {_radix_unit} \. ({_radix_unit})?
+                  [+-]? [0-9]{{1,2}} r {_radix_unit} \. ({_radix_unit})?
                   {_radix_exp_mb}
                ''',
              Number),
 
             (rf'''(?x)
-                  [+-]? [0-9][0-9]? r (\.)? {_radix_unit}
+                  [+-]? [1-9]{{1,2}} r (\.)? {_radix_unit}
                   {_radix_exp_mb}
                ''',
              Number),
