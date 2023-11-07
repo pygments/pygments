@@ -3064,8 +3064,6 @@ class JanetLexer(RegexLexer):
 
     valid_name = _first_char + _following_chars_mb
 
-    _sign_mb = r'[+-]?'
-
     _radix_unit = r'''
       [0-9a-zA-Z]+                # one or more alphanumeric
       (                           # optional group of:
@@ -3075,10 +3073,10 @@ class JanetLexer(RegexLexer):
       )*
     '''
 
-    _radix_exp_mb = rf'''
+    _radix_exp_mb = r'''
       (
        &                            # exponent marker
-       {_sign_mb}                   # optional sign
+       [+-]?                        # optional sign
        [0-9a-zA-Z]+                 # one or more alphanumeric
       )?
     '''
@@ -3104,10 +3102,10 @@ class JanetLexer(RegexLexer):
     '''
 
     # E-23
-    _dec_exp_mb = rf'''
+    _dec_exp_mb = r'''
       (                    # optional group of:
        [eE]                  # lower or uppercase e
-       {_sign_mb}            # optional sign
+       [+-]?                 # optional sign
        [0-9]+                # one or more digits
       )?
     '''
@@ -3120,29 +3118,29 @@ class JanetLexer(RegexLexer):
 
             # radix number
             (rf'''(?x)
-                  {_sign_mb} [0-9][0-9]? r {_radix_unit} \. ({_radix_unit})?
+                  [+-]? [0-9][0-9]? r {_radix_unit} \. ({_radix_unit})?
                   {_radix_exp_mb}
                ''',
              Number),
 
             (rf'''(?x)
-                  {_sign_mb} [0-9][0-9]? r (\.)? {_radix_unit}
+                  [+-]? [0-9][0-9]? r (\.)? {_radix_unit}
                   {_radix_exp_mb}
                ''',
              Number),
 
             # hex number
-            (rf'(?x) {_sign_mb} 0x {_hex_unit} \. ({_hex_unit})?',
+            (rf'(?x) [+-]? 0x {_hex_unit} \. ({_hex_unit})?',
              Number.Hex),
 
-            (rf'(?x) {_sign_mb} 0x (\.)? {_hex_unit}',
+            (rf'(?x) [+-]? 0x (\.)? {_hex_unit}',
              Number.Hex),
 
             # decimal number
-            (rf'(?x) {_sign_mb} {_dec_unit} \. ({_dec_unit})? {_dec_exp_mb}',
+            (rf'(?x) [+-]? {_dec_unit} \. ({_dec_unit})? {_dec_exp_mb}',
              Number.Float),
 
-            (rf'(?x) {_sign_mb} (\.)? {_dec_unit} {_dec_exp_mb}',
+            (rf'(?x) [+-]? (\.)? {_dec_unit} {_dec_exp_mb}',
              Number.Float),
 
             # strings and buffers
