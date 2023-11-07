@@ -86,5 +86,6 @@ class KustoLexer(RegexLexer):
         "multi_string": [
             (r"[^`]+", String),
             (r"```", String, "#pop"),
+            (r"`", String),
         ],
     }

@@ -227,7 +227,9 @@
 '\n'          Text.Whitespace
 
 '```'         Literal.String
-'multi\nline' Literal.String
+'multi-\nline ' Literal.String
+'`'           Literal.String
+' string'     Literal.String
 '```'         Literal.String
 '\n'          Text.Whitespace
 
