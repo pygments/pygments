@@ -3073,7 +3073,7 @@ class JanetLexer(RegexLexer):
     _hex_unit = r'[0-9a-fA-F]+[0-9a-fA-F_]*'
 
     # 12_000__
-    _dec_unit = r'[0-9]+[0-9_]*'
+    _dec_unit = r'[0-9][0-9_]*'
 
     # E-23
     # lower or uppercase e, optional sign, one or more digits
