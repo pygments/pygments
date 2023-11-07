@@ -3059,10 +3059,10 @@ class JanetLexer(RegexLexer):
     # ...so, express it like this
     _token_end = r'(?=\s|#|[)\]]|$)'
 
-    _first_char = r'[a-zA-Z!$%&*+./<?=>@^_-]'
-    _following_chars_mb = r'[0-9:a-zA-Z!$%&*+./<?=>@^_-]*'
+    _first_char = r'[a-zA-Z!$%&*+\-./<=>?@^_]'
+    _rest_char = rf'([0-9:]|{_first_char})'
 
-    valid_name = _first_char + _following_chars_mb
+    valid_name = rf'{_first_char}({_rest_char})*'
 
     _radix_unit = r'[0-9a-zA-Z]+[0-9a-zA-Z_]*'
 
@@ -3137,7 +3137,7 @@ class JanetLexer(RegexLexer):
             (words(constants, suffix=_token_end), Keyword.Constants),
 
             # keywords
-            (r'(:' + _following_chars_mb + r'|:)', Name.Constant),
+            (rf'(:({_rest_char})+|:)', Name.Constant),
 
             # symbols
             (words(builtin_variables, suffix=_token_end),
