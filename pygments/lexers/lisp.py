@@ -3149,7 +3149,10 @@ class JanetLexer(RegexLexer):
             (r'@?"(\\.|[^"])*"', String),
 
             # long-strings and long-buffers
-            (r'(?s)@?(`+).+?\1', String),
+            #
+            #   non-empty content enclosed by a pair of n-backticks
+            #   with optional leading @
+            (r'@?(`+)(.|\n)+?\1', String),
 
             # things that hang out on front
             (r"('|~|,|;|\|)", Operator),
