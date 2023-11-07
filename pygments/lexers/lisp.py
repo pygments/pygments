@@ -3064,22 +3064,10 @@ class JanetLexer(RegexLexer):
 
     valid_name = _first_char + _following_chars_mb
 
-    _radix_unit = r'''
-      [0-9a-zA-Z]+                # one or more alphanumeric
-      (                           # optional group of:
-       _*                           # zero or more underscores
-       [0-9a-zA-Z]+                 # one or more alphanumeric
-       _*                           # zero or more underscores
-      )*
-    '''
+    _radix_unit = r'[0-9a-zA-Z]+[0-9a-zA-Z_]*'
 
-    _radix_exp_mb = r'''
-      (
-       &                            # exponent marker
-       [+-]?                        # optional sign
-       [0-9a-zA-Z]+                 # one or more alphanumeric
-      )?
-    '''
+    # exponent marker, optional sign, one or more alphanumeric
+    _radix_exp = r'&[+-]?[0-9a-zA-Z]+'
 
     # 2af3__bee_
     _hex_unit = r'''
@@ -3119,13 +3107,13 @@ class JanetLexer(RegexLexer):
             # radix number
             (rf'''(?x)
                   [+-]? [0-9]{{1,2}} r {_radix_unit} \. ({_radix_unit})?
-                  {_radix_exp_mb}
+                  ({_radix_exp})?
                ''',
              Number),
 
             (rf'''(?x)
-                  [+-]? [1-9]{{1,2}} r (\.)? {_radix_unit}
-                  {_radix_exp_mb}
+                  [+-]? [0-9]{{1,2}} r (\.)? {_radix_unit}
+                  ({_radix_exp})?
                ''',
              Number),
 
