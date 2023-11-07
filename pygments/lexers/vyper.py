@@ -21,16 +21,27 @@ class VyperLexer(RegexLexer):
 
     tokens = {
         'root': [
+            
             # Whitespace
             (r'\s+', Text.Whitespace),
+            (r'\\(\n|\r\n|\r)', Text),  # matches a backslash followed by a newline character
 
-            # Comments
+            # Comments - inline and multiline
             (r'#.*$', Comment.Single),
             (r'\"\"\"', Comment.Multiline, 'multiline-comment'),
 
-            # Strings
+            # Strings - single and double
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
+
+            # Functions (working)
+            (r'(def)\s+([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Name.Function)),
+
+            # Event and Struct
+            (r'(event|struct|interface)\s+([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Name.Class)),
+
+            # Imports
+            (r'(from)\s+(vyper\.\w+)\s+(import)\s+(\w+)', bygroups(Keyword, Name.Namespace, Keyword, Name.Class)),
 
             # Numeric Literals
             (r'\b0x[0-9a-fA-F]+\b', Number.Hex),
@@ -38,14 +49,10 @@ class VyperLexer(RegexLexer):
             (r'\b\d+\.\d*\b', Number.Float),
 
             # Keywords
-            (words(('def', 'event', 'pass', 'return', 'for', 'while', 'if', 'elif', 'else', 'assert', 'raise', 'import', 'in', 'struct', 'implements', 'interface', 'from'), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('def', 'event', 'pass', 'return', 'for', 'while', 'if', 'elif', 'else', 'assert', 'raise', 'import', 'in', 'struct', 'implements', 'interface', 'from', 'indexed', 'log'), prefix=r'\b', suffix=r'\b'), Keyword),
 
             # Visibility and State Mutability
-            (words(('public', 'private', 'view', 'pure', 'constant', 'immutable'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-
-            # Operators and Punctuation
-            (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=|\||&)', Operator),
-            (r'[.,:;()\[\]{}]', Punctuation),
+            (words(('public', 'private', 'view', 'pure', 'constant', 'immutable', 'nonpayable'), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
 
             # Built-in Functions
             (words(('bitwise_and', 'bitwise_not', 'bitwise_or', 'bitwise_xor', 'shift', 'create_minimal_proxy_to', 'create_copy_of', 'create_from_blueprint',
@@ -56,28 +63,28 @@ class VyperLexer(RegexLexer):
             # Built-in Variables and Attributes
             (words(('msg.sender', 'msg.value', 'block.timestamp', 'block.number', 'msg.gas'), prefix=r'\b', suffix=r'\b'), Name.Builtin.Pseudo),
 
-            # Other variable names and types
-            (r'@[\w.]+', Name.Decorator),
-            (r'__\w+__', Name.Magic),  # Matches double underscores followed by word characters
-            (r'EMPTY_BYTES32', Name.Constant),
-            (r'ERC20', Name.Class),
-            (r'\bself\b', Name.Attribute),
-            (r'\blog\b', Keyword),
-
             (words(('uint', 'uint8', 'uint16', 'uint32', 'uint64', 'uint128', 'uint256', 'int', 'int8', 'int16', 'int32', 'int64', 'int128', 'int256',
             'bool', 'decimal', 'bytes', 'bytes1', 'bytes2', 'bytes3', 'bytes4', 'bytes5', 'bytes6', 'bytes7', 'bytes8', 'bytes9', 
             'bytes10', 'bytes11', 'bytes12', 'bytes13', 'bytes14', 'bytes15', 'bytes16', 'bytes17', 'bytes18', 'bytes19', 'bytes20', 
             'bytes21', 'bytes22', 'bytes23', 'bytes24', 'bytes25', 'bytes26', 'bytes27', 'bytes28', 'bytes29', 'bytes30', 'bytes31', 'bytes32',  
-            'string', 'String', 'address', 'enum', 'struct', 'Bytes'
+            'string', 'String', 'address', 'enum', 'struct',
             ), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            
+            # indexed keywords
+            (r'\bindexed\b\s*\(\s*(\w+)\s*\)', bygroups(Keyword, Keyword.Type)),
+            
+            # Operators and Punctuation
+            (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=|\||&|%)', Operator),
+            (r'[.,:;()\[\]{}]', Punctuation),
 
-            (r'\bfrom\b', Keyword.Namespace, 'importfrom'),
+            # Other variable names and types
+            (r'@[\w.]+', Name.Decorator),
+            (r'__\w+__', Name.Magic),  # Matches double underscores followed by word characters
+            (r'EMPTY_BYTES32', Name.Constant),
+            (r'\bERC20\b', Name.Class),
+            (r'\bself\b', Name.Attribute),
 
-            (r'\binterface\b', Keyword, 'interface-name'),
-
-            (r'(?:\bdef\b\s+)?([a-zA-Z_]\w*)\s*(:)?\(', bygroups(Name.Function, Punctuation), 'funcparams'),
-
-            (r'\b(?:event|struct)\b \w+', Name.Class, 'body'),
+            (r'Bytes\[\d+\]', Keyword.Type),
 
             # Generic names and variables
             (r'\b[a-zA-Z_]\w*\b:', Name.Variable),
@@ -89,43 +96,6 @@ class VyperLexer(RegexLexer):
             (r'\"\"\"', Comment.Multiline, '#pop'),   
             (r'[^"]+', Comment.Multiline),            
             (r'\"', Comment.Multiline)                
-        ],
-
-        'importfrom': [
-            (r'\bimport\b', Keyword.Namespace, 'import'),
-            (r'\s+', Text.Whitespace),
-            (r'[a-zA-Z_][\w.]*', Name.Namespace),
-            (r'\s*as\s*', Keyword.Namespace),
-            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
-        ],
-
-        'import': [
-            (r'([a-zA-Z_][\w.]*)(\s+as\s+)?([a-zA-Z_]\w*)?',
-            bygroups(Name.Namespace, Keyword.Namespace, Name.Namespace)),
-            (r'\s+', Text.Whitespace),
-            (r',', Punctuation),
-            (r';?', Punctuation, '#pop')
-        ],
-
-        'interface-name': [
-            (r'\w+', Name.Class),  # Capture the interface name
-            (r':', Punctuation, '#pop'),  # Pop back to root after capturing the name
-            (r'\s+', Text.Whitespace),  # Consume any whitespace
-        ],
-
-        'body': [
-            (r'\(', Punctuation, 'funcparams'),
-            (r':', Punctuation),
-            (r';', Punctuation, '#pop'),
-            (r'\s+', Text.Whitespace),
-            (r'#.*$', Comment.Single)
-        ],
-
-        'funcparams': [
-            (r'\)', Punctuation, '#pop'),  # End of parameters
-            (r'(\w+)(\s*:\s*)(\w+)', bygroups(Name.Variable, Text, Keyword.Type)),  # Capture parameters
-            (r',', Punctuation),
-            (r'\s+', Text.Whitespace),
         ],
     }
 
