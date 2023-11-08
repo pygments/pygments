@@ -62,7 +62,6 @@ class DraculaStyle(Style):
         Keyword: pink,
         Keyword.Constant: pink,
         Keyword.Declaration: cyan + " italic",
-        Keyword.Namespace: pink + " italic",
         Keyword.Type: cyan,
 
         Literal: foreground,
@@ -70,7 +69,7 @@ class DraculaStyle(Style):
 
         Name: foreground,
         Name.Attribute: green,
-        Name.Builtin: cyan,
+        Name.Builtin: cyan + " italic",
         Name.Class: green,
         Name.Function: green,
         Name.Label: cyan + " italic",
