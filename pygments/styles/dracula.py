@@ -65,7 +65,6 @@ class DraculaStyle(Style):
         Keyword.Type: cyan,
 
         Literal: foreground,
-        Literal.Date: foreground,
 
         Name: foreground,
         Name.Attribute: green,
@@ -75,9 +74,6 @@ class DraculaStyle(Style):
         Name.Label: cyan + " italic",
         Name.Tag: pink,
         Name.Variable: cyan + " italic",
-        Name.Variable.Class: cyan + " italic",
-        Name.Variable.Global: cyan + " italic",
-        Name.Variable.Instance: cyan + " italic",
 
         Number: orange,
 
