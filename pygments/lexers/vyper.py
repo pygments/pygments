@@ -38,7 +38,7 @@ class VyperLexer(RegexLexer):
             (r'(def)\s+([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Name.Function)),
 
             # Event and Struct
-            (r'(event|struct|interface)\s+([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Name.Class)),
+            (r'(event|struct|interface|log)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text.Whitespace, Name.Class)),
 
             # Imports
             (r'(from)\s+(vyper\.\w+)\s+(import)\s+(\w+)', bygroups(Keyword, Name.Namespace, Keyword, Name.Class)),

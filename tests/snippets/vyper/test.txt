@@ -1,79 +1,24 @@
 ---input---
-interface Factory:
-    def fee_receiver() -> address: view
-    def admin() -> address: view
-    def views_implementation() -> address: view
+log Transfer
 
-interface ERC1271:
-    def isValidSignature(_hash: bytes32, _signature: Bytes[65]) -> bytes32: view
+event Transfer:
+
+struct Tessst:
 
 ---tokens---
-'interface'   Keyword
-'Factory'     Name.Class
-':'           Punctuation
-'\n    '      Text.Whitespace
-'def'         Keyword
-'fee_receiver' Name.Function
-'('           Punctuation
-')'           Punctuation
+'log'         Keyword
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
-' '           Text.Whitespace
-'address'     Keyword.Type
-':'           Punctuation
-' '           Text.Whitespace
-'view'        Keyword.Declaration
-'\n    '      Text.Whitespace
-'def'         Keyword
-'admin'       Name.Function
-'('           Punctuation
-')'           Punctuation
-' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
-' '           Text.Whitespace
-'address'     Keyword.Type
-':'           Punctuation
-' '           Text.Whitespace
-'view'        Keyword.Declaration
-'\n    '      Text.Whitespace
-'def'         Keyword
-'views_implementation' Name.Function
-'('           Punctuation
-')'           Punctuation
-' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
-' '           Text.Whitespace
-'address'     Keyword.Type
-':'           Punctuation
-' '           Text.Whitespace
-'view'        Keyword.Declaration
+'Transfer'    Name.Class
 '\n\n'        Text.Whitespace
 
-'interface'   Keyword
-'ERC1271'     Name.Class
+'event'       Keyword
+' '           Text.Whitespace
+'Transfer'    Name.Class
 ':'           Punctuation
-'\n    '      Text.Whitespace
-'def'         Keyword
-'isValidSignature' Name.Function
-'('           Punctuation
-'_hash:'      Name.Variable
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
 ' '           Text.Whitespace
-'bytes32'     Keyword.Type
-','           Punctuation
-' '           Text.Whitespace
-'_signature:' Name.Variable
-' '           Text.Whitespace
-'Bytes[65]'   Keyword.Type
-')'           Punctuation
-' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
-' '           Text.Whitespace
-'bytes32'     Keyword.Type
+'Tessst'      Name.Class
 ':'           Punctuation
-' '           Text.Whitespace
-'view'        Keyword.Declaration
 '\n'          Text.Whitespace
