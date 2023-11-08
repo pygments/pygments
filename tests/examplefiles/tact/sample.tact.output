@@ -1,4 +1,5 @@
-'import '     Keyword
+'import'      Keyword
+' '           Text.Whitespace
 '"'           Literal.String
 '@stdlib/ownable' Literal.String.Double
 '"'           Literal.String
@@ -7,11 +8,11 @@
 ' Some Comment ' Comment.Multiline
 '*/'          Comment.Multiline
 ';'           Punctuation
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'@name('      Name
+'@'           Keyword.Pseudo
+'name'        Keyword
+'('           Punctuation
 'current_time' Name.Function.Magic
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -29,9 +30,7 @@
 ''            Punctuation
 ';'           Punctuation
 ''            Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 ''            Keyword
 'virtual'     Keyword
@@ -48,9 +47,7 @@
 '1000'        Literal.Number
 ''            Punctuation
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 ''            Keyword
 'fun'         Keyword
@@ -65,9 +62,7 @@
 '    \n'      Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 ''            Keyword
 'get'         Keyword
@@ -110,9 +105,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 ''            Keyword
 'fun'         Keyword
@@ -125,9 +118,7 @@
 ''            Punctuation
 ';'           Punctuation
 ''            Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'struct'      Keyword
 ' '           Text.Whitespace
@@ -142,17 +133,13 @@
 ' Comment '   Comment.Multiline
 '*'           Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'value1'      Name.Variable
 ': '          Punctuation
 'Int'         Keyword.Type
 ''            Punctuation
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'value2'      Name.Variable
 ': '          Punctuation
 '/*'          Comment.Multiline
@@ -168,9 +155,7 @@
 ''            Punctuation
 ''            Punctuation
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'value3'      Name.Variable
 ': '          Punctuation
 'Bool'        Keyword.Type
@@ -179,9 +164,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'message'     Keyword
 ' '           Text.Whitespace
@@ -202,9 +185,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'message'     Keyword
 ' '           Text.Whitespace
@@ -227,9 +208,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'trait'       Keyword
 ' '           Text.Whitespace
@@ -259,13 +238,9 @@
 ' '           Text.Whitespace
 '0'           Literal.Number
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 ''            Keyword
 'virtual'     Keyword
 ' '           Text.Whitespace
@@ -280,15 +255,9 @@
 
 '        '    Text.Whitespace
 '// nothing'  Comment.Single
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 ''            Keyword
 'abstract'    Keyword
 ' '           Text.Whitespace
@@ -302,9 +271,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'contract'    Keyword
 ' '           Text.Whitespace
@@ -415,13 +382,9 @@
 ' '           Text.Whitespace
 'owner'       Name.Variable
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'    \n    '  Text.Whitespace
+'\n    \n    ' Text.Whitespace
 'bounced'     Keyword
 '('           Punctuation
 'src'         Name.Variable
@@ -437,15 +400,9 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'        \n    ' Text.Whitespace
+'\n        \n    ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 ''            Keyword
 'get'         Keyword
 ' '           Text.Whitespace
@@ -477,9 +434,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'            ' Text.Whitespace
+'\n            ' Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
 'arg'         Name.Variable
@@ -488,19 +443,11 @@
 ' '           Text.Whitespace
 '1000'        Literal.Number
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n\n        ' Text.Whitespace
 '// Declare variable' Comment.Single
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'b'           Name.Variable
@@ -532,24 +479,16 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n\n        ' Text.Whitespace
 '// Single line comment' Comment.Single
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 '/*'          Comment.Multiline
 '*'           Comment.Multiline
 '\n         ' Comment.Multiline
 '*'           Comment.Multiline
 'Multi line comment \n         ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
 '('           Punctuation
@@ -568,15 +507,9 @@
 ' '           Text.Whitespace
 '10'          Literal.Number
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 'receive'     Name.Function
 '('           Punctuation
 '"'           Literal.String
@@ -585,22 +518,23 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 'self'        Keyword
 '.'           Punctuation
 'reply'       Name.Function
 '('           Punctuation
-'SampleStruct{' Punctuation
+'SampleStruct' Name.Class
+'{'           Punctuation
 '\n            ' Text.Whitespace
-'value1:'     Name.Property
+'value1'      Name.Property
+':'           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number
 ''            Punctuation
 ','           Punctuation
 '\n            ' Text.Whitespace
-'value2:'     Name.Property
+'value2'      Name.Property
+':'           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number
 ' '           Text.Whitespace
@@ -610,7 +544,8 @@
 ''            Punctuation
 ','           Punctuation
 '\n            ' Text.Whitespace
-'value3:'     Name.Property
+'value3'      Name.Property
+':'           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number
 ' '           Text.Whitespace
@@ -626,15 +561,9 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 ''            Keyword
 'override'    Keyword
 ' '           Text.Whitespace
@@ -649,9 +578,7 @@
 
 '        '    Text.Whitespace
 '// nothing'  Comment.Single
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 

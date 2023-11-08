@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include
+from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Whitespace, Punctuation
 
@@ -18,17 +18,20 @@ __all__ = ['TactLexer']
 class TactLexer(RegexLexer):
     """
     For Tact source code.
+
+    .. versionadded:: 2.17.0
     """
 
     name = 'Tact'
     aliases = ['tact']
     filenames = ['*.tact']
+    url = "https://tact-lang.org"
 
     tokens = {
         'root': [
-            (r'(\n|\s+)', Whitespace),
+            (r'\s+', Whitespace),
             (r'[.;(),\[\]{}]', Punctuation),
-            (r'(\?|!!)', Operator),
+            (r'\?|!!', Operator),
             include('comments'),
             include('import-in'),
             include('struct-in'),
@@ -39,7 +42,7 @@ class TactLexer(RegexLexer):
             include('statements'),
         ],
         'import-in': [
-            (r'(?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))\b(import)\b\s*', Keyword, 'import'),
+            (r'((?<=\.\.\.)|(?<![.$]))\b(import)\b(\s*)', bygroups(Punctuation, Keyword, Whitespace), 'import'),
         ],
         'import': [
             (r'\s*;', Punctuation, '#pop'),
@@ -48,7 +51,7 @@ class TactLexer(RegexLexer):
             (r'\s+', Whitespace),
         ],
         'struct-in': [
-            (r'(?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))\b(struct|message)\b', Keyword, 'struct'),
+            (r'((?<=\.\.\.)|(?<![.$]))\b(struct|message)\b', bygroups(Punctuation, Keyword), 'struct'),
         ],
         'struct': [
             (r'(?<=\})', Punctuation, '#pop'),
@@ -71,7 +74,7 @@ class TactLexer(RegexLexer):
             include('field-declaration-in'),
         ],
         'contract-or-trait-in': [
-            (r'(?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))\b(contract|trait)\b', Keyword, 'contract-or-trait'),
+            (r'((?<=\.\.\.)|(?<![.$]))\b(contract|trait)\b', Keyword, 'contract-or-trait'),
         ],
         'contract-or-trait': [
             (r'(?<=\})', Punctuation, '#pop'),
@@ -189,7 +192,7 @@ class TactLexer(RegexLexer):
             include('expressions'),
         ],
         'annotation-in': [
-            (r'(@)([\w_]+)(\()', Name, 'annotation')
+            (r'(@)([\w_]+)(\()', bygroups(Keyword.Pseudo, Keyword, Punctuation), 'annotation')
         ],
         'annotation': [
             (r'\)', Punctuation, '#pop'),
@@ -210,7 +213,7 @@ class TactLexer(RegexLexer):
             include('struct-init-in'),
         ],
         'struct-init-in': [
-            (r'(\b[\w]+\b)\s*(\{)', Punctuation, 'struct-init')
+            (r'(\b[\w]+\b)\s*(\{)', bygroups(Name.Class, Punctuation), 'struct-init')
         ],
         'struct-init': [
             (r'(})', Punctuation, '#pop'),
@@ -220,7 +223,7 @@ class TactLexer(RegexLexer):
             (r',', Punctuation),
         ],
         'struct-property-in': [
-            (r'(\b[\w]+\b)\s*(:)', Name.Property, 'struct-property')
+            (r'(\b[\w]+\b)\s*(:)', bygroups(Name.Property, Punctuation), 'struct-property')
         ],
         'struct-property': [
             (r'(?=\}|\,)', Punctuation, '#pop'),
