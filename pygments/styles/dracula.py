@@ -69,6 +69,7 @@ class DraculaStyle(Style):
         Name: foreground,
         Name.Attribute: green,
         Name.Builtin: cyan + " italic",
+        Name.Builtin.Pseudo: foreground,
         Name.Class: green,
         Name.Function: green,
         Name.Label: cyan + " italic",
