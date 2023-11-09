@@ -1184,6 +1184,9 @@ class TOMLLexer(RegexLexer):
             (r"'", String.Single, 'literal-string'),
             (r'\.', Keyword),
             (r'\]\]?', Keyword, '#pop'),
+
+            # Inline whitespace allowed
+            (r'[ \t]+', Whitespace),
         ],
         'value': [
             # Datetime, baretime
