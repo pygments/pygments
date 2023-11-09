@@ -1,0 +1,12 @@
+---input---
+foo = true # comment used to prevent bool from being recognized
+
+---tokens---
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'# comment used to prevent bool from being recognized' Comment.Single
+'\n'          Text.Whitespace
