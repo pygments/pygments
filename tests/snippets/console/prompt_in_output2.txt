@@ -1,0 +1,22 @@
+# Test that output that looks like a prompt is not detected as such.
+# options: single_prompt=True
+
+---input---
+$ cat \
+> test.txt
+line1
+# file content, not prompt!
+
+---tokens---
+'$ '          Generic.Prompt
+'cat'         Text
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'> '          Generic.Prompt
+'test.txt'    Text
+'\n'          Text.Whitespace
+
+'line1\n'     Generic.Output
+
+'# file content, not prompt!\n' Generic.Output

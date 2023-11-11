@@ -1,0 +1,29 @@
+# Test that an input command can include a heredoc as input
+
+---input---
+$ cat <<EOF
+> line1
+> line2
+> EOF
+line1
+line2
+
+---tokens---
+'$ '          Generic.Prompt
+'cat'         Text
+' '           Text.Whitespace
+'<<EOF\n'     Literal.String
+
+'> '          Generic.Prompt
+'line1\n'     Literal.String
+
+'> '          Generic.Prompt
+'line2\n'     Literal.String
+
+'> '          Generic.Prompt
+'EOF'         Literal.String
+'\n'          Text.Whitespace
+
+'line1\n'     Generic.Output
+
+'line2\n'     Generic.Output

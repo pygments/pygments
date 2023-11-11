@@ -14,7 +14,7 @@ from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, \
     include, default, this, using, words, line_re
 from pygments.token import Punctuation, Whitespace, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import shebang_matches
+from pygments.util import shebang_matches, get_bool_opt
 
 __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
            'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
@@ -159,33 +159,43 @@ class ShellSessionBaseLexer(Lexer):
     _bare_continuation = False
     _venv = re.compile(r'^(\([^)]*\))(\s*)')
 
+    def __init__(self, **options):
+        Lexer.__init__(self, **options)
+        if get_bool_opt(options, 'single_prompt', False):
+            self.single_prompt = True
+        else:
+            self.single_prompt = False
+
     def get_tokens_unprocessed(self, text):
         innerlexer = self._innerLexerCls(**self.options)
 
         pos = 0
         curcode = ''
         insertions = []
+        prompt_found = False
         backslash_continuation = False
+        heredoc_continuation = False
 
         for match in line_re.finditer(text):
             line = match.group()
 
             venv_match = self._venv.match(line)
-            if venv_match:
+            if venv_match and not (self.single_prompt and prompt_found):
                 venv = venv_match.group(1)
                 venv_whitespace = venv_match.group(2)
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt.VirtualEnv, venv)]))
                 if venv_whitespace:
                     insertions.append((len(curcode),
-                                       [(0, Text, venv_whitespace)]))
+                                       [(0, Generic.Prompt.VirtualEnv, venv_whitespace)]))
                 line = line[venv_match.end():]
 
             m = self._ps1rgx.match(line)
-            if m:
+            if m and not (self.single_prompt and prompt_found):
                 # To support output lexers (say diff output), the output
                 # needs to be broken by prompts whenever the output lexer
                 # changes.
+                prompt_found = True
                 if not insertions:
                     pos = match.start()
 
@@ -193,14 +203,19 @@ class ShellSessionBaseLexer(Lexer):
                                    [(0, Generic.Prompt, m.group(1))]))
                 curcode += m.group(2)
                 backslash_continuation = curcode.endswith('\\\n')
-            elif backslash_continuation:
+                heredoc_continuation = curcode.endswith('<<EOF\n')
+            elif backslash_continuation or heredoc_continuation:
                 if line.startswith(self._ps2):
                     insertions.append((len(curcode),
                                        [(0, Generic.Prompt,
                                          line[:len(self._ps2)])]))
-                    curcode += line[len(self._ps2):]
+                    rem = line[len(self._ps2):]
+                    curcode += rem
+                    if heredoc_continuation:
+                        heredoc_continuation = not (rem == 'EOF\n')
                 else:
                     curcode += line
+                    heredoc_continuation = False
                 backslash_continuation = curcode.endswith('\\\n')
             elif self._bare_continuation and line.startswith(self._ps2):
                 insertions.append((len(curcode),
