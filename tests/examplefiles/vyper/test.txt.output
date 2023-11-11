@@ -1066,7 +1066,9 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'"v7.0.0"'    Literal.String.Double
+'"'           Literal.String.Double
+'v7.0.0'      Literal.String.Double
+'"'           Literal.String.Double
 '\n\n'        Text.Whitespace
 
 'balanceOf:'  Name.Variable
@@ -1148,7 +1150,9 @@
 ' '           Text.Whitespace
 'keccak256'   Name.Builtin
 '('           Punctuation
-'"EIP712Domain(string name,string version,uint256 chainId,address verifyingContract,bytes32 salt)"' Literal.String.Double
+'"'           Literal.String.Double
+'EIP712Domain(string name,string version,uint256 chainId,address verifyingContract,bytes32 salt)' Literal.String.Double
+'"'           Literal.String.Double
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1163,7 +1167,9 @@
 ' '           Text.Whitespace
 'keccak256'   Name.Builtin
 '('           Punctuation
-'"Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"' Literal.String.Double
+'"'           Literal.String.Double
+'Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)' Literal.String.Double
+'"'           Literal.String.Double
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -2533,7 +2539,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2619,7 +2627,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2720,7 +2730,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3397,7 +3409,9 @@
 '_min_mint_amount' Name
 ','           Punctuation
 ' '           Text.Whitespace
-'"Slippage screwed you"' Literal.String.Double
+'"'           Literal.String.Double
+'Slippage screwed you' Literal.String.Double
+'"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
 '# Mint pool tokens' Comment.Single
 '\n    '      Text.Whitespace
@@ -3473,7 +3487,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3625,7 +3641,9 @@
 '_min_received' Name
 ','           Punctuation
 ' '           Text.Whitespace
-'"Not enough coins removed"' Literal.String.Double
+'"'           Literal.String.Double
+'Not enough coins removed' Literal.String.Double
+'"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
 'self'        Name.Attribute
 '.'           Punctuation
@@ -3714,7 +3732,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4304,7 +4324,9 @@
 '_max_burn_amount' Name
 ','           Punctuation
 ' '           Text.Whitespace
-'"Slippage screwed you"' Literal.String.Double
+'"'           Literal.String.Double
+'Slippage screwed you' Literal.String.Double
+'"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
 'total_supply' Name
 ' '           Text.Whitespace
@@ -4352,7 +4374,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4534,7 +4558,9 @@
 ']'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'"Withdrawal resulted in fewer coins than expected"' Literal.String.Double
+'"'           Literal.String.Double
+'Withdrawal resulted in fewer coins than expected' Literal.String.Double
+'"'           Literal.String.Double
 '\n        '  Text.Whitespace
 'amounts'     Name
 '.'           Punctuation
@@ -5426,7 +5452,9 @@
 '_min_dy'     Name
 ','           Punctuation
 ' '           Text.Whitespace
-'"Exchange resulted in fewer coins than expected"' Literal.String.Double
+'"'           Literal.String.Double
+'Exchange resulted in fewer coins than expected' Literal.String.Double
+'"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
 '# --------------------------- Do Transfer out ----------------------------' Comment.Single
 '\n\n    '    Text.Whitespace
@@ -8551,7 +8579,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8618,7 +8648,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8735,7 +8767,9 @@
 '135305999368893231589' Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
-'"wad_exp overflow"' Literal.String.Double
+'"'           Literal.String.Double
+'wad_exp overflow' Literal.String.Double
+'"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
 '# `x` is now in the range "(-42, 136) * 1e18". Convert to "(-42, 136) * 2 ** 96" for higher' Comment.Single
 '\n    '      Text.Whitespace
@@ -9626,7 +9660,12 @@
 '('           Punctuation
 '\n            ' Text.Whitespace
 'b'           Name
-'"\\x19\\x01"' Literal.String.Double
+'"'           Literal.String.Double
+'\\x'         Literal.String.Escape
+'19'          Literal.String.Double
+'\\x'         Literal.String.Escape
+'01'          Literal.String.Double
+'"'           Literal.String.Double
 ','           Punctuation
 '\n            ' Text.Whitespace
 'self'        Name.Attribute
@@ -10023,7 +10062,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -10058,7 +10099,9 @@
 
 '@nonreentrant' Name.Decorator
 '('           Punctuation
-"'lock'"      Literal.String.Single
+"'"           Literal.String.Single
+'lock'        Literal.String.Single
+"'"           Literal.String.Single
 ')'           Punctuation
 '\n'          Text.Whitespace
 

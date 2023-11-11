@@ -35,8 +35,8 @@ class VyperLexer(RegexLexer):
             (r'\"\"\"', Comment.Multiline, 'multiline-comment'),
 
             # Strings - single and double
-            (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
-            (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
+            (r"'", String.Single, 'single-string'),
+            (r'"', String.Double, 'double-string'),
 
             # Functions (working)
             (r'(def)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
@@ -123,4 +123,16 @@ class VyperLexer(RegexLexer):
             (r'[^"]+', Comment.Multiline),
             (r'\"', Comment.Multiline)
         ],
+
+        'single-string': [
+            (r"[^\\']+", String.Single),
+            (r"'", String.Single, '#pop'),
+            (r'\\.', String.Escape),
+        ],
+
+        'double-string': [
+            (r'[^\\"]+', String.Double),
+            (r'"', String.Double, '#pop'),
+            (r'\\.', String.Escape),
+        ]
     }
