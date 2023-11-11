@@ -27,6 +27,7 @@ Version 2.17.0
   * Nix: many improvements (#2551),
   * Python: add ``starlark`` and ``bazel`` aliases (#2517)
   * Spice: add ``panic`` keyword and ``->`` operator (#2510)
+  * TOML: rewritten, with many fixes (#2576)
   * Wikitext: fix erroneous highlighting of LanguageConverter markup
     (#2493), add missing variant languages (#2494)
   * CMake: support `[=[ bracketed arguments ]=]` (#2549)
@@ -41,6 +42,12 @@ Version 2.17.0
 - Change color of numbers in ``rrt`` style (#2526)
 - Fix error when trying to look up plugin formatters by file extension
   of the output format (#2563)
+- Hatchling is now used as a build backend instead of setuptools.
+  This change is transparent to most users. Distribution packagers
+  who build without build isolation need to add hatchling as a build
+  dependency and remove setuptools. People downloading source distributions
+  and wheels from PyPI directly should note that they now have ``pygments``
+  in their file names instead of ``Pygments``. (#2573)
 
 Version 2.16.1
 --------------
