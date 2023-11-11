@@ -1,0 +1,59 @@
+---input---
+StormEvents
+| where StartTime between (datetime(2007-11-01) .. datetime(2007-12-01))
+| where State == "FLORIDA"
+| count
+
+---tokens---
+'StormEvents' Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'StartTime'   Name
+' '           Text.Whitespace
+'between'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'datetime'    Keyword
+'('           Punctuation
+'2007'        Literal.Number.Integer
+'-'           Punctuation
+'11'          Literal.Number.Integer
+'-'           Punctuation
+'01'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'.'           Error
+'.'           Error
+' '           Text.Whitespace
+'datetime'    Keyword
+'('           Punctuation
+'2007'        Literal.Number.Integer
+'-'           Punctuation
+'12'          Literal.Number.Integer
+'-'           Punctuation
+'01'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'State'       Name
+' '           Text.Whitespace
+'=='          Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'FLORIDA'     Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'count'       Keyword
+'\n'          Text.Whitespace

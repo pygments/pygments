@@ -1,0 +1,27 @@
+---input---
+[table.header.with.some."strings".and."escape\nsequences\u263a"]
+
+---tokens---
+'['           Keyword
+'table'       Keyword
+'.'           Keyword
+'header'      Keyword
+'.'           Keyword
+'with'        Keyword
+'.'           Keyword
+'some'        Keyword
+'.'           Keyword
+'"'           Literal.String.Double
+'strings'     Literal.String.Double
+'"'           Literal.String.Double
+'.'           Keyword
+'and'         Keyword
+'.'           Keyword
+'"'           Literal.String.Double
+'escape'      Literal.String.Double
+'\\n'         Literal.String.Escape
+'sequences'   Literal.String.Double
+'\\u263a'     Literal.String.Escape
+'"'           Literal.String.Double
+']'           Keyword
+'\n'          Text.Whitespace

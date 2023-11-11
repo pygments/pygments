@@ -182,6 +182,14 @@
 
 '\n'          Text.Whitespace
 
+'message'     Name.Builtin
+'('           Punctuation
+'[==[\nthis is a\nmultiline argument\n]==]' Literal.String.Multiline
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
 'SET'         Name.Builtin
 '('           Punctuation
 ' '           Text.Whitespace
