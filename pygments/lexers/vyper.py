@@ -39,15 +39,17 @@ class VyperLexer(RegexLexer):
             (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
 
             # Functions (working)
-            (r'(def)\s+([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Name.Function)),
+            (r'(def)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Whitespace, Name.Function)),
 
             # Event and Struct
             (r'(event|struct|interface|log)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Keyword, Whitespace, Name.Class)),
 
             # Imports
-            (r'(from)\s+(vyper\.\w+)\s+(import)\s+(\w+)',
-             bygroups(Keyword, Name.Namespace, Keyword, Name.Class)),
+            (r'(from)(\s+)(vyper\.\w+)(\s+)(import)(\s+)(\w+)',
+             bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
+                      Keyword, Whitespace, Name.Class)),
 
             # Numeric Literals
             (r'\b0x[0-9a-fA-F]+\b', Number.Hex),
@@ -93,7 +95,9 @@ class VyperLexer(RegexLexer):
              Keyword.Type),
 
             # indexed keywords
-            (r'\bindexed\b\s*\(\s*(\w+)\s*\)', bygroups(Keyword, Keyword.Type)),
+            (r'\b(indexed)\b(\s*)(\()(\s*)(\w+)(\s*)(\))',
+             bygroups(Keyword, Whitespace, Punctuation, Whitespace,
+                      Keyword.Type, Punctuation)),
 
             # Operators and Punctuation
             (r'(\+|\-|\*|\/|<=?|>=?|==|!=|=|\||&|%)', Operator),

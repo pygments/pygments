@@ -14,20 +14,29 @@
 '\n\n'        Text.Whitespace
 
 'from'        Keyword
+' '           Text.Whitespace
 'vyper.interfaces' Name.Namespace
+' '           Text.Whitespace
 'import'      Keyword
+' '           Text.Whitespace
 'ERC20'       Name.Class
 '\n'          Text.Whitespace
 
 'from'        Keyword
+' '           Text.Whitespace
 'vyper.interfaces' Name.Namespace
+' '           Text.Whitespace
 'import'      Keyword
+' '           Text.Whitespace
 'ERC20Detailed' Name.Class
 '\n'          Text.Whitespace
 
 'from'        Keyword
+' '           Text.Whitespace
 'vyper.interfaces' Name.Namespace
+' '           Text.Whitespace
 'import'      Keyword
+' '           Text.Whitespace
 'ERC4626'     Name.Class
 '\n\n'        Text.Whitespace
 
@@ -46,6 +55,7 @@
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'fee_receiver' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -59,6 +69,7 @@
 'view'        Keyword.Declaration
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'admin'       Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -72,6 +83,7 @@
 'view'        Keyword.Declaration
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'views_implementation' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -91,6 +103,7 @@
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'isValidSignature' Name.Function
 '('           Punctuation
 '_hash:'      Name.Variable
@@ -118,6 +131,7 @@
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'get_dx'      Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -149,6 +163,7 @@
 'view'        Keyword.Declaration
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'get_dy'      Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -180,6 +195,7 @@
 'view'        Keyword.Declaration
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'dynamic_fee' Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -206,6 +222,7 @@
 'view'        Keyword.Declaration
 '\n    '      Text.Whitespace
 'def'         Keyword
+' '           Text.Whitespace
 'calc_token_amount' Name.Function
 '('           Punctuation
 '\n        '  Text.Whitespace
@@ -1207,6 +1224,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '__init__'    Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -1835,6 +1853,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_transfer_in' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -2004,6 +2023,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_transfer_out' Name.Function
 '('           Punctuation
 '_coin_idx:'  Name.Variable
@@ -2100,6 +2120,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_stored_rates' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -2361,6 +2382,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_balances'   Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -2516,6 +2538,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'exchange'    Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -2601,6 +2624,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'exchange_received' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -2701,6 +2725,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'add_liquidity' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -3453,6 +3478,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'remove_liquidity_one_coin' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -3693,6 +3719,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'remove_liquidity_imbalance' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -4330,6 +4357,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'remove_liquidity' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -4740,6 +4768,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'withdraw_admin_fees' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -4766,6 +4795,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_dynamic_fee' Name.Function
 '('           Punctuation
 'xpi:'        Name.Variable
@@ -4881,6 +4911,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '__exchange'  Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -5180,6 +5211,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_exchange'   Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -5441,6 +5473,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_withdraw_admin_fees' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -5565,6 +5598,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_y'       Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -5972,6 +6006,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_D'       Name.Function
 '('           Punctuation
 '_xp:'        Name.Variable
@@ -6259,6 +6294,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_y_D'     Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -6596,6 +6632,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_A'          Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -6756,6 +6793,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_xp_mem'     Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -6873,6 +6911,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_D_mem'   Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -6953,6 +6992,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_calc_withdraw_one_coin' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -7497,6 +7537,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'pack_2'      Name.Function
 '('           Punctuation
 'p1:'         Name.Variable
@@ -7560,6 +7601,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'unpack_2'    Name.Function
 '('           Punctuation
 'packed:'     Name.Variable
@@ -7611,6 +7653,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_get_p'      Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -7845,6 +7888,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'upkeep_oracles' Name.Function
 '('           Punctuation
 'xp:'         Name.Variable
@@ -8159,6 +8203,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_calc_moving_average' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -8319,6 +8364,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'last_price'  Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -8362,6 +8408,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'ema_price'   Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -8399,6 +8446,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_p'       Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -8508,6 +8556,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'price_oracle' Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -8574,6 +8623,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'D_oracle'    Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -8623,6 +8673,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'exp'         Name.Function
 '('           Punctuation
 'x:'          Name.Variable
@@ -9082,6 +9133,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_domain_separator' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -9143,6 +9195,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_transfer'   Name.Function
 '('           Punctuation
 '_from:'      Name.Variable
@@ -9207,6 +9260,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 '_burnFrom'   Name.Function
 '('           Punctuation
 '_from:'      Name.Variable
@@ -9262,6 +9316,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'transfer'    Name.Function
 '('           Punctuation
 '_to'         Name
@@ -9310,6 +9365,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'transferFrom' Name.Function
 '('           Punctuation
 '_from'       Name
@@ -9411,6 +9467,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'approve'     Name.Function
 '('           Punctuation
 '_spender'    Name
@@ -9473,6 +9530,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'permit'      Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -9762,6 +9820,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'DOMAIN_SEPARATOR' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -9795,6 +9854,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_dx'      Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -9855,6 +9915,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_dy'      Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -9915,6 +9976,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'calc_withdraw_one_coin' Name.Function
 '('           Punctuation
 '_burn_amount:' Name.Variable
@@ -9966,6 +10028,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'totalSupply' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10000,6 +10063,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_virtual_price' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10100,6 +10164,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'calc_token_amount' Name.Function
 '('           Punctuation
 '\n    '      Text.Whitespace
@@ -10161,6 +10226,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'A'           Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10191,6 +10257,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'A_precise'   Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10217,6 +10284,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'balances'    Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -10253,6 +10321,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'get_balances' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10285,6 +10354,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'stored_rates' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10317,6 +10387,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'dynamic_fee' Name.Function
 '('           Punctuation
 'i:'          Name.Variable
@@ -10369,6 +10440,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'ramp_A'      Name.Function
 '('           Punctuation
 '_future_A:'  Name.Variable
@@ -10552,6 +10624,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'stop_ramp_A' Name.Function
 '('           Punctuation
 ')'           Punctuation
@@ -10632,6 +10705,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'set_new_fee' Name.Function
 '('           Punctuation
 '_new_fee:'   Name.Variable
@@ -10718,6 +10792,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
+' '           Text.Whitespace
 'set_ma_exp_time' Name.Function
 '('           Punctuation
 '_ma_exp_time:' Name.Variable
