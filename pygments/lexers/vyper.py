@@ -28,7 +28,7 @@ class VyperLexer(RegexLexer):
             (r'\s+', Whitespace),
 
             # Line continuations
-            (r'\\(\n|\r\n|\r)', Text),
+            (r'(\\)(\n|\r\n|\r)', bygroups(Text, Whitespace)),
 
             # Comments - inline and multiline
             (r'#.*$', Comment.Single),
