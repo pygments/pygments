@@ -41,6 +41,7 @@
 '\n\n'        Text.Whitespace
 
 'interface'   Keyword
+' '           Text.Whitespace
 'Factory'     Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -85,6 +86,7 @@
 '\n\n'        Text.Whitespace
 
 'interface'   Keyword
+' '           Text.Whitespace
 'ERC1271'     Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -111,6 +113,7 @@
 '\n\n'        Text.Whitespace
 
 'interface'   Keyword
+' '           Text.Whitespace
 'StableSwapViews' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -241,6 +244,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'Transfer'    Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -264,6 +268,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'Approval'    Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -287,6 +292,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'TokenExchange' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -315,6 +321,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'TokenExchangeUnderlying' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -343,6 +350,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'AddLiquidity' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -383,6 +391,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'RemoveLiquidity' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -419,6 +428,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'RemoveLiquidityOne' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -447,6 +457,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'RemoveLiquidityImbalance' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -487,6 +498,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'RampA'       Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -508,6 +520,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'StopRampA'   Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -521,6 +534,7 @@
 '\n\n'        Text.Whitespace
 
 'event'       Keyword
+' '           Text.Whitespace
 'ApplyNewFee' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -1799,7 +1813,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Transfer'    Name
+'Transfer'    Name.Class
 '('           Punctuation
 'empty'       Name.Builtin
 '('           Punctuation
@@ -3391,7 +3405,7 @@
 '\n    '      Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Transfer'    Name
+'Transfer'    Name.Class
 '('           Punctuation
 'empty'       Name.Builtin
 '('           Punctuation
@@ -3407,7 +3421,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'AddLiquidity' Name
+'AddLiquidity' Name.Class
 '('           Punctuation
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
@@ -3632,7 +3646,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'RemoveLiquidityOne' Name
+'RemoveLiquidityOne' Name.Class
 '('           Punctuation
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
@@ -4284,7 +4298,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'RemoveLiquidityImbalance' Name
+'RemoveLiquidityImbalance' Name.Class
 '('           Punctuation
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
@@ -4676,7 +4690,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'RemoveLiquidity' Name
+'RemoveLiquidity' Name.Class
 '('           Punctuation
 '\n        '  Text.Whitespace
 'msg.sender'  Name.Builtin.Pseudo
@@ -5401,7 +5415,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'TokenExchange' Name
+'TokenExchange' Name.Class
 '('           Punctuation
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
@@ -9176,7 +9190,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Transfer'    Name
+'Transfer'    Name.Class
 '('           Punctuation
 '_from'       Name
 ','           Punctuation
@@ -9228,7 +9242,7 @@
 '\n    '      Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Transfer'    Name
+'Transfer'    Name.Class
 '('           Punctuation
 '_from'       Name
 ','           Punctuation
@@ -9438,7 +9452,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Approval'    Name
+'Approval'    Name.Class
 '('           Punctuation
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
@@ -9724,7 +9738,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'Approval'    Name
+'Approval'    Name.Class
 '('           Punctuation
 '_owner'      Name
 ','           Punctuation
@@ -10518,7 +10532,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'RampA'       Name
+'RampA'       Name.Class
 '('           Punctuation
 '_initial_A'  Name
 ','           Punctuation
@@ -10604,7 +10618,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'StopRampA'   Name
+'StopRampA'   Name.Class
 '('           Punctuation
 'current_A'   Name
 ','           Punctuation
@@ -10690,7 +10704,7 @@
 '\n\n    '    Text.Whitespace
 'log'         Keyword
 ' '           Text.Whitespace
-'ApplyNewFee' Name
+'ApplyNewFee' Name.Class
 '('           Punctuation
 '_new_fee'    Name
 ','           Punctuation
