@@ -1,5 +1,5 @@
 # Dockerfile for building Pyodide with a Pygmenets version from the current checkout.
-# For an example of how to use this image, see the `pyodide` target in the documentation's Makefile.
+# This is used by the `pyodide` tox environment (see /tox.ini).
 FROM ghcr.io/pyodide/pyodide:0.20.0 AS build-stage
 
 WORKDIR pyodide

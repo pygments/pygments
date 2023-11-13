@@ -26,7 +26,7 @@ and higher. In earlier Python versions, Pygments attempts to use the
 `importlib_metadata`_ backport, if available. If not available, a
 fallback is attempted on the older `pkg_resources`_ module. Finally, if
 ``pkg_resources`` is not available, no plugins will be loaded at
-all. Note that ``pkg_resources`` is distributed with `setuptools`_, and
+all. Note that ``pkg_resources`` is distributed with setuptools, and
 thus available on most Python environments. However, ``pkg_resources``
 is considerably slower than ``importlib.metadata`` or its
 ``importlib_metadata`` backport. For this reason, if you run Pygments
