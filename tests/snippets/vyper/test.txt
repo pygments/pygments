@@ -1,0 +1,24 @@
+---input---
+log Transfer
+
+event Transfer:
+
+struct Tessst:
+
+---tokens---
+'log'         Keyword
+' '           Text.Whitespace
+'Transfer'    Name.Class
+'\n\n'        Text.Whitespace
+
+'event'       Keyword
+' '           Text.Whitespace
+'Transfer'    Name.Class
+':'           Punctuation
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'Tessst'      Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
