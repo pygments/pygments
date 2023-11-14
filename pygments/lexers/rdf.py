@@ -261,7 +261,7 @@ class TurtleLexer(RegexLexer):
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
             # BlankNodeLabel
-            (r'(\_)(\:)([' + PN_CHARS_U_GRP + r'0-9]([' + PN_CHARS_GRP + r'.]*' + PN_CHARS + ')?)',
+            (r'(_)(:)([' + PN_CHARS_U_GRP + r'0-9]([' + PN_CHARS_GRP + r'.]*' + PN_CHARS + ')?)',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
             # Comment
