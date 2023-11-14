@@ -50,10 +50,9 @@ class LexerTestItem(pytest.Item):
         self.actual = '\n'.join(self._prettyprint_tokens(tokens)).rstrip('\n') + '\n'
         if self.config.getoption('--update-goldens'):
             # Make sure the new golden output corresponds to the input.
-            # lexer._input_for_tests is self.input but with a newline possibly
-            # added due to the ensurenl option, BOM possibly removed, ...
             output = ''.join(val for (tok, val) in tokens)
-            assert output == lexer._input_for_tests
+            preproc_input = lexer._preprocess_lexer_input(self.input) # remove BOMs etc.
+            assert output == preproc_input
         else:
             # Make sure the output is the expected golden output
             assert self.actual == self.expected
@@ -76,7 +75,7 @@ class LexerTestItem(pytest.Item):
                 message = (
                     'The tokens produced by the "{}" lexer differ from the '
                     'expected ones in the file "{}".\n'
-                    'Run `pytest {} --update-goldens` to update it.'
+                    'Run `tox -- {} --update-goldens` to update it.'
                 ).format(self.lexer, rel_path, Path(*rel_path.parts[:2]))
             diff = str(excinfo.value).split('\n', 1)[-1]
             return message + '\n\n' + diff
