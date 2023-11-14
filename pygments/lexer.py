@@ -255,6 +255,8 @@ class Lexer(metaclass=LexerMeta):
         if self.ensurenl and not text.endswith('\n'):
             text += '\n'
 
+        self._input_for_tests = text
+
         def streamer():
             for _, t, v in self.get_tokens_unprocessed(text):
                 yield t, v
