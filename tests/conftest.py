@@ -69,7 +69,7 @@ class LexerTestItem(pytest.Item):
             if self.config.getoption('--update-goldens'):
                 message = (
                     f'The tokens produced by the "{self.lexer}" lexer '
-                    'does not add up to the input.'
+                    'do not add up to the input.'
                 )
             else:
                 rel_path = self._test_file_rel_path()
