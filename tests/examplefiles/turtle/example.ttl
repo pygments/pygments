@@ -7,6 +7,8 @@ PREFIX dc: <http://purl.org/dc/elements/1.1/>  # SPARQL-like syntax is OK
 
 <http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> .
 
+_:BlankNode1 a _:BlankNode2 .
+
 <#doc1> a <#document>;
 	dc:creator "Smith", "Jones"; 
 	:knows <http://getopenid.com/jsmith>;
