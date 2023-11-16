@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Whitespace, Punctuation
 
@@ -45,7 +45,7 @@ class TactLexer(RegexLexer):
             (r'((?<=\.\.\.)|(?<![.$]))\b(import)\b(\s*)', bygroups(Punctuation, Keyword, Whitespace), 'import'),
         ],
         'import': [
-            (r'\s*;', Punctuation, '#pop'),
+            (r';', Punctuation, '#pop'),
             include('comments'),
             include('string-in'),
             (r'\s+', Whitespace),
@@ -54,7 +54,6 @@ class TactLexer(RegexLexer):
             (r'((?<=\.\.\.)|(?<![.$]))\b(struct|message)\b', bygroups(Punctuation, Keyword), 'struct'),
         ],
         'struct': [
-            (r'(?<=\})', Punctuation, '#pop'),
             include('comments'),
             include('struct-header'),
             include('struct-body-in'),
@@ -62,14 +61,15 @@ class TactLexer(RegexLexer):
         ],
         'struct-header': [
             include('comments'),
-            (r'\b[\w]+\b', Name.Class),
-            (r'\(((?:\b0(?:x|X)[0-9a-fA-F][0-9a-fA-F_]*\b)|(?:\b[0-9]+\b))\)', Number),
+            (r'\b\w+', Name.Class),
+            (r'(\()((?:\b0[xX])[0-9a-fA-F][0-9a-fA-F_]*\b)(\))', bygroups(Punctuation, Number.Hex, Punctuation)),
+            (r'(\()((?:\b[0-9]+\b))(\))', bygroups(Punctuation, Number.Integer, Punctuation)),
         ],
         'struct-body-in': [
             (r'\{', Punctuation, 'struct-body'),
         ],
         'struct-body': [
-            (r'\}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop:2'),
             include('comments'),
             include('field-declaration-in'),
         ],
@@ -77,10 +77,9 @@ class TactLexer(RegexLexer):
             (r'((?<=\.\.\.)|(?<![.$]))\b(contract|trait)\b', Keyword, 'contract-or-trait'),
         ],
         'contract-or-trait': [
-            (r'(?<=\})', Punctuation, '#pop'),
             include('comments'),
             (r'with', Keyword),
-            (r'\b[\w]+\b', Name.Class),
+            (r'\b[\w]+', Name.Class),
             include('contract-or-trait-body-in'),
             (r'\s+', Whitespace),
             (r',', Punctuation),
@@ -89,7 +88,7 @@ class TactLexer(RegexLexer):
             (r'\{', Punctuation, 'contract-or-trait-body'),
         ],
         'contract-or-trait-body': [
-            (r'\}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop:2'),
             include('comments'),
             include('init-declaration-in'),
             include('receive-declaration-in'),
@@ -100,7 +99,7 @@ class TactLexer(RegexLexer):
             (r'\s+', Whitespace),
         ],
         'field-declaration-in': [
-            (r'(\b[\w]+\b)', Name.Property, 'field-declaration'),
+            (r'\b[\w]+', Name.Property, 'field-declaration'),
         ],
         'field-declaration': [
             (r';', Punctuation, '#pop'),
@@ -114,7 +113,7 @@ class TactLexer(RegexLexer):
         'const-declaration': [
             (r'(;)', Punctuation, '#pop'),
             (r'const', Keyword),
-            (r'\b(get|native|extends|mutates|virtual|override|inline|abstract)\b', Keyword),
+            (words(('get', 'native', 'extends', 'mutates', 'virtual', 'override', 'inline', 'abstract'), suffix=r'\b'), Keyword),
             (r'\b[\w]+\b', Name.Constant),
             include('comments'),
             include('type-annotation-in'),
@@ -156,7 +155,7 @@ class TactLexer(RegexLexer):
             (r'(?<=\}|\;)', Punctuation, '#pop'),
             (r'fun', Keyword),
             (r'\b(get|native|extends|mutates|virtual|override|inline|abstract)\b', Keyword),
-            (r'(\b[\w]+\b)', Name.Function),
+            (r'\b[\w]+', Name.Function),
             include('fun-declaration-body'),
             (r'[,;]', Punctuation),
         ],
@@ -175,7 +174,7 @@ class TactLexer(RegexLexer):
             include('comments'),
             include('string-in'),
             include('type-annotation-in'),
-            (r'(self)|(\b[\w]+\b)', Name.Variable),
+            (r'(self)|(\b[\w]+\b)', bygroups(Name.Variable.Instance, Name.Variable)),
             (r',', Punctuation),
             (r'\s+', Whitespace),
         ],
@@ -213,7 +212,7 @@ class TactLexer(RegexLexer):
             include('struct-init-in'),
         ],
         'struct-init-in': [
-            (r'(\b[\w]+\b)\s*(\{)', bygroups(Name.Class, Punctuation), 'struct-init')
+            (r'(\b\w+)(\s*)(\{)', bygroups(Name.Class, Whitespace, Punctuation), 'struct-init')
         ],
         'struct-init': [
             (r'(})', Punctuation, '#pop'),
@@ -223,7 +222,7 @@ class TactLexer(RegexLexer):
             (r',', Punctuation),
         ],
         'struct-property-in': [
-            (r'(\b[\w]+\b)\s*(:)', bygroups(Name.Property, Punctuation), 'struct-property')
+            (r'(\b[\w]+)(\s*)(:)', bygroups(Name.Property, Whitespace, Punctuation), 'struct-property')
         ],
         'struct-property': [
             (r'(?=\}|\,)', Punctuation, '#pop'),
@@ -241,7 +240,7 @@ class TactLexer(RegexLexer):
             (r'\s+', Whitespace),
         ],
         'type-annotation-in': [
-            (r'(:)\s+', Punctuation, 'type-annotation')
+            (r'(:)(\s+)', bygroups(Punctuation, Whitespace), 'type-annotation')
         ],
         'type-annotation': [
             (r'(?=\{|\;|\=|\,|\))', Punctuation, '#pop'),
@@ -249,7 +248,7 @@ class TactLexer(RegexLexer):
             include('type-as-in'),
             include('type-generic-in'), 
             (r'\?', Operator),
-            (r'\b[\w]+\b', Keyword.Type),
+            (r'\b\w+', Keyword.Type),
             (r'\s+', Whitespace),
         ],
         'type-generic-in': [
@@ -259,23 +258,23 @@ class TactLexer(RegexLexer):
             (r'>', Punctuation, '#pop'),
             include('comments'),
             include('type-as-in'),
-            (r'\b[\w]+\b', Keyword.Type),
+            (r'\b\w+', Keyword.Type),
             (r'\s+', Whitespace),
             (r',', Punctuation),
         ],
         'type-as-in': [
-            (r'\b(as)\s+', Keyword, 'type-as'),
+            (r'\b(as)(\s+)', bygroups(Keyword, Whitespace), 'type-as'),
         ],
         'type-as': [
             (r'(?=\{|\;|\=|\,|\)|\>)', Punctuation, '#pop'),
             include('comments'),
-            (r'\b[\w]+\b', Keyword.Type),
+            (r'\b\w+', Keyword.Type),
             (r'\s+', Whitespace),
         ],
         'keywords': [
-            (r'\b(if|else|while|do|until|repeat|return|extends|mutates|virtual|override|inline|native|let|const|fun|self|is|initOf|map|bounced|get|as)\b', Keyword),
-            (r'(<=>|>=|<=|!=|==|\^>>|~>>|>>|<<|\/%|\^%|~%|\^\/|~\/|\+=|-=|\*=|\/=|~\/=|\^\/=|%=|\^%=|<<=|>>=|~>>=|\^>>=|&=|\|=|\^=|\^|=|~|\/|%|-|\*|\+|>|<|&|\||:|\?)(?=\s)', Operator),
-            (r'\b(true|false)\b', Keyword.Constant),
+            (words(('if', 'else', 'while', 'do', 'until', 'repeat', 'return', 'extends', 'mutates', 'virtual', 'override', 'inline', 'native', 'let', 'const', 'fun', 'self', 'is', 'initOf', 'map', 'bounced', 'get', 'as'), prefix=r'\b', suffix=r'\b'), Keyword),
+            (r'(<=>|>=|<=|!=|==|\^>>|~>>|>>|<<|\/%|\^%|~%|\^\/|~\/|\+=|-=|\*=|\/=|~\/=|\^\/=|%=|\^%=|<<=|>>=|~>>=|\^>>=|&=|\|=|\^=|\^|=|~|\/|%|-|\*|\+|>|<|&|\||:|\?)', Operator),
+            (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Constant),
         ],
         'string-in': [
             (r'"', String, 'string'),
@@ -286,10 +285,11 @@ class TactLexer(RegexLexer):
             (r'[^\\"]+', String.Double),
         ],
         'numeric': [
-            (r'(?:\b0(?:x|X)[0-9a-fA-F][0-9a-fA-F_]*\b)|(?:\b[0-9]+\b)', Number)
+            (r'(?:\b0[xX])[0-9a-fA-F][0-9a-fA-F_]*\b', Number.Hex),
+            (r'(?:\b[0-9]+\b)', Number.Integer),
         ],
         'comments': [
-            (r'//(.*)', Comment.Single),
+            (r'//.*', Comment.Single),
             (r'/\*', Comment.Multiline, 'comments-multiline'),
         ],
         'comments-multiline': [
@@ -298,9 +298,9 @@ class TactLexer(RegexLexer):
             (r'[*]', Comment.Multiline),
         ],
         'variable': [
-            (r'\b[\w]+\b(?!\s*\()(?!\s*\{)', Name.Variable)
+            (r'\b\w+\b(?!\s*\()(?!\s*\{)', Name.Variable)
         ],
         'function-call': [
-            (r'\b[\w]+\b(?=\s*\()(?!\s*\{)', Name.Function)
+            (r'\b\w+\b(?=\s*\()(?!\s*\{)', Name.Function)
         ],
     }

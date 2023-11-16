@@ -25,7 +25,8 @@
 'now'         Name.Function
 '('           Punctuation
 ')'           Punctuation
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ''            Punctuation
 ';'           Punctuation
@@ -38,13 +39,14 @@
 'const'       Keyword
 ' '           Text.Whitespace
 'GlobalConst1' Name.Constant
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
 '='           Operator
 ' '           Text.Whitespace
-'1000'        Literal.Number
+'1000'        Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n\n'        Text.Whitespace
@@ -75,18 +77,21 @@
 ' '           Text.Whitespace
 'add'         Name.Function
 '('           Punctuation
-'self'        Name.Variable
-': '          Punctuation
+'self'        Name.Variable.Instance
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ''            Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
 'b'           Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ''            Punctuation
 ')'           Punctuation
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
@@ -113,7 +118,8 @@
 'beginTailString' Name.Function
 '('           Punctuation
 ')'           Punctuation
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'StringBuilder' Keyword.Type
 ''            Punctuation
 ';'           Punctuation
@@ -135,13 +141,15 @@
 '*/'          Comment.Multiline
 '\n    '      Text.Whitespace
 'value1'      Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ''            Punctuation
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'value2'      Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 '/*'          Comment.Multiline
 '*'           Comment.Multiline
 ' Comment '   Comment.Multiline
@@ -150,14 +158,16 @@
 ' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
-'as '         Keyword
+'as'          Keyword
+' '           Text.Whitespace
 'uint32'      Keyword.Type
 ''            Punctuation
 ''            Punctuation
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'value3'      Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Bool'        Keyword.Type
 ''            Punctuation
 ';'           Punctuation
@@ -178,7 +188,8 @@
 
 '    '        Text.Whitespace
 'data'        Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'SampleStruct' Keyword.Type
 ''            Punctuation
 ';'           Punctuation
@@ -192,7 +203,9 @@
 '/*'          Comment.Multiline
 '*/'          Comment.Multiline
 ' '           Text.Whitespace
-'(0x123)'     Literal.Number
+'('           Punctuation
+'0x123'       Literal.Number.Hex
+')'           Punctuation
 ' '           Text.Whitespace
 'MyMessage2'  Name.Class
 ' '           Text.Whitespace
@@ -201,7 +214,8 @@
 
 '    '        Text.Whitespace
 'data'        Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'SampleStruct' Keyword.Type
 ''            Punctuation
 ';'           Punctuation
@@ -226,7 +240,8 @@
 'traitState'  Name.Function
 '('           Punctuation
 ')'           Punctuation
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
@@ -236,7 +251,7 @@
 '        '    Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ';'           Punctuation
 '\n    '      Text.Whitespace
 '}'           Punctuation
@@ -287,28 +302,32 @@
 '{'           Punctuation
 '\n\n    '    Text.Whitespace
 'value'       Name.Property
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
-'as '         Keyword
+'as'          Keyword
+' '           Text.Whitespace
 'uint32'      Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
 ''            Punctuation
 '='           Operator
 ' '           Text.Whitespace
-'1230'        Literal.Number
+'1230'        Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'owner'       Name.Property
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Address'     Keyword.Type
 ''            Punctuation
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'counters'    Name.Property
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'map'         Keyword.Type
 '<'           Punctuation
 'Int'         Keyword.Type
@@ -320,19 +339,22 @@
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'map'         Name.Property
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'map'         Keyword.Type
 '<'           Punctuation
 'Int'         Keyword.Type
 ' '           Text.Whitespace
-'as '         Keyword
+'as'          Keyword
+' '           Text.Whitespace
 'int16'       Keyword.Type
 ''            Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
-'as '         Keyword
+'as'          Keyword
+' '           Text.Whitespace
 'uint32'      Keyword.Type
 ''            Punctuation
 '>'           Punctuation
@@ -340,7 +362,8 @@
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'b'           Name.Property
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'bounced'     Keyword.Type
 '<'           Punctuation
 'MyMessage'   Keyword.Type
@@ -352,20 +375,22 @@
 'const'       Keyword
 ' '           Text.Whitespace
 'ConstInt'    Name.Constant
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
 '='           Operator
 ' '           Text.Whitespace
-'4000'        Literal.Number
+'4000'        Literal.Number.Integer
 ''            Punctuation
 ';'           Punctuation
 '\n\n    '    Text.Whitespace
 'init'        Keyword
 '('           Punctuation
 'owner'       Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Address'     Keyword.Type
 ''            Punctuation
 ')'           Punctuation
@@ -388,7 +413,8 @@
 'bounced'     Keyword
 '('           Punctuation
 'src'         Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'bounced'     Keyword.Type
 '<'           Punctuation
 'MyMessage'   Keyword.Type
@@ -411,11 +437,13 @@
 'hello'       Name.Function
 '('           Punctuation
 'arg'         Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ''            Punctuation
 ')'           Punctuation
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
@@ -430,7 +458,7 @@
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -441,7 +469,7 @@
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'1000'        Literal.Number
+'1000'        Literal.Number.Integer
 ';'           Punctuation
 '\n        '  Text.Whitespace
 '}'           Punctuation
@@ -451,7 +479,8 @@
 'let'         Keyword
 ' '           Text.Whitespace
 'b'           Name.Variable
-': '          Punctuation
+':'           Punctuation
+' '           Text.Whitespace
 'Int'         Keyword.Type
 ' '           Text.Whitespace
 ''            Punctuation
@@ -461,7 +490,7 @@
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'10'          Literal.Number
+'10'          Literal.Number.Integer
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
@@ -496,7 +525,7 @@
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'10'          Literal.Number
+'10'          Literal.Number.Integer
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
@@ -505,7 +534,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'10'          Literal.Number
+'10'          Literal.Number.Integer
 ';'           Punctuation
 '\n    '      Text.Whitespace
 '}'           Punctuation
@@ -529,29 +558,29 @@
 'value1'      Name.Property
 ':'           Punctuation
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ''            Punctuation
 ','           Punctuation
 '\n            ' Text.Whitespace
 'value2'      Name.Property
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ''            Punctuation
 ','           Punctuation
 '\n            ' Text.Whitespace
 'value3'      Name.Property
 ':'           Punctuation
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ' '           Text.Whitespace
 '!='          Operator
 ' '           Text.Whitespace
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 '\n        '  Text.Whitespace
 ''            Punctuation
 '}'           Punctuation
