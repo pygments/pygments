@@ -202,7 +202,7 @@ class PrqlLexer(RegexLexer):
             include('strings-single'),
             (r'\n', String.Single)
         ],
-        
+
         'expr-inside-fstring': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             # without format specifier
@@ -224,17 +224,18 @@ class PrqlLexer(RegexLexer):
         'keywords': [
             (words((
                 'into', 'case', 'type', 'module', 'internal',
-                ), suffix=r'\b'),
-             Keyword),
+            ), suffix=r'\b'),
+                Keyword),
             (words(('true', 'false', 'null'), suffix=r'\b'), Keyword.Constant),
         ],
         'functions': [
             (words((
-                "min", "max","sum", "average", "stddev", "every", "any",
+                "min", "max", "sum", "average", "stddev", "every", "any",
                 "concat_array", "count", "lag", "lead", "first", "last",
                 "rank", "rank_dense", "row_number", "round", "as", "in",
                 "tuple_every", "tuple_map", "tuple_zip", "_eq", "_is_null",
-                "from_text", "lower", "upper", "read_parquet", "read_csv"), suffix=r'\b'),
+                "from_text", "lower", "upper", "read_parquet", "read_csv"),
+                suffix=r'\b'),
              Name.Function),
         ],
 

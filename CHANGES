@@ -9,7 +9,7 @@ Version 2.17.0
 
 - New lexers:
 
-  * JSX (#2524)
+  * JSX (#2524, #709)
   * Kusto (#2552)
   * ldaprc (#2532)
   * LDIF (#2489)
@@ -25,8 +25,10 @@ Version 2.17.0
     a possible switch to ``lean`` highlighting as Lean 4 (#2546)
   * JSON: add MIME types and file extensions for several line-delimited
     JSON formats (#2490)
-  * Nix: many improvements (#2551),
-  * Python: add ``starlark`` and ``bazel`` aliases (#2517)
+  * Nix: many improvements (#2551, #1800)
+  * OCaml: Add ``and`` keyword, remove ``value`` from keywords (#2521)
+  * Python: add ``starlark`` and ``bazel`` aliases (#2517, #2516)
+  * Snowball: Treat ``len`` like ``size`` (#2508)
   * Spice: add ``panic`` keyword and ``->`` operator (#2510)
   * squid.conf: fix catastrophic backtracking (#2583)
   * TOML: rewritten, with many fixes (#2576)
@@ -36,24 +38,31 @@ Version 2.17.0
   * CMake: support `[=[ bracketed arguments ]=]` (#2549)
 
 - Fix ctags support and tests (#2487)
+- Include ``Lexer.add_filter`` in the documentation (#2519)
+- Add a ``Lean3Lexer`` alias (#2546)
 - The ``pygments.styles`` module contains a new ``STYLES`` variable
   with a dictionary of built-in styles.  The old ``STYLE_MAP`` variable,
   which uses a different format, is kept for backwards compatibility.
 - On Windows, add a new installation extra (``windows-terminal``) which pulls in
   dependencies for colored console output. See :doc:`cmdline` for more details.
+  (#2505)
 - Support more file types in ``autopygmentize`` script (#2513)
 - Change color of numbers in ``rrt`` style (#2526)
 - Fix error when trying to look up plugin formatters by file extension
   of the output format (#2563)
-- Hatchling is now used as a build backend instead of setuptools.
+- Use Hatchling as a build backend instead of setuptools.
   This change is transparent to most users. Distribution packagers
   who build without build isolation need to add hatchling as a build
   dependency and remove setuptools. People downloading source distributions
   and wheels from PyPI directly should note that they now have ``pygments``
   in their file names instead of ``Pygments``. (#2573)
+- Improve the test framework to also check for lost tokens when processing the
+  snippets and example files (#2582.)
+- Improve the _Dracula_ style definition to make it easier to maintain (#2575)
 
 Version 2.16.1
 --------------
+(released August 6th, 2023)
 
 - Fix ``native`` style missing from style list (#2484)
 

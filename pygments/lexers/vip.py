@@ -20,7 +20,7 @@ __all__ = ['VisualPrologLexer', 'VisualPrologGrammarLexer']
 class VisualPrologBaseLexer(RegexLexer):
     minorendkw = ('try', 'foreach', 'if')
     minorkwexp = ('and', 'catch', 'do', 'else', 'elseif', 'erroneous', 'externally', 'failure', 'finally', 'foreach', 'if', 'or', 'orelse', 'otherwise', 'then',
-        'try', 'div', 'mod', 'rem', 'quot')
+                  'try', 'div', 'mod', 'rem', 'quot')
     dockw = ('short', 'detail', 'end', 'withdomain')
     tokens = {
         'root': [
@@ -43,11 +43,11 @@ class VisualPrologBaseLexer(RegexLexer):
             (r'[$,.[\]|(){}\\]+', Punctuation),
             (r'.', Text),
         ],
-        'commentdoc' : [
+        'commentdoc': [
             (words(dockw, prefix=r'@', suffix=r'\b'), Comment.Preproc),
             (r'@', Comment),
         ],
-        'commentline' : [
+        'commentline': [
             include('commentdoc'),
             (r'[^@\n]+', Comment),
             (r'$', Comment, '#pop'),
@@ -59,23 +59,23 @@ class VisualPrologBaseLexer(RegexLexer):
             (r'\*/', Comment, '#pop'),
             (r'[*/]', Comment),
         ],
-        'stringescape' : [
+        'stringescape': [
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\[\'"ntr\\]', String.Escape),
         ],
-        'stringsingle' : [
+        'stringsingle': [
             include('stringescape'),
             (r'\'', String.Symbol, '#pop'),
             (r'[^\'\\\n]+', String),
             (r'\n', String.Escape.Error, '#pop'),
         ],
-        'string' : [
+        'string': [
             include('stringescape'),
             (r'"', String.Symbol, '#pop'),
             (r'[^"\\\n]+', String),
             (r'\n', String.Escape.Error, '#pop'),
         ],
-        'atstring' : [
+        'atstring': [
             (r'""', String.Escape),
             (r'"', String.Symbol, '#pop'),
             (r'[^"]+', String),
@@ -89,12 +89,16 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     .. versionadded:: 2.17
     """
     name = 'Visual Prolog'
+    url = 'https://www.visual-prolog.com/'
     aliases = ['visualprolog']
     filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
 
-    majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve', 'delegate', 'monitor', 'constants', 'domains', 'predicates', 'constructors', 'properties', 'clauses', 'facts')
-    minorkw = ('align', 'anyflow', 'as', 'bitsize', 'determ', 'digits', 'erroneous', 'externally', 'failure', 'from', 'guard', 'multi', 'nondeterm', 'or', 'orelse', 'otherwise', 'procedure', 'resolve', 'single', 'suspending')
-    directivekw = ('bininclude', 'else', 'elseif', 'endif', 'error', 'export', 'externally', 'from', 'grammargenerate', 'grammarinclude', 'if', 'include', 'message', 'options', 'orrequires', 'requires', 'stringinclude', 'then')
+    majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve',
+               'delegate', 'monitor', 'constants', 'domains', 'predicates', 'constructors', 'properties', 'clauses', 'facts')
+    minorkw = ('align', 'anyflow', 'as', 'bitsize', 'determ', 'digits', 'erroneous', 'externally', 'failure', 'from',
+               'guard', 'multi', 'nondeterm', 'or', 'orelse', 'otherwise', 'procedure', 'resolve', 'single', 'suspending')
+    directivekw = ('bininclude', 'else', 'elseif', 'endif', 'error', 'export', 'externally', 'from', 'grammargenerate',
+                   'grammarinclude', 'if', 'include', 'message', 'options', 'orrequires', 'requires', 'stringinclude', 'then')
     tokens = {
         'root': [
             (words(minorkw, suffix=r'\b'), Keyword.Minor),
@@ -122,10 +126,12 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     """
 
     name = 'Visual Prolog Grammar'
+    url = 'https://www.visual-prolog.com/'
     aliases = ['visualprologgrammar']
     filenames = ['*.vipgrm']
 
-    majorkw = ('open', 'namespace', 'grammar', 'nonterminals', 'startsymbols', 'terminals', 'rules', 'precedence')
+    majorkw = ('open', 'namespace', 'grammar', 'nonterminals',
+               'startsymbols', 'terminals', 'rules', 'precedence')
     directivekw = ('bininclude', 'stringinclude')
     tokens = {
         'root': [
