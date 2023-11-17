@@ -542,15 +542,14 @@ class SquidConfLexer(RegexLexer):
         "dst", "time", "dstdomain", "ident", "snmp_community",
     )
 
-    ip_re = (
-        r'(?:(?:(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|0x0*[0-9a-f]{1,2}|'
-        r'0+[1-3]?[0-7]{0,2})(?:\.(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|'
-        r'0x0*[0-9a-f]{1,2}|0+[1-3]?[0-7]{0,2})){3})|(?!.*::.*::)(?:(?!:)|'
-        r':(?=:))(?:[0-9a-f]{0,4}(?:(?<=::)|(?<!::):)){6}(?:[0-9a-f]{0,4}'
-        r'(?:(?<=::)|(?<!::):)[0-9a-f]{0,4}(?:(?<=::)|(?<!:)|(?<=:)(?<!::):)|'
-        r'(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-4]|2[0-4]\d|1\d\d|'
-        r'[1-9]?\d)){3}))'
-    )
+    ipv4_group = r'(\d+|0x[0-9a-f]+)'
+    ipv4 = rf'({ipv4_group}(\.{ipv4_group}){{3}})'
+    ipv6_group = r'([0-9a-f]{0,4})'
+    ipv6 = rf'({ipv6_group}(:{ipv6_group}){{1,7}})'
+    bare_ip = rf'({ipv4}|{ipv6})'
+    # XXX: /integer is a subnet mark, but what is /IP ?
+    # There is no test where it is used.
+    ip = rf'{bare_ip}(/({bare_ip}|\d+))?'
 
     tokens = {
         'root': [
@@ -563,7 +562,7 @@ class SquidConfLexer(RegexLexer):
             (words(actions_stats, prefix=r'stats/', suffix=r'\b'), String),
             (words(actions_log, prefix=r'log/', suffix=r'='), String),
             (words(acls, prefix=r'\b', suffix=r'\b'), Keyword),
-            (ip_re + r'(?:/(?:' + ip_re + r'|\b\d+\b))?', Number.Float),
+            (ip, Number.Float),
             (r'(?:\b\d+\b(?:-\b\d+|%)?)', Number),
             (r'\S+', Text),
         ],
