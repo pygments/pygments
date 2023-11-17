@@ -549,7 +549,7 @@ class SquidConfLexer(RegexLexer):
     bare_ip = rf'({ipv4}|{ipv6})'
     # XXX: /integer is a subnet mark, but what is /IP ?
     # There is no test where it is used.
-    ip = rf'{bare_ip}(/{bare_ip}|\d+)?'
+    ip = rf'{bare_ip}(/({bare_ip}|\d+))?'
 
     tokens = {
         'root': [
