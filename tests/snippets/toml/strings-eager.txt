@@ -21,7 +21,9 @@ spam = '''same with a''' # multiline '''literal string'''
 '='           Operator
 ' '           Text.Whitespace
 "'"           Literal.String.Single
-"same with a' # basic 'string'" Literal.String.Single
+"same with a'" Literal.String.Single
+' '           Text.Whitespace
+"# basic 'string'" Comment.Single
 '\n'          Text.Whitespace
 
 'baz'         Name

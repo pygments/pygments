@@ -1260,7 +1260,7 @@ class TOMLLexer(RegexLexer):
             (r'[^"\\]+', String.Double),
         ],
         'literal-string': [
-            (r".*'", String.Single, '#pop'),
+            (r".*?'", String.Single, '#pop'),
         ],
         'multiline-basic-string': [
             (r'"""', String.Double, '#pop'),
