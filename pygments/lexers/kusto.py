@@ -44,7 +44,7 @@ KUSTO_PUNCTUATION = [
 class KustoLexer(RegexLexer):
     """For Kusto Query Language source code.
 
-    .. versionadded:: 2.17.0
+    .. versionadded:: 2.17
     """
 
     name = "Kusto"

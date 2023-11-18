@@ -16,7 +16,10 @@ __all__ = ['VyperLexer']
 
 
 class VyperLexer(RegexLexer):
-    """For the Vyper smart contract language."""
+    """For the Vyper smart contract language.
+    
+    .. versionadded:: 2.17
+    """
     name = 'Vyper'
     aliases = ['vyper']
     filenames = ['*.vy']
