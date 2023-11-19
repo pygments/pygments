@@ -20,14 +20,13 @@ __all__ = ['GLShaderLexer', 'PostScriptLexer', 'AsymptoteLexer', 'GnuplotLexer',
 class GLShaderLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
-
-    .. versionadded:: 1.1
     """
     name = 'GLSL'
     aliases = ['glsl']
     filenames = ['*.vert', '*.frag', '*.geo']
     mimetypes = ['text/x-glslsrc']
     url = 'https://www.khronos.org/api/opengl'
+    version_added = '1.1'
 
     tokens = {
         'root': [
@@ -152,14 +151,13 @@ class GLShaderLexer(RegexLexer):
 class HLSLShaderLexer(RegexLexer):
     """
     HLSL (Microsoft Direct3D Shader) lexer.
-
-    .. versionadded:: 2.3
     """
     name = 'HLSL'
     aliases = ['hlsl']
     filenames = ['*.hlsl', '*.hlsli']
     mimetypes = ['text/x-hlsl']
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
+    version_added = '2.3'
 
     tokens = {
         'root': [
@@ -307,14 +305,13 @@ class HLSLShaderLexer(RegexLexer):
 class PostScriptLexer(RegexLexer):
     """
     Lexer for PostScript files.
-
-    .. versionadded:: 1.4
     """
     name = 'PostScript'
     url = 'https://en.wikipedia.org/wiki/PostScript'
     aliases = ['postscript', 'postscr']
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
+    version_added = '1.4'
 
     delimiter = r'()<>\[\]{}/%\s'
     delimiter_end = r'(?=[%s])' % delimiter
@@ -402,14 +399,13 @@ class PostScriptLexer(RegexLexer):
 class AsymptoteLexer(RegexLexer):
     """
     For Asymptote source code.
-
-    .. versionadded:: 1.2
     """
     name = 'Asymptote'
     url = 'http://asymptote.sf.net/'
     aliases = ['asymptote', 'asy']
     filenames = ['*.asy']
     mimetypes = ['text/x-asymptote']
+    version_added = '1.2'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
@@ -530,8 +526,6 @@ def _shortened_many(*words):
 class GnuplotLexer(RegexLexer):
     """
     For Gnuplot plotting scripts.
-
-    .. versionadded:: 0.11
     """
 
     name = 'Gnuplot'
@@ -539,6 +533,7 @@ class GnuplotLexer(RegexLexer):
     aliases = ['gnuplot']
     filenames = ['*.plot', '*.plt']
     mimetypes = ['text/x-gnuplot']
+    version_added = '0.11'
 
     tokens = {
         'root': [
@@ -691,14 +686,13 @@ class GnuplotLexer(RegexLexer):
 class PovrayLexer(RegexLexer):
     """
     For Persistence of Vision Raytracer files.
-
-    .. versionadded:: 0.11
     """
     name = 'POVRay'
     url = 'http://www.povray.org/'
     aliases = ['pov']
     filenames = ['*.pov', '*.inc']
     mimetypes = ['text/x-povray']
+    version_added = '0.11'
 
     tokens = {
         'root': [

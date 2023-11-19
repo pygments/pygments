@@ -26,6 +26,7 @@ class Comal80Lexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/COMAL'
     aliases = ['comal', 'comal80']
     filenames = ['*.cml', '*.comal']
+    version_added = ''
     flags = re.IGNORECASE
     #
     # COMAL allows for some strange characters in names which we list here so

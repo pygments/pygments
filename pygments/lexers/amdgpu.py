@@ -19,13 +19,12 @@ __all__ = ['AMDGPULexer']
 class AMDGPULexer(RegexLexer):
     """
     For AMD GPU assembly.
-
-    .. versionadded:: 2.8
     """
     name = 'AMDGPU'
     aliases = ['amdgpu']
     filenames = ['*.isa']
     url = 'https://gpuopen.com/amd-isa-documentation'
+    version_added = '2.8'
 
     flags = re.IGNORECASE
 

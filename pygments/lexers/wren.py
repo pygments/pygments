@@ -19,13 +19,12 @@ __all__ = ['WrenLexer']
 class WrenLexer(RegexLexer):
     """
     For Wren source code, version 0.4.0.
-
-    .. versionadded:: 2.14.0
     """
     name = 'Wren'
     url = 'https://wren.io'
     aliases = ['wren']
     filenames = ['*.wren']
+    version_added = '2.14.0'
 
     flags = re.MULTILINE | re.DOTALL
 

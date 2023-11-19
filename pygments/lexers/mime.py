@@ -46,8 +46,6 @@ class MIMELexer(RegexLexer):
     `Content-Transfer-Encoding`
         Treat the data as a specific encoding. Or this lexer would try to parse
         from header by default. (default: None)
-
-    .. versionadded:: 2.5
     """
 
     name = "MIME"
@@ -56,6 +54,7 @@ class MIMELexer(RegexLexer):
                  "multipart/related",
                  "multipart/alternative"]
     url = 'https://en.wikipedia.org/wiki/MIME'
+    version_added = '2.5'
 
     def __init__(self, **options):
         super().__init__(**options)

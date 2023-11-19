@@ -18,8 +18,6 @@ __all__ = ['JLexer']
 class JLexer(RegexLexer):
     """
     For J source code.
-
-    .. versionadded:: 2.1
     """
 
     name = 'J'
@@ -27,6 +25,7 @@ class JLexer(RegexLexer):
     aliases = ['j']
     filenames = ['*.ijs']
     mimetypes = ['text/x-j']
+    version_added = '2.1'
 
     validName = r'\b[a-zA-Z]\w*'
 

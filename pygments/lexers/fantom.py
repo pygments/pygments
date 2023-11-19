@@ -21,14 +21,13 @@ __all__ = ['FantomLexer']
 class FantomLexer(RegexLexer):
     """
     For Fantom source code.
-
-    .. versionadded:: 1.5
     """
     name = 'Fantom'
     aliases = ['fan']
     filenames = ['*.fan']
     mimetypes = ['application/x-fantom']
     url = 'https://www.fantom.org'
+    version_added = '1.5'
 
     # often used regexes
     def s(str):

@@ -20,14 +20,13 @@ __all__ = ['AmbientTalkLexer']
 class AmbientTalkLexer(RegexLexer):
     """
     Lexer for AmbientTalk source code.
-
-    .. versionadded:: 2.0
     """
     name = 'AmbientTalk'
     url = 'https://code.google.com/p/ambienttalk'
     filenames = ['*.at']
     aliases = ['ambienttalk', 'ambienttalk/2', 'at']
     mimetypes = ['text/x-ambienttalk']
+    version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
 

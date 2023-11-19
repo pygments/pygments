@@ -20,14 +20,13 @@ __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 class SparqlLexer(RegexLexer):
     """
     Lexer for SPARQL query language.
-
-    .. versionadded:: 2.0
     """
     name = 'SPARQL'
     aliases = ['sparql']
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
     url = 'https://www.w3.org/TR/sparql11-query'
+    version_added = '2.0'
 
     # character group definitions ::
 
@@ -179,14 +178,13 @@ class SparqlLexer(RegexLexer):
 class TurtleLexer(RegexLexer):
     """
     Lexer for Turtle data language.
-
-    .. versionadded:: 2.1
     """
     name = 'Turtle'
     aliases = ['turtle']
     filenames = ['*.ttl']
     mimetypes = ['text/turtle', 'application/x-turtle']
     url = 'https://www.w3.org/TR/turtle'
+    version_added = '2.1'
 
     # character group definitions ::
     PN_CHARS_BASE_GRP = ('a-zA-Z'
@@ -331,6 +329,7 @@ class ShExCLexer(RegexLexer):
     filenames = ['*.shex']
     mimetypes = ['text/shex']
     url = 'https://shex.io/shex-semantics/#shexc'
+    version_added = ''
 
     # character group definitions ::
 

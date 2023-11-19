@@ -201,6 +201,7 @@ class ObjectiveCLexer(objective(CLexer)):
     aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
     filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
+    version_added = ''
     priority = 0.05    # Lower than C
 
 
@@ -213,20 +214,20 @@ class ObjectiveCppLexer(objective(CppLexer)):
     aliases = ['objective-c++', 'objectivec++', 'obj-c++', 'objc++']
     filenames = ['*.mm', '*.hh']
     mimetypes = ['text/x-objective-c++']
+    version_added = ''
     priority = 0.05    # Lower than C++
 
 
 class LogosLexer(ObjectiveCppLexer):
     """
     For Logos + Objective-C source code with preprocessor directives.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Logos'
     aliases = ['logos']
     filenames = ['*.x', '*.xi', '*.xm', '*.xmi']
     mimetypes = ['text/x-logos']
+    version_added = '1.6'
     priority = 0.25
 
     tokens = {
@@ -283,14 +284,13 @@ class LogosLexer(ObjectiveCppLexer):
 class SwiftLexer(RegexLexer):
     """
     For Swift source.
-
-    .. versionadded:: 2.0
     """
     name = 'Swift'
     url = 'https://www.swift.org/'
     filenames = ['*.swift']
     aliases = ['swift']
     mimetypes = ['text/x-swift']
+    version_added = '2.0'
 
     tokens = {
         'root': [

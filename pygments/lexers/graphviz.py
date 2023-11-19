@@ -19,14 +19,13 @@ __all__ = ['GraphvizLexer']
 class GraphvizLexer(RegexLexer):
     """
     For graphviz DOT graph description language.
-
-    .. versionadded:: 2.8
     """
     name = 'Graphviz'
     url = 'https://www.graphviz.org/doc/info/lang.html'
     aliases = ['graphviz', 'dot']
     filenames = ['*.gv', '*.dot']
     mimetypes = ['text/x-graphviz', 'text/vnd.graphviz']
+    version_added = '2.8'
     tokens = {
         'root': [
             (r'\s+', Whitespace),

@@ -22,14 +22,13 @@ __all__ = ['Inform6Lexer', 'Inform6TemplateLexer', 'Inform7Lexer',
 class Inform6Lexer(RegexLexer):
     """
     For Inform 6 source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Inform 6'
     url = 'http://inform-fiction.org/'
     aliases = ['inform6', 'i6']
     filenames = ['*.inf']
+    version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -543,14 +542,13 @@ class Inform6Lexer(RegexLexer):
 class Inform7Lexer(RegexLexer):
     """
     For Inform 7 source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Inform 7'
     url = 'http://inform7.com/'
     aliases = ['inform7', 'i7']
     filenames = ['*.ni', '*.i7x']
+    version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -747,13 +745,12 @@ class Inform7Lexer(RegexLexer):
 class Inform6TemplateLexer(Inform7Lexer):
     """
     For Inform 6 template code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Inform 6 template'
     aliases = ['i6t']
     filenames = ['*.i6t']
+    version_added = '2.0'
 
     def get_tokens_unprocessed(self, text, stack=('+i6t-root',)):
         return Inform7Lexer.get_tokens_unprocessed(self, text, stack)
@@ -768,6 +765,7 @@ class Tads3Lexer(RegexLexer):
     aliases = ['tads3']
     filenames = ['*.t']
     url = 'https://www.tads.org'
+    version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
 

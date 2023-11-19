@@ -39,14 +39,13 @@ _string = r'"[^"]*"'
 class WebIDLLexer(RegexLexer):
     """
     For Web IDL.
-
-    .. versionadded:: 2.6
     """
 
     name = 'Web IDL'
     url = 'https://www.w3.org/wiki/Web_IDL'
     aliases = ['webidl']
     filenames = ['*.webidl']
+    version_added = '2.6'
 
     tokens = {
         'common': [

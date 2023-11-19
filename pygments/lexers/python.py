@@ -26,8 +26,6 @@ class PythonLexer(RegexLexer):
     """
     For Python source code (version 3.x).
 
-    .. versionadded:: 0.10
-
     .. versionchanged:: 2.5
        This is now the default ``PythonLexer``.  It is still available as the
        alias ``Python3Lexer``.
@@ -60,6 +58,7 @@ class PythonLexer(RegexLexer):
     ]
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']
+    version_added = '0.10'
 
     uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
 
@@ -429,6 +428,7 @@ class Python2Lexer(RegexLexer):
     aliases = ['python2', 'py2']
     filenames = []  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
+    version_added = ''
 
     def innerstring_rules(ttype):
         return [
@@ -699,6 +699,7 @@ class PythonConsoleLexer(DelegatingLexer):
     aliases = ['pycon']
     mimetypes = ['text/x-python-doctest']
     url = 'https://python.org'
+    version_added = ''
 
     def __init__(self, **options):
         python3 = get_bool_opt(options, 'python3', True)
@@ -722,8 +723,6 @@ class PythonTracebackLexer(RegexLexer):
     """
     For Python 3.x tracebacks, with support for chained exceptions.
 
-    .. versionadded:: 1.0
-
     .. versionchanged:: 2.5
        This is now the default ``PythonTracebackLexer``.  It is still available
        as the alias ``Python3TracebackLexer``.
@@ -734,6 +733,7 @@ class PythonTracebackLexer(RegexLexer):
     filenames = ['*.pytb', '*.py3tb']
     mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
     url = 'https://python.org'
+    version_added = '1.0'
 
     tokens = {
         'root': [
@@ -780,8 +780,6 @@ class Python2TracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
-    .. versionadded:: 0.7
-
     .. versionchanged:: 2.5
        This class has been renamed from ``PythonTracebackLexer``.
        ``PythonTracebackLexer`` now refers to the Python 3 variant.
@@ -792,6 +790,7 @@ class Python2TracebackLexer(RegexLexer):
     filenames = ['*.py2tb']
     mimetypes = ['text/x-python2-traceback']
     url = 'https://python.org'
+    version_added = '0.7'
 
     tokens = {
         'root': [
@@ -828,8 +827,6 @@ class Python2TracebackLexer(RegexLexer):
 class CythonLexer(RegexLexer):
     """
     For Pyrex and Cython source code.
-
-    .. versionadded:: 1.1
     """
 
     name = 'Cython'
@@ -837,6 +834,7 @@ class CythonLexer(RegexLexer):
     aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
+    version_added = '1.1'
 
     tokens = {
         'root': [
@@ -1010,14 +1008,13 @@ class DgLexer(RegexLexer):
     Lexer for dg,
     a functional and object-oriented programming language
     running on the CPython 3 VM.
-
-    .. versionadded:: 1.6
     """
     name = 'dg'
     aliases = ['dg']
     filenames = ['*.dg']
     mimetypes = ['text/x-dg']
     url = 'http://pyos.github.io/dg'
+    version_added = '1.6'
 
     tokens = {
         'root': [
@@ -1108,13 +1105,12 @@ class DgLexer(RegexLexer):
 class NumPyLexer(PythonLexer):
     """
     A Python lexer recognizing Numerical Python builtins.
-
-    .. versionadded:: 0.10
     """
 
     name = 'NumPy'
     url = 'https://numpy.org/'
     aliases = ['numpy']
+    version_added = '0.10'
 
     # override the mimetypes to not inherit them from python
     mimetypes = []

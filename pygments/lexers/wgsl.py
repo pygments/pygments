@@ -33,14 +33,13 @@ ident_pattern_token = '([{}][{}]+)|[{}]'.format(uni.xid_start,uni.xid_continue,u
 class WgslLexer(RegexLexer):
     """
     Lexer for the WebGPU Shading Language.
-
-    .. versionadded:: 2.15
     """
     name = 'WebGPU Shading Language'
     url = 'https://www.w3.org/TR/WGSL/'
     aliases = ['wgsl']
     filenames = ['*.wgsl']
     mimetypes = ['text/wgsl']
+    version_added = '2.15'
 
     # https://www.w3.org/TR/WGSL/#var-and-value
     keyword_decl = (words('var let const override'.split(),suffix=r'\b'), Keyword.Declaration)

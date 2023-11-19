@@ -17,14 +17,13 @@ __all__ = ['Lean3Lexer']
 class Lean3Lexer(RegexLexer):
     """
     For the Lean 3 theorem prover.
-
-    .. versionadded:: 2.0
     """
     name = 'Lean'
     url = 'https://leanprover-community.github.io/lean3'
     aliases = ['lean', 'lean3']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean', 'text/x-lean3']
+    version_added = '2.0'
 
     tokens = {
         'expression': [

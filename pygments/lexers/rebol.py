@@ -20,14 +20,13 @@ __all__ = ['RebolLexer', 'RedLexer']
 class RebolLexer(RegexLexer):
     """
     A REBOL lexer.
-
-    .. versionadded:: 1.1
     """
     name = 'REBOL'
     aliases = ['rebol']
     filenames = ['*.r', '*.r3', '*.reb']
     mimetypes = ['text/x-rebol']
     url = 'http://www.rebol.com'
+    version_added = '1.1'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -242,14 +241,13 @@ class RebolLexer(RegexLexer):
 class RedLexer(RegexLexer):
     """
     A Red-language lexer.
-
-    .. versionadded:: 2.0
     """
     name = 'Red'
     aliases = ['red', 'red/system']
     filenames = ['*.red', '*.reds']
     mimetypes = ['text/x-red', 'text/x-red-system']
     url = 'https://www.red-lang.org'
+    version_added = '2.0'
 
     flags = re.IGNORECASE | re.MULTILINE
 

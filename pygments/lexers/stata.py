@@ -21,8 +21,6 @@ __all__ = ['StataLexer']
 class StataLexer(RegexLexer):
     """
     For Stata do files.
-
-    .. versionadded:: 2.2
     """
     # Syntax based on
     # - http://fmwww.bc.edu/RePEc/bocode/s/synlightlist.ado
@@ -31,6 +29,7 @@ class StataLexer(RegexLexer):
 
     name = 'Stata'
     url = 'http://www.stata.com/'
+    version_added = '2.2'
     aliases   = ['stata', 'do']
     filenames = ['*.do', '*.ado']
     mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']

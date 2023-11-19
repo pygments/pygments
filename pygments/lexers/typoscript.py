@@ -29,13 +29,12 @@ __all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer
 class TypoScriptCssDataLexer(RegexLexer):
     """
     Lexer that highlights markers, constants and registers within css blocks.
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScriptCssData'
     aliases = ['typoscriptcssdata']
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
+    version_added = '2.2'
 
     tokens = {
         'root': [
@@ -65,13 +64,12 @@ class TypoScriptCssDataLexer(RegexLexer):
 class TypoScriptHtmlDataLexer(RegexLexer):
     """
     Lexer that highlights markers, constants and registers within html tags.
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScriptHtmlData'
     aliases = ['typoscripthtmldata']
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
+    version_added = '2.2'
 
     tokens = {
         'root': [
@@ -101,8 +99,6 @@ class TypoScriptHtmlDataLexer(RegexLexer):
 class TypoScriptLexer(RegexLexer):
     """
     Lexer for TypoScript code.
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScript'
@@ -110,6 +106,7 @@ class TypoScriptLexer(RegexLexer):
     aliases = ['typoscript']
     filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
+    version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
 

@@ -17,13 +17,12 @@ __all__ = ['GcodeLexer']
 class GcodeLexer(RegexLexer):
     """
     For gcode source code.
-
-    .. versionadded:: 2.9
     """
     name = 'g-code'
     aliases = ['gcode']
     filenames = ['*.gcode']
     url = 'https://en.wikipedia.org/wiki/G-code'
+    version_added = '2.9'
 
     tokens = {
         'root': [

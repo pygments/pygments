@@ -19,14 +19,13 @@ class DaxLexer(RegexLexer):
     """
     Lexer for Power BI DAX
     Referenced from: https://github.com/sql-bi/SyntaxHighlighterBrushDax
-
-    .. versionadded:: 2.15
     """
     name = 'Dax'
     aliases = ['dax']
     filenames = ['*.dax']
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
     mimetypes = []
+    version_added = '2.15'
 
     tokens = {
         'root': [

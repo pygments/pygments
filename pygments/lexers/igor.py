@@ -19,8 +19,6 @@ __all__ = ['IgorLexer']
 class IgorLexer(RegexLexer):
     """
     Pygments Lexer for Igor Pro procedure files (.ipf).
-
-    .. versionadded:: 2.0
     """
 
     name = 'Igor'
@@ -28,6 +26,7 @@ class IgorLexer(RegexLexer):
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
     url = 'http://www.wavemetrics.com'
+    version_added = '2.0'
 
     flags = re.IGNORECASE | re.MULTILINE
 

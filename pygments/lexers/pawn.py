@@ -19,14 +19,13 @@ __all__ = ['SourcePawnLexer', 'PawnLexer']
 class SourcePawnLexer(RegexLexer):
     """
     For SourcePawn source code with preprocessor directives.
-
-    .. versionadded:: 1.6
     """
     name = 'SourcePawn'
     aliases = ['sp']
     filenames = ['*.sp']
     mimetypes = ['text/x-sourcepawn']
     url = 'https://github.com/alliedmodders/sourcepawn'
+    version_added = '1.6'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
@@ -130,8 +129,6 @@ class SourcePawnLexer(RegexLexer):
 class PawnLexer(RegexLexer):
     """
     For Pawn source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Pawn'
@@ -139,6 +136,7 @@ class PawnLexer(RegexLexer):
     filenames = ['*.p', '*.pwn', '*.inc']
     mimetypes = ['text/x-pawn']
     url = 'https://www.compuphase.com/pawn/pawn.htm'
+    version_added = '2.0'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'

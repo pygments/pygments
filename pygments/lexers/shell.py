@@ -25,8 +25,6 @@ __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
 class BashLexer(RegexLexer):
     """
     Lexer for (ba|k|z|)sh shell scripts.
-
-    .. versionadded:: 0.6
     """
 
     name = 'Bash'
@@ -38,6 +36,7 @@ class BashLexer(RegexLexer):
                  'PKGBUILD']
     mimetypes = ['application/x-sh', 'application/x-shellscript', 'text/x-shellscript']
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
+    version_added = '0.6'
 
     tokens = {
         'root': [
@@ -130,14 +129,13 @@ class BashLexer(RegexLexer):
 class SlurmBashLexer(BashLexer):
     """
     Lexer for (ba|k|z|)sh Slurm scripts.
-
-    .. versionadded:: 2.4
     """
 
     name = 'Slurm'
     aliases = ['slurm', 'sbatch']
     filenames = ['*.sl']
     mimetypes = []
+    version_added = '2.4'
     EXTRA_KEYWORDS = {'srun'}
 
     def get_tokens_unprocessed(self, text):
@@ -226,8 +224,6 @@ class BashSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for Bash shell sessions, i.e. command lines, including a
     prompt, interspersed with output.
-
-    .. versionadded:: 1.1
     """
 
     name = 'Bash Session'
@@ -235,6 +231,7 @@ class BashSessionLexer(ShellSessionBaseLexer):
     filenames = ['*.sh-session', '*.shell-session']
     mimetypes = ['application/x-shell-session', 'application/x-sh-session']
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
+    version_added = '1.1'
 
     _innerLexerCls = BashLexer
     _ps1rgx = re.compile(
@@ -246,14 +243,13 @@ class BashSessionLexer(ShellSessionBaseLexer):
 class BatchLexer(RegexLexer):
     """
     Lexer for the DOS/Windows Batch file format.
-
-    .. versionadded:: 0.7
     """
     name = 'Batchfile'
     aliases = ['batch', 'bat', 'dosbatch', 'winbatch']
     filenames = ['*.bat', '*.cmd']
     mimetypes = ['application/x-dos-batch']
     url = 'https://en.wikipedia.org/wiki/Batch_file'
+    version_added = '0.7'
 
     flags = re.MULTILINE | re.IGNORECASE
 
@@ -558,8 +554,6 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for MS DOS shell sessions, i.e. command lines, including a
     prompt, interspersed with output.
-
-    .. versionadded:: 2.1
     """
 
     name = 'MSDOS Session'
@@ -567,6 +561,7 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     filenames = []
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/MS-DOS'
+    version_added = '2.1'
 
     _innerLexerCls = BatchLexer
     _ps1rgx = re.compile(r'^([^>]*>)(.*\n?)')
@@ -576,8 +571,6 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
 class TcshLexer(RegexLexer):
     """
     Lexer for tcsh scripts.
-
-    .. versionadded:: 0.10
     """
 
     name = 'Tcsh'
@@ -585,6 +578,7 @@ class TcshLexer(RegexLexer):
     filenames = ['*.tcsh', '*.csh']
     mimetypes = ['application/x-csh']
     url = 'https://www.tcsh.org'
+    version_added = '0.10'
 
     tokens = {
         'root': [
@@ -646,8 +640,6 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for Tcsh sessions, i.e. command lines, including a
     prompt, interspersed with output.
-
-    .. versionadded:: 2.1
     """
 
     name = 'Tcsh Session'
@@ -655,6 +647,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     filenames = []
     mimetypes = []
     url = 'https://www.tcsh.org'
+    version_added = '2.1'
 
     _innerLexerCls = TcshLexer
     _ps1rgx = re.compile(r'^([^>]+>)(.*\n?)')
@@ -664,14 +657,13 @@ class TcshSessionLexer(ShellSessionBaseLexer):
 class PowerShellLexer(RegexLexer):
     """
     For Windows PowerShell code.
-
-    .. versionadded:: 1.5
     """
     name = 'PowerShell'
     aliases = ['powershell', 'pwsh', 'posh', 'ps1', 'psm1']
     filenames = ['*.ps1', '*.psm1']
     mimetypes = ['text/x-powershell']
     url = 'https://learn.microsoft.com/en-us/powershell'
+    version_added = '1.5'
 
     flags = re.DOTALL | re.IGNORECASE | re.MULTILINE
 
@@ -780,8 +772,6 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     """
     Lexer for PowerShell sessions, i.e. command lines, including a
     prompt, interspersed with output.
-
-    .. versionadded:: 2.1
     """
 
     name = 'PowerShell Session'
@@ -789,6 +779,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     filenames = []
     mimetypes = []
     url = 'https://learn.microsoft.com/en-us/powershell'
+    version_added = '2.1'
 
     _innerLexerCls = PowerShellLexer
     _bare_continuation = True
@@ -799,8 +790,6 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
 class FishShellLexer(RegexLexer):
     """
     Lexer for Fish shell scripts.
-
-    .. versionadded:: 2.1
     """
 
     name = 'Fish'
@@ -808,6 +797,7 @@ class FishShellLexer(RegexLexer):
     filenames = ['*.fish', '*.load']
     mimetypes = ['application/x-fish']
     url = 'https://fishshell.com'
+    version_added = '2.1'
 
     tokens = {
         'root': [
@@ -872,14 +862,13 @@ class FishShellLexer(RegexLexer):
 class ExeclineLexer(RegexLexer):
     """
     Lexer for Laurent Bercot's execline language.
-
-    .. versionadded:: 2.7
     """
 
     name = 'execline'
     aliases = ['execline']
     filenames = ['*.exec']
     url = 'https://skarnet.org/software/execline'
+    version_added = '2.7'
 
     tokens = {
         'root': [

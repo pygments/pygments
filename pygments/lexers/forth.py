@@ -21,14 +21,13 @@ __all__ = ['ForthLexer']
 class ForthLexer(RegexLexer):
     """
     Lexer for Forth files.
-
-    .. versionadded:: 2.2
     """
     name = 'Forth'
     url = 'https://www.forth.com/forth/'
     aliases = ['forth']
     filenames = ['*.frt', '*.fs']
     mimetypes = ['application/x-forth']
+    version_added = '2.2'
 
     flags = re.IGNORECASE | re.MULTILINE
 

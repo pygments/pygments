@@ -170,14 +170,13 @@ class SlashLanguageLexer(ExtendedRegexLexer):
 class SlashLexer(DelegatingLexer):
     """
     Lexer for the Slash programming language.
-
-    .. versionadded:: 2.4
     """
 
     name = 'Slash'
     aliases = ['slash']
     filenames = ['*.sla']
     url = 'https://github.com/arturadib/Slash-A'
+    version_added = '2.4'
 
     def __init__(self, **options):
         from pygments.lexers.web import HtmlLexer

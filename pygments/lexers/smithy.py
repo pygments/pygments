@@ -18,13 +18,12 @@ __all__ = ['SmithyLexer']
 class SmithyLexer(RegexLexer):
     """
     For Smithy IDL
-
-    .. versionadded:: 2.10
     """
     name = 'Smithy'
     url = 'https://awslabs.github.io/smithy/'
     filenames = ['*.smithy']
     aliases = ['smithy']
+    version_added = '2.10'
 
     unquoted = r'[A-Za-z0-9_\.#$-]+'
     identifier = r"[A-Za-z0-9_\.#$-]+"

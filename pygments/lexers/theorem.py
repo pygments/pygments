@@ -22,8 +22,6 @@ __all__ = ['CoqLexer', 'IsabelleLexer']
 class CoqLexer(RegexLexer):
     """
     For the Coq theorem prover.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Coq'
@@ -31,6 +29,7 @@ class CoqLexer(RegexLexer):
     aliases = ['coq']
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
+    version_added = '1.5'
 
     flags = 0 # no re.MULTILINE
 
@@ -174,8 +173,6 @@ class CoqLexer(RegexLexer):
 class IsabelleLexer(RegexLexer):
     """
     For the Isabelle proof assistant.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Isabelle'
@@ -183,6 +180,7 @@ class IsabelleLexer(RegexLexer):
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
+    version_added = '2.0'
 
     keyword_minor = (
         'and', 'assumes', 'attach', 'avoids', 'binder', 'checking',

@@ -51,14 +51,13 @@ class LilyPondLexer(SchemeLexer):
     .. important::
 
        This lexer is meant to be used in conjunction with the ``lilypond`` style.
-
-    .. versionadded:: 2.11
     """
     name = 'LilyPond'
     url = 'https://lilypond.org'
     aliases = ['lilypond']
     filenames = ['*.ly']
     mimetypes = []
+    version_added = '2.11'
 
     flags = re.DOTALL | re.MULTILINE
 

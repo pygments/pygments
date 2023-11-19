@@ -18,8 +18,6 @@ __all__ = ['RideLexer']
 class RideLexer(RegexLexer):
     """
     For Ride source code.
-
-    .. versionadded:: 2.6
     """
 
     name = 'Ride'
@@ -27,6 +25,7 @@ class RideLexer(RegexLexer):
     filenames = ['*.ride']
     mimetypes = ['text/x-ride']
     url = 'https://docs.waves.tech/en/ride'
+    version_added = '2.6'
 
     validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 

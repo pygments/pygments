@@ -20,14 +20,13 @@ __all__ = ['NCLLexer']
 class NCLLexer(RegexLexer):
     """
     Lexer for NCL code.
-
-    .. versionadded:: 2.2
     """
     name = 'NCL'
     aliases = ['ncl']
     filenames = ['*.ncl']
     mimetypes = ['text/ncl']
     url = 'https://www.ncl.ucar.edu'
+    version_added = '2.2'
 
     flags = re.MULTILINE
 

@@ -18,14 +18,13 @@ __all__ = ['WhileyLexer']
 class WhileyLexer(RegexLexer):
     """
     Lexer for the Whiley programming language.
-
-    .. versionadded:: 2.2
     """
     name = 'Whiley'
     url = 'http://whiley.org/'
     filenames = ['*.whiley']
     aliases = ['whiley']
     mimetypes = ['text/x-whiley']
+    version_added = '2.2'
 
     # See the language specification:
     # http://whiley.org/download/WhileyLanguageSpec.pdf

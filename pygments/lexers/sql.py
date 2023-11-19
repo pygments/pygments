@@ -154,14 +154,13 @@ class PostgresBase:
 class PostgresLexer(PostgresBase, RegexLexer):
     """
     Lexer for the PostgreSQL dialect of SQL.
-
-    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL SQL dialect'
     aliases = ['postgresql', 'postgres']
     mimetypes = ['text/x-postgresql']
     url = 'https://www.postgresql.org'
+    version_added = '1.5'
 
     flags = re.IGNORECASE
     tokens = {
@@ -211,13 +210,12 @@ class PostgresLexer(PostgresBase, RegexLexer):
 class PlPgsqlLexer(PostgresBase, RegexLexer):
     """
     Handle the extra syntax in Pl/pgSQL language.
-
-    .. versionadded:: 1.5
     """
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
     mimetypes = ['text/x-plpgsql']
     url = 'https://www.postgresql.org/docs/current/plpgsql.html'
+    version_added = '1.5'
 
     flags = re.IGNORECASE
     # FIXME: use inheritance
@@ -305,14 +303,13 @@ class lookahead:
 class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
-
-    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL console (psql)'
     aliases = ['psql', 'postgresql-console', 'postgres-console']
     mimetypes = ['text/x-postgresql-psql']
     url = 'https://www.postgresql.org'
+    version_added = '1.5'
 
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
@@ -378,8 +375,6 @@ class PostgresConsoleLexer(Lexer):
 class PostgresExplainLexer(RegexLexer):
     """
     Handle PostgreSQL EXPLAIN output
-
-    .. versionadded:: 2.15
     """
 
     name = 'PostgreSQL EXPLAIN dialect'
@@ -387,6 +382,7 @@ class PostgresExplainLexer(RegexLexer):
     filenames = ['*.explain']
     mimetypes = ['text/x-postgresql-explain']
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
+    version_added = '2.15'
 
     tokens = {
         'root': [
@@ -573,6 +569,7 @@ class SqlLexer(RegexLexer):
     filenames = ['*.sql']
     mimetypes = ['text/x-sql']
     url = 'https://en.wikipedia.org/wiki/SQL'
+    version_added = ''
 
     flags = re.IGNORECASE
     tokens = {
@@ -708,6 +705,7 @@ class TransactSqlLexer(RegexLexer):
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
     url = 'https://www.tsql.info'
+    version_added = ''
 
     flags = re.IGNORECASE
 
@@ -793,6 +791,7 @@ class MySqlLexer(RegexLexer):
     aliases = ['mysql']
     mimetypes = ['text/x-mysql']
     url = 'https://www.mysql.com'
+    version_added = ''
 
     flags = re.IGNORECASE
     tokens = {
@@ -967,8 +966,6 @@ class MySqlLexer(RegexLexer):
 class SqliteConsoleLexer(Lexer):
     """
     Lexer for example sessions using sqlite3.
-
-    .. versionadded:: 0.11
     """
 
     name = 'sqlite3con'
@@ -976,6 +973,7 @@ class SqliteConsoleLexer(Lexer):
     filenames = ['*.sqlite3-console']
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
+    version_added = '0.11'
 
     def get_tokens_unprocessed(self, data):
         sql = SqlLexer(**self.options)
@@ -1009,14 +1007,13 @@ class SqliteConsoleLexer(Lexer):
 class RqlLexer(RegexLexer):
     """
     Lexer for Relation Query Language.
-
-    .. versionadded:: 2.0
     """
     name = 'RQL'
     url = 'http://www.logilab.org/project/rql'
     aliases = ['rql']
     filenames = ['*.rql']
     mimetypes = ['text/x-rql']
+    version_added = '2.0'
 
     flags = re.IGNORECASE
     tokens = {

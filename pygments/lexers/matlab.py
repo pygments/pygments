@@ -23,14 +23,13 @@ __all__ = ['MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer']
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
-
-    .. versionadded:: 0.10
     """
     name = 'Matlab'
     aliases = ['matlab']
     filenames = ['*.m']
     mimetypes = ['text/matlab']
     url = 'https://www.mathworks.com/products/matlab.html'
+    version_added = '0.10'
 
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
@@ -2743,12 +2742,11 @@ class MatlabSessionLexer(Lexer):
     """
     For Matlab sessions.  Modeled after PythonConsoleLexer.
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
-
-    .. versionadded:: 0.10
     """
     name = 'Matlab session'
     aliases = ['matlabsession']
     url = 'https://www.mathworks.com/products/matlab.html'
+    version_added = '0.10'
 
     def get_tokens_unprocessed(self, text):
         mlexer = MatlabLexer(**self.options)
@@ -2813,14 +2811,13 @@ class MatlabSessionLexer(Lexer):
 class OctaveLexer(RegexLexer):
     """
     For GNU Octave source code.
-
-    .. versionadded:: 1.5
     """
     name = 'Octave'
     url = 'https://www.gnu.org/software/octave/index'
     aliases = ['octave']
     filenames = ['*.m']
     mimetypes = ['text/octave']
+    version_added = '1.5'
 
     # These lists are generated automatically.
     # Run the following in bash shell:
@@ -3231,14 +3228,13 @@ class OctaveLexer(RegexLexer):
 class ScilabLexer(RegexLexer):
     """
     For Scilab source code.
-
-    .. versionadded:: 1.5
     """
     name = 'Scilab'
     url = 'https://www.scilab.org/'
     aliases = ['scilab']
     filenames = ['*.sci', '*.sce', '*.tst']
     mimetypes = ['text/scilab']
+    version_added = '1.5'
 
     tokens = {
         'root': [

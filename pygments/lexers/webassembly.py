@@ -63,14 +63,13 @@ builtins = (
 
 class WatLexer(RegexLexer):
     """Lexer for the WebAssembly text format.
-
-    .. versionadded:: 2.9
     """
 
     name = 'WebAssembly'
     url = 'https://webassembly.org/'
     aliases = ['wast', 'wat']
     filenames = ['*.wat', '*.wast']
+    version_added = '2.9'
 
     tokens = {
         'root': [

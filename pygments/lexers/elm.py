@@ -18,8 +18,6 @@ __all__ = ['ElmLexer']
 class ElmLexer(RegexLexer):
     """
     For Elm source code.
-
-    .. versionadded:: 2.1
     """
 
     name = 'Elm'
@@ -27,6 +25,7 @@ class ElmLexer(RegexLexer):
     aliases = ['elm']
     filenames = ['*.elm']
     mimetypes = ['text/x-elm']
+    version_added = '2.1'
 
     validName = r'[a-z_][a-zA-Z0-9_\']*'
 

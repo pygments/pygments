@@ -21,8 +21,6 @@ class FreeFemLexer(CppLexer):
 
     This is an extension of the CppLexer, as the FreeFem Language is a superset
     of C++.
-
-    .. versionadded:: 2.4
     """
 
     name = 'Freefem'
@@ -30,6 +28,7 @@ class FreeFemLexer(CppLexer):
     aliases = ['freefem']
     filenames = ['*.edp']
     mimetypes = ['text/x-freefem']
+    version_added = '2.4'
 
     # Language operators
     operators = {'+', '-', '*', '.*', '/', './', '%', '^', '^-1', ':', '\''}

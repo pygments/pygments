@@ -18,14 +18,13 @@ __all__ = ['AutohotkeyLexer', 'AutoItLexer']
 class AutohotkeyLexer(RegexLexer):
     """
     For autohotkey source code.
-
-    .. versionadded:: 1.4
     """
     name = 'autohotkey'
     url = 'http://www.autohotkey.com/'
     aliases = ['autohotkey', 'ahk']
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
+    version_added = '1.4'
 
     tokens = {
         'root': [
@@ -199,14 +198,13 @@ class AutoItLexer(RegexLexer):
 
     AutoIt is a freeware BASIC-like scripting language
     designed for automating the Windows GUI and general scripting
-
-    .. versionadded:: 1.6
     """
     name = 'AutoIt'
     url = 'http://www.autoitscript.com/site/autoit/'
     aliases = ['autoit']
     filenames = ['*.au3']
     mimetypes = ['text/x-autoit']
+    version_added = '1.6'
 
     # Keywords, functions, macros from au3.keywords.properties
     # which can be found in AutoIt installed directory, e.g.

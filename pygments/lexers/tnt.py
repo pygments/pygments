@@ -21,14 +21,13 @@ class TNTLexer(Lexer):
     """
     Lexer for Typographic Number Theory, as described in the book
     Gödel, Escher, Bach, by Douglas R. Hofstadter
-
-    .. versionadded:: 2.7
     """
 
     name = 'Typographic Number Theory'
     url = 'https://github.com/Kenny2github/language-tnt'
     aliases = ['tnt']
     filenames = ['*.tnt']
+    version_added = '2.7'
 
     cur = []
 

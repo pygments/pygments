@@ -18,13 +18,12 @@ __all__ = ['AmplLexer']
 class AmplLexer(RegexLexer):
     """
     For AMPL source code.
-
-    .. versionadded:: 2.2
     """
     name = 'Ampl'
     url = 'http://ampl.com/'
     aliases = ['ampl']
     filenames = ['*.run']
+    version_added = '2.2'
 
     tokens = {
         'root': [
