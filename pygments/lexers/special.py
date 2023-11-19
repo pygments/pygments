@@ -26,7 +26,7 @@ class TextLexer(Lexer):
     aliases = ['text']
     filenames = ['*.txt']
     mimetypes = ['text/plain']
-    url = None
+    url = ""
 
     priority = 0.01
 
@@ -45,7 +45,7 @@ class OutputLexer(Lexer):
     """
     name = 'Text output'
     aliases = ['output']
-    url = None
+    url = ""
 
     def get_tokens_unprocessed(self, text):
         yield 0, Generic.Output, text

@@ -26,7 +26,7 @@ class VCTreeStatusLexer(RegexLexer):
     aliases = ['vctreestatus']
     filenames = []
     mimetypes = []
-    url = None
+    url = ""
 
     tokens = {
         'root': [
