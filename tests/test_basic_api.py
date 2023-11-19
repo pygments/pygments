@@ -9,6 +9,7 @@
 import random
 from io import StringIO, BytesIO
 from os import path
+import re
 
 import pytest
 
@@ -50,6 +51,11 @@ def test_lexer_classes(cls):
     assert isinstance(cls.version_added, str), \
         (f"Lexer class {cls.__name__} is missing the `version_added` attribute. "
          f"Please add `version_added = '{major}.{minor+1}'` to the class definition.")
+    if cls.version_added:
+        assert re.fullmatch(r"\d+\.\d+", cls.version_added), \
+            (f"Lexer class {cls.__name__} has a wrong version_added attribute. "
+             "It should be a version number like <major>.<minor> (but not "
+             "<major>.<minor>.<micro>).")
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")

@@ -162,7 +162,7 @@ class HspecLexer(HaskellLexer):
     aliases = ['hspec']
     filenames = ['*Spec.hs']
     mimetypes = []
-    version_added = '2.4.0'
+    version_added = '2.4'
 
     tokens = {
         'root': [
