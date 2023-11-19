@@ -95,7 +95,7 @@ class NesCLexer(CLexer):
 
 class ClayLexer(RegexLexer):
     """
-    For `Clay <http://claylabs.com/clay/>`_ source.
+    For Clay source.
 
     .. versionadded:: 2.0
     """
@@ -103,6 +103,8 @@ class ClayLexer(RegexLexer):
     filenames = ['*.clay']
     aliases = ['clay']
     mimetypes = ['text/x-clay']
+    url = 'http://claylabs.com/clay'
+
     tokens = {
         'root': [
             (r'\s+', Whitespace),
@@ -154,6 +156,7 @@ class ECLexer(CLexer):
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
+    url = 'https://ec-lang.org'
 
     tokens = {
         'statements': [
@@ -187,6 +190,7 @@ class ValaLexer(RegexLexer):
     aliases = ['vala', 'vapi']
     filenames = ['*.vala', '*.vapi']
     mimetypes = ['text/x-vala']
+    url = 'https://vala.dev'
 
     tokens = {
         'whitespace': [
@@ -277,8 +281,7 @@ class ValaLexer(RegexLexer):
 
 class CudaLexer(CLexer):
     """
-    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
-    source.
+    For NVIDIA CUDA™ source.
 
     .. versionadded:: 1.6
     """
@@ -286,6 +289,7 @@ class CudaLexer(CLexer):
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
+    url = 'https://developer.nvidia.com/category/zone/cuda-zone'
 
     function_qualifiers = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}

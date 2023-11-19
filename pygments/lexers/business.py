@@ -30,6 +30,8 @@ class CobolLexer(RegexLexer):
     aliases = ['cobol']
     filenames = ['*.cob', '*.COB', '*.cpy', '*.CPY']
     mimetypes = ['text/x-cobol']
+    url = 'https://en.wikipedia.org/wiki/COBOL'
+
     flags = re.IGNORECASE | re.MULTILINE
 
     # Data Types: by PICTURE and USAGE
@@ -228,6 +230,8 @@ class CobolFreeformatLexer(CobolLexer):
     aliases = ['cobolfree']
     filenames = ['*.cbl', '*.CBL']
     mimetypes = []
+    url = 'https://opencobol.add1tocobol.com'
+
     flags = re.IGNORECASE | re.MULTILINE
 
     tokens = {
@@ -247,6 +251,7 @@ class ABAPLexer(RegexLexer):
     aliases = ['abap']
     filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
+    url = 'https://community.sap.com/topics/abap'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -448,8 +453,7 @@ class ABAPLexer(RegexLexer):
 
 class OpenEdgeLexer(RegexLexer):
     """
-    Lexer for `OpenEdge ABL (formerly Progress)
-    <http://web.progress.com/en/openedge/abl.html>`_ source code.
+    Lexer for OpenEdge ABL (formerly Progress) source code.
 
     .. versionadded:: 1.5
     """
@@ -457,6 +461,7 @@ class OpenEdgeLexer(RegexLexer):
     aliases = ['openedge', 'abl', 'progress']
     filenames = ['*.p', '*.cls']
     mimetypes = ['text/x-openedge', 'application/x-openedge']
+    url = 'https://www.progress.com/openedge/features/abl'
 
     types = (r'(?i)(^|(?<=[^\w\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
              r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
@@ -517,10 +522,7 @@ class OpenEdgeLexer(RegexLexer):
 
 class GoodDataCLLexer(RegexLexer):
     """
-    Lexer for `GoodData-CL
-    <https://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/\
-com/gooddata/processor/COMMANDS.txt>`_
-    script files.
+    Lexer for GoodData-CL script files.
 
     .. versionadded:: 1.4
     """
@@ -529,8 +531,12 @@ com/gooddata/processor/COMMANDS.txt>`_
     aliases = ['gooddata-cl']
     filenames = ['*.gdc']
     mimetypes = ['text/x-gooddata-cl']
+    url = 'https://github.com/gooddata/GoodData-CL'
 
     flags = re.IGNORECASE
+
+    # Syntax:
+    # https://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt
     tokens = {
         'root': [
             # Comments
@@ -564,9 +570,7 @@ com/gooddata/processor/COMMANDS.txt>`_
 
 class MaqlLexer(RegexLexer):
     """
-    Lexer for `GoodData MAQL
-    <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
-    scripts.
+    Lexer for GoodData MAQL scripts.
 
     .. versionadded:: 1.4
     """
@@ -575,6 +579,7 @@ class MaqlLexer(RegexLexer):
     aliases = ['maql']
     filenames = ['*.maql']
     mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
+    url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
 
     flags = re.IGNORECASE
     tokens = {

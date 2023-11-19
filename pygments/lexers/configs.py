@@ -36,6 +36,7 @@ class IniLexer(RegexLexer):
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
     ]
     mimetypes = ['text/x-ini', 'text/inf']
+    url = 'https://en.wikipedia.org/wiki/INI_file'
 
     tokens = {
         'root': [
@@ -199,6 +200,7 @@ class PropertiesLexer(RegexLexer):
     aliases = ['properties', 'jproperties']
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
+    url = 'https://en.wikipedia.org/wiki/.properties'
 
     tokens = {
         'root': [
@@ -275,6 +277,8 @@ class KconfigLexer(RegexLexer):
     filenames = ['Kconfig*', '*Config.in*', 'external.in*',
                  'standard-modules.in']
     mimetypes = ['text/x-kconfig']
+    url = 'https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html'
+
     # No re.MULTILINE, indentation-aware help text needs line-by-line handling
     flags = 0
 
@@ -413,6 +417,7 @@ class ApacheConfLexer(RegexLexer):
     aliases = ['apacheconf', 'aconf', 'apache']
     filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
     mimetypes = ['text/x-apacheconf']
+    url = 'https://httpd.apache.org/docs/current/configuring.html'
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -868,6 +873,7 @@ class TermcapLexer(RegexLexer):
     aliases = ['termcap']
     filenames = ['termcap', 'termcap.src']
     mimetypes = []
+    url = 'https://en.wikipedia.org/wiki/Termcap'
 
     # NOTE:
     #   * multiline with trailing backslash
@@ -915,6 +921,7 @@ class TerminfoLexer(RegexLexer):
     aliases = ['terminfo']
     filenames = ['terminfo', 'terminfo.src']
     mimetypes = []
+    url = 'https://en.wikipedia.org/wiki/Terminfo'
 
     # NOTE:
     #   * multiline with leading whitespace
@@ -1422,6 +1429,7 @@ class UnixConfigLexer(RegexLexer):
     name = 'Unix/Linux config files'
     aliases = ['unixconfig', 'linuxconfig']
     filenames = []
+    url = 'https://en.wikipedia.org/wiki/Configuration_file#Unix_and_Unix-like_operating_systems'
 
     tokens = {
         'root': [

@@ -510,6 +510,7 @@ class GenericAspxLexer(RegexLexer):
     name = 'aspx-gen'
     filenames = []
     mimetypes = []
+    url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 
     flags = re.DOTALL
 
@@ -535,6 +536,7 @@ class CSharpAspxLexer(DelegatingLexer):
     aliases = ['aspx-cs']
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
+    url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 
     def __init__(self, **options):
         super().__init__(CSharpLexer, GenericAspxLexer, **options)
@@ -555,6 +557,7 @@ class VbNetAspxLexer(DelegatingLexer):
     aliases = ['aspx-vb']
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
+    url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 
     def __init__(self, **options):
         super().__init__(VbNetLexer, GenericAspxLexer, **options)

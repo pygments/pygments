@@ -17,7 +17,7 @@ __all__ = ["KLexer", "QLexer"]
 
 class KLexer(RegexLexer):
     """
-    For `K <https://code.kx.com/>`_ source code.
+    For K source code.
 
     .. versionadded:: 2.12
     """
@@ -25,6 +25,7 @@ class KLexer(RegexLexer):
     name = "K"
     aliases = ["k"]
     filenames = ["*.k"]
+    url = "https://code.kx.com"
 
     tokens = {
         "whitespace": [

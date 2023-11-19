@@ -41,6 +41,11 @@ def test_lexer_classes(cls):
         assert hasattr(cls, attr)
         assert type(getattr(cls, attr)) is list, \
             "%s: %s attribute wrong" % (cls, attr)
+    assert isinstance(cls.url, str), \
+        (f"Lexer class {cls.__name__} is missing the `url` attribute. "
+         "Please add it to provide a link to the language's homepage "
+         "for the Pygments documentation (or set it to an empty "
+         "string if this doesn't make sense for the lexer).")
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")

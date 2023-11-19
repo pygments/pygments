@@ -222,7 +222,7 @@ class DylanLidLexer(RegexLexer):
     aliases = ['dylan-lid', 'lid']
     filenames = ['*.lid', '*.hdp']
     mimetypes = ['text/x-dylan-lid']
-
+    url = 'http://www.opendylan.org/'
     flags = re.IGNORECASE
 
     tokens = {
@@ -252,6 +252,7 @@ class DylanConsoleLexer(Lexer):
     aliases = ['dylan-console', 'dylan-repl']
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
+    url = 'http://www.opendylan.org/'
     _example = 'dylan-console/console'
 
     _prompt_re = re.compile(r'\?| ')

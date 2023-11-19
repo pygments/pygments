@@ -30,6 +30,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     filenames = ['*.bib']
     mimetypes = ["text/x-bibtex"]
     flags = re.IGNORECASE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     ALLOWED_CHARS = r'@!$&*+\-./:;<>?\[\\\]^`|~'
     IDENTIFIER = '[{}][{}]*'.format('a-z_' + ALLOWED_CHARS, r'\w' + ALLOWED_CHARS)
@@ -124,6 +125,7 @@ class BSTLexer(RegexLexer):
     aliases = ['bst', 'bst-pybtex']
     filenames = ['*.bst']
     flags = re.IGNORECASE | re.MULTILINE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     tokens = {
         'root': [

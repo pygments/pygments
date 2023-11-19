@@ -140,6 +140,7 @@ class RagelEmbeddedLexer(RegexLexer):
     name = 'Embedded Ragel'
     aliases = ['ragel-em']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     tokens = {
         'root': [
@@ -220,6 +221,7 @@ class RagelRubyLexer(DelegatingLexer):
     name = 'Ragel in Ruby Host'
     aliases = ['ragel-ruby', 'ragel-rb']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(RubyLexer, RagelEmbeddedLexer, **options)
@@ -238,6 +240,7 @@ class RagelCLexer(DelegatingLexer):
     name = 'Ragel in C Host'
     aliases = ['ragel-c']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(CLexer, RagelEmbeddedLexer, **options)
@@ -256,6 +259,7 @@ class RagelDLexer(DelegatingLexer):
     name = 'Ragel in D Host'
     aliases = ['ragel-d']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(DLexer, RagelEmbeddedLexer, **options)
@@ -274,6 +278,7 @@ class RagelCppLexer(DelegatingLexer):
     name = 'Ragel in CPP Host'
     aliases = ['ragel-cpp']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(CppLexer, RagelEmbeddedLexer, **options)
@@ -292,6 +297,7 @@ class RagelObjectiveCLexer(DelegatingLexer):
     name = 'Ragel in Objective C Host'
     aliases = ['ragel-objc']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(ObjectiveCLexer, RagelEmbeddedLexer, **options)
@@ -310,6 +316,7 @@ class RagelJavaLexer(DelegatingLexer):
     name = 'Ragel in Java Host'
     aliases = ['ragel-java']
     filenames = ['*.rl']
+    url = 'http://www.colm.net/open-source/ragel/'
 
     def __init__(self, **options):
         super().__init__(JavaLexer, RagelEmbeddedLexer, **options)
@@ -320,18 +327,17 @@ class RagelJavaLexer(DelegatingLexer):
 
 class AntlrLexer(RegexLexer):
     """
-    Generic `ANTLR`_ Lexer.
+    Generic ANTLR Lexer.
     Should not be called directly, instead
     use DelegatingLexer for your target language.
 
     .. versionadded:: 1.1
-
-    .. _ANTLR: http://www.antlr.org/
     """
 
     name = 'ANTLR'
     aliases = ['antlr']
     filenames = []
+    url = 'https://www.antlr.org'
 
     _id = r'[A-Za-z]\w*'
     _TOKEN_REF = r'[A-Z]\w*'
@@ -523,6 +529,7 @@ class AntlrCppLexer(DelegatingLexer):
     name = 'ANTLR With CPP Target'
     aliases = ['antlr-cpp']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(CppLexer, AntlrLexer, **options)
@@ -542,6 +549,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
     name = 'ANTLR With ObjectiveC Target'
     aliases = ['antlr-objc']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(ObjectiveCLexer, AntlrLexer, **options)
@@ -561,6 +569,7 @@ class AntlrCSharpLexer(DelegatingLexer):
     name = 'ANTLR With C# Target'
     aliases = ['antlr-csharp', 'antlr-c#']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(CSharpLexer, AntlrLexer, **options)
@@ -580,6 +589,7 @@ class AntlrPythonLexer(DelegatingLexer):
     name = 'ANTLR With Python Target'
     aliases = ['antlr-python']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(PythonLexer, AntlrLexer, **options)
@@ -599,6 +609,7 @@ class AntlrJavaLexer(DelegatingLexer):
     name = 'ANTLR With Java Target'
     aliases = ['antlr-java']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(JavaLexer, AntlrLexer, **options)
@@ -618,6 +629,7 @@ class AntlrRubyLexer(DelegatingLexer):
     name = 'ANTLR With Ruby Target'
     aliases = ['antlr-ruby', 'antlr-rb']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(RubyLexer, AntlrLexer, **options)
@@ -637,6 +649,7 @@ class AntlrPerlLexer(DelegatingLexer):
     name = 'ANTLR With Perl Target'
     aliases = ['antlr-perl']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         super().__init__(PerlLexer, AntlrLexer, **options)
@@ -656,6 +669,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
     name = 'ANTLR With ActionScript Target'
     aliases = ['antlr-actionscript', 'antlr-as']
     filenames = ['*.G', '*.g']
+    url = 'https://www.antlr.org'
 
     def __init__(self, **options):
         from pygments.lexers.actionscript import ActionScriptLexer
@@ -737,7 +751,7 @@ class TreetopBaseLexer(RegexLexer):
 
 class TreetopLexer(DelegatingLexer):
     """
-    A lexer for `Treetop <http://treetop.rubyforge.org/>`_ grammars.
+    A lexer for Treetop grammars.
 
     .. versionadded:: 1.6
     """
@@ -745,6 +759,7 @@ class TreetopLexer(DelegatingLexer):
     name = 'Treetop'
     aliases = ['treetop']
     filenames = ['*.treetop', '*.tt']
+    url = 'https://cjheath.github.io/treetop'
 
     def __init__(self, **options):
         super().__init__(RubyLexer, TreetopBaseLexer, **options)
@@ -753,7 +768,7 @@ class TreetopLexer(DelegatingLexer):
 class EbnfLexer(RegexLexer):
     """
     Lexer for `ISO/IEC 14977 EBNF
-    <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
+    <https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
     grammars.
 
     .. versionadded:: 2.0
@@ -763,6 +778,7 @@ class EbnfLexer(RegexLexer):
     aliases = ['ebnf']
     filenames = ['*.ebnf']
     mimetypes = ['text/x-ebnf']
+    url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'
 
     tokens = {
         'root': [

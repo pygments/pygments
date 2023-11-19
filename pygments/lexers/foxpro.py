@@ -30,6 +30,7 @@ class FoxProLexer(RegexLexer):
     aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
     filenames = ['*.PRG', '*.prg']
     mimetype = []
+    url = 'https://learn.microsoft.com/en-us/previous-versions/visualstudio/foxpro'
 
     flags = re.IGNORECASE | re.MULTILINE
 

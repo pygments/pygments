@@ -24,6 +24,7 @@ class ThingsDBLexer(RegexLexer):
     name = 'ThingsDB'
     aliases = ['ti', 'thingsdb']
     filenames = ['*.ti']
+    url = 'https://www.thingsdb.net'
 
     tokens = {
         'root': [

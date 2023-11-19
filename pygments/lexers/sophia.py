@@ -27,6 +27,7 @@ class SophiaLexer(RegexLexer):
     aliases = ['sophia']
     filenames = ['*.aes']
     mimetypes = []
+    url = 'https://docs.aeternity.com/aesophia'
 
     keywords = (
         'contract', 'include', 'let', 'switch', 'type', 'record', 'datatype',
@@ -100,4 +101,3 @@ class SophiaLexer(RegexLexer):
             default('#pop'),
         ],
     }
-

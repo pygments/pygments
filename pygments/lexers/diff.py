@@ -26,6 +26,7 @@ class DiffLexer(RegexLexer):
     aliases = ['diff', 'udiff']
     filenames = ['*.diff', '*.patch']
     mimetypes = ['text/x-diff', 'text/x-patch']
+    url = 'https://en.wikipedia.org/wiki/Diff'
 
     tokens = {
         'root': [
@@ -64,6 +65,7 @@ class DarcsPatchLexer(RegexLexer):
     name = 'Darcs Patch'
     aliases = ['dpatch']
     filenames = ['*.dpatch', '*.darcspatch']
+    url = 'https://darcs.net'
 
     DPATCH_KEYWORDS = ('hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
                        'replace')

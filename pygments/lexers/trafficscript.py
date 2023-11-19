@@ -23,6 +23,7 @@ class RtsLexer(RegexLexer):
     name = 'TrafficScript'
     aliases = ['trafficscript', 'rts']
     filenames = ['*.rts']
+    url = 'https://riverbed.com'
 
     tokens = {
         'root' : [

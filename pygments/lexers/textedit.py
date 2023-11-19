@@ -30,6 +30,7 @@ class AwkLexer(RegexLexer):
     aliases = ['awk', 'gawk', 'mawk', 'nawk']
     filenames = ['*.awk']
     mimetypes = ['application/x-awk']
+    url = 'https://en.wikipedia.org/wiki/AWK'
 
     tokens = {
         'commentsandwhitespace': [
@@ -81,6 +82,7 @@ class SedLexer(RegexLexer):
     aliases = ['sed', 'gsed', 'ssed']
     filenames = ['*.sed', '*.[gs]sed']
     mimetypes = ['text/x-sed']
+    url = 'https://en.wikipedia.org/wiki/Sed'
     flags = re.MULTILINE
 
     # Match the contents within delimiters such as /<contents>/
@@ -119,6 +121,8 @@ class VimLexer(RegexLexer):
     filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
                  '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
     mimetypes = ['text/x-vim']
+    url = 'https://www.vim.org'
+
     flags = re.MULTILINE
 
     _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'

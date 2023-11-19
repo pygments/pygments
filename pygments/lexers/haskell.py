@@ -372,6 +372,7 @@ class CryptolLexer(RegexLexer):
     aliases = ['cryptol', 'cry']
     filenames = ['*.cry']
     mimetypes = ['text/x-cryptol']
+    url = 'https://www.cryptol.net'
 
     reserved = ('Arith', 'Bit', 'Cmp', 'False', 'Inf', 'True', 'else',
                 'export', 'extern', 'fin', 'if', 'import', 'inf', 'lg2',
@@ -580,6 +581,7 @@ class LiterateHaskellLexer(LiterateLexer):
     aliases = ['literate-haskell', 'lhaskell', 'lhs']
     filenames = ['*.lhs']
     mimetypes = ['text/x-literate-haskell']
+    url = 'https://wiki.haskell.org/Literate_programming'
 
     def __init__(self, **options):
         hslexer = HaskellLexer(**options)
@@ -603,6 +605,7 @@ class LiterateIdrisLexer(LiterateLexer):
     aliases = ['literate-idris', 'lidris', 'lidr']
     filenames = ['*.lidr']
     mimetypes = ['text/x-literate-idris']
+    url = 'https://idris2.readthedocs.io/en/latest/reference/literate.html'
 
     def __init__(self, **options):
         hslexer = IdrisLexer(**options)
@@ -626,6 +629,7 @@ class LiterateAgdaLexer(LiterateLexer):
     aliases = ['literate-agda', 'lagda']
     filenames = ['*.lagda']
     mimetypes = ['text/x-literate-agda']
+    url = 'https://agda.readthedocs.io/en/latest/tools/literate-programming.html'
 
     def __init__(self, **options):
         agdalexer = AgdaLexer(**options)
@@ -649,6 +653,7 @@ class LiterateCryptolLexer(LiterateLexer):
     aliases = ['literate-cryptol', 'lcryptol', 'lcry']
     filenames = ['*.lcry']
     mimetypes = ['text/x-literate-cryptol']
+    url = 'https://www.cryptol.net'
 
     def __init__(self, **options):
         crylexer = CryptolLexer(**options)

@@ -130,7 +130,7 @@ class Lexer(metaclass=LexerMeta):
     priority = 0
 
     #: URL of the language specification/definition. Used in the Pygments
-    #: documentation.
+    #: documentation. Set to an empty string to disable.
     url = None
 
     #: Example file name. Relative to the ``tests/examplefiles`` directory.

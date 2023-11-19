@@ -28,6 +28,7 @@ class MIPSLexer(RegexLexer):
     # method for this lexer and refactoring those from Gas and Nasm in order to
     # have relatively reliable detection
     filenames = ['*.mips', '*.MIPS']
+    url = 'https://mips.com'
 
     keywords = [
         # Arithmetic insturctions

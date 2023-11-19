@@ -26,6 +26,8 @@ class TextLexer(Lexer):
     aliases = ['text']
     filenames = ['*.txt']
     mimetypes = ['text/plain']
+    url = ""
+
     priority = 0.01
 
     def get_tokens_unprocessed(self, text):
@@ -43,6 +45,7 @@ class OutputLexer(Lexer):
     """
     name = 'Text output'
     aliases = ['output']
+    url = ""
 
     def get_tokens_unprocessed(self, text):
         yield 0, Generic.Output, text
@@ -65,6 +68,7 @@ class RawTokenLexer(Lexer):
     aliases = []
     filenames = []
     mimetypes = ['application/x-pygments-tokens']
+    url = 'https://pygments.org/docs/formatters/#RawTokenFormatter'
 
     def __init__(self, **options):
         self.compress = get_choice_opt(options, 'compress',

@@ -411,7 +411,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
 class CsoundDocumentLexer(RegexLexer):
     """
-    For `Csound <https://csound.com>`_ documents.
+    For Csound documents.
 
     .. versionadded:: 2.1
     """
@@ -419,6 +419,7 @@ class CsoundDocumentLexer(RegexLexer):
     name = 'Csound Document'
     aliases = ['csound-document', 'csound-csd']
     filenames = ['*.csd']
+    url = 'https://csound.com'
 
     # These tokens are based on those in XmlLexer in pygments/lexers/html.py. Making
     # CsoundDocumentLexer a subclass of XmlLexer rather than RegexLexer may seem like a

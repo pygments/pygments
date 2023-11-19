@@ -309,6 +309,7 @@ class LSLLexer(RegexLexer):
     aliases = ['lsl']
     filenames = ['*.lsl']
     mimetypes = ['text/x-lsl']
+    url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
 
     flags = re.MULTILINE
 
@@ -872,6 +873,7 @@ class HybrisLexer(RegexLexer):
     aliases = ['hybris', 'hy']
     filenames = ['*.hy', '*.hyb']
     mimetypes = ['text/x-hybris', 'application/x-hybris']
+    url = 'https://github.com/evilsocket/hybris'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -969,6 +971,7 @@ class EasytrieveLexer(RegexLexer):
     aliases = ['easytrieve']
     filenames = ['*.ezt', '*.mac']
     mimetypes = ['text/x-easytrieve']
+    url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
     flags = 0
 
     # Note: We cannot use r'\b' at the start and end of keywords because
@@ -1161,6 +1164,8 @@ class JclLexer(RegexLexer):
     aliases = ['jcl']
     filenames = ['*.jcl']
     mimetypes = ['text/x-jcl']
+    url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
+
     flags = re.IGNORECASE
 
     tokens = {

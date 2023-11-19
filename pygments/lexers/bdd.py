@@ -3,7 +3,6 @@
     ~~~~~~~~~~~~~~~~~~~
 
     Lexer for BDD(Behavior-driven development).
-    More information: https://en.wikipedia.org/wiki/Behavior-driven_development
 
     :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -27,6 +26,7 @@ class BddLexer(RegexLexer):
     aliases = ['bdd']
     filenames = ['*.feature']
     mimetypes = ['text/x-bdd']
+    url = 'https://en.wikipedia.org/wiki/Behavior-driven_development'
 
     step_keywords = (r'Given|When|Then|Add|And|Feature|Scenario Outline|'
                      r'Scenario|Background|Examples|But')

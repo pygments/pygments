@@ -28,6 +28,7 @@ class SASLexer(RegexLexer):
     aliases   = ['sas']
     filenames = ['*.SAS', '*.sas']
     mimetypes = ['text/x-sas', 'text/sas', 'application/x-sas']
+    url = 'https://en.wikipedia.org/wiki/SAS_(software)'
     flags     = re.IGNORECASE | re.MULTILINE
 
     builtins_macros = (

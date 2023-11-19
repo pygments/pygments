@@ -38,6 +38,7 @@ class BBCodeLexer(RegexLexer):
     name = 'BBCode'
     aliases = ['bbcode']
     mimetypes = ['text/x-bbcode']
+    url = 'https://www.bbcode.org/'
 
     tokens = {
         'root': [
@@ -72,6 +73,8 @@ class MoinWikiLexer(RegexLexer):
     aliases = ['trac-wiki', 'moin']
     filenames = []
     mimetypes = ['text/x-trac-wiki']
+    url = 'https://moinmo.in'
+
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -283,6 +286,7 @@ class TexLexer(RegexLexer):
     aliases = ['tex', 'latex']
     filenames = ['*.tex', '*.aux', '*.toc']
     mimetypes = ['text/x-tex', 'text/x-latex']
+    url = 'https://tug.org'
 
     tokens = {
         'general': [
@@ -344,6 +348,7 @@ class GroffLexer(RegexLexer):
     aliases = ['groff', 'nroff', 'man']
     filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm']
     mimetypes = ['application/x-troff', 'text/troff']
+    url = 'https://www.gnu.org/software/groff'
 
     tokens = {
         'root': [
@@ -400,6 +405,7 @@ class MozPreprocHashLexer(RegexLexer):
     aliases = [name]
     filenames = []
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
 
     tokens = {
         'root': [
@@ -441,6 +447,7 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     aliases = [name]
     filenames = []
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
 
     tokens = {
         'root': [
@@ -461,6 +468,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     aliases = ['xul+mozpreproc']
     filenames = ['*.xul.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, MozPreprocHashLexer, **options)
@@ -477,6 +485,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     aliases = ['javascript+mozpreproc']
     filenames = ['*.js.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)
@@ -493,6 +502,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     aliases = ['css+mozpreproc']
     filenames = ['*.css.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
 
     def __init__(self, **options):
         super().__init__(CssLexer, MozPreprocPercentLexer, **options)
@@ -1192,7 +1202,7 @@ class WikitextLexer(RegexLexer):
                 r"""(?xi)
                 (-\{{) # Use {{ to escape format()
                     ([^|]) (\|)
-                    (?: 
+                    (?:
                         (?: ([^;]*?) (=>))?
                         (\s* (?:{variants}) \s*) (:)
                     )?

@@ -27,6 +27,7 @@ class ComponentPascalLexer(RegexLexer):
     aliases = ['componentpascal', 'cp']
     filenames = ['*.cp', '*.cps']
     mimetypes = ['text/x-component-pascal']
+    url = 'https://blackboxframework.org'
 
     flags = re.MULTILINE | re.DOTALL
 

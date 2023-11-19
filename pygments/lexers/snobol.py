@@ -29,6 +29,7 @@ class SnobolLexer(RegexLexer):
     aliases = ["snobol"]
     filenames = ['*.snobol']
     mimetypes = ['text/x-snobol']
+    url = 'https://www.regressive.org/snobol4'
 
     tokens = {
         # root state, start of line

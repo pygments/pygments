@@ -31,6 +31,7 @@ class GasLexer(RegexLexer):
     aliases = ['gas', 'asm']
     filenames = ['*.s', '*.S']
     mimetypes = ['text/x-gas']
+    url = 'https://www.gnu.org/software/binutils'
 
     #: optional Comment or Whitespace
     string = r'"(\\"|[^"])*"'
@@ -167,6 +168,7 @@ class ObjdumpLexer(RegexLexer):
     aliases = ['objdump']
     filenames = ['*.objdump']
     mimetypes = ['text/x-objdump']
+    url = 'https://www.gnu.org/software/binutils'
 
     tokens = _objdump_lexer_tokens(GasLexer)
 
@@ -179,6 +181,7 @@ class DObjdumpLexer(DelegatingLexer):
     aliases = ['d-objdump']
     filenames = ['*.d-objdump']
     mimetypes = ['text/x-d-objdump']
+    url = 'https://www.gnu.org/software/binutils'
 
     def __init__(self, **options):
         super().__init__(DLexer, ObjdumpLexer, **options)
@@ -192,6 +195,7 @@ class CppObjdumpLexer(DelegatingLexer):
     aliases = ['cpp-objdump', 'c++-objdumb', 'cxx-objdump']
     filenames = ['*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump']
     mimetypes = ['text/x-cpp-objdump']
+    url = 'https://www.gnu.org/software/binutils'
 
     def __init__(self, **options):
         super().__init__(CppLexer, ObjdumpLexer, **options)
@@ -205,6 +209,8 @@ class CObjdumpLexer(DelegatingLexer):
     aliases = ['c-objdump']
     filenames = ['*.c-objdump']
     mimetypes = ['text/x-c-objdump']
+    url = 'https://www.gnu.org/software/binutils'
+
 
     def __init__(self, **options):
         super().__init__(CLexer, ObjdumpLexer, **options)
@@ -220,6 +226,7 @@ class HsailLexer(RegexLexer):
     aliases = ['hsail', 'hsa']
     filenames = ['*.hsail']
     mimetypes = ['text/x-hsail']
+    url = 'https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#HSA_Intermediate_Layer'
 
     string = r'"[^"]*?"'
     identifier = r'[a-zA-Z_][\w.]*'
@@ -715,6 +722,7 @@ class NasmLexer(RegexLexer):
     aliases = ['nasm']
     filenames = ['*.asm', '*.ASM', '*.nasm']
     mimetypes = ['text/x-nasm']
+    url = 'https://nasm.us'
 
     # Tasm uses the same file endings, but TASM is not as common as NASM, so
     # we prioritize NASM higher by default
@@ -803,6 +811,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     aliases = ['objdump-nasm']
     filenames = ['*.objdump-intel']
     mimetypes = ['text/x-nasm-objdump']
+    url = 'https://www.gnu.org/software/binutils'
 
     tokens = _objdump_lexer_tokens(NasmLexer)
 
@@ -815,6 +824,7 @@ class TasmLexer(RegexLexer):
     aliases = ['tasm']
     filenames = ['*.asm', '*.ASM', '*.tasm']
     mimetypes = ['text/x-tasm']
+    url = 'https://en.wikipedia.org/wiki/Turbo_Assembler'
 
     identifier = r'[@a-z$._?][\w$.?#@~]*'
     hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
@@ -902,6 +912,7 @@ class Ca65Lexer(RegexLexer):
     name = 'ca65 assembler'
     aliases = ['ca65']
     filenames = ['*.s']
+    url = 'https://cc65.github.io'
 
     flags = re.IGNORECASE
 

@@ -25,6 +25,7 @@ class PrologLexer(RegexLexer):
     aliases = ['prolog']
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
+    url = 'https://en.wikipedia.org/wiki/Prolog'
 
     tokens = {
         'root': [

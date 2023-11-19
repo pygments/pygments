@@ -23,6 +23,7 @@ class GcodeLexer(RegexLexer):
     name = 'g-code'
     aliases = ['gcode']
     filenames = ['*.gcode']
+    url = 'https://en.wikipedia.org/wiki/G-code'
 
     tokens = {
         'root': [

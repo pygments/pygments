@@ -35,6 +35,7 @@ class TypoScriptCssDataLexer(RegexLexer):
 
     name = 'TypoScriptCssData'
     aliases = ['typoscriptcssdata']
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
 
     tokens = {
         'root': [
@@ -70,6 +71,7 @@ class TypoScriptHtmlDataLexer(RegexLexer):
 
     name = 'TypoScriptHtmlData'
     aliases = ['typoscripthtmldata']
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
 
     tokens = {
         'root': [

@@ -179,6 +179,7 @@ class FortranFixedLexer(RegexLexer):
     name = 'FortranFixed'
     aliases = ['fortranfixed']
     filenames = ['*.f', '*.F']
+    url = 'https://fortran-lang.org/'
 
     flags = re.IGNORECASE
 

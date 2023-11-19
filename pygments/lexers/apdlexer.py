@@ -26,6 +26,8 @@ class apdlexer(RegexLexer):
     name = 'ANSYS parametric design language'
     aliases = ['ansys', 'apdl']
     filenames = ['*.ans']
+    url = 'https://www.ansys.com'
+
     flags = re.IGNORECASE
 
     # list of elements

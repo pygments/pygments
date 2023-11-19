@@ -26,6 +26,7 @@ class VCTreeStatusLexer(RegexLexer):
     aliases = ['vctreestatus']
     filenames = []
     mimetypes = []
+    url = ""
 
     tokens = {
         'root': [
@@ -52,6 +53,7 @@ class PyPyLogLexer(RegexLexer):
     aliases = ["pypylog", "pypy"]
     filenames = ["*.pypylog"]
     mimetypes = ['application/x-pypylog']
+    url = 'pypy.org'
 
     tokens = {
         "root": [

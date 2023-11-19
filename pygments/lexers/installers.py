@@ -155,6 +155,7 @@ class RPMSpecLexer(RegexLexer):
     aliases = ['spec']
     filenames = ['*.spec']
     mimetypes = ['text/x-rpm-spec']
+    url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
 
     _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
                    'post[a-z]*|trigger[a-z]*|files)')
@@ -229,6 +230,7 @@ class SourcesListLexer(RegexLexer):
     aliases = ['debsources', 'sourceslist', 'sources.list']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
+    url = 'https://wiki.debian.org/SourcesList'
 
     tokens = {
         'root': [
