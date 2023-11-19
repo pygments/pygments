@@ -30,7 +30,7 @@ class ArturoLexer(RegexLexer):
     aliases = ['arturo', 'art']
     filenames = ['*.art']
     url = 'https://arturo-lang.io/'
-    version_added = '2.14.0'
+    version_added = '2.14'
 
     def __init__(self, **options):
         self.handle_annotateds = get_bool_opt(options, 'handle_annotateds',

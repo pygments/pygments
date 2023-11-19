@@ -24,7 +24,7 @@ class BerryLexer(RegexLexer):
     filenames = ['*.be']
     mimetypes = ['text/x-berry', 'application/x-berry']
     url = 'https://berry-lang.github.io'
-    version_added = '2.12.0'
+    version_added = '2.12'
 
     _name = r'\b[^\W\d]\w*'
 

@@ -24,7 +24,7 @@ class WrenLexer(RegexLexer):
     url = 'https://wren.io'
     aliases = ['wren']
     filenames = ['*.wren']
-    version_added = '2.14.0'
+    version_added = '2.14'
 
     flags = re.MULTILINE | re.DOTALL
 

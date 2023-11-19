@@ -595,7 +595,7 @@ class AntlrJavaLexer(DelegatingLexer):
     aliases = ['antlr-java']
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
-    version_added = '1.'
+    version_added = '1.1'
 
     def __init__(self, **options):
         super().__init__(JavaLexer, AntlrLexer, **options)
