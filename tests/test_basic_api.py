@@ -12,7 +12,7 @@ from os import path
 
 import pytest
 
-from pygments import lexers, formatters, lex, format
+from pygments import lexers, formatters, lex, format, __version__
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatter import Formatter
@@ -32,6 +32,7 @@ def test_lexer_instantiate_all(name):
     # instantiate every lexer, to see if the token type defs are correct
     getattr(lexers, name)
 
+major, minor, micro = (int(x) for x in __version__.split("."))
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
 def test_lexer_classes(cls):
@@ -46,6 +47,9 @@ def test_lexer_classes(cls):
          "Please add it to provide a link to the language's homepage "
          "for the Pygments documentation (or set it to an empty "
          "string if this doesn't make sense for the lexer).")
+    assert isinstance(cls.version_added, str), \
+        (f"Lexer class {cls.__name__} is missing the `version_added` attribute. "
+         f"Please add `version_added = '{major}.{minor+1}'` to the class definition.")
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")
