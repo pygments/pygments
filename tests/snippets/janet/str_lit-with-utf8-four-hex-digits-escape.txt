@@ -1,0 +1,8 @@
+---input---
+"\u23f1"
+
+---tokens---
+'"'           Literal.String
+'\\u23f1'     Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

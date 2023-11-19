@@ -1,0 +1,30 @@
+---input---
+((compile (let [a 1] ~(+ ,a 1))))
+
+---tokens---
+'('           Punctuation
+'('           Punctuation
+'compile'     Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'let'         Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+']'           Punctuation
+' '           Text.Whitespace
+'~'           Operator
+'('           Punctuation
+'+'           Name.Function
+' '           Text.Whitespace
+','           Operator
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,8 @@
+---input---
+@"\u89ee"
+
+---tokens---
+'@"'          Literal.String
+'\\u89ee'     Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

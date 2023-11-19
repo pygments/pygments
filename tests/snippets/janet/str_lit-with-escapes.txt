@@ -1,0 +1,12 @@
+---input---
+"first line\nsecond\tline"
+
+---tokens---
+'"'           Literal.String
+'first line'  Literal.String
+'\\n'         Literal.String.Escape
+'second'      Literal.String
+'\\t'         Literal.String.Escape
+'line'        Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

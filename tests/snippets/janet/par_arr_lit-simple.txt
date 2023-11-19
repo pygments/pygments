@@ -1,0 +1,12 @@
+---input---
+@(:hello :there :friend)
+
+---tokens---
+'@('          Punctuation
+':hello'      Name.Constant
+' '           Text.Whitespace
+':there'      Name.Constant
+' '           Text.Whitespace
+':friend'     Name.Constant
+')'           Punctuation
+'\n'          Text.Whitespace

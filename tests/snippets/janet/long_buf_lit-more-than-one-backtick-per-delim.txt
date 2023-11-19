@@ -1,0 +1,12 @@
+---input---
+@````Look,
+more than three
+backticks can be
+used...
+kinda poetic...
+but not really
+````
+
+---tokens---
+'@````Look,\nmore than three\nbackticks can be\nused...\nkinda poetic...\nbut not really\n````' Literal.String
+'\n'          Text.Whitespace
