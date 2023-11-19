@@ -67,9 +67,11 @@ class Lexer(metaclass=LexerMeta):
        :no-value:
     .. autoattribute:: priority
 
-    Lexers included in Pygments should have an additional attribute:
+    Lexers included in Pygments should have two additional attributes:
 
     .. autoattribute:: url
+       :no-value:
+    .. autoattribute:: version_added
        :no-value:
 
     Lexers included in Pygments may have additional attributes:
@@ -132,6 +134,9 @@ class Lexer(metaclass=LexerMeta):
     #: URL of the language specification/definition. Used in the Pygments
     #: documentation. Set to an empty string to disable.
     url = None
+
+    #: Version of Pygments in which the lexer was added.
+    version_added = None
 
     #: Example file name. Relative to the ``tests/examplefiles`` directory.
     #: This is used by the documentation generator to show an example.
