@@ -14,7 +14,7 @@ CODE = list(PythonLexer().get_tokens("# a\n# b\n# c"))
 
 
 def single_line(text):
-    return "".join(l.strip() for l in text.splitlines())
+    return "".join(line.strip() for line in text.splitlines())
 
 
 # Note: option `anchorlinenos` is currently ignored for `linenos=inline`

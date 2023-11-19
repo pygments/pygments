@@ -36,10 +36,10 @@ def test_lexer_instantiate_all(name):
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
 def test_lexer_classes(cls):
     # test that every lexer class has the correct public API
-    assert type(cls.name) is str
+    assert isinstance(cls.name, str)
     for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
         assert hasattr(cls, attr)
-        assert type(getattr(cls, attr)) is list, \
+        assert isinstance(getattr(cls, attr), list), \
             "%s: %s attribute wrong" % (cls, attr)
     assert isinstance(cls.url, str), \
         (f"Lexer class {cls.__name__} is missing the `url` attribute. "
@@ -180,7 +180,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, "ä")]
     out = format(tokens, fmt)
-    assert type(out) is str
+    assert isinstance(out, str)
     assert "ä" in out
 
     # encoding option
@@ -210,17 +210,17 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert type(out) is str, '%s: %r' % (cls, out)
+            assert isinstance(out, str), '%s: %r' % (cls, out)
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
-        assert type(out) is bytes, '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), '%s: %r' % (cls, out)
         # Cannot test for encoding, since formatters may have to escape
         # non-ASCII characters.
     else:
         inst = cls()
         out = format(tokens, inst)
-        assert type(out) is bytes, '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), '%s: %r' % (cls, out)
 
 
 def test_get_formatters():

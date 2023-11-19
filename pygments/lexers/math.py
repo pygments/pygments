@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.python import NumPyLexer
 from pygments.lexers.matlab import MatlabLexer, MatlabSessionLexer, \
     OctaveLexer, ScilabLexer

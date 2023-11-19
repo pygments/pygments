@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.sql import SqlLexer, MySqlLexer, SqliteConsoleLexer
 from pygments.lexers.shell import BashLexer, BashSessionLexer, BatchLexer, \
     TcshLexer

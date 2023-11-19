@@ -39,7 +39,10 @@ be used to find typos in token names, as those tokens are only used by one lexer
     20 references.
 """
 
-import sys, argparse, re, pathlib
+import argparse
+import pathlib
+import re
+import sys
 
 from pygments import token, lexers
 

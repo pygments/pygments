@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import include, RegexLexer, words
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
-    Operator, Number, String, Error
+    Operator, Number, String
 
 __all__ = ['WrenLexer']
 
