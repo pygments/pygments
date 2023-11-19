@@ -213,7 +213,6 @@ class MxmlLexer(RegexLexer):
     name = 'MXML'
     aliases = ['mxml']
     filenames = ['*.mxml']
-    mimetimes = ['text/xml', 'application/xml']
     url = 'https://en.wikipedia.org/wiki/MXML'
 
     tokens = {
