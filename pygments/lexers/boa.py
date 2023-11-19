@@ -18,13 +18,12 @@ __all__ = ['BoaLexer']
 class BoaLexer(RegexLexer):
     """
     Lexer for the Boa language.
-
-    .. versionadded:: 2.4
     """
     name = 'Boa'
     aliases = ['boa']
     filenames = ['*.boa']
     url = 'https://boa.cs.iastate.edu/docs'
+    version_added = '2.4'
 
     reserved = words(
         ('input', 'output', 'of', 'weight', 'before', 'after', 'stop',

@@ -20,14 +20,13 @@ __all__ = ['ComponentPascalLexer']
 class ComponentPascalLexer(RegexLexer):
     """
     For Component Pascal source code.
-
-    .. versionadded:: 2.1
     """
     name = 'Component Pascal'
     aliases = ['componentpascal', 'cp']
     filenames = ['*.cp', '*.cps']
     mimetypes = ['text/x-component-pascal']
     url = 'https://blackboxframework.org'
+    version_added = '2.1'
 
     flags = re.MULTILINE | re.DOTALL
 

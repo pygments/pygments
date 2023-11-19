@@ -18,8 +18,6 @@ __all__ = ['APLLexer']
 class APLLexer(RegexLexer):
     """
     A simple APL lexer.
-
-    .. versionadded:: 2.0
     """
     name = 'APL'
     url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
@@ -28,6 +26,7 @@ class APLLexer(RegexLexer):
         '*.apl', '*.aplf', '*.aplo', '*.apln',  
         '*.aplc', '*.apli', '*.dyalog',
     ]
+    version_added = '2.0'
 
     tokens = {
         'root': [

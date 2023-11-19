@@ -20,13 +20,12 @@ class ProcfileLexer(RegexLexer):
 
     The format is used to run processes on Heroku or is used by Foreman or
     Honcho tools.
-
-    .. versionadded:: 2.10
     """
     name = 'Procfile'
     url = 'https://devcenter.heroku.com/articles/procfile#procfile-format'
     aliases = ['procfile']
     filenames = ['Procfile']
+    version_added = '2.10'
 
     tokens = {
         'root': [

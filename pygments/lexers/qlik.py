@@ -22,14 +22,13 @@ __all__ = ["QlikLexer"]
 class QlikLexer(RegexLexer):
     """
     Lexer for qlik code, including .qvs files
-
-    .. versionadded:: 2.12
     """
 
     name = "Qlik"
     aliases = ["qlik", "qlikview", "qliksense", "qlikscript"]
     filenames = ["*.qvs", "*.qvw"]
     url = "https://qlik.com"
+    version_added = '2.12'
 
     flags = re.IGNORECASE
 

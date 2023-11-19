@@ -16,14 +16,13 @@ __all__ = ['OpenScadLexer']
 
 class OpenScadLexer(RegexLexer):
     """For openSCAD code.
-
-    .. versionadded:: 2.16
     """
     name = "OpenSCAD"
     url = "https://openscad.org/"
     aliases = ["openscad"]
     filenames = ["*.scad"]
     mimetypes = ["application/x-openscad"]
+    version_added = '2.16'
 
     tokens = {
         "root": [

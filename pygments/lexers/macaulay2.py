@@ -1722,6 +1722,7 @@ class Macaulay2Lexer(RegexLexer):
     url = 'https://macaulay2.com/'
     aliases = ['macaulay2']
     filenames = ['*.m2']
+    version_added = ''
 
     tokens = {
         'root': [

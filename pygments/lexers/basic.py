@@ -23,8 +23,6 @@ __all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
 class BlitzMaxLexer(RegexLexer):
     """
     For BlitzMax source code.
-
-    .. versionadded:: 1.4
     """
 
     name = 'BlitzMax'
@@ -32,6 +30,7 @@ class BlitzMaxLexer(RegexLexer):
     aliases = ['blitzmax', 'bmax']
     filenames = ['*.bmx']
     mimetypes = ['text/x-bmx']
+    version_added = '1.4'
 
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
     bmax_sktypes = r'@{1,2}|[!#$%]'
@@ -115,8 +114,6 @@ class BlitzMaxLexer(RegexLexer):
 class BlitzBasicLexer(RegexLexer):
     """
     For BlitzBasic source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'BlitzBasic'
@@ -124,6 +121,7 @@ class BlitzBasicLexer(RegexLexer):
     aliases = ['blitzbasic', 'b3d', 'bplus']
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
+    version_added = '2.0'
 
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
@@ -195,8 +193,6 @@ class BlitzBasicLexer(RegexLexer):
 class MonkeyLexer(RegexLexer):
     """
     For Monkey source code.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Monkey'
@@ -204,6 +200,7 @@ class MonkeyLexer(RegexLexer):
     filenames = ['*.monkey']
     mimetypes = ['text/x-monkey']
     url = 'https://blitzresearch.itch.io/monkeyx'
+    version_added = '1.6'
 
     name_variable = r'[a-z_]\w*'
     name_function = r'[A-Z]\w*'
@@ -324,13 +321,12 @@ class MonkeyLexer(RegexLexer):
 class CbmBasicV2Lexer(RegexLexer):
     """
     For CBM BASIC V2 sources.
-
-    .. versionadded:: 1.6
     """
     name = 'CBM BASIC V2'
     aliases = ['cbmbas']
     filenames = ['*.bas']
     url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
+    version_added = '1.6'
 
     flags = re.IGNORECASE
 
@@ -363,8 +359,6 @@ class CbmBasicV2Lexer(RegexLexer):
 class QBasicLexer(RegexLexer):
     """
     For QBasic source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'QBasic'
@@ -372,6 +366,7 @@ class QBasicLexer(RegexLexer):
     filenames = ['*.BAS', '*.bas']
     mimetypes = ['text/basic']
     url = 'https://en.wikipedia.org/wiki/QBasic'
+    version_added = '2.0'
 
     declarations = ('DATA', 'LET')
 
@@ -505,13 +500,12 @@ class QBasicLexer(RegexLexer):
 class VBScriptLexer(RegexLexer):
     """
     VBScript is scripting language that is modeled on Visual Basic.
-
-    .. versionadded:: 2.4
     """
     name = 'VBScript'
     aliases = ['vbscript']
     filenames = ['*.vbs', '*.VBS']
     url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
+    version_added = '2.4'
 
     flags = re.IGNORECASE
 
@@ -574,8 +568,6 @@ class BBCBasicLexer(RegexLexer):
     """
     BBC Basic was supplied on the BBC Micro, and later Acorn RISC OS.
     It is also used by BBC Basic For Windows.
-
-    .. versionadded:: 2.4
     """
     base_keywords = ['OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
                      'LINE', 'OFF', 'STEP', 'SPC', 'TAB', 'ELSE', 'THEN',
@@ -609,6 +601,7 @@ class BBCBasicLexer(RegexLexer):
     aliases = ['bbcbasic']
     filenames = ['*.bbc']
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
+    version_added = '2.4'
 
     tokens = {
         'root': [

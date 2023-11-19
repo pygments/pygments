@@ -18,14 +18,13 @@ __all__ = ['RitaLexer']
 class RitaLexer(RegexLexer):
     """
     Lexer for RITA.
-
-    .. versionadded:: 2.11
     """
     name = 'Rita'
     url = 'https://github.com/zaibacu/rita-dsl'
     filenames = ['*.rita']
     aliases = ['rita']
     mimetypes = ['text/rita']
+    version_added = '2.11'
 
     tokens = {
         'root': [

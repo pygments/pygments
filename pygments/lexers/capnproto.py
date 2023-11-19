@@ -17,13 +17,12 @@ __all__ = ['CapnProtoLexer']
 class CapnProtoLexer(RegexLexer):
     """
     For Cap'n Proto source.
-
-    .. versionadded:: 2.2
     """
     name = 'Cap\'n Proto'
     url = 'https://capnproto.org'
     filenames = ['*.capnp']
     aliases = ['capnp']
+    version_added = '2.2'
 
     tokens = {
         'root': [

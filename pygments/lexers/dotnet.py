@@ -50,6 +50,7 @@ class CSharpLexer(RegexLexer):
     aliases = ['csharp', 'c#', 'cs']
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
+    version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -164,8 +165,6 @@ class NemerleLexer(RegexLexer):
         ``Lo`` category has more than 40,000 characters in it!
 
       The default value is ``basic``.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Nemerle'
@@ -173,6 +172,7 @@ class NemerleLexer(RegexLexer):
     aliases = ['nemerle']
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
+    version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -333,6 +333,7 @@ class BooLexer(RegexLexer):
     aliases = ['boo']
     filenames = ['*.boo']
     mimetypes = ['text/x-boo']
+    version_added = ''
 
     tokens = {
         'root': [
@@ -402,6 +403,7 @@ class VbNetLexer(RegexLexer):
     aliases = ['vb.net', 'vbnet', 'lobas', 'oobas', 'sobas']
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
+    version_added = ''
 
     uni_name = '[_' + uni.combine('Ll', 'Lt', 'Lm', 'Nl') + ']' + \
                '[' + uni.combine('Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -537,6 +539,7 @@ class CSharpAspxLexer(DelegatingLexer):
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(CSharpLexer, GenericAspxLexer, **options)
@@ -558,6 +561,7 @@ class VbNetAspxLexer(DelegatingLexer):
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(VbNetLexer, GenericAspxLexer, **options)
@@ -573,8 +577,6 @@ class VbNetAspxLexer(DelegatingLexer):
 class FSharpLexer(RegexLexer):
     """
     For the F# language (version 3.0).
-
-    .. versionadded:: 1.5
     """
 
     name = 'F#'
@@ -582,6 +584,7 @@ class FSharpLexer(RegexLexer):
     aliases = ['fsharp', 'f#']
     filenames = ['*.fs', '*.fsi', '*.fsx']
     mimetypes = ['text/x-fsharp']
+    version_added = '1.5'
 
     keywords = [
         'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
@@ -736,14 +739,13 @@ class XppLexer(RegexLexer):
 
     """
     For X++ source code. This is based loosely on the CSharpLexer
-
-    .. versionadded:: 2.15
     """
 
     name = 'X++'
     url = 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-language-reference'
     aliases = ['xpp', 'x++']
     filenames = ['*.xpp']
+    version_added = '2.15'
 
     flags = re.MULTILINE
 

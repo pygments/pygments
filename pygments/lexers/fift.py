@@ -23,6 +23,7 @@ class FiftLexer(RegexLexer):
     aliases = ['fift', 'fif']
     filenames = ['*.fif']
     url = 'https://ton-blockchain.github.io/docs/fiftbase.pdf'
+    version_added = ''
 
     tokens = {
         'root': [

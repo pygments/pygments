@@ -18,8 +18,6 @@ __all__ = ['VerifpalLexer']
 class VerifpalLexer(RegexLexer):
     """
     For Verifpal code.
-
-    .. versionadded:: 2.16
     """
 
     name = 'Verifpal'
@@ -27,6 +25,7 @@ class VerifpalLexer(RegexLexer):
     filenames = ['*.vp']
     mimetypes = ['text/x-verifpal']
     url = 'https://verifpal.com'
+    version_added = '2.16'
 
     tokens = {
         'root': [

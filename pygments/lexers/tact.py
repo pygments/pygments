@@ -16,16 +16,13 @@ __all__ = ['TactLexer']
 
 
 class TactLexer(RegexLexer):
-    """
-    For Tact source code.
-
-    .. versionadded:: 2.17.0
-    """
+    """For Tact source code."""
 
     name = 'Tact'
     aliases = ['tact']
     filenames = ['*.tact']
     url = "https://tact-lang.org"
+    version_added = '2.17'
 
     tokens = {
         'root': [

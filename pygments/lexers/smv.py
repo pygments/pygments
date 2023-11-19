@@ -18,8 +18,6 @@ __all__ = ['NuSMVLexer']
 class NuSMVLexer(RegexLexer):
     """
     Lexer for the NuSMV language.
-
-    .. versionadded:: 2.2
     """
 
     name = 'NuSMV'
@@ -27,6 +25,7 @@ class NuSMVLexer(RegexLexer):
     filenames = ['*.smv']
     mimetypes = []
     url = 'https://nusmv.fbk.eu'
+    version_added = '2.2'
 
     tokens = {
         'root': [

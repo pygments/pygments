@@ -21,13 +21,12 @@ class TealLexer(RegexLexer):
 
     For more information about the grammar, see:
     https://github.com/algorand/go-algorand/blob/master/data/transactions/logic/assembler.go
-
-    .. versionadded:: 2.9
     """
     name = 'teal'
     url = 'https://developer.algorand.org/docs/reference/teal/specification/'
     aliases = ['teal']
     filenames = ['*.teal']
+    version_added = '2.9'
 
     keywords = words({
         'Sender', 'Fee', 'FirstValid', 'FirstValidTime', 'LastValid', 'Note',

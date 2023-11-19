@@ -18,14 +18,13 @@ __all__ = ['BerryLexer']
 class BerryLexer(RegexLexer):
     """
     For Berry source code.
-
-    .. versionadded:: 2.12.0
     """
     name = 'Berry'
     aliases = ['berry', 'be']
     filenames = ['*.be']
     mimetypes = ['text/x-berry', 'application/x-berry']
     url = 'https://berry-lang.github.io'
+    version_added = '2.12.0'
 
     _name = r'\b[^\W\d]\w*'
 

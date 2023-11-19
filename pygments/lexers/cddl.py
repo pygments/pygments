@@ -22,14 +22,13 @@ __all__ = ['CddlLexer']
 class CddlLexer(RegexLexer):
     """
     Lexer for CDDL definitions.
-
-    .. versionadded:: 2.8
     """
     name = "CDDL"
     url = 'https://datatracker.ietf.org/doc/rfc8610/'
     aliases = ["cddl"]
     filenames = ["*.cddl"]
     mimetypes = ["text/x-cddl"]
+    version_added = '2.8'
 
     _prelude_types = [
         "any",

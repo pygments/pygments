@@ -28,8 +28,6 @@ __all__ = ['SNBTLexer', 'MCFunctionLexer', 'MCSchemaLexer']
 
 class SNBTLexer(RegexLexer):
     """Lexer for stringified NBT, a data format used in Minecraft
-
-    .. versionadded:: 2.12.0
     """
 
     name = "SNBT"
@@ -37,6 +35,7 @@ class SNBTLexer(RegexLexer):
     aliases = ["snbt"]
     filenames = ["*.snbt"]
     mimetypes = ["text/snbt"]
+    version_added = '2.12.0'
 
     tokens = {
         "root": [
@@ -102,8 +101,6 @@ class SNBTLexer(RegexLexer):
 class MCFunctionLexer(RegexLexer):
     """Lexer for the mcfunction scripting language used in Minecraft
     Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
-
-    .. versionadded:: 2.12.0
     """
 
     name = "MCFunction"
@@ -111,6 +108,7 @@ class MCFunctionLexer(RegexLexer):
     aliases = ["mcfunction", "mcf"]
     filenames = ["*.mcfunction"]
     mimetypes = ["text/mcfunction"]
+    version_added = '2.12.0'
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
     _block_comment_prefix = "[>!]"
@@ -321,8 +319,6 @@ class MCFunctionLexer(RegexLexer):
 
 class MCSchemaLexer(RegexLexer):
     """Lexer for Minecraft Add-ons data Schemas, an interface structure standard used in Minecraft
-
-    .. versionadded:: 2.14.0
     """
     
     name = 'MCSchema'
@@ -330,6 +326,7 @@ class MCSchemaLexer(RegexLexer):
     aliases = ['mcschema']
     filenames = ['*.mcschema']
     mimetypes = ['text/mcschema']
+    version_added = '2.14.0'
 
     tokens = {
         'commentsandwhitespace': [

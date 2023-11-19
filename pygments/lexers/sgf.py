@@ -20,13 +20,12 @@ class SmartGameFormatLexer(RegexLexer):
 
     The format is used to store game records of board games for two players
     (mainly Go game).
-
-    .. versionadded:: 2.4
     """
     name = 'SmartGameFormat'
     url = 'https://www.red-bean.com/sgf/'
     aliases = ['sgf']
     filenames = ['*.sgf']
+    version_added = '2.4'
 
     tokens = {
         'root': [

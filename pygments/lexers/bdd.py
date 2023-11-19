@@ -18,8 +18,6 @@ class BddLexer(RegexLexer):
     """
     Lexer for BDD(Behavior-driven development), which highlights not only
     keywords, but also comments, punctuations, strings, numbers, and variables.
-
-    .. versionadded:: 2.11
     """
 
     name = 'Bdd'
@@ -27,6 +25,7 @@ class BddLexer(RegexLexer):
     filenames = ['*.feature']
     mimetypes = ['text/x-bdd']
     url = 'https://en.wikipedia.org/wiki/Behavior-driven_development'
+    version_added = '2.11'
 
     step_keywords = (r'Given|When|Then|Add|And|Feature|Scenario Outline|'
                      r'Scenario|Background|Examples|But')

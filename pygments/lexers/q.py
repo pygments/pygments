@@ -18,14 +18,13 @@ __all__ = ["KLexer", "QLexer"]
 class KLexer(RegexLexer):
     """
     For K source code.
-
-    .. versionadded:: 2.12
     """
 
     name = "K"
     aliases = ["k"]
     filenames = ["*.k"]
     url = "https://code.kx.com"
+    version_added = '2.12'
 
     tokens = {
         "whitespace": [
@@ -153,13 +152,12 @@ class KLexer(RegexLexer):
 class QLexer(KLexer):
     """
     For `Q <https://code.kx.com/>`_ source code.
-
-    .. versionadded:: 2.12
     """
 
     name = "Q"
     aliases = ["q"]
     filenames = ["*.q"]
+    version_added = '2.12'
 
     tokens = {
         "root": [

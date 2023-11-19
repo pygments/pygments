@@ -19,13 +19,12 @@ __all__ = ['ScdocLexer']
 class ScdocLexer(RegexLexer):
     """
     `scdoc` is a simple man page generator for POSIX systems written in C99.
-
-    .. versionadded:: 2.5
     """
     name = 'scdoc'
     url = 'https://git.sr.ht/~sircmpwn/scdoc'
     aliases = ['scdoc', 'scd']
     filenames = ['*.scd', '*.scdoc']
+    version_added = '2.5'
     flags = re.MULTILINE
 
     tokens = {

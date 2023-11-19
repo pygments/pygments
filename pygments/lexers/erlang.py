@@ -22,8 +22,6 @@ __all__ = ['ErlangLexer', 'ErlangShellLexer', 'ElixirConsoleLexer',
 class ErlangLexer(RegexLexer):
     """
     For the Erlang functional programming language.
-
-    .. versionadded:: 0.9
     """
 
     name = 'Erlang'
@@ -31,6 +29,7 @@ class ErlangLexer(RegexLexer):
     aliases = ['erlang']
     filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
+    version_added = '0.9'
 
     keywords = (
         'after', 'begin', 'case', 'catch', 'cond', 'end', 'fun', 'if',
@@ -150,14 +149,13 @@ class ErlangLexer(RegexLexer):
 class ErlangShellLexer(Lexer):
     """
     Shell sessions in erl (for Erlang code).
-
-    .. versionadded:: 1.1
     """
     name = 'Erlang erl session'
     aliases = ['erl']
     filenames = ['*.erl-sh']
     mimetypes = ['text/x-erl-shellsession']
     url = 'https://www.erlang.org/'
+    version_added = '1.1'
 
     _prompt_re = re.compile(r'(?:\([\w@_.]+\))?\d+>(?=\s|\Z)')
 
@@ -221,8 +219,6 @@ def gen_elixir_sigstr_rules(term, term_class, token, interpol=True):
 class ElixirLexer(RegexLexer):
     """
     For the Elixir language.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Elixir'
@@ -230,6 +226,7 @@ class ElixirLexer(RegexLexer):
     aliases = ['elixir', 'ex', 'exs']
     filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']
+    version_added = '1.5'
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')
     KEYWORD_OPERATOR = ('not', 'and', 'or', 'when', 'in')
@@ -485,14 +482,13 @@ class ElixirConsoleLexer(Lexer):
         [1,2,3]
         iex> length [head | tail]
         3
-
-    .. versionadded:: 1.5
     """
 
     name = 'Elixir iex session'
     aliases = ['iex']
     mimetypes = ['text/x-elixir-shellsession']
     url = 'https://elixir-lang.org'
+    version_added = '1.5'
 
     _prompt_re = re.compile(r'(iex|\.{3})((?:\([\w@_.]+\))?\d+|\(\d+\))?> ')
 

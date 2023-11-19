@@ -24,6 +24,7 @@ class FuncLexer(RegexLexer):
     aliases = ['func', 'fc']
     filenames = ['*.fc', '*.func']
     url = 'https://docs.ton.org/develop/func/overview'
+    version_added = ''
 
     # 1. Does not start from "
     # 2. Can start from ` and end with `, containing any character

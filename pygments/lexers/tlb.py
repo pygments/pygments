@@ -24,6 +24,7 @@ class TlbLexer(RegexLexer):
     aliases = ['tlb']
     filenames = ['*.tlb']
     url = 'https://docs.ton.org/#/overviews/TL-B'
+    version_added = ''
 
     tokens = {
         'root': [

@@ -18,8 +18,6 @@ __all__ = ['DevicetreeLexer']
 class DevicetreeLexer(RegexLexer):
     """
     Lexer for Devicetree files.
-
-    .. versionadded:: 2.7
     """
 
     name = 'Devicetree'
@@ -27,6 +25,7 @@ class DevicetreeLexer(RegexLexer):
     aliases = ['devicetree', 'dts']
     filenames = ['*.dts', '*.dtsi']
     mimetypes = ['text/x-c']
+    version_added = '2.7'
 
     #: optional Whitespace or /*...*/ style comment
     _ws = r'\s*(?:/[*][^*/]*?[*]/\s*)*'

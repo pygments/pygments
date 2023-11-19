@@ -23,14 +23,13 @@ __all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'OpenEdgeLexer',
 class CobolLexer(RegexLexer):
     """
     Lexer for OpenCOBOL code.
-
-    .. versionadded:: 1.6
     """
     name = 'COBOL'
     aliases = ['cobol']
     filenames = ['*.cob', '*.COB', '*.cpy', '*.CPY']
     mimetypes = ['text/x-cobol']
     url = 'https://en.wikipedia.org/wiki/COBOL'
+    version_added = '1.6'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -223,14 +222,13 @@ class CobolLexer(RegexLexer):
 class CobolFreeformatLexer(CobolLexer):
     """
     Lexer for Free format OpenCOBOL code.
-
-    .. versionadded:: 1.6
     """
     name = 'COBOLFree'
     aliases = ['cobolfree']
     filenames = ['*.cbl', '*.CBL']
     mimetypes = []
     url = 'https://opencobol.add1tocobol.com'
+    version_added = '1.6'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -244,14 +242,13 @@ class CobolFreeformatLexer(CobolLexer):
 class ABAPLexer(RegexLexer):
     """
     Lexer for ABAP, SAP's integrated language.
-
-    .. versionadded:: 1.1
     """
     name = 'ABAP'
     aliases = ['abap']
     filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
     url = 'https://community.sap.com/topics/abap'
+    version_added = '1.1'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -454,14 +451,13 @@ class ABAPLexer(RegexLexer):
 class OpenEdgeLexer(RegexLexer):
     """
     Lexer for OpenEdge ABL (formerly Progress) source code.
-
-    .. versionadded:: 1.5
     """
     name = 'OpenEdge ABL'
     aliases = ['openedge', 'abl', 'progress']
     filenames = ['*.p', '*.cls']
     mimetypes = ['text/x-openedge', 'application/x-openedge']
     url = 'https://www.progress.com/openedge/features/abl'
+    version_added = '1.5'
 
     types = (r'(?i)(^|(?<=[^\w\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
              r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
@@ -523,8 +519,6 @@ class OpenEdgeLexer(RegexLexer):
 class GoodDataCLLexer(RegexLexer):
     """
     Lexer for GoodData-CL script files.
-
-    .. versionadded:: 1.4
     """
 
     name = 'GoodData-CL'
@@ -532,6 +526,7 @@ class GoodDataCLLexer(RegexLexer):
     filenames = ['*.gdc']
     mimetypes = ['text/x-gooddata-cl']
     url = 'https://github.com/gooddata/GoodData-CL'
+    version_added = '1.4'
 
     flags = re.IGNORECASE
 
@@ -571,8 +566,6 @@ class GoodDataCLLexer(RegexLexer):
 class MaqlLexer(RegexLexer):
     """
     Lexer for GoodData MAQL scripts.
-
-    .. versionadded:: 1.4
     """
 
     name = 'MAQL'
@@ -580,6 +573,7 @@ class MaqlLexer(RegexLexer):
     filenames = ['*.maql']
     mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
+    version_added = '1.4'
 
     flags = re.IGNORECASE
     tokens = {

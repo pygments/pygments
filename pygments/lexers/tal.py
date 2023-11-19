@@ -20,8 +20,6 @@ __all__ = ['TalLexer']
 class TalLexer(RegexLexer):
     """
     For Uxntal source code.
-
-    .. versionadded:: 2.12
     """
 
     name = 'Tal'
@@ -29,6 +27,7 @@ class TalLexer(RegexLexer):
     filenames = ['*.tal']
     mimetypes = ['text/x-uxntal']
     url = 'https://wiki.xxiivv.com/site/uxntal.html'
+    version_added = '2.12'
 
     instructions = [
         'BRK', 'LIT', 'INC', 'POP', 'DUP', 'NIP', 'SWP', 'OVR', 'ROT',
