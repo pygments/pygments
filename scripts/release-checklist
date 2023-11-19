@@ -15,9 +15,10 @@ Release checklist
    do a dry run with ``git clean -xdfn`` first)
 * ``python3 -m build``
 * Check the size of the generated packages. If they're significantly different from the last release, check if the repository is in a modified state and that ``git clean`` was run.
-* ``twine upload dist/Pygments-$NEWVER*``
-* Check PyPI release page for obvious errors (like different file sizes!)
-* ``git tag -a``
+* ``twine upload --repository test-pygments dist/*`` (``dist`` must only contain the current files given we used ``git clean -xdf``)
+* Check Test-PyPI release page for obvious errors (like different file sizes!)
+* ``twine upload --repository pygments dist/*``
+* ``git tag -a $NEWVER``, i.e. ``git tag -a 1.0.0``. The message is "$NEWVER release".
 * Add new ``CHANGES`` heading for next version
 * ``git commit``
 * ``git push``, ``git push --tags``
