@@ -107,6 +107,7 @@ class BugsLexer(RegexLexer):
     name = 'BUGS'
     aliases = ['bugs', 'winbugs', 'openbugs']
     filenames = ['*.bug']
+    url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
 
     _FUNCTIONS = (
         # Scalar functions
@@ -202,6 +203,7 @@ class JagsLexer(RegexLexer):
     name = 'JAGS'
     aliases = ['jags']
     filenames = ['*.jag', '*.bug']
+    url = 'https://mcmc-jags.sourceforge.io'
 
     # JAGS
     _FUNCTIONS = (
@@ -293,6 +295,7 @@ class StanLexer(RegexLexer):
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
+    url = 'https://mc-stan.org'
 
     tokens = {
         'whitespace': [

@@ -546,6 +546,8 @@ class LassoLexer(RegexLexer):
     filenames = ['*.lasso', '*.lasso[89]']
     alias_filenames = ['*.incl', '*.inc', '*.las']
     mimetypes = ['text/x-lasso']
+    url = 'https://www.lassosoft.com'
+
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
 
     tokens = {
@@ -798,6 +800,7 @@ class ObjectiveJLexer(RegexLexer):
     aliases = ['objective-j', 'objectivej', 'obj-j', 'objj']
     filenames = ['*.j']
     mimetypes = ['text/x-objective-j']
+    url = 'https://www.cappuccino.dev/learn/objective-j.html'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//[^\n]*\n|/[*](?:[^*]|[*][^/])*[*]/)*'
@@ -1255,6 +1258,7 @@ class EarlGreyLexer(RegexLexer):
     aliases = ['earl-grey', 'earlgrey', 'eg']
     filenames = ['*.eg']
     mimetypes = ['text/x-earl-grey']
+    url = 'https://github.com/breuleux/earl-grey'
 
     tokens = {
         'root': [
@@ -1548,6 +1552,7 @@ class NodeConsoleLexer(Lexer):
     name = 'Node.js REPL console session'
     aliases = ['nodejsrepl', ]
     mimetypes = ['text/x-nodejsrepl', ]
+    url = 'https://nodejs.org'
 
     def get_tokens_unprocessed(self, text):
         jslexer = JavascriptLexer(**self.options)

@@ -194,9 +194,7 @@ class BlitzBasicLexer(RegexLexer):
 
 class MonkeyLexer(RegexLexer):
     """
-    For
-    `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
-    source code.
+    For Monkey source code.
 
     .. versionadded:: 1.6
     """
@@ -205,6 +203,7 @@ class MonkeyLexer(RegexLexer):
     aliases = ['monkey']
     filenames = ['*.monkey']
     mimetypes = ['text/x-monkey']
+    url = 'https://blitzresearch.itch.io/monkeyx'
 
     name_variable = r'[a-z_]\w*'
     name_function = r'[A-Z]\w*'
@@ -331,6 +330,7 @@ class CbmBasicV2Lexer(RegexLexer):
     name = 'CBM BASIC V2'
     aliases = ['cbmbas']
     filenames = ['*.bas']
+    url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
 
     flags = re.IGNORECASE
 
@@ -362,9 +362,7 @@ class CbmBasicV2Lexer(RegexLexer):
 
 class QBasicLexer(RegexLexer):
     """
-    For
-    `QBasic <http://en.wikipedia.org/wiki/QBasic>`_
-    source code.
+    For QBasic source code.
 
     .. versionadded:: 2.0
     """
@@ -373,6 +371,7 @@ class QBasicLexer(RegexLexer):
     aliases = ['qbasic', 'basic']
     filenames = ['*.BAS', '*.bas']
     mimetypes = ['text/basic']
+    url = 'https://en.wikipedia.org/wiki/QBasic'
 
     declarations = ('DATA', 'LET')
 
@@ -512,6 +511,8 @@ class VBScriptLexer(RegexLexer):
     name = 'VBScript'
     aliases = ['vbscript']
     filenames = ['*.vbs', '*.VBS']
+    url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
+
     flags = re.IGNORECASE
 
     tokens = {
@@ -607,6 +608,7 @@ class BBCBasicLexer(RegexLexer):
     name = 'BBC Basic'
     aliases = ['bbcbasic']
     filenames = ['*.bbc']
+    url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
 
     tokens = {
         'root': [

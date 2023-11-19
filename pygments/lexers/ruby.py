@@ -399,6 +399,7 @@ class RubyConsoleLexer(Lexer):
     name = 'Ruby irb session'
     aliases = ['rbcon', 'irb']
     mimetypes = ['text/x-ruby-shellsession']
+    url = 'https://www.ruby-lang.org'
     _example = 'rbcon/console'
 
     _prompt_re = re.compile(r'irb\([a-zA-Z_]\w*\):\d{3}:\d+[>*"\'] '

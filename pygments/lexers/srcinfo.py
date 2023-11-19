@@ -41,6 +41,7 @@ class SrcinfoLexer(RegexLexer):
     name = 'Srcinfo'
     aliases = ['srcinfo']
     filenames = ['.SRCINFO']
+    url = 'https://wiki.archlinux.org/title/.SRCINFO'
 
     tokens = {
         'root': [

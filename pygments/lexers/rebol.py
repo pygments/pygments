@@ -19,7 +19,7 @@ __all__ = ['RebolLexer', 'RedLexer']
 
 class RebolLexer(RegexLexer):
     """
-    A `REBOL <http://www.rebol.com/>`_ lexer.
+    A REBOL lexer.
 
     .. versionadded:: 1.1
     """
@@ -27,6 +27,7 @@ class RebolLexer(RegexLexer):
     aliases = ['rebol']
     filenames = ['*.r', '*.r3', '*.reb']
     mimetypes = ['text/x-rebol']
+    url = 'http://www.rebol.com'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -240,7 +241,7 @@ class RebolLexer(RegexLexer):
 
 class RedLexer(RegexLexer):
     """
-    A `Red-language <http://www.red-lang.org/>`_ lexer.
+    A Red-language lexer.
 
     .. versionadded:: 2.0
     """
@@ -248,6 +249,7 @@ class RedLexer(RegexLexer):
     aliases = ['red', 'red/system']
     filenames = ['*.red', '*.reds']
     mimetypes = ['text/x-red', 'text/x-red-system']
+    url = 'https://www.red-lang.org'
 
     flags = re.IGNORECASE | re.MULTILINE
 

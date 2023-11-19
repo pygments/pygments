@@ -28,6 +28,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
     aliases = ['urbiscript']
     filenames = ['*.u']
     mimetypes = ['application/x-urbiscript']
+    url = 'https://github.com/urbiforge/urbi'
 
     flags = re.DOTALL
 

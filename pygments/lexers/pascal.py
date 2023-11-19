@@ -60,6 +60,7 @@ class DelphiLexer(Lexer):
     aliases = ['delphi', 'pas', 'pascal', 'objectpascal']
     filenames = ['*.pas', '*.dpr']
     mimetypes = ['text/x-pascal']
+    url = 'https://www.embarcadero.com/products/delphi'
 
     TURBO_PASCAL_KEYWORDS = (
         'absolute', 'and', 'array', 'asm', 'begin', 'break', 'case',

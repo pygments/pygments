@@ -116,6 +116,7 @@ class DtdLexer(RegexLexer):
     aliases = ['dtd']
     filenames = ['*.dtd']
     mimetypes = ['application/xml-dtd']
+    url = 'https://en.wikipedia.org/wiki/Document_type_definition'
 
     tokens = {
         'root': [
@@ -204,6 +205,7 @@ class XmlLexer(RegexLexer):
                  '*.wsdl', '*.wsf']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml']
+    url = 'https://www.w3.org/XML'
 
     tokens = {
         'root': [
@@ -246,6 +248,7 @@ class XsltLexer(XmlLexer):
     aliases = ['xslt']
     filenames = ['*.xsl', '*.xslt', '*.xpl']  # xpl is XProc
     mimetypes = ['application/xsl+xml', 'application/xslt+xml']
+    url = 'https://www.w3.org/TR/xslt-30'
 
     EXTRA_KEYWORDS = {
         'apply-imports', 'apply-templates', 'attribute',
@@ -283,6 +286,7 @@ class HamlLexer(ExtendedRegexLexer):
     aliases = ['haml']
     filenames = ['*.haml']
     mimetypes = ['text/x-haml']
+    url = 'https://haml.info'
 
     flags = re.IGNORECASE
     # Haml can include " |\n" anywhere,
@@ -385,7 +389,7 @@ class HamlLexer(ExtendedRegexLexer):
 
 class ScamlLexer(ExtendedRegexLexer):
     """
-    For `Scaml markup <http://scalate.fusesource.org/>`_.  Scaml is Haml for Scala.
+    For Scaml markup.  Scaml is Haml for Scala.
 
     .. versionadded:: 1.4
     """
@@ -394,6 +398,7 @@ class ScamlLexer(ExtendedRegexLexer):
     aliases = ['scaml']
     filenames = ['*.scaml']
     mimetypes = ['text/x-scaml']
+    url = 'https://scalate.github.io/scalate/'
 
     flags = re.IGNORECASE
     # Scaml does not yet support the " |\n" notation to
@@ -508,6 +513,7 @@ class PugLexer(ExtendedRegexLexer):
     aliases = ['pug', 'jade']
     filenames = ['*.pug', '*.jade']
     mimetypes = ['text/x-pug', 'text/x-jade']
+    url = 'https://pugjs.org'
 
     flags = re.IGNORECASE
     _dot = r'.'
@@ -615,6 +621,7 @@ class UrlEncodedLexer(RegexLexer):
     name = 'urlencoded'
     aliases = ['urlencoded']
     mimetypes = ['application/x-www-form-urlencoded']
+    url = 'https://en.wikipedia.org/wiki/Percent-encoding'
 
     tokens = {
         'root': [

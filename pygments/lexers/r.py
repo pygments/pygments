@@ -28,6 +28,7 @@ class RConsoleLexer(Lexer):
     name = 'RConsole'
     aliases = ['rconsole', 'rout']
     filenames = ['*.Rout']
+    url = 'https://www.r-project.org'
 
     def get_tokens_unprocessed(self, text):
         slexer = SLexer(**self.options)
@@ -76,6 +77,7 @@ class SLexer(RegexLexer):
     filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron']
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
+    url = 'https://www.r-project.org'
 
     valid_name = r'`[^`\\]*(?:\\.[^`\\]*)*`|(?:[a-zA-Z]|\.[A-Za-z_.])[\w.]*|\.'
     tokens = {
@@ -166,6 +168,7 @@ class RdLexer(RegexLexer):
     aliases = ['rd']
     filenames = ['*.Rd']
     mimetypes = ['text/x-r-doc']
+    url = 'http://cran.r-project.org/doc/manuals/R-exts.html'
 
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.

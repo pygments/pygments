@@ -55,6 +55,7 @@ class MIMELexer(RegexLexer):
     mimetypes = ["multipart/mixed",
                  "multipart/related",
                  "multipart/alternative"]
+    url = 'https://en.wikipedia.org/wiki/MIME'
 
     def __init__(self, **options):
         super().__init__(**options)

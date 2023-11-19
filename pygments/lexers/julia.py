@@ -252,6 +252,7 @@ class JuliaConsoleLexer(Lexer):
     """
     name = 'Julia console'
     aliases = ['jlcon', 'julia-repl']
+    url = 'https://julialang.org/'
 
     def get_tokens_unprocessed(self, text):
         jllexer = JuliaLexer(**self.options)

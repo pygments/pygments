@@ -948,6 +948,7 @@ class SlimLexer(ExtendedRegexLexer):
     aliases = ['slim']
     filenames = ['*.slim']
     mimetypes = ['text/x-slim']
+    url = 'https://slim-template.github.io'
 
     flags = re.IGNORECASE
     _dot = r'(?: \|\n(?=.* \|)|.)'

@@ -29,6 +29,7 @@ class ActionScriptLexer(RegexLexer):
     filenames = ['*.as']
     mimetypes = ['application/x-actionscript', 'text/x-actionscript',
                  'text/actionscript']
+    url = 'https://en.wikipedia.org/wiki/ActionScript'
 
     flags = re.DOTALL
     tokens = {
@@ -213,6 +214,7 @@ class MxmlLexer(RegexLexer):
     aliases = ['mxml']
     filenames = ['*.mxml']
     mimetimes = ['text/xml', 'application/xml']
+    url = 'https://en.wikipedia.org/wiki/MXML'
 
     tokens = {
         'root': [

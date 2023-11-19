@@ -2,11 +2,7 @@
     pygments.lexers.archetype
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexer for Archetype-related syntaxes, including:
-
-    - ODIN syntax <https://github.com/openEHR/odin>
-    - ADL syntax <http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf>
-    - cADL sub-syntax of ADL
+    Lexer for Archetype-related syntaxes, including ODIN, ADL and cADL.
 
     For uses of this syntax, see the openEHR archetypes <http://www.openEHR.org/ckm>
 
@@ -146,6 +142,7 @@ class OdinLexer(AtomsLexer):
     aliases = ['odin']
     filenames = ['*.odin']
     mimetypes = ['text/odin']
+    url = 'https://github.com/openEHR/odin'
 
     tokens = {
         'path': [
@@ -194,6 +191,7 @@ class CadlLexer(AtomsLexer):
     name = 'cADL'
     aliases = ['cadl']
     filenames = ['*.cadl']
+    url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
 
     tokens = {
         'path': [
@@ -260,6 +258,7 @@ class AdlLexer(AtomsLexer):
     name = 'ADL'
     aliases = ['adl']
     filenames = ['*.adl', '*.adls', '*.adlf', '*.adlx']
+    url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
 
     tokens = {
         'whitespace': [

@@ -1683,6 +1683,7 @@ class EmacsLispLexer(RegexLexer):
     aliases = ['emacs-lisp', 'elisp', 'emacs']
     filenames = ['*.el']
     mimetypes = ['text/x-elisp', 'application/x-elisp']
+    url = 'https://www.gnu.org/software/emacs'
 
     flags = re.MULTILINE
 
@@ -2492,6 +2493,7 @@ class CPSALexer(RegexLexer):
     aliases = ['cpsa']
     filenames = ['*.cpsa']
     mimetypes = []
+    url = 'https://web.cs.wpi.edu/~guttman/cs564/cpsauser.html'
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
     # syntax file.

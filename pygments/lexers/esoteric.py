@@ -117,7 +117,7 @@ class CAmkESLexer(RegexLexer):
     tokens = {
         'root': [
             # C pre-processor directive
-            (r'^(\s*)(#.*)(\n)', bygroups(Whitespace, Comment.Preproc, 
+            (r'^(\s*)(#.*)(\n)', bygroups(Whitespace, Comment.Preproc,
                 Whitespace)),
 
             # Whitespace, comments
@@ -241,6 +241,7 @@ class RedcodeLexer(RegexLexer):
     name = 'Redcode'
     aliases = ['redcode']
     filenames = ['*.cw']
+    url = 'https://en.wikipedia.org/wiki/Core_War'
 
     opcodes = ('DAT', 'MOV', 'ADD', 'SUB', 'MUL', 'DIV', 'MOD',
                'JMP', 'JMZ', 'JMN', 'DJN', 'CMP', 'SLT', 'SPL',

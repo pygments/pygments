@@ -127,6 +127,7 @@ class EmailLexer(DelegatingLexer):
     aliases = ["email", "eml"]
     filenames = ["*.eml"]
     mimetypes = ["message/rfc822"]
+    url = "https://en.wikipedia.org/wiki/Email#Message_format"
 
     def __init__(self, **options):
         super().__init__(EmailHeaderLexer, MIMELexer, Comment, **options)

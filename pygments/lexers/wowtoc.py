@@ -53,6 +53,7 @@ class WoWTocLexer(RegexLexer):
     name = "World of Warcraft TOC"
     aliases = ["wowtoc"]
     filenames = ["*.toc"]
+    url = 'https://wowpedia.fandom.com/wiki/TOC_format'
 
     tokens = {
         "root": [

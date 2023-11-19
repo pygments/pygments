@@ -157,6 +157,7 @@ class ErlangShellLexer(Lexer):
     aliases = ['erl']
     filenames = ['*.erl-sh']
     mimetypes = ['text/x-erl-shellsession']
+    url = 'https://www.erlang.org/'
 
     _prompt_re = re.compile(r'(?:\([\w@_.]+\))?\d+>(?=\s|\Z)')
 
@@ -225,7 +226,7 @@ class ElixirLexer(RegexLexer):
     """
 
     name = 'Elixir'
-    url = 'http://elixir-lang.org'
+    url = 'https://elixir-lang.org'
     aliases = ['elixir', 'ex', 'exs']
     filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']
@@ -491,6 +492,7 @@ class ElixirConsoleLexer(Lexer):
     name = 'Elixir iex session'
     aliases = ['iex']
     mimetypes = ['text/x-elixir-shellsession']
+    url = 'https://elixir-lang.org'
 
     _prompt_re = re.compile(r'(iex|\.{3})((?:\([\w@_.]+\))?\d+|\(\d+\))?> ')
 

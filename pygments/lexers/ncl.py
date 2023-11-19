@@ -27,6 +27,8 @@ class NCLLexer(RegexLexer):
     aliases = ['ncl']
     filenames = ['*.ncl']
     mimetypes = ['text/ncl']
+    url = 'https://www.ncl.ucar.edu'
+
     flags = re.MULTILINE
 
     tokens = {

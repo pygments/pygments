@@ -27,6 +27,7 @@ class GLShaderLexer(RegexLexer):
     aliases = ['glsl']
     filenames = ['*.vert', '*.frag', '*.geo']
     mimetypes = ['text/x-glslsrc']
+    url = 'https://www.khronos.org/api/opengl'
 
     tokens = {
         'root': [
@@ -158,6 +159,7 @@ class HLSLShaderLexer(RegexLexer):
     aliases = ['hlsl']
     filenames = ['*.hlsl', '*.hlsli']
     mimetypes = ['text/x-hlsl']
+    url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
 
     tokens = {
         'root': [

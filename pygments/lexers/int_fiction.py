@@ -767,6 +767,7 @@ class Tads3Lexer(RegexLexer):
     name = 'TADS 3'
     aliases = ['tads3']
     filenames = ['*.t']
+    url = 'https://www.tads.org'
 
     flags = re.DOTALL | re.MULTILINE
 

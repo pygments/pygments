@@ -30,6 +30,7 @@ class AdaLexer(RegexLexer):
     aliases = ['ada', 'ada95', 'ada2005']
     filenames = ['*.adb', '*.ads', '*.ada']
     mimetypes = ['text/x-ada']
+    url = 'https://www.adaic.org'
 
     flags = re.MULTILINE | re.IGNORECASE
 

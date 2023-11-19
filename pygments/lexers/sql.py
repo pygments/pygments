@@ -161,6 +161,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     name = 'PostgreSQL SQL dialect'
     aliases = ['postgresql', 'postgres']
     mimetypes = ['text/x-postgresql']
+    url = 'https://www.postgresql.org'
 
     flags = re.IGNORECASE
     tokens = {
@@ -216,6 +217,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
     mimetypes = ['text/x-plpgsql']
+    url = 'https://www.postgresql.org/docs/current/plpgsql.html'
 
     flags = re.IGNORECASE
     tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
@@ -309,6 +311,7 @@ class PostgresConsoleLexer(Lexer):
     name = 'PostgreSQL console (psql)'
     aliases = ['psql', 'postgresql-console', 'postgres-console']
     mimetypes = ['text/x-postgresql-psql']
+    url = 'https://www.postgresql.org'
 
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
@@ -382,6 +385,7 @@ class PostgresExplainLexer(RegexLexer):
     aliases = ['postgres-explain']
     filenames = ['*.explain']
     mimetypes = ['text/x-postgresql-explain']
+    url = 'https://www.postgresql.org/docs/current/using-explain.html'
 
     tokens = {
         'root': [
@@ -567,6 +571,7 @@ class SqlLexer(RegexLexer):
     aliases = ['sql']
     filenames = ['*.sql']
     mimetypes = ['text/x-sql']
+    url = 'https://en.wikipedia.org/wiki/SQL'
 
     flags = re.IGNORECASE
     tokens = {
@@ -701,6 +706,7 @@ class TransactSqlLexer(RegexLexer):
     aliases = ['tsql', 't-sql']
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
+    url = 'https://www.tsql.info'
 
     flags = re.IGNORECASE
 
@@ -785,6 +791,7 @@ class MySqlLexer(RegexLexer):
     name = 'MySQL'
     aliases = ['mysql']
     mimetypes = ['text/x-mysql']
+    url = 'https://www.mysql.com'
 
     flags = re.IGNORECASE
     tokens = {
@@ -967,6 +974,7 @@ class SqliteConsoleLexer(Lexer):
     aliases = ['sqlite3']
     filenames = ['*.sqlite3-console']
     mimetypes = ['text/x-sqlite3-console']
+    url = 'https://www.sqlite.org'
 
     def get_tokens_unprocessed(self, data):
         sql = SqlLexer(**self.options)

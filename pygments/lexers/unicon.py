@@ -28,6 +28,7 @@ class UniconLexer(RegexLexer):
     aliases = ['unicon']
     filenames = ['*.icn']
     mimetypes = ['text/unicon']
+    url = 'https://www.unicon.org'
 
     flags = re.MULTILINE
 
@@ -173,6 +174,8 @@ class IconLexer(RegexLexer):
     aliases = ['icon']
     filenames = ['*.icon', '*.ICON']
     mimetypes = []
+    url = 'https://www2.cs.arizona.edu/icon'
+
     flags = re.MULTILINE
 
     tokens = {
@@ -313,6 +316,8 @@ class UcodeLexer(RegexLexer):
     aliases = ['ucode']
     filenames = ['*.u', '*.u1', '*.u2']
     mimetypes = []
+    url = 'http://www.unicon.org'
+
     flags = re.MULTILINE
 
     tokens = {

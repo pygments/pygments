@@ -19,7 +19,7 @@ __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 
 class SparqlLexer(RegexLexer):
     """
-    Lexer for `SPARQL <https://www.w3.org/TR/sparql11-query/>`_ query language.
+    Lexer for SPARQL query language.
 
     .. versionadded:: 2.0
     """
@@ -27,6 +27,7 @@ class SparqlLexer(RegexLexer):
     aliases = ['sparql']
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
+    url = 'https://www.w3.org/TR/sparql11-query'
 
     # character group definitions ::
 
@@ -177,7 +178,7 @@ class SparqlLexer(RegexLexer):
 
 class TurtleLexer(RegexLexer):
     """
-    Lexer for `Turtle <http://www.w3.org/TR/turtle/>`_ data language.
+    Lexer for Turtle data language.
 
     .. versionadded:: 2.1
     """
@@ -185,6 +186,7 @@ class TurtleLexer(RegexLexer):
     aliases = ['turtle']
     filenames = ['*.ttl']
     mimetypes = ['text/turtle', 'application/x-turtle']
+    url = 'https://www.w3.org/TR/turtle'
 
     # character group definitions ::
     PN_CHARS_BASE_GRP = ('a-zA-Z'
@@ -322,12 +324,13 @@ class TurtleLexer(RegexLexer):
 
 class ShExCLexer(RegexLexer):
     """
-    Lexer for `ShExC <https://shex.io/shex-semantics/#shexc>`_ shape expressions language syntax.
+    Lexer for ShExC shape expressions language syntax.
     """
     name = 'ShExC'
     aliases = ['shexc', 'shex']
     filenames = ['*.shex']
     mimetypes = ['text/shex']
+    url = 'https://shex.io/shex-semantics/#shexc'
 
     # character group definitions ::
 

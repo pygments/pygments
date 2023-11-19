@@ -32,6 +32,7 @@ class AscLexer(RegexLexer):
     ]
     mimetypes = ['application/pgp-keys', 'application/pgp-encrypted',
                  'application/pgp-signature', 'application/pem-certificate-chain']
+    url = 'https://www.openpgp.org'
 
     flags = re.MULTILINE
 

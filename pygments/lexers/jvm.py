@@ -280,7 +280,7 @@ class ScalaLexer(RegexLexer):
             (r'\b(package)(\s+)', bygroups(Keyword, Whitespace), 'package'),
             (r'\b(given)\b(\s*)(%s)' % idUpper,
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(given)\b(\s*)(%s)?' % anyId, 
+            (r'\b(given)\b(\s*)(%s)?' % anyId,
                 bygroups(Keyword, Whitespace, Name)),
         ],
         'inheritance': [
@@ -454,6 +454,7 @@ class GosuLexer(RegexLexer):
     aliases = ['gosu']
     filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
     mimetypes = ['text/x-gosu']
+    url = 'https://gosu-lang.github.io'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -533,6 +534,7 @@ class GosuTemplateLexer(Lexer):
     aliases = ['gst']
     filenames = ['*.gst']
     mimetypes = ['text/x-gosu-template']
+    url = 'https://gosu-lang.github.io'
 
     def get_tokens_unprocessed(self, text):
         lexer = GosuLexer()

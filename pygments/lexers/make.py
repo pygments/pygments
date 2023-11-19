@@ -31,6 +31,7 @@ class MakefileLexer(Lexer):
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
     filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
+    url = 'https://en.wikipedia.org/wiki/Make_(software)'
 
     r_special = re.compile(
         r'^(?:'
@@ -75,6 +76,7 @@ class BaseMakefileLexer(RegexLexer):
     aliases = ['basemake']
     filenames = []
     mimetypes = []
+    url = 'https://en.wikipedia.org/wiki/Make_(software)'
 
     tokens = {
         'root': [

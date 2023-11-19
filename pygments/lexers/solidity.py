@@ -26,6 +26,7 @@ class SolidityLexer(RegexLexer):
     aliases = ['solidity']
     filenames = ['*.sol']
     mimetypes = []
+    url = 'https://soliditylang.org'
 
     datatype = (
         r'\b(address|bool|(?:(?:bytes|hash|int|string|uint)(?:8|16|24|32|40|48|56|64'

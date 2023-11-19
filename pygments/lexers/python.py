@@ -698,6 +698,7 @@ class PythonConsoleLexer(DelegatingLexer):
     name = 'Python console session'
     aliases = ['pycon']
     mimetypes = ['text/x-python-doctest']
+    url = 'https://python.org'
 
     def __init__(self, **options):
         python3 = get_bool_opt(options, 'python3', True)
@@ -732,6 +733,7 @@ class PythonTracebackLexer(RegexLexer):
     aliases = ['pytb', 'py3tb']
     filenames = ['*.pytb', '*.py3tb']
     mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
+    url = 'https://python.org'
 
     tokens = {
         'root': [
@@ -789,6 +791,7 @@ class Python2TracebackLexer(RegexLexer):
     aliases = ['py2tb']
     filenames = ['*.py2tb']
     mimetypes = ['text/x-python2-traceback']
+    url = 'https://python.org'
 
     tokens = {
         'root': [
@@ -1014,6 +1017,7 @@ class DgLexer(RegexLexer):
     aliases = ['dg']
     filenames = ['*.dg']
     mimetypes = ['text/x-dg']
+    url = 'http://pyos.github.io/dg'
 
     tokens = {
         'root': [

@@ -28,6 +28,7 @@ class SMLLexer(RegexLexer):
     aliases = ['sml']
     filenames = ['*.sml', '*.sig', '*.fun']
     mimetypes = ['text/x-standardml', 'application/x-standardml']
+    url = 'https://en.wikipedia.org/wiki/Standard_ML'
 
     alphanumid_reserved = {
         # Core
@@ -456,6 +457,7 @@ class OpaLexer(RegexLexer):
     aliases = ['opa']
     filenames = ['*.opa']
     mimetypes = ['text/x-opa']
+    url = 'http://opalang.org'
 
     # most of these aren't strictly keywords
     # but if you color only real keywords, you might just

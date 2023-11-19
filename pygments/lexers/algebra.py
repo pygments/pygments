@@ -98,6 +98,7 @@ class GAPConsoleLexer(Lexer):
     name = 'GAP session'
     aliases = ['gap-console', 'gap-repl']
     filenames = ['*.tst']
+    url = 'https://www.gap-system.org'
 
     def get_tokens_unprocessed(self, text):
         gaplexer = GAPLexer(**self.options)

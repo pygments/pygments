@@ -26,6 +26,7 @@ class SourcePawnLexer(RegexLexer):
     aliases = ['sp']
     filenames = ['*.sp']
     mimetypes = ['text/x-sourcepawn']
+    url = 'https://github.com/alliedmodders/sourcepawn'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
@@ -137,6 +138,7 @@ class PawnLexer(RegexLexer):
     aliases = ['pawn']
     filenames = ['*.p', '*.pwn', '*.inc']
     mimetypes = ['text/x-pawn']
+    url = 'https://www.compuphase.com/pawn/pawn.htm'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'

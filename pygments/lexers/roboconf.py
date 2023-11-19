@@ -23,6 +23,7 @@ class RoboconfGraphLexer(RegexLexer):
     name = 'Roboconf Graph'
     aliases = ['roboconf-graph']
     filenames = ['*.graph']
+    url = 'https://roboconf.github.io/en/user-guide/graph-definition.html'
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
@@ -58,6 +59,7 @@ class RoboconfInstancesLexer(RegexLexer):
     name = 'Roboconf Instances'
     aliases = ['roboconf-instances']
     filenames = ['*.instances']
+    url = 'https://roboconf.github.io'
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {

@@ -30,6 +30,7 @@ class MatlabLexer(RegexLexer):
     aliases = ['matlab']
     filenames = ['*.m']
     mimetypes = ['text/matlab']
+    url = 'https://www.mathworks.com/products/matlab.html'
 
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
@@ -2747,6 +2748,7 @@ class MatlabSessionLexer(Lexer):
     """
     name = 'Matlab session'
     aliases = ['matlabsession']
+    url = 'https://www.mathworks.com/products/matlab.html'
 
     def get_tokens_unprocessed(self, text):
         mlexer = MatlabLexer(**self.options)

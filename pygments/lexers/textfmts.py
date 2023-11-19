@@ -29,6 +29,7 @@ class IrcLogsLexer(RegexLexer):
     aliases = ['irc']
     filenames = ['*.weechatlog']
     mimetypes = ['text/x-irclog']
+    url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
 
     flags = re.VERBOSE | re.MULTILINE
     timestamp = r"""
@@ -93,6 +94,7 @@ class GettextLexer(RegexLexer):
     aliases = ['pot', 'po']
     filenames = ['*.pot', '*.po']
     mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
+    url = 'https://www.gnu.org/software/gettext'
 
     tokens = {
         'root': [
@@ -120,6 +122,7 @@ class HttpLexer(RegexLexer):
 
     name = 'HTTP'
     aliases = ['http']
+    url = 'https://httpwg.org/specs'
 
     flags = re.DOTALL
 
@@ -396,6 +399,7 @@ class KernelLogLexer(RegexLexer):
     name = 'Kernel log'
     aliases = ['kmsg', 'dmesg']
     filenames = ['*.kmsg', '*.dmesg']
+    url = 'https://fr.wikipedia.org/wiki/Dmesg'
 
     tokens = {
         'root': [
