@@ -33,6 +33,8 @@ LEXERDOC = '''
 
     %s
 
+    %s
+
 '''
 
 FMTERDOC = '''
@@ -182,12 +184,18 @@ class PygmentsDoc(Directive):
                     for line in content.splitlines():
                         docstring += f'          {line}\n'
 
+            if cls.version_added:
+                version_line = f'.. versionadded:: {cls.version_added}'
+            else:
+                version_line = ''
+
             modules.setdefault(module, []).append((
                 classname,
                 ', '.join(data[2]) or 'None',
                 ', '.join(data[3]).replace('*', '\\*').replace('_', '\\') or 'None',
                 ', '.join(data[4]) or 'None',
-                docstring))
+                docstring,
+                version_line))
             if module not in moduledocstrings:
                 moddoc = mod.__doc__
                 if isinstance(moddoc, bytes):
