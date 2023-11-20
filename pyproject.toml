@@ -56,3 +56,13 @@ pygmentize = "pygments.cmdline:main"
 
 [tool.hatch.version]
 path = "pygments/__init__.py"
+
+[tool.ruff]
+extend-exclude = [
+    # Some Python tests are purposefully invalid, others are Python 2 code.
+    "tests/snippets",
+    "tests/examplefiles",
+     # FIXME: port these to Python 3
+    "scripts/get_vimkw.py",
+    "scripts/vim2pygments.py",
+]

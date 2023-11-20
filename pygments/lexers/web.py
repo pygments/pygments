@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.html import HtmlLexer, DtdLexer, XmlLexer, XsltLexer, \
     HamlLexer, ScamlLexer, JadeLexer
 from pygments.lexers.css import CssLexer, SassLexer, ScssLexer

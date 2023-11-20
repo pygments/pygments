@@ -10,12 +10,11 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, default, words, include
+from pygments.lexer import RegexLexer, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
-from pygments.lexers.lean import LeanLexer
+# compatibility import
+from pygments.lexers.lean import LeanLexer # noqa: F401
 
 __all__ = ['CoqLexer', 'IsabelleLexer']
 

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.configs import ApacheConfLexer, NginxConfLexer, \
     SquidConfLexer, LighttpdConfLexer, IniLexer, RegeditLexer, PropertiesLexer, \
     UnixConfigLexer

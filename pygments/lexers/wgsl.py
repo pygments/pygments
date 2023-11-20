@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups, words, default
+from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Comment, Operator, Keyword, Name, \
     Number, Punctuation, Whitespace
 from pygments import unistring as uni

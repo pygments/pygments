@@ -8,11 +8,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 import keyword
 
-from pygments.lexer import DelegatingLexer, Lexer, RegexLexer, include, \
-    bygroups, using, default, words, combined, do_insertions, this, line_re
+from pygments.lexer import DelegatingLexer, RegexLexer, include, \
+    bygroups, using, default, words, combined, this
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace

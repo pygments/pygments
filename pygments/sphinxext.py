@@ -119,11 +119,11 @@ class PygmentsDoc(Directive):
         def write_row(*columns):
             """Format a table row"""
             out = []
-            for l, c in zip(column_lengths, columns):
-                if c:
-                    out.append(c.ljust(l))
+            for length, col in zip(column_lengths, columns):
+                if col:
+                    out.append(col.ljust(length))
                 else:
-                    out.append(' '*l)
+                    out.append(' '*length)
 
             return ' '.join(out)
 

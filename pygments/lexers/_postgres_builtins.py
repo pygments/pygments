@@ -683,7 +683,8 @@ if __name__ == '__main__':  # pragma: no cover
                         for t in tmp.split(']') if "(" not in t]:
                 for t in tmp.split(','):
                     t = t.strip()
-                    if not t: continue
+                    if not t:
+                        continue
                     dt.add(" ".join(t.split()))
 
         dt = list(dt)

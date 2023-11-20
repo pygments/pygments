@@ -782,7 +782,8 @@ class RexxLexer(RegexLexer):
         ]
     }
 
-    _c = lambda s: re.compile(s, re.MULTILINE)
+    def _c(s):
+        return re.compile(s, re.MULTILINE)
     _ADDRESS_COMMAND_PATTERN = _c(r'^\s*address\s+command\b')
     _ADDRESS_PATTERN = _c(r'^\s*address\s+')
     _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
