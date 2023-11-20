@@ -224,7 +224,8 @@ class PythonLexer(RegexLexer):
              r'(match|case)\b'         # a possible keyword
              r'(?![ \t]*(?:'           # not followed by...
              r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't
-             r'|'.join(keyword.kwlist) + r')\b))',                 # pattern matching
+                                       # pattern matching (but None/True/False is ok)
+             r'|'.join(k for k in keyword.kwlist if k[0].islower()) + r')\b))',
              bygroups(Text, Keyword), 'soft-keywords-inner'),
         ],
         'soft-keywords-inner': [
