@@ -54,5 +54,9 @@ Changelog = "https://github.com/pygments/pygments/blob/master/CHANGES"
 [project.scripts]
 pygmentize = "pygments.cmdline:main"
 
+# Temporary workaround for https://github.com/pypa/hatch/issues/1054
+[tool.hatch.build]
+packages = ["pygments"]
+
 [tool.hatch.version]
 path = "pygments/__init__.py"
