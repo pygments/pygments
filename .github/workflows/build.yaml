@@ -1,6 +1,10 @@
 name: Pygments
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+    tags: ['*']
+  pull_request:
 
 env:
   FORCE_COLOR: 1
@@ -14,8 +18,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest, macos-latest]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        # Run macOS CI only when pushing tags, not on every push/PR.
+        # There seems not to be a prettier solution than this trick ...
+        exclude:
+          - os: ${{ !(github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')) && 'macos-latest' || 'dummy' }}
 
     steps:
     - name: Checkout repository
