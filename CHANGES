@@ -7,6 +7,25 @@ Version 2.18.0
 --------------
 (unreleased)
 
+- New lexers:
+
+  * Janet (#2557)
+
+- Updated lexers:
+
+  * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
+
+- Require the ``url`` attribute for lexers inside Pygments, add
+  it to many lexers (#2588)
+- Replace Pyflakes linter with Ruff
+- Add macOS CI (#2594)
+
+Version 2.17.2
+--------------
+(released November 21, 2023)
+
+- Fix a packaging issue on macOS (#2593)
+
 Version 2.17.1
 --------------
 (released November 19, 2023)
