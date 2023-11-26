@@ -19,6 +19,11 @@ Version 2.18.0
   it to many lexers (#2588)
 - Replace Pyflakes linter with Ruff
 - Add macOS CI (#2594)
+- Built-in lexers now declare the version of Pygments in which they were
+  added in a required ``version_added`` lexer attribute, instead of a
+  ``.. versionadded::`` directive in the docstring (#2589)
+- The ``url`` attribute is now required for built-in lexers and
+  has been added to all existing lexers (#2588)
 
 Version 2.17.2
 --------------
