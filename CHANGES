@@ -14,6 +14,8 @@ Version 2.18.0
 - Updated lexers:
 
   * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
+  * reStructuredText: use ``Token.Comment`` for comments instead of
+    ``Comment.Preproc`` (#2598)
 
 - Require the ``url`` attribute for lexers inside Pygments, add
   it to many lexers (#2588)
