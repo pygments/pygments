@@ -222,7 +222,7 @@ class RstLexer(RegexLexer):
              bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,
                       Punctuation, Text, using(this, state='inline'))),
             # Comments
-            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
+            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment),
             # Field list marker
             (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',
              bygroups(Text, Name.Class, Text)),
