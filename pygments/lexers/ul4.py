@@ -52,9 +52,23 @@ class UL4Lexer(RegexLexer):
             ),
             (
                 # Comment:
+                # ``<?note?>...<?end note?>``
+                r"<\?\s*note\s*\?>",
+                Comment,
+                "note", # Switch to "note" mode
+            ),
+            (
+                # Comment:
                 # ``<?note foobar?>``
                 r"<\?\s*note\s.*?\?>",
                 Comment,
+            ),
+            (
+                # Template documentation:
+                # ``<?doc?>...<?end doc?>``
+                r"<\?\s*doc\s*\?>",
+                String.Doc,
+                "doc",
             ),
             (
                 # Template documentation:
@@ -110,6 +124,26 @@ class UL4Lexer(RegexLexer):
             # Everything else
             (r"[^<]+", Comment),
             (r".", Comment),
+        ],
+        # Note mode ignores everything upto the matching ``<?end note?>`` tag
+        "note": [
+            # Nested ``<?note?>`` tag
+            (r"<\?\s*note\s*\?>", Comment, "#push"),
+            # ``<?end note?>`` tag
+            (r"<\?\s*end\s+note\s*\?>", Comment, "#pop"),
+            # Everything else
+            (r"[^<]+", Comment),
+            (r".", Comment),
+        ],
+        # Doc mode ignores everything upto the matching ``<?end doc?>`` tag
+        "doc": [
+            # Nested ``<?doc?>`` tag
+            (r"<\?\s*doc\s*\?>", String.Doc, "#push"),
+            # ``<?end doc?>`` tag
+            (r"<\?\s*end\s+doc\s*\?>", String.Doc, "#pop"),
+            # Everything else
+            (r"[^<]+", String.Doc),
+            (r".", String.Doc),
         ],
         # UL4 expressions
         "ul4": [

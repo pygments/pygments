@@ -3,6 +3,12 @@
 <?doc UL4 example for all the available tags?>
 
 <?def gurk(a, b, c, d)?>
+	<?doc?>
+	Function `gurk`
+	<?doc?>
+	Foo
+	<?end doc?>
+	<?end doc?>
 	<?for i in range(10)?>
 		<?print a?>
 		<?if b?>
@@ -20,9 +26,16 @@
 <?end def?>
 
 <?renderblock hinz()?>
+	<?note Note?>
 	...
 <?end renderblock?>
 
 <?renderblocks kunz()?>
+	<?note?>
+	Note
+	<?note?>
+	Subnote
+	<?end note?>
+	<?end note?>
 	...
 <?end renderblocks?>
