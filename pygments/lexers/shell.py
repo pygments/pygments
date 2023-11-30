@@ -28,7 +28,7 @@ class BashLexer(RegexLexer):
     """
 
     name = 'Bash'
-    aliases = ['bash', 'sh', 'ksh', 'zsh', 'shell']
+    aliases = ['bash', 'sh', 'ksh', 'zsh', 'shell', 'openrc']
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
                  '*.exheres-0', '*.exlib', '*.zsh',
                  '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc',
