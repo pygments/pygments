@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "Pygments"
 dynamic = ["version"]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = {text = "BSD-2-Clause"}
 authors = [
   {name = "Georg Brandl", email = "georg@python.org"}
@@ -28,7 +28,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -41,7 +40,6 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-plugins = ["importlib-metadata;python_version<'3.8'"]
 windows-terminal = ["colorama >= 0.4.6"]
 
 [project.urls]
