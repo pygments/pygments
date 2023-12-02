@@ -40,7 +40,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-plugins = []
+plugins = [] # kept for backwards compatibility
 windows-terminal = ["colorama >= 0.4.6"]
 
 [project.urls]

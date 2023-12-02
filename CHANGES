@@ -19,6 +19,10 @@ Version 2.18.0
     ``Comment.Preproc`` (#2598)
   * UL4: support nested ``<?doc?>`` and ``<?note?>`` tags (#2597)
 
+- Require Python 3.8. As a result, the ``importlib-metadata`` package
+  is no longer needed for fast plugin discovery on Python 3.7.
+  The ``plugins`` extra (used as, e.g., ``pip install pygments[plugins]``)
+  is kept for backwards compatibility but now has no effect. (#2601)
 - Require the ``url`` attribute for lexers inside Pygments, add
   it to many lexers (#2588)
 - Replace Pyflakes linter with Ruff
