@@ -21,6 +21,12 @@ end
 bar = bar;
 ("a"):upper()
 
+local baz = {table = {a = {b = {c = {d = {e = 1}}}}}}
+print(baz.table.a.b.c.d.e)
+print((baz).table.a.b.c.d.e)
+
+table.create(1)
+
 print("\
 a\z
 

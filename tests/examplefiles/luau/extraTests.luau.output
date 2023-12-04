@@ -147,6 +147,97 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'baz'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'table'       Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'b'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'c'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'d'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'e'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'baz'         Name.Variable
+'.'           Punctuation
+'table'       Name.Variable
+'.'           Punctuation
+'a'           Name.Variable
+'.'           Punctuation
+'b'           Name.Variable
+'.'           Punctuation
+'c'           Name.Variable
+'.'           Punctuation
+'d'           Name.Variable
+'.'           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'baz'         Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'table'       Name.Variable
+'.'           Punctuation
+'a'           Name.Variable
+'.'           Punctuation
+'b'           Name.Variable
+'.'           Punctuation
+'c'           Name.Variable
+'.'           Punctuation
+'d'           Name.Variable
+'.'           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'table'       Name.Builtin
+'.'           Punctuation
+'create'      Name.Function
+'('           Punctuation
+'1'           Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
 'print'       Name.Function
 '('           Punctuation
 '"'           Literal.String.Double

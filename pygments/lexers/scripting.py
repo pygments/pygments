@@ -174,8 +174,11 @@ def _luau_make_expression(should_pop, _s):
 
         (r'\[(=*)\[[.\n]*?\]\1\]', String, '#pop'),
 
-        (r'[a-zA-Z_]\w*(?=%s*\()' % _s, Name.Function, '#pop'),
-        (r'[a-zA-Z_]\w*', Name.Variable, '#pop'),
+        (r'(\.)([a-zA-Z_]\w*)(?=%s*\()', bygroups(Punctuation, Name.Function), '#pop'),
+        (r'(\.)([a-zA-Z_]\w*)', bygroups(Punctuation, Name.Variable), '#pop'),
+
+        (r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*(?=%s*\()' % _s, Name.Other, '#pop'),
+        (r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*', Name, '#pop'),
     ]
     if should_pop:
         return temp_list
@@ -255,8 +258,6 @@ class LuauLexer(RegexLexer):
                 'while'), suffix=r'\b'), Keyword.Reserved, 'expression'),
             (r'local\b', Keyword.Declaration, 'expression'),
 
-            (r'[\[.,]', Punctuation, 'expression'),
-
 			(r'function\b', Keyword.Reserved, ('expression', 'func_name')),
 
             (r'[\])};]', Punctuation),
@@ -264,6 +265,8 @@ class LuauLexer(RegexLexer):
 
             include('expression_static'),
             *_luau_make_expression(False, _s),
+
+            (r'[\[.,]', Punctuation, 'expression'),
 		],
         'expression_static': [
             (words((
@@ -431,8 +434,35 @@ class LuauLexer(RegexLexer):
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text):
-            if token is Name.Variable and value in self._builtins:
-                yield index, Name.Builtin, value
+            if token is Name or token is Name.Other:
+                print(index, token, value)
+                split_value = value.split('.')
+                complete_value = []
+                new_index = index
+                for position in range(len(split_value), 0, -1):
+                    potential_string = '.'.join(split_value[:position])
+                    if potential_string in self._builtins:
+                        yield index, Name.Builtin, potential_string
+                        new_index += len(potential_string)
+
+                        if complete_value:
+                            yield new_index, Punctuation, '.'
+                            new_index += 1
+                        break
+                    complete_value.insert(0, split_value[position - 1])
+
+                for position, substring in enumerate(complete_value):
+                    if position + 1 == len(complete_value):
+                        if token is Name:
+                            yield new_index, Name.Variable, substring
+                            continue
+                        yield new_index, Name.Function, substring
+                        continue
+                    yield new_index, Name.Variable, substring
+                    new_index += len(substring)
+                    yield new_index, Punctuation, '.'
+                    new_index += 1
+
                 continue
             yield index, token, value
 
