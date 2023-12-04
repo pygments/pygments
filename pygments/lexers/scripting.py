@@ -437,7 +437,6 @@ class LuauLexer(RegexLexer):
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name or token is Name.Other:
-                print(index, token, value)
                 split_value = value.split('.')
                 complete_value = []
                 new_index = index
