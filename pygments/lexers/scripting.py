@@ -260,14 +260,14 @@ class LuauLexer(RegexLexer):
 			(r'function\b', Keyword.Reserved, ('expression', 'func_name')),
 
             (r'[\])};]', Punctuation),
-            (words(('export', 'continue'), suffix=r'\b'), Keyword.Reserved),
+            (r'export\b', Keyword.Reserved),
 
             include('expression_static'),
             *_luau_make_expression(False, _s),
 		],
         'expression_static': [
             (words((
-                'break', 'do', 'else', 'elseif', 'end', 'for',
+                'break', 'continue', 'do', 'else', 'elseif', 'end', 'for',
                 'if', 'in', 'repeat', 'return', 'then', 'until', 'while'),
                 suffix=r'\b'), Keyword.Reserved),
         ],
