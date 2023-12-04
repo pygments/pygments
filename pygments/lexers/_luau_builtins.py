@@ -1,6 +1,6 @@
 """
     pygments.lexers._luau_builtins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Includes the builtins for Luau and Roblox.
 
