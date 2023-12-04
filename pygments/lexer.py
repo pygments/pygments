@@ -67,9 +67,11 @@ class Lexer(metaclass=LexerMeta):
        :no-value:
     .. autoattribute:: priority
 
-    Lexers included in Pygments should have an additional attribute:
+    Lexers included in Pygments should have two additional attributes:
 
     .. autoattribute:: url
+       :no-value:
+    .. autoattribute:: version_added
        :no-value:
 
     Lexers included in Pygments may have additional attributes:
@@ -130,8 +132,11 @@ class Lexer(metaclass=LexerMeta):
     priority = 0
 
     #: URL of the language specification/definition. Used in the Pygments
-    #: documentation.
+    #: documentation. Set to an empty string to disable.
     url = None
+
+    #: Version of Pygments in which the lexer was added.
+    version_added = None
 
     #: Example file name. Relative to the ``tests/examplefiles`` directory.
     #: This is used by the documentation generator to show an example.
@@ -546,7 +551,7 @@ class RegexLexerMeta(LexerMeta):
 
     def _process_state(cls, unprocessed, processed, state):
         """Preprocess a single state definition."""
-        assert type(state) is str, "wrong state name %r" % state
+        assert isinstance(state, str), "wrong state name %r" % state
         assert state[0] != '#', "invalid state name %r" % state
         if state in processed:
             return processed[state]

@@ -26,8 +26,6 @@ __all__ = ['DuelLexer', 'SlimLexer', 'XQueryLexer', 'QmlLexer', 'CirruLexer']
 class DuelLexer(RegexLexer):
     """
     Lexer for Duel Views Engine (formerly JBST) markup with JavaScript code blocks.
-
-    .. versionadded:: 1.4
     """
 
     name = 'Duel'
@@ -35,6 +33,7 @@ class DuelLexer(RegexLexer):
     aliases = ['duel', 'jbst', 'jsonml+bst']
     filenames = ['*.duel', '*.jbst']
     mimetypes = ['text/x-duel', 'text/x-jbst']
+    version_added = '1.4'
 
     flags = re.DOTALL
 
@@ -59,14 +58,13 @@ class XQueryLexer(ExtendedRegexLexer):
     """
     An XQuery lexer, parsing a stream and outputting the tokens needed to
     highlight xquery code.
-
-    .. versionadded:: 1.4
     """
     name = 'XQuery'
     url = 'https://www.w3.org/XML/Query/'
     aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
     filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
     mimetypes = ['text/xquery', 'application/xquery']
+    version_added = '1.4'
 
     xquery_parse_state = []
 
@@ -813,8 +811,6 @@ class XQueryLexer(ExtendedRegexLexer):
 class QmlLexer(RegexLexer):
     """
     For QML files.
-
-    .. versionadded:: 1.6
     """
 
     # QML is based on javascript, so much of this is taken from the
@@ -825,6 +821,7 @@ class QmlLexer(RegexLexer):
     aliases = ['qml', 'qbs']
     filenames = ['*.qml', '*.qbs']
     mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
+    version_added = '1.6'
 
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
@@ -891,8 +888,6 @@ class CirruLexer(RegexLexer):
     * using ``$`` as folding operator
     * using ``,`` as unfolding operator
     * using indentations for nested blocks
-
-    .. versionadded:: 2.0
     """
 
     name = 'Cirru'
@@ -900,6 +895,7 @@ class CirruLexer(RegexLexer):
     aliases = ['cirru']
     filenames = ['*.cirru']
     mimetypes = ['text/x-cirru']
+    version_added = '2.0'
     flags = re.MULTILINE
 
     tokens = {
@@ -940,14 +936,14 @@ class CirruLexer(RegexLexer):
 class SlimLexer(ExtendedRegexLexer):
     """
     For Slim markup.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Slim'
     aliases = ['slim']
     filenames = ['*.slim']
     mimetypes = ['text/x-slim']
+    url = 'https://slim-template.github.io'
+    version_added = '2.0'
 
     flags = re.IGNORECASE
     _dot = r'(?: \|\n(?=.* \|)|.)'

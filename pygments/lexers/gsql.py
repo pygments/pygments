@@ -21,14 +21,13 @@ class GSQLLexer(RegexLexer):
 
     """
     For GSQL queries (version 3.x).
-
-    .. versionadded:: 2.10
     """
 
     name = 'GSQL'
     url = 'https://docs.tigergraph.com/dev/gsql-ref'
     aliases = ['gsql']
     filenames = ['*.gsql']
+    version_added = '2.10'
 
     flags = re.MULTILINE | re.IGNORECASE
 

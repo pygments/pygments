@@ -18,13 +18,12 @@ __all__ = ['ChapelLexer']
 class ChapelLexer(RegexLexer):
     """
     For Chapel source.
-
-    .. versionadded:: 2.0
     """
     name = 'Chapel'
     url = 'https://chapel-lang.org/'
     filenames = ['*.chpl']
     aliases = ['chapel', 'chpl']
+    version_added = '2.0'
     # mimetypes = ['text/x-chapel']
 
     known_types = ('bool', 'bytes', 'complex', 'imag', 'int', 'locale',

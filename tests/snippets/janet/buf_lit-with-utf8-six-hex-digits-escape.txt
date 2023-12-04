@@ -1,0 +1,8 @@
+---input---
+@"\U01f6aa"
+
+---tokens---
+'@"'          Literal.String
+'\\U01f6aa'   Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

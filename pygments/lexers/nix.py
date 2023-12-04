@@ -20,8 +20,6 @@ __all__ = ['NixLexer']
 class NixLexer(RegexLexer):
     """
     For the Nix language.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Nix'
@@ -29,6 +27,7 @@ class NixLexer(RegexLexer):
     aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
+    version_added = '2.0'
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']

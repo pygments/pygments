@@ -22,13 +22,12 @@ class MaximaLexer(RegexLexer):
     """
     A Maxima lexer.
     Derived from pygments.lexers.MuPADLexer.
-
-    .. versionadded:: 2.11
     """
     name = 'Maxima'
     url = 'http://maxima.sourceforge.net'
     aliases = ['maxima', 'macsyma']
     filenames = ['*.mac', '*.max']
+    version_added = '2.11'
 
     keywords = ('if', 'then', 'else', 'elseif',
                 'do', 'while', 'repeat', 'until',

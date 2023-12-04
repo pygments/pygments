@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers.d import DLexer

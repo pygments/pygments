@@ -20,8 +20,6 @@ __all__ = ['NimrodLexer']
 class NimrodLexer(RegexLexer):
     """
     For Nim source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
@@ -29,6 +27,7 @@ class NimrodLexer(RegexLexer):
     aliases = ['nimrod', 'nim']
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
+    version_added = '1.5'
 
     flags = re.MULTILINE | re.IGNORECASE
 

@@ -18,8 +18,6 @@ __all__ = ['YaraLexer']
 class YaraLexer(RegexLexer):
     """
     For YARA rules
-
-    .. versionadded:: 2.16
     """
 
     name = 'YARA'
@@ -27,6 +25,7 @@ class YaraLexer(RegexLexer):
     aliases = ['yara', 'yar']
     filenames = ['*.yar']
     mimetypes = ['text/x-yara']
+    version_added = '2.16'
 
     tokens = {
         'root': [

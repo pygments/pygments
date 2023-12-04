@@ -19,14 +19,13 @@ __all__ = ['TlsLexer']
 class TlsLexer(RegexLexer):
     """
     The TLS presentation language, described in RFC 8446.
-
-    .. versionadded:: 2.16
     """
     name = 'TLS Presentation Language'
     url = 'https://www.rfc-editor.org/rfc/rfc8446#section-3'
     filenames = []
     aliases = ['tls']
     mimetypes = []
+    version_added = '2.16'
 
     flags = re.MULTILINE | re.DOTALL
 

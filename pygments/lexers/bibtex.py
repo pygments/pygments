@@ -21,15 +21,15 @@ __all__ = ['BibTeXLexer', 'BSTLexer']
 class BibTeXLexer(ExtendedRegexLexer):
     """
     A lexer for BibTeX bibliography data format.
-
-    .. versionadded:: 2.2
     """
 
     name = 'BibTeX'
     aliases = ['bibtex', 'bib']
     filenames = ['*.bib']
     mimetypes = ["text/x-bibtex"]
+    version_added = '2.2'
     flags = re.IGNORECASE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     ALLOWED_CHARS = r'@!$&*+\-./:;<>?\[\\\]^`|~'
     IDENTIFIER = '[{}][{}]*'.format('a-z_' + ALLOWED_CHARS, r'\w' + ALLOWED_CHARS)
@@ -116,14 +116,14 @@ class BibTeXLexer(ExtendedRegexLexer):
 class BSTLexer(RegexLexer):
     """
     A lexer for BibTeX bibliography styles.
-
-    .. versionadded:: 2.2
     """
 
     name = 'BST'
     aliases = ['bst', 'bst-pybtex']
     filenames = ['*.bst']
+    version_added = '2.2'
     flags = re.IGNORECASE | re.MULTILINE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     tokens = {
         'root': [

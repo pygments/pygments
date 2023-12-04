@@ -26,6 +26,8 @@ class DiffLexer(RegexLexer):
     aliases = ['diff', 'udiff']
     filenames = ['*.diff', '*.patch']
     mimetypes = ['text/x-diff', 'text/x-patch']
+    url = 'https://en.wikipedia.org/wiki/Diff'
+    version_added = ''
 
     tokens = {
         'root': [
@@ -57,13 +59,13 @@ class DarcsPatchLexer(RegexLexer):
     DarcsPatchLexer is a lexer for the various versions of the darcs patch
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
-
-    .. versionadded:: 0.10
     """
 
     name = 'Darcs Patch'
     aliases = ['dpatch']
     filenames = ['*.dpatch', '*.darcspatch']
+    url = 'https://darcs.net'
+    version_added = '0.10'
 
     DPATCH_KEYWORDS = ('hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
                        'replace')
@@ -119,8 +121,6 @@ class WDiffLexer(RegexLexer):
     * It only works with normal output (without options like ``-l``).
     * If the target files contain "[-", "-]", "{+", or "+}",
       especially they are unbalanced, the lexer will get confused.
-
-    .. versionadded:: 2.2
     """
 
     name = 'WDiff'
@@ -128,6 +128,7 @@ class WDiffLexer(RegexLexer):
     aliases = ['wdiff']
     filenames = ['*.wdiff']
     mimetypes = []
+    version_added = '2.2'
 
     flags = re.MULTILINE | re.DOTALL
 

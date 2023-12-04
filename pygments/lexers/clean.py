@@ -26,6 +26,7 @@ class CleanLexer(ExtendedRegexLexer):
     url = 'http://clean.cs.ru.nl/Clean'
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
+    version_added = ''
 
     keywords = (
         'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',

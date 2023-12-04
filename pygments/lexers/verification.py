@@ -18,13 +18,12 @@ __all__ = ['BoogieLexer', 'SilverLexer']
 class BoogieLexer(RegexLexer):
     """
     For Boogie source code.
-
-    .. versionadded:: 2.1
     """
     name = 'Boogie'
     url = 'https://boogie-docs.readthedocs.io/en/latest/'
     aliases = ['boogie']
     filenames = ['*.bpl']
+    version_added = '2.1'
 
     tokens = {
         'root': [
@@ -66,12 +65,12 @@ class BoogieLexer(RegexLexer):
 class SilverLexer(RegexLexer):
     """
     For Silver source code.
-
-    .. versionadded:: 2.2
     """
     name = 'Silver'
     aliases = ['silver']
     filenames = ['*.sil', '*.vpr']
+    url = 'https://github.com/viperproject/silver'
+    version_added = '2.2'
 
     tokens = {
         'root': [

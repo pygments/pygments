@@ -85,13 +85,12 @@ class VisualPrologBaseLexer(RegexLexer):
 
 class VisualPrologLexer(VisualPrologBaseLexer):
     """Lexer for VisualProlog
-
-    .. versionadded:: 2.17
     """
     name = 'Visual Prolog'
     url = 'https://www.visual-prolog.com/'
     aliases = ['visualprolog']
     filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
+    version_added = '2.17'
 
     majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve',
                'delegate', 'monitor', 'constants', 'domains', 'predicates', 'constructors', 'properties', 'clauses', 'facts')
@@ -121,14 +120,13 @@ class VisualPrologLexer(VisualPrologBaseLexer):
 
 class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     """Lexer for VisualProlog grammar
-
-    .. versionadded:: 2.17
     """
 
     name = 'Visual Prolog Grammar'
     url = 'https://www.visual-prolog.com/'
     aliases = ['visualprologgrammar']
     filenames = ['*.vipgrm']
+    version_added = '2.17'
 
     majorkw = ('open', 'namespace', 'grammar', 'nonterminals',
                'startsymbols', 'terminals', 'rules', 'precedence')

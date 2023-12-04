@@ -19,8 +19,6 @@ __all__ = ['TclLexer']
 class TclLexer(RegexLexer):
     """
     For Tcl source code.
-
-    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = words((
@@ -48,6 +46,7 @@ class TclLexer(RegexLexer):
     aliases = ['tcl']
     filenames = ['*.tcl', '*.rvt']
     mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']
+    version_added = '0.10'
 
     def _gen_command_rules(keyword_cmds_re, builtin_cmds_re, context=""):
         return [

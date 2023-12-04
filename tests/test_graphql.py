@@ -3,7 +3,6 @@ import textwrap
 
 from pygments.lexers import GraphQLLexer
 from pygments.token import (
-    Comment,
     Error,
     Keyword,
     Name,

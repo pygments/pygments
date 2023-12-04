@@ -27,8 +27,6 @@ CRYSTAL_OPERATORS = [
 class CrystalLexer(ExtendedRegexLexer):
     """
     For Crystal source code.
-
-    .. versionadded:: 2.2
     """
 
     name = 'Crystal'
@@ -36,6 +34,7 @@ class CrystalLexer(ExtendedRegexLexer):
     aliases = ['cr', 'crystal']
     filenames = ['*.cr']
     mimetypes = ['text/x-crystal']
+    version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
 

@@ -31,13 +31,13 @@ __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
 class BBCodeLexer(RegexLexer):
     """
     A lexer that highlights BBCode(-like) syntax.
-
-    .. versionadded:: 0.6
     """
 
     name = 'BBCode'
     aliases = ['bbcode']
     mimetypes = ['text/x-bbcode']
+    url = 'https://www.bbcode.org/'
+    version_added = '0.6'
 
     tokens = {
         'root': [
@@ -64,14 +64,15 @@ class BBCodeLexer(RegexLexer):
 class MoinWikiLexer(RegexLexer):
     """
     For MoinMoin (and Trac) Wiki markup.
-
-    .. versionadded:: 0.7
     """
 
     name = 'MoinMoin/Trac Wiki markup'
     aliases = ['trac-wiki', 'moin']
     filenames = []
     mimetypes = ['text/x-trac-wiki']
+    url = 'https://moinmo.in'
+    version_added = '0.7'
+
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -110,8 +111,6 @@ class RstLexer(RegexLexer):
     """
     For reStructuredText markup.
 
-    .. versionadded:: 0.7
-
     Additional options accepted:
 
     `handlecodeblocks`
@@ -127,6 +126,7 @@ class RstLexer(RegexLexer):
     aliases = ['restructuredtext', 'rst', 'rest']
     filenames = ['*.rst', '*.rest']
     mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
+    version_added = '0.7'
     flags = re.MULTILINE
 
     def _handle_sourcecode(self, match):
@@ -222,7 +222,7 @@ class RstLexer(RegexLexer):
              bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,
                       Punctuation, Text, using(this, state='inline'))),
             # Comments
-            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
+            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment),
             # Field list marker
             (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',
              bygroups(Text, Name.Class, Text)),
@@ -283,6 +283,8 @@ class TexLexer(RegexLexer):
     aliases = ['tex', 'latex']
     filenames = ['*.tex', '*.aux', '*.toc']
     mimetypes = ['text/x-tex', 'text/x-latex']
+    url = 'https://tug.org'
+    version_added = ''
 
     tokens = {
         'general': [
@@ -336,14 +338,14 @@ class GroffLexer(RegexLexer):
     """
     Lexer for the (g)roff typesetting language, supporting groff
     extensions. Mainly useful for highlighting manpage sources.
-
-    .. versionadded:: 0.6
     """
 
     name = 'Groff'
     aliases = ['groff', 'nroff', 'man']
     filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm']
     mimetypes = ['application/x-troff', 'text/troff']
+    url = 'https://www.gnu.org/software/groff'
+    version_added = '0.6'
 
     tokens = {
         'root': [
@@ -393,13 +395,13 @@ class MozPreprocHashLexer(RegexLexer):
     Lexer for Mozilla Preprocessor files (with '#' as the marker).
 
     Other data is left untouched.
-
-    .. versionadded:: 2.0
     """
     name = 'mozhashpreproc'
     aliases = [name]
     filenames = []
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -434,13 +436,13 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     Lexer for Mozilla Preprocessor files (with '%' as the marker).
 
     Other data is left untouched.
-
-    .. versionadded:: 2.0
     """
     name = 'mozpercentpreproc'
     aliases = [name]
     filenames = []
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -454,13 +456,13 @@ class MozPreprocXulLexer(DelegatingLexer):
     """
     Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
     `XmlLexer`.
-
-    .. versionadded:: 2.0
     """
     name = "XUL+mozpreproc"
     aliases = ['xul+mozpreproc']
     filenames = ['*.xul.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, MozPreprocHashLexer, **options)
@@ -470,13 +472,13 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
     `JavascriptLexer`.
-
-    .. versionadded:: 2.0
     """
     name = "Javascript+mozpreproc"
     aliases = ['javascript+mozpreproc']
     filenames = ['*.js.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)
@@ -486,13 +488,13 @@ class MozPreprocCssLexer(DelegatingLexer):
     """
     Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
     `CssLexer`.
-
-    .. versionadded:: 2.0
     """
     name = "CSS+mozpreproc"
     aliases = ['css+mozpreproc']
     filenames = ['*.css.in']
     mimetypes = []
+    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(CssLexer, MozPreprocPercentLexer, **options)
@@ -501,14 +503,13 @@ class MozPreprocCssLexer(DelegatingLexer):
 class MarkdownLexer(RegexLexer):
     """
     For Markdown markup.
-
-    .. versionadded:: 2.2
     """
     name = 'Markdown'
     url = 'https://daringfireball.net/projects/markdown/'
     aliases = ['markdown', 'md']
     filenames = ['*.md', '*.markdown']
     mimetypes = ["text/x-markdown"]
+    version_added = '2.2'
     flags = re.MULTILINE
 
     def _handle_codeblock(self, match):
@@ -622,14 +623,13 @@ class MarkdownLexer(RegexLexer):
 class TiddlyWiki5Lexer(RegexLexer):
     """
     For TiddlyWiki5 markup.
-
-    .. versionadded:: 2.7
     """
     name = 'tiddler'
     url = 'https://tiddlywiki.com/#TiddlerFiles'
     aliases = ['tid']
     filenames = ['*.tid']
     mimetypes = ["text/vnd.tiddlywiki"]
+    version_added = '2.7'
     flags = re.MULTILINE
 
     def _handle_codeblock(self, match):
@@ -786,14 +786,13 @@ class WikitextLexer(RegexLexer):
     installations, so we only highlight common syntaxes (built-in or from
     popular extensions), and also assume templates produce no unbalanced
     syntaxes.
-
-    .. versionadded:: 2.15
     """
     name = 'Wikitext'
     url = 'https://www.mediawiki.org/wiki/Wikitext'
     aliases = ['wikitext', 'mediawiki']
     filenames = []
     mimetypes = ['text/x-wiki']
+    version_added = '2.15'
     flags = re.MULTILINE
 
     def nowiki_tag_rules(tag_name):
@@ -1192,7 +1191,7 @@ class WikitextLexer(RegexLexer):
                 r"""(?xi)
                 (-\{{) # Use {{ to escape format()
                     ([^|]) (\|)
-                    (?: 
+                    (?:
                         (?: ([^;]*?) (=>))?
                         (\s* (?:{variants}) \s*) (:)
                     )?

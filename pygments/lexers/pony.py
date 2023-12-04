@@ -18,13 +18,13 @@ __all__ = ['PonyLexer']
 class PonyLexer(RegexLexer):
     """
     For Pony source code.
-
-    .. versionadded:: 2.4
     """
 
     name = 'Pony'
     aliases = ['pony']
     filenames = ['*.pony']
+    url = 'https://www.ponylang.io'
+    version_added = '2.4'
 
     _caps = r'(iso|trn|ref|val|box|tag)'
 

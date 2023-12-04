@@ -20,13 +20,13 @@ __all__ = ['VerilogLexer', 'SystemVerilogLexer', 'VhdlLexer']
 class VerilogLexer(RegexLexer):
     """
     For verilog source code with preprocessor directives.
-
-    .. versionadded:: 1.4
     """
     name = 'verilog'
     aliases = ['verilog', 'v']
     filenames = ['*.v']
     mimetypes = ['text/x-verilog']
+    url = 'https://en.wikipedia.org/wiki/Verilog'
+    version_added = '1.4'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -147,13 +147,13 @@ class SystemVerilogLexer(RegexLexer):
     """
     Extends verilog lexer to recognise all SystemVerilog keywords from IEEE
     1800-2009 standard.
-
-    .. versionadded:: 1.5
     """
     name = 'systemverilog'
     aliases = ['systemverilog', 'sv']
     filenames = ['*.sv', '*.svh']
     mimetypes = ['text/x-systemverilog']
+    url = 'https://en.wikipedia.org/wiki/SystemVerilog'
+    version_added = '1.5'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -373,13 +373,13 @@ class SystemVerilogLexer(RegexLexer):
 class VhdlLexer(RegexLexer):
     """
     For VHDL source code.
-
-    .. versionadded:: 1.5
     """
     name = 'vhdl'
     aliases = ['vhdl']
     filenames = ['*.vhdl', '*.vhd']
     mimetypes = ['text/x-vhdl']
+    url = 'https://en.wikipedia.org/wiki/VHDL'
+    version_added = '1.5'
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {

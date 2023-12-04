@@ -7,25 +7,23 @@
     :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re
 
-from pygments.lexer import RegexLexer, default, words, include
+from pygments.lexer import RegexLexer, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Whitespace
+    Number, Generic
 
 __all__ = ['Lean3Lexer']
 
 class Lean3Lexer(RegexLexer):
     """
     For the Lean 3 theorem prover.
-
-    .. versionadded:: 2.0
     """
     name = 'Lean'
     url = 'https://leanprover-community.github.io/lean3'
     aliases = ['lean', 'lean3']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean', 'text/x-lean3']
+    version_added = '2.0'
 
     tokens = {
         'expression': [

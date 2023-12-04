@@ -20,14 +20,13 @@ class SmalltalkLexer(RegexLexer):
     For Smalltalk syntax.
     Contributed by Stefan Matthias Aust.
     Rewritten by Nils Winter.
-
-    .. versionadded:: 0.10
     """
     name = 'Smalltalk'
     url = 'http://www.smalltalk.org/'
     filenames = ['*.st']
     aliases = ['smalltalk', 'squeak', 'st']
     mimetypes = ['text/x-smalltalk']
+    version_added = '0.10'
 
     tokens = {
         'root': [
@@ -140,14 +139,13 @@ class SmalltalkLexer(RegexLexer):
 class NewspeakLexer(RegexLexer):
     """
     For Newspeak syntax.
-
-    .. versionadded:: 1.1
     """
     name = 'Newspeak'
     url = 'http://newspeaklanguage.org/'
     filenames = ['*.ns2']
     aliases = ['newspeak', ]
     mimetypes = ['text/x-newspeak']
+    version_added = '1.1'
 
     tokens = {
         'root': [

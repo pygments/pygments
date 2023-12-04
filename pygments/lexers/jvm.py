@@ -33,6 +33,7 @@ class JavaLexer(RegexLexer):
     aliases = ['java']
     filenames = ['*.java']
     mimetypes = ['text/x-java']
+    version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -118,8 +119,6 @@ class JavaLexer(RegexLexer):
 class AspectJLexer(JavaLexer):
     """
     For AspectJ source code.
-
-    .. versionadded:: 1.6
     """
 
     name = 'AspectJ'
@@ -127,6 +126,7 @@ class AspectJLexer(JavaLexer):
     aliases = ['aspectj']
     filenames = ['*.aj']
     mimetypes = ['text/x-aspectj']
+    version_added = '1.6'
 
     aj_keywords = {
         'aspect', 'pointcut', 'privileged', 'call', 'execution',
@@ -165,6 +165,7 @@ class ScalaLexer(RegexLexer):
     aliases = ['scala']
     filenames = ['*.scala']
     mimetypes = ['text/x-scala']
+    version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -280,7 +281,7 @@ class ScalaLexer(RegexLexer):
             (r'\b(package)(\s+)', bygroups(Keyword, Whitespace), 'package'),
             (r'\b(given)\b(\s*)(%s)' % idUpper,
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(given)\b(\s*)(%s)?' % anyId, 
+            (r'\b(given)\b(\s*)(%s)?' % anyId,
                 bygroups(Keyword, Whitespace, Name)),
         ],
         'inheritance': [
@@ -446,14 +447,14 @@ class ScalaLexer(RegexLexer):
 class GosuLexer(RegexLexer):
     """
     For Gosu source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Gosu'
     aliases = ['gosu']
     filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
     mimetypes = ['text/x-gosu']
+    url = 'https://gosu-lang.github.io'
+    version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -525,14 +526,14 @@ class GosuLexer(RegexLexer):
 class GosuTemplateLexer(Lexer):
     """
     For Gosu templates.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Gosu Template'
     aliases = ['gst']
     filenames = ['*.gst']
     mimetypes = ['text/x-gosu-template']
+    url = 'https://gosu-lang.github.io'
+    version_added = '1.5'
 
     def get_tokens_unprocessed(self, text):
         lexer = GosuLexer()
@@ -543,8 +544,6 @@ class GosuTemplateLexer(Lexer):
 class GroovyLexer(RegexLexer):
     """
     For Groovy source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Groovy'
@@ -552,6 +551,7 @@ class GroovyLexer(RegexLexer):
     aliases = ['groovy']
     filenames = ['*.groovy','*.gradle']
     mimetypes = ['text/x-groovy']
+    version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -622,14 +622,13 @@ class IokeLexer(RegexLexer):
     """
     For Ioke (a strongly typed, dynamic,
     prototype based programming language) source.
-
-    .. versionadded:: 1.4
     """
     name = 'Ioke'
     url = 'https://ioke.org/'
     filenames = ['*.ik']
     aliases = ['ioke', 'ik']
     mimetypes = ['text/x-iokesrc']
+    version_added = '1.4'
     tokens = {
         'interpolatableText': [
             (r'(\\b|\\e|\\t|\\n|\\f|\\r|\\"|\\\\|\\#|\\\Z|\\u[0-9a-fA-F]{1,4}'
@@ -813,14 +812,13 @@ class IokeLexer(RegexLexer):
 class ClojureLexer(RegexLexer):
     """
     Lexer for Clojure source code.
-
-    .. versionadded:: 0.11
     """
     name = 'Clojure'
     url = 'http://clojure.org/'
     aliases = ['clojure', 'clj']
     filenames = ['*.clj', '*.cljc']
     mimetypes = ['text/x-clojure', 'application/x-clojure']
+    version_added = '0.11'
 
     special_forms = (
         '.', 'def', 'do', 'fn', 'if', 'let', 'new', 'quote', 'var', 'loop'
@@ -954,14 +952,13 @@ class ClojureLexer(RegexLexer):
 class ClojureScriptLexer(ClojureLexer):
     """
     Lexer for ClojureScript source code.
-
-    .. versionadded:: 2.0
     """
     name = 'ClojureScript'
     url = 'http://clojure.org/clojurescript'
     aliases = ['clojurescript', 'cljs']
     filenames = ['*.cljs']
     mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
+    version_added = '2.0'
 
 
 class TeaLangLexer(RegexLexer):
@@ -1014,8 +1011,6 @@ class TeaLangLexer(RegexLexer):
 class CeylonLexer(RegexLexer):
     """
     For Ceylon source code.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Ceylon'
@@ -1023,6 +1018,7 @@ class CeylonLexer(RegexLexer):
     aliases = ['ceylon']
     filenames = ['*.ceylon']
     mimetypes = ['text/x-ceylon']
+    version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1094,8 +1090,6 @@ class CeylonLexer(RegexLexer):
 class KotlinLexer(RegexLexer):
     """
     For Kotlin source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Kotlin'
@@ -1103,6 +1097,7 @@ class KotlinLexer(RegexLexer):
     aliases = ['kotlin']
     filenames = ['*.kt', '*.kts']
     mimetypes = ['text/x-kotlin']
+    version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1250,8 +1245,6 @@ class KotlinLexer(RegexLexer):
 class XtendLexer(RegexLexer):
     """
     For Xtend source code.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Xtend'
@@ -1259,6 +1252,7 @@ class XtendLexer(RegexLexer):
     aliases = ['xtend']
     filenames = ['*.xtend']
     mimetypes = ['text/x-xtend']
+    version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1279,7 +1273,7 @@ class XtendLexer(RegexLexer):
              Keyword),
             (r'(def|abstract|const|enum|extends|final|implements|native|private|'
              r'protected|public|static|strictfp|super|synchronized|throws|'
-             r'transient|volatile)\b', Keyword.Declaration),
+             r'transient|volatile|val|var)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace)),
@@ -1316,8 +1310,6 @@ class XtendLexer(RegexLexer):
 class PigLexer(RegexLexer):
     """
     For Pig Latin source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Pig'
@@ -1325,6 +1317,7 @@ class PigLexer(RegexLexer):
     aliases = ['pig']
     filenames = ['*.pig']
     mimetypes = ['text/x-pig']
+    version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE
 
@@ -1384,14 +1377,13 @@ class PigLexer(RegexLexer):
 class GoloLexer(RegexLexer):
     """
     For Golo source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Golo'
     url = 'http://golo-lang.org/'
     filenames = ['*.golo']
     aliases = ['golo']
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -1498,14 +1490,13 @@ class GoloLexer(RegexLexer):
 class JasminLexer(RegexLexer):
     """
     For Jasmin assembly code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Jasmin'
     url = 'http://jasmin.sourceforge.net/'
     aliases = ['jasmin', 'jasminxt']
     filenames = ['*.j']
+    version_added = '2.0'
 
     _whitespace = r' \n\t\r'
     _ws = r'(?:[%s]+)' % _whitespace
@@ -1763,8 +1754,6 @@ class JasminLexer(RegexLexer):
 class SarlLexer(RegexLexer):
     """
     For SARL source code.
-
-    .. versionadded:: 2.4
     """
 
     name = 'SARL'
@@ -1772,6 +1761,7 @@ class SarlLexer(RegexLexer):
     aliases = ['sarl']
     filenames = ['*.sarl']
     mimetypes = ['text/x-sarl']
+    version_added = '2.4'
 
     flags = re.MULTILINE | re.DOTALL
 

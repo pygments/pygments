@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
 from pygments.lexers.lisp import SchemeLexer, CommonLispLexer, RacketLexer, \
     NewLispLexer, ShenLexer
 from pygments.lexers.haskell import HaskellLexer, LiterateHaskellLexer, \

@@ -1,0 +1,8 @@
+---input---
+@"\x0f"
+
+---tokens---
+'@"'          Literal.String
+'\\x0f'       Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

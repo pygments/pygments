@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "Pygments"
 dynamic = ["version"]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = {text = "BSD-2-Clause"}
 authors = [
   {name = "Georg Brandl", email = "georg@python.org"}
@@ -28,7 +28,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -41,7 +40,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-plugins = ["importlib-metadata;python_version<'3.8'"]
+plugins = [] # kept for backwards compatibility
 windows-terminal = ["colorama >= 0.4.6"]
 
 [project.urls]
@@ -54,5 +53,19 @@ Changelog = "https://github.com/pygments/pygments/blob/master/CHANGES"
 [project.scripts]
 pygmentize = "pygments.cmdline:main"
 
+# Temporary workaround for https://github.com/pypa/hatch/issues/1054
+[tool.hatch.build.targets.wheel]
+packages = ["pygments"]
+
 [tool.hatch.version]
 path = "pygments/__init__.py"
+
+[tool.ruff]
+extend-exclude = [
+    # Some Python tests are purposefully invalid, others are Python 2 code.
+    "tests/snippets",
+    "tests/examplefiles",
+     # FIXME: port these to Python 3
+    "scripts/get_vimkw.py",
+    "scripts/vim2pygments.py",
+]

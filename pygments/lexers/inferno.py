@@ -24,14 +24,13 @@ class LimboLexer(RegexLexer):
     TODO:
         - maybe implement better var declaration highlighting
         - some simple syntax error highlighting
-
-    .. versionadded:: 2.0
     """
     name = 'Limbo'
     url = 'http://www.vitanuova.com/inferno/limbo.html'
     aliases = ['limbo']
     filenames = ['*.b']
     mimetypes = ['text/limbo']
+    version_added = '2.0'
 
     tokens = {
         'whitespace': [

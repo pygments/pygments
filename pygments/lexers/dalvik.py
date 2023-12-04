@@ -21,14 +21,13 @@ class SmaliLexer(RegexLexer):
     """
     For Smali (Android/Dalvik) assembly
     code.
-
-    .. versionadded:: 1.6
     """
     name = 'Smali'
     url = 'http://code.google.com/p/smali/'
     aliases = ['smali']
     filenames = ['*.smali']
     mimetypes = ['text/smali']
+    version_added = '1.6'
 
     tokens = {
         'root': [

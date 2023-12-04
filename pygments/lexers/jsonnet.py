@@ -40,6 +40,7 @@ class JsonnetLexer(RegexLexer):
     aliases = ['jsonnet']
     filenames = ['*.jsonnet', '*.libsonnet']
     url = "https://jsonnet.org"
+    version_added = ''
     tokens = {
         # Not used by itself
         '_comments': [

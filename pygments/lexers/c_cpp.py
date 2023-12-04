@@ -294,6 +294,8 @@ class CLexer(CFamilyLexer):
     aliases = ['c']
     filenames = ['*.c', '*.h', '*.idc', '*.x[bp]m']
     mimetypes = ['text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap']
+    url = 'https://en.wikipedia.org/wiki/C_(programming_language)'
+    version_added = ''
     priority = 0.1
 
     tokens = {
@@ -347,6 +349,7 @@ class CppLexer(CFamilyLexer):
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
                  '*.C', '*.H', '*.cp', '*.CPP', '*.tpp']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
+    version_added = ''
     priority = 0.1
 
     tokens = {

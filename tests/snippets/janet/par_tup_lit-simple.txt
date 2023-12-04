@@ -1,0 +1,14 @@
+---input---
+(+ 1 2 3)
+
+---tokens---
+'('           Punctuation
+'+'           Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+' '           Text.Whitespace
+'3'           Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace

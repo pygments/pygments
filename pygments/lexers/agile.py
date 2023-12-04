@@ -8,6 +8,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+# ruff: noqa: F401
+
 from pygments.lexers.lisp import SchemeLexer
 from pygments.lexers.jvm import IokeLexer, ClojureLexer
 from pygments.lexers.python import PythonLexer, PythonConsoleLexer, \

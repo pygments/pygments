@@ -20,14 +20,14 @@ __all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'FStarLexer']
 class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Standard ML'
     aliases = ['sml']
     filenames = ['*.sml', '*.sig', '*.fun']
     mimetypes = ['text/x-standardml', 'application/x-standardml']
+    url = 'https://en.wikipedia.org/wiki/Standard_ML'
+    version_added = '1.5'
 
     alphanumid_reserved = {
         # Core
@@ -355,8 +355,6 @@ class SMLLexer(RegexLexer):
 class OcamlLexer(RegexLexer):
     """
     For the OCaml language.
-
-    .. versionadded:: 0.7
     """
 
     name = 'OCaml'
@@ -364,6 +362,7 @@ class OcamlLexer(RegexLexer):
     aliases = ['ocaml']
     filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
     mimetypes = ['text/x-ocaml']
+    version_added = '0.7'
 
     keywords = (
         'and', 'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
@@ -448,14 +447,14 @@ class OcamlLexer(RegexLexer):
 class OpaLexer(RegexLexer):
     """
     Lexer for the Opa language.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Opa'
     aliases = ['opa']
     filenames = ['*.opa']
     mimetypes = ['text/x-opa']
+    url = 'http://opalang.org'
+    version_added = '1.5'
 
     # most of these aren't strictly keywords
     # but if you color only real keywords, you might just
@@ -771,8 +770,6 @@ class OpaLexer(RegexLexer):
 class ReasonLexer(RegexLexer):
     """
     For the ReasonML language.
-
-    .. versionadded:: 2.6
     """
 
     name = 'ReasonML'
@@ -780,6 +777,7 @@ class ReasonLexer(RegexLexer):
     aliases = ['reasonml', 'reason']
     filenames = ['*.re', '*.rei']
     mimetypes = ['text/x-reasonml']
+    version_added = '2.6'
 
     keywords = (
         'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
@@ -864,7 +862,6 @@ class ReasonLexer(RegexLexer):
 class FStarLexer(RegexLexer):
     """
     For the F* language.
-    .. versionadded:: 2.7
     """
 
     name = 'FStar'
@@ -872,6 +869,7 @@ class FStarLexer(RegexLexer):
     aliases = ['fstar']
     filenames = ['*.fst', '*.fsti']
     mimetypes = ['text/x-fstar']
+    version_added = '2.7'
 
     keywords = (
         'abstract', 'attributes', 'noeq', 'unopteq', 'and'

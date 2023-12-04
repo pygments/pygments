@@ -1,0 +1,14 @@
+---input---
+{:a 1 :b 2}
+
+---tokens---
+'{'           Punctuation
+':a'          Name.Constant
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+':b'          Name.Constant
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -7,6 +7,46 @@ Version 2.18.0
 --------------
 (unreleased)
 
+- New lexers:
+
+  * Janet (#2557)
+
+- Updated lexers:
+
+  * Bash: add ``openrc`` alias (#2599)
+  * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
+  * reStructuredText: use ``Token.Comment`` for comments instead of
+    ``Comment.Preproc`` (#2598)
+  * UL4: support nested ``<?doc?>`` and ``<?note?>`` tags (#2597)
+
+- Require Python 3.8. As a result, the ``importlib-metadata`` package
+  is no longer needed for fast plugin discovery on Python 3.7.
+  The ``plugins`` extra (used as, e.g., ``pip install pygments[plugins]``)
+  is kept for backwards compatibility but now has no effect. (#2601)
+- Require the ``url`` attribute for lexers inside Pygments, add
+  it to many lexers (#2588)
+- Replace Pyflakes linter with Ruff
+- Add macOS CI (#2594)
+- Built-in lexers now declare the version of Pygments in which they were
+  added in a required ``version_added`` lexer attribute, instead of a
+  ``.. versionadded::`` directive in the docstring (#2589)
+- The ``url`` attribute is now required for built-in lexers and
+  has been added to all existing lexers (#2588)
+
+Version 2.17.2
+--------------
+(released November 21, 2023)
+
+- Fix a packaging issue on macOS (#2593)
+
+Version 2.17.1
+--------------
+(released November 19, 2023)
+
+- Updated lexers:
+
+  * TOML: Fix bug making lexing of single-quoted strings too eager
+
 Version 2.17.0
 --------------
 (released November 18, 2023)
@@ -39,7 +79,7 @@ Version 2.17.0
   * Turtle: support blank nodes (#2581)
   * Wikitext: fix erroneous highlighting of LanguageConverter markup
     (#2493), add missing variant languages (#2494)
-  * CMake: support ``[=[ bracketed arguments ]=]``` (#2549)
+  * CMake: support ``[=[ bracketed arguments ]=]`` (#2549)
 
 - Fix ctags support and tests (#2487)
 - Include ``Lexer.add_filter`` in the documentation (#2519)

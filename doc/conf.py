@@ -2,13 +2,16 @@
 # Pygments documentation build configuration file
 #
 
-import re, sys, os, itertools
+import os
+import re
+import sys
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('..'))
 
+# ruff: noqa: E402
 import pygments
 import pygments.formatters
 import pygments.lexers
@@ -262,7 +265,8 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
 
         # sort styles according to their background luminance (light styles first)
         # if styles have the same background luminance sort them by their name
-        sortkey = lambda s: (-s['bg_luminance'], s['name'])
+        def sortkey(s):
+            return (-s['bg_luminance'], s['name'])
         # the default style is always displayed first
         default_style = ctx['styles_aa'].pop(0)
         ctx['styles_aa'].sort(key=sortkey)

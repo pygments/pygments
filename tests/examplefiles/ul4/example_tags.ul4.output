@@ -35,6 +35,14 @@
 ')'           Operator
 '?>'          Comment.Preproc
 '\n\t'        Other
+'<?doc?>'     Literal.String.Doc
+'\n\tFunction `gurk`\n\t' Literal.String.Doc
+'<?doc?>'     Literal.String.Doc
+'\n\tFoo\n\t' Literal.String.Doc
+'<?end doc?>' Literal.String.Doc
+'\n\t'        Literal.String.Doc
+'<?end doc?>' Literal.String.Doc
+'\n\t'        Other
 '<?'          Comment.Preproc
 'for'         Keyword
 ' '           Text.Whitespace
@@ -149,6 +157,8 @@
 '('           Operator
 ')'           Operator
 '?>'          Comment.Preproc
+'\n\t'        Other
+'<?note Note?>' Comment
 '\n\t...\n'   Other
 
 '<?'          Comment.Preproc
@@ -165,6 +175,14 @@
 '('           Operator
 ')'           Operator
 '?>'          Comment.Preproc
+'\n\t'        Other
+'<?note?>'    Comment
+'\n\tNote\n\t' Comment
+'<?note?>'    Comment
+'\n\tSubnote\n\t' Comment
+'<?end note?>' Comment
+'\n\t'        Comment
+'<?end note?>' Comment
 '\n\t...\n'   Other
 
 '<?'          Comment.Preproc

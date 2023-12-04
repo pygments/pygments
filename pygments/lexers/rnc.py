@@ -18,14 +18,13 @@ __all__ = ['RNCCompactLexer']
 class RNCCompactLexer(RegexLexer):
     """
     For RelaxNG-compact syntax.
-
-    .. versionadded:: 2.2
     """
 
     name = 'Relax-NG Compact'
     url = 'http://relaxng.org'
     aliases = ['rng-compact', 'rnc']
     filenames = ['*.rnc']
+    version_added = '2.2'
 
     tokens = {
         'root': [

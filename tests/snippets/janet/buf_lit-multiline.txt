@@ -1,0 +1,9 @@
+---input---
+@"this is the first line
+and what is this one?"
+
+---tokens---
+'@"'          Literal.String
+'this is the first line\nand what is this one?' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

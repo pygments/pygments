@@ -1,0 +1,8 @@
+---input---
+"\xAB"
+
+---tokens---
+'"'           Literal.String
+'\\xAB'       Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace

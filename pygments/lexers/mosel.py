@@ -391,12 +391,12 @@ FUNCTIONS = (
 class MoselLexer(RegexLexer):
     """
     For the Mosel optimization language.
-
-    .. versionadded:: 2.6
     """
     name = 'Mosel'
     aliases = ['mosel']
     filenames = ['*.mos']
+    url = 'https://www.fico.com/fico-xpress-optimization/docs/latest/mosel/mosel_lang/dhtml/moselreflang.html'
+    version_added = '2.6'
 
     tokens = {
         'root': [

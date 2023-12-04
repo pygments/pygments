@@ -18,14 +18,13 @@ __all__ = ['ResourceLexer']
 
 
 class ResourceLexer(RegexLexer):
-    """Lexer for `ICU Resource bundles
-    <http://userguide.icu-project.org/locale/resources>`_.
-
-    .. versionadded:: 2.0
+    """Lexer for ICU Resource bundles.
     """
     name = 'ResourceBundle'
     aliases = ['resourcebundle', 'resource']
     filenames = []
+    url = 'https://unicode-org.github.io/icu/userguide/locale/resources.html'
+    version_added = '2.0'
 
     _types = (':table', ':array', ':string', ':bin', ':import', ':intvector',
               ':int', ':alias')

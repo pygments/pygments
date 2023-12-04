@@ -20,14 +20,14 @@ __all__ = ['UrbiscriptLexer']
 class UrbiscriptLexer(ExtendedRegexLexer):
     """
     For UrbiScript source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'UrbiScript'
     aliases = ['urbiscript']
     filenames = ['*.u']
     mimetypes = ['application/x-urbiscript']
+    url = 'https://github.com/urbiforge/urbi'
+    version_added = '1.5'
 
     flags = re.DOTALL
 

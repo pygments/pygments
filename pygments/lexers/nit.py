@@ -18,14 +18,13 @@ __all__ = ['NitLexer']
 class NitLexer(RegexLexer):
     """
     For nit source.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Nit'
     url = 'http://nitlanguage.org'
     aliases = ['nit']
     filenames = ['*.nit']
+    version_added = '2.0'
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),

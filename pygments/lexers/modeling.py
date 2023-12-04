@@ -23,14 +23,13 @@ __all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
 class ModelicaLexer(RegexLexer):
     """
     For Modelica source code.
-
-    .. versionadded:: 1.1
     """
     name = 'Modelica'
     url = 'http://www.modelica.org/'
     aliases = ['modelica']
     filenames = ['*.mo']
     mimetypes = ['text/x-modelica']
+    version_added = '1.1'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -100,13 +99,13 @@ class BugsLexer(RegexLexer):
     """
     Pygments Lexer for OpenBugs and WinBugs
     models.
-
-    .. versionadded:: 1.6
     """
 
     name = 'BUGS'
     aliases = ['bugs', 'winbugs', 'openbugs']
     filenames = ['*.bug']
+    url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
+    version_added = '1.6'
 
     _FUNCTIONS = (
         # Scalar functions
@@ -195,13 +194,13 @@ class BugsLexer(RegexLexer):
 class JagsLexer(RegexLexer):
     """
     Pygments Lexer for JAGS.
-
-    .. versionadded:: 1.6
     """
 
     name = 'JAGS'
     aliases = ['jags']
     filenames = ['*.jag', '*.bug']
+    url = 'https://mcmc-jags.sourceforge.io'
+    version_added = '1.6'
 
     # JAGS
     _FUNCTIONS = (
@@ -286,13 +285,13 @@ class StanLexer(RegexLexer):
     The Stan modeling language is specified in the *Stan Modeling Language
     User's Guide and Reference Manual, v2.17.0*,
     `pdf <https://github.com/stan-dev/stan/releases/download/v2.17.0/stan-reference-2.17.0.pdf>`__.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
+    url = 'https://mc-stan.org'
+    version_added = '1.6'
 
     tokens = {
         'whitespace': [

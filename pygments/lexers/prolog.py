@@ -25,6 +25,8 @@ class PrologLexer(RegexLexer):
     aliases = ['prolog']
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
+    url = 'https://en.wikipedia.org/wiki/Prolog'
+    version_added = ''
 
     tokens = {
         'root': [
@@ -89,8 +91,6 @@ class PrologLexer(RegexLexer):
 class LogtalkLexer(RegexLexer):
     """
     For Logtalk source code.
-
-    .. versionadded:: 0.10
     """
 
     name = 'Logtalk'
@@ -98,6 +98,7 @@ class LogtalkLexer(RegexLexer):
     aliases = ['logtalk']
     filenames = ['*.lgt', '*.logtalk']
     mimetypes = ['text/x-logtalk']
+    version_added = '0.10'
 
     tokens = {
         'root': [

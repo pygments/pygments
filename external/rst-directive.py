@@ -34,13 +34,20 @@
     :license: BSD, see LICENSE for details.
 """
 
+from docutils import nodes
+from docutils.parsers.rst import directives, Directive
+
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name, TextLexer
+
+
 # Options
 # ~~~~~~~
 
 # Set to True if you want inline CSS styles instead of classes
 INLINESTYLES = False
 
-from pygments.formatters import HtmlFormatter
 
 # The default formatter
 DEFAULT = HtmlFormatter(noclasses=INLINESTYLES)
@@ -50,12 +57,6 @@ VARIANTS = {
     # 'linenos': HtmlFormatter(noclasses=INLINESTYLES, linenos=True),
 }
 
-
-from docutils import nodes
-from docutils.parsers.rst import directives, Directive
-
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name, TextLexer
 
 class Pygments(Directive):
     """ Source code syntax highlighting.

@@ -49,6 +49,7 @@ class LuaLexer(RegexLexer):
     aliases = ['lua']
     filenames = ['*.lua', '*.wlua']
     mimetypes = ['text/x-lua', 'application/x-lua']
+    version_added = ''
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
@@ -469,8 +470,6 @@ class LuauLexer(RegexLexer):
 class MoonScriptLexer(LuaLexer):
     """
     For MoonScript source code.
-
-    .. versionadded:: 1.5
     """
 
     name = 'MoonScript'
@@ -478,6 +477,7 @@ class MoonScriptLexer(LuaLexer):
     aliases = ['moonscript', 'moon']
     filenames = ['*.moon']
     mimetypes = ['text/x-moonscript', 'application/x-moonscript']
+    version_added = '1.5'
 
     tokens = {
         'root': [
@@ -538,8 +538,6 @@ class MoonScriptLexer(LuaLexer):
 class ChaiscriptLexer(RegexLexer):
     """
     For ChaiScript source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'ChaiScript'
@@ -547,6 +545,7 @@ class ChaiscriptLexer(RegexLexer):
     aliases = ['chaiscript', 'chai']
     filenames = ['*.chai']
     mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
+    version_added = '2.0'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -605,14 +604,14 @@ class ChaiscriptLexer(RegexLexer):
 class LSLLexer(RegexLexer):
     """
     For Second Life's Linden Scripting Language source code.
-
-    .. versionadded:: 2.0
     """
 
     name = 'LSL'
     aliases = ['lsl']
     filenames = ['*.lsl']
     mimetypes = ['text/x-lsl']
+    url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
+    version_added = '2.0'
 
     flags = re.MULTILINE
 
@@ -693,14 +692,13 @@ class AppleScriptLexer(RegexLexer):
     <http://developer.apple.com/documentation/AppleScript/
     Reference/StudioReference>`_.
     Contributed by Andreas Amann <aamann@mac.com>.
-
-    .. versionadded:: 1.0
     """
 
     name = 'AppleScript'
     url = 'https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html'
     aliases = ['applescript']
     filenames = ['*.applescript']
+    version_added = '1.0'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1014,14 +1012,13 @@ class RexxLexer(RegexLexer):
     a wide range of different platforms with its roots found on mainframe
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
-
-    .. versionadded:: 2.0
     """
     name = 'Rexx'
     url = 'http://www.rexxinfo.org/'
     aliases = ['rexx', 'arexx']
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
+    version_added = '2.0'
     flags = re.IGNORECASE
 
     tokens = {
@@ -1085,7 +1082,8 @@ class RexxLexer(RegexLexer):
         ]
     }
 
-    _c = lambda s: re.compile(s, re.MULTILINE)
+    def _c(s):
+        return re.compile(s, re.MULTILINE)
     _ADDRESS_COMMAND_PATTERN = _c(r'^\s*address\s+command\b')
     _ADDRESS_PATTERN = _c(r'^\s*address\s+')
     _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
@@ -1125,14 +1123,13 @@ class RexxLexer(RegexLexer):
 class MOOCodeLexer(RegexLexer):
     """
     For MOOCode (the MOO scripting language).
-
-    .. versionadded:: 0.9
     """
     name = 'MOOCode'
     url = 'http://www.moo.mud.org/'
     filenames = ['*.moo']
     aliases = ['moocode', 'moo']
     mimetypes = ['text/x-moocode']
+    version_added = '0.9'
 
     tokens = {
         'root': [
@@ -1168,14 +1165,14 @@ class MOOCodeLexer(RegexLexer):
 class HybrisLexer(RegexLexer):
     """
     For Hybris source code.
-
-    .. versionadded:: 1.4
     """
 
     name = 'Hybris'
     aliases = ['hybris', 'hy']
     filenames = ['*.hy', '*.hyb']
     mimetypes = ['text/x-hybris', 'application/x-hybris']
+    url = 'https://github.com/evilsocket/hybris'
+    version_added = '1.4'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1266,13 +1263,13 @@ class EasytrieveLexer(RegexLexer):
     converting sequential data. Furthermore it can layout data for reports.
     It is mainly used on mainframe platforms and can access several of the
     mainframe's native file formats. It is somewhat comparable to awk.
-
-    .. versionadded:: 2.1
     """
     name = 'Easytrieve'
     aliases = ['easytrieve']
     filenames = ['*.ezt', '*.mac']
     mimetypes = ['text/x-easytrieve']
+    url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
+    version_added = '2.1'
     flags = 0
 
     # Note: We cannot use r'\b' at the start and end of keywords because
@@ -1458,13 +1455,14 @@ class JclLexer(RegexLexer):
     is a scripting language used on mainframe platforms to instruct the system
     on how to run a batch job or start a subsystem. It is somewhat
     comparable to MS DOS batch and Unix shell scripts.
-
-    .. versionadded:: 2.1
     """
     name = 'JCL'
     aliases = ['jcl']
     filenames = ['*.jcl']
     mimetypes = ['text/x-jcl']
+    url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
+    version_added = '2.1'
+
     flags = re.IGNORECASE
 
     tokens = {
@@ -1538,8 +1536,6 @@ class JclLexer(RegexLexer):
 class MiniScriptLexer(RegexLexer):
     """
     For MiniScript source code.
-
-    .. versionadded:: 2.6
     """
 
     name = 'MiniScript'
@@ -1547,6 +1543,7 @@ class MiniScriptLexer(RegexLexer):
     aliases = ['miniscript', 'ms']
     filenames = ['*.ms']
     mimetypes = ['text/x-minicript', 'application/x-miniscript']
+    version_added = '2.6'
 
     tokens = {
         'root': [

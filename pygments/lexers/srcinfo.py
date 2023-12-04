@@ -34,13 +34,13 @@ architecture_dependent_keywords = (
 
 class SrcinfoLexer(RegexLexer):
     """Lexer for .SRCINFO files used by Arch Linux Packages.
-
-    .. versionadded:: 2.11
     """
 
     name = 'Srcinfo'
     aliases = ['srcinfo']
     filenames = ['.SRCINFO']
+    url = 'https://wiki.archlinux.org/title/.SRCINFO'
+    version_added = '2.11'
 
     tokens = {
         'root': [

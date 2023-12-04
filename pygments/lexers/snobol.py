@@ -21,14 +21,14 @@ class SnobolLexer(RegexLexer):
 
     Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
     Does not require spaces around binary operators.
-
-    .. versionadded:: 1.5
     """
 
     name = "Snobol"
     aliases = ["snobol"]
     filenames = ['*.snobol']
     mimetypes = ['text/x-snobol']
+    url = 'https://www.regressive.org/snobol4'
+    version_added = '1.5'
 
     tokens = {
         # root state, start of line

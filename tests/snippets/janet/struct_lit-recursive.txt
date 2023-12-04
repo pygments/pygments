@@ -1,0 +1,30 @@
+---input---
+{:alice {:likes :bob} :bob {:likes :carol} :carol {:likes :alice}}
+
+---tokens---
+'{'           Punctuation
+':alice'      Name.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+':likes'      Name.Constant
+' '           Text.Whitespace
+':bob'        Name.Constant
+'}'           Punctuation
+' '           Text.Whitespace
+':bob'        Name.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+':likes'      Name.Constant
+' '           Text.Whitespace
+':carol'      Name.Constant
+'}'           Punctuation
+' '           Text.Whitespace
+':carol'      Name.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+':likes'      Name.Constant
+' '           Text.Whitespace
+':alice'      Name.Constant
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace

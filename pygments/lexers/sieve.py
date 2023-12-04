@@ -27,12 +27,12 @@ __all__ = ["SieveLexer"]
 class SieveLexer(RegexLexer):
     """
     Lexer for sieve format.
-
-    .. versionadded:: 2.6
     """
     name = 'Sieve'
     filenames = ['*.siv', '*.sieve']
     aliases = ['sieve']
+    url = 'https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)'
+    version_added = '2.6'
 
     tokens = {
         'root': [

@@ -1,0 +1,9 @@
+---input---
+|"nice string"
+
+---tokens---
+'|'           Operator
+'"'           Literal.String
+'nice string' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

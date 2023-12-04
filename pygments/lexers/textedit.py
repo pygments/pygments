@@ -22,14 +22,14 @@ __all__ = ['AwkLexer', 'SedLexer', 'VimLexer']
 class AwkLexer(RegexLexer):
     """
     For Awk scripts.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Awk'
     aliases = ['awk', 'gawk', 'mawk', 'nawk']
     filenames = ['*.awk']
     mimetypes = ['application/x-awk']
+    url = 'https://en.wikipedia.org/wiki/AWK'
+    version_added = '1.5'
 
     tokens = {
         'commentsandwhitespace': [
@@ -81,6 +81,8 @@ class SedLexer(RegexLexer):
     aliases = ['sed', 'gsed', 'ssed']
     filenames = ['*.sed', '*.[gs]sed']
     mimetypes = ['text/x-sed']
+    url = 'https://en.wikipedia.org/wiki/Sed'
+    version_added = ''
     flags = re.MULTILINE
 
     # Match the contents within delimiters such as /<contents>/
@@ -111,14 +113,15 @@ class SedLexer(RegexLexer):
 class VimLexer(RegexLexer):
     """
     Lexer for VimL script files.
-
-    .. versionadded:: 0.8
     """
     name = 'VimL'
     aliases = ['vim']
     filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
                  '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
     mimetypes = ['text/x-vim']
+    url = 'https://www.vim.org'
+    version_added = '0.8'
+
     flags = re.MULTILINE
 
     _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'

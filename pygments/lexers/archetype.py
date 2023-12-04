@@ -2,11 +2,7 @@
     pygments.lexers.archetype
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexer for Archetype-related syntaxes, including:
-
-    - ODIN syntax <https://github.com/openEHR/odin>
-    - ADL syntax <http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf>
-    - cADL sub-syntax of ADL
+    Lexer for Archetype-related syntaxes, including ODIN, ADL and cADL.
 
     For uses of this syntax, see the openEHR archetypes <http://www.openEHR.org/ckm>
 
@@ -139,13 +135,13 @@ class AtomsLexer(RegexLexer):
 class OdinLexer(AtomsLexer):
     """
     Lexer for ODIN syntax.
-
-    .. versionadded:: 2.1
     """
     name = 'ODIN'
     aliases = ['odin']
     filenames = ['*.odin']
     mimetypes = ['text/odin']
+    url = 'https://github.com/openEHR/odin'
+    version_added = '2.1'
 
     tokens = {
         'path': [
@@ -188,12 +184,12 @@ class OdinLexer(AtomsLexer):
 class CadlLexer(AtomsLexer):
     """
     Lexer for cADL syntax.
-
-    .. versionadded:: 2.1
     """
     name = 'cADL'
     aliases = ['cadl']
     filenames = ['*.cadl']
+    url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
+    version_added = '2.1'
 
     tokens = {
         'path': [
@@ -253,13 +249,13 @@ class CadlLexer(AtomsLexer):
 class AdlLexer(AtomsLexer):
     """
     Lexer for ADL syntax.
-
-    .. versionadded:: 2.1
     """
 
     name = 'ADL'
     aliases = ['adl']
     filenames = ['*.adl', '*.adls', '*.adlf', '*.adlx']
+    url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
+    version_added = '2.1'
 
     tokens = {
         'whitespace': [

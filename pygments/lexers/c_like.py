@@ -26,13 +26,12 @@ __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'Pike'
     aliases = ['pike']
     filenames = ['*.pike', '*.pmod']
     mimetypes = ['text/x-pike']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
@@ -68,13 +67,12 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
-
-    .. versionadded:: 2.0
     """
     name = 'nesC'
     aliases = ['nesc']
     filenames = ['*.nc']
     mimetypes = ['text/x-nescsrc']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
@@ -95,14 +93,15 @@ class NesCLexer(CLexer):
 
 class ClayLexer(RegexLexer):
     """
-    For `Clay <http://claylabs.com/clay/>`_ source.
-
-    .. versionadded:: 2.0
+    For Clay source.
     """
     name = 'Clay'
     filenames = ['*.clay']
     aliases = ['clay']
     mimetypes = ['text/x-clay']
+    url = 'http://claylabs.com/clay'
+    version_added = '2.0'
+
     tokens = {
         'root': [
             (r'\s+', Whitespace),
@@ -147,13 +146,13 @@ class ClayLexer(RegexLexer):
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
-
-    .. versionadded:: 1.5
     """
     name = 'eC'
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
+    url = 'https://ec-lang.org'
+    version_added = '1.5'
 
     tokens = {
         'statements': [
@@ -180,13 +179,13 @@ class ECLexer(CLexer):
 class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
-
-    .. versionadded:: 1.1
     """
     name = 'Vala'
     aliases = ['vala', 'vapi']
     filenames = ['*.vala', '*.vapi']
     mimetypes = ['text/x-vala']
+    url = 'https://vala.dev'
+    version_added = '1.1'
 
     tokens = {
         'whitespace': [
@@ -277,15 +276,14 @@ class ValaLexer(RegexLexer):
 
 class CudaLexer(CLexer):
     """
-    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
-    source.
-
-    .. versionadded:: 1.6
+    For NVIDIA CUDA™ source.
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
+    url = 'https://developer.nvidia.com/category/zone/cuda-zone'
+    version_added = '1.6'
 
     function_qualifiers = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}
@@ -326,13 +324,12 @@ class CudaLexer(CLexer):
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'SWIG'
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
+    version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
     tokens = {
@@ -393,13 +390,12 @@ class MqlLexer(CppLexer):
     """
     For `MQL4 <http://docs.mql4.com/>`_ and
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'MQL'
     aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
     filenames = ['*.mq4', '*.mq5', '*.mqh']
     mimetypes = ['text/x-mql']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
@@ -420,14 +416,13 @@ class ArduinoLexer(CppLexer):
 
     This is an extension of the CppLexer, as the Arduino® Language is a superset
     of C++
-
-    .. versionadded:: 2.1
     """
 
     name = 'Arduino'
     aliases = ['arduino']
     filenames = ['*.ino']
     mimetypes = ['text/x-arduino']
+    version_added = '2.1'
 
     # Language sketch main structure functions
     structure = {'setup', 'loop'}
@@ -545,13 +540,12 @@ class ArduinoLexer(CppLexer):
 class CharmciLexer(CppLexer):
     """
     For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
-
-    .. versionadded:: 2.4
     """
 
     name = 'Charmci'
     aliases = ['charmci']
     filenames = ['*.ci']
+    version_added = '2.4'
 
     mimetypes = []
 
@@ -575,8 +569,6 @@ class CharmciLexer(CppLexer):
 class OmgIdlLexer(CLexer):
     """
     Lexer for Object Management Group Interface Definition Language.
-
-    .. versionadded:: 2.9
     """
 
     name = 'OMG Interface Definition Language'
@@ -584,6 +576,7 @@ class OmgIdlLexer(CLexer):
     aliases = ['omg-idl']
     filenames = ['*.idl', '*.pidl']
     mimetypes = []
+    version_added = '2.9'
 
     scoped_name = r'((::)?\w+)+'
 

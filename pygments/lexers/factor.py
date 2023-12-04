@@ -18,14 +18,13 @@ __all__ = ['FactorLexer']
 class FactorLexer(RegexLexer):
     """
     Lexer for the Factor language.
-
-    .. versionadded:: 1.4
     """
     name = 'Factor'
     url = 'http://factorcode.org'
     aliases = ['factor']
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']
+    version_added = '1.4'
 
     builtin_kernel = words((
         '-rot', '2bi', '2bi@', '2bi*', '2curry', '2dip', '2drop', '2dup', '2keep', '2nip',

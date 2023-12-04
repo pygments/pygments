@@ -22,14 +22,14 @@ class FoxProLexer(RegexLexer):
 
     FoxPro syntax allows to shorten all keywords and function names
     to 4 characters.  Shortened forms are not recognized by this lexer.
-
-    .. versionadded:: 1.6
     """
 
     name = 'FoxPro'
     aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
     filenames = ['*.PRG', '*.prg']
+    version_added = '1.6'
     mimetype = []
+    url = 'https://learn.microsoft.com/en-us/previous-versions/visualstudio/foxpro'
 
     flags = re.IGNORECASE | re.MULTILINE
 

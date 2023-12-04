@@ -20,12 +20,13 @@ __all__ = ['apdlexer']
 class apdlexer(RegexLexer):
     """
     For APDL source code.
-
-    .. versionadded:: 2.9
     """
     name = 'ANSYS parametric design language'
     aliases = ['ansys', 'apdl']
     filenames = ['*.ans']
+    url = 'https://www.ansys.com'
+    version_added = '2.9'
+
     flags = re.IGNORECASE
 
     # list of elements

@@ -17,16 +17,15 @@ __all__ = ['RideLexer']
 
 class RideLexer(RegexLexer):
     """
-    For `Ride <https://docs.wavesplatform.com/en/ride/about-ride.html>`_
-    source code.
-
-    .. versionadded:: 2.6
+    For Ride source code.
     """
 
     name = 'Ride'
     aliases = ['ride']
     filenames = ['*.ride']
     mimetypes = ['text/x-ride']
+    url = 'https://docs.waves.tech/en/ride'
+    version_added = '2.6'
 
     validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 
