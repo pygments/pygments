@@ -39,6 +39,12 @@ export--[[aaa
 
 foobar = (foo | foo) & foo
 
+print"Hello world!"
+print{"Hello world 2!"}
+print --
+	--[=[ ]==] ]=]
+	'Hello world 3!'
+
 print("\
 a\z
 

@@ -175,10 +175,10 @@ def _luau_make_expression(should_pop, _s):
 
         (r'\[(=*)\[[.\n]*?\]\1\]', String, '#pop'),
 
-        (r'(\.)([a-zA-Z_]\w*)(?=%s*\()', bygroups(Punctuation, Name.Function), '#pop'),
+        (r'(\.)([a-zA-Z_]\w*)(?=%s*[({"\'])', bygroups(Punctuation, Name.Function), '#pop'),
         (r'(\.)([a-zA-Z_]\w*)', bygroups(Punctuation, Name.Variable), '#pop'),
 
-        (r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*(?=%s*\()' % _s, Name.Other, '#pop'),
+        (r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*(?=%s*[({"\'])' % _s, Name.Other, '#pop'),
         (r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*', Name, '#pop'),
     ]
     if should_pop:
