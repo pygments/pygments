@@ -202,7 +202,7 @@ def _luau_make_expression_special(should_pop):
 
 class LuauLexer(RegexLexer):
     """
-    For Lua source code.
+    For Luau source code.
 
     Additional options accepted:
 
@@ -222,6 +222,7 @@ class LuauLexer(RegexLexer):
     url = 'https://luau-lang.org/'
     aliases = ['luau']
     filenames = ['*.luau']
+    version_added = '2.18'
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
