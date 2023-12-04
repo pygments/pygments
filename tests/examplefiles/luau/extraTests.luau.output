@@ -1,0 +1,229 @@
+'--[[\n\tAdditional Luau lexer tests\n]]' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'--[==[\n]]\nprint()\n]==]' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'foo'         Name.Class
+'<'           Punctuation
+'A'           Name.Class
+'='           Punctuation
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Class
+'='           Punctuation
+'A'           Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Class
+'='           Punctuation
+'true'        Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'('           Punctuation
+'A'           Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'C'           Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'foo'         Name.Class
+'<'           Punctuation
+'A'           Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'B'           Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'C'           Name.Class
+'>'           Punctuation
+'\n\n'        Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'continue'    Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'type'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'export'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'continue'    Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'type'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'export'      Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'for'         Keyword.Reserved
+' '           Text.Whitespace
+'i'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'number'      Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n\t'        Text.Whitespace
+'continue'    Keyword.Reserved
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'bar'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+'('           Punctuation
+'...'         Punctuation
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'...'         Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'bar'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bar'         Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+':'           Punctuation
+'upper'       Name.Class
+'('           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'a'           Literal.String.Double
+'\\z\n\n\n\n' Literal.String.Escape
+
+'--b --[['    Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'c'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'nil'         Keyword.Constant
+' '           Text.Whitespace
+'::'          Punctuation
+' '           Text.Whitespace
+'any'         Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'::'          Punctuation
+' '           Text.Whitespace
+'foo'         Name.Class
+'<'           Punctuation
+'foo'         Name.Class
+'<'           Punctuation
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'foo'         Name.Class
+'<'           Punctuation
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+'>'           Punctuation
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'`'           Literal.String.Backtick
+'{'           Punctuation
+'('           Punctuation
+'{'           Punctuation
+'`'           Literal.String.Backtick
+' '           Literal.String.Backtick
+'{'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'`'           Literal.String.Backtick
+'baz'         Literal.String.Backtick
+'`'           Literal.String.Backtick
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Literal.String.Backtick
+'`'           Literal.String.Backtick
+'}'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+'`'           Literal.String.Backtick
+','           Punctuation
+' '           Text.Whitespace
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text.Whitespace
