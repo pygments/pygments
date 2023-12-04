@@ -7,13 +7,18 @@
 print()
 ]==]
 
-type foo<A="foo", B=A, C=true> = ((A, B) -> C) -> foo<A, B, C>
+export type foo<A="foo", B=A, C=true> = ((A, B) -> C) -> foo<A, B, C>
 
 local continue, type, export = 1, 2, 3
 print(continue, type, export)
 for i: number = 1, 10 do
 	continue
 end
+type, export = export, type
+
+local exporttype = 2
+exporttype ^= 4
+print(exporttype)
 
 local bar = function(...)
 	return ...
@@ -26,6 +31,13 @@ print(baz.table.a.b.c.d.e)
 print((baz).table.a.b.c.d.e)
 
 table.create(1)
+
+export--[[aaa
+
+]]type  --[[]]
+--
+
+foobar = (foo | foo) & foo
 
 print("\
 a\z

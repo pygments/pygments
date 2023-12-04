@@ -4,6 +4,8 @@
 '--[==[\n]]\nprint()\n]==]' Comment.Multiline
 '\n\n'        Text.Whitespace
 
+'export'      Keyword.Reserved
+' '           Text.Whitespace
 'type'        Keyword.Reserved
 ' '           Text.Whitespace
 'foo'         Name.Class
@@ -107,6 +109,41 @@
 '\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'type'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'export'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'export'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'type'        Name.Variable
+'\n\n'        Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'exporttype'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'exporttype'  Name.Variable
+' '           Text.Whitespace
+'^='          Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'exporttype'  Name.Variable
+')'           Punctuation
 '\n\n'        Text.Whitespace
 
 'local'       Keyword.Declaration
@@ -236,6 +273,33 @@
 '('           Punctuation
 '1'           Literal.Number.Float
 ')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'export'      Keyword.Reserved
+'--[[aaa\n\n]]' Comment.Multiline
+'type'        Keyword.Reserved
+'  '          Text.Whitespace
+'--[[]]'      Comment.Multiline
+'\n'          Text.Whitespace
+
+'--'          Comment.Single
+'\n\n'        Text.Whitespace
+
+'foobar'      Name.Class
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'foo'         Name.Class
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'foo'         Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Punctuation
+' '           Text.Whitespace
+'foo'         Name.Class
 '\n\n'        Text.Whitespace
 
 'print'       Name.Function

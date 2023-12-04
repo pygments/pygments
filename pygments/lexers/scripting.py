@@ -246,7 +246,8 @@ class LuauLexer(RegexLexer):
             *_luau_make_expression_special(False),
             (r'\.\.\.', Punctuation),
 
-            (r'type\b', Keyword.Reserved, 'type_declaration'),
+            (r'type\b(?=%s+[a-zA-Z_])' % _s, Keyword.Reserved, 'type_declaration'),
+            (r'export\b(?=%s+[a-zA-Z_])' % _s, Keyword.Reserved),
 
             (r'(?:\.\.|//|[+\-*\/%^<>=])=?', Operator, 'expression'),
             (r'~=', Operator, 'expression'),
@@ -263,7 +264,6 @@ class LuauLexer(RegexLexer):
 			(r'function\b', Keyword.Reserved, ('expression', 'func_name')),
 
             (r'[\])};]', Punctuation),
-            (r'export\b', Keyword.Reserved),
 
             include('expression_static'),
             *_luau_make_expression(False, _s),
