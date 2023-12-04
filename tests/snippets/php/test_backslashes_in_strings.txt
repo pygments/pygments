@@ -10,7 +10,7 @@ $pipe = popen( "flamegraph.pl --title=\"$title\" > /var/www/html/w/docs/flamegra
 ' '           Text
 '='           Operator
 ' '           Text
-'popen'       Name.Builtin
+'popen'       Name.Function
 '('           Punctuation
 ' '           Text
 '"'           Literal.String.Double
