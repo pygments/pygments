@@ -39,6 +39,17 @@ export--[[aaa
 
 foobar = (foo | foo) & foo
 
+print(12345)
+print(1.2345)
+print(1._2_____345_____)
+print(1______23_____._45)
+print(.12345)
+print(15e10)
+print(1__.5__e__1__2___)
+print(1.e5)
+print(2e-_1__)
+print(({} :: any)._12345)
+
 print"Hello world!"
 print{"Hello world 2!"}
 print --

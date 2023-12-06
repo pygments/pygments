@@ -303,6 +303,75 @@
 '\n\n'        Text.Whitespace
 
 'print'       Name.Function
+'('           Punctuation
+'12345'       Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'1.2345'      Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'1._2_____345_____' Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'1______23_____._45' Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'.12345'      Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'15e10'       Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'1__.5__e__1__2___' Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'1.e5'        Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'2e-_1__'     Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'::'          Punctuation
+' '           Text.Whitespace
+'any'         Name.Class
+')'           Punctuation
+'.'           Punctuation
+'_12345'      Name.Variable
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'print'       Name.Function
 '"'           Literal.String.Double
 'Hello world!' Literal.String.Double
 '"'           Literal.String.Double

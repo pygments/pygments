@@ -167,7 +167,7 @@ def _luau_make_expression(should_pop, _s):
     temp_list = [
         (r'0[xX][\da-fA-F_]*', Number.Hex, '#pop'),
         (r'0[bB][\d_]*', Number.Bin, '#pop'),
-        (r'\d[\d_]*(?:[eE][+-]\d[\d_]*)?', Number.Float, '#pop'),
+        (r'\.?\d[\d_]*(?:\.[\d_]*)?(?:[eE][+-]?[\d_]+)?', Number.Float, '#pop'),
 
         (words((
             'true', 'false', 'nil'
