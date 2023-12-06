@@ -263,7 +263,7 @@ class LuauLexer(RegexLexer):
 
 			(r'function\b', Keyword.Reserved, ('expression', 'func_name')),
 
-            (r'[\])};]', Punctuation),
+            (r'[\])};]+', Punctuation),
 
             include('expression_static'),
             *_luau_make_expression(False, _s),
@@ -370,9 +370,8 @@ class LuauLexer(RegexLexer):
             (r"'", String.Single, 'string_single'),
             (r'"', String.Double, 'string_double'),
 
-            (r'[|&\.,]', Punctuation),
+            (r'[|&\.,\[\]:=]+', Punctuation),
             (r'->', Punctuation),
-            (r'[\[\]:=]', Punctuation),
 
             (r'typeof\(', Name.Builtin, ('closing_parenthesis_base',
                                          'expression')),
