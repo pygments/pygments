@@ -113,7 +113,7 @@ class RtfFormatter(Formatter):
                         int(color[4:6], 16)
                     ))
                     offset += 1
-        outfile.write('}\\f0 ')
+        outfile.write('}\\f0\\sa0 ')
         if self.fontsize:
             outfile.write('\\fs%d' % self.fontsize)
 
