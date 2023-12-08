@@ -229,10 +229,10 @@ class LuauLexer(RegexLexer):
     _s = r'(?:%s|%s|%s)' % (_comment_multiline, _comment_single, r'\s+')
 
     tokens = {
-		'root': [
+        'root': [
             (r'#!.*', Comment.Hashbang, 'base'),
             default('base'),
-		],
+        ],
 
         'ws': [
             (_comment_multiline, Comment.Multiline),
@@ -261,7 +261,7 @@ class LuauLexer(RegexLexer):
                 'while'), suffix=r'\b'), Keyword.Reserved, 'expression'),
             (r'local\b', Keyword.Declaration, 'expression'),
 
-			(r'function\b', Keyword.Reserved, ('expression', 'func_name')),
+            (r'function\b', Keyword.Reserved, ('expression', 'func_name')),
 
             (r'[\])};]+', Punctuation),
 
@@ -269,7 +269,7 @@ class LuauLexer(RegexLexer):
             *_luau_make_expression(False, _s),
 
             (r'[\[.,]', Punctuation, 'expression'),
-		],
+        ],
         'expression_static': [
             (words((
                 'break', 'continue', 'do', 'else', 'elseif', 'end', 'for',
@@ -279,6 +279,8 @@ class LuauLexer(RegexLexer):
         'expression': [
             include('ws'),
 
+            (r'if\b', Keyword.Reserved, ('ternary', 'expression')),
+
             (r'local\b', Keyword.Declaration),
             *_luau_make_expression_special(True),
             (r'\.\.\.', Punctuation, '#pop'),
@@ -287,6 +289,16 @@ class LuauLexer(RegexLexer):
 
             include('expression_static'),
             *_luau_make_expression(True, _s),
+
+            default('#pop'),
+        ],
+        'ternary': [
+            include('ws'),
+
+            (r'else\b', Keyword.Reserved, '#pop'),
+            (words((
+                'then', 'elseif',
+            ), suffix=r'\b'), Operator.Reserved, 'expression'),
 
             default('#pop'),
         ],

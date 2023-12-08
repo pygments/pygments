@@ -32,6 +32,8 @@ print((baz).table.a.b.c.d.e)
 
 table.create(1)
 
+print(if math.random() >= 0.5 then "yes" elseif math.random() >= 0.75 then "maybe" else type("a"))
+
 export--[[aaa
 
 ]]type  --[[]]

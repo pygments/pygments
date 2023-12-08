@@ -275,6 +275,55 @@
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
+'print'       Name.Function
+'('           Punctuation
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'math'        Name.Builtin
+'.'           Punctuation
+'random'      Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'yes'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'elseif'      Keyword.Reserved
+' '           Text.Whitespace
+'math'        Name.Builtin
+'.'           Punctuation
+'random'      Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'0.75'        Literal.Number.Float
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'maybe'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'type'        Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
 'export'      Keyword.Reserved
 '--[[aaa\n\n]]' Comment.Multiline
 'type'        Keyword.Reserved
