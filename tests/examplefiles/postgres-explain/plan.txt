@@ -52,6 +52,8 @@ Unique  (cost=35743307.84..37168307.40 rows=142499956 width=48) (actual rows=833
                             Filter: ((quebec)::text = 'echo'::text)
                             Rows Removed by Filter: 1732162
                           Buffers: shared hit=122 read=311995
+Planning time: 2.748 ms
+Query Identifier: 3091347420220593938
 
 Group  (cost=4164445.30..4175997.52 rows=385074 width=264) (actual time=206821.675..206875.256 rows=4486 loops=1)
     Group Key: echo_whiskey0.kilo_bravo, [...]
@@ -140,6 +142,7 @@ Group  (cost=4164445.30..4175997.52 rows=385074 width=264) (actual time=206821.6
                     ->  Seq Scan on golf  (cost=0.00..84.22 rows=5822 width=8) (actual time=0.010..0.317 rows=5822 loops=1)
                           Buffers: local hit=26
 Planning time: 2.748 ms
+Query Identifier: -3091347420220593938
 JIT:
   Functions: 361
   Options: Expressions true, Deforming true, Optimization true, Inlining true

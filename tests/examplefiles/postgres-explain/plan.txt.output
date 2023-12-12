@@ -1056,6 +1056,20 @@
 'read'        Comment.Single
 '='           Operator
 '311995'      Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Planning time' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'2.748'       Literal.Number.Float
+' '           Text.Whitespace
+'ms'          Punctuation
+'\n'          Text.Whitespace
+
+'Query Identifier' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'3091347420220593938' Literal.Number.Integer
 '\n\n'        Text.Whitespace
 
 'Group'       Keyword
@@ -2648,6 +2662,12 @@
 '2.748'       Literal.Number.Float
 ' '           Text.Whitespace
 'ms'          Punctuation
+'\n'          Text.Whitespace
+
+'Query Identifier' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'-3091347420220593938' Literal.Number.Integer
 '\n'          Text.Whitespace
 
 'JIT'         Comment.Preproc

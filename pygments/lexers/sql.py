@@ -460,8 +460,8 @@ class PostgresExplainLexer(RegexLexer):
             # strings
             (r"'(''|[^'])*'", String.Single),
             # numbers
-            (r'\d+\.\d+', Number.Float),
-            (r'(\d+)', Number.Integer),
+            (r'-?\d+\.\d+', Number.Float),
+            (r'(-?\d+)', Number.Integer),
 
             # boolean
             (r'(true|false)', Name.Constant),
