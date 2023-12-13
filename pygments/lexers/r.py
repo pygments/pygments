@@ -91,7 +91,7 @@ class SLexer(RegexLexer):
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
+            (r'(if|for|while|return|switch|function)'
              r'(?![\w.])',
              Keyword.Reserved),
         ],
@@ -128,6 +128,7 @@ class SLexer(RegexLexer):
         ],
         'root': [
             # calls:
+            (r'\b(else|next|break|repeat|in)\b', Name.Function),
             (r'(%s)\s*(?=\()' % valid_name, Name.Function),
             include('statements'),
             # blocks:
