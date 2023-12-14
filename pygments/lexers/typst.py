@@ -64,8 +64,9 @@ class TypstLexer(RegexLexer):
         ],
         'maths': [
             include('comment'),
-            (words((r'_', r'^', r'+', r'-', r'/', r'*', r'->', r'<-', r'!=', r'=='), suffix=r'\b'), Operator),
-            (words((r'\\', r'$='), suffix=r'\b'), Operator),  # maths markup operators
+            (words(('_', '^', '+', '-', '/', '*', '->', '<-', '!=', '=='),
+                   suffix=r'\b'), Operator),
+            (words((r'\\', '$='), suffix=r'\b'), Operator),  # maths markup operators
             (r'\\\$', Punctuation),  # escaped
             (r'\$', Punctuation, '#pop'),  # end of math mode
             include('code'),
