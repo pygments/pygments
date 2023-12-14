@@ -54,7 +54,7 @@ class TypstLexer(RegexLexer):
             (r'(#[a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             (r'```(?:.|\n)*?```', String.Backtick),  # code block
-            (r'https?://[0-9a-zA-Z~/%#&=\',;\.\+\?]*', Generic.Emph),  # links
+            (r'https?://[0-9a-zA-Z~/%#&=\',;.+?]*', Generic.Emph),  # links
             (words((r'---', r'\\', r'~', r'--', r'...'), suffix=r'\b'), Punctuation),  # special chars shorthand
             (r'\\\[', Punctuation),  # escaped
             (r'\\\]', Punctuation),  # escaped
