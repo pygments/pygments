@@ -86,7 +86,9 @@ class TypstLexer(RegexLexer):
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation), '#push'),
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), '#push'),
-            (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if', 'import', 'in', 'include', 'return', 'while'), suffix=r'\b'), Keyword.Reserved),
+            (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
+                    'import', 'in', 'include', 'return', 'while'), suffix=r'\b'),
+             Keyword.Reserved),
             (words(('auto', 'none', 'true', 'false'), suffix=r'\b'), Keyword.Constant),
             (r'([0-9.]+)(mm|pt|cm|in|em|fr|%)', bygroups(Number, Keyword.Reserved)),
             (words(('let', 'set', 'show'), suffix=r'\b'), Keyword.Declaration),
