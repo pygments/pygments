@@ -87,39 +87,19 @@
 'title, content) = grid(' Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 'columns: (55pt, 1fr),' Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 'text(darkgrey)[#date]' Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 'h(1fr)'      Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 'content'     Text
 '\n'          Text.Whitespace
 
@@ -166,22 +146,17 @@
 'another \\ test], [' Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '*#link("https://github.com/typst/typst")[typst]*' Generic.Strong
 ' '           Text.Whitespace
 '--- bob #section_date([2022 -- present]) \\' Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'some text'   Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 ']'           Punctuation
 '\n'          Text.Whitespace
 

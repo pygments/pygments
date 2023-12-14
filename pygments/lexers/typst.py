@@ -32,7 +32,7 @@ class TypstLexer(RegexLexer):
             include('markup'),
         ],
         'common': [
-            (r' |\t', Whitespace),
+            (r'[ \t]+', Whitespace),
             (r'((?!=[*_$`\-+0-9/<@\\#\[]|https).)+', Text),
         ],
         'markup': [
