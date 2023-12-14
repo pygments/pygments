@@ -90,7 +90,8 @@ class TypstLexer(RegexLexer):
             (words(('auto', 'none', 'true', 'false'), suffix=r'\b'), Keyword.Constant),
             (r'([0-9.]+)(mm|pt|cm|in|em|fr|%)', bygroups(Number, Keyword.Reserved)),
             (words(('let', 'set', 'show'), suffix=r'\b'), Keyword.Declaration),
-            (r'(import|include)( )(")([^"])(")', bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
+            (r'(import|include)( *)(")([^"])(")',
+             bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
             include('common'),
         ],
         'inline_code': [

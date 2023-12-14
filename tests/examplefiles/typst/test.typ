@@ -21,3 +21,6 @@
 )
 
 Another link, with http instead of https: http://example.com
+
+
+#include  "other.typ"
