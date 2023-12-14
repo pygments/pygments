@@ -19,3 +19,5 @@
   ]
   / Itemone: -- first item
 )
+
+Another link, with http instead of https: http://example.com

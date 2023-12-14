@@ -33,7 +33,7 @@ class TypstLexer(RegexLexer):
         ],
         'common': [
             (r'[ \t]+', Whitespace),
-            (r'((?!=[*_$`\-+0-9/<@\\#\[]|https).)+', Text),
+            (r'((?!=[*_$`\-+0-9/<@\\#\[]|https?://).)+', Text),
         ],
         'markup': [
             include('comment'),
