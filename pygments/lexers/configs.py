@@ -79,6 +79,7 @@ class DesktopLexer(RegexLexer):
     url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
     aliases = ['desktop']
     filenames = ['*.desktop']
+    mimetypes = ['application/x-desktop']
     version_added = '2.16'
 
     tokens = {
