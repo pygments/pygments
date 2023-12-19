@@ -128,7 +128,7 @@ LEXERS = {
     'DaxLexer': ('pygments.lexers.dax', 'Dax', ('dax',), ('*.dax',), ()),
     'DebianControlLexer': ('pygments.lexers.installers', 'Debian Control file', ('debcontrol', 'control'), ('control',), ()),
     'DelphiLexer': ('pygments.lexers.pascal', 'Delphi', ('delphi', 'pas', 'pascal', 'objectpascal'), ('*.pas', '*.dpr'), ('text/x-pascal',)),
-    'DesktopLexer': ('pygments.lexers.configs', 'Desktop file', ('desktop',), ('*.desktop',), ()),
+    'DesktopLexer': ('pygments.lexers.configs', 'Desktop file', ('desktop',), ('*.desktop',), ('application/x-desktop',)),
     'DevicetreeLexer': ('pygments.lexers.devicetree', 'Devicetree', ('devicetree', 'dts'), ('*.dts', '*.dtsi'), ('text/x-c',)),
     'DgLexer': ('pygments.lexers.python', 'dg', ('dg',), ('*.dg',), ('text/x-dg',)),
     'DiffLexer': ('pygments.lexers.diff', 'Diff', ('diff', 'udiff'), ('*.diff', '*.patch'), ('text/x-diff', 'text/x-patch')),
