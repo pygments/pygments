@@ -47,6 +47,7 @@ class Lean3Lexer(RegexLexer):
                 '(', ')', ':', '{', '}', '[', ']', '⟨', '⟩', '‹', '›', '⦃', '⦄', ':=', ',',
             )), Operator),
             (_name_segment + r"(\\." + _name_segment + r")*", Name),
+            (r'``?' + _name_segment + r"(\\." + _name_segment + r")*", String.Symbol),
             (r'0x[A-Za-z0-9]+', Number.Integer),
             (r'0b[01]+', Number.Integer),
             (r'\d+', Number.Integer),
