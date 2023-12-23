@@ -211,3 +211,5 @@ end zorn
 -- other bits of tricky syntax
 @[to_additive "See note [foo]"]
 lemma mul_one : sorry := sorry
+
+variables {ι R A B} (𝒜 : ι → submodule R A) (ℬ : ι → submodule R B)

@@ -25,6 +25,11 @@ class Lean3Lexer(RegexLexer):
     mimetypes = ['text/x-lean', 'text/x-lean3']
     version_added = '2.0'
 
+    # from https://github.com/leanprover/vscode-lean/blob/1589ca3a65e394b3789409707febbd2d166c9344/syntaxes/lean.json#L186C20-L186C217
+    _name_segment = (
+        "(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟]"
+        "(?:(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟0-9'ⁿ-₉ₐ-ₜᵢ-ᵪ])*")
+
     tokens = {
         'expression': [
             (r'\s+', Text),
@@ -41,9 +46,7 @@ class Lean3Lexer(RegexLexer):
             (words((
                 '(', ')', ':', '{', '}', '[', ']', '⟨', '⟩', '‹', '›', '⦃', '⦄', ':=', ',',
             )), Operator),
-            (r'[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]'
-             r'[.A-Za-z_\'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079'
-             r'\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*', Name),
+            (_name_segment + r"(\\." + _name_segment + r")*", Name),
             (r'0x[A-Za-z0-9]+', Number.Integer),
             (r'0b[01]+', Number.Integer),
             (r'\d+', Number.Integer),
