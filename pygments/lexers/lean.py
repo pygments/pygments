@@ -29,6 +29,7 @@ class Lean3Lexer(RegexLexer):
     _name_segment = (
         "(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟]"
         "(?:(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟0-9'ⁿ-₉ₐ-ₜᵢ-ᵪ])*")
+    _name = _name_segment + r"(\." + _name_segment + r")*"
 
     tokens = {
         'expression': [
@@ -46,8 +47,8 @@ class Lean3Lexer(RegexLexer):
             (words((
                 '(', ')', ':', '{', '}', '[', ']', '⟨', '⟩', '‹', '›', '⦃', '⦄', ':=', ',',
             )), Operator),
-            (_name_segment + r"(\\." + _name_segment + r")*", Name),
-            (r'``?' + _name_segment + r"(\\." + _name_segment + r")*", String.Symbol),
+            (_name, Name),
+            (r'``?' + _name, String.Symbol),
             (r'0x[A-Za-z0-9]+', Number.Integer),
             (r'0b[01]+', Number.Integer),
             (r'\d+', Number.Integer),
