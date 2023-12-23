@@ -21,6 +21,10 @@ Version 2.18.0
   * SQL Explain: allow negative numbers (#2610)
   * UL4: support nested ``<?doc?>`` and ``<?note?>`` tags (#2597)
 
+- New styles:
+
+  * Coffee (#2609)
+
 - Require Python 3.8. As a result, the ``importlib-metadata`` package
   is no longer needed for fast plugin discovery on Python 3.7.
   The ``plugins`` extra (used as, e.g., ``pip install pygments[plugins]``)
