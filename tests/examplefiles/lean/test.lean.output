@@ -277,7 +277,11 @@
 
 'import'      Keyword.Namespace
 ' '           Text
-'data.set.lattice' Name
+'data'        Name
+'.'           Name.Builtin.Pseudo
+'set'         Name
+'.'           Name.Builtin.Pseudo
+'lattice'     Name
 '\n'          Text
 
 'noncomputable theory' Keyword.Declaration
@@ -565,7 +569,9 @@
 ' '           Text
 'hneq'        Name
 ' '           Text
-"h'.symm"     Name
+"h'"          Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
 ')'           Operator
 ' '           Text
 '('           Operator
@@ -834,7 +840,9 @@
 'h'           Name
 ','           Operator
 ' '           Text
-'this.right'  Name
+'this'        Name
+'.'           Name.Builtin.Pseudo
+'right'       Name
 ']'           Operator
 '\n\n'        Text
 
@@ -1017,7 +1025,9 @@
 ' '           Text
 'from'        Keyword
 ' '           Text
-'hc₂.neg_resolve_left' Name
+'hc₂'         Name
+'.'           Name.Builtin.Pseudo
+'neg_resolve_left' Name
 ' '           Text
 'hc₁'         Name
 ','           Operator
@@ -1139,7 +1149,11 @@
 'h'           Name
 ','           Operator
 '\n  '        Text
-'this.right.left' Name
+'this'        Name
+'.'           Name.Builtin.Pseudo
+'right'       Name
+'.'           Name.Builtin.Pseudo
+'left'        Name
 '\n'          Text
 
 'else'        Keyword
@@ -1158,7 +1172,9 @@
 'h'           Name
 ','           Operator
 ' '           Text
-'subset.refl' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'refl'        Name
 ']'           Operator
 '\n\n'        Text
 
@@ -1267,7 +1283,9 @@
 '\n  '        Text
 'from'        Keyword
 ' '           Text
-'chain_closure.union' Name
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -1278,7 +1296,9 @@
 'h'           Name
 ','           Operator
 ' '           Text
-'h.rec'       Name
+'h'           Name
+'.'           Name.Builtin.Pseudo
+'rec'         Name
 ' '           Text
 '_'           Name
 ','           Operator
@@ -1314,7 +1334,9 @@
 ':='          Operator
 '\n'          Text
 
-'chain_closure.union' Name
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -1445,7 +1467,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.succ' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'succ'        Name
 ' '           Text
 'c₃'          Name
 ' '           Text
@@ -1496,14 +1524,18 @@
 ' '           Text
 'exact'       Name
 ' '           Text
-'or.inr'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
 ' '           Text
 '('           Operator
 'h'           Name
 ' '           Text
 '▸'           Name.Builtin.Pseudo
 ' '           Text
-'subset.refl' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'refl'        Name
 ' '           Text
 '_'           Name
 ')'           Operator
@@ -1515,7 +1547,9 @@
 ' '           Text
 'exact'       Name
 ' '           Text
-'or.inl'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inl'         Name
 ' '           Text
 'h'           Name
 ' '           Text
@@ -1528,10 +1562,14 @@
 ' '           Text
 'exact'       Name
 ' '           Text
-'or.inr'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
 ' '           Text
 '('           Operator
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 'ih'          Name
 ' '           Text
@@ -1545,7 +1583,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.union' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 's'           Name
 ' '           Text
@@ -1613,7 +1657,9 @@
 '\n    '      Text
 'exact'       Name
 ' '           Text
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 'h'           Name
 ' '           Text
@@ -1705,7 +1751,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.succ' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'succ'        Name
 ' '           Text
 'c₂'          Name
 ' '           Text
@@ -1804,7 +1856,9 @@
 'exact'       Name
 ' '           Text
 '('           Operator
-'or.inr'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -1812,7 +1866,9 @@
 ' '           Text
 '▸'           Name.Builtin.Pseudo
 ' '           Text
-'subset.refl' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'refl'        Name
 ' '           Text
 '_'           Name
 ')'           Operator
@@ -1825,11 +1881,15 @@
 'exact'       Name
 ' '           Text
 '('           Operator
-'or.inr'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 'h₂'          Name
 ' '           Text
@@ -1846,11 +1906,15 @@
 'exact'       Name
 ' '           Text
 '('           Operator
-'or.inl'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inl'         Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'subset.antisymm' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
 ' '           Text
 'h₁'          Name
 ' '           Text
@@ -1864,7 +1928,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.union' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 's'           Name
 ' '           Text
@@ -1876,7 +1946,9 @@
 '\n    '      Text
 'apply'       Name
 ' '           Text
-'or.imp'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'imp'         Name
 ' '           Text
 '('           Operator
 'assume'      Keyword
@@ -1884,7 +1956,9 @@
 "h'"          Name
 ','           Operator
 ' '           Text
-'subset.antisymm' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
 ' '           Text
 "h'"          Name
 ' '           Text
@@ -1896,7 +1970,9 @@
 '\n    '      Text
 'apply'       Name
 ' '           Text
-'classical.by_contradiction' Name
+'classical'   Name
+'.'           Name.Builtin.Pseudo
+'by_contradiction' Name
 ','           Operator
 '\n    '      Text
 'simp'        Name
@@ -1908,7 +1984,9 @@
 'sUnion_subset_iff' Name
 ','           Operator
 ' '           Text
-'classical.not_forall_iff' Name
+'classical'   Name
+'.'           Name.Builtin.Pseudo
+'not_forall_iff' Name
 ','           Operator
 ' '           Text
 'not_implies_iff' Name
@@ -2039,7 +2117,9 @@
 ' '           Text
 '▸'           Name.Builtin.Pseudo
 ' '           Text
-'subset.refl' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'refl'        Name
 ' '           Text
 '_'           Name
 ')'           Operator
@@ -2056,7 +2136,9 @@
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 "h'"          Name
 ' '           Text
@@ -2081,7 +2163,9 @@
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 'succ_increasing' Name
 ' '           Text
@@ -2183,7 +2267,9 @@
 ','           Operator
 '\n'          Text
 
-'or.imp_right' Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'imp_right'   Name
 ' '           Text
 '('           Operator
 'assume'      Keyword
@@ -2199,7 +2285,9 @@
 'c₁'          Name
 ','           Operator
 ' '           Text
-'subset.trans' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
 ' '           Text
 'succ_increasing' Name
 ' '           Text
@@ -2267,7 +2355,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.succ' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'succ'        Name
 ' '           Text
 'c₁'          Name
 ' '           Text
@@ -2279,7 +2373,9 @@
 '\n    '      Text
 'exact'       Name
 ' '           Text
-'or.elim'     Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'elim'        Name
 ' '           Text
 '('           Operator
 'chain_closure_succ_total' Name
@@ -2301,11 +2397,15 @@
 ' '           Text
 '▸'           Name.Builtin.Pseudo
 ' '           Text
-'h_eq.symm'   Name
+'h_eq'        Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
 ' '           Text
 '▸'           Name.Builtin.Pseudo
 ' '           Text
-'subset.refl' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'refl'        Name
 ' '           Text
 'c₂'          Name
 ')'           Operator
@@ -2317,7 +2417,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.union' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 's'           Name
 ' '           Text
@@ -2398,7 +2504,9 @@
 'h'           Name
 ','           Operator
 ' '           Text
-'subset.antisymm' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
 '\n    '      Text
 '('           Operator
 'subset_sUnion_of_mem' Name
@@ -2444,7 +2552,9 @@
 '}'           Operator
 ','           Operator
 '\n  '        Text
-'subset.antisymm' Name
+'subset'      Name
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
 '\n    '      Text
 '('           Operator
 'calc'        Keyword
@@ -2479,7 +2589,9 @@
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'chain_closure.succ' Name
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'succ'        Name
 ' '           Text
 'hc'          Name
 '\n      '    Text
@@ -2493,7 +2605,9 @@
 ' '           Text
 ':'           Operator
 ' '           Text
-'this.symm'   Name
+'this'        Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
 ')'           Operator
 '\n    '      Text
 'succ_increasing' Name
@@ -2532,7 +2646,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.succ' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'succ'        Name
 ' '           Text
 'c'           Name
 ' '           Text
@@ -2553,7 +2673,13 @@
 '\n  '        Text
 'case'        Name
 ' '           Text
-'_root_.zorn.chain_closure.union' Name
+'_root_'      Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain_closure' Name
+'.'           Name.Builtin.Pseudo
+'union'       Name
 ' '           Text
 's'           Name
 ' '           Text
@@ -2575,7 +2701,9 @@
 's'           Name
 ','           Operator
 ' '           Text
-'zorn.chain'  Name
+'zorn'        Name
+'.'           Name.Builtin.Pseudo
+'chain'       Name
 ' '           Text
 'c'           Name
 ' '           Text
@@ -2673,7 +2801,9 @@
 ')'           Operator
 ','           Operator
 '\n      '    Text
-'or.elim'     Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'elim'        Name
 ' '           Text
 'this'        Name
 '\n        '  Text
@@ -2934,7 +3064,9 @@
 ':='          Operator
 '\n'          Text
 
-'classical.by_contradiction' Name
+'classical'   Name
+'.'           Name.Builtin.Pseudo
+'by_contradiction' Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 '\n'          Text
@@ -3071,7 +3203,9 @@
 
 'h₃'          Name
 ' '           Text
-'this.symm'   Name
+'this'        Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
 '\n\n'        Text
 
 '/--'         Literal.String.Doc
@@ -3290,7 +3424,9 @@
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
-'max_chain_spec.left' Name
+'max_chain_spec' Name
+'.'           Name.Builtin.Pseudo
+'left'        Name
 ','           Operator
 '\n'          Text
 
@@ -3354,7 +3490,9 @@
 ' '           Text
 'chain_insert' Name
 ' '           Text
-'max_chain_spec.left' Name
+'max_chain_spec' Name
+'.'           Name.Builtin.Pseudo
+'left'        Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -3367,7 +3505,9 @@
 '_'           Name
 ','           Operator
 ' '           Text
-'or.inr'      Name
+'or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -3395,7 +3535,9 @@
 ' '           Text
 'from'        Keyword
 '\n    '      Text
-'classical.by_contradiction' Name
+'classical'   Name
+'.'           Name.Builtin.Pseudo
+'by_contradiction' Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -3412,7 +3554,9 @@
 'max_chain'   Name
 ','           Operator
 '\n    '      Text
-'max_chain_spec.right' Name
+'max_chain_spec' Name
+'.'           Name.Builtin.Pseudo
+'right'       Name
 ' '           Text
 '$'           Name.Builtin.Pseudo
 ' '           Text
@@ -3629,4 +3773,56 @@
 ':='          Operator
 ' '           Text
 'sorry'       Generic.Error
+'\n\n'        Text
+
+'variables'   Keyword.Declaration
+' '           Text
+'{'           Operator
+'ι'           Name
+' '           Text
+'A'           Name
+' '           Text
+'B'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'*'           Name.Builtin.Pseudo
+'}'           Operator
+' '           Text
+'('           Operator
+'𝒜'           Name
+' '           Text
+':'           Operator
+' '           Text
+'ι'           Name
+' '           Text
+'→'           Name.Builtin.Pseudo
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'ℬ'           Name
+' '           Text
+':'           Operator
+' '           Text
+'ι'           Name
+' '           Text
+'→'           Name.Builtin.Pseudo
+' '           Text
+'B'           Name
+')'           Operator
+'\n\n'        Text
+
+'#check'      Keyword
+' '           Text
+'`𝒜'          Literal.String.Symbol
+'.'           Name.Builtin.Pseudo
+'a'           Name
+'\n'          Text
+
+'#check'      Keyword
+' '           Text
+'``𝒜'         Literal.String.Symbol
 '\n'          Text
