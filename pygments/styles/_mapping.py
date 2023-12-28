@@ -10,6 +10,7 @@ STYLES = {
     'AutumnStyle': ('pygments.styles.autumn', 'autumn', ()),
     'BlackWhiteStyle': ('pygments.styles.bw', 'bw', ()),
     'BorlandStyle': ('pygments.styles.borland', 'borland', ()),
+    'CDSStyle': ('pygments.styles.cds', 'cds', ()),
     'CoffeeStyle': ('pygments.styles.coffee', 'coffee', ()),
     'ColorfulStyle': ('pygments.styles.colorful', 'colorful', ()),
     'DefaultStyle': ('pygments.styles.default', 'default', ()),

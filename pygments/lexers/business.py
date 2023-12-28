@@ -16,7 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 from pygments.lexers._openedge_builtins import OPENEDGEKEYWORDS
 
-__all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'OpenEdgeLexer',
+__all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'CDSLexer','OpenEdgeLexer',
            'GoodDataCLLexer', 'MaqlLexer']
 
 
@@ -477,6 +477,92 @@ class ABAPLexer(RegexLexer):
             (r'(\.|,|\[|\]|:)', Punctuation.Primary),
             (r'(\(|\))', Punctuation.Secondary),
             (r'(!)(\w+)', bygroups(Operator, Name)),
+        ],
+    }
+
+class CDSLexer(RegexLexer):
+    """
+    Lexer for syntax used to create SAP CDS-Views.
+
+    .. versionadded:: 2.17.2
+    """
+    name = 'CDS'
+    aliases = ['cds']
+    filenames = ['*.cds', '*.CDS']
+    mimetypes = []
+
+    flags = re.MULTILINE
+
+    tokens = {
+        'common': [
+            (r'\s+', Whitespace),
+            (r'^@.*$', Comment.Single)
+        ],
+        'combined-keywords':[
+            (r'define\s+view|'
+             r'with\s+parameters|'
+             r'select\s+from|'
+             r'(inner|(left|right|full)\s+outer)?\s+join|'
+             r'(is)\s+(not\s+)?(initial)|'
+             r'group\s+by', Keyword)
+        ],
+        # Dtypes of parameter definitions shall be displayed italic by CDSStyle, therefore use token type Name.Builtin
+        'parameter-definitions':[
+            (r'([a-zA-Z_0-9\/]+)(\s+)(:)(\s+)(abap)(\.)(char|dec|curr|raw)', bygroups(Name.Variable, Whitespace, Operator, Whitespace, Name.Builtin, Operator, Name.Builtin)),
+            (r'([a-zA-Z_0-9\/]+)(\s+)(:)(\s+)([a-zA-Z_0-9\/]+)', bygroups(Name.Variable, Whitespace, Operator, Whitespace, Name.Builtin))
+        ],
+        'single-keywords':[
+            (r'and|as|'
+             r'else|'
+             r'case|cast|'
+             r'end|'
+             r'on|or|'
+             r'then|'
+             r'when|where', Keyword),
+        ],
+        # Special parameter/session variables
+        'special-parameters':[
+            (r'(\$)(parameters)(\.)([a-zA-Z_0-9\/]+)', bygroups(Operator, Keyword, Operator, Name.Variable)),
+            (r'(\$)(session)(\.)([a-zA-Z_0-9\/]+)', bygroups(Operator, Keyword, Operator, Keyword))
+        ],
+        'aggregate-functions':[
+            (r'(avg|count|max|min|sum|count|distinct)', Keyword)
+        ],
+        'numbers':[
+            (r'[0-9]+', Number.Integer)
+        ],
+        'variable-names': [
+            (r'[a-zA-Z_0-9\/]+', Name.Variable)
+        ],
+        'other':[
+            (r'(\+|\-|\*|\/|=|<|>|<=|>=|<>|\.)', Operator),
+            (r"'(''|[^'])*'", String.Single),
+            (r'[\(\)\{\},]', Punctuation),
+        ],
+        'root': [
+            include('common'),
+
+            include('combined-keywords'),
+
+            include('parameter-definitions'),
+
+            # TODO cast(x as dtype) as name: dtype must be extra Name type
+            # (r'(cast)(\()(\s*)(.+?)(\s+)(as)(\s+)([a-zA-Z_0-9\/]+)(\s*)(\))(\s+)(as)(\s+)([a-zA-Z_0-9\/]+)',
+            #  bygroups(Keyword, Punctuation, Whitespace, 'nested-cast', Whitespace, Keyword, Whitespace, Name.Builtin, Whitespace, Punctuation, Whitespace, Keyword, Whitespace, Name.Variable)),
+            # (r'(cast)(\()(\s*)(.+?)(\s+)(as)(\s+)([a-zA-Z_0-9\/]+)(\s*)(\))',
+            #  bygroups(Keyword, Punctuation, Whitespace, 'root', Whitespace, Keyword, Whitespace, Name.Builtin, Whitespace, Punctuation)),
+
+            include('single-keywords'),
+
+            include('special-parameters'),            
+
+            include('aggregate-functions'),            
+
+            include('numbers'),
+
+            include('variable-names'),
+
+            include('other')
         ],
     }
 

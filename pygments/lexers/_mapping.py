@@ -63,6 +63,7 @@ LEXERS = {
     'BrainfuckLexer': ('pygments.lexers.esoteric', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),
     'BugsLexer': ('pygments.lexers.modeling', 'BUGS', ('bugs', 'winbugs', 'openbugs'), ('*.bug',), ()),
     'CAmkESLexer': ('pygments.lexers.esoteric', 'CAmkES', ('camkes', 'idl4'), ('*.camkes', '*.idl4'), ()),
+    'CDSLexer': ('pygments.lexers.business', 'CDS', ('cds',), ('*.cds', '*.CDS'), ()),
     'CLexer': ('pygments.lexers.c_cpp', 'C', ('c',), ('*.c', '*.h', '*.idc', '*.x[bp]m'), ('text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap')),
     'CMakeLexer': ('pygments.lexers.make', 'CMake', ('cmake',), ('*.cmake', 'CMakeLists.txt'), ('text/x-cmake',)),
     'CObjdumpLexer': ('pygments.lexers.asm', 'c-objdump', ('c-objdump',), ('*.c-objdump',), ('text/x-c-objdump',)),
