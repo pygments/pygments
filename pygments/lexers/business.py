@@ -242,13 +242,13 @@ class CobolFreeformatLexer(CobolLexer):
 class ABAPLexer(RegexLexer):
     """
     Lexer for ABAP, SAP's integrated language.
+
+    .. versionadded:: 1.1
     """
     name = 'ABAP'
     aliases = ['abap']
     filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
-    url = 'https://community.sap.com/topics/abap'
-    version_added = '1.1'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -261,10 +261,26 @@ class ABAPLexer(RegexLexer):
         ],
         'variable-names': [
             (r'<\S+>', Name.Variable),
-            (r'\w[\w~]*(?:(\[\])|->\*)?', Name.Variable),
+            # Variable accessors: Namespaces and dtypes with '/' exist, but a single '/' must not be treated as Name
+            (r'(\/*\w[\/\w]*)(->|=>|\-|~|\+)([a-zA-Z_0-9]+)', bygroups(Name.Variable, Operator.Secondary, Name.Variable)),
+            (r'\/*\w[\/\w]*', Name.Variable)
         ],
         'root': [
             include('common'),
+            # Raise exception has no identifier before "TYPE"
+            (r'(RAISE)(\s+)(EXCEPTION)(\s+)(TYPE)(\s+)([a-zA-Z_0-9]+)', bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Name.Variable)),
+            # Identifiers before "TYPE" for table types declarations
+            (r'([a-zA-Z_0-9]+)(\s+)(TYPE)(\s+)(STANDARD|SORTED|HASHED|ANY|INDEX)?(\s+)(TABLE)(\s+)(OF)(\s+)([a-zA-Z_0-9]+)(\s+)(WITH)(\s+)(UNIQUE|STANDARD)(\s+)(KEY)(\s+)?([a-zA-Z_0-9]+)?',
+             bygroups(Name.Variable, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Name.Variable, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Name.Variable)),
+            # Identifiers before "TYPE" for normal variables
+            (r'([a-zA-Z_0-9]+)(\s+)(TYPE)',
+             bygroups(Name.Variable, Whitespace, Keyword)),
+            # Identifiers before "="
+            (r'([a-zA-Z_0-9]+)(\s+)(=)(\s+)', bygroups(Name.Variable, Whitespace, Operator.Primary, Whitespace)),
+            # Inline declarations before "="
+            (r'(DATA)(\()([a-zA-Z_0-9]+)(\))(\s+)(=)(\s+)', bygroups(Keyword, Punctuation, Name.Variable, Punctuation, Whitespace, Operator.Primary, Whitespace)),
+            # Inline declarations of variable inside SQL commands
+            (r'(@)(DATA)(\()([a-zA-Z_0-9]+)(\))', bygroups(Operator.Primary, Keyword, Punctuation, Name.Variable, Punctuation)),
             # function calls
             (r'CALL\s+(?:BADI|CUSTOMER-FUNCTION|FUNCTION)',
              Keyword),
@@ -286,6 +302,8 @@ class ABAPLexer(RegexLexer):
              bygroups(Whitespace, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
             (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
+            #user-command names in selection screen declarations
+            (r'(USER-COMMAND)(\s+)([a-zA-Z_0-9]+)', bygroups(Keyword, Whitespace, Name.Function)),
 
             # text elements
             (r'(TEXT)(-)(\d{3})',
@@ -361,9 +379,11 @@ class ABAPLexer(RegexLexer):
              r'IN\s+UPDATE\s+TASK|'
              r'(SOURCE|RESULT)\s+(XML)?|'
              r'REFERENCE\s+INTO|'
+             r'(INNER|(LEFT|RIGHT|FULL)\s+OUTER)?\s+JOIN|'
 
              # simple kombinations
              r'AND\s+(MARK|RETURN)|CLIENT\s+SPECIFIED|CORRESPONDING\s+FIELDS\s+OF|'
+             r'DISPLAY\s+LIKE|'
              r'IF\s+FOUND|FOR\s+EVENT|INHERITING\s+FROM|LEAVE\s+TO\s+SCREEN|'
              r'LOOP\s+AT\s+(SCREEN)?|LOWER\s+CASE|MATCHCODE\s+OBJECT|MODIF\s+ID|'
              r'MODIFY\s+SCREEN|NESTING\s+LEVEL|NO\s+INTERVALS|OF\s+STRUCTURE|'
@@ -379,20 +399,19 @@ class ABAPLexer(RegexLexer):
              r'CREATE|COMMUNICATION|COMPONENTS?|COMPUTE|CONCATENATE|CONDENSE|'
              r'CONSTANTS|CONTEXTS|CONTINUE|CONTROLS|COUNTRY|CURRENCY|'
              r'DATA|DATE|DECIMALS|DEFAULT|DEFINE|DEFINITION|DEFERRED|DEMAND|'
-             r'DETAIL|DIRECTORY|DIVIDE|DO|DUMMY|'
+             r'DETAIL|DISTINCT|DIRECTORY|DIVIDE|DO|DUMMY|'
              r'ELSE(IF)?|ENDAT|ENDCASE|ENDCATCH|ENDCLASS|ENDDO|ENDFORM|ENDFUNCTION|'
              r'ENDIF|ENDINTERFACE|ENDLOOP|ENDMETHOD|ENDMODULE|ENDSELECT|ENDTRY|ENDWHILE|'
              r'ENHANCEMENT|EVENTS|EXACT|EXCEPTIONS?|EXIT|EXPONENT|EXPORT|EXPORTING|EXTRACT|'
-             r'FETCH|FIELDS?|FOR|FORM|FORMAT|FREE|FROM|FUNCTION|'
+             r'FETCH|FIELDS?|FINAL|FOR|FORM|FORMAT|FREE|FROM|FUNCTION|'
              r'HIDE|'
              r'ID|IF|IMPORT|IMPLEMENTATION|IMPORTING|IN|INCLUDE|INCLUDING|'
              r'INDEX|INFOTYPES|INITIALIZATION|INTERFACE|INTERFACES|INTO|'
              r'LANGUAGE|LEAVE|LENGTH|LINES|LOAD|LOCAL|'
-             r'JOIN|'
              r'KEY|'
              r'NEW|NEXT|'
              r'MAXIMUM|MESSAGE|METHOD[S]?|MINIMUM|MODULE|MODIFIER|MODIFY|MOVE|MULTIPLY|'
-             r'NODES|NUMBER|'
+             r'NODES|NUMBER|NO-GAPS|'
              r'OBLIGATORY|OBJECT|OF|OFF|ON|OTHERS|OVERLAY|'
              r'PACK|PAD|PARAMETERS|PERCENTAGE|POSITION|PROGRAM|PROVIDE|PUBLIC|PUT|PF\d\d|'
              r'RAISE|RAISING|RANGES?|READ|RECEIVE|REDEFINITION|REFRESH|REJECT|REPORT|RESERVE|'
@@ -403,7 +422,12 @@ class ABAPLexer(RegexLexer):
              r'TOP-OF-PAGE|TRANSFER|TRANSLATE|TRY|TYPES|'
              r'ULINE|UNDER|UNPACK|UPDATE|USING|'
              r'VALUE|VALUES|VIA|VARYING|VARY|'
-             r'WAIT|WHEN|WHERE|WIDTH|WHILE|WITH|WINDOW|WRITE|XSD|ZERO)\b', Keyword),
+             r'WAIT|WHEN|WHERE|WIDTH|WHILE|WITH|WINDOW|WORK|WRITE|XSD|ZERO)\b', Keyword),
+
+            # Aggregate functions in SELECT statements
+            # (r'(AVG|COUNT|MAX|MIN|SUM|COUNT)(\()(\s+)([a-zA-Z_0-9]+)(\s+)(\))',
+            #  bygroups(Keyword, Punctuation, Whitespace, Name.Variable, Whitespace, Punctuation)),
+            (r'(AVG|COUNT|MAX|MIN|SUM|COUNT)', Keyword),
 
             # builtins
             (r'(abs|acos|asin|atan|'
@@ -432,17 +456,26 @@ class ABAPLexer(RegexLexer):
             (r'(?<=(\s|.))(AND|OR|EQ|NE|GT|LT|GE|LE|CO|CN|CA|NA|CS|NOT|NS|CP|NP|'
              r'BYTE-CO|BYTE-CN|BYTE-CA|BYTE-NA|BYTE-CS|BYTE-NS|'
              r'IS\s+(NOT\s+)?(INITIAL|ASSIGNED|REQUESTED|BOUND))\b', Operator.Word),
+            (r'&&', Operator.Word),
 
             include('variable-names'),
 
             # standard operators after variable names,
             # because < and > are part of field symbols.
-            (r'[?*<>=\-+&]', Operator),
+
+            # (r'(\s+)(=|\+|\-|\*|\/|<|<=|>|=>|<>)(\s+)',
+            #  bygroups(Whitespace, Operator.Primary, Whitespace)),
+            (r'(=|\+=?|\-=?|\*|\/|<>|<=?|>=?|@|#)', Operator.Primary),
+
+            # String types
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Single),
             (r"([|}])([^{}|]*?)([|{])",
-             bygroups(Punctuation, String.Single, Punctuation)),
-            (r'[/;:()\[\],.]', Punctuation),
+             bygroups(Punctuation.Primary, String.Single, Punctuation.Primary)),
+
+            # (r'[/;:()\[\],.]', Punctuation),
+            (r'(\.|,|\[|\]|:)', Punctuation.Primary),
+            (r'(\(|\))', Punctuation.Secondary),
             (r'(!)(\w+)', bygroups(Operator, Name)),
         ],
     }

@@ -2,6 +2,7 @@
 # DO NOT EDIT BY HAND; run `tox -e mapfiles` instead.
 
 STYLES = {
+    'AbapEclipseStyle': ('pygments.styles.abap_eclipse', 'abap_eclipse', ()),
     'AbapStyle': ('pygments.styles.abap', 'abap', ()),
     'AlgolStyle': ('pygments.styles.algol', 'algol', ()),
     'Algol_NuStyle': ('pygments.styles.algol_nu', 'algol_nu', ()),
