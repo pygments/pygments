@@ -4,6 +4,9 @@ from pygments.style import StyleMeta as PygmentsStyle
 from pygments.token import _TokenType as Token
 
 
+__all__ = ["WxRichTextCtrlFormatter"]
+
+
 class WxRichTextCtrlFormatter(Formatter):
     name = "wxPython RichTextCtrl Formatter"
     aliases = ["wx", "wx.rtc", "wx.richtext"]
@@ -38,7 +41,7 @@ class WxRichTextCtrlFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         # locally import wx
-        import wx.richtext
+        import pygments.formatters.wx_richtext
 
         # freeze while we style
         outfile.GetBuffer().BeginSuppressUndo()
@@ -50,7 +53,7 @@ class WxRichTextCtrlFormatter(Formatter):
         i = 0
         for token, text in tokensource:
             # get range
-            rng = wx.richtext.RichTextRange(i, i + len(text))
+            rng = wx.wx_richtext.RichTextRange(i, i + len(text))
             # move forward to next token
             i = rng.End
             # skip if token text has not changed...
@@ -75,7 +78,7 @@ class WxRichTextCtrlFormatter(Formatter):
     
     def get_rtc_style(self, token:Token, base):
         # import wx
-        import wx.richtext
+        import pygments.formatters.wx_richtext
 
         # if cached, return cached value
         if token in self._styles_cache:
@@ -83,7 +86,7 @@ class WxRichTextCtrlFormatter(Formatter):
         # get style spec for token
         spec = self.style.style_for_token(token)
         # make base font
-        font = wx.richtext.RichTextAttr()
+        font = wx.wx_richtext.RichTextAttr()
         font.Apply(base)
         # apply spec to font
         font.SetFontStyle(wx.FONTSTYLE_ITALIC if spec['italic'] else wx.FONTSTYLE_NORMAL)
