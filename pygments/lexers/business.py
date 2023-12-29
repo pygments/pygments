@@ -496,7 +496,8 @@ class CDSLexer(RegexLexer):
     tokens = {
         'common': [
             (r'\s+', Whitespace),
-            (r'^@.*$', Comment.Single)
+            (r'^@.*$', Comment.Decorator),
+            (r'\/\/.*?\n', Comment.Single),
         ],
         'combined-keywords':[
             (r'define\s+view|'

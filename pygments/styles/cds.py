@@ -20,10 +20,11 @@ class CDSStyle(Style):
     name = 'cds'
 
     styles = {
-        Comment:                '#888',
-        Keyword:                'bold #f80',
-        Operator:               '#f80',
-        Punctuation:            '#f80',
+        Comment.Decorator:      '#335CA2',
+        Comment.Single:         '#888',
+        Keyword:                'bold #7F0074',
+        Operator:               '#7F0074',
+        Punctuation:            '#7F0074',
         Name.Variable:          '#000',
         Name.Builtin:           'italic #000',
         Number:                 '#3af',
