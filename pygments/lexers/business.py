@@ -517,6 +517,7 @@ class CDSLexer(RegexLexer):
              r'else|'
              r'case|cast|'
              r'end|'
+             r'key|'
              r'on|or|'
              r'then|'
              r'when|where', Keyword),
