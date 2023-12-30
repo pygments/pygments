@@ -7,6 +7,7 @@
     :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import re
 
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -122,6 +123,10 @@ class Lean3Lexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        if re.search(r'^import [a-z]', text, re.MULTILINE):
+            return 0.1
+
 
 LeanLexer = Lean3Lexer
 
@@ -204,3 +209,7 @@ class Lean4Lexer(RegexLexer):
             ('"', String.Double, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        if re.search(r'^import [A-Z]', text, re.MULTILINE):
+            return 0.1
