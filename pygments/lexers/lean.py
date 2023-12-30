@@ -194,7 +194,8 @@ class Lean4Lexer(RegexLexer):
              "\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
-            (r'[~?][a-z][\w\']*:', Name.Variable)
+            (r'[~?][a-z][\w\']*:', Name.Variable),
+            (r'\S', Name.Builtin.Pseudo),
         ],
         'comment': [
             # Multiline Comments
