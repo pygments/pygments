@@ -9,8 +9,8 @@
 """
 
 from pygments.lexer import RegexLexer, words, include
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Generic
+from pygments.token import Comment, Operator, Keyword, Name, String, \
+    Number, Generic, Whitespace
 
 __all__ = ['Lean3Lexer']
 
@@ -33,7 +33,7 @@ class Lean3Lexer(RegexLexer):
 
     tokens = {
         'expression': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'/--', String.Doc, 'docstring'),
             (r'/-', Comment, 'comment'),
             (r'--.*?$', Comment.Single),
@@ -105,13 +105,13 @@ class Lean3Lexer(RegexLexer):
             include('expression'),
         ],
         'comment': [
-            (r'[^/-]', Comment.Multiline),
+            (r'[^/-]+', Comment.Multiline),
             (r'/-', Comment.Multiline, '#push'),
             (r'-/', Comment.Multiline, '#pop'),
             (r'[/-]', Comment.Multiline)
         ],
         'docstring': [
-            (r'[^/-]', String.Doc),
+            (r'[^/-]+', String.Doc),
             (r'-/', String.Doc, '#pop'),
             (r'[/-]', String.Doc)
         ],
@@ -121,5 +121,6 @@ class Lean3Lexer(RegexLexer):
             ('"', String.Double, '#pop'),
         ],
     }
+
 
 LeanLexer = Lean3Lexer

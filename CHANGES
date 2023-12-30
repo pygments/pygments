@@ -15,6 +15,7 @@ Version 2.18.0
 - Updated lexers:
 
   * Bash: add ``openrc`` alias (#2599)
+  * lean: Fix name handling (#2614)
   * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
   * reStructuredText: use ``Token.Comment`` for comments instead of
     ``Comment.Preproc`` (#2598)
