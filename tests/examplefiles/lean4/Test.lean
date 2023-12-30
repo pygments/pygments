@@ -233,3 +233,8 @@ theorem IsChain.exists_maxChain (hc : IsChain r c) : ∃ M, @IsMaxChain _ r M �
 -- other bits of tricky syntax
 @[to_additive "See note [foo]"]
 lemma mul_one : sorry := sorry
+
+variable {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
+
+#check `𝒜.a
+#check ``𝒜

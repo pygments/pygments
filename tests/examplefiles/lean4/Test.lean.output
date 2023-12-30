@@ -3556,4 +3556,56 @@
 ':='          Operator
 ' '           Text.Whitespace
 'sorry'       Name
+'\n\n'        Text.Whitespace
+
+'variable'    Keyword.Namespace
+' '           Text.Whitespace
+'{'           Operator
+'ι'           Name
+' '           Text.Whitespace
+'A'           Name
+' '           Text.Whitespace
+'B'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Type'        Keyword.Type
+'*'           Name.Builtin.Pseudo
+'}'           Operator
+' '           Text.Whitespace
+'('           Operator
+'𝒜'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'ι'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'A'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'ℬ'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'ι'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'B'           Name
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'`𝒜.a'        Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'``𝒜'         Literal.String.Symbol
 '\n'          Text.Whitespace
