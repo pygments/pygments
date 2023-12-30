@@ -536,7 +536,7 @@ class CDSLexer(RegexLexer):
             (r'[a-zA-Z_0-9\/]+', Name.Variable)
         ],
         'other':[
-            (r'(\+|\-|\*|\/|=|<|>|<=|>=|<>|\.)', Operator),
+            (r'(\+|\-|\*|\/|=|<|>|<=|>=|<>|\.|:)', Operator),
             (r"'(''|[^'])*'", String.Single),
             (r'[\(\)\{\},]', Punctuation),
         ],
