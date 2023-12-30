@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Generic, Whitespace, Text
 
-__all__ = ['Lean3Lexer']
+__all__ = ['Lean3Lexer', 'Lean4Lexer']
 
 class Lean3Lexer(RegexLexer):
     """
@@ -134,7 +134,7 @@ class Lean4Lexer(RegexLexer):
     url = 'https://github.com/leanprover/lean4'
     aliases = ['lean4']
     filenames = ['*.lean']
-    mimetypes = ['text/x-lean']
+    mimetypes = ['text/x-lean4']
     version_added = '2.18'
 
     keywords1 = (
