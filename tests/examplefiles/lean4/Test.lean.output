@@ -3608,4 +3608,17 @@
 'check'       Name
 ' '           Text.Whitespace
 '``𝒜'         Literal.String.Symbol
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'  This is'   Literal.String.Double
+'\\n'         Literal.String.Escape
+'a '          Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'  wrapped string.\n' Literal.String.Double

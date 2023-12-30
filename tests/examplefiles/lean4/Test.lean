@@ -238,3 +238,7 @@ variable {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
 
 #check `𝒜.a
 #check ``𝒜
+
+#check "\
+  This is\na \
+  wrapped string.
