@@ -229,3 +229,7 @@ theorem IsChain.exists_maxChain (hc : IsChain r c) : ∃ M, @IsMaxChain _ r M �
   · exact (hcs₀ hsz).right (h hysy) hzsz hyz
   · exact (hcs₀ hsy).right hysy (h hzsz) hyz
 #align is_chain.exists_max_chain IsChain.exists_maxChain
+
+-- other bits of tricky syntax
+@[to_additive "See note [foo]"]
+lemma mul_one : sorry := sorry
