@@ -11,7 +11,6 @@
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Generic, Whitespace, Text
-import re
 
 __all__ = ['Lean3Lexer']
 
@@ -139,8 +138,6 @@ class Lean4Lexer(RegexLexer):
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
 
-    flags = re.MULTILINE | re.UNICODE
-
     keywords1 = (
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
         'renaming', 'inline', 'hiding', 'parameter', 'lemma', 'variable',
@@ -167,16 +164,16 @@ class Lean4Lexer(RegexLexer):
     )
 
     operators = (
-        u'!=', u'#', u'&', u'&&', u'*', u'+', u'-', u'/', u'@', u'!', u'`',
-        u'-.', u'->', u'.', u'..', u'...', u'::', u':>', u';', u';;', u'<',
-        u'<-', u'=', u'==', u'>', u'_', u'|', u'||', u'~', u'=>', u'<=', u'>=',
-        u'/\\', u'\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥',
-        u'¬', u'⁻¹', u'⬝', u'▸', u'→', u'∃', u'ℕ', u'ℤ', u'≈', u'×', u'⌞',
-        u'⌟', u'≡', u'⟨', u'⟩',
+        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!', '`',
+        '-.', '->', '.', '..', '...', '::', ':>', ';', ';;', '<',
+        '<-', '=', '==', '>', '_', '|', '||', '~', '=>', '<=', '>=',
+        '/\\', '\\/', '∀', 'Π', 'λ', '↔', '∧', '∨', '≠', '≤', '≥',
+        '¬', '⁻¹', '⬝', '▸', '→', '∃', 'ℕ', 'ℤ', '≈', '×', '⌞',
+        '⌟', '≡', '⟨', '⟩',
     )
 
-    punctuation = (u'(', u')', u':', u'{', u'}', u'[', u']', u'⦃', u'⦄',
-                   u':=', u',')
+    punctuation = ('(', ')', ':', '{', '}', '[', ']', '⦃', '⦄',
+                   ':=', ',')
 
     tokens = {
         'root': [
@@ -188,9 +185,9 @@ class Lean4Lexer(RegexLexer):
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words(operators), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
-            (u"[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
-             u"[A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
-             u"\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
+            ("[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
+             "[A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
+             "\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
             (r'[~?][a-z][\w\']*:', Name.Variable)
