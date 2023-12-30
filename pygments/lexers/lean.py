@@ -223,7 +223,7 @@ class Lean4Lexer(RegexLexer):
         ],
         'string': [
             (r'[^\\"]+', String.Double),
-            (r'\\[n"\\]', String.Escape),
+            (r'\\[n"\\\n]', String.Escape),
             ('"', String.Double, '#pop'),
         ],
     }
