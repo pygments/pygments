@@ -272,6 +272,7 @@ LEXERS = {
     'LdaprcLexer': ('pygments.lexers.ldap', 'LDAP configuration file', ('ldapconf', 'ldaprc'), ('.ldaprc', 'ldaprc', 'ldap.conf'), ('text/x-ldapconf',)),
     'LdifLexer': ('pygments.lexers.ldap', 'LDIF', ('ldif',), ('*.ldif',), ('text/x-ldif',)),
     'Lean3Lexer': ('pygments.lexers.lean', 'Lean', ('lean', 'lean3'), ('*.lean',), ('text/x-lean', 'text/x-lean3')),
+    'Lean4Lexer': ('pygments.lexers.lean', 'Lean4', ('lean4',), ('*.lean',), ('text/x-lean4',)),
     'LessCssLexer': ('pygments.lexers.css', 'LessCss', ('less',), ('*.less',), ('text/x-less-css',)),
     'LighttpdConfLexer': ('pygments.lexers.configs', 'Lighttpd configuration file', ('lighttpd', 'lighty'), ('lighttpd.conf',), ('text/x-lighttpd-conf',)),
     'LilyPondLexer': ('pygments.lexers.lilypond', 'LilyPond', ('lilypond',), ('*.ly',), ()),
