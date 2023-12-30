@@ -3629,4 +3629,54 @@
 ':='          Operator
 ' '           Text
 'sorry'       Generic.Error
+'\n\n'        Text
+
+'variables'   Keyword.Declaration
+' '           Text
+'{'           Operator
+'ι'           Name
+' '           Text
+'A'           Name
+' '           Text
+'B'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'*'           Name.Builtin.Pseudo
+'}'           Operator
+' '           Text
+'('           Operator
+'𝒜'           Name
+' '           Text
+':'           Operator
+' '           Text
+'ι'           Name
+' '           Text
+'→'           Name.Builtin.Pseudo
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'ℬ'           Name
+' '           Text
+':'           Operator
+' '           Text
+'ι'           Name
+' '           Text
+'→'           Name.Builtin.Pseudo
+' '           Text
+'B'           Name
+')'           Operator
+'\n\n'        Text
+
+'#check'      Keyword
+' '           Text
+'`𝒜.a'        Literal.String.Symbol
+'\n'          Text
+
+'#check'      Keyword
+' '           Text
+'``𝒜'         Literal.String.Symbol
 '\n'          Text

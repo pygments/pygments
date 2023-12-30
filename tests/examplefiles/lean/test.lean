@@ -211,3 +211,8 @@ end zorn
 -- other bits of tricky syntax
 @[to_additive "See note [foo]"]
 lemma mul_one : sorry := sorry
+
+variables {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
+
+#check `𝒜.a
+#check ``𝒜
