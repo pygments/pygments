@@ -142,6 +142,10 @@ class Lean4Lexer(RegexLexer):
     mimetypes = ['text/x-lean4']
     version_added = '2.18'
 
+    # TODO: update this regex for Lean 4
+    _name = Lean3Lexer._name
+    _name_segment = Lean3Lexer._name_segment
+
     keywords1 = (
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
         'renaming', 'inline', 'hiding', 'parameter', 'lemma', 'variable',
@@ -168,7 +172,7 @@ class Lean4Lexer(RegexLexer):
     )
 
     operators = (
-        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!', '`',
+        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!',
         '-.', '->', '.', '..', '...', '::', ':>', ';', ';;', '<',
         '<-', '=', '==', '>', '_', '|', '||', '~', '=>', '<=', '>=',
         '/\\', '\\/', '∀', 'Π', 'λ', '↔', '∧', '∨', '≠', '≤', '≥',
@@ -188,9 +192,8 @@ class Lean4Lexer(RegexLexer):
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words(operators), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
-            ("[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
-             "[A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
-             "\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
+            (_name_segment, Name),
+            (r'``?' + _name, String.Symbol),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
             (r'[~?][a-z][\w\']*:', Name.Variable),
