@@ -128,15 +128,14 @@ LeanLexer = Lean3Lexer
 
 class Lean4Lexer(RegexLexer):
     """
-    For the `Lean 4 <https://github.com/leanprover/lean4>`_
-    theorem prover.
-
-    .. versionadded:: 2.0
+    For the Lean 4 theorem prover.
     """
     name = 'Lean4'
+    url = 'https://github.com/leanprover/lean4'
     aliases = ['lean4']
     filenames = ['*.lean']
     mimetypes = ['text/x-lean']
+    version_added = '2.18'
 
     keywords1 = (
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
