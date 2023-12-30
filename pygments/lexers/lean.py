@@ -11,7 +11,7 @@ import re
 
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Operator, Keyword, Name, String, \
-    Number, Generic, Whitespace, Text
+    Number, Generic, Whitespace
 
 __all__ = ['Lean3Lexer', 'Lean4Lexer']
 
@@ -180,12 +180,11 @@ class Lean4Lexer(RegexLexer):
                    ':=', ',')
 
     tokens = {
-        'root': [
-            (r'\s+', Text),
+        'expression': [
+            (r'\s+', Whitespace),
+            (r'/--', String.Doc, 'docstring'),
             (r'/-', Comment, 'comment'),
             (r'--.*?$', Comment.Single),
-            (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
-            (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words(operators), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
@@ -197,12 +196,27 @@ class Lean4Lexer(RegexLexer):
             (r'[~?][a-z][\w\']*:', Name.Variable),
             (r'\S', Name.Builtin.Pseudo),
         ],
+        'root': [
+            (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
+            (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
+            (r'@\[', Keyword.Declaration, 'attribute'),
+            include('expression')
+        ],
+        'attribute': [
+            (r'\]', Keyword.Declaration, '#pop'),
+            include('expression'),
+        ],
         'comment': [
             # Multiline Comments
-            (r'[^/-]', Comment.Multiline),
+            (r'[^/-]+', Comment.Multiline),
             (r'/-', Comment.Multiline, '#push'),
             (r'-/', Comment.Multiline, '#pop'),
             (r'[/-]', Comment.Multiline)
+        ],
+        'docstring': [
+            (r'[^/-]+', String.Doc),
+            (r'-/', String.Doc, '#pop'),
+            (r'[/-]', String.Doc)
         ],
         'string': [
             (r'[^\\"]+', String.Double),
