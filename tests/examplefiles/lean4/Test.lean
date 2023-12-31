@@ -241,4 +241,6 @@ variable {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
 
 #check "\
   This is\na \
-  wrapped string.
+  wrapped string."
+
+#check List.get!

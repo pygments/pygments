@@ -142,9 +142,11 @@ class Lean4Lexer(RegexLexer):
     mimetypes = ['text/x-lean4']
     version_added = '2.18'
 
-    # TODO: update this regex for Lean 4
-    _name = Lean3Lexer._name
-    _name_segment = Lean3Lexer._name_segment
+    # same as Lean3Lexer, with `!` and `?` allowed
+    _name_segment = (
+        "(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟]"
+        "(?:(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟0-9'ⁿ-₉ₐ-ₜᵢ-ᵪ!?])*")
+    _name = _name_segment + r"(\." + _name_segment + r")*"
 
     keywords1 = (
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
