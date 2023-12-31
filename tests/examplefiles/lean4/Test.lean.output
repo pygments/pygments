@@ -3621,4 +3621,14 @@
 'a '          Literal.String.Double
 '\\\n'        Literal.String.Escape
 
-'  wrapped string.\n' Literal.String.Double
+'  wrapped string.' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'List'        Name
+'.'           Name.Builtin.Pseudo
+'get!'        Name
+'\n'          Text.Whitespace
