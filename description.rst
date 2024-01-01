@@ -14,5 +14,5 @@ are:
   formats that PIL supports and ANSI sequences
 * it is usable as a command-line tool and as a library
 
-Copyright 2006-2023 by the Pygments team, see ``AUTHORS``.
+Copyright 2006-2024 by the Pygments team, see ``AUTHORS``.
 Licensed under the BSD, see ``LICENSE`` for details.

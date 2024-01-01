@@ -30,7 +30,7 @@
     .. _directive documentation:
        https://docutils.sourceforge.io/docs/howto/rst-directives.html
 
-    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

@@ -5,7 +5,7 @@
 
     Helper script to find whitespace which is not of token type `Whitespace`
 
-    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import argparse
