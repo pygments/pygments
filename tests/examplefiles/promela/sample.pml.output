@@ -1,0 +1,2082 @@
+'/**\n\tNeedham-Schroeder message passing protocol (patched). \n\t|\tmsg1:\tagentA -> agentB\t(keyB, agentA, nonceA, 0)\n\t|\tmsg2:\tagentB -> agentA\t(keyA, agentB, nonceA, nonceB)\n\t|\tmsg3:\tagentA -> agentB\t(keyB, nonceB, 0, 0)\n\n\tNote that sending (keyB, agentA, nonceA) from agentA to agentB \n\tover the network (chan)nel models agentA encrypting the message \n\t"[agentA, nonceB]" with agentB\'s public key.\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* Status Codes */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'ok'          Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'err'         Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* Message Codes */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'msg1'        Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'msg2'        Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'msg3'        Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/*\tAgent (A)lice */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'keyA'        Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'agentA'      Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'nonceA'      Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/*\tAgent (B)ob */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'keyB'        Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'agentB'      Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'nonceB'      Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/*\tAgent (I)ntruder */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'keyI'        Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'agentI'      Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'nonceI'      Name
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/**\n\tDeclare a structured data type to model our encrypted messages.\n\tMessages will contain either 2 or 3 content fields.\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'typedef'     Keyword.Declaration
+' '           Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'key'         Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'content1'    Name
+','           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'content2'    Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'content3'    Name
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/**\n\tModel network between agents via a rendezvous channel. \n\tSend and recieve operations are performed synchronously. \n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'chan'        Keyword.Declaration
+' '           Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'of'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+'mtype'       Keyword.Declaration
+','           Punctuation
+' '           Text.Whitespace
+'mtype'       Keyword.Declaration
+','           Punctuation
+' '           Text.Whitespace
+'Crypt'       Name
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* global variables for verification*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'partnerA'    Name
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'partnerB'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'knows_nonceA' Name
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'knows_nonceB' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Agent (A)lice */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'active'      Keyword.Declaration
+' '           Text.Whitespace
+'proctype'    Keyword.Declaration
+' '           Text.Whitespace
+'Alice'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* local variables */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'pkey'        Name
+';'           Punctuation
+'\t\t\t'      Text.Whitespace
+"/* reciever's public key */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'pnonce'      Name
+';'           Punctuation
+'\t\t'        Text.Whitespace
+"/* reciever's nonce\t */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'messageAB'   Name
+';'           Punctuation
+'\t'          Text.Whitespace
+'/* sent messages\t\t\t */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'data'        Name
+';'           Punctuation
+'\t\t\t'      Text.Whitespace
+'/* recieved messages\t */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* \n\t\tInitialization: In this example we non-deterministically choose between \n\t\tagents (B)ob and (I)ntruder\n\t*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'partnerA'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+';'           Punctuation
+' '           Text.Whitespace
+'pkey'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyB'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'partnerA'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentI'      Name
+';'           Punctuation
+' '           Text.Whitespace
+'pkey'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyI'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* prepare (msg1) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pkey'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* send (msg1) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'msg1'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'partnerA'    Name
+','           Punctuation
+' '           Text.Whitespace
+'messageAB'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* recv (msg2) : blocking */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'msg2'        Name
+','           Punctuation
+' '           Text.Whitespace
+'agentA'      Name
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* verify (msg2) : blocking\t*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'keyA'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'partnerA'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+"/* obtain (msg2) sender's nonce */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'pnonce'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content3'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* prepare (msg3) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pkey'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pnonce'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageAB'   Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* send (msg3) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'msg3'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'partnerA'    Name
+','           Punctuation
+' '           Text.Whitespace
+'messageAB'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* update status */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Agent (B)ob */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'active'      Keyword.Declaration
+' '           Text.Whitespace
+'proctype'    Keyword.Declaration
+' '           Text.Whitespace
+'Bob'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* local variables */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'pkey'        Name
+';'           Punctuation
+'\t\t\t'      Text.Whitespace
+"/* reciever's public key */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'pnonce'      Name
+';'           Punctuation
+'\t\t'        Text.Whitespace
+"/* reciever's nonce\t */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'messageBA'   Name
+';'           Punctuation
+'\t'          Text.Whitespace
+'/* sent messages\t\t\t */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'data'        Name
+';'           Punctuation
+'\t\t\t'      Text.Whitespace
+'/* recieved messages\t */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* Initialization\t*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'partnerB'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'pkey'        Name
+'\t '         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyA'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* recv (msg1) : blocking */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'msg1'        Name
+','           Punctuation
+' '           Text.Whitespace
+'agentB'      Name
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* verify (msg1) : blocking */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'keyB'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+"/* obtain (msg1) sender's nonce */" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'pnonce'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+';'           Punctuation
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* prepare (msg2) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageBA'   Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pkey'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageBA'   Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageBA'   Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pnonce'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'messageBA'   Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* send (msg2) */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'msg2'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'partnerB'    Name
+','           Punctuation
+' '           Text.Whitespace
+'messageBA'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* recv (msg3) : blocking */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'msg3'        Name
+','           Punctuation
+' '           Text.Whitespace
+'agentB'      Name
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* verify (msg3) : blocking */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'keyB'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Agent (I)ntruder */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'active'      Keyword.Declaration
+' '           Text.Whitespace
+'proctype'    Keyword.Declaration
+' '           Text.Whitespace
+'Intruder'    Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'msg'         Name
+','           Punctuation
+' '           Text.Whitespace
+'recpt'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'data'        Name
+','           Punctuation
+' '           Text.Whitespace
+'intercepted' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'/* Initialize knows_nonce variables to false */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'knows_nonceA' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'knows_nonceB' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'do'          Keyword
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'msg'         Name
+','           Punctuation
+' '           Text.Whitespace
+'_'           Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* perhaps store the message */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+'\t'          Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'key'         Name.Attribute
+'\t\t '       Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+"/*\t\n\t\t\t\tMessage contains (I)ntruder's (public) key, the intruder can \n\t\t\t\tdecrypt the message. Note that we can learn nonce values from \n\t\t\t\teither content1 or content2\n\t\t\t\t|\tmsg1:\t(keyB, agentA, nonceA, 0)\n\t\t\t\t|\tmsg2:\t(keyA, agentB, nonceA, nonceB)\n\t\t\t\t|\tmsg3: \t(keyB, nonceB, 0, 0)\n\t\t\t*/" Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+'  '          Text.Whitespace
+'('           Punctuation
+'intercepted' Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'keyI'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceA' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceB' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceA' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceB' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceA' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'knows_nonceB' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t\t'    Text.Whitespace
+'fi'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'skip'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'fi'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'skip'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'/* Replay or send a message */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* choose message type */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'msg'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'msg1'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'msg'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'msg2'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'msg'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'msg3'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* choose a recepient */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'recpt'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'recpt'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t '     Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* replay intercepted message or assemble it */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+'\t'          Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+'\t\t'        Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'key'         Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+'\t'          Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content1'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+'\t'          Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content2'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'data'        Name
+'.'           Operator
+'content3'    Name.Attribute
+'\t'          Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'content3'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* assemble content1 */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'agentI'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceA' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'knows_nonceA' Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'!'           Operator
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content1'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceI'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/* assemble key */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyA'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyB'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'keyI'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceA' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'knows_nonceA' Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'!'           Operator
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content2'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceI'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fi'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceA' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceA'      Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceB'      Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'knows_nonceA' Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'!'           Operator
+'knows_nonceB' Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'content3'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nonceI'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fi'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'network'     Name
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'msg'         Name
+' '           Text.Whitespace
+'('           Punctuation
+'recpt'       Name
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'od'          Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/**\n\tAlways, one process will terminate in error\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'alwaysErr'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'[]'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'|'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/**\n\tEventually the protocol will complete without error\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'eventuallyOk' Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"/*\n\tpropAB: If both Alice and Bob reach the end of their runs (i.e. both statusA and statusB are ok) \n\tthen Alice's communication partner is Bob, and Bob's communication partner is Alice.\n*/" Comment.Multiline
+'\n'          Text.Whitespace
+
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'propAB'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'[]'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'partnerB'    Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'partnerA'    Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"/*\n\tpropA: If agent A reaches the end of its run (statusA is ok) and A believes it is talking to B \n\t(partnerA is agentB) then the intruder does not know A's nonce (!knows_nonceA).\n*/" Comment.Multiline
+'\n'          Text.Whitespace
+
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'propA'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'[]'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'statusA'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+'  '          Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'partnerA'    Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'agentB'      Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'knows_nonceA' Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'false'       Name.Builtin
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"/*\n\tpropB: If agent B reaches the end of its run (statusB is ok) and it believes it is talking to A \n\t(partnerB is agentA) then the intruder does not know B's nonce (!knows_nonceB)\n*/" Comment.Multiline
+'\n'          Text.Whitespace
+
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'propB'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'[]'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'statusB'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'ok'          Name
+')'           Punctuation
+'  '          Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'partnerB'    Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'agentA'      Name
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'knows_nonceB' Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'false'       Name.Builtin
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
