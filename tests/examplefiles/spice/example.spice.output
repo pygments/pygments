@@ -53,23 +53,11 @@
 
 'type'        Keyword.Declaration
 ' '           Text.Whitespace
-'Person'      Name.Other
+'Human'       Name.Other
 ' '           Text.Whitespace
 'struct'      Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
-'string'      Keyword.Type
-' '           Text.Whitespace
-'firstName'   Name.Other
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
-'string'      Keyword.Type
-' '           Text.Whitespace
-'lastName'    Name.Other
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -84,6 +72,40 @@
 'BloodType'   Name.Other
 ' '           Text.Whitespace
 'bloodType'   Name.Other
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'Person'      Name.Other
+' '           Text.Whitespace
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'compose'     Keyword.Pseudo
+' '           Text.Whitespace
+'Human'       Name.Other
+' '           Text.Whitespace
+'human'       Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'firstName'   Name.Other
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'lastName'    Name.Other
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -388,6 +410,91 @@
 'true'        Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Switch stmt usage\n' Comment.Single
+
+'    '        Text.Whitespace
+'switch'      Keyword
+' '           Text.Whitespace
+'size'        Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'result'      Name.Other
+' '           Text.Whitespace
+'^='          Operator
+' '           Text.Whitespace
+'24'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'fallthrough' Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'result'      Name.Other
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'~'           Operator
+'result'      Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'default'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'result'      Name.Other
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
