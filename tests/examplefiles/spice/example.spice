@@ -7,11 +7,15 @@ type BloodType enum {
     ZERO = 0
 }
 
-type Person struct {
-    string firstName
-    string lastName
+type Human struct {
     unsigned int age
     BloodType bloodType
+}
+
+type Person struct {
+    compose Human human
+    string firstName
+    string lastName
 }
 
 // Function to compute fibonacci numbers recursively
@@ -45,4 +49,17 @@ f<int> main() {
     // Sizeof usage
     int size = sizeof('T');
     printf("Size of char is %d, %d\n", size, true);
+    // Switch stmt usage
+    switch size {
+        case 1, 5: {
+            result ^= 24;
+            fallthrough;
+        }
+        case 6: {
+            result = ~result;
+        }
+        default: {
+            result++;
+        }
+    }
 }
