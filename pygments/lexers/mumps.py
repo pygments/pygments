@@ -405,11 +405,15 @@ class MumpsLexer(ExtendedRegexLexer):
         ],
         # 8.2.5 - FOR
         'for_argument': [
-            default(('#pop', 'expr', 'colon_sep', 'expr', 'colon_sep', 'expr', 'equals', 'lvn')),
+            default(('#pop', 'l_forparameter', 'equals', 'lvn')),
         ],
         'equals': [
             ('=', Operator, '#pop'),
         ],
+        'forparameter': [
+            default(('#pop', 'expr', 'colon_sep', 'expr', 'colon_sep', 'expr' ))
+        ],
+        'l_forparameter': L('forparameter'),
         # 8.2.6 - GOTO
         'gotoargument': [
             default(('#pop', 'postcond', 'entryref')),
