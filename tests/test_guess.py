@@ -198,3 +198,11 @@ def test_ecl_analyze_text():
             """
     res = ECLLexer.analyse_text(text)
     assert res == 0.01
+
+def test_objc_file():
+    lx = guess_lexer(get_input('objective-c', 'objc_example.m'))
+    assert lx.__class__.__name__ == 'ObjectiveCLexer'
+
+def test_mumps_file():
+    lx = guess_lexer(get_input('mumps', 'EXAMPLE.m'))
+    assert lx.__class__.__name__ == 'MumpsLexer'
