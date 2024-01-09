@@ -149,7 +149,7 @@ class Lean4Lexer(RegexLexer):
     _name = _name_segment + r"(\." + _name_segment + r")*"
 
     keywords1 = (
-        'import',
+        'import', 'unif_hint',
         'renaming', 'inline', 'hiding', 'lemma', 'variable',
         'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
         '#help',  'precedence', 'postfix', 'prefix',
@@ -160,6 +160,7 @@ class Lean4Lexer(RegexLexer):
         '#print', 'opaque',
         'def', 'macro', 'elab', 'syntax', 'macro_rules', '#reduce', 'where',
         'abbrev', 'noncomputable', 'class', 'attribute', '#synth', 'mutual',
+        'scoped', 'local',
     )
 
     keywords2 = (
