@@ -149,23 +149,23 @@ class Lean4Lexer(RegexLexer):
     _name = _name_segment + r"(\." + _name_segment + r")*"
 
     keywords1 = (
-        'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
-        'renaming', 'inline', 'hiding', 'parameter', 'lemma', 'variable',
+        'import',
+        'renaming', 'inline', 'hiding', 'lemma', 'variable',
         'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
-        'help', 'options', 'precedence', 'postfix', 'prefix',
+        '#help',  'precedence', 'postfix', 'prefix',
         'infix', 'infixl', 'infixr', 'notation', '#eval',
-        '#check', '#reduce', '#exit', 'coercion', 'end', 'private', 'using', 'namespace',
-        'including', 'instance', 'section', 'context', 'protected', 'expose',
+        '#check', '#reduce', '#exit', 'end', 'private', 'using', 'namespace',
+        'instance', 'section', 'protected',
         'export', 'set_option', 'extends', 'open', 'example',
-        'constant', 'constants', 'print', 'opaque', 'reducible', 'irreducible',
-        'def', 'macro', 'elab', 'syntax', 'macro_rules', 'reduce', 'where',
-        'abbrev', 'noncomputable', 'class', 'attribute', 'synth', 'mutual',
+        '#print', 'opaque',
+        'def', 'macro', 'elab', 'syntax', 'macro_rules', '#reduce', 'where',
+        'abbrev', 'noncomputable', 'class', 'attribute', '#synth', 'mutual',
     )
 
     keywords2 = (
-        'forall', 'fun', 'Pi', 'obtain', 'from', 'have', 'show', 'assume',
-        'take', 'let', 'if', 'else', 'then', 'by', 'in', 'with', 'begin',
-        'proof', 'qed', 'calc', 'match', 'nomatch', 'do', 'at',
+        'forall', 'fun', 'obtain', 'from', 'have', 'show', 'assume',
+        'let', 'if', 'else', 'then', 'by', 'in', 'with',
+        'calc', 'match', 'nomatch', 'do', 'at',
     )
 
     keywords3 = (
