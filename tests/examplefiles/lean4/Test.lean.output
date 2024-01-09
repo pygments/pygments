@@ -359,7 +359,7 @@
 '\n      '    Text.Whitespace
 'maxChain_spec' Name
 '.'           Name.Builtin.Pseudo
-'1'           Literal.Number.Integer
+'1'           Literal.Number
 '.'           Name.Builtin.Pseudo
 'insert'      Name
 ' '           Text.Whitespace
@@ -1095,7 +1095,7 @@
 '.'           Name.Builtin.Pseudo
 'ext_iff'     Name
 '.'           Name.Builtin.Pseudo
-'1'           Literal.Number.Integer
+'1'           Literal.Number
 ' '           Text.Whitespace
 't'           Name
 ')'           Operator
@@ -1503,7 +1503,7 @@
 'hz'          Name
 ')'           Operator
 '.'           Name.Builtin.Pseudo
-'1'           Literal.Number.Integer
+'1'           Literal.Number
 ')'           Operator
 ' '           Text.Whitespace
 'hc'          Name
@@ -1540,7 +1540,7 @@
 'hy'          Name
 ')'           Operator
 '.'           Name.Builtin.Pseudo
-'2'           Literal.Number.Integer
+'2'           Literal.Number
 '.'           Name.Builtin.Pseudo
 'trans'       Name
 ' '           Text.Whitespace
@@ -3631,4 +3631,18 @@
 'List'        Name
 '.'           Name.Builtin.Pseudo
 'get!'        Name
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'+'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'2.'          Literal.Number.Float
+' '           Text.Whitespace
+'+'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'0.3e1'       Literal.Number.Float
 '\n'          Text.Whitespace
