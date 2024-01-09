@@ -244,3 +244,5 @@ variable {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
   wrapped string."
 
 #check List.get!
+
+#check 1.0 + 2. + 0.3e1
