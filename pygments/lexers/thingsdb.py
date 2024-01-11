@@ -131,10 +131,6 @@ class ThingsDBLexer(RegexLexer):
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
         ],
-        'tstringescape': [
-            (r'\{', String.Escape),
-            (r'\}', String.Escape),
-        ],
         'arguments': [
             include('expression'),
             (',', Punctuation),
