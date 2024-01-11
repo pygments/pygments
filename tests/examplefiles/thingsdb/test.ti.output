@@ -165,6 +165,10 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
+'`backtick string`' Literal.String.Backtick
+';'           Punctuation
+'\n'          Text.Whitespace
+
 '\n'          Text.Whitespace
 
 'nodes_info'  Name.Function
@@ -182,17 +186,6 @@
 '.'           Name.Function
 'id'          Name.Function
 '('           Punctuation
-')'           Punctuation
-';'           Punctuation
-'\n'          Text.Whitespace
-
-'.'           Name.Function
-'add'         Name.Function
-'('           Punctuation
-'#12'         Comment.Preproc
-','           Punctuation
-' '           Text.Whitespace
-'#42'         Comment.Preproc
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -422,3 +415,10 @@
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'INT_MIN'     Name.Constant
+';'           Punctuation
+'  '          Text.Whitespace
+'// name constant\n' Comment.Single
