@@ -633,7 +633,7 @@ class ImageFormatter(Formatter):
                                fill=self.hl_color)
         for pos, value, font, text_fg, text_bg in self.drawables:
             if text_bg:
-                text_size = draw.textsize(text=value, font=font)
+                text_size = draw.textlength(text=value, font=font)
                 draw.rectangle([pos[0], pos[1], pos[0] + text_size[0], pos[1] + text_size[1]], fill=text_bg)
             draw.text(pos, value, font=font, fill=text_fg)
         im.save(outfile, self.image_format.upper())
