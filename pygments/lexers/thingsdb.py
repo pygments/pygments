@@ -18,12 +18,12 @@ __all__ = ['ThingsDBLexer']
 class ThingsDBLexer(RegexLexer):
     """
     Lexer for the ThingsDB programming language.
-
-    .. versionadded:: 2.9
     """
     name = 'ThingsDB'
     aliases = ['ti', 'thingsdb']
     filenames = ['*.ti']
+    url = 'https://www.thingsdb.net'
+    version_added = '2.9'
 
     tokens = {
         'root': [
@@ -140,5 +140,5 @@ class ThingsDBLexer(RegexLexer):
             (',', Punctuation),
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
-        ]
+        ],
     }
