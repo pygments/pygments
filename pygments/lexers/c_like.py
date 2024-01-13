@@ -663,6 +663,7 @@ class PromelaLexer(CLexer):
     """
     For the Promela language used with SPIN.
     """
+    
     name = 'Promela'
     aliases = ['promela']
     filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*pr', '*.pm']
