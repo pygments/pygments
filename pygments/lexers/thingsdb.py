@@ -50,10 +50,9 @@ class ThingsDBLexer(RegexLexer):
             (r'(true|false|nil)\b', Keyword.Constant),
 
             # name constants
-            (words(('FULL', 'USER', 'GRANT', 'CHANGE', 'JOIN', 'RUN',
-                    'QUERY', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL',
-                    'NO_IDS', 'INT_MIN', 'INT_MAX'), suffix=r'\b'),
-             Name.Constant),
+            (r'(FULL|USER|GRANT|CHANGE|JOIN|RUN|QUERY|'
+             r'DEBUG|INFO|WARNING|ERROR|CRITICAL|'
+             r'NO_IDS|INT_MIN|INT_MAX)\b', Name.Constant),
 
             # regular expressions
             (r'(/[^/\\]*(?:\\.[^/\\]*)*/i?)', String.Regex),
