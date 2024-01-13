@@ -1,6 +1,7 @@
 """
 Tests of the theorem lexers
 """
+
 import textwrap
 
 from pygments.lexers.lean import Lean3Lexer, Lean4Lexer
