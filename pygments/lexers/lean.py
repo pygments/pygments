@@ -199,7 +199,7 @@ class Lean4Lexer(RegexLexer):
             (words(punctuation), Operator),
             (_name_segment, Name),
             (r'``?' + _name, String.Symbol),
-            (r'(?<=\.)\d', Number),
+            (r'(?<=\.)\d+', Number),
             (r'(\d+\.\d*)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
