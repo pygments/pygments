@@ -89,6 +89,10 @@ class WxRichTextCtrlFormatter(Formatter):
         font = wx.richtext.RichTextAttr()
         font.Apply(base)
         # apply spec to font
+        for key, family in (("roman", wx.FONTFAMILY_ROMAN), ("sans", wx.FONTFAMILY_SWISS), ("mono", wx.FONTFAMILY_TELETYPE)):
+            if spec.get(key, None):
+                font.SetFontFamily(family)
+                break
         font.SetFontStyle(wx.FONTSTYLE_ITALIC if spec['italic'] else wx.FONTSTYLE_NORMAL)
         font.SetFontWeight(wx.FONTWEIGHT_BOLD if spec['bold'] else wx.FONTWEIGHT_NORMAL)
         font.SetFontUnderlined(wx.TEXT_ATTR_UNDERLINE_SOLID if spec['underline'] else wx.TEXT_ATTR_UNDERLINE_NONE)
