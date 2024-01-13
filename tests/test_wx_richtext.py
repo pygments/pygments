@@ -91,6 +91,3 @@ def test_setup():
     # start app
     global app
     app.MainLoop()
-    
-    
-test_setup()
